@@ -196,3 +196,7 @@ First-use lines applied (5 Oct, 13:00): Battle, Look Closer and United Effort, i
 **14 Oct 2026 (later):** Checked commit d7ce1c6 ("Implement 14 Oct fix prompt"). Done: Fix 7 (Campfire v2.3, all 359 lines match), Fix 3 economy.ts and the Fan Out "finished day" wording, growth formula, gold floor at 0. Part done: Fix 2 (result card still shows +150g / +3), Fix 3 (seven hard-coded amounts left), Fix 6 (party list added but unused). Not done: Fixes 1, 4, 5, 8, 9, 10. New mistakes: [N] now becomes "the company" ("a list of the company names"); sample friends named Tamsin (a kidnapped child) and Rowan (cut lore), renamed to Lin and Sam in the follow-up. Follow-up prompt: `fix-prompt-14oct-part2.md`.
 
 - 14 Oct: DECIDED (Fake Guru, D3): W1D2 pass line "Yours is the third stub. It fits like a key." becomes "Your stub fits like a key." It broke with 2 players. Changed in `episode-1-the-list.md` and `src/data/mythiosChaptersData.ts`.
+- 14 Oct: DECIDED (Fake Guru): fight damage is the hit's margin × 5, keeping the build's round line ("HIT +11 × 5 = 55. FOE HP 100 → 45"); was a d20 doubled. Core Rules §4 updated; balance to the numbers pass.
+- 14 Oct: DECIDED (Fake Guru): the +2 map bonus on the Gathering Approach (all six fragment words solved) stays; Core Rules §15 item 7, number pending.
+- 14 Oct: DECIDED (Fake Guru): sample friends 5 and 6 are Priya and Theo.
+- 14 Oct: APPROVED (Fake Guru): the Fan Out and Campfire proposal, `docs/design/fan-out-and-campfire-proposal.md`.

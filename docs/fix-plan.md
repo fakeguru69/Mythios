@@ -14,14 +14,14 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 0: decisions that shape the plan
 
-**Decided by Fake Guru, 14 Oct:** D1 demo on one phone · D2 go (after Phase 1) · D3 fix the line · D4 other names wanted (Lin/Sam not chosen) · D5 the story delivers the reveal · D6 different finds per friend · D7 remove the private ballot. Fan Out and Campfire design: see `docs/design/fan-out-and-campfire-proposal.md` (proposal, awaiting approval).
+**Decided by Fake Guru, 14 Oct:** D1 demo on one phone · D2 go (after Phase 1) · D3 fix the line (done) · D4 Priya and Theo · D5 the story delivers the reveal · D6 different finds per friend · D7 remove the private ballot. Fan Out and Campfire design: `docs/design/fan-out-and-campfire-proposal.md`, **approved 14 Oct**. Map +2 on the Approach: kept (Core Rules §15 item 7). Fight damage: margin × 5 (Core Rules §4).
 
 | # | Decision | Why it matters | Recommendation |
 |---|---|---|---|
 | D1 | **Direction:** keep improving the 6-week demo on one phone, or start real friends on their own phones (Week 1 first, accounts, a shared clock)? | Real phones need a server, accounts and push notifications; much of Phase 4 changes shape. | Do Phases 1–3 on the demo first (they are needed either way), then decide. |
 | D2 | **"Go" for the numbers pass** (the PENDING amounts in `economy.ts`: Fan Out, Detour, riddles, cache, W6D3 bonuses) | Phase 1 needs final numbers for these. | Do it after Phase 1's rule fixes, so the simulator runs on correct rules. |
 | D3 | **Canon W1D2 "Yours is the third stub"** breaks with 2 players | Canon and app text. | "Your stub fits like a key." |
-| D4 | **Sample friends 5 and 6:** "Lin" and "Sam" (replacing Tamsin and Rowan) | Task 7. | Yes. |
+| D4 | **Sample friends 5 and 6** (replacing Tamsin and Rowan) | Task 7. | Decided: Priya and Theo. |
 | D5 | **The Gathering's Table Question:** keep it as a three-choice quiz, or let the story deliver the reveal as canon does? | Phase 3. | Story, as canon; keep the friends' theories at the Campfire. |
 | D6 | **Fan Out:** each friend who fans out finds a different piece, or keep one shared clue? Drop the fight branch? | Phases 4–5. | Different pieces (canon has the material: [PRESS ON], the "look" choices, the Fan Out clue); one quick choice, no generic fight. |
 | D7 | **The private theory ballot** before the Campfire: keep or remove? | It spends the Fork before friends meet. | Remove. |
@@ -31,7 +31,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 ## Phase 1: rules and loopholes (code only, no story changes)
 
 1. ✅ **Done 14 Oct.** **[Fix] The Challenge roll** (Task 1). Also fixed a crash that stopped every passed Challenge from paying, growing or finishing the day. The Approach now uses its roller's own bonus; the map +2 is kept pending Fake Guru (not in canon). d20 + tier bonus against the week's DC; success on a margin of 1 or more; no automatic 20; "You succeed on X+". The same rule for [PRESS ON], Fan Out and the Gathering Approach. Remove the "Obstacle" bar.
-2. **[Fix] Fights.** Hit on d20 + Weapon − DEF ≥ 1; damage d20 × 2; the player strikes first. No per-round ROLL button: play the fight beat by beat with tumbling dice (canon, 4 Oct). Remove the invented +2 Weapon / −15 HP on days with a Challenge and a fight, and make the "strike first" text true.
+2. **Fights.** *(Revised 14 Oct.)* Fake Guru keeps the build's round line and its damage: "YOU: 🎲 15 + WEP 15 − DEF 19 = +11 · HIT +11 × 5 = 55. FOE HP 100 → 45". Damage is now **margin × 5** in canon (Core Rules §4). The +2 Weapon on a passed Challenge and the −15 HP on a failed one, on days with a Challenge and a fight, stay: they were approved in principle on 8 Oct (Core Rules §15 item 3; the audit wrongly called them invented). Their numbers, and the enemies' DEF and ATK (the build uses 2 below canon's DEF), go to the numbers pass. **[Decide]** Keep tapping each round, or play the round lines automatically (canon 4 Oct)?
 3. **[Fix] Pay.** Turn off patch L4 so fights on Challenge-and-fight days pay 0 (Task 2). Result cards show the real numbers (Task 3). No hard-coded gold (Task 4).
 4. **[Fix] Loopholes.**
    - A finished day pays nothing when replayed.
@@ -79,7 +79,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 4: a real party of 2 to 6
 
-22. **[Fix] One party list everywhere** (Task 7): Battle, United Effort, Campfire, Match, fragments, chat. `[N]` as the party size in words. Remove "the four of you" and the fixed Mei, Dev and Arjun lines. Lin and Sam (D4). A workbench switch for 2–6.
+22. **[Fix] One party list everywhere** (Task 7): Battle, United Effort, Campfire, Match, fragments, chat. `[N]` as the party size in words. Remove "the four of you" and the fixed Mei, Dev and Arjun lines. A workbench switch for 2–6. Sample friends 5 and 6 are Priya and Theo.
 23. **[Fix] Campfire §M rules:** nudges rotate among friends at the fire; at most 3 pins read aloud; the riddle is shared with 3 tries each.
 24. **[Fix] Fragments:** canon's "one word per friend per day", credited to the real player, not "Jennifer".
 25. **[Decide D6] Fan Out by friend:** different finds per friend, so each brings something to the fire.

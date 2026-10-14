@@ -212,7 +212,7 @@ On the Record and in the Store a piece of gear reads `Sword-Cane — Lv. 2 · We
 - Both sides have **100 HP**, at the start of every fight. Nothing carries from one fight to the next.
 - Each round, the player attacks first, then the enemy.
 - **Your attack hits when Roll + Weapon − DEF is 1 or more.** The enemy's attack hits when its Roll + ATK − your Armor is 1 or more. A tie misses.
-- **A hit rolls again for damage: a d20, doubled.** The same for both sides.
+- **A hit does damage equal to its margin × 5** (the Roll + Weapon − DEF result, times five). The same for both sides. *(Changed 14 Oct 2026, Fake Guru: keep the build's clear round line, e.g. "HIT +11 × 5 = 55. FOE HP 100 → 45". Was: a d20, doubled. Fight length and balance to be checked in the numbers pass.)*
 - If your hit takes the enemy to 0 HP, the fight ends at once; the enemy does not strike back. Ties are impossible.
 - A fight lasts about 8 rounds on average. It has no round limit; it ends when one side reaches 0 HP.
 - **A fight rolls itself, one beat at a time** (decided 4 Oct 2026). The player taps [FIGHT] once. Each round then fills in line by line in one message: the player's die tumbles for about a second and lands; on a hit the damage die does the same; then the enemy's. There is no button to roll each blow and no setting for it. A round is never shown all at once.
@@ -231,7 +231,7 @@ YOU · Weapon 14 · Armor 27
 You Hit On 9+ (Roll + Weapon 14 − DEF 22)
 Enemy Hits On 13+ (Roll + ATK 15 − Armor 27)
 
-Damage Roll 1 to 20, Doubled
+Damage = Margin × 5
 REWARD: 380g
 
 [FIGHT]  [NOT NOW]
@@ -246,7 +246,7 @@ REWARD: 380g
 ```
 Round 1
 You Roll 14 + Weapon 14 − DEF 22 = 6. HIT
-Damage = Roll 9 x 2. Guard HP 100 → 82
+Damage = 6 × 5 = 30. Guard HP 100 → 70
 Enemy Rolls 7 + ATK 15 − Armor 27 = −5. MISS
 ```
 
@@ -859,5 +859,6 @@ On 8 Oct 2026 Fake Guru (formerly TV / TVMen) approved the following changes tha
 4. **Fan Out** (a solo choice after the day's main beat: Challenge, Fight or Head to the Campfire). It reopens part of the optional play retired on 5 Oct, so **"one paid beat a day" no longer holds as written**. Head to the Campfire counts as a finished day; the other two are optional depth. A win gives a first-letter hint to the day's Seeker Fragment.
 5. **Riddle and Fragment gold** (build: riddles +10g/+15g, lock words +25g). §12 has only the +25g word. Pending.
 6. **W6D3's two small bonuses** (+1 Agility on THE WATCH, +1 Charm on THE BOARD). Pending.
+7. **The map bonus** (build): +2 to the Gathering's Approach roll when the party has solved all six of that week's fragment words. Kept 14 Oct 2026 (Fake Guru, on Claude's suggestion: it gives the fragment puzzle a real reward). Number pending.
 
 **Corrections the same day (not decisions):** Garrick stays with the party all of Week 6 and the Store is never locked (the build's "empty seat" and Store lock are removed; see `review-build-audit-9oct.md`). Garrick may give the king's name the first time he is asked, **from the Ep2 Gathering on** (Deception Table), not before. A Challenge rolls d20 plus the tier bonus against the DC; never the raw Attribute.

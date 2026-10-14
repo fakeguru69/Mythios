@@ -71,7 +71,7 @@ app.post('/api/roll-challenge', (req, res) => {
   });
 });
 
-// Server-authoritative Fight Resolver (Core Rules §4: 100 HP each, d20 + Weapon - DEF >= 1, damage = d20 * 2)
+// Server-authoritative Fight Resolver (Core Rules §4: 100 HP each, d20 + Weapon - DEF >= 1, damage = margin * 5)
 app.post('/api/resolve-fight', (req, res) => {
   const {
     weapon = 15,
@@ -121,7 +121,7 @@ app.post('/api/resolve-fight', (req, res) => {
       entry.playerHit = pHit;
       if (pHit) {
         const dRoll = Math.floor(Math.random() * 20) + 1;
-        const dmg = dRoll * 2;
+        const dmg = pNet * 5;
         entry.playerDmgRoll = dRoll;
         entry.playerDmg = dmg;
         entry.enemyHpBefore = enemyHp;
@@ -140,7 +140,7 @@ app.post('/api/resolve-fight', (req, res) => {
       entry.enemyHit = eHit;
       if (eHit) {
         const dRoll = Math.floor(Math.random() * 20) + 1;
-        const dmg = dRoll * 2;
+        const dmg = eNet * 5;
         entry.enemyDmgRoll = dRoll;
         entry.enemyDmg = dmg;
         entry.playerHpBefore = playerHp;
