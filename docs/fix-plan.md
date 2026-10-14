@@ -30,7 +30,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 1: rules and loopholes (code only, no story changes)
 
-1. **[Fix] The Challenge roll** (Task 1). d20 + tier bonus against the week's DC; success on a margin of 1 or more; no automatic 20; "You succeed on X+". The same rule for [PRESS ON], Fan Out and the Gathering Approach. Remove the "Obstacle" bar.
+1. ✅ **Done 14 Oct.** **[Fix] The Challenge roll** (Task 1). Also fixed a crash that stopped every passed Challenge from paying, growing or finishing the day. The Approach now uses its roller's own bonus; the map +2 is kept pending Fake Guru (not in canon). d20 + tier bonus against the week's DC; success on a margin of 1 or more; no automatic 20; "You succeed on X+". The same rule for [PRESS ON], Fan Out and the Gathering Approach. Remove the "Obstacle" bar.
 2. **[Fix] Fights.** Hit on d20 + Weapon − DEF ≥ 1; damage d20 × 2; the player strikes first. No per-round ROLL button: play the fight beat by beat with tumbling dice (canon, 4 Oct). Remove the invented +2 Weapon / −15 HP on days with a Challenge and a fight, and make the "strike first" text true.
 3. **[Fix] Pay.** Turn off patch L4 so fights on Challenge-and-fight days pay 0 (Task 2). Result cards show the real numbers (Task 3). No hard-coded gold (Task 4).
 4. **[Fix] Loopholes.**
