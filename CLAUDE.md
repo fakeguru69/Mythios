@@ -32,7 +32,7 @@ Rules he has set. Follow them in every reply:
 **Tales of the Dark Moon** (engine name **Mythios**) is a story game played in a chat app by a fixed party of **2 to 6 real friends** over **6 weeks**. An AI storyteller called **MYTHIOS** tells it, from stored text.
 
 - **A week** = 6 weekdays (Days 1 to 6) plus a live **Gathering** on Day 7.
-- **A weekday** (~5 minutes, played alone): a chapter, one paid beat (a **Challenge** or a **fight**), sometimes **[PRESS ON]** (an optional harder roll), the **Pull** (why tomorrow can't wait). Each day also drops a **Seeker Fragment** (a short text with two missing words, letters jumbled) into every friend's **Seeker Chest**. Six fragments make the week's map.
+- **A weekday** (played alone; was ~5 minutes, now about 8 to 12 with Fan Out, fragment and Campfire, and Fake Guru accepted the longer day on 14 Oct): a chapter, one paid beat (a **Challenge** or a **fight**), sometimes **[PRESS ON]** (an optional harder roll), the **Pull** (why tomorrow can't wait). Each day also drops a **Seeker Fragment** (a short text with two missing words, letters jumbled) into every friend's **Seeker Chest**. Six fragments make the week's map.
 - **The build's additions, approved in principle on 8 Oct:** **Fan Out** after the main beat (a choice: an extra Challenge, an extra fight, or Head to the Campfire); the **Detour fight** after a failed Challenge on a day with no fight; the **Campfire** evening (stored lines only, see `docs/canon/mythios-campfire-table-v2.md`); riddles.
 - **The Gathering** (~20 to 30 minutes, live): Approach (group choice, one Challenge), Battle (every friend fights their own enemy at once), United Effort (one shared job, turns), Lore Reveal with **Match** (match a scripture line to a fragment) and **Ask** (questions to Garrick), Twist, Cliffhanger.
 - **Numbers:** six Attributes (Might, Craft, Intellect, Charm, Agility, Aim), five tiers, six classes (Warrior, Artificer, Sage, Trickster, Assassin, Archer), gear Level 1 to 5 on two tracks, seven Relic types, HP always 100, nobody dies.
@@ -156,6 +156,11 @@ Do them in this order. After each task: run `npm run lint` and `npm run build`, 
 
 **Task 11. Check Gathering Phase 5.** Find out whether the player's choice in "Phase 5 · The Table Question" changes what happens. Report; do not redesign without asking.
 
+**Task 13 (do before Task 12). Personal stakes and the clue shelf (decided 14 Oct).**
+- Remove the three pre-written stakes in `App.tsx` `PERSONAL_STAKES` (they invent lore: "quiet riders", "Mill-Valley", Meira's sealed warning, and lean on Tamsin). Build the stake from the player's two optional Session Zero answers (birthplace, a grandparent's name; Core Rules Session Zero step 4), shown beside their name on Meira's list. Skipped answers are allowed; check the canon wording for that case and ask if there is none.
+- Rename the Bag's "Physical Evidence & Keepsakes" section to "Clues" (keepsakes stay retired).
+- Check every clue on that shelf against the episode files; report any not in canon (for example "The Hollow Wake Inn Guest Ledger") instead of rewriting it.
+
 **Task 12. Full check and report.** Re-read every item in §6 against the code. Write `docs/build-check-<date>.md`: each rule, pass or fail, with file and line. Then report to Fake Guru in plain words.
 
 ---
@@ -179,7 +184,6 @@ These are not locked forever; the design is still moving. They mean: do not do t
 2. Direction: keep polishing the 6-week single-phone demo, or go back to the handover plan (Week 1 only, 2–4 real friends, real accounts, a shared party clock). The previous Claude recommended the handover plan.
 3. OK on sample names "Lin" and "Sam".
 4. Before any public launch: technology for real multiplayer (backend, accounts, push), terms and privacy.
-5. The Bag's "Physical Evidence & Keepsakes" section (`BagAndStoreTabs.tsx` ~412) and the three pre-written personal stakes (`App.tsx` `PERSONAL_STAKES`). Found 14 Oct, not in the task list yet. The personal stake is canon (Core Rules Session Zero step 4: built from the player's birthplace and a grandparent's name, beside their name on Meira's list), but the three stake texts invent lore not in canon ("quiet riders", "Mill-Valley", Meira's sealed warning). Keepsakes were retired 4–5 Oct. Waiting on his decision.
 
 ## 10. Git
 
