@@ -1,6 +1,6 @@
 {
-  "name": "Mythios",
-  "description": "Mythios application.",
+  "name": "Tales of the Dark Moon — Mythios",
+  "description": "Asynchronous multiplayer story RPG in a chat app for 2 to 6 friends over 6 weeks, told by Mythios AI, with the full Handoff Audit & Verifier Workbench.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
