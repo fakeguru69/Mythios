@@ -1,6 +1,6 @@
 # Fan Out and the Campfire: a proposal (14 Oct 2026)
 
-**Status: PROPOSAL for Fake Guru.** Nothing here is built or canon until he approves it. It builds on canon `docs/canon/mythios-campfire-table-v2.md` (v2.3) and keeps its rules:
+**Status: APPROVED by Fake Guru, 14 Oct 2026** ("approve as per your suggestion, think it through deeply"). The detailed design is in Part 3. New text (clues, questions) still comes to him line by line before it ships. It builds on canon `docs/canon/mythios-campfire-table-v2.md` (v2.3) and keeps its rules:
 - stored text only, with no AI replies at the fire
 - Garrick never grades a theory
 - no gold for theories
@@ -112,3 +112,115 @@ The pretend friends' leads, words and pins appear as placeholders, clearly marke
 ## Where it sits in the fix plan
 
 It replaces fix-plan steps 25, 27 and 28, and builds on Phase 2 (the Pull, the "look" choices, [PRESS ON]) and Phase 4 (the party list, one word per friend). Suggested order: build the mechanics with the existing clues first, then add new content as Fake Guru approves it.
+
+---
+
+## Part 3: Detailed design (14 Oct, after approval)
+
+### 3.1 The party day, async first
+
+- **A party day runs until 5:00am party time** (canon dawn cutoff). Each friend plays their chapter whenever they like, then fans out, then may sit at the fire. Nothing waits for anyone else.
+- **Leads are never used up.** Any friend can follow any lead. "Nobody went to…" only means nobody chose it.
+- **Pins are open until dawn,** then lock. A friend who arrives after dawn can still read the board.
+- **A missed day** stays readable. The next morning's recap adds one line about what the party found ("Last night the fire heard about the second ring and the leaned bar."), using the stored clue titles only.
+- **Day 7 has no Campfire**; the Gathering takes its place.
+- **W1D1** is played alone and the party has not met: canon's narrated fire, no Garrick, no friends' leads, no nudge to a friend, and the Fork kept as a private note that becomes your first week-board line.
+
+### 3.2 Fan Out leads
+
+Each day has **three leads**. Each lead is stored data:
+
+| Field | Meaning |
+|---|---|
+| `place` | What the button shows: a place or thing at the landmark ("the bracken where he waited"). Never the clue's name. |
+| `attrs` | The two Attributes that suit it, each with **its own verb** ("Aim · follow the ruts until they turn"). |
+| `clue` | The stored clue: one or two sentences, passing canon's seven clue tests. |
+| `leans` | A, B or both, against that evening's Fork. QA only, never shown. |
+| `hintFor` | Which of the day's two fragment words this lead's letter hint helps (1 or 2). |
+| `lateLine` | One line for a failed roll ("You find it by lamplight, after the others have gone."). |
+
+- **Mix of leans:** each day has one lead leaning A, one leaning B, and one that complicates both. Friends who went different ways arrive with evidence for different readings.
+- **Hints split across the two words:** two leads help word 1, one helps word 2. Two friends who go different ways can finish the fragment together more easily, and the mechanics reward splitting up.
+- **The roll:** one tap, the same Challenge rule as the day, against the week's DC.
+  - On a pass you get the clue and the letter hint.
+  - On a fail you get the clue with its `lateLine` and no hint.
+  - No gold for now (the clue is the reward; the numbers pass can add some), no Attribute growth (canon), and nothing to fight.
+- **Head straight to the fire** stays available. It finishes the day (canon).
+- **Where the leads come from:**
+  1. the existing 36 Fan Out clues
+  2. the unchosen "look" detail on days that have one
+  3. new clues, written per day, each line approved by Fake Guru
+
+  Days whose clue is a [PRESS ON] detail keep it as a lead only until [PRESS ON] is built into the day; then that lead gets a new clue so nothing is shown twice.
+
+### 3.3 The fire, as one screen
+
+**Garrick's line budget** (canon: at most 8 to one friend per evening):
+
+| Moment | Lines |
+|---|---|
+| Opener | 1 |
+| Catch-up ("Mei thinks A.") | 1 |
+| Reading the finished fragment | 1 |
+| Acknowledging your pin ("What would change your mind?") | 1 |
+| Week-board prompt | 1 |
+| Riddle and its reply | 1–2 |
+| The Pull, as he banks the fire | 1 |
+| **Total** | **7–8** |
+
+**The parts, in any order after arriving:**
+
+1. **Arriving** (always shown):
+   - the opener
+   - at most 2 names in the catch-up line
+   - any message in a bottle
+   - the board: today's clue cards under the finders' names (one card per lead, several names allowed), plus "Nobody went to {place}" for unvisited leads
+2. **The Fragment.** The same puzzle and state as the Bag (solving in either place counts). Each friend may fill one of the two words until dawn; then anyone may fill the rest (canon §6). When the second word lands:
+   - Garrick reads the whole line once
+   - the **meaning question** appears ("*Some locks already know their key.* Whose key?")
+   - a friend may pin a one-line answer, editable until the Gathering
+3. **Tonight's question:** A, B, Neither, or your own line, once per friend per day, editable until dawn. The board shows names under each reading and never a count or a winner (canon v2.3).
+4. **The case so far:** the week's one big question, with each friend's current one-line theory. Editing takes one tap from tonight's pin. The game keeps a dated copy each day, so the Gathering can show how a theory changed.
+5. **Light things:** the riddle (shared, 3 tries each, opt-in on quiet days), the cup on cup nights (an action, no line), the week's running gag.
+6. **Leaving:** "What we did today" (only real actions), **the Pull**, and a message in a bottle.
+
+### 3.4 Read-backs at the Gathering (the payoff)
+
+- **Who reads them:** MYTHIOS, the narrator. Never Garrick. He doesn't comment on theories, so he never has to lie about one.
+- **At the opening:** the week board, each friend's latest line, and where it changed, their Day 1 line ("On Monday Priya thought the list was a warning. Tonight: an invitation.").
+- **At each fragment quote-back:** up to 3 meaning pins beside the line (canon §M: at most 3 read aloud). They rotate across the season so every friend is read.
+- **No grading, ever.** The reveal speaks for itself.
+
+### 3.5 Live play
+
+- "At the fire now: Mei, Dev" while two or more friends are on the screen together.
+- Pins, solved words and the riddle update as they happen. Two friends racing one word is canon; the first correct entry wins and the other sees it land.
+- The party chat gets short one-liners ("Dev pinned a theory.", "Mei solved a word: one left."). These bring async friends back.
+- Friends' own words stay in the party chat. The fire holds only pins and stored lines.
+
+### 3.6 The demo on one phone (D1)
+
+- The pretend friends (Mei, Dev, Arjun, Priya, Theo, depending on the party-size switch) have leads, words and pins shown as "earlier tonight" and marked as samples. They're placeholders for real players, never canon speech.
+- The party-size switch (2–6) lets each size be checked: no repeated nudge name, at most 3 pins read aloud, no "four", one card per lead.
+
+### 3.7 Content to write (each line to Fake Guru for approval)
+
+| Content | Amount | Rules |
+|---|---|---|
+| New Fan Out leads | about 36–50 clues, plus a `place` label and two verbs per lead | canon's seven clue tests; the first-use map; never point at Garrick |
+| Fragment meaning questions | 36 | one line; never give the answer; Week 6 questions must not lead toward "royal blood" (canon) |
+| Week questions | 6 | one line each, from the season reveal map |
+| Fork rewrites | the 10 weak forks (Point 6) | each should lean on that day's leads |
+| `lateLine`s | a small rotating set | one line each |
+
+A checker script runs on all of it: first-use words, no party counts or fixed names, lean mix per day, length, no Garrick.
+
+### 3.8 Build order
+
+1. The single-screen fire using today's content (opener, board, Fork, callback, riddle, what we did), plus **the Pull**. Remove the private ballot (D7).
+2. The fragment at the fire with one word per friend, the reading aloud, and meaning pins (questions shown as "to be written" until approved).
+3. The week board and the Gathering read-backs (needs Phase 3).
+4. Fan Out leads: the mechanics first, using the existing clue as lead 1 and the "look" details where they exist; new leads added as approved, Week 1 first.
+5. Live presence and party-chat one-liners.
+
+**Depends on:** Phase 1 (the roll), Phase 2 (the Pull and the "look" choices) and Phase 4 (the party list). Steps 1 and 2 can start right after Phase 1.

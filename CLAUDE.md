@@ -101,7 +101,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 - Pass: +500g, Attribute grows. Fail: −150g (gold never below 0). [PRESS ON] pass: +200g, no growth.
 - Growth on a passed Daily Challenge only: 12, 9, 7, 5, 4, 3, 3 for the player's 1st to 7th day played that week, × tier rate, rounded, minimum 1; only if the roll was truly uncertain (a 1 could fail and a 20 could pass, judged before Relics).
 
-**Fights (§4):** 100 HP each side. Hit when d20 + Weapon − DEF ≥ 1 (enemy: d20 + ATK − Armor ≥ 1); tie misses. Damage d20 × 2. Player strikes first. Gear: Weapon 14–18, Armor 27–31 (Level 1–5); step-up costs 950, 1,100, 1,750, 2,400 per track. Weekday enemy DEF/ATK by week: 21/14, 22/15, 23/16, 23/16, 24/17, 24/17. Gathering enemy: one higher each; reward 380, 520, 740, 740, 1,030, 1,030.
+**Fights (§4):** 100 HP each side. Hit when d20 + Weapon − DEF ≥ 1 (enemy: d20 + ATK − Armor ≥ 1); tie misses. Damage = the hit's margin × 5 (changed 14 Oct by Fake Guru; was d20 × 2). Player strikes first. Gear: Weapon 14–18, Armor 27–31 (Level 1–5); step-up costs 950, 1,100, 1,750, 2,400 per track. Weekday enemy DEF/ATK by week: 21/14, 22/15, 23/16, 23/16, 24/17, 24/17. Gathering enemy: one higher each; reward 380, 520, 740, 740, 1,030, 1,030.
 
 **Pay (§12):** weekday fight on a day with no Challenge 300g win / 0 loss; **weekday fight on a day that also has a Challenge pays nothing**; [LOOK CLOSER] +75g; Match 50g per right pick (100g if every friend present is right); United Effort +300g each if done; fragment lock word +25g; Relic 150g. Untested (PENDING in `economy.ts`): Fan Out cache 150, Detour 150/75, riddles 10/15, hidden cache 25, W6D3 +1 bonuses.
 
@@ -145,7 +145,7 @@ Do them in this order. After each task: run `npm run lint` and `npm run build`, 
 - Every loop over friends uses it (Campfire, United Effort, Battle, Party chat, fragments, Match).
 - `[N]` becomes the party size as a word everywhere (`soloLandmarkProse.ts` now wrongly writes "the company", giving "a list of the company names").
 - Reword lines that count players: "With all four torn stubs", "granting all four heroes +1 WEP", "all four of you must now combine" (`StoryAndPartyTabs.tsx`); the oath "all four marked children" (`App.tsx` ~30; the children are a story fact, check the sentence still reads right); "all four of us" (`garrickCampfirePrompts.ts` ~108, ~471). Search for "four", "three other", "Mei, Dev", "Mei, Dev, and Arjun".
-- Rename sample friends 5 and 6 in `ALL_SAMPLE_HEROES`: "Tamsin" (a kidnapped child in the story) → "Lin"; "Rowan" (cut lore) → "Sam".
+- Rename sample friends 5 and 6 in `ALL_SAMPLE_HEROES`: "Tamsin" (a kidnapped child in the story) → "Priya"; "Rowan" (cut lore) → "Theo" (decided 14 Oct).
 - Follow Campfire §M: nudges pick from friends at the fire and rotate; at most 3 pins read aloud; catch-up names at most 2; the same clue found by several friends is one board card; riddle shared, 3 tries per friend; Garrick posts capped at 12 in the shared room.
 - Add a workbench switch to set the party to 2, 3, 4, 5 or 6.
 *Check:* play W1D1, W2D1 Campfire, and Gathering 1 at 2, 4 and 6 friends; no text counts the wrong number.
@@ -184,7 +184,7 @@ These are not locked forever; the design is still moving. They mean: do not do t
 
 1. ~~"Go" for the numbers pass~~ Given 14 Oct: do it after the Phase 1 rule fixes (`docs/fix-plan.md`).
 2. ~~Direction~~ Decided 14 Oct: the 6-week demo on one phone.
-3. Sample names for friends 5 and 6: Fake Guru wants other suggestions (14 Oct).
+3. ~~Sample names~~ Decided 14 Oct: friends 5 and 6 are **Priya** and **Theo**.
 4. Before any public launch: technology for real multiplayer (backend, accounts, push), terms and privacy.
 
 ## 10. Git
