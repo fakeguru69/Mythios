@@ -9,6 +9,9 @@ Key: ✔ moves the mystery (a new question, a reveal or a twist) · ~ mostly fol
 
 ## Part A: my own audit
 
+> **Correction (found in Point 9):** each chapter's Pull line (why tomorrow can't wait) is in the data but is never shown on screen, unless the player types into the "Tell Mythios" box. Judgements here about the day-to-day pull describe the written content; in the app today that pull is missing.
+
+
 ### Week 1: who sent us, and why?
 | Day | What it does | |
 |---|---|---|
