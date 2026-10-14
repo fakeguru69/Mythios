@@ -75,7 +75,11 @@ function loadSavedCampaign(): Partial<SavedCampaignState> | null {
 export default function App() {
   const initialSave = useMemo(() => loadSavedCampaign(), []);
 
-  const [layout, setLayout] = useState<WorkspaceLayout>('PHONE_ONLY');
+  // The Audit Workbench shows Garrick's hidden meanings, so it is only reachable with ?dev=1 (Task 9).
+  const isDevMode =
+    typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('dev') === '1';
+  const [layoutState, setLayout] = useState<WorkspaceLayout>('PHONE_ONLY');
+  const layout: WorkspaceLayout = isDevMode ? layoutState : 'PHONE_ONLY';
   // Canonical 4-tab bar: CHAT · RECORD · BAG · STORE + MINE / PARTY pill switch inside CHAT
   const [activeTab, setActiveTab] = useState<BottomTab>('CHAT');
   const [chatChannel, setChatChannel] = useState<ChatChannel>('MINE');
@@ -747,8 +751,8 @@ export default function App() {
 
   return (
     <div className="h-[100dvh] overflow-hidden bg-[#07050B] text-[#F4F1F8] flex flex-col">
-      {/* INTERNAL AUDIT BAR: Floating corner pill on desktop; tucked inside collapsible top drawer on mobile to save vertical space (#7) */}
-      {layout === 'PHONE_ONLY' ? (
+      {/* INTERNAL AUDIT BAR (dev only): Floating corner pill on desktop; tucked inside collapsible top drawer on mobile to save vertical space (#7) */}
+      {!isDevMode ? null : layout === 'PHONE_ONLY' ? (
         <div className="hidden sm:flex sm:fixed sm:top-2.5 sm:left-2.5 z-30 items-center gap-1.5">
           <button
             onClick={() => setLayout('SPLIT')}
@@ -970,6 +974,7 @@ export default function App() {
                         S1
                       </span>
                     </div>
+                    {isDevMode && (
                     <div className="flex items-center gap-1 shrink-0">
                       <button
                         type="button"
@@ -997,6 +1002,7 @@ export default function App() {
                         📋 COPY
                       </button>
                     </div>
+                    )}
                   </div>
 
                   {/* 1-Line Activity Ticker inside collapsible drawer */}

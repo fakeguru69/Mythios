@@ -477,17 +477,19 @@ export const AUDIT_FINDINGS_LOG: AuditFindingRecord[] = [
   },
 ];
 
+// First-use gates from canon (CLAUDE.md §6, Campfire v2.3 first-use map). A term may not
+// appear in a day's text before the listed week and day. Updated 14 Oct 2026: the old list
+// had "king" at W4D7, "throne" W5D7, "cairn" W5D4 and "wall" W5D6, all later than canon uses them.
 export const CANON_TERM_GATES: { term: string; minWeek: number; minDay: number }[] = [
+  { term: 'four children', minWeek: 2, minDay: 1 },
+  { term: 'four names', minWeek: 2, minDay: 1 },
+  { term: 'king', minWeek: 2, minDay: 5 },
   { term: 'malakor', minWeek: 2, minDay: 7 },
   { term: 'order', minWeek: 3, minDay: 1 },
-  { term: 'vessel', minWeek: 3, minDay: 7 },
-  { term: 'blood', minWeek: 3, minDay: 7 },
-  { term: 'heir', minWeek: 3, minDay: 7 },
-  { term: 'king', minWeek: 4, minDay: 7 },
-  { term: 'vault', minWeek: 4, minDay: 3 },
-  { term: 'cairn', minWeek: 5, minDay: 4 },
-  { term: 'throne', minWeek: 5, minDay: 7 },
-  { term: 'wall', minWeek: 5, minDay: 6 },
+  { term: 'fifth', minWeek: 3, minDay: 3 },
+  { term: 'moon-blood', minWeek: 4, minDay: 4 },
+  { term: 'heartbeat', minWeek: 4, minDay: 6 },
+  { term: 'highwall', minWeek: 5, minDay: 1 },
 ];
 
 export function runMythiosVerifier() {
