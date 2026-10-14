@@ -7,6 +7,9 @@ Part A is Claude's own audit (with one correction). Part B checks it against the
 
 ## Part A: my own audit
 
+> **Correction (found in Point 9):** each chapter's Pull line (why tomorrow can't wait) is in the data but is never shown on screen, unless the player types into the "Tell Mythios" box. Judgements here about the day-to-day pull describe the written content; in the app today that pull is missing.
+
+
 | Week | App's ending | Same as canon? | Does the next morning carry it on? |
 |---|---|---|---|
 | 1 | Garrick: "Three more." A horse gallops away. | Yes | Yes. W2D1 "Three more names on the wall." The recap adds "before the dark moon rose", which canon doesn't say. |
