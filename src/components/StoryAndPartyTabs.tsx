@@ -88,6 +88,7 @@ interface StoryTabViewProps {
   onOpenLedger: () => void;
   appliedLoopholeIds: string[];
   completedDays: string[];
+  onClaimReward?: (key: string) => boolean;
   onSealDay: (week: number, day: number, summaryNote: string) => void;
   pinnedClues: PinnedPartyClue[];
   onPinClue: (clue: Omit<PinnedPartyClue, 'id'>) => void;
@@ -362,11 +363,13 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   privateTheoryPromptsByDay = {},
   onSavePrivateTheoryPrompt,
   completedDays = [],
+  onClaimReward = () => true,
 }) => {
   const [selectedAttr, setSelectedAttr] = useState<AttributeName | null>(null);
   const [privatePromptCustomText, setPrivatePromptCustomText] = useState('');
   const [useAttrRelic, setUseAttrRelic] = useState(false);
   const [rollOutcome, setRollOutcome] = useState<RollState | null>(null);
+  const [isReplayRoll, setIsReplayRoll] = useState(false);
   const [recoveryChoice, setRecoveryChoice] = useState<DecisionChoiceOption | null>(null);
   const [nextMoveChoice, setNextMoveChoice] = useState<NextMoveChoiceOption | null>(null);
 
@@ -417,6 +420,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setSelectedAttr(null);
     setUseAttrRelic(false);
     setRollOutcome(null);
+    setIsReplayRoll(false);
     setRecoveryChoice(null);
     setNextMoveChoice(null);
     setDetourFightRounds([]);
@@ -486,6 +490,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setSelectedAttr(null);
     setUseAttrRelic(false);
     setRollOutcome(null);
+    setIsReplayRoll(false);
     setRecoveryChoice(null);
     setNextMoveChoice(null);
     setDetourFightRounds([]);
@@ -542,7 +547,12 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setDetourFightRounds([]);
     setDetourFightDone(false);
 
-    if (cleared) {
+    // A replayed day pays nothing and costs nothing (one claim per day).
+    const firstRoll = onClaimReward(`${dayKey}:challenge`);
+    setIsReplayRoll(!firstRoll);
+    if (!firstRoll) {
+      // no gold, no growth
+    } else if (cleared) {
       const daysPlayedThisWeek = completedDays.filter((id) => id.startsWith(`${currentWeek}-`)).length + 1;
       const growth = calculateAttributeGrowth(attrPoints, daysPlayedThisWeek, d20, tierBonus, weekdayDC);
       setRollOutcome((prev) => (prev ? { ...prev, growth } : prev));
@@ -610,10 +620,10 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       setDetourFightRounds(updated);
       if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
         setDetourFightDone(true);
-        if (nextRound.enemyHpAfter <= 0) {
+        // Core Rules §3: growth only on a passed Daily Challenge, so the Detour gives none.
+        if (nextRound.enemyHpAfter <= 0 && onClaimReward(`${dayKey}:detour`)) {
           onEarnGold(GOLD_DETOUR_FIGHT_WIN);
         }
-        onGainAttribute(dayData.challengeAttrs?.[0] || 'Might', 2);
         onSealDay(currentWeek, currentDay, dayData.place);
       }
       setIsRollingDetourRound(false);
@@ -680,7 +690,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
         const fullFightGold =
           dayData.fightReward !== undefined ? dayData.fightReward : 300;
         const earnedGold = nextRound.enemyHpAfter <= 0 ? fullFightGold : 0;
-        if (earnedGold > 0) {
+        if (earnedGold > 0 && onClaimReward(`${dayKey}:fight`)) {
           onEarnGold(earnedGold);
         }
         onSealDay(currentWeek, currentDay, dayData.place);
@@ -924,8 +934,10 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setIsRollingFanOut(false);
 
     if (cleared) {
-      onGainAttribute(activeFanOutAttr, 1, d20 === 20);
-      onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
+      // No growth from Fan Out (Core Rules §3: growth only on the Daily Challenge).
+      if (onClaimReward(`${dayKey}:fanout`)) {
+        onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
+      }
       unlockFanOutPayoff(fanOutBranch);
     } else {
       setFanOutCompleted(true);
@@ -1000,7 +1012,9 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
         setFanOutFightDone(true);
         if (nextRound.enemyHpAfter <= 0) {
-          onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
+          if (onClaimReward(`${dayKey}:fanout`)) {
+            onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
+          }
           unlockFanOutPayoff(fanOutBranch);
         } else {
           setFanOutCompleted(true);
@@ -1355,7 +1369,11 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                     </div>
 
                     <div className="flex items-center justify-between pt-1 border-t border-white/[0.06]">
-                      {rollOutcome.cleared ? (
+                      {isReplayRoll ? (
+                        <span className="px-2.5 py-1 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[12.5px] font-sans font-semibold text-[#B7A9CC]">
+                          Already played: no gold or growth this time.
+                        </span>
+                      ) : rollOutcome.cleared ? (
                         <span className="px-2.5 py-1 rounded-lg bg-[#2A1B40] border border-[#D4B876] text-[13px] font-sans font-bold text-[#F4F1F8]">
                           🎁 Reward:{' '}
                           <span
@@ -2680,6 +2698,7 @@ interface PartyTabViewProps {
   onUnlockGatheringBadge: () => void;
   pinnedClues: PinnedPartyClue[];
   completedDays: string[];
+  onClaimReward?: (key: string) => boolean;
   stats: Record<string, number>;
   characterName: string;
   characterClass?: ClassName;
@@ -2764,6 +2783,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   onGiveRelic,
   privateTheoryPromptsByDay = {},
   onLeaveFire,
+  onClaimReward = () => true,
 }) => {
   const [internalPartyMode, setInternalPartyMode] = useState<'CAMPFIRE' | 'GATHERING'>(
     'CAMPFIRE'
@@ -2826,7 +2846,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       contribution: number;
     }>;
   } | null>(null);
-  const [ueRallied, setUeRallied] = useState(false);
   const [lookCloserDone, setLookCloserDone] = useState(false);
 
   const [matchedQuotes, setMatchedQuotes] = useState<Record<number, boolean>>({});
@@ -2845,7 +2864,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     setIsRollingBattleRound(false);
     setBattleDone(false);
     setUeRolled(null);
-    setUeRallied(false);
     setLookCloserDone(false);
     setMatchedQuotes({});
     setWrongMatchPick({});
@@ -3285,7 +3303,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       if (enemyHp <= 0 || partyHp <= 0) {
         setBattleDone(true);
         if (enemyHp <= 0) {
-          onEarnGold(GOLD_GATHERING_BATTLE_REWARDS[currentWeek] ?? epMeta.gReward);
+          if (onClaimReward(`G${currentWeek}:battle`)) {
+            onEarnGold(GOLD_GATHERING_BATTLE_REWARDS[currentWeek] ?? epMeta.gReward);
+          }
         }
       }
       setIsRollingBattleRound(false);
@@ -3322,7 +3342,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       battleRounds.length > 0 &&
       battleRounds[battleRounds.length - 1].enemyHpLeft <= 0;
     if (cleared) {
-      onEarnGold(GOLD_UNITED_EFFORT_WIN);
+      if (onClaimReward(`G${currentWeek}:united-effort`)) {
+        onEarnGold(GOLD_UNITED_EFFORT_WIN);
+      }
       if (bossWon) {
         onUnlockGatheringBadge();
       }
@@ -3334,28 +3356,12 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     });
   };
 
-  const handleRallyUnitedEffort = () => {
-    if (!ueRolled || ueRolled.cleared || ueRallied) return;
-    setUeRallied(true);
-    const boosted = Math.min(100, Math.max(100, ueRolled.totalProgress + 15));
-    const bossWon =
-      battleRounds.length > 0 &&
-      battleRounds[battleRounds.length - 1].enemyHpLeft <= 0;
-    onEarnGold(GOLD_UNITED_EFFORT_WIN);
-    if (bossWon) {
-      onUnlockGatheringBadge();
-    }
-    setUeRolled({
-      ...ueRolled,
-      totalProgress: boosted,
-      cleared: true,
-    });
-  };
-
   const handleGatheringLookCloser = () => {
     if (lookCloserDone) return;
     setLookCloserDone(true);
-    onEarnGold(GOLD_LOOK_CLOSER_WIN);
+    if (onClaimReward(`G${currentWeek}:look-closer`)) {
+      onEarnGold(GOLD_LOOK_CLOSER_WIN);
+    }
   };
 
   return (
@@ -4187,23 +4193,12 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                       >
                         <span>
                           {ueRolled.cleared
-                            ? `✓ UNITED EFFORT CLEARED (${ueRolled.totalProgress}/100)${
-                                ueRallied ? ' · RALLIED!' : ''
-                              }`
+                            ? `✓ UNITED EFFORT CLEARED (${ueRolled.totalProgress}/100)`
                             : `✕ UNITED EFFORT FELL SHORT (${ueRolled.totalProgress}/100)`}
                         </span>
                         <span>{gathering.ueTitle}</span>
                       </div>
 
-                      {!ueRolled.cleared && !ueRallied && (
-                        <button
-                          type="button"
-                          onClick={handleRallyUnitedEffort}
-                          className="w-full py-2.5 px-3 rounded-xl bg-[#6FD39A]/20 hover:bg-[#6FD39A]/30 border border-[#6FD39A] font-['Cinzel'] font-bold text-[12px] text-[#6FD39A] uppercase tracking-[0.8px] transition"
-                        >
-                          ⚡ RALLY THE TABLE (+15 SECOND PUSH TO CLEAR 100/100)
-                        </button>
-                      )}
                     </div>
                   )}
                 </div>
@@ -4392,7 +4387,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                                             [mIdx]: true,
                                           }));
                                           onMatchScripture();
-                                          onEarnGold(GOLD_MATCH_BASE_PER_PICK);
+                                          if (onClaimReward(`G${currentWeek}:match:${mIdx}`)) {
+                                            onEarnGold(GOLD_MATCH_BASE_PER_PICK);
+                                          }
                                         } else {
                                           setWrongMatchPick((prev) => ({
                                             ...prev,

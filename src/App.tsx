@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { GOLD_FRAGMENT_WORD_SOLVED } from './data/economy';
 import { AuditBackupRestorePayload, AuditWorkbench } from './components/AuditWorkbench';
 import { BagTabView, StoreTabView } from './components/BagAndStoreTabs';
 import { RecordTabView } from './components/RecordTabView';
@@ -58,6 +59,7 @@ interface SavedCampaignState {
   earnedBadgeIds: string[];
   pinnedClues: PinnedPartyClue[];
   partyMessages: string[];
+  claimedRewards?: string[];
 }
 
 function loadSavedCampaign(): Partial<SavedCampaignState> | null {
@@ -109,7 +111,17 @@ export default function App() {
   const [stakeIndex, setStakeIndex] = useState<number>(initialSave?.stakeIndex ?? 0);
   const [showHeroSetupModal, setShowHeroSetupModal] = useState<boolean>(false);
 
-  const [gold, setGold] = useState<number>(initialSave?.gold ?? 0) // Core Rules §12: starting gold is 0;
+  const [gold, setGold] = useState<number>(initialSave?.gold ?? 0); // Core Rules §12: starting gold is 0
+
+  // Each reward is paid once per day and per Gathering, so replaying a day pays nothing.
+  const [claimedRewards, setClaimedRewards] = useState<string[]>(initialSave?.claimedRewards ?? []);
+  const claimedRewardsRef = useRef<Set<string>>(new Set(initialSave?.claimedRewards ?? []));
+  const handleClaimReward = (key: string): boolean => {
+    if (claimedRewardsRef.current.has(key)) return false;
+    claimedRewardsRef.current.add(key);
+    setClaimedRewards(Array.from(claimedRewardsRef.current));
+    return true;
+  };
   const [weaponLevel, setWeaponLevel] = useState<number>(initialSave?.weaponLevel ?? 2);
   const [armorLevel, setArmorLevel] = useState<number>(initialSave?.armorLevel ?? 2);
   const [storeLocked, setStoreLocked] = useState<boolean>(initialSave?.storeLocked ?? false);
@@ -261,6 +273,7 @@ export default function App() {
         earnedBadgeIds,
         pinnedClues,
         partyMessages,
+        claimedRewards,
       };
       window.localStorage.setItem(SAVE_STORAGE_KEY, JSON.stringify(payload));
     } catch {
@@ -291,6 +304,7 @@ export default function App() {
     earnedBadgeIds,
     pinnedClues,
     partyMessages,
+    claimedRewards,
   ]);
 
   // Preset 1: Start Fresh Campaign at Week 1 · Day 1 (The Old Inn) using chosen Class & Second Attribute (30 / 28 / 25 curve)
@@ -315,6 +329,8 @@ export default function App() {
     setCurrentDay(1);
     setCompletedDays([]);
     setGold(0); // Core Rules §12: starting gold is 0
+    claimedRewardsRef.current = new Set();
+    setClaimedRewards([]);
     setWeaponLevel(1);
     setArmorLevel(1);
     setStoreLocked(false);
@@ -362,6 +378,8 @@ export default function App() {
     setCurrentDay(2);
     setCompletedDays(['1-1', '1-2', '1-3', '1-4', '1-5', '1-6']);
     setGold(1240);
+    claimedRewardsRef.current = new Set();
+    setClaimedRewards([]);
     setWeaponLevel(2);
     setArmorLevel(2);
     setStoreLocked(false);
@@ -520,7 +538,7 @@ export default function App() {
     {
       text: `🔓 ${halfSolvedCount} Seeker ${
         halfSolvedCount === 1 ? 'Fragment awaits' : 'Fragments await'
-      } your second lock-word in the Seeker Chest (+25g)`,
+      } your second lock-word in the Seeker Chest (+${GOLD_FRAGMENT_WORD_SOLVED}g)`,
       actionLabel: 'SOLVE IN BAG →',
       onAction: () => {
         setBagInitialSubTab('SEEKER');
@@ -632,6 +650,8 @@ export default function App() {
 
   const handleBuyGear = (track: 'weapon' | 'armor', cost: number) => {
     if (gold < cost || storeLocked) return;
+    // Gear tops out at Level 5 (Core Rules §4): never take gold for a step that can't happen.
+    if ((track === 'weapon' ? weaponLevel : armorLevel) >= 5) return;
     setGold((g) => g - cost);
     if (track === 'weapon') {
       setWeaponLevel((lv) => Math.min(5, lv + 1));
@@ -647,6 +667,8 @@ export default function App() {
   };
 
   const handleSolveWord = (fragId: string, wordIndex: 1 | 2, solverName: string) => {
+    // Each word pays once (Core Rules §6): ignore a word that is already filled.
+    if (solvedWords[fragId]?.[wordIndex === 1 ? 'w1' : 'w2']) return;
     setSolvedWords((prev) => {
       const curr = prev[fragId] || {};
       const updated = {
@@ -662,10 +684,10 @@ export default function App() {
         [fragId]: updated,
       };
     });
-    setGold((g) => g + 25);
+    setGold((g) => g + GOLD_FRAGMENT_WORD_SOLVED);
     setStats((s) => ({ ...s, fragmentsSolved: (s.fragmentsSolved || 0) + 1 }));
     setPartyMessages((msgs) => [
-      `🔓 [Seeker Chest · ${solverName}]: Solved Lock ${wordIndex} on Fragment ${fragId} (+25g)!`,
+      `🔓 [Seeker Chest · ${solverName}]: Solved Lock ${wordIndex} on Fragment ${fragId} (+${GOLD_FRAGMENT_WORD_SOLVED}g)!`,
       ...msgs,
     ]);
   };
@@ -1297,6 +1319,7 @@ export default function App() {
               {/* ACTIVE TAB CONTENT */}
               {activeTab === 'CHAT' && (chatChannel === 'MINE' || !isPartyFormed) && (
                 <StoryTabView
+                  onClaimReward={handleClaimReward}
                   currentWeek={currentWeek}
                   currentDay={currentDay}
                   onSelectWeekDay={handleSelectWeekDay}
@@ -1385,6 +1408,7 @@ export default function App() {
 
               {activeTab === 'CHAT' && chatChannel === 'PARTY' && isPartyFormed && (
                 <PartyTabView
+                  onClaimReward={handleClaimReward}
                   currentWeek={currentWeek}
                   currentDay={currentDay}
                   onSelectWeek={(w) => setCurrentWeek(w)}

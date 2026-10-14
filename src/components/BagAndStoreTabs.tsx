@@ -8,6 +8,8 @@ import {
   GEAR_TABLE,
 } from '../data/mythiosRulesData';
 import { SEEKER_FRAGMENTS, SeekerFragmentData } from '../data/mythiosFragments';
+import { wordLockSecondsLeft, registerWrongWordTry, clearWordTries } from '../data/wordLocks';
+import { GOLD_FRAGMENT_WORD_SOLVED } from '../data/economy';
 
 const CUMULATIVE_SCRIPTURE = [
   {
@@ -111,6 +113,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
     slot: 0 | 1;
   } | null>(null);
   const [typedIndices, setTypedIndices] = useState<number[]>([]);
+  const [wordLockNotice, setWordLockNotice] = useState<string | null>(null);
   const [giftBanner, setGiftBanner] = useState<string | null>(null);
   const [activeGiftRelicKey, setActiveGiftRelicKey] = useState<string | null>(null);
   const [showScriptureDrawer, setShowScriptureDrawer] = useState(false);
@@ -147,6 +150,14 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
 
   const handleTapLetter = (frag: SeekerFragmentData, slot: 0 | 1, letterIdx: number) => {
     if (typedIndices.includes(letterIdx)) return;
+    const wordIndex: 1 | 2 = slot === 0 ? 1 : 2;
+    const waitSecs = wordLockSecondsLeft(frag.id, wordIndex);
+    if (waitSecs > 0) {
+      setWordLockNotice(`Too many wrong tries. Try this word again in ${waitSecs} seconds.`);
+      setTypedIndices([]);
+      return;
+    }
+    setWordLockNotice(null);
     const targetWord = slot === 0 ? frag.word1 : frag.word2;
     const jumbleArr = slot === 0 ? frag.jumble1 : frag.jumble2;
     const nextTyped = [...typedIndices, letterIdx];
@@ -154,10 +165,15 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
 
     if (formed.length === targetWord.length) {
       if (formed.toLowerCase() === targetWord.toLowerCase()) {
-        onSolveWord(frag.id, slot === 0 ? 1 : 2, 'Jennifer');
+        clearWordTries(frag.id, wordIndex);
+        onSolveWord(frag.id, wordIndex, 'Jennifer');
         setActiveJumbleSlot(null);
         setTypedIndices([]);
       } else {
+        const lockSecs = registerWrongWordTry(frag.id, wordIndex);
+        if (lockSecs > 0) {
+          setWordLockNotice(`Five wrong tries. Try this word again in ${lockSecs} seconds.`);
+        }
         setTimeout(() => setTypedIndices([]), 350);
       }
     } else {
@@ -697,7 +713,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
                         <div className="p-3 rounded-xl bg-[#130B1F] border border-[#D4B876]/60 space-y-2.5">
                           <div className="flex items-center justify-between">
                             <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#D4B876] uppercase">
-                              UNJUMBLE WORD {activeJumbleSlot.slot + 1} (+25G)
+                              UNJUMBLE WORD {activeJumbleSlot.slot + 1} (+{GOLD_FRAGMENT_WORD_SOLVED}G)
                             </span>
                             {typedIndices.length > 0 && (
                               <button
@@ -708,6 +724,10 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
                               </button>
                             )}
                           </div>
+
+                          {wordLockNotice && (
+                            <p className="text-[12.5px] font-sans text-[#E0645C]">{wordLockNotice}</p>
+                          )}
 
                           {/* #6: Full 4-Sided Yellow Border Boxes for Players to Fill In and Visualize */}
                           <div className="flex flex-wrap items-center gap-1.5 py-1">
