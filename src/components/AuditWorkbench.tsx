@@ -388,7 +388,7 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
               >
                 {appliedLoopholeIds.length === NEW_CONTINUITY_LOOPHOLES.length
                   ? 'COMPARE ALL AGAINST ORIGINAL (BEFORE)'
-                  : 'RESTORE ALL 6 LOCKED FIXES'}
+                  : 'RESTORE ALL FIXES'}
               </button>
             </div>
 

@@ -9,7 +9,7 @@ import {
 } from '../data/mythiosRulesData';
 import { SEEKER_FRAGMENTS, SeekerFragmentData } from '../data/mythiosFragments';
 import { wordLockSecondsLeft, registerWrongWordTry, clearWordTries } from '../data/wordLocks';
-import { GOLD_FRAGMENT_WORD_SOLVED } from '../data/economy';
+import { GOLD_FRAGMENT_WORD_SOLVED, GOLD_RELIC_COST } from '../data/economy';
 
 const CUMULATIVE_SCRIPTURE = [
   {
@@ -831,7 +831,6 @@ interface StoreTabViewProps {
   weaponLevel: number;
   armorLevel: number;
   relics: Record<string, number>;
-  storeLocked: boolean;
   currentWeek?: number;
   onBuyGear: (type: 'weapon' | 'armor', cost: number) => void;
   onBuyRelic: (relicType: string, cost: number) => void;
@@ -843,7 +842,6 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
   weaponLevel,
   armorLevel,
   relics,
-  storeLocked,
   currentWeek = 2,
   onBuyGear,
   onBuyRelic,
@@ -914,7 +912,7 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
             <div className="mt-3 pt-2 border-t border-[#44305F]">
               {nextWeaponLvl ? (
                 <button
-                  disabled={storeLocked || gold < GEAR_TABLE[nextWeaponLvl].cost}
+                  disabled={gold < GEAR_TABLE[nextWeaponLvl].cost}
                   onClick={() => onBuyGear('weapon', GEAR_TABLE[nextWeaponLvl].cost)}
                   className="w-full py-2 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] text-[#F4F1F8] disabled:opacity-40 transition whitespace-nowrap"
                 >
@@ -949,7 +947,7 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
             <div className="mt-3 pt-2 border-t border-[#44305F]">
               {nextArmorLvl ? (
                 <button
-                  disabled={storeLocked || gold < GEAR_TABLE[nextArmorLvl].cost}
+                  disabled={gold < GEAR_TABLE[nextArmorLvl].cost}
                   onClick={() => onBuyGear('armor', GEAR_TABLE[nextArmorLvl].cost)}
                   className="w-full py-2 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] text-[#F4F1F8] disabled:opacity-40 transition whitespace-nowrap"
                 >
@@ -969,7 +967,7 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
       <div className="space-y-2">
         <div className="flex items-center justify-between px-0.5">
           <span className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876] uppercase">
-            RELICS · 150G EACH
+            RELICS · {GOLD_RELIC_COST}G EACH
           </span>
           <span className="text-[12px] font-sans text-[#B7A9CC]">Use or Gift in BAG</span>
         </div>
@@ -1015,11 +1013,11 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
 
                   <div className="mt-2.5 pt-2 border-t border-[#44305F]">
                     <button
-                      disabled={storeLocked || gold < 150}
-                      onClick={() => onBuyRelic(rKey, 150)}
+                      disabled={gold < GOLD_RELIC_COST}
+                      onClick={() => onBuyRelic(rKey, GOLD_RELIC_COST)}
                       className="w-full py-1.5 rounded-lg bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] text-[#F4F1F8] disabled:opacity-40 transition whitespace-nowrap"
                     >
-                      BUY · 150G
+                      BUY · {GOLD_RELIC_COST}G
                     </button>
                   </div>
                 </div>

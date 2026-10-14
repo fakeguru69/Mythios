@@ -43,7 +43,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 6. **[Fix] United Effort to canon:** turns, bars, 10 + d20 (Task 6). Battle enemies roll as in canon.
 7. ✅ **Done 14 Oct (with the fight-pay part of step 3).** Patches L4, L5, L6 removed; fights on Challenge-and-fight days pay 0 in the chapter data. L1–L3 add story text not in canon: waiting on Fake Guru. W1D6's fight is not in canon: waiting on Fake Guru. **[Fix] Continuity patches.** Turn off L5 (the "seven left" said a day early). Turn off L6 (it rewrites the W4D1 escape against canon). Check L1–L3 against the episode files.
 8. ✅ **Done 14 Oct.** The checker uses canon's list; no early uses found. **[Fix] The word checker's first-use days** match canon ("king" W2D5, "throne" W3D5, and so on).
-9. **[Fix] Remove the Store-lock switch** (Task 8). **Hide the Audit Workbench** unless `?dev=1` (Task 9).
+9. ✅ **Done 14 Oct.** Store lock removed (old saves still load); workbench only with `?dev=1`. **[Fix] Remove the Store-lock switch** (Task 8). **Hide the Audit Workbench** unless `?dev=1` (Task 9).
 
 ## Phase 2: build the weekday from canon (restores the story)
 

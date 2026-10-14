@@ -83,7 +83,6 @@ interface StoryTabViewProps {
   onGainRelic: (relicType: string, count: number) => void;
   onUseRelic: (relicType: string) => void;
   onTellParty: (clueText: string) => void;
-  onSetStoreLocked: (locked: boolean) => void;
   ledgerOpened: boolean;
   onOpenLedger: () => void;
   appliedLoopholeIds: string[];

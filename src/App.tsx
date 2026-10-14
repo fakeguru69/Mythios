@@ -46,7 +46,7 @@ interface SavedCampaignState {
   gold: number;
   weaponLevel: number;
   armorLevel: number;
-  storeLocked: boolean;
+  storeLocked?: boolean; // retired 14 Oct (the Store is never locked); old saves may still carry it
   attributes: Record<AttributeName, number>;
   relics: Record<string, number>;
   solvedWords: Record<string, { w1?: string; w2?: string }>;
@@ -128,7 +128,6 @@ export default function App() {
   };
   const [weaponLevel, setWeaponLevel] = useState<number>(initialSave?.weaponLevel ?? 2);
   const [armorLevel, setArmorLevel] = useState<number>(initialSave?.armorLevel ?? 2);
-  const [storeLocked, setStoreLocked] = useState<boolean>(initialSave?.storeLocked ?? false);
 
   const [attributes, setAttributes] = useState<Record<AttributeName, number>>(
     initialSave?.attributes ?? {
@@ -264,7 +263,6 @@ export default function App() {
         gold,
         weaponLevel,
         armorLevel,
-        storeLocked,
         attributes,
         relics,
         solvedWords,
@@ -295,7 +293,6 @@ export default function App() {
     gold,
     weaponLevel,
     armorLevel,
-    storeLocked,
     attributes,
     relics,
     solvedWords,
@@ -337,7 +334,6 @@ export default function App() {
     setClaimedRewards([]);
     setWeaponLevel(1);
     setArmorLevel(1);
-    setStoreLocked(false);
     setAttributes(baseAttrs);
     setRelics({
       Charm: primaryAttr === 'Charm' ? 1 : 0,
@@ -386,7 +382,6 @@ export default function App() {
     setClaimedRewards([]);
     setWeaponLevel(2);
     setArmorLevel(2);
-    setStoreLocked(false);
     setAttributes({
       Charm: 38,
       Agility: 28,
@@ -653,7 +648,7 @@ export default function App() {
   };
 
   const handleBuyGear = (track: 'weapon' | 'armor', cost: number) => {
-    if (gold < cost || storeLocked) return;
+    if (gold < cost) return;
     // Gear tops out at Level 5 (Core Rules §4): never take gold for a step that can't happen.
     if ((track === 'weapon' ? weaponLevel : armorLevel) >= 5) return;
     setGold((g) => g - cost);
@@ -665,7 +660,7 @@ export default function App() {
   };
 
   const handleBuyRelic = (relicType: string, cost: number) => {
-    if (gold < cost || storeLocked) return;
+    if (gold < cost) return;
     setGold((g) => g - cost);
     setRelics((prev) => ({ ...prev, [relicType]: (prev[relicType] || 0) + 1 }));
   };
@@ -1365,7 +1360,6 @@ export default function App() {
                   onTellParty={(clueText) => {
                     setPartyMessages((prev) => [clueText, ...prev]);
                   }}
-                  onSetStoreLocked={setStoreLocked}
                   ledgerOpened={ledgerOpened}
                   onOpenLedger={() => setLedgerOpened(true)}
                   appliedLoopholeIds={appliedLoopholeIds}
@@ -1493,7 +1487,6 @@ export default function App() {
                   weaponLevel={weaponLevel}
                   armorLevel={armorLevel}
                   relics={relics}
-                  storeLocked={false}
                   currentWeek={currentWeek}
                   onBuyGear={handleBuyGear}
                   onBuyRelic={handleBuyRelic}
