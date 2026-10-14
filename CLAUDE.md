@@ -123,6 +123,8 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 ## 7. Tasks, in order
 
+**Order now set by `docs/fix-plan.md` (14 Oct), built from the ten audits in `docs/audits/`.** The tasks below are still the detail for each step; the fix plan says which comes first and adds the audit findings. Update both together.
+
 Do them in this order. After each task: run `npm run lint` and `npm run build`, fix any error you caused, and commit with a message naming only that task.
 
 **Task 1. Fix the Challenge roll.** `StoryAndPartyTabs.tsx` ~line 422 (`obstacleTarget = 36 + currentWeek * 6`), ~485 (`d20 + attrPoints`), ~487 (`|| d20 === 20`); the Fan Out roll ~868–870 has the same faults; [PRESS ON] too. Use §6 rules. Get the die and result from `POST /api/roll-challenge` (keep a local fallback only if the server is unreachable, and make it use the same rule). Replace "Obstacle N" and its progress bar with "You succeed on X+". Growth already uses `WEEKDAY_DC_BY_WEEK`; after this the roll will too.
