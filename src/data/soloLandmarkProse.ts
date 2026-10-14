@@ -138,16 +138,16 @@ export function getOpeningSceneProse(dayData: WeekdayInventoryItem): {
   if (isW1D1) {
     arrivalLead = `You walk the wet autumn road alone at ${dayData.place}, where a stranger crouches beside the jammed lock of your cargo box under the dripping oaks.`;
   } else if (isW1D2) {
-    arrivalLead = `Following the address from your cargo box into the warm lamplight of ${dayData.place}, you find three other travellers—Mei, Dev, and Arjun—already seated in the common room holding torn paper stubs identical to yours, while the innkeeper Garrick sets a missing scholar’s leather satchel on the table between you.`;
+    arrivalLead = `Following the address from your cargo box into the warm lamplight of ${dayData.place}, you find the other travellers of your company already seated in the common room holding torn paper stubs matching yours, while the innkeeper Garrick sets a missing scholar’s leather satchel on the table between you.`;
   } else if (isHighwallInterior) {
     arrivalLead = `Slipping from the hidden Seeker safe-room inside the dead stone of Highwall, you and your companions move through the cold shadows of ${dayData.place} while Garrick keeps watch at the slit-window.`;
   } else if (isNightOrDusk) {
-    arrivalLead = `As dusk deepens into shadow over ${dayData.place}, you, Mei, Dev, and Arjun move in low behind the cover of the stonework while Garrick holds the rear watch.`;
+    arrivalLead = `As dusk deepens into shadow over ${dayData.place}, you and your party move in low behind the cover of the stonework while Garrick holds the rear watch.`;
   } else {
-    arrivalLead = `Following yesterday’s lead to ${dayData.place}, you, Mei, Dev, and Arjun fan out to examine the ground while Garrick keeps a quiet eye on the road behind you.`;
+    arrivalLead = `Following yesterday’s lead to ${dayData.place}, you and your party fan out to examine the ground while Garrick keeps a quiet eye on the road behind you.`;
   }
 
-  const cleanQuestion = dayData.question.replace(/\[N\]/g, 'four');
+  const cleanQuestion = dayData.question.replace(/\[N\]/g, 'the company');
   const questionFraming = isW1D1
     ? 'One urgent question hangs in the cold air here:'
     : isW1D2
@@ -208,21 +208,21 @@ export function getPostChallengeProse(
           dayData.fightEnemyName || 'the sentry'
         } moving in before they can spring their trap—granting you a First-Strike Advantage (+2 WEP) in the confrontation right ahead!`
       : isW1D2
-      ? `As the four torn stubs fit cleanly into Meira’s notebook (${dayData.summaryLearned.replace(/\[N\]/g, 'four')}), you, Mei, Dev, and Arjun exchange a look across the common room while Garrick bolts the inn door—officially forming your party to ride north and save the first child! Stepping to the hearth-stone at ${dayData.place}, you also lift today’s carved Seeker Fragment free.`
-      : `With the obstacle behind you and the truth in hand (${dayData.summaryLearned.replace(/\[N\]/g, 'four')}), you step closer to the weathered masonry at ${dayData.place}, where your fingers catch the recessed socket of a carved Seeker Fragment waiting to be lifted free.`;
+      ? `As the torn stubs fit cleanly into Meira’s notebook (${dayData.summaryLearned.replace(/\[N\]/g, 'the company')}), you and the other travellers exchange a look across the common room while Garrick bolts the inn door—officially forming your party to ride north and save the first child! Stepping to the hearth-stone at ${dayData.place}, you also lift today’s carved Seeker Fragment free.`
+      : `With the obstacle behind you and the truth in hand (${dayData.summaryLearned.replace(/\[N\]/g, 'the company')}), you step closer to the weathered masonry at ${dayData.place}, where your fingers catch the recessed socket of a carved Seeker Fragment waiting to be lifted free.`;
 
     return { paragraph1, paragraph2 };
   } else {
     const obstacleName = dayData.challengeTitle
       ? dayData.challengeTitle.toLowerCase()
       : 'the obstacle';
-    const paragraph1 = `Despite ${approachText} with your ${chosenAttr}, your attempt on ${obstacleName} slips at the worst possible moment. ${dayData.failBranchText.replace(/\[N\]/g, 'four')}`;
+    const paragraph1 = `Despite ${approachText} with your ${chosenAttr}, your attempt on ${obstacleName} slips at the worst possible moment. ${dayData.failBranchText.replace(/\[N\]/g, 'the company')}`;
 
     const paragraph2 = dayData.hasFight
       ? `The sharp noise of your failed attempt echoes across ${dayData.place}, alerting ${
           dayData.fightEnemyName || 'the sentry'
         }! Before you can reset your stance, they lunge from cover as the fight begins.`
-      : `Worse still, the sharp commotion from ${obstacleName} carries across ${dayData.place}—and heavy boots come running! An alerted lookout hears you and lunges out of the shadows to corner you, forcing you to fight your way clear before you can salvage the trail (+50g consolation bounty on victory).`;
+      : `Worse still, the sharp commotion from ${obstacleName} carries across ${dayData.place}—and heavy boots come running! An alerted lookout hears you and lunges out of the shadows to corner you, forcing you to fight your way clear before you can salvage the trail (+150g Detour fight on victory).`;
 
     return { paragraph1, paragraph2 };
   }
@@ -239,10 +239,10 @@ export function getPostDetourFightProse(dayData: WeekdayInventoryItem): {
     ? dayData.challengeTitle.toLowerCase()
     : 'the jammed obstacle';
   const isW1D2 = dayData.week === 1 && dayData.day === 2;
-  const paragraph1 = `Breathing hard after driving off the lookout who heard you at ${obstacleName}, you recover a 50g pouch from the fallen sentry’s belt (+50g consolation bounty) and force the rest of the way open before another guard can answer the noise.`;
+  const paragraph1 = `Breathing hard after driving off the lookout who heard you at ${obstacleName}, you recover an extra pouch from the fallen sentry’s belt (+150g Detour skirmish win) and force the rest of the way open before another guard can answer the noise.`;
   const paragraph2 = isW1D2
-    ? `Back inside ${dayData.place}, the four torn stubs fit into Meira’s notebook (${dayData.summaryLearned.replace(/\[N\]/g, 'four')}). Seeing the proof on the page, you, Mei, Dev, and Arjun join forces with Garrick—officially forming your party as you pry loose today’s carved Seeker Fragment from the hearth-stone.`
-    : `Working quickly through the aftermath at ${dayData.place}, you piece together what the clean approach would have shown: ${dayData.summaryLearned.replace(/\[N\]/g, 'four')} Right beside the mark, you pry loose today’s carved Seeker Fragment and slide it into your satchel.`;
+    ? `Back inside ${dayData.place}, the torn stubs fit into Meira’s notebook (${dayData.summaryLearned.replace(/\[N\]/g, 'the company')}). Seeing the proof on the page, the company joins forces with Garrick—officially forming your party as you pry loose today’s carved Seeker Fragment from the hearth-stone.`
+    : `Working quickly through the aftermath at ${dayData.place}, you piece together what the clean approach would have shown: ${dayData.summaryLearned.replace(/\[N\]/g, 'the company')} Right beside the mark, you pry loose today’s carved Seeker Fragment and slide it into your satchel.`;
   return { paragraph1, paragraph2 };
 }
 

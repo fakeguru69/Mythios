@@ -1310,7 +1310,7 @@ export default function App() {
                   gold={gold}
                   relics={relics}
                   onEarnGold={(amt) => {
-                    setGold((g) => g + amt);
+                    setGold((g) => Math.max(0, g + amt));
                   }}
                   onGainAttribute={(attr, delta, isNat20) => {
                     setAttributes((prev) => ({ ...prev, [attr]: prev[attr] + delta }));
@@ -1395,7 +1395,7 @@ export default function App() {
                   onSetShowChapterPicker={setShowChapterPicker}
                   partyMessages={partyMessages}
                   onSendPartyMessage={(msg) => setPartyMessages((prev) => [msg, ...prev])}
-                  onEarnGold={(amt) => setGold((g) => g + amt)}
+                  onEarnGold={(amt) => setGold((g) => Math.max(0, g + amt))}
                   onUnlockGatheringBadge={() => {
                     if (!earnedBadgeIds.includes('clean-night')) {
                       setEarnedBadgeIds((prev) => [...prev, 'clean-night']);

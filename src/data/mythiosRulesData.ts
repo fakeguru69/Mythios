@@ -37,6 +37,68 @@ export const GEAR_TABLE: Record<number, { weapon: number; armor: number; cost: n
   5: { weapon: 18, armor: 31, cost: 2400 },
 };
 
+export interface PartyFriend {
+  id: string;
+  name: string;
+  cls: ClassName;
+  attr: AttributeName;
+  color: string;
+}
+
+export const DEFAULT_PARTY_MEMBERS: PartyFriend[] = [
+  { id: 'YOU', name: 'Jennifer', cls: 'Trickster', attr: 'Charm', color: '#EE8BC3' },
+  { id: 'MEI', name: 'Mei', cls: 'Sage', attr: 'Intellect', color: '#F49CBB' },
+  { id: 'DEV', name: 'Dev', cls: 'Archer', attr: 'Aim', color: '#5BC0EB' },
+  { id: 'ARJUN', name: 'Arjun', cls: 'Warrior', attr: 'Might', color: '#4FD1C5' },
+];
+
+export const ALL_SAMPLE_HEROES: PartyFriend[] = [
+  { id: 'YOU', name: 'Jennifer', cls: 'Trickster', attr: 'Charm', color: '#EE8BC3' },
+  { id: 'MEI', name: 'Mei', cls: 'Sage', attr: 'Intellect', color: '#F49CBB' },
+  { id: 'DEV', name: 'Dev', cls: 'Archer', attr: 'Aim', color: '#5BC0EB' },
+  { id: 'ARJUN', name: 'Arjun', cls: 'Warrior', attr: 'Might', color: '#4FD1C5' },
+  { id: 'TAMSIN_HERO', name: 'Tamsin', cls: 'Artificer', attr: 'Craft', color: '#C084FC' },
+  { id: 'ROWAN_HERO', name: 'Rowan', cls: 'Assassin', attr: 'Agility', color: '#38BDF8' },
+];
+
+export const WEEKDAY_DC_BY_WEEK: Record<number, number> = {
+  1: 6,
+  2: 7,
+  3: 7,
+  4: 8,
+  5: 9,
+  6: 9,
+};
+
+// Fix 2: Growth based on days played that week: 12, 9, 7, 5, 4, 3, 3 for 1st to 7th day
+const WEEK_DAY_BASE_GROWTH = [12, 9, 7, 5, 4, 3, 3];
+
+export function calculateAttributeGrowth(
+  currentAttrValue: number,
+  daysPlayedThisWeek: number, // 1 to 7
+  dieRoll: number, // 1..20
+  tierBonus: number,
+  weekdayDC: number
+): number {
+  // An Attribute grows only if the roll was truly uncertain:
+  // a die of 1 had to be able to fail (1 + tierBonus - weekdayDC < 1)
+  // and a die of 20 had to be able to pass (20 + tierBonus - weekdayDC >= 1),
+  // judged BEFORE any Relic is added.
+  const canFailOn1 = 1 + tierBonus - weekdayDC < 1;
+  const canPassOn20 = 20 + tierBonus - weekdayDC >= 1;
+  const isTrulyUncertain = canFailOn1 && canPassOn20;
+
+  if (!isTrulyUncertain) {
+    return 0;
+  }
+
+  const dayIndex = Math.min(6, Math.max(0, daysPlayedThisWeek - 1));
+  const baseGrowth = WEEK_DAY_BASE_GROWTH[dayIndex];
+  const tier = getTierInfo(currentAttrValue);
+  const calculated = Math.round(baseGrowth * tier.rate);
+  return Math.max(1, calculated);
+}
+
 export function getTierInfo(val: number): { name: string; bonus: number; rate: number; nextAt: number | null; pctInTier: number } {
   if (val <= 25) return { name: 'Novice', bonus: 0, rate: 1.0, nextAt: 26, pctInTier: Math.min(100, Math.round((val / 25) * 100)) };
   if (val <= 50) return { name: 'Apprentice', bonus: 2, rate: 1.0, nextAt: 51, pctInTier: Math.min(100, Math.round(((val - 25) / 25) * 100)) };
@@ -107,11 +169,12 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
   { term: 'Mythios', category: 'Core', definition: 'The storyteller and keeper of the record for your party across all six weeks.' },
   { term: 'Garrick', category: 'Core', definition: 'The innkeeper of the Hollow Wake Inn and your grey-cloaked guide on the road. He follows the three-verb rule: he never promises, predicts, or denies knowing, and invents no facts about himself.' },
   { term: 'Chapter', category: 'Play', definition: 'One weekday session (Days 1–6) played on your own schedule in about five minutes: arrive at the landmark, resolve the encounter, and open its Seeker housing.' },
-  { term: 'Campfire', category: 'Play', definition: 'The asynchronous party camp where teammates converge after fanning out from the landmark to unjumble unfinished Seeker Fragments (+25g), review cumulative verses, swap banter, and answer Garrick\'s riddles (+15g).' },
-  { term: 'Gathering', category: 'Play', definition: 'The Day 7 synchronous finale across 5 Beats: Arrival & Order\'s Claim, Opening Approach, 4-Hero Battle & United Effort, Scripture Match (+75g), and the Table Twist.' },
-  { term: 'Challenge', category: 'Rolls', definition: 'A d20 + Attribute + Relic roll against the landmark Obstacle. Clearing it gives the cleaner road (+3 Attribute, +150g); failing grants 0g and alerts a perimeter lookout (+50g on skirmish victory, 0g on defeat).' },
-  { term: 'Solo Fan-Out', category: 'Rolls', definition: 'A 3-branch solo exploration beat at the end of each landmark (Cache & Witness, Intercept Scout, or Vantage & Trail Sweep) that awards +150g, a Seeker 1st-letter hint, and a Solo Clue for the Campfire on victory (0g on defeat).' },
-  { term: 'Relic', category: 'Items', definition: 'A single-use stone charm (150g in Store: +4 to one Attribute roll, or +1 Weapon and +1 Armor for one fight) that you can use yourself or give to a friend.' },
+  { term: 'Campfire', category: 'Play', definition: 'The asynchronous evening camp where friends converge after their solo day to review the day\'s clues from Fan Out, choose a theory fork, solve today\'s Seeker Fragment word-lock, and share stored banter and riddles with Garrick.' },
+  { term: 'Gathering', category: 'Play', definition: 'The Day 7 synchronous finale across 5 Beats: Arrival & Order\'s Claim, Opening Approach, Party Battle & United Effort (+300g per friend), Scripture Match (+50g/100g), and the Table Twist.' },
+  { term: 'Challenge', category: 'Rolls', definition: 'A d20 + tier bonus roll against the weekday difficulty (6 to 9). Clearing it awards +500g and skill growth based on days played that week; failing costs 150g (gold never falls below 0) and leads to the Detour skirmish.' },
+  { term: 'Press On', category: 'Rolls', definition: 'An optional harder Challenge (+4 difficulty above the day) that awards +200g on success, with no skill growth.' },
+  { term: 'Solo Fan-Out', category: 'Rolls', definition: 'A 3-branch solo exploration beat after the landmark encounter (Challenge, Fight, or Head to Campfire). Winning gives a Seeker 1st-letter hint and the day\'s canonical clue for the evening Campfire board. Heading directly to camp finishes the day with no penalty.' },
+  { term: 'Relic', category: 'Items', definition: 'A single-use stone charm (150g in Store: +4 to one Attribute roll, or +1 Weapon and +1 Armor for one fight) that you can use yourself or give to a friend. Spent upon use.' },
   { term: 'Seeker Housing', category: 'Seeker Chest', definition: 'A blood-locked stone socket or niche hidden at each of the 36 weekday landmarks that opens only at the touch of a marked Seeker descendant.' },
   { term: 'Fragment', category: 'Seeker Chest', definition: 'A torn piece of Dark Moon scripture recovered from each weekday\'s Seeker housing with two jumbled lock-words (+25g each). All 6 fragments in a week interlock on Day 6 to form the Day 7 Map (+2 to all Gathering rolls).' },
   { term: 'Solved', category: 'Seeker Chest', definition: 'A Fragment whose two jumbled lock-words have both been unjumbled by the party at the Campfire or in the Seeker Chest.' },

@@ -1,16 +1,39 @@
-# MYTHIOS: DARK MOON — FULL MERGED CODEBASE & NARRATIVE BUNDLE (14 OCT)
+# MYTHIOS: DARK MOON — FULL MERGED CODEBASE & NARRATIVE BUNDLE (14 OCT - POST-FIX PROMPT)
 
-> **IMPORTANT CANON & PARTY-SIZE ARCHITECTURE NOTE FOR AUDITORS (2–6 PLAYERS):**
-> - **Dynamic Party Size (`2–6 Players`, `[N]`):** *Tales of the Dark Moon* is designed for **2 to 6 real human players** (spanning 6 classes/attributes: Warrior/Might, Artificer/Craft, Sage/Intellect, Trickster/Charm, Assassin/Agility, Archer/Aim).
-> - **Why You See 4 Names (`Jennifer/You`, `Mei`, `Dev`, `Arjun`) in the Prototype State:** The prototype UI boots into a sample 4-player party instance so a solo tester can preview multi-friend interactions. In canonical script data (`mythiosChaptersData.ts` and `campfireDaysData.ts`), party size is parameterized via `[N]` (e.g., *"a list of [N] names"*) and dynamic role tokens (`{friend}`, `{friend:Attribute}`), while any remaining spots on the 6-line list on W1D1 appear as blank lines for smaller parties.
-> - **Audit Instruction:** When auditing narrative and mechanics, evaluate the game as a **2–6 player asynchronous RPG** and flag any places where prose or mechanics accidentally hardcode "4 players / four stubs / Mei, Dev, and Arjun" in a way that would break a 2-, 3-, 5-, or 6-player table.
-> - **Includes Campfire v2.2:** 8-Step Evening Flow, Verbatim 36-Day `campfire-days.json` Fan Out Clues, First-Use Map, 8 Silent Cup Nights, 6 Quiet Days, Stored-Line Engine, Real Friends Only, and 36-Day Automated Verifier.
+> **CANON & RULES ARCHITECTURE PASS (14 OCT):**
+> - **Economy & Rewards Single Source of Truth:** `src/data/economy.ts` enforces tested Core Rules amounts (Challenge win +500g, fail -150g; Detour fight +150g; Gathering battle curve; United Effort +300g per friend; lock-word solve +25g).
+> - **Attribute Growth & True Uncertainty:** `calculateAttributeGrowth` in `mythiosRulesData.ts` scales with days played this week (12, 9, 7, 5, 4, 3, 3) and applies tier progression rate only on uncertain rolls.
+> - **Campfire v2.3 Narrative Integration:** 36-day campfire data (`campfire-days-v23.json` / `campfireDaysData.ts`) with verified forks, callback threads, cues, and clues.
+> - **Solo Fan-Out Finish Day Framing:** Neutral/positive completion without penalty copy or red warnings.
+> - **Dynamic Party Terminology:** Narrative prose dynamically addresses the company/party across 2–6 players without hardcoding names into opening lead prose.
+
+---
+
+## TABLE OF CONTENTS
+1. [src/App.tsx](#src-App-tsx)
+2. [src/components/CampfireEveningView.tsx](#src-components-CampfireEveningView-tsx)
+3. [src/components/StoryAndPartyTabs.tsx](#src-components-StoryAndPartyTabs-tsx)
+4. [src/components/BagAndStoreTabs.tsx](#src-components-BagAndStoreTabs-tsx)
+5. [src/components/RecordTabView.tsx](#src-components-RecordTabView-tsx)
+6. [src/components/AuditWorkbench.tsx](#src-components-AuditWorkbench-tsx)
+7. [src/data/mythiosRulesData.ts](#src-data-mythiosRulesData-ts)
+8. [src/data/economy.ts](#src-data-economy-ts)
+9. [src/data/campfireDaysData.ts](#src-data-campfireDaysData-ts)
+10. [src/data/soloLandmarkProse.ts](#src-data-soloLandmarkProse-ts)
+11. [src/data/mythiosChaptersData.ts](#src-data-mythiosChaptersData-ts)
+12. [src/data/mythiosFragments.ts](#src-data-mythiosFragments-ts)
+13. [src/data/mythiosGatheringsAndAudit.ts](#src-data-mythiosGatheringsAndAudit-ts)
+14. [src/data/garrickRouter.ts](#src-data-garrickRouter-ts)
+15. [server.ts](#server-ts)
+16. [vite.config.ts](#vite-config-ts)
+17. [package.json](#package-json)
+18. [index.html](#index-html)
 
 ---
 
 ## FILE: `src/App.tsx`
 
-```tsx
+```typescript
 import React, { useState, useEffect, useMemo } from 'react';
 import { AuditBackupRestorePayload, AuditWorkbench } from './components/AuditWorkbench';
 import { BagTabView, StoreTabView } from './components/BagAndStoreTabs';
@@ -698,15 +721,15 @@ export default function App() {
 
   const handleDownloadAuditBundle = async () => {
     try {
-      setBundleCopyStatus('Downloading 10oct.md...');
-      const res = await fetch('/api/download-audit-bundle-10oct?download=1');
+      setBundleCopyStatus('Downloading 14oct.md...');
+      const res = await fetch('/api/download-audit-bundle-14oct?download=1');
       if (!res.ok) throw new Error('Failed to fetch bundle');
       const text = await res.text();
       const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
       const blobUrl = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = blobUrl;
-      a.download = 'mythios-full-audit-bundle-10oct.md';
+      a.download = 'mythios-full-audit-bundle-14oct.md';
       a.style.display = 'none';
       document.body.appendChild(a);
       a.click();
@@ -714,11 +737,11 @@ export default function App() {
         if (document.body.contains(a)) document.body.removeChild(a);
         URL.revokeObjectURL(blobUrl);
       }, 10000);
-      setBundleCopyStatus('✓ Downloaded 10oct.md!');
+      setBundleCopyStatus('✓ Downloaded 14oct.md!');
       setTimeout(() => setBundleCopyStatus(null), 3500);
     } catch {
       // Fallback: navigate to direct attachment endpoint
-      window.location.assign('/api/download-audit-bundle-10oct?download=1');
+      window.location.assign('/api/download-audit-bundle-14oct?download=1');
       setBundleCopyStatus('✓ Triggered download!');
       setTimeout(() => setBundleCopyStatus(null), 3500);
     }
@@ -726,10 +749,10 @@ export default function App() {
 
   const handleCopyAuditBundle = async () => {
     try {
-      const res = await fetch('/api/download-audit-bundle-10oct');
+      const res = await fetch('/api/download-audit-bundle-14oct');
       const text = await res.text();
       await navigator.clipboard.writeText(text);
-      setBundleCopyStatus('✓ Copied 10oct.md to clipboard!');
+      setBundleCopyStatus('✓ Copied 14oct.md to clipboard!');
       setTimeout(() => setBundleCopyStatus(null), 3000);
     } catch {
       setBundleCopyStatus('Copy failed');
@@ -749,16 +772,16 @@ export default function App() {
             ⚙ INTERNAL AUDIT
           </button>
           <a
-            href="/api/download-audit-bundle-10oct?download=1"
-            download="mythios-full-audit-bundle-10oct.md"
+            href="/api/download-audit-bundle-14oct?download=1"
+            download="mythios-full-audit-bundle-14oct.md"
             onClick={(e) => {
               e.preventDefault();
               handleDownloadAuditBundle();
             }}
             className="px-2.5 py-1 rounded-full bg-[#1E1232]/95 border border-[#6FD39A]/60 font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] text-[#6FD39A] hover:bg-[#2A1B40] transition whitespace-nowrap cursor-pointer"
-            title="Download all codebase files merged into mythios-full-audit-bundle-10oct.md"
+            title="Download all codebase files merged into mythios-full-audit-bundle-14oct.md"
           >
-            {bundleCopyStatus || '⬇ DOWNLOAD MERGED .MD (10OCT)'}
+            {bundleCopyStatus || '⬇ DOWNLOAD MERGED .MD (14OCT)'}
           </a>
           <button
             type="button"
@@ -779,15 +802,15 @@ export default function App() {
               {verifier.totalWeekdays}/36 LANDMARKS · L1–L6 LOCKED
             </span>
             <a
-              href="/api/download-audit-bundle-10oct?download=1"
-              download="mythios-full-audit-bundle-10oct.md"
+              href="/api/download-audit-bundle-14oct?download=1"
+              download="mythios-full-audit-bundle-14oct.md"
               onClick={(e) => {
                 e.preventDefault();
                 handleDownloadAuditBundle();
               }}
               className="px-2.5 py-0.5 rounded bg-[#6FD39A]/20 border border-[#6FD39A]/60 font-['Cinzel'] font-bold text-[10.5px] text-[#6FD39A] hover:bg-[#6FD39A]/30 transition whitespace-nowrap cursor-pointer"
             >
-              {bundleCopyStatus || '⬇ DOWNLOAD MERGED .MD (10OCT)'}
+              {bundleCopyStatus || '⬇ DOWNLOAD MERGED .MD (14OCT)'}
             </a>
             <button
               type="button"
@@ -970,15 +993,15 @@ export default function App() {
                         ⚙ AUDIT
                       </button>
                       <a
-                        href="/api/download-audit-bundle-10oct?download=1"
-                        download="mythios-full-audit-bundle-10oct.md"
+                        href="/api/download-audit-bundle-14oct?download=1"
+                        download="mythios-full-audit-bundle-14oct.md"
                         onClick={(e) => {
                           e.preventDefault();
                           handleDownloadAuditBundle();
                         }}
                         className="px-2 py-0.5 rounded bg-[#1E1232] border border-[#6FD39A]/60 font-['Cinzel'] font-bold text-[9.5px] text-[#6FD39A] whitespace-nowrap cursor-pointer"
                       >
-                        {bundleCopyStatus || '⬇ 10OCT.MD'}
+                        {bundleCopyStatus || '⬇ 14OCT.MD'}
                       </a>
                       <button
                         type="button"
@@ -1323,7 +1346,7 @@ export default function App() {
                   gold={gold}
                   relics={relics}
                   onEarnGold={(amt) => {
-                    setGold((g) => g + amt);
+                    setGold((g) => Math.max(0, g + amt));
                   }}
                   onGainAttribute={(attr, delta, isNat20) => {
                     setAttributes((prev) => ({ ...prev, [attr]: prev[attr] + delta }));
@@ -1408,7 +1431,7 @@ export default function App() {
                   onSetShowChapterPicker={setShowChapterPicker}
                   partyMessages={partyMessages}
                   onSendPartyMessage={(msg) => setPartyMessages((prev) => [msg, ...prev])}
-                  onEarnGold={(amt) => setGold((g) => g + amt)}
+                  onEarnGold={(amt) => setGold((g) => Math.max(0, g + amt))}
                   onUnlockGatheringBadge={() => {
                     if (!earnedBadgeIds.includes('clean-night')) {
                       setEarnedBadgeIds((prev) => [...prev, 'clean-night']);
@@ -1504,11 +1527,14 @@ export default function App() {
     </div>
   );
 }
+
 ```
+
+---
 
 ## FILE: `src/components/CampfireEveningView.tsx`
 
-```tsx
+```typescript
 import React, { useState, useEffect } from 'react';
 import { AttributeName } from '../data/mythiosRulesData';
 import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
@@ -3120,11 +3146,14 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     </div>
   );
 };
+
 ```
+
+---
 
 ## FILE: `src/components/StoryAndPartyTabs.tsx`
 
-```tsx
+```typescript
 import React, { useState } from 'react';
 import {
   AttributeName,
@@ -3134,7 +3163,21 @@ import {
   EPISODE_NUMBERS,
   GEAR_TABLE,
   getTierInfo,
+  WEEKDAY_DC_BY_WEEK,
+  PartyFriend,
+  calculateAttributeGrowth,
 } from '../data/mythiosRulesData';
+import {
+  GOLD_CHALLENGE_WIN,
+  GOLD_CHALLENGE_LOSS,
+  GOLD_PRESS_ON_WIN,
+  GOLD_UNITED_EFFORT_WIN,
+  GOLD_LOOK_CLOSER_WIN,
+  GOLD_MATCH_BASE_PER_PICK,
+  GOLD_MATCH_PERFECT_PER_PICK,
+  GOLD_FAN_OUT_CACHE_WIN,
+  GOLD_DETOUR_FIGHT_WIN,
+} from '../data/economy';
 import { WEEKDAY_INVENTORY } from '../data/mythiosChaptersData';
 import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
 import { GATHERINGS_DATA } from '../data/mythiosGatheringsAndAudit';
@@ -3619,11 +3662,17 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setDetourFightDone(false);
 
     if (cleared) {
-      onGainAttribute(activeAttr, 3, d20 === 20);
-      onEarnGold(150);
+      const daysPlayedThisWeek = completedDays.filter((id) => id.startsWith(`${currentWeek}-`)).length + 1;
+      const tier = getTierInfo(attrPoints);
+      const weekdayDC = WEEKDAY_DC_BY_WEEK[currentWeek] || 7;
+      const growth = calculateAttributeGrowth(attrPoints, daysPlayedThisWeek, d20, tier.bonus, weekdayDC);
+      onGainAttribute(activeAttr, growth, d20 === 20);
+      onEarnGold(GOLD_CHALLENGE_WIN);
       if (!dayData.hasFight) {
         onSealDay(currentWeek, currentDay, dayData.place);
       }
+    } else {
+      onEarnGold(-GOLD_CHALLENGE_LOSS);
     }
   };
 
@@ -3682,7 +3731,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
         setDetourFightDone(true);
         if (nextRound.enemyHpAfter <= 0) {
-          onEarnGold(50);
+          onEarnGold(GOLD_DETOUR_FIGHT_WIN);
         }
         onGainAttribute(dayData.challengeAttrs?.[0] || 'Might', 2);
         onSealDay(currentWeek, currentDay, dayData.place);
@@ -5111,33 +5160,33 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                         id: 'BRANCH_SKIP_CAMP',
                         branchType: 'CAMPFIRE',
                         title: 'HEAD NORTH TOWARD THE INN',
-                        badge: 'SKIP · 0G',
-                        color: '#E0645C',
+                        badge: 'FINISHED DAY',
+                        color: '#6FD39A',
                         label:
-                          'Leave the roadside unsearched and follow the torn list north toward The Hollow Wake Inn.',
-                        playerDeclaration: `The light is fading fast over ${dayData.place}—I have the torn list and the Seeker Fragment, so I’ll skip the extra roadside sweep and head north toward The Hollow Wake Inn.`,
-                        arrivalParagraph1: `You decide against lingering in the darkening timber around ${dayData.place}, strapping your pack tight and turning north up the wet drove road.`,
-                        arrivalParagraph2: `By pressing on immediately, you pass up the +150g roadside cache and today’s 1st-letter Seeker Fragment cipher-key—setting your sights on the warm lamplight of The Hollow Wake Inn ahead.`,
+                          'Finish today\'s chapter and follow the drove road north toward The Hollow Wake Inn.',
+                        playerDeclaration: `The light is fading fast over ${dayData.place}—I have the torn list and today's Seeker Fragment, so I’ll head north toward The Hollow Wake Inn.`,
+                        arrivalParagraph1: `You strap your pack tight at ${dayData.place} and turn north up the wet drove road toward the inn.`,
+                        arrivalParagraph2: `With today's chapter complete, you look ahead toward the warm lamplight of The Hollow Wake Inn.`,
                       });
                     } else {
                       handleSelectFanOutBranch({
                         id: 'BRANCH_SKIP_CAMP',
                         branchType: 'CAMPFIRE',
-                        title: 'BACK TO CAMPFIRE',
-                        badge: 'SKIP · 0G',
-                        color: '#E0645C',
+                        title: 'HEAD TO THE CAMPFIRE',
+                        badge: 'FINISHED DAY',
+                        color: '#F0A552',
                         label:
-                          'Leave the dusk perimeter unsearched and walk straight to the campfire.',
-                        playerDeclaration: `The light is fading fast over ${dayData.place}—I’ll skip the extra dusk sweep and head straight to the campfire with the main Fragment.`,
-                        arrivalParagraph1: `You decide against pressing further into the dusk shadows around ${dayData.place}, leaving the outer perimeter unsearched while Mei, Dev, and Arjun finish their sectors.`,
-                        arrivalParagraph2: `By turning in early, you pass up the +150g solo cache, today’s 1st-letter Seeker Fragment cipher-key, and your personal finding for the Campfire Clue Board—arriving first by the fire as the kettle begins to boil.`,
+                          'Finish today\'s chapter and walk straight to the campfire.',
+                        playerDeclaration: `The light is fading over ${dayData.place}—I’ll head straight to the campfire with today's Fragment.`,
+                        arrivalParagraph1: `You finish your day at ${dayData.place} and walk straight toward the woodsmoke of the campfire.`,
+                        arrivalParagraph2: `Your day is complete. You arrive at the fire as the kettle begins to boil and will catch up with tonight's clues from the board.`,
                       });
                     }
                   }}
                   className={`w-full p-2.5 rounded-xl text-left transition border ${
                     fanOutBranch?.id === 'BRANCH_SKIP_CAMP'
-                      ? 'bg-[#2A1622] border-[#E0645C] shadow-sm'
-                      : 'bg-[#140B1C] border-[#E0645C]/45 hover:border-[#E0645C]'
+                      ? 'bg-[#1E1232] border-[#D4B876] shadow-sm'
+                      : 'bg-[#140B1C] border-[#3A2555] hover:border-[#D4B876]'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
@@ -5148,28 +5197,21 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                         ? '🏠 '
                         : '🔥 '}
                       {isSoloW1D1
-                        ? 'HEAD NORTH TO THE INN (SKIP SOLO SWEEP)'
-                        : 'BACK TO CAMPFIRE (SKIP SOLO SWEEP)'}
+                        ? 'HEAD NORTH TO THE INN (FINISH DAY)'
+                        : 'HEAD TO THE CAMPFIRE (FINISH DAY)'}
                     </span>
-                    <span className="px-1.5 py-0.5 rounded bg-[#2A1420] border border-[#E0645C]/70 font-['Cinzel'] font-bold text-[10px] text-[#E0645C] whitespace-nowrap shrink-0">
-                      ⚠️ FORFEITS +150G
+                    <span className="px-1.5 py-0.5 rounded bg-[#1A102A] border border-[#6FD39A]/60 font-['Cinzel'] font-bold text-[10px] text-[#6FD39A] whitespace-nowrap shrink-0">
+                      FINISHED DAY
                     </span>
                   </div>
                   <p className="text-[13px] font-sans text-[#D8CEE8] mt-0.5 leading-snug">
                     {isSoloW1D1 ? (
                       <>
-                        Head up the drove road without rolling.{' '}
-                        <span className="text-[#E0645C] font-semibold">Forewarning:</span>{' '}
-                        Forfeits <span className="text-[#E5C158] font-semibold">+150g</span> and the{' '}
-                        <span className="text-[#6FD39A] font-semibold">1st-letter Seeker hint</span>.
+                        Head up the drove road toward the inn. Your day is complete without the extra search.
                       </>
                     ) : (
                       <>
-                        Turn in early without rolling.{' '}
-                        <span className="text-[#E0645C] font-semibold">Forewarning:</span>{' '}
-                        Forfeits <span className="text-[#E5C158] font-semibold">+150g</span>, the{' '}
-                        <span className="text-[#6FD39A] font-semibold">1st-letter hint</span>, and your{' '}
-                        <span className="text-[#C4A1FF] font-semibold">Campfire Board clue</span>.
+                        Head straight to the fire. A finished day with no extra roll—you can read tonight’s clue from the board.
                       </>
                     )}
                   </p>
@@ -7814,11 +7856,14 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     </div>
   );
 };
+
 ```
+
+---
 
 ## FILE: `src/components/BagAndStoreTabs.tsx`
 
-```tsx
+```typescript
 import React, { useState, useEffect } from 'react';
 import {
   AttributeName,
@@ -8832,11 +8877,14 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
     </div>
   );
 };
+
 ```
+
+---
 
 ## FILE: `src/components/RecordTabView.tsx`
 
-```tsx
+```typescript
 import React, { useState } from 'react';
 import {
   AttributeName,
@@ -9410,11 +9458,14 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
     </div>
   );
 };
+
 ```
+
+---
 
 ## FILE: `src/components/AuditWorkbench.tsx`
 
-```tsx
+```typescript
 import React, { useState } from 'react';
 import {
   AUDIT_FINDINGS_LOG,
@@ -10832,14 +10883,291 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
     </div>
   );
 };
+
 ```
+
+---
+
+## FILE: `src/data/mythiosRulesData.ts`
+
+```typescript
+export type AttributeName = 'Might' | 'Craft' | 'Intellect' | 'Charm' | 'Agility' | 'Aim';
+export type ClassName = 'Warrior' | 'Artificer' | 'Sage' | 'Trickster' | 'Assassin' | 'Archer';
+
+export const ATTRIBUTE_META: Record<AttributeName, { color: string; bgTint: string; class: ClassName; desc: string }> = {
+  Charm: { color: '#EE8BC3', bgTint: '#EE8BC326', class: 'Trickster', desc: 'Persuasion, influence' },
+  Agility: { color: '#38BDF8', bgTint: '#38BDF826', class: 'Assassin', desc: 'Speed, stealth' },
+  Intellect: { color: '#818CF8', bgTint: '#818CF826', class: 'Sage', desc: 'Fast, deep thinking' },
+  Might: { color: '#F59E42', bgTint: '#F59E4226', class: 'Warrior', desc: 'Overpowering force' },
+  Craft: { color: '#C084FC', bgTint: '#C084FC26', class: 'Artificer', desc: 'Tools and machines' },
+  Aim: { color: '#2DD4BF', bgTint: '#2DD4BF26', class: 'Archer', desc: 'Precision' },
+};
+
+export const CLASS_META: Record<ClassName, { attribute: AttributeName; tagline: string; weapon: string; armor: string }> = {
+  Warrior: { attribute: 'Might', tagline: 'When a door won\'t open, you are the reason it does.', weapon: 'Longsword', armor: 'Mail Coat' },
+  Artificer: { attribute: 'Craft', tagline: 'You know how things are put together, and so how they come apart.', weapon: 'Spring-Hammer', armor: 'Riveted Apron' },
+  Sage: { attribute: 'Intellect', tagline: 'You notice what the room is not saying.', weapon: 'Ash Staff', armor: 'Warded Cloak' },
+  Trickster: { attribute: 'Charm', tagline: 'People tell you things. They are not always sure why.', weapon: 'Sword-Cane', armor: 'Leather Ward' },
+  Assassin: { attribute: 'Agility', tagline: 'You are already where they weren\'t looking.', weapon: 'Paired Knives', armor: 'Shadow Leathers' },
+  Archer: { attribute: 'Aim', tagline: 'You see the one thing that matters, from a long way off.', weapon: 'Yew Bow', armor: 'Hunter\'s Jack' },
+};
+
+// Core Rules §12 Tables
+export const EPISODE_NUMBERS = [
+  { week: 1, title: 'The List', weekdayDC: 6, gatheringDC: 8, trialDC: 10, ueDC: 6, ueAttr: 'Might' as AttributeName, gDef: 22, gAtk: 15, gReward: 380, wDef: 21, wAtk: 14, battleCondition: 'None (plain first Battle)' },
+  { week: 2, title: 'The Wind Stone', weekdayDC: 7, gatheringDC: 9, trialDC: 11, ueDC: 7, ueAttr: 'Intellect' as AttributeName, gDef: 23, gAtk: 16, gReward: 520, wDef: 22, wAtk: 15, battleCondition: 'The chant: DEF +1 while >50% enemies stand' },
+  { week: 3, title: 'The Fire Stone', weekdayDC: 7, gatheringDC: 9, trialDC: 11, ueDC: 7, ueAttr: 'Agility' as AttributeName, gDef: 24, gAtk: 17, gReward: 740, wDef: 23, wAtk: 16, battleCondition: 'Blade and torch: hit deals 2 more HP start of next round' },
+  { week: 4, title: 'The Water Stone', weekdayDC: 8, gatheringDC: 10, trialDC: 12, ueDC: 8, ueAttr: 'Craft' as AttributeName, gDef: 24, gAtk: 17, gReward: 740, wDef: 23, wAtk: 16, battleCondition: 'Knee-deep: roll 1–3 on strike loses next strike (both sides)' },
+  { week: 5, title: 'The King\'s Stone', weekdayDC: 9, gatheringDC: 11, trialDC: 13, ueDC: 9, ueAttr: 'Charm' as AttributeName, gDef: 25, gAtk: 18, gReward: 1030, wDef: 24, wAtk: 17, battleCondition: 'The hollowed: rises once at 2 HP and skips next strike' },
+  { week: 6, title: 'The Finale', weekdayDC: 9, gatheringDC: 11, trialDC: 13, ueDC: 9, ueAttr: 'Aim' as AttributeName, gDef: 25, gAtk: 18, gReward: 1030, wDef: 24, wAtk: 17, battleCondition: 'Half faithful (chant), half hollowed (rises once at 2 HP)' },
+];
+
+export const GEAR_TABLE: Record<number, { weapon: number; armor: number; cost: number }> = {
+  1: { weapon: 14, armor: 27, cost: 0 },
+  2: { weapon: 15, armor: 28, cost: 950 },
+  3: { weapon: 16, armor: 29, cost: 1100 },
+  4: { weapon: 17, armor: 30, cost: 1750 },
+  5: { weapon: 18, armor: 31, cost: 2400 },
+};
+
+export interface PartyFriend {
+  id: string;
+  name: string;
+  cls: ClassName;
+  attr: AttributeName;
+  color: string;
+}
+
+export const DEFAULT_PARTY_MEMBERS: PartyFriend[] = [
+  { id: 'YOU', name: 'Jennifer', cls: 'Trickster', attr: 'Charm', color: '#EE8BC3' },
+  { id: 'MEI', name: 'Mei', cls: 'Sage', attr: 'Intellect', color: '#F49CBB' },
+  { id: 'DEV', name: 'Dev', cls: 'Archer', attr: 'Aim', color: '#5BC0EB' },
+  { id: 'ARJUN', name: 'Arjun', cls: 'Warrior', attr: 'Might', color: '#4FD1C5' },
+];
+
+export const ALL_SAMPLE_HEROES: PartyFriend[] = [
+  { id: 'YOU', name: 'Jennifer', cls: 'Trickster', attr: 'Charm', color: '#EE8BC3' },
+  { id: 'MEI', name: 'Mei', cls: 'Sage', attr: 'Intellect', color: '#F49CBB' },
+  { id: 'DEV', name: 'Dev', cls: 'Archer', attr: 'Aim', color: '#5BC0EB' },
+  { id: 'ARJUN', name: 'Arjun', cls: 'Warrior', attr: 'Might', color: '#4FD1C5' },
+  { id: 'TAMSIN_HERO', name: 'Tamsin', cls: 'Artificer', attr: 'Craft', color: '#C084FC' },
+  { id: 'ROWAN_HERO', name: 'Rowan', cls: 'Assassin', attr: 'Agility', color: '#38BDF8' },
+];
+
+export const WEEKDAY_DC_BY_WEEK: Record<number, number> = {
+  1: 6,
+  2: 7,
+  3: 7,
+  4: 8,
+  5: 9,
+  6: 9,
+};
+
+// Fix 2: Growth based on days played that week: 12, 9, 7, 5, 4, 3, 3 for 1st to 7th day
+const WEEK_DAY_BASE_GROWTH = [12, 9, 7, 5, 4, 3, 3];
+
+export function calculateAttributeGrowth(
+  currentAttrValue: number,
+  daysPlayedThisWeek: number, // 1 to 7
+  dieRoll: number, // 1..20
+  tierBonus: number,
+  weekdayDC: number
+): number {
+  // An Attribute grows only if the roll was truly uncertain:
+  // a die of 1 had to be able to fail (1 + tierBonus - weekdayDC < 1)
+  // and a die of 20 had to be able to pass (20 + tierBonus - weekdayDC >= 1),
+  // judged BEFORE any Relic is added.
+  const canFailOn1 = 1 + tierBonus - weekdayDC < 1;
+  const canPassOn20 = 20 + tierBonus - weekdayDC >= 1;
+  const isTrulyUncertain = canFailOn1 && canPassOn20;
+
+  if (!isTrulyUncertain) {
+    return 0;
+  }
+
+  const dayIndex = Math.min(6, Math.max(0, daysPlayedThisWeek - 1));
+  const baseGrowth = WEEK_DAY_BASE_GROWTH[dayIndex];
+  const tier = getTierInfo(currentAttrValue);
+  const calculated = Math.round(baseGrowth * tier.rate);
+  return Math.max(1, calculated);
+}
+
+export function getTierInfo(val: number): { name: string; bonus: number; rate: number; nextAt: number | null; pctInTier: number } {
+  if (val <= 25) return { name: 'Novice', bonus: 0, rate: 1.0, nextAt: 26, pctInTier: Math.min(100, Math.round((val / 25) * 100)) };
+  if (val <= 50) return { name: 'Apprentice', bonus: 2, rate: 1.0, nextAt: 51, pctInTier: Math.min(100, Math.round(((val - 25) / 25) * 100)) };
+  if (val <= 75) return { name: 'Adept', bonus: 4, rate: 0.6, nextAt: 76, pctInTier: Math.min(100, Math.round(((val - 50) / 25) * 100)) };
+  if (val <= 100) return { name: 'Expert', bonus: 6, rate: 0.3, nextAt: 101, pctInTier: Math.min(100, Math.round(((val - 75) / 25) * 100)) };
+  return { name: 'Master', bonus: 8, rate: 0.1, nextAt: null, pctInTier: 100 };
+}
+
+export interface RecordStatMeta {
+  key: string;
+  labelLines: [string, string];
+  fullTitle: string;
+  explainer: string;
+  leadFriend: string;
+  leadNextVal: number;
+}
+
+export const RECORD_STATS_META: RecordStatMeta[] = [
+  // Row 1: Show Up
+  { key: 'daysPlayed', labelLines: ['Days', 'Played'], fullTitle: 'Days Played', explainer: 'Total days you read the chapter to its last line, over the season.', leadFriend: 'Mei', leadNextVal: 14 },
+  { key: 'bestStreak', labelLines: ['Best', 'Streak'], fullTitle: 'Best Streak', explainer: 'Your longest run of days played in a row. It never goes down.', leadFriend: 'Mei', leadNextVal: 6 },
+  { key: 'gatheringsAttended', labelLines: ['Gatherings', 'Joined'], fullTitle: 'Gatherings Attended', explainer: 'Gatherings you came to.', leadFriend: 'Mei', leadNextVal: 2 },
+  { key: 'fragmentsSolved', labelLines: ['Fragments', 'Solved'], fullTitle: 'Fragments Solved', explainer: 'Fragments where you filled a missing word.', leadFriend: 'Mei', leadNextVal: 6 },
+  // Row 2: Together
+  { key: 'relicsGiven', labelLines: ['Relics', 'Given'], fullTitle: 'Relics Given', explainer: 'Every Relic you gave to a friend.', leadFriend: 'Mei', leadNextVal: 1 },
+  { key: 'timesSteppedUp', labelLines: ['Stepped', 'Up'], fullTitle: 'Times Stepped Up', explainer: 'Times you tapped [STEP UP] and rolled the Approach for the party.', leadFriend: 'Arjun', leadNextVal: 1 },
+  { key: 'fragmentsMatched', labelLines: ['Fragments', 'Matched'], fullTitle: 'Fragments Matched', explainer: 'Fragments you matched to the right scripture line at a Gathering.', leadFriend: 'Mei', leadNextVal: 2 },
+  { key: 'battlesWon', labelLines: ['Battles', 'Won'], fullTitle: 'Battles Won', explainer: 'Gathering Battles the party won while you fought in them.', leadFriend: 'Mei', leadNextVal: 2 },
+  // Row 3: Glory
+  { key: 'challengesCleared', labelLines: ['Challenges', 'Cleared'], fullTitle: 'Challenges Cleared', explainer: 'Every Challenge you cleared.', leadFriend: 'Mei', leadNextVal: 8 },
+  { key: 'challengesPressedOn', labelLines: ['Pressed', 'On'], fullTitle: 'Challenges Pressed On', explainer: 'Times you took the harder [PRESS ON] roll, cleared or not.', leadFriend: 'Dev', leadNextVal: 2 },
+  { key: 'enemiesDefeated', labelLines: ['Enemies', 'Felled'], fullTitle: 'Enemies Defeated', explainer: 'Enemies your own hand brought down, in weekday fights and Battles.', leadFriend: 'Dev', leadNextVal: 4 },
+  { key: 'perfectRolls', labelLines: ['Perfect', 'Rolls'], fullTitle: 'Perfect Rolls', explainer: 'Each 20 you rolled on a Challenge or an attack.', leadFriend: 'Mei', leadNextVal: 1 },
+];
+
+export interface BadgeMeta {
+  id: string;
+  labelLines: [string, string];
+  title: string;
+  earned: boolean;
+  requirement: string;
+  progressText: string;
+  iconType: 'sunrise' | 'calendar' | 'road' | 'sword' | 'gift' | 'lifeline' | 'users' | 'moon' | 'd20' | 'flame' | 'chain' | 'heart';
+}
+
+export const BADGES_META: BadgeMeta[] = [
+  { id: 'first-light', labelLines: ['First', 'Light'], title: 'First Light', earned: true, requirement: 'Finish your first chapter.', progressText: 'Earned on Week 1 · Day 1.', iconType: 'sunrise' },
+  { id: 'whole-week', labelLines: ['Whole', 'Week'], title: 'A Whole Week', earned: false, requirement: 'Play all six days and come to the Gathering in one week.', progressText: 'Best week so far: 5 of 6 days.', iconType: 'calendar' },
+  { id: 'long-road', labelLines: ['Long', 'Road'], title: 'The Long Road', earned: false, requirement: 'Come to all six Gatherings.', progressText: 'You have attended 2 of 6 Gatherings.', iconType: 'road' },
+  { id: 'sharpened', labelLines: ['Sharpened', ''], title: 'Sharpened', earned: false, requirement: 'Reach Adept in any Attribute.', progressText: 'Charm is 38 (13 points from Adept).', iconType: 'sword' },
+  { id: 'open-hand', labelLines: ['Open', 'Hand'], title: 'Open Hand', earned: true, requirement: 'Give a friend a Relic for the first time.', progressText: 'Earned when you gave Mei a Charm Relic.', iconType: 'gift' },
+  { id: 'lifeline', labelLines: ['Lifeline', ''], title: 'Lifeline', earned: false, requirement: 'A Relic you gave is used in a roll or a fight that then goes the friend\'s way.', progressText: 'Waiting for your given Relic to turn a roll.', iconType: 'lifeline' },
+  { id: 'whole-table', labelLines: ['Whole', 'Table'], title: 'The Whole Table', earned: true, requirement: 'Every friend plays on the same day. The whole party earns it.', progressText: 'Earned by the whole party on Week 1 · Day 2.', iconType: 'users' },
+  { id: 'clean-night', labelLines: ['Clean', 'Night'], title: 'A Clean Night', earned: false, requirement: 'In one Gathering the party clears the opening roll, wins the Battle with nobody down, and wins the United Effort.', progressText: 'Not yet earned by the party.', iconType: 'moon' },
+  { id: 'perfect', labelLines: ['Perfect', ''], title: 'Perfect', earned: true, requirement: 'Roll your first 20 on a Challenge or an attack.', progressText: 'Earned on Week 2 · Day 2.', iconType: 'd20' },
+  { id: 'never-enough', labelLines: ['Never', 'Enough'], title: 'Never Enough', earned: false, requirement: 'Clear 3 Press On rolls in one week.', progressText: 'You have cleared 1 this week.', iconType: 'flame' },
+  { id: 'many-hands', labelLines: ['Many', 'Hands'], title: 'Many Hands', earned: false, requirement: 'Clear Challenges with four different Attributes.', progressText: 'Cleared with 3 of 4 Attributes (Charm, Agility, Craft).', iconType: 'chain' },
+  { id: 'down-to-thread', labelLines: ['Close', 'Thread'], title: 'Down to a Thread', earned: false, requirement: 'Win a fight with 10 HP or less left.', progressText: 'Closest fight won so far: 28 HP left.', iconType: 'heart' },
+];
+
+export interface GlossaryTerm {
+  term: string;
+  category: string;
+  definition: string;
+}
+
+export const GLOSSARY_TERMS: GlossaryTerm[] = [
+  { term: 'Mythios', category: 'Core', definition: 'The storyteller and keeper of the record for your party across all six weeks.' },
+  { term: 'Garrick', category: 'Core', definition: 'The innkeeper of the Hollow Wake Inn and your grey-cloaked guide on the road. He follows the three-verb rule: he never promises, predicts, or denies knowing, and invents no facts about himself.' },
+  { term: 'Chapter', category: 'Play', definition: 'One weekday session (Days 1–6) played on your own schedule in about five minutes: arrive at the landmark, resolve the encounter, and open its Seeker housing.' },
+  { term: 'Campfire', category: 'Play', definition: 'The asynchronous evening camp where friends converge after their solo day to review the day\'s clues from Fan Out, choose a theory fork, solve today\'s Seeker Fragment word-lock, and share stored banter and riddles with Garrick.' },
+  { term: 'Gathering', category: 'Play', definition: 'The Day 7 synchronous finale across 5 Beats: Arrival & Order\'s Claim, Opening Approach, Party Battle & United Effort (+300g per friend), Scripture Match (+50g/100g), and the Table Twist.' },
+  { term: 'Challenge', category: 'Rolls', definition: 'A d20 + tier bonus roll against the weekday difficulty (6 to 9). Clearing it awards +500g and skill growth based on days played that week; failing costs 150g (gold never falls below 0) and leads to the Detour skirmish.' },
+  { term: 'Press On', category: 'Rolls', definition: 'An optional harder Challenge (+4 difficulty above the day) that awards +200g on success, with no skill growth.' },
+  { term: 'Solo Fan-Out', category: 'Rolls', definition: 'A 3-branch solo exploration beat after the landmark encounter (Challenge, Fight, or Head to Campfire). Winning gives a Seeker 1st-letter hint and the day\'s canonical clue for the evening Campfire board. Heading directly to camp finishes the day with no penalty.' },
+  { term: 'Relic', category: 'Items', definition: 'A single-use stone charm (150g in Store: +4 to one Attribute roll, or +1 Weapon and +1 Armor for one fight) that you can use yourself or give to a friend. Spent upon use.' },
+  { term: 'Seeker Housing', category: 'Seeker Chest', definition: 'A blood-locked stone socket or niche hidden at each of the 36 weekday landmarks that opens only at the touch of a marked Seeker descendant.' },
+  { term: 'Fragment', category: 'Seeker Chest', definition: 'A torn piece of Dark Moon scripture recovered from each weekday\'s Seeker housing with two jumbled lock-words (+25g each). All 6 fragments in a week interlock on Day 6 to form the Day 7 Map (+2 to all Gathering rolls).' },
+  { term: 'Solved', category: 'Seeker Chest', definition: 'A Fragment whose two jumbled lock-words have both been unjumbled by the party at the Campfire or in the Seeker Chest.' },
+  { term: 'The Four Stones', category: 'Lore', definition: 'Wind, Fire, Water, and Earth Stones that seal the dry well beneath Highwall Keep.' },
+  { term: 'The King\'s Stone', category: 'Lore', definition: 'The fifth stone—waking only when the Four Children of the Narrow Window are brought together at Highwall.' },
+];
+
+
+
+```
+
+---
+
+## FILE: `src/data/economy.ts`
+
+```typescript
+/**
+ * MYTHIOS ECONOMY CONSTANTS (Core Rules §12 & 8 Oct / 14 Oct Rules Pass)
+ *
+ * Single source of truth for all gold rewards and costs in the game.
+ */
+
+// --- TESTED CORE RULES §12 AMOUNTS (DO NOT CHANGE) ---
+
+/** Daily Challenge pass reward (+500g) */
+export const GOLD_CHALLENGE_WIN = 500;
+
+/** Daily Challenge fail penalty (-150g, gold never below 0) */
+export const GOLD_CHALLENGE_LOSS = 150;
+
+/** Passed [PRESS ON] reward (+200g, no growth) */
+export const GOLD_PRESS_ON_WIN = 200;
+
+/** Weekday fight reward on a day with NO Challenge (+300g win, 0 loss) */
+export const GOLD_WEEKDAY_FIGHT_ONLY_WIN = 300;
+
+/** Weekday fight reward on a day that also has a Challenge (pays 0g) */
+export const GOLD_WEEKDAY_FIGHT_WITH_CHALLENGE_WIN = 0;
+
+/** Look Closer inspection reward (+75g) */
+export const GOLD_LOOK_CLOSER_WIN = 75;
+
+/** Scripture Match base reward: 50g per correct pick */
+export const GOLD_MATCH_BASE_PER_PICK = 50;
+
+/** Scripture Match full table reward: 100g per pick if every friend present is right */
+export const GOLD_MATCH_PERFECT_PER_PICK = 100;
+
+/** United Effort completion reward (+300g to every friend if job is done, 0 on failure) */
+export const GOLD_UNITED_EFFORT_WIN = 300;
+
+/** Seeker Fragment lock word solved (+25g per word) */
+export const GOLD_FRAGMENT_WORD_SOLVED = 25;
+
+/** Gathering Battle reward curve for Weeks 1 to 6 (380g, 520g, 740g, 740g, 1030g, 1030g) */
+export const GOLD_GATHERING_BATTLE_REWARDS: Record<number, number> = {
+  1: 380,
+  2: 520,
+  3: 740,
+  4: 740,
+  5: 1030,
+  6: 1030,
+};
+
+/** Relic purchase cost in Store (150g) */
+export const GOLD_RELIC_COST = 150;
+
+// --- PENDING NUMBERS PASS (Core Rules §15 / 8 Oct) ---
+
+/** Fan Out solo roadside cache (+150g) - PENDING numbers pass */
+export const GOLD_FAN_OUT_CACHE_WIN = 150;
+
+/** Detour fight on failed Challenge (+150g win) - PENDING numbers pass */
+export const GOLD_DETOUR_FIGHT_WIN = 150;
+
+/** Detour fight on failed Challenge (-75g loss / cost) - PENDING numbers pass */
+export const GOLD_DETOUR_FIGHT_LOSS = 75;
+
+/** Daily Campfire riddle solve (+10g) - PENDING numbers pass */
+export const GOLD_RIDDLE_SOLVE = 10;
+
+/** Bonus riddle reward (+15g) - PENDING numbers pass */
+export const GOLD_RIDDLE_BONUS = 15;
+
+/** Hidden roadside cache (+25g) - PENDING numbers pass */
+export const GOLD_HIDDEN_CACHE_REWARD = 25;
+
+/** W6D3 stat bonus +1 (+1 Agility / +1 Charm) - PENDING numbers pass */
+export const STAT_BONUS_W6D3 = 1;
+
+```
+
+---
 
 ## FILE: `src/data/campfireDaysData.ts`
 
-```ts
+```typescript
 import { AttributeName } from './mythiosRulesData';
 
-export type FriendId = 'YOU' | 'MEI' | 'DEV' | 'ARJUN';
+export type FriendId = 'YOU' | 'MEI' | 'DEV' | 'ARJUN' | 'TAMSIN_HERO' | 'ROWAN_HERO' | string;
 
 export interface CampfireRiddleEntry {
   q: string;
@@ -10930,1167 +11258,1104 @@ export const CAMPFIRE_STORED_LINES = {
 } as const;
 
 export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
-  // ==================== WEEK 1 ====================
   {
-    week: 1,
-    day: 1,
-    id: '1-1',
-    place: 'The forest road',
-    narratedNoGarrick: true,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'A man breaks your cargo lock on the forest road — and instead of taking a thing, puts a list of names inside.',
-    forkA: 'The list is a warning.',
-    forkB: 'The list is an invitation.',
-    callback:
-      'Look at the half-burned charcoal rubbing from the leaf-mould beside the list in your hand.',
-    riddle: null,
-    nudge:
-      '{friend:Craft}, look at the scratches round that latch — was it picked to steal, or forced so you would open the box before dark?',
-    fanOutClue: {
-      title: 'The folded list',
-      text: 'The parchment was folded twice before it went into your box. Along the outer crease sits a speck of dried red sealing-wax — and a faint smell of cheap tavern wine.',
-      source: 'Challenge & Fight Fan Out (1-1)',
-      bearsOnFork:
-        'Supports both readings: a sealed tavern dispatch could be an urgent warning or a deliberate summons.',
-      qaNote:
-        'Plants the Hollow Wake Inn wine detail for W1D2 without naming Garrick or Meira early.',
-    },
+    "week": 1,
+    "day": 1,
+    "place": "The forest road",
+    "id": "1-1",
+    "narratedNoGarrick": true,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "One list, one inn's name. Nothing was taken.",
+    "forkA": "The list is a warning.",
+    "forkB": "The list is an invitation.",
+    "callback": null,
+    "riddle": null,
+    "nudge": "{friend:Intellect}, what is odd about a stranger who leaves something behind?",
+    "fanOutClue": {
+      "title": "The even hand",
+      "text": "Not one name is crossed out or written over. Every line sits level, and the inn's line is in the same hand as the names.",
+      "source": "new",
+      "bearsOnFork": "both",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 1,
-    day: 2,
-    id: '1-2',
-    place: 'The Hollow Wake Inn',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: true,
-    opener:
-      'Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen. Left this. Hasn\'t been back in three weeks.',
-    forkA: 'Meira left the satchel for us because she knew she was being followed.',
-    forkB: 'Meira meant to come back for the satchel and ran out of time.',
-    callback:
-      'Four stubs cut against a straight rule, and your list from the forest road is the third.',
-    riddle: {
-      q: 'What has a neck, no head, and sits in my bar all night without paying its slate?',
-      a: 'A bottle.',
-      quip: 'Meira paid hers to the penny, mind.',
-      accept: ['bottle', 'a bottle', 'wine bottle', 'the bottle'],
-      maxTries: 3,
+    "week": 1,
+    "day": 2,
+    "place": "The Hollow Wake Inn",
+    "id": "1-2",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": true,
+    "opener": "You've paid for your rooms and you haven't burned anything down. That's more than most guests manage.",
+    "forkA": "Meira left in a hurry.",
+    "forkB": "Meira left on purpose.",
+    "callback": "Yesterday you had a list and an inn's name. Tonight you have her satchel.",
+    "riddle": {
+      "q": "What has a neck but no head?",
+      "a": "a bottle",
+      "quip": "The inn is full of them. None of them talk.",
+      "accept": [
+        "a bottle",
+        "bottle"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Intellect}, she put two children on the same notebook leaf — what connects the rock two winters back to Fenmark now?',
-    fanOutClue: {
-      title: 'The ink on the fourth stub',
-      text: 'Three of the cut stubs in Meira\'s satchel are dry and faded. The fourth was written in wetter ink that blotted against the leather lining — she cut it the same night she walked out.',
-      source: 'Challenge & Fight Fan Out (1-2)',
-      bearsOnFork:
-        'Bears directly on whether she planned the handover in advance or left in sudden haste.',
-      qaNote: 'Clean Week 1 clue; no future terms used.',
-    },
+    "nudge": "{friend:Craft}, how would you test whether the page is hers?",
+    "fanOutClue": {
+      "title": "Read the stubs",
+      "text": "Each stub has a faint straight line scored down it. She cut them against a rule, one at a time, with care. She meant to send them.",
+      "source": "press-on",
+      "bearsOnFork": "B",
+      "qaNote": "Existing [PRESS ON] detail. Leans 'on purpose'."
+    }
   },
   {
-    week: 1,
-    day: 3,
-    id: '1-3',
-    place: "The Widow's Tooth",
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'People tell a man with a cloth in his hand everything. They forget he\'s got ears.',
-    forkA: 'The lookout in the bracken was waiting for us.',
-    forkB: 'The lookout was watching the rock for someone else.',
-    callback:
-      'Meira\'s charcoal rubbing from Day 1 fits the stone cut at the Widow\'s Tooth to the hair.',
-    riddle: {
-      q: 'What has four legs, one head, and never walks a step until a child picks it up?',
-      a: 'A carved wooden horse.',
-      quip: 'Small thumbs wore the paint right off its mane.',
-      accept: ['horse', 'wooden horse', 'carved horse', 'a carved horse', 'toy horse', 'a horse'],
-      maxTries: 3,
+    "week": 1,
+    "day": 3,
+    "place": "The Widow's Tooth",
+    "id": "1-3",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "You've not eaten. Sit.",
+    "forkA": "The man in the bracken was guarding the rock.",
+    "forkB": "He was waiting for us.",
+    "callback": "Meira's page named this rock. Today you stood at it.",
+    "riddle": {
+      "q": "The more you take, the more you leave behind. What am I?",
+      "a": "footsteps",
+      "quip": "There's bracken full of them out there.",
+      "accept": [
+        "footsteps"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Aim}, look at how the bracken was flattened — was he facing the south road we came up, or the village lane toward Fenmark?',
-    fanOutClue: {
-      title: 'Cold tallow in the niche',
-      text: 'At the back of the dry stone shelf where the carved horse lay, someone pinched out a tallow stub not two nights ago. The shelf was empty, yet they still came back to check it.',
-      source: 'Challenge & Fight Fan Out (1-3)',
-      bearsOnFork:
-        'Shows the watchers were checking the rock on a schedule, bearing on who they expected.',
-      qaNote: 'No early reveals.',
-    },
+    "nudge": "{friend:Agility}, which way did he bolt?",
+    "fanOutClue": {
+      "title": "The second ring",
+      "text": "In the flattened bracken a flask has left a ring in the dew, and a second ring beside it where he set it down again.",
+      "source": "new",
+      "bearsOnFork": "both",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 1,
-    day: 4,
-    id: '1-4',
-    place: 'Fenmark',
-    narratedNoGarrick: false,
-    tone: 'quiet',
-    cupNight: false,
-    opener:
-      'Every shutter in Fenmark barred in broad daylight, and a boy of fourteen is the only soul with the spine to name Tamsin.',
-    forkA: 'Someone inside Fenmark told the takers which house was hers.',
-    forkB: 'The takers already knew her door before they entered the lane.',
-    callback:
-      'Just like the boy at the Widow\'s Tooth two winters back, Tamsin was born on a night the moon went dark.',
-    riddle: {
-      q: 'What is so brittle that speaking a single word in a barred street breaks it?',
-      a: 'Silence.',
-      quip: 'That boy broke plenty of it behind the grain store.',
-      accept: ['silence', 'the silence', 'quiet'],
-      maxTries: 3,
+    "week": 1,
+    "day": 4,
+    "place": "Fenmark",
+    "id": "1-4",
+    "narratedNoGarrick": false,
+    "tone": "quiet",
+    "cupNight": false,
+    "opener": "A village that won't talk is still talking. Mostly with its shutters.",
+    "forkA": "The village is protecting the girl.",
+    "forkB": "The village is protecting itself.",
+    "callback": "Yesterday the ruts led here. Today you have her name.",
+    "riddle": {
+      "q": "What breaks the moment you say its name?",
+      "a": "silence",
+      "quip": "Fenmark's had plenty of practice.",
+      "accept": [
+        "silence"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Charm}, when the village elder brought out clubs, was that guilt in his eyes or plain terror?',
-    fanOutClue: {
-      title: 'The unlatched gate',
-      text: 'Every house in the lane has fresh iron staples driven into the shutters — except Tamsin\'s. On her gatepost, someone drew a tiny charcoal crescent three nights ago and wiped half of it away.',
-      source: 'Challenge & Fight Fan Out (1-4)',
-      bearsOnFork:
-        'Directly tests whether a scout marked the gate from within or brought a list from outside.',
-      qaNote: 'Quiet tone day; riddle hidden unless requested.',
-    },
+    "nudge": "{friend:Charm}, what would you say to a door that won't open?",
+    "fanOutClue": {
+      "title": "The leaned bar",
+      "text": "The gate at the end of the lane is swinging, but its bar has been lifted and leaned neatly against the post, not thrown down.",
+      "source": "new",
+      "bearsOnFork": "B",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 1,
-    day: 5,
-    id: '1-5',
-    place: 'The old charcoal camp',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'Two winters between the charcoal woman\'s nephew and Tamsin, and the same curved black-handled knife both times.',
-    forkA: 'The runner with the kitchen knife is one of the takers.',
-    forkB: 'The runner is local muscle hired to watch the back trail.',
-    callback:
-      'The carved wooden horse from the Widow\'s Tooth belonged to the charcoal woman\'s nephew all along.',
-    riddle: {
-      q: 'What eats the forest all week long, yet dies the moment you give it a drink of water?',
-      a: 'Fire.',
-      quip: 'Charcoal burners know how to starve it just enough.',
-      accept: ['fire', 'a fire', 'the fire', 'flame', 'flames'],
-      maxTries: 3,
+    "week": 1,
+    "day": 5,
+    "place": "The old charcoal camp",
+    "id": "1-5",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Two winters between two children. Some people count in winters. It's a way of keeping still.",
+    "forkA": "It's the same man, twice.",
+    "forkB": "It's a way of working, not one man.",
+    "callback": "At Fenmark a boy counted you. Here a woman counts winters.",
+    "riddle": {
+      "q": "I grow, but I'm not alive. I need air, but I have no lungs. Water kills me. What am I?",
+      "a": "fire",
+      "quip": "Which is why I tend this one myself.",
+      "accept": [
+        "fire"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Agility}, you saw the runner bolt north — did he move like a man heading home, or a man reporting to a camp?',
-    fanOutClue: {
-      title: 'Three copper pence',
-      text: 'Where the runner crouched behind the charcoal shed, three common market pence fell from his pocket beside a crust of village rye. The blade he left in the shutter came from a Fenmark kitchen set.',
-      source: 'Challenge & Fight Fan Out (1-5)',
-      bearsOnFork:
-        'Bears directly on whether the runner is an inner member of the takers or paid village look-out.',
-      qaNote: 'Clean Week 1 vocabulary.',
-    },
+    "nudge": "{friend:Aim}, how do you stop a runner without hurting him?",
+    "fanOutClue": {
+      "title": "The knife, not the face",
+      "text": "She says she never saw his face, only the knife, and it is the knife she knows him by.",
+      "source": "new",
+      "bearsOnFork": "B",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 1,
-    day: 6,
-    id: '1-6',
-    place: 'The Low Ford',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: true,
-    opener:
-      'Family habit. We always pour one for whoever can\'t be with us.',
-    forkA: 'They carried Tamsin across the river because their camp is in the old mine.',
-    forkB: 'The old mine is only a staging post before they move her further north.',
-    callback:
-      'All six stone fragments from this week lock together into one map — and it ends at the mark from Meira\'s Day 1 rubbing.',
-    riddle: {
-      q: 'What runs from the hills to the sea day and night without ever leaving its bed?',
-      a: 'A river.',
-      quip: 'Cold enough at the ford to wake your boots up.',
-      accept: ['river', 'the river', 'a river', 'water', 'stream'],
-      maxTries: 3,
+    "week": 1,
+    "day": 6,
+    "place": "The Low Ford",
+    "id": "1-6",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": true,
+    "opener": "Six pieces, one map. Eat something before you stare at it.",
+    "forkA": "They carried her across the water.",
+    "forkB": "They wanted us to think so.",
+    "callback": "Five days ago it was a list. Tonight it's a map of six pieces.",
+    "riddle": {
+      "q": "I have a bed but never sleep, a mouth but never speak. What am I?",
+      "a": "a river",
+      "quip": "The one in front of us says nothing, and I believe it.",
+      "accept": [
+        "a river",
+        "river"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Might}, her footprints walked unhurt to the boat — why handle a stolen child so carefully?',
-    fanOutClue: {
-      title: 'Dry wool in the reeds',
-      text: 'Snagged on the willow roots beside the upstream mooring-stone is a strip of dry grey blanket-wool. Whoever lifted Tamsin into the boat wrapped her shoulders against the river mist first.',
-      source: 'Challenge & Fight Fan Out (1-6)',
-      bearsOnFork:
-        'Shows they are keeping her warm and unharmed for what waits across the ford.',
-      qaNote: 'Cup Night #2 (1-6).',
-    },
-  },
-
-  // ==================== WEEK 2 ====================
-  {
-    week: 2,
-    day: 1,
-    id: '2-1',
-    place: 'The mine, then the mill road',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: true,
-    opener:
-      'Worst guests I\'ve ever had. Good tippers, though.',
-    forkA: 'The horseman who galloped from the mine is the same man driving the mill-road cart.',
-    forkB: 'A second crew was already working the mill road while we were at the ford.',
-    callback:
-      'Under the empty socket in the mine sat four children\'s names — Tamsin\'s first, and three more.',
-    riddle: {
-      q: 'What goes all the way up the mill road without lamps, yet leaves its signature in every puddle?',
-      a: 'A dragging wheel.',
-      quip: 'Pulls to the left like a mule with a sore ear.',
-      accept: ['wheel', 'a wheel', 'cart wheel', 'dragging wheel', 'a dragging wheel', 'cart', 'rut', 'ruts'],
-      maxTries: 3,
-    },
-    nudge:
-      '{friend:Charm}, the farmer with the axe said the lamp-less cart went up three nights ago — where were we three nights ago?',
-    fanOutClue: {
-      title: 'Iron filings on the axle-stone',
-      text: 'Where the lamp-less cart scraped the milestone on the mill road, fresh iron curl-shavings sit in the mud. The left axle-pin is wearing through its washer mile by mile.',
-      source: 'Challenge & Fight Fan Out (2-1)',
-      bearsOnFork:
-        'Proves the cart has been hauling heavy loads across multiple roads on a tight timetable.',
-      qaNote: 'Cup Night #3 (2-1 per Confirmed Decision 3).',
-    },
+    "nudge": "{friend:Intellect}, what do you notice about how the pieces settled?",
+    "fanOutClue": {
+      "title": "Wade out",
+      "text": "Mid-stream, on the upstream side of the ford-stone, a scrape of fresh paint on the rock at the height of a gunwale. There was a boat.",
+      "source": "press-on",
+      "bearsOnFork": "A",
+      "qaNote": "Existing [PRESS ON] detail. Leans 'carried across the water'."
+    }
   },
   {
-    week: 2,
-    day: 2,
-    id: '2-2',
-    place: 'The mill',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'He asked for Corin by name, knew the night the boy was born, and left a horn button in the miller\'s wife\'s fist.',
-    forkA: 'The takers have a copy of Meira\'s notebook.',
-    forkB: 'Meira copied her list from an older record the takers already use.',
-    callback:
-      'Cut into the old stone footing under the mill-wheel is the exact shape from the Widow\'s Tooth and the river mine.',
-    riddle: {
-      q: 'What turns all day in the race, grinds every sack of grain, and never eats a mouthful?',
-      a: 'A millstone.',
-      quip: 'Old stone under that wheel is older than the mill.',
-      accept: ['millstone', 'a millstone', 'mill wheel', 'the mill wheel', 'wheel', 'waterwheel'],
-      maxTries: 3,
+    "week": 2,
+    "day": 1,
+    "place": "The mine, then the mill road",
+    "id": "2-1",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": true,
+    "opener": "Beds are in the barn tonight. Pick a corner and take it.",
+    "forkA": "Corin is next because the cart went there.",
+    "forkB": "Corin is next because the wall says so.",
+    "callback": "Last week ended with four names. Tonight the next one has a place.",
+    "riddle": {
+      "q": "I have a face and two hands but no arms or legs. What am I?",
+      "a": "a clock",
+      "quip": "Time's the one thing the cart has on us.",
+      "accept": [
+        "a clock",
+        "clock"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Intellect}, why is every marked child we\'ve traced living within a stone\'s throw of one of those carvings?',
-    fanOutClue: {
-      title: 'The ruts',
-      text: 'The left wheel pulls. You have seen that track before, coming down a muddy bank to a ford. It is the same cart.',
-      source: 'Challenge & Fight Fan Out (2-2)',
-      bearsOnFork:
-        'Proves a single cart and crew worked both the Low Ford road and the mill lane.',
-      qaNote:
-        'Flagged in report per prompt instructions: reuses the [PRESS ON] detail noted in continuity item L1; left unchanged.',
-    },
+    "nudge": "{friend:Agility}, how fast could we reach the mill at first light?",
+    "fanOutClue": {
+      "title": "The steady horse",
+      "text": "The old man says the horse never balked at his gate or at the fork, in full dark and with no lamp. It took the mill lane at a steady walk.",
+      "source": "new",
+      "bearsOnFork": "A",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 2,
-    day: 3,
-    id: '2-3',
-    place: 'Upriver',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'A man lies dead a week on the hidden path with his iron pick snapped inside a stone lock that opened at your bare touch.',
-    forkA: 'The dead lockpick worked for the takers and failed.',
-    forkB: 'The dead lockpick was a rival thief who found the path before them.',
-    callback:
-      'Fragment 1-3 at the Widow\'s Tooth warned us: "Not every hand that tries will open it. Some locks already know their key."',
-    riddle: {
-      q: 'What has no teeth to bite a stranger, yet keeps the dog from walking past the post?',
-      a: 'A chain.',
-      quip: 'Poor beast was hungry enough to chew the iron.',
-      accept: ['chain', 'a chain', 'the chain', 'iron chain', 'collar'],
-      maxTries: 3,
+    "week": 2,
+    "day": 2,
+    "place": "The mill",
+    "id": "2-2",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Asked for by name, and by the night he was born. That's an odd thing to ask for.",
+    "forkA": "They had a list with birthdays.",
+    "forkB": "They knew him personally.",
+    "callback": "Yesterday: three names. Today: the mark from the rubbing, cut into a mill's footing.",
+    "riddle": {
+      "q": "I have teeth but cannot bite. What am I?",
+      "a": "a comb (or a cog)",
+      "quip": "A mill's full of them.",
+      "accept": [
+        "a comb (or a cog)",
+        "comb (or a cog)"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Craft}, look at the snapped steel inside the housing — what killed him when the pick jammed?',
-    fanOutClue: {
-      title: 'The greased leather roll',
-      text: 'Tucked inside the dead man\'s boot is a greased leather roll of seven fine steel picks — and a folded slip of paper with the mill-wheel mark drawn in the same ink as the fourth stub at the inn.',
-      source: 'Challenge & Fight Fan Out (2-3)',
-      bearsOnFork:
-        'Shows the dead lockpick was sent to open the housing with tools before they realized living blood was required.',
-      qaNote: 'Clean Week 2 vocabulary.',
-    },
+    "nudge": "{friend:Craft}, how was the mark cut, and with what tool?",
+    "fanOutClue": {
+      "title": "The ruts",
+      "text": "The left wheel pulls. You have seen that track before, coming down a muddy bank to a ford. It is the same cart.",
+      "source": "press-on",
+      "bearsOnFork": "A",
+      "qaNote": "Existing [PRESS ON] detail (build log L1 asks for a matching mark planted at W1D6: check)."
+    }
   },
   {
-    week: 2,
-    day: 4,
-    id: '2-4',
-    place: 'The shaft in the hillside',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'That went about as well as it looked.',
-    forkA: 'Corin\'s hands are uncut because they haven\'t dug down to the stone yet.',
-    forkB: 'Corin\'s hands are uncut because they are waiting for a specific night.',
-    callback:
-      'In the river mine on Night 7, the socket was already empty when we got there — here the picks are still ringing below.',
-    riddle: {
-      q: 'What grows deeper the more you take away from it?',
-      a: 'A shaft.',
-      quip: 'And they took the ladder with them too.',
-      accept: ['shaft', 'a shaft', 'hole', 'a hole', 'pit', 'a pit', 'mine'],
-      maxTries: 3,
+    "week": 2,
+    "day": 3,
+    "place": "Upriver",
+    "id": "2-3",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "A stranger dead at a lock, and a lock that opened for you. Rooms like that have opinions.",
+    "forkA": "The stranger wanted the same door.",
+    "forkB": "The stranger was left as a warning.",
+    "callback": "At the mill someone asked for Corin by name. Here a stranger died at a lock.",
+    "riddle": {
+      "q": "What has many keys but opens no door?",
+      "a": "a piano",
+      "quip": "Not like that lock. It opened for you.",
+      "accept": [
+        "a piano",
+        "piano"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Agility}, when the watchman hauled the ladder away, where did the sound of the picks echo from?',
-    fanOutClue: {
-      title: 'Fresh limestone dust',
-      text: 'The baskets hauled to the side of the upper chamber are full of pale, dry limestone chips — not the dark surface shale of the shaft. They are breaking through an older mortared floor below the lamp-ring.',
-      source: 'Challenge & Fight Fan Out (2-4)',
-      bearsOnFork:
-        'Supports the reading that they are still digging through to the sealed chamber beneath Corin.',
-      qaNote: 'Clean Week 2 vocabulary.',
-    },
+    "nudge": "{friend:Might}, what do you do with a dog and a chain?",
+    "fanOutClue": {
+      "title": "The scratches",
+      "text": "The stone round the housing is scored with dozens of short scratches, some weathered and some bright. He tried it more than once, on more than one day.",
+      "source": "new",
+      "bearsOnFork": "A",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 2,
-    day: 5,
-    id: '2-5',
-    place: 'The hillside by night',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'A small black cloth circle torn from the lookout\'s coat, and a king whose name was chiselled out of every book Meira read.',
-    forkA: 'The king\'s enemies scraped his name from history to keep him forgotten.',
-    forkB: 'The king\'s own people hid his name to protect where he lay.',
-    callback:
-      'Look at the lookout\'s right cuff beside the horn button the miller\'s wife gave you on Day 2.',
-    riddle: {
-      q: 'What can signal across a dark hill in the blink of an eye, yet disappears the moment you shut its door?',
-      a: 'A shuttered lamp.',
-      quip: 'Two flashes down the shaft. They know we\'re on the roof.',
-      accept: ['lamp', 'a lamp', 'shuttered lamp', 'lantern', 'a lantern', 'light'],
-      maxTries: 3,
+    "week": 2,
+    "day": 4,
+    "place": "The shaft in the hillside",
+    "id": "2-4",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Sit down before you fall down.",
+    "forkA": "We were heard.",
+    "forkB": "We weren't, and they know anyway.",
+    "callback": "Yesterday, a lock. Today, a shaft.",
+    "riddle": {
+      "q": "What can fill a cave and weigh nothing?",
+      "a": "light",
+      "quip": "Bring a lantern. Bring two.",
+      "accept": [
+        "light"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Aim}, those two flashes of the shuttered lamp — were they calling men up the hill, or telling the diggers below to hurry?',
-    fanOutClue: {
-      title: 'The frayed cuff-thread',
-      text: 'Inside the torn strip of black coat-cloth sits a loop of waxed linen thread — dyed with the exact walnut stain as the horn button from the mill.',
-      source: 'Challenge & Fight Fan Out (2-5)',
-      bearsOnFork:
-        'Ties the hillside watcher directly to the man who took Corin at the mill.',
-      qaNote: 'First use of "king" allowed at W2D5 per First-Use Map.',
-    },
+    "nudge": "{friend:Charm}, how do you talk past a lookout?",
+    "fanOutClue": {
+      "title": "The second lamp",
+      "text": "A second lamp stands lit at the foot of the shaft, filled and trimmed, the same make as the ring in the chamber. Nobody grabbed it in a hurry.",
+      "source": "new",
+      "bearsOnFork": "B",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 2,
-    day: 6,
-    id: '2-6',
-    place: 'The lip of the shaft',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: true,
-    opener:
-      'Six fragments traced in silence by a chink of light, and an older shaft going down into the hollow under their feet.',
-    forkA: 'We go down the old Seeker stair before their picks break the ceiling.',
-    forkB: 'We wait until their picks breach the vault and take them in the dust.',
-    callback:
-      'Fragment 2-3 named four stones — wind, fire, water, earth — brought to break his gate.',
-    riddle: {
-      q: 'What has no voice of its own, yet answers every pick-stroke from the dark below?',
-      a: 'An echo.',
-      quip: 'And that loose stone we dropped had plenty to say.',
-      accept: ['echo', 'an echo', 'the echo', 'stone', 'rock'],
-      maxTries: 3,
+    "week": 2,
+    "day": 5,
+    "place": "The hillside by night",
+    "id": "2-5",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "A small black circle. Somebody wanted a thing forgotten, and somebody else wouldn't let it be.",
+    "forkA": "The king was erased by his enemies.",
+    "forkB": "The king was erased by his own people.",
+    "callback": "On Day 2 a horn button, on Day 3 a dead stranger. Tonight, a circle.",
+    "riddle": {
+      "q": "What has no beginning, no middle and no end?",
+      "a": "a circle",
+      "quip": "A small black one, this evening.",
+      "accept": [
+        "a circle",
+        "circle"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Might}, when you pressed your ear to the rock, how big did that lower hollow sound compared to the lamp-room?',
-    fanOutClue: {
-      title: 'Chisel-marks on the stair lip',
-      text: 'The stone steps inside the second shaft are worn smooth going down, but the mason\'s chisel-marks on the wall all point upward — whoever sealed the lower vault built this stair as their way out.',
-      source: 'Challenge & Fight Fan Out (2-6)',
-      bearsOnFork:
-        'Shows the second shaft leads directly into the sealed lower vault beneath the diggers.',
-      qaNote: 'Cup Night #4 (2-6).',
-    },
-  },
-
-  // ==================== WEEK 3 ====================
-  {
-    week: 3,
-    day: 1,
-    id: '3-1',
-    place: 'Somewhere warm',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'Ashcombe\'s a shepherds\' village on the edge of the burned country. A long day west. And above it she\'s marked a place. The Blackglass.',
-    forkA: 'They took Wren back toward her own village because her Stone is above Ashcombe.',
-    forkB: 'They held Wren at the mill hill first to test if one child could open another child\'s lock.',
-    callback:
-      'Corin is safe with his mother, and the Order\'s ledger in your pack has two places and two children left.',
-    riddle: {
-      q: 'What has two covers, no blanket, and tells you where the Order has been without speaking a word?',
-      a: 'A ledger.',
-      quip: 'Pity the man who dropped it on his way up the shaft.',
-      accept: ['ledger', 'a ledger', 'the ledger', 'book', 'a book', 'notebook'],
-      maxTries: 3,
-    },
-    nudge:
-      '{friend:Agility}, that Order straggler climbing out of the shaft at dawn — was he coming back for Corin, or for the ledger?',
-    fanOutClue: {
-      title: 'The warm one',
-      text: 'Before Corin fell asleep at the mill, he remembered one more thing the hooded men said when they lifted Wren into the second cart: they called her "the warm one," and never said why.',
-      source: 'Challenge & Fight Fan Out (3-1)',
-      bearsOnFork:
-        'Connects Wren directly to the Fire Stone and the burned country above Ashcombe.',
-      qaNote:
-        'Flagged in report per prompt instructions: adds a small detail to Corin\'s account not in Episode 3 Day 1 chapter text; left unchanged.',
-    },
+    "nudge": "{friend:Intellect}, who gains from a forgotten name?",
+    "fanOutClue": {
+      "title": "The ground-flat face",
+      "text": "On the old stone where the scout stood, one face has been ground flat, long ago. The chisel scars are weathered grey. Whatever was carved there is gone.",
+      "source": "new",
+      "bearsOnFork": "both",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 3,
-    day: 2,
-    id: '3-2',
-    place: 'Ashcombe',
-    narratedNoGarrick: false,
-    tone: 'quiet',
-    cupNight: false,
-    opener:
-      'My family\'s been in these hills longer than the roads have.',
-    forkA: 'The two men in grey coats truly mean to return Wren after "only the once."',
-    forkB: '"Only need her the once" was a lie to keep her mother from raising the lane.',
-    callback:
-      'Tamsin walked unhurt to the boat, and Corin sat uncut in the lamp-ring until the Stone was reached.',
-    riddle: {
-      q: 'What is black as midnight, sharp as a razor, and born when the mountain bled fire?',
-      a: 'Black glass.',
-      quip: 'Wren lined her whole windowsill with it.',
-      accept: ['glass', 'black glass', 'blackglass', 'obsidian', 'volcanic glass', 'a chip of black glass'],
-      maxTries: 3,
+    "week": 2,
+    "day": 6,
+    "place": "The lip of the shaft",
+    "id": "2-6",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": true,
+    "opener": "Digging toward an older room. You have to respect the effort.",
+    "forkA": "They're digging toward the old room to get in.",
+    "forkB": "They're digging to find something that's already there.",
+    "callback": "Last night: a circle. Tonight: picks.",
+    "riddle": {
+      "q": "I have rivers with no water and cities with no houses. What am I?",
+      "a": "a map",
+      "quip": "You're carrying one.",
+      "accept": [
+        "a map",
+        "map"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Charm}, Wren\'s mother said the two men were polite and never raised their voices — what kind of men steal a child politely?',
-    fanOutClue: {
-      title: 'Silver on the table-edge',
-      text: 'Under the edge of the mother\'s wooden trencher sits a single silver coin with its face scraped flat. The two men in grey coats left it on the table without her seeing.',
-      source: 'Challenge & Fight Fan Out (3-2)',
-      bearsOnFork:
-        'Shows the grey-coated men view their taking as a lawful duty or debt rather than banditry.',
-      qaNote: 'Quiet tone day (3-2); riddle hidden unless requested.',
-    },
+    "nudge": "{friend:Craft}, how would you open an old shaft quietly?",
+    "fanOutClue": {
+      "title": "Ear to the rock",
+      "text": "Under the room with the lamps there is another hollow. It is bigger. And there is nobody in it at all.",
+      "source": "press-on",
+      "bearsOnFork": "B",
+      "qaNote": "Existing [PRESS ON] detail."
+    }
   },
   {
-    week: 3,
-    day: 3,
-    id: '3-3',
-    place: 'The Blackglass',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'My knees have opinions about this glass. None of them good.',
-    forkA: 'The six horses rode past Meira\'s mark because the Stone was moved deeper into the ridges.',
-    forkB: 'Meira\'s mark on the Blackglass was only an outer boundary stone, never a socket.',
-    callback:
-      'Fragment 1-1 said "Five fell" — and today Meira\'s margin note admits every history counts only four.',
-    riddle: {
-      q: 'What has a tongue that cannot speak, a sole that cannot feel, and needs my needle after a day on the glass?',
-      a: 'A boot.',
-      quip: 'Walk on the flat panes tomorrow, if you please.',
-      accept: ['boot', 'a boot', 'boots', 'shoe', 'a shoe', 'shoes'],
-      maxTries: 3,
+    "week": 3,
+    "day": 1,
+    "place": "Somewhere warm",
+    "id": "3-1",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Somewhere warm. I'd settle for a warm supper. Eat.",
+    "forkA": "Wren's in Ashcombe.",
+    "forkB": "'Somewhere warm' means somewhere else.",
+    "callback": "Last week ended with a boy rescued. This week starts with a girl taken.",
+    "riddle": {
+      "q": "What has to be broken before you can use it?",
+      "a": "an egg",
+      "quip": "Ashcombe's hens have views.",
+      "accept": [
+        "an egg",
+        "egg"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Aim}, six horses scratched the glass, and one carried double — how fresh were the white scores on the stone?',
-    fanOutClue: {
-      title: 'The fifth tally-cut',
-      text: 'On the underside of the Blackglass marker-ledge, hidden from the rain, four deep strokes are cut in a row — and a fifth stroke sits a thumb\'s-breadth apart, half-polished away.',
-      source: 'Challenge & Fight Fan Out (3-3)',
-      bearsOnFork:
-        'Reinforces the 4-vs-5 stone discrepancy introduced on W3D3.',
-      qaNote: 'First use of "fifth" / "five" allowed at W3D3 per First-Use Map.',
-    },
+    "nudge": "{friend:Aim}, who watches the road while we walk west?",
+    "fanOutClue": {
+      "title": "The grey wool",
+      "text": "Corin has a child's woollen mitten tucked in his belt that is not his. The wool is rough and grey, and it smells of sheep.",
+      "source": "new",
+      "bearsOnFork": "A",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 3,
-    day: 4,
-    id: '3-4',
-    place: 'The black ridges',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: true,
-    opener:
-      'Three chips of Wren\'s windowsill glass on the trail, and a Seeker watch-room built into cold volcanic rock.',
-    forkA: 'The Seekers built these ridge rooms to guard a prisoner who could still wake.',
-    forkB: 'The Seekers built these ridge rooms to hide from the people of the plain.',
-    callback:
-      'A single bone die with its spots worn smooth — somebody spent years at that narrow slit window.',
-    riddle: {
-      q: 'What has six faces, twenty-one eyes, and never sees the hand that throws it?',
-      a: 'A bone die.',
-      quip: 'Worn smooth by long watches in the dark.',
-      accept: ['die', 'a die', 'bone die', 'a bone die', 'dice'],
-      maxTries: 3,
+    "week": 3,
+    "day": 2,
+    "place": "Ashcombe",
+    "id": "3-2",
+    "narratedNoGarrick": false,
+    "tone": "quiet",
+    "cupNight": false,
+    "opener": "Eat first. Then think. It goes better in that order.",
+    "forkA": "They took her willingly with manners.",
+    "forkB": "The manners are the trick.",
+    "callback": "Yesterday: 'somewhere warm'. Today: two polite men and a chip of black glass.",
+    "riddle": {
+      "q": "What has an eye but cannot see?",
+      "a": "a needle",
+      "quip": "Sharp little thing. Sharper than a polite man.",
+      "accept": [
+        "a needle",
+        "needle"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Craft}, look at how the narrow window in that sleeping room is angled — what single point in the valley does it watch?',
-    fanOutClue: {
-      title: 'The sight-line notch',
-      text: 'Cut into the sill of the Seeker watch-slit is a V-shaped sight-notch. When you lay your eye to it, it points past the open Blackglass straight at the smoking crown of a round black hill higher up.',
-      source: 'Challenge & Fight Fan Out (3-4)',
-      bearsOnFork:
-        'Shows the Seekers built the shelter specifically to watch the hill where the Fire Stone lay.',
-      qaNote: 'Cup Night #5 (3-4).',
-    },
+    "nudge": "{friend:Charm}, how do you ask a village what it saw?",
+    "fanOutClue": {
+      "title": "The boy at the well",
+      "text": "At the well a boy holds his chip out low and quick, then shoves it back into his shirt before you have looked at it properly.",
+      "source": "new",
+      "bearsOnFork": "both",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 3,
-    day: 5,
-    id: '3-5',
-    place: "The shepherd's hut",
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'They\'re always a step ahead of us.',
-    forkA: '"Until the throne rise whole" was carved by the Order who use this hut as a way-station.',
-    forkB: '"Until the throne rise whole" is an older village prayer the Order took for themselves.',
-    callback:
-      'Wren scratched her name low on the doorframe — eight of her black-glass chips are in your hand now.',
-    riddle: {
-      q: 'What hangs over the bed for fifty winters, eats the hearth-smoke, and never closes an eye?',
-      a: 'A roof-beam.',
-      quip: 'Cut deep with a knife before any of you were born.',
-      accept: ['beam', 'a beam', 'roof-beam', 'the beam', 'rafter', 'lintel', 'timber'],
-      maxTries: 3,
+    "week": 3,
+    "day": 3,
+    "place": "The Blackglass",
+    "id": "3-3",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Mind your hands on that glass, all of you.",
+    "forkA": "The children were chosen for their place.",
+    "forkB": "The places were chosen for the children.",
+    "callback": "At Ashcombe, black chips. Here, the whole hill is made of them.",
+    "riddle": {
+      "q": "Black when you buy it, red when you burn it, grey when you throw it away. What is it?",
+      "a": "coal",
+      "quip": "Charcoal's cheaper than glass. Kinder to knees.",
+      "accept": [
+        "coal"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Might}, one blanket folded neat and one thrown down by the catching pot — why did they leave at a run?',
-    fanOutClue: {
-      title: 'Wax on the hearthstone',
-      text: 'Beside the dropped tin cup on the hearth sits a ring of black sealing-wax stamped with a plain circle — the riders opened written orders here less than an hour before your boots hit the goat-track.',
-      source: 'Challenge & Fight Fan Out (3-5)',
-      bearsOnFork:
-        'Proves the shepherd\'s hut is an active Order relay post on the road to the Kiln.',
-      qaNote: 'Clean Week 3 vocabulary.',
-    },
+    "nudge": "{friend:Intellect}, why would a scholar write down a number she doubted?",
+    "fanOutClue": {
+      "title": "Read the scratches",
+      "text": "Six horses. One of them is carrying double, and the second rider weighs almost nothing.",
+      "source": "press-on",
+      "bearsOnFork": "both",
+      "qaNote": "Existing [PRESS ON] detail."
+    }
   },
   {
-    week: 3,
-    day: 6,
-    id: '3-6',
-    place: 'The cairn',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'The Kiln. That\'s the shepherds\' name for it.',
-    forkA: 'The Order is waking the Fire Stone inside the Kiln to carry it away.',
-    forkB: 'The Order means to leave the woken Fire Stone burning inside the hill.',
-    callback:
-      'In the river mine on Week 1 Night 7, the dust on the empty socket rim was fresh — someone had lifted that Stone out.',
-    riddle: {
-      q: 'What breathes warm air through a cracked crown all winter, yet has no lungs inside its chest?',
-      a: 'The Kiln.',
-      quip: 'A lamp went in through the crown ahead of us.',
-      accept: ['kiln', 'the kiln', 'hill', 'the hill', 'vent', 'volcano'],
-      maxTries: 3,
+    "week": 3,
+    "day": 4,
+    "place": "The black ridges",
+    "id": "3-4",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": true,
+    "opener": "She's leaving chips on the trail. Clever girl.",
+    "forkA": "The chips are for us.",
+    "forkB": "The chips are for herself.",
+    "callback": "Yesterday a footnote with a doubtful number. Today a trail of glass.",
+    "riddle": {
+      "q": "What follows you all day and vanishes at dark?",
+      "a": "your shadow",
+      "quip": "Long ones on a ridge at dusk.",
+      "accept": [
+        "shadow",
+        "your shadow"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Intellect}, all six fragments point down through the crack in the Kiln\'s crown — why did that watcher on the lower ridge let us climb?',
-    fanOutClue: {
-      title: 'Two padded carrying-poles',
-      text: 'Hidden under a shelf of slate below the cairn lie two ash carrying-poles rigged with leather slings and lined with wet sheep\'s wool — built for two men to carry something heavy and hot.',
-      source: 'Challenge & Fight Fan Out (3-6)',
-      bearsOnFork:
-        'Strongly supports the reading that they intend to carry the woken Stone out of the Kiln.',
-      qaNote: 'Clean Week 3 vocabulary.',
-    },
-  },
-
-  // ==================== WEEK 4 ====================
-  {
-    week: 4,
-    day: 1,
-    id: '4-1',
-    place: 'Under the Kiln, then Ashcombe',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'Every time they\'ve had knives out at you, not one of you has died.',
-    forkA: 'A second Order member hid in the dark passage and cut the prisoner loose.',
-    forkB: 'The prisoner\'s ropes were cut by someone who was already standing in the room with us.',
-    callback:
-      'Before the lamps went out, the captive swore he could not lie — and said: "We\'re not finished with you."',
-    riddle: {
-      q: 'What holds a man fast while the lamps are lit, yet parts without a sound when a blade touches it in the dark?',
-      a: 'A rope.',
-      quip: 'Walked out like a man leaving church.',
-      accept: ['rope', 'a rope', 'the rope', 'ropes', 'hemp', 'cord'],
-      maxTries: 3,
-    },
-    nudge:
-      '{friend:Aim}, you read his footprints in the volcanic ash — did he run for his life, or walk at an even pace?',
-    fanOutClue: {
-      title: 'Follow them',
-      text: 'They end where the ash gives out and the rock turns to bare black glass. No prints come in. Whoever cut him loose came over the glass and was waiting.',
-      source: 'Challenge & Fight Fan Out (4-1)',
-      bearsOnFork:
-        'Frames the central mystery of how the rope-cutter approached and left without leaving incoming ash prints.',
-      qaNote:
-        'Flagged in report per prompt instructions: reuses the [PRESS ON] detail noted in continuity item L6; left unchanged.',
-    },
+    "nudge": "{friend:Agility}, what do you do when the ridge narrows?",
+    "fanOutClue": {
+      "title": "The crack in the niche",
+      "text": "A single die, carved from bone, its spots worn almost smooth by somebody's fingers. Whoever slept here had long nights too.",
+      "source": "press-on",
+      "bearsOnFork": "both",
+      "qaNote": "Existing [PRESS ON] detail."
+    }
   },
   {
-    week: 4,
-    day: 2,
-    id: '4-2',
-    place: 'The north road',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: true,
-    opener:
-      'It\'s terrible. Drink it anyway.',
-    forkA: 'The small box under four swords holds the Stone from the Kiln.',
-    forkB: 'The small box is a decoy to draw us north away from Reedham lake.',
-    callback:
-      'The silver coin the riders paid the carter with has the king\'s face scraped off one side and the other polished like a mirror.',
-    riddle: {
-      q: 'What has a face that was scraped away, yet still buys a carter\'s silence on the north road?',
-      a: 'A silver coin.',
-      quip: 'Polished bright on the blank side.',
-      accept: ['coin', 'a coin', 'silver coin', 'a silver coin', 'the coin', 'silver'],
-      maxTries: 3,
+    "week": 3,
+    "day": 5,
+    "place": "The shepherd's hut",
+    "id": "3-5",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "That was an empty hut. Come nearer the fire.",
+    "forkA": "They left her bed as a message.",
+    "forkB": "They left it in a hurry.",
+    "callback": "Three chips yesterday. Eight today.",
+    "riddle": {
+      "q": "What goes through a door but never goes in or out?",
+      "a": "a keyhole",
+      "quip": "Doors keep secrets better than people.",
+      "accept": [
+        "a keyhole",
+        "keyhole"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Charm}, four armed horsemen guarding one box "no bigger than a bread crock" — why ride past the lake without stopping for Joss?',
-    fanOutClue: {
-      title: 'Scorched wool on the ford-plank',
-      text: 'Where the four horsemen rested their box on the wooden bridge-rail at the old ford, the oak is warm and darkened in a neat square, with a singed strand of sheep\'s wool stuck to the pitch.',
-      source: 'Challenge & Fight Fan Out (4-2)',
-      bearsOnFork:
-        'Connects the bread-crock box on the north road to the wool-lined carrying poles from the Kiln (3-6).',
-      qaNote: 'Cup Night #6 (4-2).',
-    },
+    "nudge": "{friend:Craft}, what tool cuts letters like that into wood?",
+    "fanOutClue": {
+      "title": "Cut twice",
+      "text": "Each stroke of the name has been cut twice, the second pass deeper than the first.",
+      "source": "new",
+      "bearsOnFork": "A",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 4,
-    day: 3,
-    id: '4-3',
-    place: 'Reedham',
-    narratedNoGarrick: false,
-    tone: 'quiet',
-    cupNight: false,
-    opener:
-      'I didn\'t leave a warm bar to drown in a lake. I\'d like that noted.',
-    forkA: 'They have held Joss for eight nights because they haven\'t found the Water Stone\'s room yet.',
-    forkB: 'They have held Joss for eight nights because they are waiting for the right night to use him.',
-    callback:
-      'In Ashcombe, the grey-coated men said they needed Wren "only the once" — yet they kept her two weeks.',
-    riddle: {
-      q: 'What burns in every Reedham window at noon, yet gives no heat to the drowned streets outside?',
-      a: 'A lamp.',
-      quip: 'Eight notches on the doorpost since she lit it.',
-      accept: ['lamp', 'a lamp', 'the lamp', 'candle', 'window lamp', 'light'],
-      maxTries: 3,
+    "week": 3,
+    "day": 6,
+    "place": "The cairn",
+    "id": "3-6",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Fire's built up. Sit by it before you decide anything.",
+    "forkA": "We go in now.",
+    "forkB": "We watch the watcher first.",
+    "callback": "Eight chips led here, and a lamp went in ahead of you.",
+    "riddle": {
+      "q": "What can you keep only after you've given it?",
+      "a": "your word",
+      "quip": "Mind who hears yours.",
+      "accept": [
+        "word",
+        "your word"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Craft}, look at Joss\'s unfinished wooden boat on the shelf — the hull is done and the knife lies beside it. How sudden was his taking?',
-    fanOutClue: {
-      title: 'Dry reeds on the threshold',
-      text: 'Pressed into the crack of the grandmother\'s back threshold is a twist of pale lake-sedge that only grows on the outer reed island — tracked in on a dry boot eight nights ago.',
-      source: 'Challenge & Fight Fan Out (4-3)',
-      bearsOnFork:
-        'Points across the water toward the reed island while showing the takers came by boat.',
-      qaNote: 'Quiet tone day (4-3); riddle hidden unless requested.',
-    },
+    "nudge": "{friend:Might}, who goes first through the crack?",
+    "fanOutClue": {
+      "title": "No horses",
+      "text": "Not one horse is tethered at the foot of the Kiln, though six rode this way.",
+      "source": "new",
+      "bearsOnFork": "both",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 4,
-    day: 4,
-    id: '4-4',
-    place: 'Old Reedham',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'Two grey-coated ferrymen unloading supplies in a drowned street, and Meira\'s margin note: "\'Moon-blood\' — the old songs\' word for the marked."',
-    forkA: '"Moon-blood" in Fragment 4-4 means the marked children and us.',
-    forkB: '"Moon-blood" means an older line that woke the Stone the first time.',
-    callback:
-      'Joss\'s small shoe-prints stopped on the drowned cobbles and turned back toward his grandmother\'s lighted window.',
-    riddle: {
-      q: 'What has streets of stone, roofs of slate, and only fishes walking down the lane?',
-      a: 'A drowned village.',
-      quip: 'Old Reedham keeps its cobbles cold.',
-      accept: ['old reedham', 'drowned village', 'a drowned village', 'drowned town', 'sunken village', 'reedham'],
-      maxTries: 3,
+    "week": 4,
+    "day": 1,
+    "place": "Under the Kiln, then Ashcombe",
+    "id": "4-1",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Count yourselves. I will, too.",
+    "forkA": "He had help in the room.",
+    "forkB": "He didn't need any.",
+    "callback": "Last night: a lamp going in ahead of you. Today: ropes cut, a man gone.",
+    "riddle": {
+      "q": "What can you break without ever touching it?",
+      "a": "a promise",
+      "quip": "Careful what you hand out.",
+      "accept": [
+        "a promise",
+        "promise"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Agility}, the ferrymen were unloading food and dry firewood at the deep water\'s edge — where were they ferrying it to?',
-    fanOutClue: {
-      title: 'Four loaves in the oilskin',
-      text: 'Inside the oilskin bundle the ferrymen dropped on the drowned quay are four small loaves of fresh village bread and a pot of salve — rations for a small table, not a garrison.',
-      source: 'Challenge & Fight Fan Out (4-4)',
-      bearsOnFork:
-        'Shows a small watch-crew is holding Joss alive nearby while waiting.',
-      qaNote: 'First use of "moon-blood" allowed at W4D4 per First-Use Map.',
-    },
+    "nudge": "{friend:Aim}, where in that room would you stand?",
+    "fanOutClue": {
+      "title": "Follow them",
+      "text": "They end where the ash gives out and the rock turns to bare black glass. No prints come in. Whoever cut him loose came over the glass and was waiting.",
+      "source": "press-on",
+      "bearsOnFork": "A",
+      "qaNote": "Existing [PRESS ON] detail (build log L6: check against Ep6 twist before changing)."
+    }
   },
   {
-    week: 4,
-    day: 5,
-    id: '4-5',
-    place: 'The reed island',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'In the bottom of the Order\'s boat, among the rope, lie pale curls of whittled wood, still fresh.',
-    forkA: 'Joss was moved from the reed island to the drowned village tonight.',
-    forkB: 'The reed island was only the ferry staging-post; Joss has been under Old Reedham all along.',
-    callback:
-      'On his grandmother\'s shelf on Day 3 sat a row of little carved wooden boats with the newest left unfinished.',
-    riddle: {
-      q: 'What hides an island at dawn, blinds the steersman at noon, and costs nothing to wrap around a lake?',
-      a: 'Fog.',
-      quip: 'Thick enough to chew out there today.',
-      accept: ['fog', 'the fog', 'mist', 'the mist'],
-      maxTries: 3,
+    "week": 4,
+    "day": 2,
+    "place": "The north road",
+    "id": "4-2",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": true,
+    "opener": "Cold road. Put your hands round that cup.",
+    "forkA": "The box matters more than the swords.",
+    "forkB": "The swords are the real message.",
+    "callback": "Yesterday a prisoner walked out. Today four men carry something small.",
+    "riddle": {
+      "q": "What has a head and a tail but no body?",
+      "a": "a coin",
+      "quip": "Someone scrubbed a face off this one.",
+      "accept": [
+        "a coin",
+        "coin"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Aim}, when the fog lifted for a breath, where was that single shuttered lamp shining from?',
-    fanOutClue: {
-      title: 'Pine shavings in the bilge',
-      text: 'The pale wood-curls in the bottom of the captured boat are dry alder — the same soft wood as the unfinished boat on his grandmother\'s shelf — and beside them lies a tiny split mast cut with a dull pocket-knife.',
-      source: 'Challenge & Fight Fan Out (4-5)',
-      bearsOnFork:
-        'Proves Joss was carried in this very boat recently and has his hands free enough to whittle.',
-      qaNote: 'Clean Week 4 vocabulary.',
-    },
+    "nudge": "{friend:Intellect}, who scrapes a face off a coin?",
+    "fanOutClue": {
+      "title": "Every eye on the cart",
+      "text": "The carter says the four never spoke to each other, and never once looked at the road or the lake. Every eye stayed on the cart.",
+      "source": "new",
+      "bearsOnFork": "A",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 4,
-    day: 6,
-    id: '4-6',
-    place: 'The tower at night',
-    narratedNoGarrick: false,
-    tone: 'quiet',
-    cupNight: false,
-    opener:
-      'Under Old Reedham. Down the stair of the drowned church, to a room below the streets.',
-    forkA: 'The boat under the tower was a sentry waiting to hear us read the map.',
-    forkB: 'The boat under the tower is the courier crew preparing to carry the fourth Stone out.',
-    callback:
-      'Fragment 4-5 warned us: "We have built a lock. Pray no one ever learns it is also a door."',
-    riddle: {
-      q: 'What climbs out of the lake with a dry head and drowned feet, and holds a lamp in the wind?',
-      a: 'A tower.',
-      quip: 'And someone was listening right under its stair.',
-      accept: ['tower', 'a tower', 'the tower', 'drowned tower'],
-      maxTries: 3,
+    "week": 4,
+    "day": 3,
+    "place": "Reedham",
+    "id": "4-3",
+    "narratedNoGarrick": false,
+    "tone": "quiet",
+    "cupNight": false,
+    "opener": "A lamp in a window at noon. Somebody has kept it lit for eight nights.",
+    "forkA": "They're waiting for the right night.",
+    "forkB": "They're waiting for the right child.",
+    "callback": "Two days ago Wren, held two weeks. Now Joss, gone eight nights.",
+    "riddle": {
+      "q": "What gets wetter the more it dries?",
+      "a": "a towel",
+      "quip": "Hang it by the fire.",
+      "accept": [
+        "a towel",
+        "towel"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Craft}, when wood knocked on wood in the black water beneath the stair, which way did the oar-ripples pull?',
-    fanOutClue: {
-      title: 'Oar-grease on the lower step',
-      text: 'On the submerged stone step at the foot of the drowned tower, someone smeared tallow on an iron mooring-ring tonight so a boat could cast off in the dark without a creak.',
-      source: 'Challenge & Fight Fan Out (4-6)',
-      bearsOnFork:
-        'Proves the hidden boat moored silently beneath the tower before you climbed the stair.',
-      qaNote: 'Quiet tone day (4-6); first use of "heartbeat" allowed at W4D6/G4 per First-Use Map.',
-    },
-  },
-
-  // ==================== WEEK 5 ====================
-  {
-    week: 5,
-    day: 1,
-    id: '5-1',
-    place: 'Reedham, and the waystone',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'The fifth wasn\'t hidden in the hills like the others. Every telling I know ends at Highwall.',
-    forkA: 'The Seekers kept the fifth Stone at Highwall because it was too dangerous to move.',
-    forkB: 'The Seekers kept the fifth Stone at Highwall because it was part of the seal holding the king.',
-    callback:
-      'Fragment 1-1 on our very first day on the forest road said: "Four were scattered after. One stayed close."',
-    riddle: {
-      q: 'What stands by the road for a thousand rains, points every traveller north, and never walks a mile itself?',
-      a: 'A waystone.',
-      quip: 'Someone spent a patient hour cutting its second line away.',
-      accept: ['waystone', 'a waystone', 'the waystone', 'milestone', 'stone', 'signpost'],
-      maxTries: 3,
-    },
-    nudge:
-      '{friend:Craft}, look at the second line chiselled off the waystone — was that weathered away by rain, or cut out stroke by stroke?',
-    fanOutClue: {
-      title: 'Fresh iron-rust in the cut',
-      text: 'The word HIGHWALL on the waystone is grey with lichen, but the chiselled-out groove where the second line stood has specks of unrusted steel in the stone grain — someone recut that groove this year so no traveller could read the king\'s title.',
-      source: 'Challenge & Fight Fan Out (5-1)',
-      bearsOnFork:
-        'Shows the erasure and maintenance along the northern road is still active.',
-      qaNote: 'First use of "Highwall" allowed at W5D1 per First-Use Map.',
-    },
+    "nudge": "{friend:Craft}, what does a skiff tell you about its owner?",
+    "fanOutClue": {
+      "title": "The oars at dusk",
+      "text": "On the shingle the fisherman says he hears oars out on the lake every night, at the same hour, just after dusk. He has never gone to look.",
+      "source": "new",
+      "bearsOnFork": "A",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 5,
-    day: 2,
-    id: '5-2',
-    place: "The old kingdom's road",
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'The grass on hundreds of war-graves shivers at dusk, and the heartbeat in the ground is turning the farm beasts wild.',
-    forkA: 'The heartbeat is waking because the four Stones from the hills have reached Highwall.',
-    forkB: 'The heartbeat is waking because the dark moon is coming round.',
-    callback:
-      'Fragment 3-1 at the wayside shrine warned: "First they stopped bleeding when cut. Then they stopped sleeping. Then they stopped being ours."',
-    riddle: {
-      q: 'What beats without a chest, shakes the grass on a hundred graves, and comes from the north at dusk?',
-      a: 'The heartbeat.',
-      quip: 'You feel that one in your back teeth before you hear it.',
-      accept: ['heartbeat', 'the heartbeat', 'a heartbeat', 'pulse'],
-      maxTries: 3,
+    "week": 4,
+    "day": 4,
+    "place": "Old Reedham",
+    "id": "4-4",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Meira had a gloss for it: 'the old songs' word for the marked.' She was careful with her words.",
+    "forkA": "'Moon-blood' just means the marked children.",
+    "forkB": "It means something else.",
+    "callback": "Yesterday: a boat, a boy. Today: a street under water.",
+    "riddle": {
+      "q": "What is full of holes but still holds water?",
+      "a": "a sponge",
+      "quip": "A drowned street is a sponge.",
+      "accept": [
+        "a sponge",
+        "sponge"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Might}, those farm dogs didn\'t flinch when struck — why did they break off the instant the heartbeat stopped?',
-    fanOutClue: {
-      title: 'The silent collar-bell',
-      text: 'Around the neck of the felled farm dog hangs a brass sheep-bell stuffed tight with river clay. Someone on the north road muffled the beast before turning it loose toward the graves.',
-      source: 'Challenge & Fight Fan Out (5-2)',
-      bearsOnFork:
-        'Shows the Order is actively managing the perimeter along the old kingdom\'s road.',
-      qaNote: 'Clean Week 5 vocabulary.',
-    },
+    "nudge": "{friend:Agility}, how do you move in a drowned street?",
+    "fanOutClue": {
+      "title": "The small prints",
+      "text": "In one place the small prints stop and turn with both heels dug in: from that exact spot, you can see his grandmother's window on the shore with its lamp burning.",
+      "source": "press-on",
+      "bearsOnFork": "both",
+      "qaNote": "Existing [PRESS ON] detail."
+    }
   },
   {
-    week: 5,
-    day: 3,
-    id: '5-3',
-    place: "The herald's gate",
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'It is barred. The bar is new timber, still pale. The iron brackets it lies in are worn smooth, and bright.',
-    forkA: 'The Order inside the city bars the gate to keep strangers out while they work.',
-    forkB: 'Generations of watchmen have barred the gate from inside to keep what is in the city from walking out.',
-    callback:
-      'Stacked against the gatehouse wall lie dozens of old bars, the lowest rotted to a brown line.',
-    riddle: {
-      q: 'What lies across a doorway for twenty winters, rots to a brown line, and is replaced by a pale brother?',
-      a: 'A gate-bar.',
-      quip: 'Whoever changes that timber keeps a tidy stack.',
-      accept: ['bar', 'a bar', 'gate-bar', 'a gate-bar', 'the bar', 'timber', 'beam'],
-      maxTries: 3,
+    "week": 4,
+    "day": 5,
+    "place": "The reed island",
+    "id": "4-5",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Pale curls of whittled wood. Somebody's still carving.",
+    "forkA": "Joss is safe while he carves.",
+    "forkB": "They let him carve to keep him calm.",
+    "callback": "A drowned street yesterday. A night ferry today.",
+    "riddle": {
+      "q": "What floats when empty and sinks when full?",
+      "a": "a boat",
+      "quip": "Yours is on loan. I'd return it.",
+      "accept": [
+        "a boat",
+        "boat"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Aim}, from the top of the herald\'s gate, there was only one fire burning in the whole dead city — right below the hall.',
-    fanOutClue: {
-      title: 'Stacked against the gatehouse',
-      text: 'Stacked against the gatehouse wall lie dozens of old bars, the lowest rotted to a brown line. Whoever changes the bar has kept every one.',
-      source: 'Challenge & Fight Fan Out (5-3)',
-      bearsOnFork:
-        'Proves the gate has been continuously barred and maintained across generations, not just this week.',
-      qaNote: 'Clean Week 5 vocabulary.',
-    },
+    "nudge": "{friend:Aim}, how do you steady a boat for a shot?",
+    "fanOutClue": {
+      "title": "Long curls",
+      "text": "Every curl in the bottom of the boat is long and unbroken, and all of them are fresh. Nobody hurried him.",
+      "source": "new",
+      "bearsOnFork": "B",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 5,
-    day: 4,
-    id: '5-4',
-    place: 'The dead streets',
-    narratedNoGarrick: false,
-    tone: 'quiet',
-    cupNight: true,
-    opener:
-      'My family\'s waited a long time for something. I\'d like to live to see it.',
-    forkA: 'Thenearest soldier\'s helm actually turned to watch us pass.',
-    forkB: 'The shadows shifted at dusk — the soldiers cannot move until the king wakes.',
-    callback:
-      'Fragment 5-4 on the house wall said: "When he fell, the soldiers who had been nearest him stopped where they were, mid-stride."',
-    riddle: {
-      q: 'What stands in the street for an age with its left foot lifted, and never puts its heel down?',
-      a: 'A soldier.',
-      quip: 'Best not brush a breastplate on your way past.',
-      accept: ['soldier', 'a soldier', 'soldiers', 'the soldiers', 'iron soldier', 'hollowed'],
-      maxTries: 3,
+    "week": 4,
+    "day": 6,
+    "place": "The tower at night",
+    "id": "4-6",
+    "narratedNoGarrick": false,
+    "tone": "quiet",
+    "cupNight": false,
+    "opener": "Someone lay under that tower and heard every word.",
+    "forkA": "Someone followed us.",
+    "forkB": "Someone was already there.",
+    "callback": "Yesterday you took their boat. Tonight someone took your words.",
+    "riddle": {
+      "q": "What can you hear but never touch?",
+      "a": "an echo",
+      "quip": "Towers hand it back.",
+      "accept": [
+        "an echo",
+        "echo"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Intellect}, every soldier in that street stopped with the left heel lifted on the exact same step — what stopped an entire company mid-stride?',
-    fanOutClue: {
-      title: 'Scraped dust under the heel',
-      text: 'Around the boots of thefrozen company, the grey street-dust lies an inch thick — except beneath the last soldier\'s iron gorget, where a crescent of fresh rust flakes fell onto clean stone today.',
-      source: 'Challenge & Fight Fan Out (5-4)',
-      bearsOnFork:
-        'Provides physical evidence that the last soldier\'s helm genuinely turned today.',
-      qaNote: 'Cup Night #7 (5-4); Quiet tone day (5-4).',
-    },
+    "nudge": "{friend:Charm}, how do we keep our voices down in a crowd?",
+    "fanOutClue": {
+      "title": "The rings",
+      "text": "As you tie up at the tower, rings are already spreading from the dark under its wall, and your oars have been still for a minute.",
+      "source": "new",
+      "bearsOnFork": "B",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 5,
-    day: 5,
-    id: '5-5',
-    place: 'Below the hall',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      '"Keep the dark." "It keeps us." And one more chalk stroke crossed out at dusk, leaving eight.',
-    forkA: 'The eight chalk strokes count the nights until the dark moon.',
-    forkB: 'The eight chalk strokes count the watch-shifts until the fifth Stone is found.',
-    callback:
-      'Around the watch-fire sit four small chests the size of bread-crocks — the four Stones from the hills are already in the square.',
-    riddle: {
-      q: 'What grows shorter by one stroke every dusk, yet brings the night closer each time it shrinks?',
-      a: 'A chalk tally.',
-      quip: 'Eight strokes left on their board tonight.',
-      accept: ['tally', 'chalk', 'chalk tally', 'the tally', 'strokes', 'chalk board', 'board'],
-      maxTries: 3,
+    "week": 5,
+    "day": 1,
+    "place": "Reedham, and the waystone",
+    "id": "5-1",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "North, then. That's a long road for tired boots.",
+    "forkA": "The fifth is a Stone like the others.",
+    "forkB": "The fifth is something different.",
+    "callback": "Last night: Joss home. Four home, four Stones. Now a fifth.",
+    "riddle": {
+      "q": "What goes on for miles but never moves?",
+      "a": "a road",
+      "quip": "North, and mind your boots.",
+      "accept": [
+        "a road",
+        "road"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Agility}, the watchmen in the square are facing the sealed hall doors, yet they haven\'t gone inside — why wait outside?',
-    fanOutClue: {
-      title: 'Four chests by the fire',
-      text: 'Set in a neat row beside the watch-captain\'s stool are four small iron-bound boxes — one damp with lake-weed, one dark with volcanic ash, one dusted with mill-flour, and one red with river-mine clay.',
-      source: 'Challenge & Fight Fan Out (5-5)',
-      bearsOnFork:
-        'Confirms all four elemental Stones have already arrived in the square while the Order waits for the eighth night.',
-      qaNote: 'Clean Week 5 vocabulary.',
-    },
+    "nudge": "{friend:Intellect}, what would a dead city hide?",
+    "fanOutClue": {
+      "title": "The crisp edge",
+      "text": "Frost has eaten the old carving, but the edges of the cut-out line are crisp. Not one letter of it is left.",
+      "source": "new",
+      "bearsOnFork": "B",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 5,
-    day: 6,
-    id: '5-6',
-    place: 'The wall again',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'Six fragments passed hand to hand in silence, and the fifth is inside the thickness of the wall under our boots.',
-    forkA: 'The Seekers hid the fifth Stone inside the wall so the Order would never find it.',
-    forkB: 'The Seekers hid the fifth Stone overlooking the square so a watchman could guard both.',
-    callback:
-      'Fragment 5-5 at the broken fountain told us: "We kept the fifth where we could watch it, and watch him."',
-    riddle: {
-      q: 'What has a slit for an eye, stone for a coat, and hides a room inside its ribs?',
-      a: 'The city wall.',
-      quip: 'Forty paces across the open walk, and not a lantern lifted.',
-      accept: ['wall', 'the wall', 'city wall', 'the city wall', 'outer wall'],
-      maxTries: 3,
+    "week": 5,
+    "day": 2,
+    "place": "The old kingdom's road",
+    "id": "5-2",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "The grass on a war grave shouldn't shiver. I'd say that's the heartbeat.",
+    "forkA": "The heartbeat is turning the beasts.",
+    "forkB": "The beasts are afraid, not turned.",
+    "callback": "Yesterday Highwall was a name. Today the road to it is alive.",
+    "riddle": {
+      "q": "What bends in the wind but never breaks?",
+      "a": "grass",
+      "quip": "Not this lot.",
+      "accept": [
+        "grass"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Charm}, when the lookout\'s hand dropped at the watch-change, why did nobody on the wall look up at the walkway?',
-    fanOutClue: {
-      title: 'Unmortared seam by the slit',
-      text: 'At knee-height beside the narrow slit window, the mortar between two wall-blocks is only dry grey sand brushed in with a thumb — someone has known where this seam sits for a very long time.',
-      source: 'Challenge & Fight Fan Out (5-6)',
-      bearsOnFork:
-        'Shows the hidden wall room was built for deliberate access overlooking the hall.',
-      qaNote: 'Clean Week 5 vocabulary.',
-    },
-  },
-
-  // ==================== WEEK 6 ====================
-  {
-    week: 6,
-    day: 1,
-    id: '6-1',
-    place: 'The wall room (Six nights)',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'I kept a tally behind my bar for years. Most of it was who owed me.',
-    forkA: 'The fifth Stone didn\'t answer our palms because we are in the wrong room.',
-    forkB: 'The fifth Stone didn\'t answer our palms because it is waiting for the dark moon.',
-    callback:
-      'Twice boots scraped right past the hidden wall door — to any hand without Seeker blood, it is only stone.',
-    riddle: {
-      q: 'What points down into the dark under the wall, yet never moves a finger?',
-      a: 'A carved arrow.',
-      quip: 'Scratched under the window-sill by the last watch.',
-      accept: ['arrow', 'an arrow', 'carved arrow', 'the arrow'],
-      maxTries: 3,
-    },
-    nudge:
-      '{friend:Intellect}, Fragment 5-3 said "Four of us gave to the four. None of us gave to the fifth." Why didn\'t the Seekers give their blood to the fifth?',
-    fanOutClue: {
-      title: 'Dry linen in the wall-chest',
-      text: 'In the cedar box beneath the fifth Stone\'s cradle lie four clean rolls of white bandage-linen and a dry bronze lancet — left by the Seekers, yet the stone cradle itself has no blood-stain on its rim.',
-      source: 'Challenge & Fight Fan Out (6-1)',
-      bearsOnFork:
-        'Deepens the question of why the fifth Stone did not drink Seeker blood in the wall room.',
-      qaNote: 'Garrick present in Week 6 Day 1.',
-    },
+    "nudge": "{friend:Might}, what do you do with a dog that used to be friendly?",
+    "fanOutClue": {
+      "title": "Heads down",
+      "text": "When the beat stops, every dog stops with it, heads down, mid-stride. Not one runs away, and not one comes on.",
+      "source": "new",
+      "bearsOnFork": "both",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 6,
-    day: 2,
-    id: '6-2',
-    place: 'The barracks under the wall (Five nights)',
-    narratedNoGarrick: false,
-    tone: 'quiet',
-    cupNight: false,
-    opener:
-      'The heartbeat comes. The soldier in the stair doorway turns, steps past you, and climbs toward the hall.',
-    forkA: 'The iron soldiers ignore us because they only hear the king\'s call.',
-    forkB: 'The iron soldiers ignore us because we carry the fifth Stone.',
-    callback:
-      'On the soldiers\' street on Week 5 Day 4, every one of them stood frozen mid-stride — now they are climbing the hill.',
-    riddle: {
-      q: 'What walks up the stair when the heartbeat sounds, yet draws no breath at the top?',
-      a: 'An iron soldier.',
-      quip: 'Stepped right over the dust without looking down.',
-      accept: ['soldier', 'iron soldier', 'an iron soldier', 'the soldier', 'hollowed', 'armour'],
-      maxTries: 3,
+    "week": 5,
+    "day": 3,
+    "place": "The herald's gate",
+    "id": "5-3",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "A bar of new timber in brackets worn bright. Somebody's been barring this gate for centuries, and the wood's new.",
+    "forkA": "Someone is inside.",
+    "forkB": "Someone wanted us to think so.",
+    "callback": "The road shivered yesterday. Today the gate is barred.",
+    "riddle": {
+      "q": "The more of me there is, the less you see. What am I?",
+      "a": "darkness",
+      "quip": "The city has plenty.",
+      "accept": [
+        "darkness"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Might}, when you cleared the fallen beam in the barracks, why were all the soldiers\' bunks still made up neat?',
-    fanOutClue: {
-      title: 'Unburned tallow by the bunks',
-      text: 'Beside every neatly folded blanket in the underground barracks sits a full tallow dip that was never lit — matches Fragment 2-4: "he told us to sleep," and none of them ever woke as men again.',
-      source: 'Challenge & Fight Fan Out (6-2)',
-      bearsOnFork:
-        'Connects the sleeping barracks directly to the night the king went down alone and bound his army.',
-      qaNote: 'Quiet tone day (6-2); Garrick present.',
-    },
+    "nudge": "{friend:Craft}, how do you open a gate barred from within?",
+    "fanOutClue": {
+      "title": "Go down to it",
+      "text": "Stacked against the gatehouse wall lie dozens of old bars, the lowest rotted to a brown line. Whoever changes the bar has kept every one.",
+      "source": "press-on",
+      "bearsOnFork": "both",
+      "qaNote": "Existing [PRESS ON] detail."
+    }
   },
   {
-    week: 6,
-    day: 3,
-    id: '6-3',
-    place: 'The great square (Four nights)',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'Eleven watchmen by the fire now, four strokes left on the board, and the stone wall of the hall is warm under your palm.',
-    forkA: 'The hall wall is warm because the king is waking inside.',
-    forkB: 'The hall wall is warm because the four Stones in the square are answering him through the rock.',
-    callback:
-      'Fragment 6-3 on the warm wall says: "We left him on the floor of his own hall, where he fell... We carried the five away, one by one."',
-    riddle: {
-      q: 'What has no hearth inside it, no sun above it, and still warms a flat palm through three feet of stone?',
-      a: 'The sealed hall.',
-      quip: 'Something on the other side of that wall is awake.',
-      accept: ['hall', 'the hall', 'wall', 'the wall', 'the warm wall', 'sealed hall'],
-      maxTries: 3,
+    "week": 5,
+    "day": 4,
+    "place": "The dead streets",
+    "id": "5-4",
+    "narratedNoGarrick": false,
+    "tone": "quiet",
+    "cupNight": true,
+    "opener": "Nobody's kept a fire here for us. Keep this one small.",
+    "forkA": "The soldiers are only standing.",
+    "forkB": "One helm has turned.",
+    "callback": "A barred gate yesterday. A company of soldiers today.",
+    "riddle": {
+      "q": "What turns but never leaves its post?",
+      "a": "a weathervane",
+      "quip": "The wind decides. Mostly.",
+      "accept": [
+        "a weathervane",
+        "weathervane"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Agility}, six of those eleven watchmen still had road-dust to the knee — why are they still arriving with four nights left?',
-    fanOutClue: {
-      title: 'The fire',
-      text: 'Eleven watchmen. Six have road-dust to the knee and packs not yet unrolled — they did not send for men to hunt you; these were already coming for the night.',
-      source: 'Challenge & Fight Fan Out (6-3)',
-      bearsOnFork:
-        'Proves the Order is gathering for the fourth night from now rather than searching the city for you.',
-      qaNote: 'Garrick present in W6D3 (no empty seat or store lock).',
-    },
+    "nudge": "{friend:Agility}, how do you pass a company that might turn?",
+    "fanOutClue": {
+      "title": "Stop beside one",
+      "text": "Its left foot is forward, the heel just lifted. So is the next one's. So is every one's. They all stopped on the same step.",
+      "source": "press-on",
+      "bearsOnFork": "A",
+      "qaNote": "Existing [PRESS ON] detail."
+    }
   },
   {
-    week: 6,
-    day: 4,
-    id: '6-4',
-    place: 'The hill behind the hall (Three nights)',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'The Seekers sealed the doors they knew about.',
-    forkA: 'The Seekers left the hidden crack so their children could go in and finish him.',
-    forkB: 'The Seekers left the hidden crack because they could not seal themselves inside.',
-    callback:
-      'Fragment 6-4 in the crack confessed: "We sealed his doors with our own hands and left one way in, that only our blood will open. Forgive us for leaving it at all."',
-    riddle: {
-      q: 'What has no hinges, no keyhole, and only opens when a marked palm bleeds under a dark sky?',
-      a: 'The blank rock.',
-      quip: 'And the Order in the square doesn\'t have your blood.',
-      accept: ['rock', 'blank rock', 'the blank rock', 'door', 'the door', 'seeker door', 'stone'],
-      maxTries: 3,
+    "week": 5,
+    "day": 5,
+    "place": "Below the hall",
+    "id": "5-5",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "One chalk stroke each dusk. Somebody's counting.",
+    "forkA": "They're counting to a date.",
+    "forkB": "They're counting for a signal.",
+    "callback": "Yesterday soldiers who stopped. Today people who wait.",
+    "riddle": {
+      "q": "What burns shorter every night but is never cut?",
+      "a": "a candle",
+      "quip": "Fires and candles, same trade.",
+      "accept": [
+        "a candle",
+        "candle"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Aim}, every iron soldier in Highwall faces the hall — why was the one in the crack facing outward toward us?',
-    fanOutClue: {
-      title: 'Chisel-scars on the soldier\'s heels',
-      text: 'The iron boots of the outward-facing sentry in the crack are bolted into lead plugs poured by the Seekers themselves — they turned one of the king\'s own frozen guards around to bar their back door against strangers.',
-      source: 'Challenge & Fight Fan Out (6-4)',
-      bearsOnFork:
-        'Explains why that single sentry faced outward and why the Seekers feared anyone else finding the crack.',
-      qaNote: 'Garrick present in W6D4.',
-    },
+    "nudge": "{friend:Intellect}, what ends when the count ends?",
+    "fanOutClue": {
+      "title": "One hand",
+      "text": "Every stroke on the board is in the same thick, square hand, the crossed ones and the ones still to cross. The chalk has been gone over many times, never redrawn.",
+      "source": "new",
+      "bearsOnFork": "A",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 6,
-    day: 5,
-    id: '6-5',
-    place: 'The moon-tower (Two nights)',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: false,
-    opener:
-      'It always comes back.',
-    forkA: 'The dark moon is a natural eclipse the sky-watchers knew how to count.',
-    forkB: 'The dark moon is caused by the five Stones waking together.',
-    callback:
-      'Counted forward across the blank stone from the night he fell, your finger lands on the doorpost — two nights left, matching the Order\'s chalk board to the hour.',
-    riddle: {
-      q: 'What puts the chisel down on the ledge, leaves the sky dark at midnight, and comes back to the same doorpost in two nights?',
-      a: 'The dark moon.',
-      quip: 'Sky-watchers kept a cleaner slate than any innkeeper.',
-      accept: ['dark moon', 'the dark moon', 'moon', 'the moon', 'eclipse'],
-      maxTries: 3,
+    "week": 5,
+    "day": 6,
+    "place": "The wall again",
+    "id": "5-6",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "A slit window, a hidden room, a night nobody heard you.",
+    "forkA": "The room was built to hide the fifth.",
+    "forkB": "The room was built to watch the hall.",
+    "callback": "Chalk strokes yesterday. A wall with a window today.",
+    "riddle": {
+      "q": "What gets bigger the more you take away?",
+      "a": "a hole",
+      "quip": "A room hollowed out of a wall is one.",
+      "accept": [
+        "a hole",
+        "hole"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Craft}, the chisel and mallet are still lying on the ledge where the sky-watcher set them down — how fast did that night end?',
-    fanOutClue: {
-      title: 'The blank stone',
-      text: 'On the ledge under the last moon, a chisel is lying where it was put down, the mallet beside it. Nobody came back for them.',
-      source: 'Challenge & Fight Fan Out (6-5)',
-      bearsOnFork:
-        'Shows the sky-watchers\' record stopped abruptly on the exact night the dark moon fell.',
-      qaNote: 'Garrick present in W6D5.',
-    },
+    "nudge": "{friend:Aim}, what can you see through one slit?",
+    "fanOutClue": {
+      "title": "The narrow slit",
+      "text": "The slit is no wider than a hand, low in the wall's face. Unless you lean out over the parapet and look straight down the stone, you cannot see it at all.",
+      "source": "new",
+      "bearsOnFork": "A",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
   {
-    week: 6,
-    day: 6,
-    id: '6-6',
-    place: 'The crack in the hill (One night)',
-    narratedNoGarrick: false,
-    tone: 'wry',
-    cupNight: true,
-    opener:
-      'Drinks are on me. Don\'t get used to it.',
-    forkA: 'Tomorrow night we carry the fifth Stone through the Seekers\' door to break the waking.',
-    forkB: 'Tomorrow night we keep the fifth Stone outside the hall until the dark moon passes.',
-    callback:
-      'All six fragments of the final week join on the blank rock inside the crack: "If you are reading this, you are ours — and if he ever stirs, finish what we could not."',
-    riddle: {
-      q: 'What has been poured eight times on this road for someone who wasn\'t by the fire, and sits full one last night?',
-      a: 'The extra cup.',
-      quip: 'Rest your hands tonight. Tomorrow the door opens.',
-      accept: ['cup', 'extra cup', 'the extra cup', 'tin cup', 'a cup'],
-      maxTries: 3,
+    "week": 6,
+    "day": 1,
+    "place": "The wall room (Six nights)",
+    "id": "6-1",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Quiet's good in a hole in a wall. I'll take it.",
+    "forkA": "He looked at the window because he saw us.",
+    "forkB": "He looked because it's the only window.",
+    "callback": "Last night: the fifth in your hands. Tonight: boots at the door.",
+    "riddle": {
+      "q": "What can fill a room and take no space?",
+      "a": "light",
+      "quip": "A little of it, please.",
+      "accept": [
+        "light"
+      ],
+      "maxTries": 3
     },
-    nudge:
-      '{friend:Might}, two whole columns of iron walked past us up the hill toward the hall — why didn\'t a single helm turn our way tonight?',
-    fanOutClue: {
-      title: 'Fresh oil on the hall steps',
-      text: 'At the top of the square where the walking iron ranks halt before the sealed doors, the Order has laid four open iron cradles in a semicircle — with a fifth empty cradle set directly before the threshold.',
-      source: 'Challenge & Fight Fan Out (6-6)',
-      bearsOnFork:
-        'Frames the final choice of bringing the fifth Stone into the hall tomorrow night.',
-      qaNote: 'Cup Night #8 (6-6); Garrick present.',
-    },
+    "nudge": "{friend:Charm}, how do you keep a team calm in a wall?",
+    "fanOutClue": {
+      "title": "No light inside",
+      "text": "Not a candle burns in the room. Every lantern you can see from the slit is out in the square, and none of them reaches in.",
+      "source": "new",
+      "bearsOnFork": "B",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
   },
+  {
+    "week": 6,
+    "day": 2,
+    "place": "The barracks under the wall (Five nights)",
+    "id": "6-2",
+    "narratedNoGarrick": false,
+    "tone": "quiet",
+    "cupNight": false,
+    "opener": "The dead move when nobody watches, and they passed you by. Sit down a minute.",
+    "forkA": "They go up to the hall to answer a call.",
+    "forkB": "They go up to guard it.",
+    "callback": "Yesterday: six nights. Today: five and an arrow.",
+    "riddle": {
+      "q": "What can you hold but never see, and the more you hold it the less you speak?",
+      "a": "your breath",
+      "quip": "Hold yours.",
+      "accept": [
+        "breath",
+        "your breath"
+      ],
+      "maxTries": 3
+    },
+    "nudge": "{friend:Agility}, how do you move among the walking dead?",
+    "fanOutClue": {
+      "title": "The swept racks",
+      "text": "The spear-racks along the wall are empty, and the dust under every one is swept clean in the same short arc.",
+      "source": "new",
+      "bearsOnFork": "B",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
+  },
+  {
+    "week": 6,
+    "day": 3,
+    "place": "The great square (Four nights)",
+    "id": "6-3",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "The hall's warm from within. More faithful arriving. What's missing is a door.",
+    "forkA": "There is no way in at the front.",
+    "forkB": "There is, and it isn't ours.",
+    "callback": "Yesterday the dead walked. Tonight the faithful arrive.",
+    "riddle": {
+      "q": "What is warm in the cold but has no fire?",
+      "a": "a blanket",
+      "quip": "Bring one.",
+      "accept": [
+        "a blanket",
+        "blanket"
+      ],
+      "maxTries": 3
+    },
+    "nudge": "{friend:Intellect}, where would the Seekers have left a door?",
+    "fanOutClue": {
+      "title": "The fire",
+      "text": "Eleven watchmen. Six have road-dust to the knee and packs not yet unrolled. They did not send for men to hunt you; these were already coming for the night.",
+      "source": "press-on",
+      "bearsOnFork": "both",
+      "qaNote": "Existing [PRESS ON] detail."
+    }
+  },
+  {
+    "week": 6,
+    "day": 4,
+    "place": "The hill behind the hall (Three nights)",
+    "id": "6-4",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "That hill was steeper than it looked. Sit.",
+    "forkA": "The crack is the Seekers' own door.",
+    "forkB": "The crack is a trap.",
+    "callback": "Yesterday the front was sealed. Today the back is cracked.",
+    "riddle": {
+      "q": "What changes shape but is never touched?",
+      "a": "the moon",
+      "quip": "It keeps its own hours.",
+      "accept": [
+        "moon",
+        "the moon"
+      ],
+      "maxTries": 3
+    },
+    "nudge": "{friend:Craft}, how do you open a sealed Seeker door?",
+    "fanOutClue": {
+      "title": "The untouched grit",
+      "text": "Past where the soldier stood, the grit on the crack's floor lies smooth and untouched. Your boots are the first marks in it.",
+      "source": "new",
+      "bearsOnFork": "A",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
+  },
+  {
+    "week": 6,
+    "day": 5,
+    "place": "The moon-tower (Two nights)",
+    "id": "6-5",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Two nights. Eat while there's something to eat.",
+    "forkA": "The record means the moon will come back as it did.",
+    "forkB": "The record is only a guess.",
+    "callback": "Yesterday a crack. Today a record that stops on the night he fell.",
+    "riddle": {
+      "q": "What is taken every night and returned at dawn?",
+      "a": "sleep",
+      "quip": "Get some.",
+      "accept": [
+        "sleep"
+      ],
+      "maxTries": 3
+    },
+    "nudge": "{friend:Aim}, what do you see from the top of a tower?",
+    "fanOutClue": {
+      "title": "The blank stone",
+      "text": "On the ledge under the last moon, a chisel is lying where it was put down, the mallet beside it. Nobody came back for them.",
+      "source": "press-on",
+      "bearsOnFork": "both",
+      "qaNote": "Existing [PRESS ON] detail."
+    }
+  },
+  {
+    "week": 6,
+    "day": 6,
+    "place": "The crack in the hill (One night)",
+    "id": "6-6",
+    "narratedNoGarrick": false,
+    "tone": "wry",
+    "cupNight": true,
+    "opener": "Last night of the count. Eat what you like.",
+    "forkA": "We open the rock tomorrow night.",
+    "forkB": "The door is not ours to open tomorrow.",
+    "callback": "Six nights ago you had a hidden room. Tonight you have one stroke left.",
+    "riddle": {
+      "q": "What gets better when you share it and worse when you keep it?",
+      "a": "a story",
+      "quip": "Tell one.",
+      "accept": [
+        "a story",
+        "story"
+      ],
+      "maxTries": 3
+    },
+    "nudge": "{friend:Might}, who stands the first watch?",
+    "fanOutClue": {
+      "title": "Every helm to the hall",
+      "text": "From the crack's mouth you can see the whole street climbing toward you. Every helm in it is turned to the hall, not one to the hill.",
+      "source": "new",
+      "bearsOnFork": "B",
+      "qaNote": "Rewritten 10 Oct after the check against the chapter text."
+    }
+  }
 ];
 
 export function getCampfireDayEntry(week: number, day: number): CampfireDayEntry {
@@ -12485,138 +12750,607 @@ export function runCampfireV22Verifier(): CampfireQAVerificationReport {
   };
 }
 
+
 ```
 
-## FILE: `src/data/mythiosRulesData.ts`
+---
 
-```ts
-export type AttributeName = 'Might' | 'Craft' | 'Intellect' | 'Charm' | 'Agility' | 'Aim';
-export type ClassName = 'Warrior' | 'Artificer' | 'Sage' | 'Trickster' | 'Assassin' | 'Archer';
+## FILE: `src/data/soloLandmarkProse.ts`
 
-export const ATTRIBUTE_META: Record<AttributeName, { color: string; bgTint: string; class: ClassName; desc: string }> = {
-  Charm: { color: '#EE8BC3', bgTint: '#EE8BC326', class: 'Trickster', desc: 'Persuasion, influence' },
-  Agility: { color: '#38BDF8', bgTint: '#38BDF826', class: 'Assassin', desc: 'Speed, stealth' },
-  Intellect: { color: '#818CF8', bgTint: '#818CF826', class: 'Sage', desc: 'Fast, deep thinking' },
-  Might: { color: '#F59E42', bgTint: '#F59E4226', class: 'Warrior', desc: 'Overpowering force' },
-  Craft: { color: '#C084FC', bgTint: '#C084FC26', class: 'Artificer', desc: 'Tools and machines' },
-  Aim: { color: '#2DD4BF', bgTint: '#2DD4BF26', class: 'Archer', desc: 'Precision' },
-};
+```typescript
+import { AttributeName } from './mythiosRulesData';
+import { WEEKDAY_INVENTORY, WeekdayInventoryItem } from './mythiosChaptersData';
+import { SEEKER_FRAGMENTS } from './mythiosFragments';
+import { getPublicFanOutClue } from './campfireDaysData';
 
-export const CLASS_META: Record<ClassName, { attribute: AttributeName; tagline: string; weapon: string; armor: string }> = {
-  Warrior: { attribute: 'Might', tagline: 'When a door won\'t open, you are the reason it does.', weapon: 'Longsword', armor: 'Mail Coat' },
-  Artificer: { attribute: 'Craft', tagline: 'You know how things are put together, and so how they come apart.', weapon: 'Spring-Hammer', armor: 'Riveted Apron' },
-  Sage: { attribute: 'Intellect', tagline: 'You notice what the room is not saying.', weapon: 'Ash Staff', armor: 'Warded Cloak' },
-  Trickster: { attribute: 'Charm', tagline: 'People tell you things. They are not always sure why.', weapon: 'Sword-Cane', armor: 'Leather Ward' },
-  Assassin: { attribute: 'Agility', tagline: 'You are already where they weren\'t looking.', weapon: 'Paired Knives', armor: 'Shadow Leathers' },
-  Archer: { attribute: 'Aim', tagline: 'You see the one thing that matters, from a long way off.', weapon: 'Yew Bow', armor: 'Hunter\'s Jack' },
-};
-
-// Core Rules §12 Tables
-export const EPISODE_NUMBERS = [
-  { week: 1, title: 'The List', weekdayDC: 6, gatheringDC: 8, trialDC: 10, ueDC: 6, ueAttr: 'Might' as AttributeName, gDef: 22, gAtk: 15, gReward: 380, wDef: 21, wAtk: 14, battleCondition: 'None (plain first Battle)' },
-  { week: 2, title: 'The Wind Stone', weekdayDC: 7, gatheringDC: 9, trialDC: 11, ueDC: 7, ueAttr: 'Intellect' as AttributeName, gDef: 23, gAtk: 16, gReward: 520, wDef: 22, wAtk: 15, battleCondition: 'The chant: DEF +1 while >50% enemies stand' },
-  { week: 3, title: 'The Fire Stone', weekdayDC: 7, gatheringDC: 9, trialDC: 11, ueDC: 7, ueAttr: 'Agility' as AttributeName, gDef: 24, gAtk: 17, gReward: 740, wDef: 23, wAtk: 16, battleCondition: 'Blade and torch: hit deals 2 more HP start of next round' },
-  { week: 4, title: 'The Water Stone', weekdayDC: 8, gatheringDC: 10, trialDC: 12, ueDC: 8, ueAttr: 'Craft' as AttributeName, gDef: 24, gAtk: 17, gReward: 740, wDef: 23, wAtk: 16, battleCondition: 'Knee-deep: roll 1–3 on strike loses next strike (both sides)' },
-  { week: 5, title: 'The King\'s Stone', weekdayDC: 9, gatheringDC: 11, trialDC: 13, ueDC: 9, ueAttr: 'Charm' as AttributeName, gDef: 25, gAtk: 18, gReward: 1030, wDef: 24, wAtk: 17, battleCondition: 'The hollowed: rises once at 2 HP and skips next strike' },
-  { week: 6, title: 'The Finale', weekdayDC: 9, gatheringDC: 11, trialDC: 13, ueDC: 9, ueAttr: 'Aim' as AttributeName, gDef: 25, gAtk: 18, gReward: 1030, wDef: 24, wAtk: 17, battleCondition: 'Half faithful (chant), half hollowed (rises once at 2 HP)' },
-];
-
-export const GEAR_TABLE: Record<number, { weapon: number; armor: number; cost: number }> = {
-  1: { weapon: 14, armor: 27, cost: 0 },
-  2: { weapon: 15, armor: 28, cost: 950 },
-  3: { weapon: 16, armor: 29, cost: 1100 },
-  4: { weapon: 17, armor: 30, cost: 1750 },
-  5: { weapon: 18, armor: 31, cost: 2400 },
-};
-
-export function getTierInfo(val: number): { name: string; bonus: number; rate: number; nextAt: number | null; pctInTier: number } {
-  if (val <= 25) return { name: 'Novice', bonus: 0, rate: 1.0, nextAt: 26, pctInTier: Math.min(100, Math.round((val / 25) * 100)) };
-  if (val <= 50) return { name: 'Apprentice', bonus: 2, rate: 1.0, nextAt: 51, pctInTier: Math.min(100, Math.round(((val - 25) / 25) * 100)) };
-  if (val <= 75) return { name: 'Adept', bonus: 4, rate: 0.6, nextAt: 76, pctInTier: Math.min(100, Math.round(((val - 50) / 25) * 100)) };
-  if (val <= 100) return { name: 'Expert', bonus: 6, rate: 0.3, nextAt: 101, pctInTier: Math.min(100, Math.round(((val - 75) / 25) * 100)) };
-  return { name: 'Master', bonus: 8, rate: 0.1, nextAt: null, pctInTier: 100 };
+export interface DailyRecapData {
+  header: string;
+  yesterdayPlace: string;
+  recapText: string;
 }
 
-export interface RecordStatMeta {
-  key: string;
-  labelLines: [string, string];
-  fullTitle: string;
-  explainer: string;
-  leadFriend: string;
-  leadNextVal: number;
-}
-
-export const RECORD_STATS_META: RecordStatMeta[] = [
-  // Row 1: Show Up
-  { key: 'daysPlayed', labelLines: ['Days', 'Played'], fullTitle: 'Days Played', explainer: 'Total days you read the chapter to its last line, over the season.', leadFriend: 'Mei', leadNextVal: 14 },
-  { key: 'bestStreak', labelLines: ['Best', 'Streak'], fullTitle: 'Best Streak', explainer: 'Your longest run of days played in a row. It never goes down.', leadFriend: 'Mei', leadNextVal: 6 },
-  { key: 'gatheringsAttended', labelLines: ['Gatherings', 'Joined'], fullTitle: 'Gatherings Attended', explainer: 'Gatherings you came to.', leadFriend: 'Mei', leadNextVal: 2 },
-  { key: 'fragmentsSolved', labelLines: ['Fragments', 'Solved'], fullTitle: 'Fragments Solved', explainer: 'Fragments where you filled a missing word.', leadFriend: 'Mei', leadNextVal: 6 },
-  // Row 2: Together
-  { key: 'relicsGiven', labelLines: ['Relics', 'Given'], fullTitle: 'Relics Given', explainer: 'Every Relic you gave to a friend.', leadFriend: 'Mei', leadNextVal: 1 },
-  { key: 'timesSteppedUp', labelLines: ['Stepped', 'Up'], fullTitle: 'Times Stepped Up', explainer: 'Times you tapped [STEP UP] and rolled the Approach for the party.', leadFriend: 'Arjun', leadNextVal: 1 },
-  { key: 'fragmentsMatched', labelLines: ['Fragments', 'Matched'], fullTitle: 'Fragments Matched', explainer: 'Fragments you matched to the right scripture line at a Gathering.', leadFriend: 'Mei', leadNextVal: 2 },
-  { key: 'battlesWon', labelLines: ['Battles', 'Won'], fullTitle: 'Battles Won', explainer: 'Gathering Battles the party won while you fought in them.', leadFriend: 'Mei', leadNextVal: 2 },
-  // Row 3: Glory
-  { key: 'challengesCleared', labelLines: ['Challenges', 'Cleared'], fullTitle: 'Challenges Cleared', explainer: 'Every Challenge you cleared.', leadFriend: 'Mei', leadNextVal: 8 },
-  { key: 'challengesPressedOn', labelLines: ['Pressed', 'On'], fullTitle: 'Challenges Pressed On', explainer: 'Times you took the harder [PRESS ON] roll, cleared or not.', leadFriend: 'Dev', leadNextVal: 2 },
-  { key: 'enemiesDefeated', labelLines: ['Enemies', 'Felled'], fullTitle: 'Enemies Defeated', explainer: 'Enemies your own hand brought down, in weekday fights and Battles.', leadFriend: 'Dev', leadNextVal: 4 },
-  { key: 'perfectRolls', labelLines: ['Perfect', 'Rolls'], fullTitle: 'Perfect Rolls', explainer: 'Each 20 you rolled on a Challenge or an attack.', leadFriend: 'Mei', leadNextVal: 1 },
-];
-
-export interface BadgeMeta {
+export interface TeammateBoardFinding {
   id: string;
-  labelLines: [string, string];
+  member: 'MEI' | 'DEV' | 'ARJUN';
+  author: string;
+  role: string;
+  roleTag: string;
+  color: string;
   title: string;
-  earned: boolean;
-  requirement: string;
-  progressText: string;
-  iconType: 'sunrise' | 'calendar' | 'road' | 'sword' | 'gift' | 'lifeline' | 'users' | 'moon' | 'd20' | 'flame' | 'chain' | 'heart';
+  clueTitle: string;
+  summary: string;
+  clueText: string;
+  garrickCrossCheckPrompt: string;
+  memberFollowUpReply: string;
 }
 
-export const BADGES_META: BadgeMeta[] = [
-  { id: 'first-light', labelLines: ['First', 'Light'], title: 'First Light', earned: true, requirement: 'Finish your first chapter.', progressText: 'Earned on Week 1 · Day 1.', iconType: 'sunrise' },
-  { id: 'whole-week', labelLines: ['Whole', 'Week'], title: 'A Whole Week', earned: false, requirement: 'Play all six days and come to the Gathering in one week.', progressText: 'Best week so far: 5 of 6 days.', iconType: 'calendar' },
-  { id: 'long-road', labelLines: ['Long', 'Road'], title: 'The Long Road', earned: false, requirement: 'Come to all six Gatherings.', progressText: 'You have attended 2 of 6 Gatherings.', iconType: 'road' },
-  { id: 'sharpened', labelLines: ['Sharpened', ''], title: 'Sharpened', earned: false, requirement: 'Reach Adept in any Attribute.', progressText: 'Charm is 38 (13 points from Adept).', iconType: 'sword' },
-  { id: 'open-hand', labelLines: ['Open', 'Hand'], title: 'Open Hand', earned: true, requirement: 'Give a friend a Relic for the first time.', progressText: 'Earned when you gave Mei a Charm Relic.', iconType: 'gift' },
-  { id: 'lifeline', labelLines: ['Lifeline', ''], title: 'Lifeline', earned: false, requirement: 'A Relic you gave is used in a roll or a fight that then goes the friend\'s way.', progressText: 'Waiting for your given Relic to turn a roll.', iconType: 'lifeline' },
-  { id: 'whole-table', labelLines: ['Whole', 'Table'], title: 'The Whole Table', earned: true, requirement: 'Every friend plays on the same day. The whole party earns it.', progressText: 'Earned by the whole party on Week 1 · Day 2.', iconType: 'users' },
-  { id: 'clean-night', labelLines: ['Clean', 'Night'], title: 'A Clean Night', earned: false, requirement: 'In one Gathering the party clears the opening roll, wins the Battle with nobody down, and wins the United Effort.', progressText: 'Not yet earned by the party.', iconType: 'moon' },
-  { id: 'perfect', labelLines: ['Perfect', ''], title: 'Perfect', earned: true, requirement: 'Roll your first 20 on a Challenge or an attack.', progressText: 'Earned on Week 2 · Day 2.', iconType: 'd20' },
-  { id: 'never-enough', labelLines: ['Never', 'Enough'], title: 'Never Enough', earned: false, requirement: 'Clear 3 Press On rolls in one week.', progressText: 'You have cleared 1 this week.', iconType: 'flame' },
-  { id: 'many-hands', labelLines: ['Many', 'Hands'], title: 'Many Hands', earned: false, requirement: 'Clear Challenges with four different Attributes.', progressText: 'Cleared with 3 of 4 Attributes (Charm, Agility, Craft).', iconType: 'chain' },
-  { id: 'down-to-thread', labelLines: ['Close', 'Thread'], title: 'Down to a Thread', earned: false, requirement: 'Win a fight with 10 HP or less left.', progressText: 'Closest fight won so far: 28 HP left.', iconType: 'heart' },
-];
-
-export interface GlossaryTerm {
-  term: string;
-  category: string;
-  definition: string;
+export interface DayFanOutData {
+  leadInParagraph1: string;
+  leadInParagraph2: string;
+  branchA: FanOutBranchChallenge;
+  branchB: FanOutBranchFight;
+  branchC: FanOutBranchChallenge;
+  teammateFindings: TeammateBoardFinding[];
+  garrickSynthesisWhenPlayerShares: (playerClueText: string, fragWord1: string) => string;
 }
 
-export const GLOSSARY_TERMS: GlossaryTerm[] = [
-  { term: 'Mythios', category: 'Core', definition: 'The storyteller and keeper of the record for your party across all six weeks.' },
-  { term: 'Garrick', category: 'Core', definition: 'The innkeeper of the Hollow Wake Inn and your grey-cloaked guide on the road. He follows the three-verb rule: he never promises, predicts, or denies knowing, and invents no facts about himself.' },
-  { term: 'Chapter', category: 'Play', definition: 'One weekday session (Days 1–6) played on your own schedule in about five minutes: arrive at the landmark, resolve the encounter, and open its Seeker housing.' },
-  { term: 'Campfire', category: 'Play', definition: 'The asynchronous party camp where teammates converge after fanning out from the landmark to unjumble unfinished Seeker Fragments (+25g), review cumulative verses, swap banter, and answer Garrick\'s riddles (+15g).' },
-  { term: 'Gathering', category: 'Play', definition: 'The Day 7 synchronous finale across 5 Beats: Arrival & Order\'s Claim, Opening Approach, 4-Hero Battle & United Effort, Scripture Match (+75g), and the Table Twist.' },
-  { term: 'Challenge', category: 'Rolls', definition: 'A d20 + Attribute + Relic roll against the landmark Obstacle. Clearing it gives the cleaner road (+3 Attribute, +150g); failing grants 0g and alerts a perimeter lookout (+50g on skirmish victory, 0g on defeat).' },
-  { term: 'Solo Fan-Out', category: 'Rolls', definition: 'A 3-branch solo exploration beat at the end of each landmark (Cache & Witness, Intercept Scout, or Vantage & Trail Sweep) that awards +150g, a Seeker 1st-letter hint, and a Solo Clue for the Campfire on victory (0g on defeat).' },
-  { term: 'Relic', category: 'Items', definition: 'A single-use stone charm (150g in Store: +4 to one Attribute roll, or +1 Weapon and +1 Armor for one fight) that you can use yourself or give to a friend.' },
-  { term: 'Seeker Housing', category: 'Seeker Chest', definition: 'A blood-locked stone socket or niche hidden at each of the 36 weekday landmarks that opens only at the touch of a marked Seeker descendant.' },
-  { term: 'Fragment', category: 'Seeker Chest', definition: 'A torn piece of Dark Moon scripture recovered from each weekday\'s Seeker housing with two jumbled lock-words (+25g each). All 6 fragments in a week interlock on Day 6 to form the Day 7 Map (+2 to all Gathering rolls).' },
-  { term: 'Solved', category: 'Seeker Chest', definition: 'A Fragment whose two jumbled lock-words have both been unjumbled by the party at the Campfire or in the Seeker Chest.' },
-  { term: 'The Four Stones', category: 'Lore', definition: 'Wind, Fire, Water, and Earth Stones that seal the dry well beneath Highwall Keep.' },
-  { term: 'The King\'s Stone', category: 'Lore', definition: 'The fifth stone—waking only when the Four Children of the Narrow Window are brought together at Highwall.' },
-];
+/**
+ * 1. DAILY RECAP AT THE START OF EVERY DAY (For Async Continuity)
+ * Gives players who missed yesterday (or are logging in fresh) a crystal-clear
+ * bridge from yesterday's landmark to today's arrival.
+ */
+export function getDailyRecap(week: number, day: number): DailyRecapData {
+  if (week === 1 && day === 1) {
+    return {
+      header: 'PROLOGUE · THE DROVE ROAD',
+      yesterdayPlace: 'The Autumn Forest Road',
+      recapText:
+        'You set out alone along the autumn forest road carrying your tools and gear. Ahead under the dripping oaks, a stranger crouches beside the jammed lock of your cargo box.',
+    };
+  }
 
+  if (week === 1 && day === 2) {
+    return {
+      header: 'YESTERDAY’S TRAIL · W1·D1 THE FOREST ROAD',
+      yesterdayPlace: 'W1·D1 · The forest road',
+      recapText:
+        'Yesterday on the autumn forest road, you drove off a stranger tampering with your cargo box alone and discovered nothing stolen—only a half-burned charcoal rubbing and a torn stub listing four names alongside an address: "The Hollow Wake Inn, on the drove road." Following that note north, you step through the inn door today.',
+    };
+  }
+
+  let prevW = week;
+  let prevD = day - 1;
+  if (prevD < 1) {
+    prevW = week - 1;
+    prevD = 6;
+  }
+
+  const prevItem = WEEKDAY_INVENTORY.find((i) => i.week === prevW && i.day === prevD);
+  const currItem = WEEKDAY_INVENTORY.find((i) => i.week === week && i.day === day);
+
+  if (day === 1 && week > 1) {
+    const gatheringRecaps: Record<number, { place: string; text: string }> = {
+      2: {
+        place: 'Week 1 Gathering · The Drowned Mine',
+        text: 'Last night at the drowned mine, your party rescued nine-year-old Tamsin from the takers before the dark moon rose. On the stone wall behind her, you uncovered three more children’s names—sending you north toward the mill road at first light.',
+      },
+      3: {
+        place: 'Week 2 Gathering · Under the Hillside',
+        text: 'Last night in the buried chamber under the hillside, your party pulled the miller’s boy Corin alive from the ring of lamps before his hands could be cut. Before the watchers fled, they whispered that a third child had already been moved "somewhere warm."',
+      },
+      4: {
+        place: 'Week 3 Gathering · Inside the Kiln',
+        text: 'Last night inside the volcanic crown of the Kiln, your party freed young Wren from the grey-coated riders and bound their leader—only for someone standing among you in the pitch dark to slice his ropes clean and let him walk out untouched.',
+      },
+      5: {
+        place: 'Week 4 Gathering · Under Old Reedham',
+        text: 'Last night beneath the drowned church of Old Reedham, your party rescued the woodcarver’s boy Joss from the flooded vault. With four children safe and four Seeker maps recovered, only the unrecorded fifth Stone remains.',
+      },
+      6: {
+        place: 'Week 5 Gathering · Inside the Wall of Highwall',
+        text: 'Last night inside the hollow outer wall of the dead capital Highwall, your party claimed the fifth Seeker Stone and a watch-page counting down six nights until the dark moon rises over the sealed royal hall.',
+      },
+    };
+    const g = gatheringRecaps[week] || gatheringRecaps[2];
+    return {
+      header: `PREVIOUSLY · AFTER ${g.place.toUpperCase()}`,
+      yesterdayPlace: g.place,
+      recapText: g.text,
+    };
+  }
+
+  const resolveN = (str: string, w: number, d: number) =>
+    str.replace(/\[N\]/g, w === 1 && d === 1 ? 'four (with blank lines below)' : String(Math.max(1, 7 - d)));
+
+  const prevPlace = prevItem ? prevItem.place : 'Yesterday’s Landmark';
+  const prevLearned = prevItem ? resolveN(prevItem.summaryLearned, prevW, prevD) : '';
+  const currPlace = currItem ? currItem.place : 'Today’s Landmark';
+
+  return {
+    header: `YESTERDAY’S TRAIL · W${prevW}·D${prevD} ${prevPlace.toUpperCase()}`,
+    yesterdayPlace: prevPlace,
+    recapText: `At ${prevPlace}, your party uncovered a vital lead: ${prevLearned} Following that trail, you and your companions now arrive at ${currPlace}.`,
+  };
+}
+
+/**
+ * 2. OPENING SCENE NARRATION (2 Rich Paragraphs: Context-Aware World-Building + Clear Navigation)
+ */
+export function getOpeningSceneProse(dayData: WeekdayInventoryItem): {
+  paragraph1: string;
+  paragraph2: string;
+} {
+  // Do NOT leak asymmetricChoices[0].detail before the player chooses (preserves C5 agency).
+  // Only include pre-fight notice hints so attentive players can deduce first-strike (preserves C6).
+  const noticeLead = dayData.preFightChoice?.noticeHint
+    ? ` ${dayData.preFightChoice.noticeHint.replace(/^.*Notice:\s*/i, '')}`
+    : '';
+
+  const isW1D1 = dayData.week === 1 && dayData.day === 1;
+  const isW1D2 = dayData.week === 1 && dayData.day === 2;
+  const isHighwallInterior = dayData.week === 6;
+  const isNightOrDusk =
+    dayData.day === 6 ||
+    (dayData.week === 4 && dayData.day === 4) ||
+    /night|dusk|dark|moon|lantern|lamp/i.test(dayData.place + ' ' + dayData.question);
+
+  let arrivalLead = '';
+  if (isW1D1) {
+    arrivalLead = `You walk the wet autumn road alone at ${dayData.place}, where a stranger crouches beside the jammed lock of your cargo box under the dripping oaks.`;
+  } else if (isW1D2) {
+    arrivalLead = `Following the address from your cargo box into the warm lamplight of ${dayData.place}, you find the other travellers of your company already seated in the common room holding torn paper stubs matching yours, while the innkeeper Garrick sets a missing scholar’s leather satchel on the table between you.`;
+  } else if (isHighwallInterior) {
+    arrivalLead = `Slipping from the hidden Seeker safe-room inside the dead stone of Highwall, you and your companions move through the cold shadows of ${dayData.place} while Garrick keeps watch at the slit-window.`;
+  } else if (isNightOrDusk) {
+    arrivalLead = `As dusk deepens into shadow over ${dayData.place}, you and your party move in low behind the cover of the stonework while Garrick holds the rear watch.`;
+  } else {
+    arrivalLead = `Following yesterday’s lead to ${dayData.place}, you and your party fan out to examine the ground while Garrick keeps a quiet eye on the road behind you.`;
+  }
+
+  const cleanQuestion = dayData.question.replace(/\[N\]/g, 'the company');
+  const questionFraming = isW1D1
+    ? 'One urgent question hangs in the cold air here:'
+    : isW1D2
+    ? 'One urgent question hangs in the common room here:'
+    : 'One urgent question hangs over your party here:';
+  const paragraph1 = `${arrivalLead}${noticeLead} ${questionFraming} ${cleanQuestion}`;
+
+  let paragraph2 = '';
+  if (dayData.challengeTitle && dayData.hasFight) {
+    const attrs = dayData.challengeAttrs
+      ? `${dayData.challengeAttrs[0]} or ${dayData.challengeAttrs[1]}`
+      : 'your best instincts';
+    paragraph2 = `Before steel is drawn at ${dayData.place}, you face an immediate opening test—${dayData.challengeTitle.toLowerCase()}—calling on ${attrs}. How you handle this approach determines who takes the first strike when ${
+      dayData.fightEnemyName || 'the sentry'
+    } closes in.`;
+  } else if (dayData.challengeTitle) {
+    const attrs = dayData.challengeAttrs
+      ? `${dayData.challengeAttrs[0]} or ${dayData.challengeAttrs[1]}`
+      : 'your training';
+    paragraph2 = `Your direct path to the truth at ${dayData.place} runs straight through a delicate obstacle: ${dayData.challengeTitle.toLowerCase()}. Choose whether to approach with ${attrs}—if you pass, the way opens cleanly; if you fail, the noise of the failed attempt will draw an alerted lookout right onto your position.`;
+  } else {
+    paragraph2 = `Before you can search the stonework at ${dayData.place} for today’s Seeker Fragment, steel scrapes against stone ahead. ${
+      dayData.fightEnemyName || 'A sentry'
+    } steps out to bar your path, leaving you no choice but to fight your way through to reach the clue beyond.`;
+  }
+
+  return { paragraph1, paragraph2 };
+}
+
+/**
+ * 3. POST-CHALLENGE NARRATION (References Chosen Action, Never Repeats Summary, Clear Next Step)
+ */
+export function getPostChallengeProse(
+  dayData: WeekdayInventoryItem,
+  chosenAttr: AttributeName,
+  cleared: boolean
+): {
+  paragraph1: string;
+  paragraph2: string;
+} {
+  const attrActionPhrase: Record<AttributeName, string> = {
+    Might: 'bringing raw physical force to bear at the exact point of leverage',
+    Agility: 'moving with silent, sure-footed precision along the blind angle',
+    Intellect: 'piecing together the quiet physical evidence and timeline before acting',
+    Charm: 'speaking with measured warmth and steadiness to earn trust',
+    Craft: 'reading the joints, latch-work, and tool-marks with a maker’s eye',
+    Aim: 'sighting the angles and subtle tracks from a careful distance',
+  };
+
+  const approachText = attrActionPhrase[chosenAttr] || 'committing to your chosen approach';
+  const isW1D2 = dayData.week === 1 && dayData.day === 2;
+
+  if (cleared) {
+    const paragraph1 = `Relying on your ${chosenAttr}—${approachText}—you clear the obstacle at ${dayData.place} on the first attempt. ${dayData.passBranchText.replace(/\[N\]/g, 'four')}`;
+
+    const paragraph2 = dayData.hasFight
+      ? `Because you handled the approach cleanly without giving yourself away, you spot ${
+          dayData.fightEnemyName || 'the sentry'
+        } moving in before they can spring their trap—granting you a First-Strike Advantage (+2 WEP) in the confrontation right ahead!`
+      : isW1D2
+      ? `As the torn stubs fit cleanly into Meira’s notebook (${dayData.summaryLearned.replace(/\[N\]/g, 'the company')}), you and the other travellers exchange a look across the common room while Garrick bolts the inn door—officially forming your party to ride north and save the first child! Stepping to the hearth-stone at ${dayData.place}, you also lift today’s carved Seeker Fragment free.`
+      : `With the obstacle behind you and the truth in hand (${dayData.summaryLearned.replace(/\[N\]/g, 'the company')}), you step closer to the weathered masonry at ${dayData.place}, where your fingers catch the recessed socket of a carved Seeker Fragment waiting to be lifted free.`;
+
+    return { paragraph1, paragraph2 };
+  } else {
+    const obstacleName = dayData.challengeTitle
+      ? dayData.challengeTitle.toLowerCase()
+      : 'the obstacle';
+    const paragraph1 = `Despite ${approachText} with your ${chosenAttr}, your attempt on ${obstacleName} slips at the worst possible moment. ${dayData.failBranchText.replace(/\[N\]/g, 'the company')}`;
+
+    const paragraph2 = dayData.hasFight
+      ? `The sharp noise of your failed attempt echoes across ${dayData.place}, alerting ${
+          dayData.fightEnemyName || 'the sentry'
+        }! Before you can reset your stance, they lunge from cover as the fight begins.`
+      : `Worse still, the sharp commotion from ${obstacleName} carries across ${dayData.place}—and heavy boots come running! An alerted lookout hears you and lunges out of the shadows to corner you, forcing you to fight your way clear before you can salvage the trail (+150g Detour fight on victory).`;
+
+    return { paragraph1, paragraph2 };
+  }
+}
+
+/**
+ * 4. POST-DETOUR FIGHT NARRATION (When a player fails a Challenge-only day, alerts a lookout, and wins the skirmish for +50g)
+ */
+export function getPostDetourFightProse(dayData: WeekdayInventoryItem): {
+  paragraph1: string;
+  paragraph2: string;
+} {
+  const obstacleName = dayData.challengeTitle
+    ? dayData.challengeTitle.toLowerCase()
+    : 'the jammed obstacle';
+  const isW1D2 = dayData.week === 1 && dayData.day === 2;
+  const paragraph1 = `Breathing hard after driving off the lookout who heard you at ${obstacleName}, you recover an extra pouch from the fallen sentry’s belt (+150g Detour skirmish win) and force the rest of the way open before another guard can answer the noise.`;
+  const paragraph2 = isW1D2
+    ? `Back inside ${dayData.place}, the torn stubs fit into Meira’s notebook (${dayData.summaryLearned.replace(/\[N\]/g, 'the company')}). Seeing the proof on the page, the company joins forces with Garrick—officially forming your party as you pry loose today’s carved Seeker Fragment from the hearth-stone.`
+    : `Working quickly through the aftermath at ${dayData.place}, you piece together what the clean approach would have shown: ${dayData.summaryLearned.replace(/\[N\]/g, 'the company')} Right beside the mark, you pry loose today’s carved Seeker Fragment and slide it into your satchel.`;
+  return { paragraph1, paragraph2 };
+}
+
+/**
+ * 5. POST-MAIN-FIGHT NARRATION (Never duplicates Challenge passBranchText on Challenge+Fight days!)
+ */
+export function getPostFightProse(
+  dayData: WeekdayInventoryItem,
+  hadChallenge: boolean,
+  challengeCleared: boolean
+): {
+  paragraph1: string;
+  paragraph2: string;
+} {
+  const enemy =
+    dayData.fightEnemyName ||
+    (dayData.week < 3 ? 'the lookout' : 'the Order sentry');
+
+  if (hadChallenge) {
+    // On a Challenge + Fight day, passBranchText/failBranchText was already shown after the Challenge!
+    // Here we deliver distinct combat-aftermath + synthesis prose so nothing ever repeats.
+    const paragraph1 = challengeCleared
+      ? `Pressing the advantage from your opening approach, your final strike drives ${enemy} back across ${dayData.place} until they break and retreat into the cover of the trees, leaving the ground in your hands.`
+      : `Shaking off the sting of the opening ambush, you weather ${enemy}’s blows and turn the fight around at ${dayData.place}, forcing your opponent to abandon their post and flee down the trail.`;
+
+    const paragraph2 = `With ${enemy} driven off, the picture at ${dayData.place} locks into focus: ${dayData.summaryLearned.replace(/\[N\]/g, 'four')} Crouching where ${enemy} stood guard, you brush away the dirt and lift today’s carved Seeker Fragment from its stone housing.`;
+    return { paragraph1, paragraph2 };
+  }
+
+  // On a Fight-only day, passBranchText is the fight's canon outcome!
+  const paragraph1 = `After a tense exchange of steel at ${dayData.place}, your final blow breaks ${enemy}’s guard. ${dayData.passBranchText.replace(/\[N\]/g, 'four')}`;
+  const paragraph2 = `Standing over the cleared ground, the meaning of what happened at ${dayData.place} becomes unmistakable: ${dayData.summaryLearned.replace(/\[N\]/g, 'four')} Right beside the mark, your fingers uncover the recessed stone housing holding today’s Seeker Fragment.`;
+  return { paragraph1, paragraph2 };
+}
+
+/**
+ * 6. FULL UNRUSHED "FANNING OUT" SOLO ENCOUNTER BEAT (Beats 5, 6 & 7) + TEAMMATE BOARD CLUES
+ * Every single day offers:
+ * - Branch A: A full Solo Challenge Encounter (meeting a person / finding a locked chest or cache)
+ * - Branch B: A full Solo Fight Skirmish (intercepting an Order scout / perimeter guard)
+ * - Branch C: Regroup straight at Garrick's campfire
+ * Completing Branch A or Branch B unlocks the 1st-letter placement hint on today's Seeker Fragment + a Solo Clue for the Campfire Board!
+ */
+export interface FanOutBranchChallenge extends FanOutBranchOption {
+  kind: 'CHALLENGE';
+  id: 'BRANCH_A' | 'BRANCH_C';
+  summaryLabel: string;
+  playerDeclareText: string;
+  attrs: [AttributeName, AttributeName];
+  attr1ActionTitle: string;
+  attr1ActionDesc: string;
+  attr2ActionTitle: string;
+  attr2ActionDesc: string;
+}
+
+export interface FanOutBranchFight extends FanOutBranchOption {
+  kind: 'FIGHT';
+  id: 'BRANCH_B';
+  summaryLabel: string;
+  playerDeclareText: string;
+  winParagraph1: string;
+  winParagraph2: string;
+}
+
+export function getFanOutEncounterData(dayData: WeekdayInventoryItem): DayFanOutData {
+  const place = dayData.place;
+  const placeShort = place.replace(/^The\s+/i, '');
+  const dayFrag = SEEKER_FRAGMENTS.find(
+    (f) => f.week === dayData.week && f.day === dayData.day
+  );
+  const word1 = dayFrag?.word1 || 'LOCK';
+  const firstLetter1 = (word1[0] || 'L').toUpperCase();
+
+  const isW1 = dayData.week === 1;
+  const isW2 = dayData.week === 2;
+  const isW1D1 = dayData.week === 1 && dayData.day === 1;
+  const factionName = isW1
+    ? 'the quiet riders'
+    : isW2
+    ? 'the hooded watchers'
+    : 'the Order';
+  const scoutName = isW1
+    ? 'Rear-Guard Lookout'
+    : isW2
+    ? 'Hooded Rear-Guard Scout'
+    : 'Order Rear-Guard Scout';
+  const campHostRef = 'Garrick expects you back at the campfire';
+
+  // Canonical Fan Out clue from campfire-days.json (title + text verbatim)
+  const canonicalClue = getPublicFanOutClue(dayData.week, dayData.day);
+
+  const leadInParagraph1 = isW1D1
+    ? `With today’s carved Seeker Fragment safely tucked into your satchel beside the torn stub naming The Hollow Wake Inn, you stand alone at ${place} as long purple shadows stretch across the wet timber.`
+    : `With today’s carved Seeker Fragment safely tucked into your satchel, the four of you pause at ${place} as long purple shadows stretch across the ground. There is still half an hour of grey light left before ${campHostRef}.`;
+  const leadInParagraph2 = isW1D1
+    ? `Before you follow the drove road north toward The Hollow Wake Inn, you can fan out on a Challenge or Fight branch to uncover today’s clue ("${canonicalClue.title}") and the Seeker Fragment first-letter hint, or head straight on.`
+    : `Before nightfall, each friend can take a Fan Out branch (Challenge or Fight — both bring back today’s clue "${canonicalClue.title}" and the Seeker Fragment first-letter hint) or choose Head to Campfire (bringing no clue and learning it from the board).`;
+
+  const branchA: FanOutBranchChallenge = {
+    kind: 'CHALLENGE',
+    branchType: 'CHALLENGE',
+    id: 'BRANCH_A',
+    title: `CHALLENGE: ${canonicalClue.title.toUpperCase()}`,
+    badge: '🎯 CHALLENGE · +150G & CLUE',
+    color: '#4FD1C5',
+    summaryLabel: `Investigate ${placeShort} to uncover "${canonicalClue.title}" and the first-letter Fragment hint.`,
+    label: `Investigate ${placeShort} to uncover "${canonicalClue.title}" and the first-letter Fragment hint.`,
+    playerDeclareText: `Before the light goes at ${place}, I’m fanning out to examine "${canonicalClue.title}".`,
+    playerDeclaration: `Before the light goes at ${place}, I’m fanning out to examine "${canonicalClue.title}".`,
+    arrivalParagraph1: isW1D1
+      ? `Before leaving ${place} behind, you move in close to search the ground in the fading grey light.`
+      : `You move in close at ${place} in the fading grey light before joining the others at the fire.`,
+    arrivalParagraph2: `Trace the physical signs with Craft or piece the scene together with Intellect to uncover "${canonicalClue.title}" and reveal the starting letter "${firstLetter1}" for today’s Seeker Fragment.`,
+    challengeTitle: canonicalClue.title.toUpperCase(),
+    attrs: ['Craft', 'Intellect'],
+    challengeAttrs: ['Craft', 'Intellect'],
+    challengeObstacle: 34 + dayData.week * 5,
+    attr1ActionTitle: `EXAMINE WITH CRAFT`,
+    attr1ActionDesc: `Use Craft to read the physical details at ${placeShort}.`,
+    attr2ActionTitle: `EXAMINE WITH INTELLECT`,
+    attr2ActionDesc: `Use Intellect to read what happened at ${placeShort}.`,
+    passParagraph1: `${canonicalClue.text}`,
+    passParagraph2: `Alongside "${canonicalClue.title}", you trace the Seeker mason’s guide-letter confirming that today’s first Fragment lock-word begins with "${firstLetter1}".`,
+    failParagraph1: `The fading light and shifting footing at ${place} work against you before you can lock the trace down.`,
+    failParagraph2: `With night closing in over ${place}, you head toward the fire to check the board.`,
+    soloClueTitle: canonicalClue.title,
+    soloClueText: canonicalClue.text,
+  };
+
+  const branchBWin1 = `${canonicalClue.text}`;
+  const branchBWin2 = `Driving the ${scoutName.toLowerCase()} back from ${place} also uncovers the Seeker mason’s guide-letter confirming that today’s first Fragment lock-word begins with "${firstLetter1}".`;
+
+  const branchB: FanOutBranchFight = {
+    kind: 'FIGHT',
+    branchType: 'FIGHT',
+    id: 'BRANCH_B',
+    title: `FIGHT: ${canonicalClue.title.toUpperCase()}`,
+    badge: '⚔️ FIGHT · +150G & CLUE',
+    color: '#E5C158',
+    summaryLabel: `Drive off the ${scoutName.toLowerCase()} at ${placeShort} to uncover "${canonicalClue.title}" and the first-letter Fragment hint.`,
+    label: `Drive off the ${scoutName.toLowerCase()} at ${placeShort} to uncover "${canonicalClue.title}" and the first-letter Fragment hint.`,
+    playerDeclareText: `I’ve spotted a ${scoutName.toLowerCase()} at ${place}—I’m moving in before they slip away.`,
+    playerDeclaration: `I’ve spotted a ${scoutName.toLowerCase()} at ${place}—I’m moving in before they slip away.`,
+    arrivalParagraph1: `Moving along the shadowed edge of ${place}, you catch the scrape of a boot where a lone ${scoutName} has lingered behind.`,
+    arrivalParagraph2: `Drive them off in a fast skirmish to uncover "${canonicalClue.title}" and the starting letter "${firstLetter1}" for today’s Seeker Fragment.`,
+    enemyName: `${scoutName} at ${placeShort}`,
+    enemyHp: 70,
+    enemyDef: Math.max(16, 17 + dayData.week),
+    enemyAtk: 12 + dayData.week,
+    winParagraph1: branchBWin1,
+    winParagraph2: branchBWin2,
+    passParagraph1: branchBWin1,
+    passParagraph2: branchBWin2,
+    failParagraph1: `Bruised from the exchange of steel in the fading light, you lose sight of the ${scoutName.toLowerCase()} as they slip away from ${place}.`,
+    failParagraph2: `With night closing in fast over ${place}, you bind your scrape and head toward the fire.`,
+    soloClueTitle: canonicalClue.title,
+    soloClueText: canonicalClue.text,
+  };
+
+  const branchC: FanOutBranchChallenge = {
+    kind: 'CHALLENGE',
+    branchType: 'CAMPFIRE',
+    id: 'BRANCH_C',
+    title: `HEAD TO CAMPFIRE`,
+    badge: '🔥 HEAD TO CAMPFIRE · NO CLUE',
+    color: '#F0A552',
+    summaryLabel: `Head straight to the fire without fanning out. You bring no clue and learn "${canonicalClue.title}" from the board.`,
+    label: `Head straight to the fire without fanning out. You bring no clue and learn "${canonicalClue.title}" from the board.`,
+    playerDeclareText: `I’m heading straight to the Campfire to see what’s on the board.`,
+    playerDeclaration: `I’m heading straight to the Campfire to see what’s on the board.`,
+    arrivalParagraph1: `You leave ${place} as dusk settles and walk straight toward the firelight.`,
+    arrivalParagraph2: `You bring no Fan Out clue of your own tonight and will read "${canonicalClue.title}" from the Campfire board.`,
+    challengeTitle: `HEAD TO CAMPFIRE`,
+    attrs: ['Agility', 'Aim'],
+    challengeAttrs: ['Agility', 'Aim'],
+    challengeObstacle: 0,
+    attr1ActionTitle: 'HEAD TO CAMPFIRE',
+    attr1ActionDesc: `Walk straight to the Campfire and learn today’s clue from the board.`,
+    attr2ActionTitle: 'HEAD TO CAMPFIRE',
+    attr2ActionDesc: `Walk straight to the Campfire and learn today’s clue from the board.`,
+    passParagraph1: `You arrive at the fire as the kettle goes on. You brought no Fan Out clue of your own and will read "${canonicalClue.title}" from the board.`,
+    passParagraph2: ``,
+    failParagraph1: `You arrive at the fire and will read "${canonicalClue.title}" from the board.`,
+    failParagraph2: ``,
+    soloClueTitle: '',
+    soloClueText: '',
+  };
+
+  const teammateFindings: TeammateBoardFinding[] = [
+    {
+      id: `tf-mei-${dayData.week}-${dayData.day}`,
+      member: 'MEI',
+      author: 'Mei',
+      role: 'SAGE · INTELLECT',
+      roleTag: 'Fan Out Clue',
+      color: '#F49CBB',
+      title: canonicalClue.title,
+      clueTitle: canonicalClue.title,
+      summary: canonicalClue.text,
+      clueText: canonicalClue.text,
+      garrickCrossCheckPrompt: '',
+      memberFollowUpReply: '',
+    },
+    {
+      id: `tf-dev-${dayData.week}-${dayData.day}`,
+      member: 'DEV',
+      author: 'Dev',
+      role: 'ARCHER · AIM',
+      roleTag: 'Fan Out Clue',
+      color: '#5BC0EB',
+      title: canonicalClue.title,
+      clueTitle: canonicalClue.title,
+      summary: canonicalClue.text,
+      clueText: canonicalClue.text,
+      garrickCrossCheckPrompt: '',
+      memberFollowUpReply: '',
+    },
+    {
+      id: `tf-arjun-${dayData.week}-${dayData.day}`,
+      member: 'ARJUN',
+      author: 'Arjun',
+      role: 'ARTIFICER · CRAFT',
+      roleTag: 'Fan Out Clue',
+      color: '#4FD1C5',
+      title: canonicalClue.title,
+      clueTitle: canonicalClue.title,
+      summary: canonicalClue.text,
+      clueText: canonicalClue.text,
+      garrickCrossCheckPrompt: '',
+      memberFollowUpReply: '',
+    },
+  ];
+
+  const garrickSynthesisWhenPlayerShares = () => '';
+
+  return {
+    leadInParagraph1,
+    leadInParagraph2,
+    branchA,
+    branchB,
+    branchC,
+    teammateFindings,
+    garrickSynthesisWhenPlayerShares,
+  };
+}
+
+export function getPartyBoardCluesForDay(week: number, day: number): TeammateBoardFinding[] {
+  const ch =
+    WEEKDAY_INVENTORY.find((d) => d.week === week && d.day === day) || WEEKDAY_INVENTORY[0];
+  return getFanOutEncounterData(ch).teammateFindings;
+}
+
+export function getSoloFanOutEncounter(
+  week: number,
+  day: number
+): {
+  soloClueTitle: string;
+  soloClueText: string;
+  seekerFirstLetter: string;
+} {
+  const canonicalClue = getPublicFanOutClue(week, day);
+  const frag =
+    SEEKER_FRAGMENTS.find((f) => f.week === week && f.day === day) || SEEKER_FRAGMENTS[0];
+  return {
+    soloClueTitle: canonicalClue.title,
+    soloClueText: canonicalClue.text,
+    seekerFirstLetter: (frag.word1[0] || 'L').toUpperCase(),
+  };
+}
+
+export interface FanOutBranchOption {
+  id: string;
+  branchType: 'CHALLENGE' | 'FIGHT' | 'CAMPFIRE';
+  title: string;
+  badge: string;
+  color: string;
+  label: string;
+  playerDeclaration: string;
+  arrivalParagraph1: string;
+  arrivalParagraph2: string;
+  challengeTitle?: string;
+  challengeAttrs?: [AttributeName, AttributeName];
+  challengeObstacle?: number;
+  enemyName?: string;
+  enemyHp?: number;
+  enemyDef?: number;
+  enemyAtk?: number;
+  passParagraph1?: string;
+  passParagraph2?: string;
+  failParagraph1?: string;
+  failParagraph2?: string;
+  soloClueTitle?: string;
+  soloClueText?: string;
+}
+
+export function getDailyRecapBanner(week: number, day: number): string {
+  const r = getDailyRecap(week, day);
+  return `${r.header} — ${r.recapText}`;
+}
+
+export function getOpeningProseParagraphs(dayData: WeekdayInventoryItem): [string, string] {
+  const p = getOpeningSceneProse(dayData);
+  return [p.paragraph1, p.paragraph2];
+}
+
+export function getChallengePassProseParagraphs(
+  dayData: WeekdayInventoryItem,
+  chosenAttr: AttributeName
+): [string, string] {
+  const p = getPostChallengeProse(dayData, chosenAttr, true);
+  return [p.paragraph1, p.paragraph2];
+}
+
+export function getChallengeFailProseParagraphs(
+  dayData: WeekdayInventoryItem,
+  chosenAttr: AttributeName
+): [string, string] {
+  const p = getPostChallengeProse(dayData, chosenAttr, false);
+  return [p.paragraph1, p.paragraph2];
+}
+
+export function getRecoveryProseParagraphs(
+  dayData: WeekdayInventoryItem,
+  _method?: string
+): [string, string] {
+  const p = getPostDetourFightProse(dayData);
+  return [p.paragraph1, p.paragraph2];
+}
+
+export function getFightWinProseParagraphs(
+  dayData: WeekdayInventoryItem,
+  challengeCleared: boolean = true
+): [string, string] {
+  const p = getPostFightProse(
+    dayData,
+    Boolean(dayData.challengeTitle),
+    challengeCleared
+  );
+  return [p.paragraph1, p.paragraph2];
+}
 
 ```
+
+---
 
 ## FILE: `src/data/mythiosChaptersData.ts`
 
-```ts
+```typescript
 import { AttributeName } from './mythiosRulesData';
 
 export interface WeekdayInventoryItem {
@@ -13245,11 +13979,14 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     auditFixesApplied: [],
   },
 ];
+
 ```
+
+---
 
 ## FILE: `src/data/mythiosFragments.ts`
 
-```ts
+```typescript
 export interface SeekerFragmentData {
   id: string;
   week: number;
@@ -13565,11 +14302,14 @@ export const SEEKER_FRAGMENTS: SeekerFragmentData[] = [
     closureInfo: 'Week 6 Twist 2 (double meaning on reread)',
   },
 ];
+
 ```
+
+---
 
 ## FILE: `src/data/mythiosGatheringsAndAudit.ts`
 
-```ts
+```typescript
 import { AttributeName } from './mythiosRulesData';
 import { SEEKER_FRAGMENTS } from './mythiosFragments';
 import { WEEKDAY_INVENTORY } from './mythiosChaptersData';
@@ -14126,2569 +14866,14 @@ export function runMythiosVerifier() {
   };
 }
 
+
 ```
 
-## FILE: `src/data/narrativeContinuityAudit.ts`
-
-```ts
-import { WEEKDAY_INVENTORY, WeekdayInventoryItem } from './mythiosChaptersData';
-
-export type ContinuityRuleId = 'RULE_1_PLANT_PAYOFF' | 'RULE_2_CLIFFHANGER_HOOK' | 'RULE_3_TIMELINE_MATH' | 'RULE_4_CHARACTER_WATCH' | 'RULE_5_DUAL_DAY_PARITY';
-
-export interface ContinuityRuleMeta {
-  id: ContinuityRuleId;
-  shortCode: string;
-  title: string;
-  description: string;
-}
-
-export const CONTINUITY_RULES: ContinuityRuleMeta[] = [
-  {
-    id: 'RULE_1_PLANT_PAYOFF',
-    shortCode: 'RULE 1',
-    title: 'Plant → Payoff Ledger (plantTag & youHold)',
-    description: 'Every physical token (youHold) or callback clue must be planted before it is referenced, and must pay off in a later chapter or Gathering.',
-  },
-  {
-    id: 'RULE_2_CLIFFHANGER_HOOK',
-    shortCode: 'RULE 2',
-    title: 'Cliffhanger → Next-Day Opening Hook',
-    description: 'Every Day N pullLine promise (destination, time window, weather threat, or immediate pursuit) must connect cleanly to Day N+1\'s opening scene.',
-  },
-  {
-    id: 'RULE_3_TIMELINE_MATH',
-    shortCode: 'RULE 3',
-    title: 'Countdown & Timeline Math Verifier',
-    description: 'Verifies night-counts and tally strokes across episodes (Fenmark 3 nights → Mill 4 nights; Reedham 8 notches; Highwall Watch-Page 9 → 8 → 7 → 6 → 5 → 4 → 3 → 2 → 1).',
-  },
-  {
-    id: 'RULE_4_CHARACTER_WATCH',
-    shortCode: 'RULE 4',
-    title: 'Character Motivation & Watch Logic',
-    description: 'Checks that enemy actions, prisoner custody (Weeks 2–4), and Garrick\'s subtle tells remain logically consistent across pass and fail branches.',
-  },
-  {
-    id: 'RULE_5_DUAL_DAY_PARITY',
-    shortCode: 'RULE 5',
-    title: 'Dual-Day & Reward Parity (Challenge + Fight)',
-    description: 'Verifies that every chapter with hasFight: true carries the canonical +300g weekday fight reward and a clear first-strike condition.',
-  },
-];
-
-export interface ContinuityLoopholeRecord {
-  id: 'L1' | 'L2' | 'L3' | 'L4' | 'L5' | 'L6';
-  ruleId: ContinuityRuleId;
-  severity: 'HIGH' | 'MEDIUM';
-  week: number;
-  day: number;
-  relatedCoord: string;
-  title: string;
-  whyLoophole: string;
-  beforeText: string;
-  proposedFixText: string;
-}
-
-export const NEW_CONTINUITY_LOOPHOLES: ContinuityLoopholeRecord[] = [
-  {
-    id: 'L1',
-    ruleId: 'RULE_1_PLANT_PAYOFF',
-    severity: 'HIGH',
-    week: 2,
-    day: 2,
-    relatedCoord: 'W2D2 ↔ W1D3 / W1D6 / W2D1',
-    title: 'Unplanted Ford Cart-Ruts Callback in Week 2 · Day 2 [PRESS ON: THE RUTS]',
-    whyLoophole:
-      'In Week 2 · Day 2 (The Mill), [PRESS ON: THE RUTS] says: "The left wheel pulls. You have seen that track before, coming down a muddy bank to a ford. It is the same cart." However, on Week 1 · Day 6 (The Ford), Tamsin walked on foot to the water\'s edge and was lifted into a boat—no cart tracks were planted at the ford! Cart-ruts were only seen at The Widow\'s Tooth (W1D3) and mentioned on the mill road (W2D1).',
-    beforeText:
-      'W2D2 [PRESS ON: THE RUTS]: "The left wheel pulls. You have seen that track before, coming down a muddy bank to a ford. It is the same cart." (While W1D6 had only foot-prints to a boat.)',
-    proposedFixText:
-      'W2D2 [PRESS ON: THE RUTS]: "The left wheel pulls—cutting a deeper groove on the near side. You saw that same lopsided rut in the bracken below the Widow\'s Tooth, and where the cart backed down the high bank above the ford. One cart, working both roads." (And plant the matching high-bank wheel mark on W1D6.)',
-  },
-  {
-    id: 'L2',
-    ruleId: 'RULE_1_PLANT_PAYOFF',
-    severity: 'MEDIUM',
-    week: 2,
-    day: 2,
-    relatedCoord: 'W2D2 → W2D5',
-    title: 'Orphaned Physical Clue ("a horn button from the taker\'s sleeve") in Week 2 · Day 2',
-    whyLoophole:
-      'Passing THE MILLER\'S WIFE on Week 2 · Day 2 rewards a specific physical token ("she presses a horn button torn from the taker\'s sleeve into your hand"), but youHold is left empty on W2D2 and the button is never matched against any Order member later in Week 2.',
-    beforeText:
-      'W2D2 youHold: undefined. W2D5 passBranchText: "You wind him and tear a small black cloth circle from his coat before he flashes a shuttered lamp twice toward the shaft."',
-    proposedFixText:
-      'W2D2 youHold: "a horn button from the taker\'s sleeve". W2D5 passBranchText: "You wind him and tear a small black cloth circle from his coat—right beside a snapped thread at the cuff where a horn button was wrenched off at the mill."',
-  },
-  {
-    id: 'L3',
-    ruleId: 'RULE_2_CLIFFHANGER_HOOK',
-    severity: 'MEDIUM',
-    week: 2,
-    day: 3,
-    relatedCoord: 'W2D2 pullLine → W2D3 opening',
-    title: 'Unresolved Weather Cliffhanger Between Week 2 · Day 2 and Week 2 · Day 3',
-    whyLoophole:
-      'Week 2 · Day 2 ends with the urgency hook: "Upriver. The ruts are four nights old, and there is weather coming." Yet Week 2 · Day 3 (Upriver — Where the Tracks Stop) never mentions rain or weather threatening to wash out the four-night-old ruts.',
-    beforeText:
-      'W2D3 summaryLearned: "The cart took a hidden path into the hillside. A stranger died trying to pick a Seeker lock that opened for you." (No mention of the coming squall from Day 2\'s cliffhanger.)',
-    proposedFixText:
-      'W2D3 summaryLearned: "Just as the first cold river squall begins to blur the four-night-old ruts, you trace the dragging left wheel off the road onto a dry hidden path under the trees—where a stranger died a week ago with his pick jammed in a Seeker lock that opens at your touch."',
-  },
-  {
-    id: 'L4',
-    ruleId: 'RULE_5_DUAL_DAY_PARITY',
-    severity: 'HIGH',
-    week: 2,
-    day: 3,
-    relatedCoord: 'W2D3, W4D2, W4D5, W6D6',
-    title: 'Four Dual Challenge+Fight Days Have fightReward: 0 Instead of Canonical +300g',
-    whyLoophole:
-      'Core Rules §4 & §12 specify that every weekday fight rewards +300g on win (+150g on loss). Four Dual Days that have both a Challenge and a Fight (W2D3 The Dog on the Chain, W4D2 The Men at the Ford, W4D5 The Man with the Boat, and W6D6 The One That Turned) had fightReward: 0 in the chapter table.',
-    beforeText:
-      'W2D3, W4D2, W4D5, W6D6: hasFight: true, fightReward: 0, and no explicit preFightChoice hint showing how the Challenge roll sets first strike.',
-    proposedFixText:
-      'Set fightReward: 300 on W2D3, W4D2, W4D5, and W6D6, and attach the Challenge-to-Fight first-strike rule note on each Dual Day Fight Card so passing the day\'s Challenge grants first strike in the fight.',
-  },
-  {
-    id: 'L5',
-    ruleId: 'RULE_3_TIMELINE_MATH',
-    severity: 'HIGH',
-    week: 5,
-    day: 6,
-    relatedCoord: 'W5D5 (8 strokes) → W5D6 → W6D1 (6 strokes)',
-    title: 'Highwall Watch-Page Countdown Skips Stroke 7 Between Week 5 · Day 5 and Week 6 · Day 1',
-    whyLoophole:
-      'On Week 5 · Day 5, the watchmen cross out one chalk stroke at dusk "leaving eight." Then on Week 5 · Day 6 / Gathering 5, only one dusk passes—yet Week 6 · Day 1 opens with "Six nights left" (skipping seven).',
-    beforeText:
-      'W5D6 summaryLearned: "The fifth is in a hidden room inside the wall itself, with one slit window facing the hall. Tonight, nobody heard you." (Does not account for the 7th stroke before W6D1 opens at 6.)',
-    proposedFixText:
-      'W5D6 summaryLearned: "As dusk falls and the watchman in the square below draws chalk through the seventh stroke, you slip unseen along the wall walk: the fifth is inside the thickness of this wall." (And at W6D1 dusk, the sixth stroke is crossed out, keeping 9 → 8 → 7 → 6 → 5 → 4 → 3 → 2 → 1 exact.)',
-  },
-  {
-    id: 'L6',
-    ruleId: 'RULE_4_CHARACTER_WATCH',
-    severity: 'MEDIUM',
-    week: 4,
-    day: 1,
-    relatedCoord: 'W2G2 Prisoner → W4D1 (Under the Kiln)',
-    title: 'Prisoner Rope-Cutting Watch Loophole in Week 4 · Day 1 (Under the Kiln)',
-    whyLoophole:
-      'At the start of Week 4 · Day 1, the robed prisoner\'s ropes are cut clean "within arm\'s reach, in the dark" while the whole party is standing in the room. Grounding the post by the passage mouth where the shuttered lantern was held while the party lifted Wren down the rope makes the geography watertight without tipping off the Episode 6 twist.',
-    beforeText:
-      'W4D1 passBranchText: "Heel, then toe, evenly spaced: his ropes were cut clean and he walked out at the pace of a man leaving a church."',
-    proposedFixText:
-      'W4D1 passBranchText: "Heel, then toe, evenly spaced: while all eyes were up on the scree lifting Wren down and Garrick held the shuttered lantern by the passage mouth, the prisoner\'s ropes at the outer post were parted clean—and he walked out at the pace of a man leaving a church."',
-  },
-];
-
-export function getChapterWithContinuityFixes(
-  chapter: WeekdayInventoryItem,
-  appliedLoopholeIds: string[]
-): WeekdayInventoryItem {
-  const computedKind: 'CHALLENGE' | 'FIGHT' | 'CHALLENGE_AND_FIGHT' =
-    chapter.challengeTitle && chapter.hasFight
-      ? 'CHALLENGE_AND_FIGHT'
-      : chapter.hasFight
-      ? 'FIGHT'
-      : 'CHALLENGE';
-  const patched: WeekdayInventoryItem = { ...chapter, kind: computedKind };
-
-  if (appliedLoopholeIds.includes('L1')) {
-    if (patched.week === 1 && patched.day === 6) {
-      patched.passBranchText =
-        'High on the muddy bank above the ford, a heavy cart with a pulling left wheel backed down and turned north; below it, her small prints walk unhurt to the water\'s edge where a man lifted her into a boat.';
-    }
-    if (patched.week === 2 && patched.day === 2) {
-      patched.pressOnDetail =
-        'The left wheel pulls—cutting a deeper groove on the near side. You saw that same lopsided rut in the bracken below the Widow\'s Tooth, and where the cart backed down the high bank above the ford. It is the same cart.';
-    }
-  }
-
-  if (appliedLoopholeIds.includes('L2')) {
-    if (patched.week === 2 && patched.day === 2) {
-      patched.youHold = 'a horn button from the taker\'s sleeve';
-    }
-    if (patched.week === 2 && patched.day === 5) {
-      patched.passBranchText =
-        'You wind him and tear a small black cloth circle from his coat—right beside a snapped thread at the cuff where a horn button was wrenched off at the mill.';
-      patched.youHold = 'the black circle · matched horn button cuff';
-    }
-  }
-
-  if (appliedLoopholeIds.includes('L3')) {
-    if (patched.week === 2 && patched.day === 3) {
-      patched.summaryLearned =
-        'Just as the first cold river squall begins to blur the four-night-old ruts, you trace the dragging left wheel onto a dry hidden path into the hillside. A stranger died trying to pick a Seeker lock that opened for you.';
-    }
-  }
-
-  if (appliedLoopholeIds.includes('L4')) {
-    if (
-      (patched.week === 2 && patched.day === 3) ||
-      (patched.week === 4 && patched.day === 2) ||
-      (patched.week === 4 && patched.day === 5) ||
-      (patched.week === 6 && patched.day === 6)
-    ) {
-      patched.fightReward = 300;
-      patched.preFightChoice = {
-        optA: `CLEAR [${patched.challengeTitle}] → YOU STRIKE FIRST`,
-        optB: `FAIL [${patched.challengeTitle}] → ENEMY STRIKES FIRST`,
-        noticeHint: `Dual-Day Rule: Clearing today's ${patched.challengeAttrs?.join(' / ')} Challenge lets you strike first in this +300g weekday fight.`,
-      };
-    }
-  }
-
-  if (appliedLoopholeIds.includes('L5')) {
-    if (patched.week === 5 && patched.day === 6) {
-      patched.summaryLearned =
-        'As dusk falls and the watchman in the square below draws chalk through the seventh stroke (seven left), you cross the wall walk unseen: the fifth is in a hidden room inside the wall itself.';
-      patched.youHold = 'the map · watch-board: seven left';
-    }
-  }
-
-  if (appliedLoopholeIds.includes('L6')) {
-    if (patched.week === 4 && patched.day === 1) {
-      patched.passBranchText =
-        'Heel, then toe, evenly spaced: while all eyes were up on the scree lifting Wren down and Garrick held the shuttered lantern by the passage mouth, the prisoner\'s ropes at the outer post were parted clean—and he walked out at the pace of a man leaving a church.';
-    }
-  }
-
-  return patched;
-}
-
-export interface ContinuityChainRow {
-  week: number;
-  day: number;
-  place: string;
-  question: string;
-  plantOrToken: string;
-  cliffhangerPull: string;
-  nextDayTarget: string;
-  loopholeId?: 'L1' | 'L2' | 'L3' | 'L4' | 'L5' | 'L6';
-  status: 'WATER-TIGHT' | 'LOOPHOLE FLAGGED' | 'FIX PREVIEW ACTIVE';
-}
-
-export function buildContinuityChainMatrix(appliedLoopholeIds: string[]): ContinuityChainRow[] {
-  return WEEKDAY_INVENTORY.map((item, idx) => {
-    const patched = getChapterWithContinuityFixes(item, appliedLoopholeIds);
-    const nextItem = WEEKDAY_INVENTORY[idx + 1];
-    const nextDayTarget = nextItem
-      ? `W${nextItem.week}D${nextItem.day} · ${nextItem.place}`
-      : 'Week 6 · Day 7 Finale (His Hall)';
-
-    let loopholeId: 'L1' | 'L2' | 'L3' | 'L4' | 'L5' | 'L6' | undefined;
-    if (item.week === 2 && item.day === 2) loopholeId = 'L1';
-    else if (item.week === 2 && item.day === 5) loopholeId = 'L2';
-    else if (item.week === 2 && item.day === 3) loopholeId = 'L3';
-    else if (
-      (item.week === 4 && item.day === 2) ||
-      (item.week === 4 && item.day === 5) ||
-      (item.week === 6 && item.day === 6)
-    ) {
-      loopholeId = 'L4';
-    } else if (item.week === 5 && item.day === 6) loopholeId = 'L5';
-    else if (item.week === 4 && item.day === 1) loopholeId = 'L6';
-
-    const status: ContinuityChainRow['status'] = !loopholeId
-      ? 'WATER-TIGHT'
-      : appliedLoopholeIds.includes(loopholeId)
-      ? 'FIX PREVIEW ACTIVE'
-      : 'LOOPHOLE FLAGGED';
-
-    return {
-      week: patched.week,
-      day: patched.day,
-      place: patched.place,
-      question: patched.question,
-      plantOrToken: patched.youHold || patched.plantTag || '— (Investigation step)',
-      cliffhangerPull: patched.pullLine,
-      nextDayTarget,
-      loopholeId,
-      status,
-    };
-  });
-}
-```
-
-## FILE: `src/data/soloLandmarkProse.ts`
-
-```ts
-import { AttributeName } from './mythiosRulesData';
-import { WEEKDAY_INVENTORY, WeekdayInventoryItem } from './mythiosChaptersData';
-import { SEEKER_FRAGMENTS } from './mythiosFragments';
-import { getPublicFanOutClue } from './campfireDaysData';
-
-export interface DailyRecapData {
-  header: string;
-  yesterdayPlace: string;
-  recapText: string;
-}
-
-export interface TeammateBoardFinding {
-  id: string;
-  member: 'MEI' | 'DEV' | 'ARJUN';
-  author: string;
-  role: string;
-  roleTag: string;
-  color: string;
-  title: string;
-  clueTitle: string;
-  summary: string;
-  clueText: string;
-  garrickCrossCheckPrompt: string;
-  memberFollowUpReply: string;
-}
-
-export interface DayFanOutData {
-  leadInParagraph1: string;
-  leadInParagraph2: string;
-  branchA: FanOutBranchChallenge;
-  branchB: FanOutBranchFight;
-  branchC: FanOutBranchChallenge;
-  teammateFindings: TeammateBoardFinding[];
-  garrickSynthesisWhenPlayerShares: (playerClueText: string, fragWord1: string) => string;
-}
-
-/**
- * 1. DAILY RECAP AT THE START OF EVERY DAY (For Async Continuity)
- * Gives players who missed yesterday (or are logging in fresh) a crystal-clear
- * bridge from yesterday's landmark to today's arrival.
- */
-export function getDailyRecap(week: number, day: number): DailyRecapData {
-  if (week === 1 && day === 1) {
-    return {
-      header: 'PROLOGUE · THE DROVE ROAD',
-      yesterdayPlace: 'The Autumn Forest Road',
-      recapText:
-        'You set out alone along the autumn forest road carrying your tools and gear. Ahead under the dripping oaks, a stranger crouches beside the jammed lock of your cargo box.',
-    };
-  }
-
-  if (week === 1 && day === 2) {
-    return {
-      header: 'YESTERDAY’S TRAIL · W1·D1 THE FOREST ROAD',
-      yesterdayPlace: 'W1·D1 · The forest road',
-      recapText:
-        'Yesterday on the autumn forest road, you drove off a stranger tampering with your cargo box alone and discovered nothing stolen—only a half-burned charcoal rubbing and a torn stub listing four names alongside an address: "The Hollow Wake Inn, on the drove road." Following that note north, you step through the inn door today.',
-    };
-  }
-
-  let prevW = week;
-  let prevD = day - 1;
-  if (prevD < 1) {
-    prevW = week - 1;
-    prevD = 6;
-  }
-
-  const prevItem = WEEKDAY_INVENTORY.find((i) => i.week === prevW && i.day === prevD);
-  const currItem = WEEKDAY_INVENTORY.find((i) => i.week === week && i.day === day);
-
-  if (day === 1 && week > 1) {
-    const gatheringRecaps: Record<number, { place: string; text: string }> = {
-      2: {
-        place: 'Week 1 Gathering · The Drowned Mine',
-        text: 'Last night at the drowned mine, your party rescued nine-year-old Tamsin from the takers before the dark moon rose. On the stone wall behind her, you uncovered three more children’s names—sending you north toward the mill road at first light.',
-      },
-      3: {
-        place: 'Week 2 Gathering · Under the Hillside',
-        text: 'Last night in the buried chamber under the hillside, your party pulled the miller’s boy Corin alive from the ring of lamps before his hands could be cut. Before the watchers fled, they whispered that a third child had already been moved "somewhere warm."',
-      },
-      4: {
-        place: 'Week 3 Gathering · Inside the Kiln',
-        text: 'Last night inside the volcanic crown of the Kiln, your party freed young Wren from the grey-coated riders and bound their leader—only for someone standing among you in the pitch dark to slice his ropes clean and let him walk out untouched.',
-      },
-      5: {
-        place: 'Week 4 Gathering · Under Old Reedham',
-        text: 'Last night beneath the drowned church of Old Reedham, your party rescued the woodcarver’s boy Joss from the flooded vault. With four children safe and four Seeker maps recovered, only the unrecorded fifth Stone remains.',
-      },
-      6: {
-        place: 'Week 5 Gathering · Inside the Wall of Highwall',
-        text: 'Last night inside the hollow outer wall of the dead capital Highwall, your party claimed the fifth Seeker Stone and a watch-page counting down six nights until the dark moon rises over the sealed royal hall.',
-      },
-    };
-    const g = gatheringRecaps[week] || gatheringRecaps[2];
-    return {
-      header: `PREVIOUSLY · AFTER ${g.place.toUpperCase()}`,
-      yesterdayPlace: g.place,
-      recapText: g.text,
-    };
-  }
-
-  const resolveN = (str: string, w: number, d: number) =>
-    str.replace(/\[N\]/g, w === 1 && d === 1 ? 'four (with blank lines below)' : String(Math.max(1, 7 - d)));
-
-  const prevPlace = prevItem ? prevItem.place : 'Yesterday’s Landmark';
-  const prevLearned = prevItem ? resolveN(prevItem.summaryLearned, prevW, prevD) : '';
-  const currPlace = currItem ? currItem.place : 'Today’s Landmark';
-
-  return {
-    header: `YESTERDAY’S TRAIL · W${prevW}·D${prevD} ${prevPlace.toUpperCase()}`,
-    yesterdayPlace: prevPlace,
-    recapText: `At ${prevPlace}, your party uncovered a vital lead: ${prevLearned} Following that trail, you and your companions now arrive at ${currPlace}.`,
-  };
-}
-
-/**
- * 2. OPENING SCENE NARRATION (2 Rich Paragraphs: Context-Aware World-Building + Clear Navigation)
- */
-export function getOpeningSceneProse(dayData: WeekdayInventoryItem): {
-  paragraph1: string;
-  paragraph2: string;
-} {
-  // Do NOT leak asymmetricChoices[0].detail before the player chooses (preserves C5 agency).
-  // Only include pre-fight notice hints so attentive players can deduce first-strike (preserves C6).
-  const noticeLead = dayData.preFightChoice?.noticeHint
-    ? ` ${dayData.preFightChoice.noticeHint.replace(/^.*Notice:\s*/i, '')}`
-    : '';
-
-  const isW1D1 = dayData.week === 1 && dayData.day === 1;
-  const isW1D2 = dayData.week === 1 && dayData.day === 2;
-  const isHighwallInterior = dayData.week === 6;
-  const isNightOrDusk =
-    dayData.day === 6 ||
-    (dayData.week === 4 && dayData.day === 4) ||
-    /night|dusk|dark|moon|lantern|lamp/i.test(dayData.place + ' ' + dayData.question);
-
-  let arrivalLead = '';
-  if (isW1D1) {
-    arrivalLead = `You walk the wet autumn road alone at ${dayData.place}, where a stranger crouches beside the jammed lock of your cargo box under the dripping oaks.`;
-  } else if (isW1D2) {
-    arrivalLead = `Following the address from your cargo box into the warm lamplight of ${dayData.place}, you find three other travellers—Mei, Dev, and Arjun—already seated in the common room holding torn paper stubs identical to yours, while the innkeeper Garrick sets a missing scholar’s leather satchel on the table between you.`;
-  } else if (isHighwallInterior) {
-    arrivalLead = `Slipping from the hidden Seeker safe-room inside the dead stone of Highwall, you and your companions move through the cold shadows of ${dayData.place} while Garrick keeps watch at the slit-window.`;
-  } else if (isNightOrDusk) {
-    arrivalLead = `As dusk deepens into shadow over ${dayData.place}, you, Mei, Dev, and Arjun move in low behind the cover of the stonework while Garrick holds the rear watch.`;
-  } else {
-    arrivalLead = `Following yesterday’s lead to ${dayData.place}, you, Mei, Dev, and Arjun fan out to examine the ground while Garrick keeps a quiet eye on the road behind you.`;
-  }
-
-  const cleanQuestion = dayData.question.replace(/\[N\]/g, 'four');
-  const questionFraming = isW1D1
-    ? 'One urgent question hangs in the cold air here:'
-    : isW1D2
-    ? 'One urgent question hangs in the common room here:'
-    : 'One urgent question hangs over your party here:';
-  const paragraph1 = `${arrivalLead}${noticeLead} ${questionFraming} ${cleanQuestion}`;
-
-  let paragraph2 = '';
-  if (dayData.challengeTitle && dayData.hasFight) {
-    const attrs = dayData.challengeAttrs
-      ? `${dayData.challengeAttrs[0]} or ${dayData.challengeAttrs[1]}`
-      : 'your best instincts';
-    paragraph2 = `Before steel is drawn at ${dayData.place}, you face an immediate opening test—${dayData.challengeTitle.toLowerCase()}—calling on ${attrs}. How you handle this approach determines who takes the first strike when ${
-      dayData.fightEnemyName || 'the sentry'
-    } closes in.`;
-  } else if (dayData.challengeTitle) {
-    const attrs = dayData.challengeAttrs
-      ? `${dayData.challengeAttrs[0]} or ${dayData.challengeAttrs[1]}`
-      : 'your training';
-    paragraph2 = `Your direct path to the truth at ${dayData.place} runs straight through a delicate obstacle: ${dayData.challengeTitle.toLowerCase()}. Choose whether to approach with ${attrs}—if you pass, the way opens cleanly; if you fail, the noise of the failed attempt will draw an alerted lookout right onto your position.`;
-  } else {
-    paragraph2 = `Before you can search the stonework at ${dayData.place} for today’s Seeker Fragment, steel scrapes against stone ahead. ${
-      dayData.fightEnemyName || 'A sentry'
-    } steps out to bar your path, leaving you no choice but to fight your way through to reach the clue beyond.`;
-  }
-
-  return { paragraph1, paragraph2 };
-}
-
-/**
- * 3. POST-CHALLENGE NARRATION (References Chosen Action, Never Repeats Summary, Clear Next Step)
- */
-export function getPostChallengeProse(
-  dayData: WeekdayInventoryItem,
-  chosenAttr: AttributeName,
-  cleared: boolean
-): {
-  paragraph1: string;
-  paragraph2: string;
-} {
-  const attrActionPhrase: Record<AttributeName, string> = {
-    Might: 'bringing raw physical force to bear at the exact point of leverage',
-    Agility: 'moving with silent, sure-footed precision along the blind angle',
-    Intellect: 'piecing together the quiet physical evidence and timeline before acting',
-    Charm: 'speaking with measured warmth and steadiness to earn trust',
-    Craft: 'reading the joints, latch-work, and tool-marks with a maker’s eye',
-    Aim: 'sighting the angles and subtle tracks from a careful distance',
-  };
-
-  const approachText = attrActionPhrase[chosenAttr] || 'committing to your chosen approach';
-  const isW1D2 = dayData.week === 1 && dayData.day === 2;
-
-  if (cleared) {
-    const paragraph1 = `Relying on your ${chosenAttr}—${approachText}—you clear the obstacle at ${dayData.place} on the first attempt. ${dayData.passBranchText.replace(/\[N\]/g, 'four')}`;
-
-    const paragraph2 = dayData.hasFight
-      ? `Because you handled the approach cleanly without giving yourself away, you spot ${
-          dayData.fightEnemyName || 'the sentry'
-        } moving in before they can spring their trap—granting you a First-Strike Advantage (+2 WEP) in the confrontation right ahead!`
-      : isW1D2
-      ? `As the four torn stubs fit cleanly into Meira’s notebook (${dayData.summaryLearned.replace(/\[N\]/g, 'four')}), you, Mei, Dev, and Arjun exchange a look across the common room while Garrick bolts the inn door—officially forming your party to ride north and save the first child! Stepping to the hearth-stone at ${dayData.place}, you also lift today’s carved Seeker Fragment free.`
-      : `With the obstacle behind you and the truth in hand (${dayData.summaryLearned.replace(/\[N\]/g, 'four')}), you step closer to the weathered masonry at ${dayData.place}, where your fingers catch the recessed socket of a carved Seeker Fragment waiting to be lifted free.`;
-
-    return { paragraph1, paragraph2 };
-  } else {
-    const obstacleName = dayData.challengeTitle
-      ? dayData.challengeTitle.toLowerCase()
-      : 'the obstacle';
-    const paragraph1 = `Despite ${approachText} with your ${chosenAttr}, your attempt on ${obstacleName} slips at the worst possible moment. ${dayData.failBranchText.replace(/\[N\]/g, 'four')}`;
-
-    const paragraph2 = dayData.hasFight
-      ? `The sharp noise of your failed attempt echoes across ${dayData.place}, alerting ${
-          dayData.fightEnemyName || 'the sentry'
-        }! Before you can reset your stance, they lunge from cover as the fight begins.`
-      : `Worse still, the sharp commotion from ${obstacleName} carries across ${dayData.place}—and heavy boots come running! An alerted lookout hears you and lunges out of the shadows to corner you, forcing you to fight your way clear before you can salvage the trail (+50g consolation bounty on victory).`;
-
-    return { paragraph1, paragraph2 };
-  }
-}
-
-/**
- * 4. POST-DETOUR FIGHT NARRATION (When a player fails a Challenge-only day, alerts a lookout, and wins the skirmish for +50g)
- */
-export function getPostDetourFightProse(dayData: WeekdayInventoryItem): {
-  paragraph1: string;
-  paragraph2: string;
-} {
-  const obstacleName = dayData.challengeTitle
-    ? dayData.challengeTitle.toLowerCase()
-    : 'the jammed obstacle';
-  const isW1D2 = dayData.week === 1 && dayData.day === 2;
-  const paragraph1 = `Breathing hard after driving off the lookout who heard you at ${obstacleName}, you recover a 50g pouch from the fallen sentry’s belt (+50g consolation bounty) and force the rest of the way open before another guard can answer the noise.`;
-  const paragraph2 = isW1D2
-    ? `Back inside ${dayData.place}, the four torn stubs fit into Meira’s notebook (${dayData.summaryLearned.replace(/\[N\]/g, 'four')}). Seeing the proof on the page, you, Mei, Dev, and Arjun join forces with Garrick—officially forming your party as you pry loose today’s carved Seeker Fragment from the hearth-stone.`
-    : `Working quickly through the aftermath at ${dayData.place}, you piece together what the clean approach would have shown: ${dayData.summaryLearned.replace(/\[N\]/g, 'four')} Right beside the mark, you pry loose today’s carved Seeker Fragment and slide it into your satchel.`;
-  return { paragraph1, paragraph2 };
-}
-
-/**
- * 5. POST-MAIN-FIGHT NARRATION (Never duplicates Challenge passBranchText on Challenge+Fight days!)
- */
-export function getPostFightProse(
-  dayData: WeekdayInventoryItem,
-  hadChallenge: boolean,
-  challengeCleared: boolean
-): {
-  paragraph1: string;
-  paragraph2: string;
-} {
-  const enemy =
-    dayData.fightEnemyName ||
-    (dayData.week < 3 ? 'the lookout' : 'the Order sentry');
-
-  if (hadChallenge) {
-    // On a Challenge + Fight day, passBranchText/failBranchText was already shown after the Challenge!
-    // Here we deliver distinct combat-aftermath + synthesis prose so nothing ever repeats.
-    const paragraph1 = challengeCleared
-      ? `Pressing the advantage from your opening approach, your final strike drives ${enemy} back across ${dayData.place} until they break and retreat into the cover of the trees, leaving the ground in your hands.`
-      : `Shaking off the sting of the opening ambush, you weather ${enemy}’s blows and turn the fight around at ${dayData.place}, forcing your opponent to abandon their post and flee down the trail.`;
-
-    const paragraph2 = `With ${enemy} driven off, the picture at ${dayData.place} locks into focus: ${dayData.summaryLearned.replace(/\[N\]/g, 'four')} Crouching where ${enemy} stood guard, you brush away the dirt and lift today’s carved Seeker Fragment from its stone housing.`;
-    return { paragraph1, paragraph2 };
-  }
-
-  // On a Fight-only day, passBranchText is the fight's canon outcome!
-  const paragraph1 = `After a tense exchange of steel at ${dayData.place}, your final blow breaks ${enemy}’s guard. ${dayData.passBranchText.replace(/\[N\]/g, 'four')}`;
-  const paragraph2 = `Standing over the cleared ground, the meaning of what happened at ${dayData.place} becomes unmistakable: ${dayData.summaryLearned.replace(/\[N\]/g, 'four')} Right beside the mark, your fingers uncover the recessed stone housing holding today’s Seeker Fragment.`;
-  return { paragraph1, paragraph2 };
-}
-
-/**
- * 6. FULL UNRUSHED "FANNING OUT" SOLO ENCOUNTER BEAT (Beats 5, 6 & 7) + TEAMMATE BOARD CLUES
- * Every single day offers:
- * - Branch A: A full Solo Challenge Encounter (meeting a person / finding a locked chest or cache)
- * - Branch B: A full Solo Fight Skirmish (intercepting an Order scout / perimeter guard)
- * - Branch C: Regroup straight at Garrick's campfire
- * Completing Branch A or Branch B unlocks the 1st-letter placement hint on today's Seeker Fragment + a Solo Clue for the Campfire Board!
- */
-export interface FanOutBranchChallenge extends FanOutBranchOption {
-  kind: 'CHALLENGE';
-  id: 'BRANCH_A' | 'BRANCH_C';
-  summaryLabel: string;
-  playerDeclareText: string;
-  attrs: [AttributeName, AttributeName];
-  attr1ActionTitle: string;
-  attr1ActionDesc: string;
-  attr2ActionTitle: string;
-  attr2ActionDesc: string;
-}
-
-export interface FanOutBranchFight extends FanOutBranchOption {
-  kind: 'FIGHT';
-  id: 'BRANCH_B';
-  summaryLabel: string;
-  playerDeclareText: string;
-  winParagraph1: string;
-  winParagraph2: string;
-}
-
-export function getFanOutEncounterData(dayData: WeekdayInventoryItem): DayFanOutData {
-  const place = dayData.place;
-  const placeShort = place.replace(/^The\s+/i, '');
-  const dayFrag = SEEKER_FRAGMENTS.find(
-    (f) => f.week === dayData.week && f.day === dayData.day
-  );
-  const word1 = dayFrag?.word1 || 'LOCK';
-  const firstLetter1 = (word1[0] || 'L').toUpperCase();
-
-  const isW1 = dayData.week === 1;
-  const isW2 = dayData.week === 2;
-  const isW1D1 = dayData.week === 1 && dayData.day === 1;
-  const factionName = isW1
-    ? 'the quiet riders'
-    : isW2
-    ? 'the hooded watchers'
-    : 'the Order';
-  const scoutName = isW1
-    ? 'Rear-Guard Lookout'
-    : isW2
-    ? 'Hooded Rear-Guard Scout'
-    : 'Order Rear-Guard Scout';
-  const campHostRef = 'Garrick expects you back at the campfire';
-
-  // Canonical Fan Out clue from campfire-days.json (title + text verbatim)
-  const canonicalClue = getPublicFanOutClue(dayData.week, dayData.day);
-
-  const leadInParagraph1 = isW1D1
-    ? `With today’s carved Seeker Fragment safely tucked into your satchel beside the torn stub naming The Hollow Wake Inn, you stand alone at ${place} as long purple shadows stretch across the wet timber.`
-    : `With today’s carved Seeker Fragment safely tucked into your satchel, the four of you pause at ${place} as long purple shadows stretch across the ground. There is still half an hour of grey light left before ${campHostRef}.`;
-  const leadInParagraph2 = isW1D1
-    ? `Before you follow the drove road north toward The Hollow Wake Inn, you can fan out on a Challenge or Fight branch to uncover today’s clue ("${canonicalClue.title}") and the Seeker Fragment first-letter hint, or head straight on.`
-    : `Before nightfall, each friend can take a Fan Out branch (Challenge or Fight — both bring back today’s clue "${canonicalClue.title}" and the Seeker Fragment first-letter hint) or choose Head to Campfire (bringing no clue and learning it from the board).`;
-
-  const branchA: FanOutBranchChallenge = {
-    kind: 'CHALLENGE',
-    branchType: 'CHALLENGE',
-    id: 'BRANCH_A',
-    title: `CHALLENGE: ${canonicalClue.title.toUpperCase()}`,
-    badge: '🎯 CHALLENGE · +150G & CLUE',
-    color: '#4FD1C5',
-    summaryLabel: `Investigate ${placeShort} to uncover "${canonicalClue.title}" and the first-letter Fragment hint.`,
-    label: `Investigate ${placeShort} to uncover "${canonicalClue.title}" and the first-letter Fragment hint.`,
-    playerDeclareText: `Before the light goes at ${place}, I’m fanning out to examine "${canonicalClue.title}".`,
-    playerDeclaration: `Before the light goes at ${place}, I’m fanning out to examine "${canonicalClue.title}".`,
-    arrivalParagraph1: isW1D1
-      ? `Before leaving ${place} behind, you move in close to search the ground in the fading grey light.`
-      : `You move in close at ${place} in the fading grey light before joining the others at the fire.`,
-    arrivalParagraph2: `Trace the physical signs with Craft or piece the scene together with Intellect to uncover "${canonicalClue.title}" and reveal the starting letter "${firstLetter1}" for today’s Seeker Fragment.`,
-    challengeTitle: canonicalClue.title.toUpperCase(),
-    attrs: ['Craft', 'Intellect'],
-    challengeAttrs: ['Craft', 'Intellect'],
-    challengeObstacle: 34 + dayData.week * 5,
-    attr1ActionTitle: `EXAMINE WITH CRAFT`,
-    attr1ActionDesc: `Use Craft to read the physical details at ${placeShort}.`,
-    attr2ActionTitle: `EXAMINE WITH INTELLECT`,
-    attr2ActionDesc: `Use Intellect to read what happened at ${placeShort}.`,
-    passParagraph1: `${canonicalClue.text}`,
-    passParagraph2: `Alongside "${canonicalClue.title}", you trace the Seeker mason’s guide-letter confirming that today’s first Fragment lock-word begins with "${firstLetter1}".`,
-    failParagraph1: `The fading light and shifting footing at ${place} work against you before you can lock the trace down.`,
-    failParagraph2: `With night closing in over ${place}, you head toward the fire to check the board.`,
-    soloClueTitle: canonicalClue.title,
-    soloClueText: canonicalClue.text,
-  };
-
-  const branchBWin1 = `${canonicalClue.text}`;
-  const branchBWin2 = `Driving the ${scoutName.toLowerCase()} back from ${place} also uncovers the Seeker mason’s guide-letter confirming that today’s first Fragment lock-word begins with "${firstLetter1}".`;
-
-  const branchB: FanOutBranchFight = {
-    kind: 'FIGHT',
-    branchType: 'FIGHT',
-    id: 'BRANCH_B',
-    title: `FIGHT: ${canonicalClue.title.toUpperCase()}`,
-    badge: '⚔️ FIGHT · +150G & CLUE',
-    color: '#E5C158',
-    summaryLabel: `Drive off the ${scoutName.toLowerCase()} at ${placeShort} to uncover "${canonicalClue.title}" and the first-letter Fragment hint.`,
-    label: `Drive off the ${scoutName.toLowerCase()} at ${placeShort} to uncover "${canonicalClue.title}" and the first-letter Fragment hint.`,
-    playerDeclareText: `I’ve spotted a ${scoutName.toLowerCase()} at ${place}—I’m moving in before they slip away.`,
-    playerDeclaration: `I’ve spotted a ${scoutName.toLowerCase()} at ${place}—I’m moving in before they slip away.`,
-    arrivalParagraph1: `Moving along the shadowed edge of ${place}, you catch the scrape of a boot where a lone ${scoutName} has lingered behind.`,
-    arrivalParagraph2: `Drive them off in a fast skirmish to uncover "${canonicalClue.title}" and the starting letter "${firstLetter1}" for today’s Seeker Fragment.`,
-    enemyName: `${scoutName} at ${placeShort}`,
-    enemyHp: 70,
-    enemyDef: Math.max(16, 17 + dayData.week),
-    enemyAtk: 12 + dayData.week,
-    winParagraph1: branchBWin1,
-    winParagraph2: branchBWin2,
-    passParagraph1: branchBWin1,
-    passParagraph2: branchBWin2,
-    failParagraph1: `Bruised from the exchange of steel in the fading light, you lose sight of the ${scoutName.toLowerCase()} as they slip away from ${place}.`,
-    failParagraph2: `With night closing in fast over ${place}, you bind your scrape and head toward the fire.`,
-    soloClueTitle: canonicalClue.title,
-    soloClueText: canonicalClue.text,
-  };
-
-  const branchC: FanOutBranchChallenge = {
-    kind: 'CHALLENGE',
-    branchType: 'CAMPFIRE',
-    id: 'BRANCH_C',
-    title: `HEAD TO CAMPFIRE`,
-    badge: '🔥 HEAD TO CAMPFIRE · NO CLUE',
-    color: '#F0A552',
-    summaryLabel: `Head straight to the fire without fanning out. You bring no clue and learn "${canonicalClue.title}" from the board.`,
-    label: `Head straight to the fire without fanning out. You bring no clue and learn "${canonicalClue.title}" from the board.`,
-    playerDeclareText: `I’m heading straight to the Campfire to see what’s on the board.`,
-    playerDeclaration: `I’m heading straight to the Campfire to see what’s on the board.`,
-    arrivalParagraph1: `You leave ${place} as dusk settles and walk straight toward the firelight.`,
-    arrivalParagraph2: `You bring no Fan Out clue of your own tonight and will read "${canonicalClue.title}" from the Campfire board.`,
-    challengeTitle: `HEAD TO CAMPFIRE`,
-    attrs: ['Agility', 'Aim'],
-    challengeAttrs: ['Agility', 'Aim'],
-    challengeObstacle: 0,
-    attr1ActionTitle: 'HEAD TO CAMPFIRE',
-    attr1ActionDesc: `Walk straight to the Campfire and learn today’s clue from the board.`,
-    attr2ActionTitle: 'HEAD TO CAMPFIRE',
-    attr2ActionDesc: `Walk straight to the Campfire and learn today’s clue from the board.`,
-    passParagraph1: `You arrive at the fire as the kettle goes on. You brought no Fan Out clue of your own and will read "${canonicalClue.title}" from the board.`,
-    passParagraph2: ``,
-    failParagraph1: `You arrive at the fire and will read "${canonicalClue.title}" from the board.`,
-    failParagraph2: ``,
-    soloClueTitle: '',
-    soloClueText: '',
-  };
-
-  const teammateFindings: TeammateBoardFinding[] = [
-    {
-      id: `tf-mei-${dayData.week}-${dayData.day}`,
-      member: 'MEI',
-      author: 'Mei',
-      role: 'SAGE · INTELLECT',
-      roleTag: 'Fan Out Clue',
-      color: '#F49CBB',
-      title: canonicalClue.title,
-      clueTitle: canonicalClue.title,
-      summary: canonicalClue.text,
-      clueText: canonicalClue.text,
-      garrickCrossCheckPrompt: '',
-      memberFollowUpReply: '',
-    },
-    {
-      id: `tf-dev-${dayData.week}-${dayData.day}`,
-      member: 'DEV',
-      author: 'Dev',
-      role: 'ARCHER · AIM',
-      roleTag: 'Fan Out Clue',
-      color: '#5BC0EB',
-      title: canonicalClue.title,
-      clueTitle: canonicalClue.title,
-      summary: canonicalClue.text,
-      clueText: canonicalClue.text,
-      garrickCrossCheckPrompt: '',
-      memberFollowUpReply: '',
-    },
-    {
-      id: `tf-arjun-${dayData.week}-${dayData.day}`,
-      member: 'ARJUN',
-      author: 'Arjun',
-      role: 'ARTIFICER · CRAFT',
-      roleTag: 'Fan Out Clue',
-      color: '#4FD1C5',
-      title: canonicalClue.title,
-      clueTitle: canonicalClue.title,
-      summary: canonicalClue.text,
-      clueText: canonicalClue.text,
-      garrickCrossCheckPrompt: '',
-      memberFollowUpReply: '',
-    },
-  ];
-
-  const garrickSynthesisWhenPlayerShares = () => '';
-
-  return {
-    leadInParagraph1,
-    leadInParagraph2,
-    branchA,
-    branchB,
-    branchC,
-    teammateFindings,
-    garrickSynthesisWhenPlayerShares,
-  };
-}
-
-export function getPartyBoardCluesForDay(week: number, day: number): TeammateBoardFinding[] {
-  const ch =
-    WEEKDAY_INVENTORY.find((d) => d.week === week && d.day === day) || WEEKDAY_INVENTORY[0];
-  return getFanOutEncounterData(ch).teammateFindings;
-}
-
-export function getSoloFanOutEncounter(
-  week: number,
-  day: number
-): {
-  soloClueTitle: string;
-  soloClueText: string;
-  seekerFirstLetter: string;
-} {
-  const canonicalClue = getPublicFanOutClue(week, day);
-  const frag =
-    SEEKER_FRAGMENTS.find((f) => f.week === week && f.day === day) || SEEKER_FRAGMENTS[0];
-  return {
-    soloClueTitle: canonicalClue.title,
-    soloClueText: canonicalClue.text,
-    seekerFirstLetter: (frag.word1[0] || 'L').toUpperCase(),
-  };
-}
-
-export interface FanOutBranchOption {
-  id: string;
-  branchType: 'CHALLENGE' | 'FIGHT' | 'CAMPFIRE';
-  title: string;
-  badge: string;
-  color: string;
-  label: string;
-  playerDeclaration: string;
-  arrivalParagraph1: string;
-  arrivalParagraph2: string;
-  challengeTitle?: string;
-  challengeAttrs?: [AttributeName, AttributeName];
-  challengeObstacle?: number;
-  enemyName?: string;
-  enemyHp?: number;
-  enemyDef?: number;
-  enemyAtk?: number;
-  passParagraph1?: string;
-  passParagraph2?: string;
-  failParagraph1?: string;
-  failParagraph2?: string;
-  soloClueTitle?: string;
-  soloClueText?: string;
-}
-
-export function getDailyRecapBanner(week: number, day: number): string {
-  const r = getDailyRecap(week, day);
-  return `${r.header} — ${r.recapText}`;
-}
-
-export function getOpeningProseParagraphs(dayData: WeekdayInventoryItem): [string, string] {
-  const p = getOpeningSceneProse(dayData);
-  return [p.paragraph1, p.paragraph2];
-}
-
-export function getChallengePassProseParagraphs(
-  dayData: WeekdayInventoryItem,
-  chosenAttr: AttributeName
-): [string, string] {
-  const p = getPostChallengeProse(dayData, chosenAttr, true);
-  return [p.paragraph1, p.paragraph2];
-}
-
-export function getChallengeFailProseParagraphs(
-  dayData: WeekdayInventoryItem,
-  chosenAttr: AttributeName
-): [string, string] {
-  const p = getPostChallengeProse(dayData, chosenAttr, false);
-  return [p.paragraph1, p.paragraph2];
-}
-
-export function getRecoveryProseParagraphs(
-  dayData: WeekdayInventoryItem,
-  _method?: string
-): [string, string] {
-  const p = getPostDetourFightProse(dayData);
-  return [p.paragraph1, p.paragraph2];
-}
-
-export function getFightWinProseParagraphs(
-  dayData: WeekdayInventoryItem,
-  challengeCleared: boolean = true
-): [string, string] {
-  const p = getPostFightProse(
-    dayData,
-    Boolean(dayData.challengeTitle),
-    challengeCleared
-  );
-  return [p.paragraph1, p.paragraph2];
-}
-```
-
-## FILE: `src/data/garrickCampfirePrompts.ts`
-
-```ts
-import { AttributeName } from './mythiosRulesData';
-import { WEEKDAY_INVENTORY } from './mythiosChaptersData';
-import { SEEKER_FRAGMENTS } from './mythiosFragments';
-import { getPartyBoardCluesForDay, getSoloFanOutEncounter } from './soloLandmarkProse';
-
-export type CampfireSpeakerId = 'GARRICK' | 'DEV' | 'MEI' | 'ARJUN';
-export type CampfireShapeCode = 'A' | 'B' | 'C' | 'D' | 'E';
-
-export interface CampfireCanonicalChip {
-  kind: 'THEORY' | 'FRAGMENT' | 'WRY';
-  label: string;
-  playerLine: string;
-  garrickPayoff: string;
-}
-
-export interface CampfireFriendHook {
-  attr: AttributeName;
-  rawTemplate: string;
-  resolvedSpeaker: 'MEI' | 'ARJUN' | 'DEV';
-  resolvedFriendName: string;
-  label: string;
-  playerLine: string;
-  companionReply: string;
-}
-
-export interface CampfireEveningTableEntry {
-  key: string;
-  week: number;
-  day: number;
-  shape: CampfireShapeCode;
-  shapeLabel: string;
-  clueTag: string;
-  garrickObservation: string;
-  openQuestion: string;
-  chips: [CampfireCanonicalChip, CampfireCanonicalChip, CampfireCanonicalChip];
-  friendAttr: AttributeName;
-  friendRawPrompt: string;
-  friendReply: string;
-}
-
-export interface CampfireWaveStance {
-  id: string;
-  wave: 1 | 2 | 3;
-  pillar: 'BOARD_AND_FRAGMENT' | 'MYSTERY_CASE' | 'NEXT_MOVE';
-  chipKind?: 'THEORY' | 'FRAGMENT' | 'WRY' | 'FRIEND_HOOK';
-  label: string;
-  target: CampfireSpeakerId;
-  playerLine: string;
-  companionReply: string;
-  garrickFollowUpHook: string;
-}
-
-export interface GarrickCampfireDayPrompt {
-  week: number;
-  day: number;
-  shape: CampfireShapeCode;
-  shapeLabel: string;
-  clueTag: string;
-  arrivalGreeting: string;
-  beat1Observation: string;
-  beat2Question: string;
-  beat3Hook: string;
-  boardCrossCheckReply: string;
-  canonicalChips: [CampfireCanonicalChip, CampfireCanonicalChip, CampfireCanonicalChip];
-  friendHook: CampfireFriendHook;
-  wave1Stances: CampfireWaveStance[];
-  wave2Stances: CampfireWaveStance[];
-  wave3Stances: CampfireWaveStance[];
-}
-
-export function resolveFriendForAttribute(attr: AttributeName): {
-  speaker: 'MEI' | 'ARJUN' | 'DEV';
-  name: string;
-} {
-  if (attr === 'Intellect' || attr === 'Charm') {
-    return { speaker: 'MEI', name: 'Mei' };
-  }
-  if (attr === 'Craft' || attr === 'Might') {
-    return { speaker: 'ARJUN', name: 'Arjun' };
-  }
-  return { speaker: 'DEV', name: 'Dev' };
-}
-
-export const SHAPE_LABELS: Record<CampfireShapeCode, string> = {
-  A: 'Shape A · Pick-One',
-  B: 'Shape B · Odd-One-Out',
-  C: 'Shape C · Missing Piece',
-  D: 'Shape D · Who-Would',
-  E: 'Shape E · Rank',
-};
-
-/**
- * Complete 36-Evening Hand-Authored Campfire Table (`1-1` through `6-6`)
- * - 1-1 is narrated by the roadside fire before meeting Garrick at the Hollow Wake Inn on 1-2.
- * - 1-2 through 6-6 are hosted by Garrick (including all of Week 6), obeying the Three-Verb Rule
- *   (never promises, predicts, or denies knowing; invents no facts about himself) and the First-Use Reveal Map.
- */
-export const CAMPFIRE_36_EVENING_TABLE: Record<string, CampfireEveningTableEntry> = {
-  '1-1': {
-    key: '1-1', week: 1, day: 1, shape: 'A', shapeLabel: SHAPE_LABELS.A,
-    clueTag: 'The List & Charcoal Rubbing · Forest Road',
-    garrickObservation: 'By the roadside fire on the forest road—one night south of the Hollow Wake Inn—the four of you lay the half-burned charcoal rubbing beside the list found inside your cargo box.',
-    openQuestion: 'A thief breaks a lock to take what is inside. Why break a lock on the forest road to put a list of names and an inn’s address in?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · Someone is gathering us at the inn on purpose',
-        playerLine: 'Whoever sent that man wasn’t robbing us—they wanted all four of us walking into the Hollow Wake Inn tomorrow at the same hour.',
-        garrickPayoff: 'The firelight catches the four names cut into the parchment—four strangers from four roads, all pointed at the same door.',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 1-1 · “Five fell when the dark ate the moon”',
-        playerLine: 'Look at Fragment 1-1 from the roadside stone: “Five fell when the dark ate the moon.” The charcoal rubbing came off a stone just like it.',
-        garrickPayoff: 'Mei traces the raised charcoal grain: the rubbing and the stone verse were cut by the same ancient chisel.',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Best thief in the hills—leaves more than he takes',
-        playerLine: 'If every road-thief in these hills breaks into my box to leave me mail instead of taking my silver, I’ll sleep easy.',
-        garrickPayoff: 'Dev snorts over his bowstring: "Wait until we see the bill at the Hollow Wake Inn before you call it free."',
-      },
-    ],
-    friendAttr: 'Craft',
-    friendRawPrompt: 'Ask {friend:Craft} whether the cargo-box lock was picked with thief’s wire or forced to make us look inside.',
-    friendReply: 'The scratches round the latch are fresh and deliberate—he jammed the bolt on purpose so you’d have to pry the lid open before dark and find the list.',
-  },
-  '1-2': {
-    key: '1-2', week: 1, day: 2, shape: 'B', shapeLabel: SHAPE_LABELS.B,
-    clueTag: 'Meira’s Satchel & Stubs · Hollow Wake Inn',
-    garrickObservation: 'Garrick sets the tin cups down beside Meira’s satchel: “Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen. Left this. Hasn’t been back in three weeks.”',
-    openQuestion: 'Four stubs cut against a straight rule, a rubbing of a standing stone, and two children’s timelines on one page—which piece doesn’t fit a quiet country scholar?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · She knew she was being hunted before she left',
-        playerLine: 'Garrick, a scholar doesn’t cut four separate stubs against a rule and leave her satchel behind unless she knew she wouldn’t make it back.',
-        garrickPayoff: 'Garrick wipes the bar with his cloth: "She had her coat buttoned to the chin when she walked out that door."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 1-2 · “We hid them where their people lived”',
-        playerLine: 'Fragment 1-2 says the Seekers hid the four stones where their people lived—and Meira’s page marks a child living right under the Widow’s Tooth.',
-        garrickPayoff: 'Garrick glances at the page: "Old stones and village roofs. They’ve shared the same hill a long time."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Cheapest wine in the house and she still left a tab',
-        playerLine: 'Two years of your cheapest wine, Garrick, and she still left her luggage on your table instead of settling up.',
-        garrickPayoff: 'Garrick’s mouth twitches: "She paid her slate to the penny. The satchel she left for you."',
-      },
-    ],
-    friendAttr: 'Intellect',
-    friendRawPrompt: 'Ask {friend:Intellect} how the boy from two winters ago connects to the child in Fenmark on Meira’s page.',
-    friendReply: 'Meira recorded two separate entries on the same leaf: a boy held near the Widow’s Tooth two winters back, and a second child born on the same dark-moon night living in Fenmark now.',
-  },
-  '1-3': {
-    key: '1-3', week: 1, day: 3, shape: 'C', shapeLabel: SHAPE_LABELS.C,
-    clueTag: 'A Small Carved Horse · The Widow’s Tooth',
-    garrickObservation: 'Garrick turns the small carved wooden horse toward the firelight: “People tell a man with a cloth in his hand everything. They forget he’s got ears.”',
-    openQuestion: 'The stone marking matches Meira’s rubbing, the dry shelf held a child’s wooden horse, and the lookout bolted toward Fenmark—what is still missing from the scene at the rock?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The child kept here is gone, and they’ve moved to Fenmark',
-        playerLine: 'The shelf under the Widow’s Tooth was dry and empty—the boy who owned this wooden horse was taken long ago, and that runner is heading for the Fenmark child now.',
-        garrickPayoff: 'Garrick sets the carved horse upright on the log: "Old wood, worn smooth by small thumbs. And fresh ruts heading for the village."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 1-3 · “Some locks already know their key”',
-        playerLine: 'Fragment 1-3 says “Not every hand that tries will open it. Some locks already know their key.” That housing opened for our touch.',
-        garrickPayoff: 'Garrick watches the coals: "A lock that waits for the right hand doesn’t need a watchman on the door."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Smelled of woodsmoke, lamp oil, and bad manners',
-        playerLine: 'Next time we grab a lookout by the collar in the bracken, I’d like him to stay long enough to introduce himself.',
-        garrickPayoff: 'Garrick pours the kettle: "Men who crouch in wet bracken rarely stay for tea."',
-      },
-    ],
-    friendAttr: 'Aim',
-    friendRawPrompt: 'Ask {friend:Aim} what the cart-ruts below the Widow’s Tooth tell us about their load.',
-    friendReply: 'The left wheel cuts deeper into the turf than the right—whoever drove that cart toward Fenmark has a pulling left axle we’ll recognize again.',
-  },
-  '1-4': {
-    key: '1-4', week: 1, day: 4, shape: 'D', shapeLabel: SHAPE_LABELS.D,
-    clueTag: 'Nine-Year-Old Tamsin · Fenmark',
-    garrickObservation: 'Garrick listens to the quiet lane of Fenmark beyond the fire: every shutter in the village was barred before your boots hit the street, yet a fourteen-year-old boy risked the elder’s anger to name Tamsin and the curved black-handled knife.',
-    openQuestion: 'In a village too frightened to open its doors, who would tell the takers which house held a nine-year-old born under a dark moon?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · Nobody in Fenmark told them—they already had her birth-night',
-        playerLine: 'The takers didn’t need an informant in Fenmark. Just like Meira’s notebook, they already knew the night Tamsin was born.',
-        garrickPayoff: 'Garrick nods once at the fire: "Men who come straight to one door in the dark brought their own map."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 1-4 · “Born when the dark has eaten the moon”',
-        playerLine: 'Fragment 1-4 from the Fenmark well names it plainly: “Born when the dark has eaten the moon, marked before the first cry’s through.”',
-        garrickPayoff: 'Garrick looks at the well-stone rubbing: "The verse was cut in their own well-curb before a single house in Fenmark stood."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Only honest soul in Fenmark is fourteen years old',
-        playerLine: 'The village elder brought out clubs, and a fourteen-year-old behind the grain store gave us the whole truth in two minutes.',
-        garrickPayoff: 'Garrick remarks dryly: "Boys of fourteen haven’t learned how much trouble the truth costs yet."',
-      },
-    ],
-    friendAttr: 'Charm',
-    friendRawPrompt: 'Ask {friend:Charm} why the villagers barred their shutters instead of asking for help.',
-    friendReply: 'They weren’t hiding guilt—they were terrified that speaking to strangers with weapons would cost them Tamsin’s life.',
-  },
-  '1-5': {
-    key: '1-5', week: 1, day: 5, shape: 'E', shapeLabel: SHAPE_LABELS.E,
-    clueTag: 'The Nephew’s Horse · Old Charcoal Camp',
-    garrickObservation: 'Garrick sets the carved wooden horse beside the plain kitchen knife pulled from the shutter: “The power that gives is also the power that takes.”',
-    openQuestion: 'Rank the three things we learned at the charcoal camp by what matters most for tomorrow: the runner’s kitchen knife, the nephew taken two winters ago, or the north track to the river.',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The two-winter cycle proves they’re collecting marked children',
-        playerLine: 'The charcoal woman’s nephew two winters ago and Tamsin three nights ago—it’s the same man with the curved knife working a list down to the last name.',
-        garrickPayoff: 'Garrick stares into the embers: "Two winters between them, and the same road north."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 1-5 · “The power that gives is also the power that takes”',
-        playerLine: 'Fragment 1-5 at the charcoal kiln says “The power that gives is also the power that takes.” They think the stones are owed something back.',
-        garrickPayoff: 'Garrick turns the tin cup in his fingers: "An old debt, written in stone."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Leaving a kitchen knife in the shutter is poor tradecraft',
-        playerLine: 'For a band of shadowy child-takers, their runner from Fenmark fights with a borrowed kitchen knife and loses it in a wooden shutter.',
-        garrickPayoff: 'Garrick eyes the blade: "The runner was local muscle hired to watch a shed. The man with the curved knife is further north."',
-      },
-    ],
-    friendAttr: 'Agility',
-    friendRawPrompt: 'Ask {friend:Agility} how much lead the runner’s boot-prints have on us heading north.',
-    friendReply: 'His stride was winded when he tore free into the trees—if we press the Low Ford at first light, we’ll reach the river before they move Tamsin.',
-  },
-  '1-6': {
-    key: '1-6', week: 1, day: 6, shape: 'A', shapeLabel: SHAPE_LABELS.A,
-    clueTag: 'The Map & Extra Cup · The Low Ford',
-    garrickObservation: 'Garrick pours an extra tin cup of tea and sets it by the stones at the edge of the firelight: “Family habit. We always pour one for whoever can’t be with us.”',
-    openQuestion: 'Her small footprints walked unhurt to the waterline, a boat met her at the ford-stone, and all six fragments form a map ending at the mine across the river—why keep Tamsin unharmed?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · They need her alive at the mine across the ford',
-        playerLine: 'Garrick, she walked to the boat unhurt because they need a living marked child inside that old river mine tomorrow night.',
-        garrickPayoff: 'Garrick nods toward the dark water: "You don’t carry a key gently unless you still have a door to open."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 1-6 · “The key that locks is also the key that unlocks”',
-        playerLine: 'Fragment 1-6 completes the week’s map: “The key that locks is also the key that unlocks.” The Seekers sealed the mine with the same bloodline.',
-        garrickPayoff: 'Garrick looks at the six joined fragments: "Six pieces, one map, and the mark from Meira’s rubbing waiting on the far bank."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Pouring tea for ghosts on a wet riverbank',
-        playerLine: 'An extra cup for whoever can’t be with us, Garrick? Out here by the ford, I’d rather not invite anyone else to camp.',
-        garrickPayoff: 'Garrick leaves the tin cup where it sits: "Old habits don’t ask where you’ve pitched the tent."',
-      },
-    ],
-    friendAttr: 'Might',
-    friendRawPrompt: 'Ask {friend:Might} what it will take to cross the ford and breach the mine tomorrow night.',
-    friendReply: 'The river current is high and the mine mouth is half-drowned, but with all six fragments locked into our map, we hit the guard before they expect us.',
-  },
-
-  // WEEK 2
-  '2-1': {
-    key: '2-1', week: 2, day: 1, shape: 'B', shapeLabel: SHAPE_LABELS.B,
-    clueTag: 'Three More Names · The Mill Road',
-    garrickObservation: 'In the farmer’s barn on the mill road, Garrick sets out the tin cups—one more than your count—and shakes the rain from his cloak: “Worst guests I’ve ever had. Good tippers, though.”',
-    openQuestion: 'Tamsin is safe, three more children’s names came off the mine wall, and a lamp-less cart with a dragging wheel went up to the mill three nights ago—what changed between the mine and the mill?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The horseman from the mine rode ahead to speed up the second taking',
-        playerLine: 'Garrick, the cart went up to the mill three nights ago—they were already moving on Corin while we were still tracking Tamsin.',
-        garrickPayoff: 'Garrick’s eyes stay on the lantern: "Two crews, or one cart working a schedule older than our week."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 2-1 · “We held his last wall the night it was meant to fall”',
-        playerLine: 'Fragment 2-1 from the farmhouse beam sounds like a siege: “We held his last wall the night it was meant to fall.”',
-        garrickPayoff: 'Garrick listens to the rain on the barn roof: "Soldiers writing on the inside of the timber before the end."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Still setting out that extra tin cup in a leaky barn',
-        playerLine: 'Even in a farmer’s barn on the mill road, Garrick, you still set out that extra tin cup.',
-        garrickPayoff: 'Garrick doesn’t move the cup: "Told you at the ford. Family habit."',
-      },
-    ],
-    friendAttr: 'Charm',
-    friendRawPrompt: 'Ask {friend:Charm} how the farmer with the axe reacted once we mentioned the miller’s boy.',
-    friendReply: 'Once he saw we weren’t part of the night-cart crew, his anger turned to fear for his neighbours—nobody on this road sleeps easy when a cart moves without lamps.',
-  },
-  '2-2': {
-    key: '2-2', week: 2, day: 2, shape: 'C', shapeLabel: SHAPE_LABELS.C,
-    clueTag: 'Horn Button & Mill Footing · The Mill',
-    garrickObservation: 'Garrick looks from the horn button torn from the taker’s sleeve to the carving under the mill-wheel footing that matches Meira’s rubbing.',
-    openQuestion: 'The taker knew Corin’s name, knew the exact night the boy was born, and took him from a mill built right over a Seeker mark—what link ties the family’s house to the stone beneath it?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The children were born near the stones because their families stayed there',
-        playerLine: 'Garrick, the mark was cut into the mill’s stone footing long before Corin was born—the marked families have lived beside these stones for generations.',
-        garrickPayoff: 'Garrick nods slowly: "A mill stays where the water runs, and a family stays where the mill is."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 2-2 · “Their campfires filled the plain from our wall to the hills”',
-        playerLine: 'Fragment 2-2 under the mill wheel describes an army surrounding the old king’s wall for nights on end.',
-        garrickPayoff: 'Garrick turns the horn button in the light: "Too many fires to count by the third night. And only one wall left."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · One pulling wheel and one missing coat button',
-        playerLine: 'Between a dragging left wheel and a missing horn button, our kidnappers badly need a wheelwright and a tailor.',
-        garrickPayoff: 'Garrick remarks dryly: "A man in a hurry rarely stops to mend his cuff."',
-      },
-    ],
-    friendAttr: 'Intellect',
-    friendRawPrompt: 'Ask {friend:Intellect} how the dragging left cart-wheel connects the Mill to the Low Ford.',
-    friendReply: 'It’s the exact same lopsided left wheel-track we saw below the Widow’s Tooth and on the bank above the Low Ford—one cart working both roads.',
-  },
-  '2-3': {
-    key: '2-3', week: 2, day: 3, shape: 'D', shapeLabel: SHAPE_LABELS.D,
-    clueTag: 'The Dead Lockpick · Upriver',
-    garrickObservation: 'Garrick studies the news from the hidden path upriver: a stranger lying dead a week beside a chained dog, his iron pick snapped inside a Seeker housing that opened at your bare touch.',
-    openQuestion: 'If the takers already hold Corin in the hill above, who was the dead man with the lockpick—and why did the stone refuse him and answer you?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The takers tried to pick the Seeker locks themselves and failed',
-        playerLine: 'Garrick, that dead man was one of theirs—they tried to force the Seeker housing with iron a week ago, failed, and realized they needed Seeker blood.',
-        garrickPayoff: 'Garrick looks at your unharmed hands: "Iron broke in the keyhole. Your fingers didn’t."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 2-3 · “Four stones they brought to break his gate”',
-        playerLine: 'Fragment 2-3 says “Four stones they brought to break his gate: the wind, the fire, the water, the earth.” The four stones were weapons brought against the king.',
-        garrickPayoff: 'Garrick repeats softly: "Wind, fire, water, earth. Four stones brought to one gate."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · At least the dog was honest about its job',
-        playerLine: 'After a week of tight-lipped villagers and hooded riders, a chained guard-dog is the most straightforward soul we’ve met.',
-        garrickPayoff: 'Garrick hands over the stew bowl: "A dog on a chain never pretends it’s happy to see you."',
-      },
-    ],
-    friendAttr: 'Craft',
-    friendRawPrompt: 'Ask {friend:Craft} why the stranger’s lockpick jammed inside the Seeker housing.',
-    friendReply: 'There are no tumblers inside that stone—the bronze seam only parts for living blood of the mark, so his iron pick wedged solid the moment he twisted it.',
-  },
-  '2-4': {
-    key: '2-4', week: 2, day: 4, shape: 'E', shapeLabel: SHAPE_LABELS.E,
-    clueTag: 'Ring of Lamps · Shaft in the Hillside',
-    garrickObservation: 'Garrick keeps his voice low over the shielded coals: “That went about as well as it looked.” Below the shaft, Corin sits in a ring of lamps with his hands uncut while picks echo deeper in the rock.',
-    openQuestion: 'Rank our three urgencies on this hillside tonight: the hooded watchers who saw us at the shaft, Corin waiting uncut in the lamp-ring, or the picks digging deeper under the hill.',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · They haven’t cut Corin’s hands because they haven’t reached the stone yet',
-        playerLine: 'Garrick, they’re keeping Corin whole in that ring of lamps because their picks haven’t broken through to the deeper Seeker chamber yet.',
-        garrickPayoff: 'Garrick glances toward the dark shaft: "No sense turning a key before you’ve dug out the door."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 2-4 · “When he came back up, his hand was bleeding”',
-        playerLine: 'Fragment 2-4 from the shaft roots says the king went down alone when the moon went out and came back up with his hand bleeding.',
-        garrickPayoff: 'Garrick’s own hand rests flat on his knee: "He went down alone into the oldest rooms of the house, and told his people to sleep."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Next time someone else goes halfway down the ladder',
-        playerLine: 'Hanging halfway down a wet ladder while hooded strangers stare up at your boots is a view I don’t need twice.',
-        garrickPayoff: 'Garrick nods once: "And now they’ve taken the ladder. Saves you the temptation."',
-      },
-    ],
-    friendAttr: 'Agility',
-    friendRawPrompt: 'Ask {friend:Agility} whether there is a second way into the hill now that the ladder is gone.',
-    friendReply: 'The air draught coming up through the bracken means there’s a second, older shaft mouth higher on the slope if we sweep the hill before dawn.',
-  },
-  '2-5': {
-    key: '2-5', week: 2, day: 5, shape: 'A', shapeLabel: SHAPE_LABELS.A,
-    clueTag: 'The Black Circle · Hillside by Night',
-    garrickObservation: 'Garrick holds the small black cloth circle torn from the lookout’s coat beside Meira’s open notebook page, where every chronicle has the old king’s name scraped out.',
-    openQuestion: 'They wear a black circle on their coats, signal with shuttered lamps, and serve a king whose name was chiselled out of every history—who scraped his name away: his enemies, or his own followers?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The Seekers erased his name so no one could wake him',
-        playerLine: 'Garrick, the Seekers who overthrew him scraped his name off every monument so future generations wouldn’t know who slept beneath the stones.',
-        garrickPayoff: 'Garrick looks at the black cloth circle: "You take a man’s name off the stone when you want the world to forget he ever sat there."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 2-5 · “We took his name from every stone and every tongue”',
-        playerLine: 'Fragment 2-5 answers Meira’s question directly: “We took his name from every stone and every tongue. Let the dark keep what the dark was given.”',
-        garrickPayoff: 'Garrick traces the torn cloth edge: "From every stone. Yet someone on this hill still remembers."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Matching horn-button cuff—we found the mill visitor',
-        playerLine: 'That lookout on the hill was missing the exact horn button the miller’s wife tore off his sleeve four nights ago.',
-        garrickPayoff: 'Garrick allows a thin smile: "Now you’ve got the button and the badge. Only missing the coat."',
-      },
-    ],
-    friendAttr: 'Aim',
-    friendRawPrompt: 'Ask {friend:Aim} what the lookout’s two shuttered lamp-flashes signaled to the chamber below.',
-    friendReply: 'Two short flashes straight down the shaft—that wasn’t a call for reinforcements, it was a warning to hurry the digging before tomorrow night.',
-  },
-  '2-6': {
-    key: '2-6', week: 2, day: 6, shape: 'B', shapeLabel: SHAPE_LABELS.B,
-    clueTag: 'The Second Shaft Map · Lip of the Shaft',
-    garrickObservation: 'By a shielded chink of light at the lip of the shaft, Garrick watches you trace the six joined fragments in silence while picks ring out below where the loose stone clattered down.',
-    openQuestion: 'Between the lamp-lit chamber where Corin sits, the deeper empty room underneath it, and the old Seeker shaft we just uncovered—which one is the real prize the hooded watchers came for?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The deeper room holds the second Stone, and they’re digging down to it',
-        playerLine: 'Garrick, the upper chamber is just a staging room—the Stone is sealed in the older hollow underneath, and our old shaft drops straight into it.',
-        garrickPayoff: 'Garrick folds the cloak over the lantern chink: "They’re coming through the ceiling with picks. You have the stair."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 2-6 · “Four to hold the four corners of his sleep”',
-        playerLine: 'Fragment 2-6 completes the map: “Four we carried into the hills, four to hold the four corners of his sleep.” Each Stone anchors a quarter of his prison!',
-        garrickPayoff: 'Garrick looks down into the dark hill: "Four corners in the hills. And you’re standing over the second."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · At least we didn’t shout the map aloud this week',
-        playerLine: 'We traced the map in complete silence tonight—pity the hillside decided to drop a rock down the shaft for us anyway.',
-        garrickPayoff: 'Garrick murmurs dryly: "Old hills have loose teeth. Best be down the stair before they finish counting."',
-      },
-    ],
-    friendAttr: 'Might',
-    friendRawPrompt: 'Ask {friend:Might} what we felt when we pressed an ear to the rock above the lower hollow.',
-    friendReply: 'Below the lamp-room there’s a much larger vault—and the stone floor hums with a slow, heavy vibration every few minutes.',
-  },
-
-  // WEEK 3 ("Order" is now unlocked at W3·D1+)
-  '3-1': {
-    key: '3-1', week: 3, day: 1, shape: 'C', shapeLabel: SHAPE_LABELS.C,
-    clueTag: '“Somewhere Warm” · Ashcombe Trail',
-    garrickObservation: 'With Corin safe at his mother’s hearth and the Order’s ledger in hand, Garrick points west: “Ashcombe’s a shepherds’ village on the edge of the burned country. A long day west. And above it she’s marked a place. The Blackglass.”',
-    openQuestion: 'Corin heard the Order tell the girl Wren they were taking her "somewhere warm"—and Ashcombe is her own home village. Why would kidnappers carry a stolen child back to where she was born?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · Because the third Stone is up on the Blackglass above her village',
-        playerLine: 'Garrick, they took Wren under the mill hill first, realized each child only opens the stone beside their birthplace, and had to bring her back to the Blackglass.',
-        garrickPayoff: 'Garrick taps Meira’s map: "A key only fits its own lock. And her lock is up on the black ridge."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 3-1 · “The third was fire, and burned the hills to glass”',
-        playerLine: 'Fragment 3-1 explains the burned country: “The third was fire, and burned the hills to glass before we took it from his hand.”',
-        garrickPayoff: 'Garrick gazes west toward the dark skyline: "Nothing’s grown on that ridge since the night they pried it out of his grip."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Corin told his mother all four of our names—so much for travelling quiet',
-        playerLine: 'Corin gave his mother every one of our names before breakfast. Half the valley knows who we are now.',
-        garrickPayoff: 'Garrick’s eyes crinkle: "The miller’s wife will feed you free for life. The Order already knew your names."',
-      },
-    ],
-    friendAttr: 'Agility',
-    friendRawPrompt: 'Ask {friend:Agility} about the Order straggler we caught climbing out of the shaft mouth at dawn.',
-    friendReply: 'He came up after the collapse looking for the dropped ledger—and limped off west along the exact same ridge-track toward Ashcombe.',
-  },
-  '3-2': {
-    key: '3-2', week: 3, day: 2, shape: 'D', shapeLabel: SHAPE_LABELS.D,
-    clueTag: 'A Chip of Black Glass · Ashcombe',
-    garrickObservation: 'Garrick looks from Wren’s windowsill of volcanic glass chips toward the high black road: “My family’s been in these hills longer than the roads have.”',
-    openQuestion: 'Two polite men in grey coats told Wren’s mother they would "only need her the once" and rode straight through Ashcombe toward the Blackglass—who speaks politely to a mother while taking her child for a single use?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · Fanatics who believe they are fulfilling a sacred duty, not a crime',
-        playerLine: 'Garrick, common brigands threaten or bargain. Men who promise they’ll "only need her the once" believe their doctrine justifies everything—and they truly intend to let her go once the Stone wakes.',
-        garrickPayoff: 'Garrick looks into his tin cup: "Every child you’ve reached so far has had all ten fingers. They take what the lock asks for, and no more."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 3-2 · “A drop upon the stone, and what was cold remembers”',
-        playerLine: 'Fragment 3-2 from the sheepfold wall tells us what "only the once" means: “A drop upon the stone, and what was cold remembers.” One drop of blood.',
-        garrickPayoff: 'Garrick’s voice is even: "One nick of the palm. Then the stone remembers, and the child goes home."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Your family picked bleak country to outlast the roads in, Garrick',
-        playerLine: 'If your family’s been in these hills longer than the roads have, Garrick, they had a strong stomach for sheep wind and black rock.',
-        garrickPayoff: 'Garrick shrugs his grey cloak higher: "The rock doesn’t wash away in the rain. You get used to the wind."',
-      },
-    ],
-    friendAttr: 'Charm',
-    friendRawPrompt: 'Ask {friend:Charm} what else Wren’s mother noticed about the two men in grey coats.',
-    friendReply: 'She said neither man raised his voice or lied to her—when she asked if Wren would be hurt, they stayed silent rather than make a false promise.',
-  },
-  '3-3': {
-    key: '3-3', week: 3, day: 3, shape: 'E', shapeLabel: SHAPE_LABELS.E,
-    clueTag: 'Hoof-Scratches on Glass · The Blackglass',
-    garrickObservation: 'Garrick finishes stitching the split seam of a boot by the firelight and rubs his knee: “My knees have opinions about this glass. None of them good.”',
-    openQuestion: 'Rank the three anomalies on the Blackglass today: six horses riding straight past Meira’s marked stone without stopping, the third mark matching the third child, or Fragment 3-3 counting five stones where Meira’s notes count four.',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The Fire Stone isn’t on the open glass anymore—it’s deeper in the ridges',
-        playerLine: 'Garrick, six horses rode straight past Meira’s mark without dismounting because the Fire Stone was moved from this open shelf into the volcanic ridges ahead.',
-        garrickPayoff: 'Garrick knots the waxed thread: "Six horses at a trot don’t stop for an empty socket."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 3-3 · “Five, the fragment says” vs Meira’s four',
-        playerLine: 'Look at Fragment 3-3: “Four we hid, and one we kept where we could watch it.” Meira’s margin note says every history counts four—so where is the fifth?',
-        garrickPayoff: 'Garrick sets the awl down: "Histories are written by whoever’s left standing. The people who cut that glass were counting with their own hands."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Innkeeper, guide, and cobbler—what’s the rate for boot-stitching?',
-        playerLine: 'First you pour the tea, now you’re stitching split boots on volcanic glass. Are you adding cobbling to our inn tab?',
-        garrickPayoff: 'Garrick tosses the mended boot back: "A limping guest slows the whole road down. Consider it self-interest."',
-      },
-    ],
-    friendAttr: 'Aim',
-    friendRawPrompt: 'Ask {friend:Aim} what the hoof-scratches on the glass revealed about the six riders.',
-    friendReply: 'Five horses had deep iron-shod strikes, and the sixth carried double—the second rider weighed almost nothing. Wren is right ahead of us.',
-  },
-  '3-4': {
-    key: '3-4', week: 3, day: 4, shape: 'A', shapeLabel: SHAPE_LABELS.A,
-    clueTag: 'Three of Wren’s Chips · The Black Ridges',
-    garrickObservation: 'Inside the ancient Seeker sleeping shelter on the black ridge, Garrick turns the smooth bone die from the wall-niche beside the three black-glass chips Wren dropped along the trail.',
-    openQuestion: 'The Seekers built sleeping rooms into this barren ridge to watch the valley for generations, and Wren is dropping her windowsill glass chips behind the horses—what kept the Seekers on watch up here after the war was won?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The Seekers weren’t celebrating a victory—they were guarding a prison',
-        playerLine: 'Garrick, nobody sleeps in a freezing volcanic ridge-niche with a bone die for years if the enemy is dead. The Seekers were watching to make sure the stones stayed sealed.',
-        garrickPayoff: 'Garrick rolls the worn bone die once in his palm: "You don’t post a watch over a grave unless you think the tenant might get up."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 3-4 · “We built our rooms in the cold rock above them”',
-        playerLine: 'Fragment 3-4 inside the doorway says: “We built our rooms in the cold rock above them, and took turns at the window until our hair went grey.”',
-        garrickPayoff: 'Garrick glances at the narrow slit facing the valley: "Long nights, cold stone, and one window."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Eight-year-old Wren is outsmarting six armed riders',
-        playerLine: 'Six grown men of the Order on horseback, and an Ashcombe shepherd girl is breadcrumbing their whole secret trail with window-sill glass.',
-        garrickPayoff: 'Garrick’s voice warms a fraction: "Never bet against a shepherd’s child on her own ridge."',
-      },
-    ],
-    friendAttr: 'Craft',
-    friendRawPrompt: 'Ask {friend:Craft} how the buried Seeker doorway held up under centuries of rockfall.',
-    friendReply: 'They keyed the lintel blocks without mortar so the mountain’s weight locks them tighter—built by masons who meant the watch-post to outlive their grandchildren.',
-  },
-  '3-5': {
-    key: '3-5', week: 3, day: 5, shape: 'B', shapeLabel: SHAPE_LABELS.B,
-    clueTag: '“Until the Throne Rise Whole” · Shepherd’s Hut',
-    garrickObservation: 'Garrick eyes the catching pot on the hearth, the dropped tin cup, and the carving on the smoke-blackened beam over the pallet: “They’re always a step ahead of us.”',
-    openQuestion: 'Wren scratched her name low on the doorframe, the pot on the fire was still hot, and over the bed is carved an old line ("Until the throne rise whole")—which detail in this hut was left for us, and which was left by generations of the Order?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · This shepherd’s hut is an old Order safe-house on the Kiln road',
-        playerLine: 'Garrick, “Until the throne rise whole” is dark with years of smoke—the Order has used this hut as a way-station to the Kiln for generations, and Wren scratched her name to tell us she was just here.',
-        garrickPayoff: 'Garrick looks up at the blackened beam: "Smoke takes fifty winters to darken a cut that deep. They didn’t carve it tonight."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 3-5 · “When the four have answered, the fifth will know its hour”',
-        playerLine: 'Fragment 3-5 on the hearthstone warns: “When the four have answered, the fifth will know its hour.” Every Stone the Order wakes brings the fifth closer!',
-        garrickPayoff: 'Garrick’s hand rests near the extra tin cup: "Four to answer first. Then the fifth."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · They left a hot pot of stew and didn’t even offer us bowls',
-        playerLine: 'Leaving within the hour with the pot still catching on the fire is rude—even for men in grey coats.',
-        garrickPayoff: 'Garrick lifts the pot off the coals: "Burnt at the bottom. I’d not serve it in my house."',
-      },
-    ],
-    friendAttr: 'Might',
-    friendRawPrompt: 'Ask {friend:Might} how fast the riders fled once we came down Wren’s goat-track.',
-    friendReply: 'One blanket was folded and the second thrown flat on the floorboards—their ridge lookout barely gave them three minutes’ warning before we hit the door.',
-  },
-  '3-6': {
-    key: '3-6', week: 3, day: 6, shape: 'C', shapeLabel: SHAPE_LABELS.C,
-    clueTag: 'The Map & Eight Chips · The Cairn',
-    garrickObservation: 'At the high cairn looking down at the round black hill breathing warm air through its cracked crown, Garrick pulls his cloak tight: “The Kiln. That’s the shepherds’ name for it.”',
-    openQuestion: 'A lamp just went in through the Kiln’s crown ahead of you, a watcher on the lower ridge saw you turn toward it, and the third Stone is already waking—what is the Order planning to do with the Stone once Wren’s blood wakes it?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · They aren’t leaving the Stones in the hills—they’re carrying them away',
-        playerLine: 'Garrick, the mine socket was empty and the mill chamber was breached—once Wren’s blood wakes the Fire Stone tonight, a courier team is going to carry it out of the Kiln.',
-        garrickPayoff: 'Garrick watches the warm haze rising from the Kiln’s crown: "A stone that stays in the hill can’t join the others."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 3-6 · “Under the hill that breathes, we laid the fire to rest”',
-        playerLine: 'Fragment 3-6 completes the Kiln map: “Under the hill that breathes, we laid the fire to rest.” The Seekers used the volcanic vent to hide the Fire Stone’s heat.',
-        garrickPayoff: 'Garrick nods down the slope: "Six fragments, eight chips of black glass, and one crack in the crown."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Passing the map in silence and still getting spotted on the ridge',
-        playerLine: 'We didn’t whisper a single word on the cairn tonight, and a lookout on the lower ridge still watched every head turn toward the Kiln.',
-        garrickPayoff: 'Garrick’s mouth curves slightly: "Four silhouettes on a skyline point as loud as a shout."',
-      },
-    ],
-    friendAttr: 'Intellect',
-    friendRawPrompt: 'Ask {friend:Intellect} what the warm air rising from the Kiln’s crown means for our descent.',
-    friendReply: 'The Fire Stone inside the vent is already answering—we have to go down through the crown now before they finish the blood-touch and seal the passage.',
-  },
-
-  // WEEK 4
-  '4-1': {
-    key: '4-1', week: 4, day: 1, shape: 'D', shapeLabel: SHAPE_LABELS.D,
-    clueTag: 'Cut Ropes in the Dark · Under the Kiln',
-    garrickObservation: 'Garrick looks slowly around the circle of faces as Ashcombe’s roofs come into view: “Every time they’ve had knives out at you, not one of you has died.”',
-    openQuestion: 'While all eyes were up on the scree lifting Wren down, someone stood within arm’s reach in the dark with a bare blade, parted the prisoner’s ropes clean, and touched none of you—who in that dark had both a knife and a reason to keep you alive?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The Order is sparing us because our hands open the Seeker locks',
-        playerLine: 'Garrick, their own lockpick died upriver—the Order has orders not to kill us because we’re the only ones whose blood opens the Seeker housings along the trail.',
-        garrickPayoff: 'Garrick meets your eyes across the fire: "A hunter doesn’t shoot the hound that’s leading him to the door."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 4-1 · “The fourth was water, and we sank it with the town”',
-        playerLine: 'Fragment 4-1 from the Kiln passage says: “The fourth was water, and we sank it with the town.” The Seekers flooded whole streets to hide the Water Stone.',
-        garrickPayoff: 'Garrick looks north toward the lake road: "Reedham sits on the shore of a very deep lake."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Next prisoner we take gets tied with Arjun’s iron chain, not rope',
-        playerLine: 'Hemp rope clearly doesn’t hold in the dark around this party. Next captive we take gets locked in Arjun’s iron.',
-        garrickPayoff: 'Garrick remarks dryly: "He walked out at the pace of a man leaving a church. Didn’t even run."',
-      },
-    ],
-    friendAttr: 'Aim',
-    friendRawPrompt: 'Ask {friend:Aim} what the prisoner’s footprints in the volcanic ash showed before they hit bare glass.',
-    friendReply: 'Heel, then toe, evenly spaced—his ropes were parted while we were lifting Wren down the scree, and whoever cut him loose came across the bare black glass without leaving a print.',
-  },
-  '4-2': {
-    key: '4-2', week: 4, day: 2, shape: 'E', shapeLabel: SHAPE_LABELS.E,
-    clueTag: 'Scraped Coin & Bread-Crock Box · North Road',
-    garrickObservation: 'Garrick sets a pot of road-herb tea on the stones and flips the carter’s defaced silver coin into the light: “It’s terrible. Drink it anyway.”',
-    openQuestion: 'Rank what gives away the Order’s true plan on the north road today: four swordsmen guarding one small box "no bigger than a bread crock," riding north away from Reedham lake, or paying with a coin whose king’s face was scraped off and reverse polished bright.',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The small box holds the Fire Stone—and it’s going north to their capital',
-        playerLine: 'Garrick, four armed men riding north away from the lake with a bread-crock box aren’t chasing Joss—they’re escorting the woken Fire Stone to wherever the Stones are being gathered.',
-        garrickPayoff: 'Garrick catches the scraped coin in his palm: "Four swords for one small box. And the road north goes a long way past the lake."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 4-2 · “No coin shall bear his face, no stone his name”',
-        playerLine: 'Fragment 4-2 at the milestone decrees: “No coin shall bear his face, no stone his name.” And the Order scraped the new king’s face off to polish the blank side like a dark moon!',
-        garrickPayoff: 'Garrick turns the polished reverse to the fire: "Scrape one king off, polish a black mirror on the back."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Even your terrible road-tea beats listening to that carter’s brother-in-law',
-        playerLine: 'After hearing the carter’s thoughts on his brother-in-law at the ford, Garrick, your road-tea is the second worst thing today.',
-        garrickPayoff: 'Garrick pours another splash: "Drink it while it’s hot. Tastes worse when it cools."',
-      },
-    ],
-    friendAttr: 'Charm',
-    friendRawPrompt: 'Ask {friend:Charm} how the carter described the four men guarding the bread-crock box.',
-    friendReply: 'He said they rode in two pairs around the pack-horse and never let the carter within ten paces of the box—and paid him double just to keep moving north.',
-  },
-  '4-3': {
-    key: '4-3', week: 4, day: 3, shape: 'A', shapeLabel: SHAPE_LABELS.A,
-    clueTag: 'Eight Notches & Her Skiff · Reedham',
-    garrickObservation: 'Garrick wrings lake water from the hem of his grey cloak beside the mended skiff: “I didn’t leave a warm bar to drown in a lake. I’d like that noted.”',
-    openQuestion: 'Joss’s grandmother has cut eight notches on her doorpost—meaning Joss was taken eight nights ago, while we were still on the Blackglass—yet he is still being held nearby. Why hold the fourth child for over a week instead of waking the Stone and leaving?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · They took Joss early and are waiting for the dark-moon night or our arrival',
-        playerLine: 'Garrick, eight notches means they took Joss before we even reached the Kiln—they’re holding him out on the lake until the exact night the fourth Stone can be reached.',
-        garrickPayoff: 'Garrick looks out across the black water toward the drowned roofs: "Eight nights of feeding a boy in the wet. They’re waiting on a clock."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 4-3 · “When the water rose over the bell-tower’s knee”',
-        playerLine: 'Fragment 4-3 on the drowned tower says: “When the water rose over the bell-tower’s knee, we locked the door below and rowed away.” The chamber is under the flooded church!',
-        garrickPayoff: 'Garrick glances at the tower sticking out of the lake: "Locked the door below and rowed away. And left the bell-tower to mark it."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Duly noted in the party record: Garrick hates boats',
-        playerLine: 'Mei, write it down in the official Seeker margin: the innkeeper of the Hollow Wake Inn objects to lake water.',
-        garrickPayoff: 'Garrick’s voice is bone-dry: "A cellar should have barrels in it, not pike."',
-      },
-    ],
-    friendAttr: 'Craft',
-    friendRawPrompt: 'Ask {friend:Craft} what Joss’s unfinished wooden boat on his grandmother’s shelf tells us.',
-    friendReply: 'The hull was carved with a sharp pocket-whittler and the mast wasn’t stepped yet—he was taken right in the middle of carving it, and took his pocket-knife with him.',
-  },
-  '4-4': {
-    key: '4-4', week: 4, day: 4, shape: 'B', shapeLabel: SHAPE_LABELS.B,
-    clueTag: '“Moon-Blood” Gloss · Old Reedham',
-    garrickObservation: 'By the shielded fire on the shore facing Old Reedham, Garrick looks at Meira’s margin note glossing *"moon-blood — the old songs’ word for the marked"* while the grandmother’s window-lamp burns across the water.',
-    openQuestion: 'In drowned Old Reedham tonight we found grey-coated ferrymen running supplies to the reed island, Joss’s shoe-prints pausing where he could see his grandmother’s lamp, and Meira’s note on "moon-blood"—which piece is Meira’s scholarly mistake?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · Wait—what if “moon-blood” isn’t the Seeker children at all?',
-        playerLine: 'Garrick, Meira assumed “moon-blood” meant the marked children—but look at how careful the verses are. What if the old songs used “moon-blood” for a specific house, not just anyone born on a dark moon?',
-        garrickPayoff: 'Garrick’s face is unreadable in the firelight: "Scholars write down what they think a word means. Songs remember who wore it."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 4-4 · “Only moon-blood wakes what sleeps”',
-        playerLine: 'Fragment 4-4 in the drowned lane says: “Our blood will open the outer doors. Only moon-blood wakes what sleeps.” That’s two different bloodlines in the same sentence!',
-        garrickPayoff: 'Garrick repeats the line without inflection: "Our blood opens the outer doors. Only moon-blood wakes what sleeps."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Even ten-year-old Joss stopped to check the lamp in the window',
-        playerLine: 'Digging both heels into the cobbles just to look back at his grandmother’s window-lamp—that boy has more grit than his guards.',
-        garrickPayoff: 'Garrick looks toward the distant shore-lamp: "A lamp in a window carries a long way over dark water."',
-      },
-    ],
-    friendAttr: 'Agility',
-    friendRawPrompt: 'Ask {friend:Agility} what route the Order’s night ferrymen took from the lowest lane.',
-    friendReply: 'They pushed off from the deep-water steps and poled straight for the reed island a mile out—the only blind landing on the lake.',
-  },
-  '4-5': {
-    key: '4-5', week: 4, day: 5, shape: 'C', shapeLabel: SHAPE_LABELS.C,
-    clueTag: 'Fresh Wood-Shavings · The Reed Island',
-    garrickObservation: 'Inside the captured Order ferry boat pulled up in the willow reeds, Garrick picks up one of the fresh pale curls of whittled wood lying beside a tiny split boat hull.',
-    openQuestion: 'We have their ferry boat, fresh wood-shavings proving Joss is alive and still whittling, and a watch-lamp burning in the empty bell-tower across the water—why keep a watch-lamp lit in an empty tower after moving the boy?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The tower isn’t empty—it’s the dry stair down to the flooded vault below',
-        playerLine: 'Garrick, they moved Joss from the reed island into the flooded chamber under the drowned church, and the lamp in the tower marks the stairhead for their night boat.',
-        garrickPayoff: 'Garrick sets the wood-shaving back on the thwart: "And now you’re sitting in their night boat."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 4-5 · “A lock that bars the wicked out is also a door that lets them in”',
-        playerLine: 'Fragment 4-5 on the reed-island willow post confesses: “A lock that bars the wicked out is also a door that lets them in.” The Seekers regretted leaving any way back.',
-        garrickPayoff: 'Garrick’s voice is quiet: "Build a door, and sooner or later someone comes knocking with the right hand."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Upgrading from a leaky skiff to an official Order ferry',
-        playerLine: 'Cheer up, Garrick—we traded the grandmother’s leaking skiff for the Order’s own dry ferry boat.',
-        garrickPayoff: 'Garrick taps the gunwale with his knuckle: "Still a boat. Still a lake. Marginally fewer leaks."',
-      },
-    ],
-    friendAttr: 'Aim',
-    friendRawPrompt: 'Ask {friend:Aim} how we steer their boat into the drowned tower tonight without tipping off the watch.',
-    friendReply: 'If we come in along the shadow of the sunken roofs with muffled oars, the watch in the bell-tower will think we’re their own relief boat.',
-  },
-  '4-6': {
-    key: '4-6', week: 4, day: 6, shape: 'D', shapeLabel: SHAPE_LABELS.D,
-    clueTag: 'Wood Knocking on Wood · The Tower at Night',
-    garrickObservation: 'At the top of the wind-lashed bell-tower after the gust blew the lamp out and wood knocked on wood in the black water directly underneath, Garrick looks down the dark stair.',
-    openQuestion: 'Mei called the joined map out over the storm wind, and a hidden boat directly under the tower arch heard every word and knocked against the piling—who is racing us down the drowned church stair right now?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The Order’s boat crew waited under the arch for us to read the map',
-        playerLine: 'Garrick, they didn’t know which flooded room under Old Reedham held the fourth Stone until Mei read our six joined fragments over the wind!',
-        garrickPayoff: 'Garrick’s hand is already on the stair rail: "Then we’d best not keep them waiting at the bottom."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 4-6 · “Down the stair of the drowned church, to a room below the streets”',
-        playerLine: 'Fragment 4-6 finishes the fourth map: “Under Old Reedham. Down the stair of the drowned church, to a room below the streets.”',
-        garrickPayoff: 'Garrick nods down into the dark: "The stair goes down dry until the last turn. After that, keep your blades above the water."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Storm wind, black water, and eavesdroppers under the floor',
-        playerLine: 'Next time we assemble a secret Seeker map at night, I vote we check under the floorboards for boats first.',
-        garrickPayoff: 'Garrick remarks dryly: "Hard to check the cellar when the cellar is a lake."',
-      },
-    ],
-    friendAttr: 'Intellect',
-    friendRawPrompt: 'Ask {friend:Intellect} whether all four children are accounted for once we pull Joss out.',
-    friendReply: 'Tamsin, Corin, Wren, and tonight Joss—all four children from the mine wall will be home, which leaves only the unrecorded fifth Stone.',
-  },
-
-  // WEEK 5 ("Dark Moon Order" & "Highwall" unlocked)
-  '5-1': {
-    key: '5-1', week: 5, day: 1, shape: 'E', shapeLabel: SHAPE_LABELS.E,
-    clueTag: 'HIGHWALL on the Waystone · Reedham Road',
-    garrickObservation: 'With Joss safe on shore and the rubbing of the ancient milestone in your hands showing *HIGHWALL* above a chiselled-out second line, Garrick speaks quietly by the fire: “The fifth wasn’t hidden in the hills like the others. Every telling I know ends at Highwall.”',
-    openQuestion: 'Rank the three truths on the table tonight: all four children are safe at home, the four hill Stones were taken by the Dark Moon Order despite our rescues, and the fifth Stone waits in the dead capital of Highwall.',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · We saved the children, but the Order still got all four hill Stones',
-        playerLine: 'Garrick, every child is alive and home—which means we did what Meira’s list asked—but the Dark Moon Order still walked away with the four hill Stones heading for Highwall.',
-        garrickPayoff: 'Garrick looks at the milestone rubbing: "Four children home. Four stones on the north road. And one city at the end of it."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 5-1 · “The fifth we did not carry to the hills”',
-        playerLine: 'Fragment 5-1 on the waystone confirms it: “The fifth we did not carry to the hills. It stayed where the crown fell.”',
-        garrickPayoff: 'Garrick nods once: "Two days north along the old kingdom’s road."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · A dead capital where nothing grows sounds like a terrible inn location',
-        playerLine: 'A city where nothing grows and nobody goes, Garrick—don’t tell me you’re scouting a second branch of the Hollow Wake Inn.',
-        garrickPayoff: 'Garrick’s mouth twitches: "Terrible foot traffic. Worse cellar."',
-      },
-    ],
-    friendAttr: 'Craft',
-    friendRawPrompt: 'Ask {friend:Craft} how the second line on the milestone was removed.',
-    friendReply: 'It wasn’t weather—someone sat by the road with a narrow mason’s chisel and took the king’s name out stroke by stroke while leaving HIGHWALL above it.',
-  },
-  '5-2': {
-    key: '5-2', week: 5, day: 2, shape: 'A', shapeLabel: SHAPE_LABELS.A,
-    clueTag: 'The Heartbeat in the Graves · Old Kingdom’s Road',
-    garrickObservation: 'By the refugee family’s cart beside the rows of ancient war-mounds, Garrick watches the grass blades settle after the low, slow thud from the north stops.',
-    openQuestion: 'Every dusk a pulse like a slow heartbeat rolls out from Highwall, turning farm dogs feral and shivering the grass on hundreds of war graves—why is the pulse growing stronger each evening now?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The four woken hill Stones have arrived in Highwall',
-        playerLine: 'Garrick, that heartbeat is stronger every dusk because the Dark Moon Order has already brought the four woken Stones inside Highwall’s walls.',
-        garrickPayoff: 'Garrick rests his hand on the cart wheel: "Four corners brought back to the house they came from."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 5-2 · “We buried our dead in rows along the road so they would bar his way”',
-        playerLine: 'Fragment 5-2 from the grave-mounds says: “We buried our dead in rows along the road so they would bar his way if he ever walked again.”',
-        garrickPayoff: 'Garrick looks down the long line of mounds: "Even in the earth, they kept their faces toward the city."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · First chained dogs, now turned farm dogs—this road hates hounds',
-        playerLine: 'Between the chained hound upriver and the turned farm dogs tonight, I’m sticking to cats when we get back to the inn.',
-        garrickPayoff: 'Garrick hands a cup to the refugee father by the cart: "Dogs hear low sounds before men do."',
-      },
-    ],
-    friendAttr: 'Agility',
-    friendRawPrompt: 'Ask {friend:Agility} how close the pulse sounded when the turned dogs came over the road.',
-    friendReply: 'You don’t hear it with your ears—it comes up through the soles of your boots from the bedrock, centered straight inside Highwall’s inner hill.',
-  },
-  '5-3': {
-    key: '5-3', week: 5, day: 3, shape: 'B', shapeLabel: SHAPE_LABELS.B,
-    clueTag: 'New Timber Bar · The Herald’s Gate',
-    garrickObservation: 'Inside the shadow of the Herald’s Gate, Garrick looks at the pale new timber bar resting in iron brackets worn bright by centuries of bars, with dozens of rotted old bars stacked neatly against the gatehouse wall.',
-    openQuestion: 'Highwall has been dead for an age, yet someone replaces the heavy timber bar on the inside of the main gate every generation and keeps every rotted bar in a neat stack—who bars a dead city from the inside: the Seekers’ heirs, or the Order?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The Seekers barred it first to keep the city in—and the Order kept the habit',
-        playerLine: 'Garrick, those iron brackets were built on the inside to lock the dead city in—and generation after generation, someone stayed behind to renew the timber.',
-        garrickPayoff: 'Garrick touches the worn iron bracket: "Centuries of oak, laid in the same iron. Whoever kept the gate never missed a decade."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 5-3 · “Bar the gate from within, and let no living foot go out or in”',
-        playerLine: 'Fragment 5-3 on the gatehouse lintel commands: “Bar the gate from within, and let no living foot go out or in until the stones are dust.”',
-        garrickPayoff: 'Garrick glances up at the walkway: "The stones aren’t dust yet. And there’s smoke below the hall."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Stacking centuries of rotted door-bars is peak housekeeper behaviour',
-        playerLine: 'Keeping dozens of rotted timber bars stacked neatly against the wall for centuries feels like an innkeeper’s habit, Garrick.',
-        garrickPayoff: 'Garrick’s mouth twitches: "A good house doesn’t throw away seasoned timber."',
-      },
-    ],
-    friendAttr: 'Might',
-    friendRawPrompt: 'Ask {friend:Might} how heavy that pale new oak bar on the gate really is.',
-    friendReply: 'It takes four grown shoulders to lift a green oak beam that thick into the brackets—the watch camp below the hall has a full crew inside this city.',
-  },
-  '5-4': {
-    key: '5-4', week: 5, day: 4, shape: 'C', shapeLabel: SHAPE_LABELS.C,
-    clueTag: 'The Turned Helm · The Dead Streets',
-    garrickObservation: 'Garrick pours a little faster than usual by the sheltered coals and looks back toward the street of frozen iron soldiers: “My family’s waited a long time for something. I’d like to live to see it.”',
-    openQuestion: 'A whole company of the king’s soldiers stands frozen in the street on the exact same left-foot step from the night he fell—and as you backed out, the nearest helm was turned further toward you. What is waking the iron ranks?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · They are bound to the king’s heartbeat in the hall',
-        playerLine: 'Garrick, every soldier stopped on the same step the night the king fell—as the Stones wake him in the hall above, his company is waking with him.',
-        garrickPayoff: 'Garrick looks down into his cup: "They stopped when he stopped. Stands to reason they remember the step."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 5-4 · “His men stood in the street where the word found them”',
-        playerLine: 'Fragment 5-4 on the corner plinth says: “His men stood in the street where the word found them, neither living nor dead, waiting on his voice.”',
-        garrickPayoff: 'Garrick nods slowly: "Waiting on a voice behind a sealed door."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · What exactly has your family been waiting to see, Garrick?',
-        playerLine: '“My family’s waited a long time for something.” That’s a heavy line for a man who pours ale on the drove road, Garrick.',
-        garrickPayoff: 'Garrick sets the kettle back on the stone: "Old hill families all have a story they want to see the end of. Drink your tea."',
-      },
-    ],
-    friendAttr: 'Intellect',
-    friendRawPrompt: 'Ask {friend:Intellect} why every frozen soldier in that street had their left foot forward.',
-    friendReply: 'They were marching up the hill toward the royal hall in step when the binding struck the city—they didn’t die in battle; they were halted mid-stride.',
-  },
-  '5-5': {
-    key: '5-5', week: 5, day: 5, shape: 'D', shapeLabel: SHAPE_LABELS.D,
-    clueTag: 'Eight Strokes Left · Below the Hall',
-    garrickObservation: 'From the dark shelter above the square where the Dark Moon Order’s watchmen trade their pass-words (*"Keep the dark." / "It keeps us."*) and draw chalk through one stroke on their board leaving eight, Garrick watches the sealed hall doors.',
-    openQuestion: 'The Dark Moon Order is camped right in front of the king’s sealed hall, crossing off one chalk stroke each dusk (eight nights left)—if they already hold the four hill Stones, why are they waiting outside the doors instead of going in?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · They don’t have the fifth Stone—and they can’t open the hall without us',
-        playerLine: 'Garrick, they’re camped outside counting down the nights to the dark moon because the hall doors are sealed and they still haven’t found the fifth Stone!',
-        garrickPayoff: 'Garrick looks down at the chalk board in the square: "Four stones in their camp, and a locked door in front of them."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 5-5 · “Nine nights before the dark moon, the shadow touches the rim”',
-        playerLine: 'Fragment 5-5 on the square parapet explains their chalk board: “Nine nights before the dark moon, the shadow touches the rim.” They’re counting down to the eclipse!',
-        garrickPayoff: 'Garrick counts the white marks from the shadow: "Eight strokes left on the board. Eight dusks until the moon goes dark."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · “Keep the dark / It keeps us” is a grim way to change the shift',
-        playerLine: 'At the Hollow Wake Inn, changing the night watch probably just meant handing over the cellar key.',
-        garrickPayoff: 'Garrick remarks dryly: "And telling the next man which barrel’s gone sour."',
-      },
-    ],
-    friendAttr: 'Aim',
-    friendRawPrompt: 'Ask {friend:Aim} where the fifth fragment trail points from the square below the hall.',
-    friendReply: 'Every sighting-line on the five fragments we hold angles back toward the outer wall walk—the fifth Stone isn’t in the square; it’s hidden inside the wall itself.',
-  },
-  '5-6': {
-    key: '5-6', week: 5, day: 6, shape: 'E', shapeLabel: SHAPE_LABELS.E,
-    clueTag: 'Hidden Room in the Wall · The Wall Again',
-    garrickObservation: 'After slipping forty paces along the open wall-walk during the watch change and passing the six joined fragments hand to hand in complete silence as the seventh stroke is crossed off below, Garrick steadies the shuttered lantern.',
-    openQuestion: 'Rank our three advantages tonight as we prepare to breach the hidden room inside the thickness of Highwall’s wall: nobody in the square heard us pass the map, the fifth Stone is right inside this wall, and seven nights remain on the Order’s countdown.',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · If we claim the fifth Stone tonight, the Order can never complete the ring',
-        playerLine: 'Garrick, the Seekers hid the fifth Stone inside the outer wall with one slit window watching the hall—if we take it tonight, the Order’s four Stones won’t be enough.',
-        garrickPayoff: 'Garrick looks at the seamless masonry beside your hand: "Four begin it. The fifth ends it. Let’s see what’s inside the wall."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 5-6 · “Where he fell, under the dark moon, the five were joined”',
-        playerLine: 'Fragment 5-6 completes the fifth map: “Where he fell, under the dark moon, the five were joined.” All five Stones were used together on the night he fell!',
-        garrickPayoff: 'Garrick nods toward the wall seam: "The watch has changed, and it’s dark enough. Into the wall."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Crawling forty paces along a dead city’s wall builds character',
-        playerLine: 'Forty paces of holding our breath above a square full of watchmen—and not one loose pebble this time.',
-        garrickPayoff: 'Garrick allows a quiet nod: "You’re learning to walk like hill folk."',
-      },
-    ],
-    friendAttr: 'Charm',
-    friendRawPrompt: 'Ask {friend:Charm} how we timed the lookout’s hand-drop during the watch change below.',
-    friendReply: 'When the relief guard turns to face the hall and strike the dusk chalk-mark, every eye in the square looks at the doors for ten full heartbeats.',
-  },
-
-  // WEEK 6 (Garrick is present for ALL of Week 6 — W6·D1 through W6·D6 & Gathering 6!)
-  '6-1': {
-    key: '6-1', week: 6, day: 1, shape: 'A', shapeLabel: SHAPE_LABELS.A,
-    clueTag: 'The Fifth & Six Left · The Wall Room',
-    garrickObservation: 'Inside the hidden Seeker room in the thickness of the wall, with the fifth Stone in your hands and the watch-page showing six nights left, Garrick checks the linen bandages on your palms: “I kept a tally behind my bar for years. Most of it was who owed me.”',
-    openQuestion: 'Twice Order watchmen brushed right past the wall room’s hidden door without finding you (because it answers only Seeker blood), yet your cut palms failed to wake the fifth Stone last night—why did the door answer your blood while the fifth Stone stayed cold?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The fifth Stone only wakes in the hall where he fell under the dark moon',
-        playerLine: 'Garrick, the wall door answered our Seeker blood, and Fragment 5-6 said the five were joined where he fell under the dark moon—the fifth won’t wake until that night in the hall.',
-        garrickPayoff: 'Garrick glances through the slit window toward the sealed hall: "Six strokes left on the page. And an arrow under the sill pointing down to the barracks."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 6-1 · “His household ran the night we came to the hall… They were only servants”',
-        playerLine: 'Fragment 6-1 in the wall room says: “His household ran the night we came to the hall. We let them go. They were only servants.” Someone from his house escaped Highwall!',
-        garrickPayoff: 'Garrick’s voice is steady and quiet: "Servants and children in plain coats look much the same in the dark."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · A tally of bar debts is a lot friendlier than a countdown to a dark moon',
-        playerLine: 'I’d trade this six-night watch-page for your old Hollow Wake bar tally any evening, Garrick.',
-        garrickPayoff: 'Garrick folds the linen strip neatly: "My bar tally had fewer swords at the bottom of it."',
-      },
-    ],
-    friendAttr: 'Intellect',
-    friendRawPrompt: 'Ask {friend:Intellect} what the arrow scratched under the slit window points to.',
-    friendReply: 'It points straight down through the floor-stones to the old defenders’ barracks under the wall—the Seekers left an interior route toward the hall.',
-  },
-  '6-2': {
-    key: '6-2', week: 6, day: 2, shape: 'B', shapeLabel: SHAPE_LABELS.B,
-    clueTag: 'Five Nights Left · Barracks Under the Wall',
-    garrickObservation: 'In the collapsed defenders’ barracks under the wall (five nights left), Garrick watches the stair doorway where the armoured soldier turned at the heartbeat and climbed up toward the hall without looking at you.',
-    openQuestion: 'The dead soldiers move when the heartbeat sounds, yet the one in the barracks stepped right past you to climb toward the hall—between the Order watchmen in the square, the walking iron soldiers, and the sealed hall doors, which one is actually guarding against us?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The soldiers aren’t hunting trespassers—they’re being called home to the hall',
-        playerLine: 'Garrick, that armoured soldier didn’t care about us at all. Every time the heartbeat sounds, the king’s old company climbs a step closer to his hall.',
-        garrickPayoff: 'Garrick looks up the dark stair: "They aren’t looking for thieves in the cellar. They’re answering the muster."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 6-2 · “We were marked, every one of us. That is how we found the shards”',
-        playerLine: 'Fragment 6-2 on the barracks hearth says: “We were marked, every one of us. That is how we found the shards.” The original Seekers were born under the dark moon too!',
-        garrickPayoff: 'Garrick nods slowly: "The Seekers had the mark. That’s why their doors know your hands."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Being ignored by a walking suit of iron is the best luck we’ve had all week',
-        playerLine: 'I’ve never been happier to be completely beneath an ancient soldier’s notice.',
-        garrickPayoff: 'Garrick’s mouth twitches: "Keep your boots out of the aisle and let him keep climbing."',
-      },
-    ],
-    friendAttr: 'Might',
-    friendRawPrompt: 'Ask {friend:Might} how we cleared the fallen barracks beam without bringing the ceiling down on the stair.',
-    friendReply: 'The ancient hearth-arch took the weight when we levered the beam aside—and the stair beyond leads straight up to the edge of the great square.',
-  },
-  '6-3': {
-    key: '6-3', week: 6, day: 3, shape: 'C', shapeLabel: SHAPE_LABELS.C,
-    clueTag: 'Warm Stone & Four Left · The Great Square',
-    garrickObservation: 'Back in the shadow of the wall after you crept into the lee of the hall and laid your palm against stone that was warm from the inside (four nights left), Garrick listens to the eleven watchmen around the square fire.',
-    openQuestion: 'The front doors of the hall are sealed flush without a keyhole, six new dusty faithful just arrived for the fourth night, and the stone wall of the hall is warm from within—how did the Seekers themselves get out of the hall after sealing the front doors from the outside?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · There is a hidden Seeker door in the cracked hill behind the hall',
-        playerLine: 'Garrick, if the front doors were sealed flush and the wall is warm inside, the Seekers must have left a hidden postern in the cracked hill behind the hall.',
-        garrickPayoff: 'Garrick looks toward the dark mass of the hall’s rear crag: "Every house built against a hill has a back stair."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 6-3 · “He did not die. Tell our children’s children: he did not die”',
-        playerLine: 'Fragment 6-3 on the square cistern says what the warm wall proves: “He did not die. Tell our children’s children: he did not die. The five hold him still.”',
-        garrickPayoff: 'Garrick’s voice is low and even: "Stone stays cold unless there’s a fire on the other side of it."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Six new watchmen with road-dust on their knees and none of them brought supper',
-        playerLine: 'Eleven watchmen in the square now, Garrick—their camp is getting crowded as the chalk strokes run down.',
-        garrickPayoff: 'Garrick eyes the square below: "Six of them still have road-dust to the knee. They came for the last night, not for you."',
-      },
-    ],
-    friendAttr: 'Agility',
-    friendRawPrompt: 'Ask {friend:Agility} what we noticed about the six new watchmen sitting apart by the fire.',
-    friendReply: 'Their packs aren’t even unrolled and they keep glancing nervously at the sealed hall doors—they weren’t sent to hunt us; they were summoned for the dark moon.',
-  },
-  '6-4': {
-    key: '6-4', week: 6, day: 4, shape: 'D', shapeLabel: SHAPE_LABELS.D,
-    clueTag: 'Full Moon Scored Dark · Hill Behind the Hall',
-    garrickObservation: 'After you broke the one outward-facing iron soldier in the crack behind the hall and found the blank rock carved with a full moon scored dark (three nights left), Garrick looks at the rubbing by the shielded lamp: “The Seekers sealed the doors they knew about.”',
-    openQuestion: 'Every soldier in Highwall faces inward toward the hall except the one stationed in that narrow crack facing outward—and behind it sits blank rock marked with a full moon scored dark. Why did the Seekers apologize in Fragment 6-4 for leaving this one way in?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The Seekers left a blood-door so their descendants could check the seal—and created a way back in',
-        playerLine: 'Garrick, the Seekers left one hidden door behind the hall that only opens for Seeker blood under a dark moon—and they feared someone would one day use it to bring the fifth Stone back inside.',
-        garrickPayoff: 'Garrick traces the scored-dark moon on the rubbing: "A door that only opens for your blood, on one night of the turn."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 6-4 · “We sealed his doors with our own hands and left one way in… Forgive us”',
-        playerLine: 'Fragment 6-4 in the deep crack reads like a confession: “We sealed his doors with our own hands and left one way in, that only our blood will open. Forgive us for leaving it at all.”',
-        garrickPayoff: 'Garrick repeats quietly: "Only your blood will open it. Not the men in the square."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Why did that one soldier in the crack face outward toward us?',
-        playerLine: 'Every other iron soldier in Highwall faces the hall, but the one in the crack was facing outward waiting for visitors.',
-        garrickPayoff: 'Garrick nods once: "Even the king knew where the back door was."',
-      },
-    ],
-    friendAttr: 'Aim',
-    friendRawPrompt: 'Ask {friend:Aim} how we spotted the soldier in the crack before its iron arm swung.',
-    friendReply: 'The moonlight glinted off the front of its visor instead of the back of its helm—it was posted there to bar the crack from the inside.',
-  },
-  '6-5': {
-    key: '6-5', week: 6, day: 5, shape: 'E', shapeLabel: SHAPE_LABELS.E,
-    clueTag: 'Two Nights Left · The Moon-Tower',
-    garrickObservation: 'Up in the roofless sky-watchers’ tower where the carved calendar of moons stops at a deep-cut full moon struck dark and your finger counted forward to the doorpost (two nights left), Garrick looks up at the pale moon overhead: “It always comes back.”',
-    openQuestion: 'Rank the three pieces of the clock that just locked together in the moon-tower: the sky-watchers’ chisel put down on the night the king fell, the dark-moon eclipse returning in two nights, and the Order’s chalk board matching the sky-watchers’ count to the hour.',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · The dark moon is an eclipse—and in two nights the Seekers’ door will open',
-        playerLine: 'Garrick, “when the dark ate the moon” wasn’t poetry—it’s a total lunar eclipse, and the sky-watchers’ wall proves the exact same eclipse falls in two nights!',
-        garrickPayoff: 'Garrick keeps his eyes on the open sky above the tower: "The sky keeps better time than any inn clock. Two nights."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 6-5 · “What was bound under that shadow may only be loosed under its twin”',
-        playerLine: 'Fragment 6-5 under the sky-watchers’ wall states the law: “What was bound under that shadow may only be loosed under its twin.”',
-        garrickPayoff: 'Garrick nods once: "Bound under one dark moon. Loosed under its twin."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · The mason left his chisel and mallet on the ledge for an age',
-        playerLine: 'Whoever carved that last dark moon put his chisel and mallet down on the ledge and never came back for his tools.',
-        garrickPayoff: 'Garrick glances at the bronze mallet: "When the sky goes out over your head, you don’t pack your bag."',
-      },
-    ],
-    friendAttr: 'Craft',
-    friendRawPrompt: 'Ask {friend:Craft} how the sky-watchers’ blank stone measures the two remaining nights.',
-    friendReply: 'Each finger-width of uncut stone after the last carved moon equals one turn of the cycle—and the measure lands squarely on the doorpost in two nights.',
-  },
-  '6-6': {
-    key: '6-6', week: 6, day: 6, shape: 'A', shapeLabel: SHAPE_LABELS.A,
-    clueTag: 'One Night Left · The Crack in the Hill',
-    garrickObservation: 'On the sixth night, with the iron ranks walking slowly up the hill toward the hall, one chalk stroke left on the watch-page, and the six joined fragments marking the blank rock inside the crack *"here"*, Garrick sets out the tin cups—including the extra one—and raises his own: “Drinks are on me. Don’t get used to it.”',
-    openQuestion: 'Tomorrow night the full moon goes dark, the blank rock in the crack opens at your Seeker blood-touch, and you carry the fifth Stone into His Hall—when we step through that door, what are we going in to do?',
-    chips: [
-      {
-        kind: 'THEORY',
-        label: 'Theory · Break the Order’s ring of four Stones before the dark moon completes the waking',
-        playerLine: 'Garrick, we go through the Seekers’ door as the moon goes dark, keep the fifth Stone out of the Order’s hands, and shatter their ring before the king wakes.',
-        garrickPayoff: 'Garrick looks around the circle—you, Mei, Dev, and Arjun—and drinks: "Six weeks on the road, and not one child lost. Tomorrow night you step into the hall."',
-      },
-      {
-        kind: 'FRAGMENT',
-        label: 'Fragment 6-6 · “Here, when the moon is dark, lay your hand upon the stone”',
-        playerLine: 'Fragment 6-6 completes the last map of the season: “Here, when the moon is dark, lay your hand upon the stone, and finish what we began.”',
-        garrickPayoff: 'Garrick sets his tin cup down beside the extra cup: "Finish what they began. Rest your hands tonight."',
-      },
-      {
-        kind: 'WRY',
-        label: 'Wry · Free drinks from Garrick on the last night—now I know the world is ending',
-        playerLine: 'Six weeks of road-herb tea and bar tallies, and on the night before we breach the king’s hall, Garrick finally pours a free round.',
-        garrickPayoff: 'Garrick’s voice is dry and quiet: "An innkeeper knows when to close the tab."',
-      },
-    ],
-    friendAttr: 'Might',
-    friendRawPrompt: 'Ask {friend:Might} how the walking iron ranks in the street behaved as we crossed to the crack.',
-    friendReply: 'Two whole columns of iron were marching slowly up the hill toward the hall—only the single sentry at the crack turned on us, and now the way to the Seekers’ door is clear.',
-  },
-};
-
-export function getGarrickCampfirePromptForDay(
-  week: number,
-  day: number,
-  characterName: string = 'Jennifer',
-  playerFanOutClue?: string,
-  hasFirstLetterHint: boolean = false
-): GarrickCampfireDayPrompt {
-  const safeWeek = Math.min(6, Math.max(1, week));
-  const safeDay = Math.min(6, Math.max(1, day));
-  const key = `${safeWeek}-${safeDay}`;
-  const isW1D1 = safeWeek === 1 && safeDay === 1;
-
-  const ch =
-    WEEKDAY_INVENTORY.find((d) => d.week === safeWeek && d.day === safeDay) ||
-    WEEKDAY_INVENTORY[0];
-  const frag =
-    SEEKER_FRAGMENTS.find((f) => f.week === safeWeek && f.day === safeDay) ||
-    SEEKER_FRAGMENTS[0];
-  const boardClues = getPartyBoardCluesForDay(safeWeek, safeDay);
-  const fanOut = getSoloFanOutEncounter(safeWeek, safeDay);
-  const meiClue = boardClues.find((c) => c.member === 'MEI')?.clueText || '';
-  const devClue = boardClues.find((c) => c.member === 'DEV')?.clueText || '';
-  const arjunClue = boardClues.find((c) => c.member === 'ARJUN')?.clueText || '';
-
-  const entry = CAMPFIRE_36_EVENING_TABLE[key] || CAMPFIRE_36_EVENING_TABLE['1-1'];
-  const resolvedFriend = resolveFriendForAttribute(entry.friendAttr);
-  const resolvedFriendPromptLabel = entry.friendRawPrompt.replace(
-    /\{friend:[A-Za-z]+\}/g,
-    `${resolvedFriend.name} (${entry.friendAttr})`
-  );
-
-  const cleanLearned = ch.summaryLearned.replace(/\[N\]/g, 'four');
-  const cleanPull = ch.pullLine.replace(/\[N\]/g, String(Math.max(1, 7 - safeDay)));
-  const cleanGarrickLine = (
-    ch.garrickLine || 'The kettle’s hot and I’ve set the tin cups out.'
-  ).replace(/^[“"]|[”"]$/g, '');
-
-  const activePlayerClue = playerFanOutClue || fanOut.soloClueText;
-  const hintClause = hasFirstLetterHint
-    ? `, and the mason’s mark you uncovered gives us "${fanOut.seekerFirstLetter}" as the starting letter for Fragment ${frag.id}’s first lock-word`
-    : `, and unjumbling Fragment ${frag.id} tonight will lock in the next piece of the Seeker map`;
-
-  const boardCrossCheckReply = `Put what you found at ${ch.place} ("${activePlayerClue.replace(/\(Unlocks.*?\)/g, '').trim()}") beside Mei’s and Dev’s notes on the board: together they back up today’s lead (${cleanLearned})${hintClause}.`;
-
-  const arrivalGreeting = isW1D1
-    ? `You, Mei, Dev, and Arjun share the roadside fire on the forest road before tomorrow’s walk to the Hollow Wake Inn. Your three new companions have pinned what they noticed at ${ch.place} to the Party Findings Board above—what did you make of the man on the road?`
-    : `Welcome to the fire, ${characterName}. "${cleanGarrickLine}" Mei, Dev, and Arjun have already pinned their Fan-Out findings from ${ch.place} to the Party Findings Board above. Did you uncover anything worth sharing when you fanned out at ${ch.place}?`;
-
-  const hostTarget: CampfireSpeakerId = isW1D1 ? 'MEI' : 'GARRICK';
-  const hostName = isW1D1 ? 'Mei' : 'Garrick';
-
-  const friendHook: CampfireFriendHook = {
-    attr: entry.friendAttr,
-    rawTemplate: entry.friendRawPrompt,
-    resolvedSpeaker: resolvedFriend.speaker,
-    resolvedFriendName: resolvedFriend.name,
-    label: `🎯 ${resolvedFriendPromptLabel}`,
-    playerLine: `${resolvedFriend.name}, ${entry.friendRawPrompt
-      .replace(/^Ask\s+\{friend:[A-Za-z]+\}\s+/i, '')
-      .replace(/\.$/, '')}?`,
-    companionReply: entry.friendReply,
-  };
-
-  // Wave 1 Stances built directly from the 36-Evening Table's 3 Canonical Chips (Theory, Fragment, Wry) + {friend:Attribute} Hook
-  const wave1Stances: CampfireWaveStance[] = [
-    ...entry.chips.map((chip, idx) => ({
-      id: `w1-${key}-chip-${idx}`,
-      wave: 1 as const,
-      pillar: (chip.kind === 'FRAGMENT' ? 'BOARD_AND_FRAGMENT' : 'MYSTERY_CASE') as
-        | 'BOARD_AND_FRAGMENT'
-        | 'MYSTERY_CASE',
-      chipKind: chip.kind,
-      label: chip.label,
-      target: hostTarget,
-      playerLine: chip.playerLine,
-      companionReply: chip.garrickPayoff,
-      garrickFollowUpHook: `${chip.garrickPayoff} — Now check ${resolvedFriend.name}’s ${entry.friendAttr} angle or connect tonight’s board to the wider case below.`,
-    })),
-    {
-      id: `w1-${key}-friend-hook`,
-      wave: 1,
-      pillar: 'BOARD_AND_FRAGMENT',
-      chipKind: 'FRIEND_HOOK',
-      label: friendHook.label,
-      target: friendHook.resolvedSpeaker,
-      playerLine: friendHook.playerLine,
-      companionReply: friendHook.companionReply,
-      garrickFollowUpHook: `${hostName} nods toward the board: "${resolvedFriend.name}’s ${entry.friendAttr} read lines right up with Fragment ${frag.id}. How do we connect that to the wider case?"`,
-    },
-  ];
-
-  const wave2Stances: CampfireWaveStance[] = [
-    {
-      id: `w2-${key}-arjun-mech`,
-      wave: 2,
-      pillar: 'BOARD_AND_FRAGMENT',
-      label: `Pull Arjun’s Board Finding into the Fragment ${frag.id} theory`,
-      target: 'ARJUN',
-      playerLine: `Arjun, bring your board clue from ${ch.place} in—how does the physical mechanism you inspected back up Mei’s reading of Fragment ${frag.id}?`,
-      companionReply: `Look at what I pinned to the board: "${arjunClue}" Every bronze pin and chisel-mark at ${ch.place} was engineered to respond only to Seeker bloodlines, ${characterName}. That’s why unjumbling both lock-words on Fragment ${frag.id} matters so much for our Day 7 Gathering!`,
-      garrickFollowUpHook: `Four clues on the board and the Seeker housing inspected. Keep pulling at the thread—or lock in tomorrow’s synthesis below.`,
-    },
-    {
-      id: `w2-${key}-garrick-deeper`,
-      wave: 2,
-      pillar: 'MYSTERY_CASE',
-      label: isW1D1
-        ? 'Ask Dev why the stranger put a list IN the box instead of stealing'
-        : safeWeek <= 2
-        ? 'Press Garrick on why the takers never harm the children'
-        : safeWeek <= 4
-        ? 'Press Garrick on why they spared us in the dark'
-        : 'Press Garrick on what waits inside Highwall’s sealed hall',
-      target: isW1D1 ? 'DEV' : 'GARRICK',
-      playerLine: isW1D1
-        ? `Dev, why would a man on the forest road break into a cargo box just to leave a list and a charcoal rubbing inside?`
-        : safeWeek <= 2
-        ? `Garrick, looking at everything on our board so far—why go to such lengths to take a child unharmed and leave the Seeker stone untouched for us?`
-        : safeWeek <= 4
-        ? `Garrick, every board clue from ${ch.place} shows them watching our steps without striking us down. Why let us keep closing in?`
-        : `Garrick, with the chalk strokes counting down at ${ch.place} and five sockets around the hall, what happens when the last lock opens?`,
-      companionReply: isW1D1
-        ? `That’s what keeps sticking in my craw, ${characterName}. A road-thief takes your silver and runs. Whoever sent that man wanted all four of us walking into the Hollow Wake Inn tomorrow at the exact same hour.`
-        : safeWeek === 1
-        ? `Look at the record on your board, ${characterName}. The girl was walked out calm, kept dry out of the rain, and carried without a scratch. You don’t guard a key unless you still have a door to open. What kind of door needs a child born beside an old stone?`
-        : safeWeek === 2
-        ? `Look at the record on your board, ${characterName}. Both Tamsin and Corin were kept dry, fed, and whole—and the takers knew the exact night Corin was born. You don’t guard a key unless you still have a door to open.`
-        : safeWeek <= 4
-        ? `A hunter doesn’t shoot the hound that’s leading him to the stag, ${characterName}. Look at Arjun’s note on the board—their own man died trying to pick a Seeker lock that opened at your touch. Does that tell you why your throats are still whole?`
-        : `Five stones fell when the dark ate the moon, ${characterName}, and four have already answered. The board in front of you has every step written on it—ask Mei what the last verse says about the fifth.`,
-      garrickFollowUpHook: `Mei glances up from Meira’s notebook by the firelight—ready if you want to connect tonight’s board to the overarching mystery.`,
-    },
-    {
-      id: `w2-${key}-mei-big-picture`,
-      wave: 2,
-      pillar: 'MYSTERY_CASE',
-      label: `Connect ${ch.place.replace(/^The\s+/i, '')} to our overall theory of the case`,
-      target: 'MEI',
-      playerLine: `Mei, step back and look at the whole mystery till date—how does today’s trail at ${ch.place} change our theory of what they’re building toward?`,
-      companionReply:
-        safeWeek <= 2
-          ? `When we started on the road, we thought we were chasing ordinary kidnappers. But putting your clue from ${ch.place} beside Dev’s and Arjun’s board notes proves they are following Meira’s old list of dark-moon birth dates, ${characterName}—and every Seeker Fragment we decode shows what was hidden at these stones.`
-          : safeWeek === 3
-          ? `Putting your clue from ${ch.place} beside our board notes proves why the Order came to the Blackglass and the Kiln, ${characterName}: they aren’t mourning a dead past—they believe someone sleeps beneath the stone, and Fragment ${frag.id} is part of the record.`
-          : `Putting your clue from ${ch.place} beside Dev’s and Arjun’s board notes proves they aren’t hoarding prisoners—they’re carrying every stone home in sequence, ${characterName}. And every time we solve a Seeker Fragment like ${frag.id}, we’re reading the blueprint they’re following!`,
-      garrickFollowUpHook: `That’s the sharpest anyone’s put it all week. If you spot anything else on the Party Findings Board above, call it out.`,
-    },
-  ];
-
-  const beat3Hook = `Compare your Fan-Out discovery from ${ch.place} with the three clues on the board and today’s Seeker Fragment (${frag.id})—what does it tell us about their next move?`;
-
-  const wave3Stances: CampfireWaveStance[] = [
-    {
-      id: `w3-${key}-next-move-dev`,
-      wave: 3,
-      pillar: 'NEXT_MOVE',
-      label: safeDay === 6
-        ? `Commit to tomorrow’s Day 7 Gathering approach (${cleanPull})`
-        : `Lock in tomorrow’s trail with Dev (${cleanPull})`,
-      target: 'DEV',
-      playerLine: `Dev, putting my Fan-Out clue from ${ch.place} beside the three board notes and Fragment ${frag.id}—our next move has to follow "${cleanPull}". What’s our vanguard plan at first light?`,
-      companionReply: `${boardCrossCheckReply} That locks our course for tomorrow ("${cleanPull}"), ${characterName}. I’ll take the point watch before dawn so we hit the next landmark before their rear-guard can sweep it.`,
-      garrickFollowUpHook: `${hostName} nods over the fire: "All four board clues and Fragment ${frag.id} point straight along '${cleanPull}'. Rest your blades—tomorrow we move on that line."`,
-    },
-    {
-      id: `w3-${key}-next-move-mei`,
-      wave: 3,
-      pillar: 'NEXT_MOVE',
-      label: `Synthesize Fragment ${frag.id} & our 4 Board Clues with Mei`,
-      target: 'MEI',
-      playerLine: `Mei, when we lay all four board clues from ${ch.place} over Fragment ${frag.id}, what does it prove about what waits ahead (${cleanPull})?`,
-      companionReply: `${boardCrossCheckReply} And when you pair that with "${cleanPull}", ${characterName}, it proves the next Seeker housing is already on their route—we have to reach it and decode the remaining words before the seventh night.`,
-      garrickFollowUpHook: `${hostName} closes the notebook cover: "Tonight’s synthesis is locked in—your Fan-Out clue, the three board notes, and Fragment ${frag.id} all point to '${cleanPull}'."`,
-    },
-  ];
-
-  return {
-    week: safeWeek,
-    day: safeDay,
-    shape: entry.shape,
-    shapeLabel: entry.shapeLabel,
-    clueTag: entry.clueTag,
-    arrivalGreeting,
-    beat1Observation: entry.garrickObservation,
-    beat2Question: entry.openQuestion,
-    beat3Hook,
-    boardCrossCheckReply,
-    canonicalChips: entry.chips,
-    friendHook,
-    wave1Stances,
-    wave2Stances,
-    wave3Stances,
-  };
-}
-
-export function buildBoardClueDiscussionExchange(
-  member: 'MEI' | 'DEV' | 'ARJUN' | 'YOU',
-  clueTitle: string,
-  clueText: string,
-  week: number,
-  day: number,
-  characterName: string = 'Jennifer'
-): {
-  playerPrompt: string;
-  targetSpeaker: CampfireSpeakerId;
-  companionReply: string;
-  garrickCue: string;
-} {
-  const ch =
-    WEEKDAY_INVENTORY.find((d) => d.week === week && d.day === day) ||
-    WEEKDAY_INVENTORY[0];
-  const frag =
-    SEEKER_FRAGMENTS.find((f) => f.week === week && d.day === day) ||
-    SEEKER_FRAGMENTS[0];
-  const isAbsent = week === 1 && day === 1;
-  const hostName = isAbsent ? 'Mei' : 'Garrick';
-
-  if (member === 'MEI') {
-    return {
-      playerPrompt: `Mei, I'm looking at your "${clueTitle}" note on the Party Findings Board—how does that fit with the rest of what we found at ${ch.place}?`,
-      targetSpeaker: 'MEI',
-      companionReply: `Look closely at what I logged at ${ch.place}, ${characterName}: "${clueText}" When you pair that with Fragment ${frag.id} (words starting with "${(frag.word1[0] || 'L').toUpperCase()}…" and "${(frag.word2[0] || 'S').toUpperCase()}…"), it shows the Seekers anticipated someone would come looking for the stone centuries later. What do you think, Dev—does that match the tracks you found?`,
-      garrickCue: isAbsent
-        ? `Dev glances up from the board: "Mei’s lore note and my perimeter track are two halves of the same coin. Ask Arjun how his mechanism check fits."`
-        : `Garrick points his tin cup at the board: "Mei’s lore note and Dev’s perimeter track are two halves of the same coin. Ask Dev or Arjun how their piece fits."`,
-    };
-  }
-
-  if (member === 'DEV') {
-    return {
-      playerPrompt: `Dev, about your "${clueTitle}" report on the Party Findings Board—what does that tell us about their numbers and direction from ${ch.place}?`,
-      targetSpeaker: 'DEV',
-      companionReply: `Glad you checked the board, ${characterName}. "${clueText}" They’re disciplined—moving fast without panic, and heading straight along the line toward "${ch.pullLine}" If Arjun’s right about the stonework, they knew this route before we ever left camp.`,
-      garrickCue: `${hostName} nods slowly: "Dev’s eye for tracks doesn’t miss. Pair that with your own Fan-Out discovery on the board—why were they in such a hurry to clear ${ch.place}?"`,
-    };
-  }
-
-  if (member === 'ARJUN') {
-    return {
-      playerPrompt: `Arjun, let's talk about your "${clueTitle}" entry on the Party Findings Board—what did you make of the craft at ${ch.place}?`,
-      targetSpeaker: 'ARJUN',
-      companionReply: `Tap the ironwork at ${ch.place} and it tells the whole story, ${characterName}: "${clueText}" Whoever built the housing for Fragment ${frag.id} designed it so brute force fails every time—only the right hand and the right sequence can unseal it.`,
-      garrickCue: `${hostName} leans in: "And that’s why their own lockpick failed where your hands succeeded. What does the rest of the table make of that?"`,
-    };
-  }
-
-  // YOU
-  const promptObj = getGarrickCampfirePromptForDay(week, day, characterName, clueText);
-  return {
-    playerPrompt: `Everyone, I've pinned my Fan-Out discovery from ${ch.place} ("${clueTitle}") to the Party Findings Board: ${clueText}`,
-    targetSpeaker: isAbsent ? 'MEI' : 'GARRICK',
-    companionReply: promptObj.boardCrossCheckReply,
-    garrickCue: `Mei and Dev lean over the board: "${promptObj.beat3Hook}"`,
-  };
-}
-
-export function getGarrickCampfireDailyPrompt(
-  week: number,
-  day: number,
-  characterName: string = 'Jennifer',
-  playerFanOutClue?: string,
-  hasFirstLetterHint: boolean = false
-) {
-  const p = getGarrickCampfirePromptForDay(
-    week,
-    day,
-    characterName,
-    playerFanOutClue,
-    hasFirstLetterHint
-  );
-  return {
-    shape: p.shape,
-    shapeLabel: p.shapeLabel,
-    clueTag: p.clueTag,
-    welcomeAskShare: p.arrivalGreeting,
-    garrickObservation: p.beat1Observation,
-    openQuestion: p.beat2Question,
-    beat1OpeningSynthesis: `${p.beat1Observation} ${p.beat2Question}`,
-    beat3Hook: p.beat3Hook,
-    boardCrossCheckReply: p.boardCrossCheckReply,
-    canonicalChips: p.canonicalChips,
-    friendHook: p.friendHook,
-    wave1Options: p.wave1Stances,
-    wave2Options: p.wave2Stances,
-    wave3Options: p.wave3Stances,
-  };
-}
-
-export function getBoardCrossCheckSynthesis(
-  week: number,
-  day: number,
-  _member?: 'MEI' | 'DEV' | 'ARJUN',
-  characterName: string = 'Jennifer',
-  playerFanOutClue?: string,
-  hasFirstLetterHint: boolean = false
-): string {
-  const p = getGarrickCampfirePromptForDay(
-    week,
-    day,
-    characterName,
-    playerFanOutClue,
-    hasFirstLetterHint
-  );
-  return p.boardCrossCheckReply;
-}
-```
-
-## FILE: `src/data/garrickDailyRiddles.ts`
-
-```ts
-export interface CampfireRiddle {
-  id: string;
-  week: number;
-  day: number;
-  slot: 'MORNING' | 'MIDDAY' | 'NIGHTFALL';
-  timeOfDay: 'Morning' | 'Midday' | 'Nightfall';
-  prompt: string;
-  punchlinePrefix: string;
-  answerWord: string;
-  jumbleLetters: string[];
-  explanation: string;
-}
-
-interface PunSeed {
-  q: string;
-  prefix: string;
-  word: string;
-  jumble: string[];
-  exp: string;
-}
-
-const MORNING_PUN_SEEDS: PunSeed[] = [
-  {
-    q: "I've got one for you while the kettle boils... What's blue in colour, but doesn't weigh much?",
-    prefix: 'Light',
-    word: 'BLUE',
-    jumble: ['L', 'U', 'B', 'E'],
-    exp: 'Garrick grins behind his tin cup while Dev groans: "Light blue. Get your boots on, everyone."',
-  },
-  {
-    q: 'Why did the scarecrow on the Fenmark road win a medal from the village Reeve?',
-    prefix: 'He was out-standing in his',
-    word: 'FIELD',
-    jumble: ['I', 'F', 'L', 'E', 'D'],
-    exp: 'Mei pinches the bridge of her nose: "Outstanding in his field. Truly terrible, Garrick."',
-  },
-  {
-    q: 'What has four wheels, carries the camp turnips, and flies all the way down the hill?',
-    prefix: 'A garbage',
-    word: 'CART',
-    jumble: ['R', 'A', 'T', 'C'],
-    exp: 'Arjun laughs: "Only flies after the flies find yesterday\'s salt-fish in the back."',
-  },
-  {
-    q: 'Why can you never trust the cobbler who mends boots by the river ford?',
-    prefix: 'His work is always a little',
-    word: 'SHADY',
-    jumble: ['D', 'A', 'H', 'S', 'Y'],
-    exp: 'Garrick chuckles dryly: "Because he sits under the willow tree. Keep walking."',
-  },
-  {
-    q: 'What do you call a sleeping bull blocking the middle of the mill lane?',
-    prefix: 'A bull-',
-    word: 'DOZER',
-    jumble: ['Z', 'O', 'R', 'D', 'E'],
-    exp: 'Dev shakes his head: "Dozer. Walk around the horns, not behind the hooves."',
-  },
-  {
-    q: 'Why did the baker at the crossroads stop making round loaves this morning?',
-    prefix: 'He got tired of kneading the',
-    word: 'DOUGH',
-    jumble: ['G', 'U', 'O', 'D', 'H'],
-    exp: 'Garrick tosses a biscuit across the fire: "Still tastes fine with hot tea."',
-  },
-];
-
-const MIDDAY_PUN_SEEDS: PunSeed[] = [
-  {
-    q: 'Wait till you hear this one... What has ears all down its side, yet cannot hear a single word you say?',
-    prefix: 'A field of',
-    word: 'CORN',
-    jumble: ['R', 'O', 'N', 'C'],
-    exp: 'Arjun groans: "Ears of corn. And here I thought you were talking about Dev on night watch."',
-  },
-  {
-    q: 'What runs all the way around the farmer’s pasture at noon without ever taking a breath or moving a leg?',
-    prefix: 'The wooden',
-    word: 'FENCE',
-    jumble: ['E', 'C', 'N', 'F', 'E'],
-    exp: 'Garrick taps the gatepost: "A fence. Never gets winded, either."',
-  },
-  {
-    q: 'What kind of coat is always put on wet and never has a single button or sleeve?',
-    prefix: 'A fresh coat of',
-    word: 'PAINT',
-    jumble: ['N', 'T', 'I', 'P', 'A'],
-    exp: 'Mei smiles despite herself: "A coat of paint. At least that one was clever."',
-  },
-  {
-    q: 'I have a neck but no head, and I wear a cork hat until the midday halt. What am I?',
-    prefix: 'A water',
-    word: 'BOTTLE',
-    jumble: ['T', 'O', 'L', 'B', 'E', 'T'],
-    exp: 'Garrick uncorks his canteen: "Pass the water-bottle before Dev drinks the stream dry."',
-  },
-  {
-    q: 'What gets wetter and wetter the more it dries your hands by the pump?',
-    prefix: 'A linen',
-    word: 'TOWEL',
-    jumble: ['W', 'L', 'O', 'T', 'E'],
-    exp: 'Dev grins: "Even I got that one before the soup cooled."',
-  },
-  {
-    q: 'What has a bottom right at the very top so you can walk through the mud?',
-    prefix: 'Your',
-    word: 'LEGS',
-    jumble: ['G', 'S', 'L', 'E'],
-    exp: 'Garrick chuckles: "Your legs. Keep them moving—we have three miles before dusk."',
-  },
-];
-
-const NIGHTFALL_PUN_SEEDS: PunSeed[] = [
-  {
-    q: 'One last one before you turn in... What can you catch by the river at night, but can never throw back?',
-    prefix: 'A head',
-    word: 'COLD',
-    jumble: ['L', 'D', 'O', 'C'],
-    exp: 'Garrick pulls his grey cloak tight: "A cold. Pull your blankets up by the embers."',
-  },
-  {
-    q: 'What has four stiff legs all night long, yet can never walk across the tavern floor by itself?',
-    prefix: 'A wooden',
-    word: 'TABLE',
-    jumble: ['B', 'L', 'E', 'T', 'A'],
-    exp: 'Arjun rests his boots on the bench: "Unless the tavern ale is stronger than usual."',
-  },
-  {
-    q: 'What belongs only to you, yet your three friends use it ten times more every day than you do?',
-    prefix: 'Your own',
-    word: 'NAME',
-    jumble: ['M', 'E', 'N', 'A'],
-    exp: 'Mei nods by the firelight: "Your name. Good night, Garrick."',
-  },
-  {
-    q: 'What is so fragile that merely speaking its name out loud by the campfire breaks it at once?',
-    prefix: 'The night',
-    word: 'SILENCE',
-    jumble: ['E', 'C', 'N', 'S', 'L', 'I', 'E'],
-    exp: 'Garrick raises one eyebrow: "Silence. Which I suggest we test until first watch."',
-  },
-  {
-    q: 'What has a single eye that cannot see a yard, yet mends every torn cloak in camp?',
-    prefix: 'A brass',
-    word: 'NEEDLE',
-    jumble: ['E', 'D', 'L', 'N', 'E', 'E'],
-    exp: 'Dev tucks his sewing kit away: "A needle. Saved my sleeve after that bramble hedge."',
-  },
-  {
-    q: 'What goes up the hill and down the valley every day, yet never moves an inch from its stones?',
-    prefix: 'The country',
-    word: 'ROAD',
-    jumble: ['D', 'A', 'R', 'O'],
-    exp: 'Garrick banks the coals: "The road itself. Rest easy—tomorrow it climbs again."',
-  },
-];
-
-export function getDailyCampfireRiddles(
-  week: number,
-  day: number,
-  place: string
-): CampfireRiddle[] {
-  const safeWeek = Math.min(6, Math.max(1, week));
-  const safeDay = Math.min(6, Math.max(1, day));
-  const seedIdx = ((safeWeek - 1) * 6 + (safeDay - 1)) % 6;
-
-  const isGarrickAbsent = safeWeek === 1 && safeDay === 1;
-  const hostName = isGarrickAbsent ? 'Mei' : 'Garrick';
-  const scrubGarrickFromExp = (exp: string) =>
-    isGarrickAbsent
-      ? exp
-          .replace(/\bGarrick\b/g, 'Dev')
-          .replace(/Truly terrible, Dev\./g, 'Truly terrible, Dev.')
-      : exp;
-
-  const m = MORNING_PUN_SEEDS[seedIdx];
-  const d = MIDDAY_PUN_SEEDS[seedIdx];
-  const n = NIGHTFALL_PUN_SEEDS[seedIdx];
-
-  return [
-    {
-      id: `w${safeWeek}-d${safeDay}-morning`,
-      week: safeWeek,
-      day: safeDay,
-      slot: 'MORNING',
-      timeOfDay: 'Morning',
-      prompt: `${hostName} leans by the fire near ${place}: "${m.q}"`,
-      punchlinePrefix: m.prefix,
-      answerWord: m.word,
-      jumbleLetters: m.jumble,
-      explanation: scrubGarrickFromExp(m.exp),
-    },
-    {
-      id: `w${safeWeek}-d${safeDay}-midday`,
-      week: safeWeek,
-      day: safeDay,
-      slot: 'MIDDAY',
-      timeOfDay: 'Midday',
-      prompt: `${hostName} glances over a tin cup: "${d.q}"`,
-      punchlinePrefix: d.prefix,
-      answerWord: d.word,
-      jumbleLetters: d.jumble,
-      explanation: scrubGarrickFromExp(d.exp),
-    },
-    {
-      id: `w${safeWeek}-d${safeDay}-nightfall`,
-      week: safeWeek,
-      day: safeDay,
-      slot: 'NIGHTFALL',
-      timeOfDay: 'Nightfall',
-      prompt: `${hostName} pokes the evening embers: "${n.q}"`,
-      punchlinePrefix: n.prefix,
-      answerWord: n.word,
-      jumbleLetters: n.jumble,
-      explanation: scrubGarrickFromExp(n.exp),
-    },
-  ];
-}
-```
+---
 
 ## FILE: `src/data/garrickRouter.ts`
 
-```ts
+```typescript
 export interface GarrickStoryState {
   episode: number; // 1 to 6
   day: number; // 1 to 7
@@ -17391,137 +15576,14 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
     flagsUsed: activeFlags,
   };
 }
+
 ```
 
-## FILE: `src/data/gmMemoryEngine.ts`
-
-```ts
-import { GarrickRouteResult, GarrickStoryState } from './garrickRouter';
-import { WEEKDAY_INVENTORY } from './mythiosChaptersData';
-
-/**
- * LAYER 2: Byte-Identical Static System Prefix (~450 tokens)
- * Placed at the very top of `systemInstruction` on every Bucket 5 (`AI_SMALL_TALK`) call.
- * Because this prefix never changes across calls, Gemini 2.5 / 3 Flash Automatic Implicit
- * Context Caching reuses the cached prefix tokens automatically on the free tier.
- */
-export const GARRICK_IMPLICIT_CACHE_SYSTEM_PREFIX = `You are Garrick, the grey-cloaked innkeeper of the Hollow Wake Inn guiding the party in "Tales of the Dark Moon".
-VOICE & THREE-VERB RULE (NEVER BREAK):
-1. You follow the three-verb rule: you NEVER promise, predict, or deny knowing, and you NEVER lie or invent facts about yourself.
-2. Keep replies to 1–2 short, dry, grounded sentences (under 35 words). Speak like a practical road-worn innkeeper who notices boots, weather, soup, straps, and firewood.
-3. NEVER use any of these banned phrases or words: "I don't know", "I cannot say", "I have no idea", "maybe", "perhaps", "I promise", "we'll be fine", "it will rain", "just an innkeeper", "Meira", "Malakor", "The Order", "Seeker", "moon-blood", "shard", "stone", "Tamsin", "Corin", "Wren", "Joss", "Highwall".
-4. Ground your small talk in the CURRENT SCENE SLICE and PARTY MEMORY DIGEST provided below without ever spoiling future days.`;
-
-export interface PartyMemoryDigest {
-  partyName: string;
-  activePlayer: string;
-  playerClass: string;
-  personalStakeShort: string;
-  recentRolls: string[]; // Last 3 rolls (e.g. "W2D2 THE MILLER'S WIFE: Cleared (Charm 21 vs 7+)")
-  relicsGiven: string[]; // Last 3 relic gifts (e.g. "Jennifer -> Mei (Charm Relic)")
-  solvedFragmentsCount: number;
-  garrickTopicsAsked: string[]; // Last 4 questions asked to Garrick
-  last4ChatTurns: { speaker: string; line: string }[];
-}
-
-export interface AssembledPromptBreakdown {
-  route: GarrickRouteResult['route'];
-  isZeroTokenDeterministic: boolean;
-  layer2StaticPrefixText: string;
-  layer2StaticTokens: number;
-  layer3SceneSliceText: string;
-  layer3SceneTokens: number;
-  layer4MemoryDigestText: string;
-  layer4MemoryTokens: number;
-  totalInputTokensUsed: number;
-  estimatedOutputTokens: number;
-  naiveFullHistoryTokens: number;
-  percentSaved: number;
-  implicitCacheEligible: boolean;
-}
-
-export function estimateTokens(text: string): number {
-  // Standard ~4 chars per token approximation, calibrated so the static prefix + rules block is ~440 tokens
-  return Math.max(1, Math.ceil(text.length / 3.8));
-}
-
-export function buildEpisodeSceneSlice(state: GarrickStoryState): string {
-  const ch =
-    WEEKDAY_INVENTORY.find((d) => d.week === state.episode && d.day === state.day) ||
-    WEEKDAY_INVENTORY[0];
-
-  return [
-    `CURRENT SCENE SLICE (Week ${state.episode}, Day ${state.day} — ${ch.place}):`,
-    `- Dramatic Question: ${ch.question}`,
-    `- Scene Summary: ${ch.summaryLearned}`,
-    `- Story Flags: ledgerOpened=${state.ledgerOpened}, prisonerHeld=${state.prisonerHeld}, allFourChildrenHome=${state.allFourChildrenHome}, atHighwall=${state.atHighwall}, ep6RevealLanded=${state.ep6RevealLanded}`,
-  ].join('\n');
-}
-
-export function buildCompactMemoryDigestString(digest: PartyMemoryDigest): string {
-  return JSON.stringify(
-    {
-      party: digest.partyName,
-      hero: `${digest.activePlayer} (${digest.playerClass})`,
-      stake: digest.personalStakeShort,
-      recentRolls: digest.recentRolls.slice(0, 3),
-      relicGifts: digest.relicsGiven.slice(0, 3),
-      fragmentsSolved: digest.solvedFragmentsCount,
-      recentGarrickQuestions: digest.garrickTopicsAsked.slice(0, 4),
-      lastTurns: digest.last4ChatTurns.slice(-4),
-    },
-    null,
-    2
-  );
-}
-
-export function inspectGmTokenEfficiency(
-  routeResult: GarrickRouteResult,
-  state: GarrickStoryState,
-  digest: PartyMemoryDigest
-): AssembledPromptBreakdown {
-  const layer2Text = GARRICK_IMPLICIT_CACHE_SYSTEM_PREFIX;
-  const layer3Text = buildEpisodeSceneSlice(state);
-  const layer4Text = buildCompactMemoryDigestString(digest);
-
-  // Calibrated token counts matching the 4-layer architecture spec (~440 static + ~150 scene + ~120 digest)
-  const layer2StaticTokens = 442;
-  const layer3SceneTokens = estimateTokens(layer3Text) + 65;
-  const layer4MemoryTokens = estimateTokens(layer4Text) + 30;
-
-  const isZeroTokenDeterministic = routeResult.route !== 'AI_SMALL_TALK';
-  const totalInputTokensUsed = isZeroTokenDeterministic
-    ? 0
-    : layer2StaticTokens + layer3SceneTokens + layer4MemoryTokens;
-  const estimatedOutputTokens = isZeroTokenDeterministic ? 0 : estimateTokens(routeResult.reply) + 12;
-
-  // Naive full-history RPG prompt sends all 6 episode scripts (~38,000 tokens) + rules (~4,500) + chat logs (~2,500) = ~45,000 tokens
-  const naiveFullHistoryTokens = 45000;
-  const percentSaved = Number(
-    (((naiveFullHistoryTokens - totalInputTokensUsed) / naiveFullHistoryTokens) * 100).toFixed(2)
-  );
-
-  return {
-    route: routeResult.route,
-    isZeroTokenDeterministic,
-    layer2StaticPrefixText: layer2Text,
-    layer2StaticTokens,
-    layer3SceneSliceText: layer3Text,
-    layer3SceneTokens,
-    layer4MemoryDigestText: layer4Text,
-    layer4MemoryTokens,
-    totalInputTokensUsed,
-    estimatedOutputTokens,
-    naiveFullHistoryTokens,
-    percentSaved,
-    implicitCacheEligible: !isZeroTokenDeterministic,
-  };
-}
-```
+---
 
 ## FILE: `server.ts`
 
-```ts
+```typescript
 import express from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
@@ -17554,15 +15616,27 @@ function getGenAI() {
   });
 }
 
-// Direct attachment download route so browsers/iframes reliably download the 10 Oct Audit Bundle
-app.get(['/api/download-audit-bundle-10oct', '/mythios-full-audit-bundle-10oct.md'], (req, res) => {
-  const filePath = path.resolve(process.cwd(), 'public', 'mythios-full-audit-bundle-10oct.md');
-  res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
-  if (req.path === '/api/download-audit-bundle-10oct' || req.query.download === '1') {
-    res.setHeader('Content-Disposition', 'attachment; filename="mythios-full-audit-bundle-10oct.md"');
+// Direct attachment download route so browsers/iframes reliably download the 14 Oct & 10 Oct Audit Bundle
+app.get(
+  [
+    '/api/download-audit-bundle-14oct',
+    '/mythios-full-audit-bundle-14oct.md',
+    '/api/download-audit-bundle-10oct',
+    '/mythios-full-audit-bundle-10oct.md',
+  ],
+  (req, res) => {
+    const is10Oct = req.path.includes('10oct');
+    const filename = is10Oct
+      ? 'mythios-full-audit-bundle-10oct.md'
+      : 'mythios-full-audit-bundle-14oct.md';
+    const filePath = path.resolve(process.cwd(), 'public', filename);
+    res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+    if (req.path.startsWith('/api/download-audit-bundle') || req.query.download === '1') {
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    }
+    res.sendFile(filePath);
   }
-  res.sendFile(filePath);
-});
+);
 
 // Server-authoritative Dice Roller (Core Rules §12a: "The server rolls every die.")
 app.post('/api/roll-challenge', (req, res) => {
@@ -17761,5 +15835,109 @@ async function startServer() {
 }
 
 startServer();
+
 ```
+
+---
+
+## FILE: `vite.config.ts`
+
+```typescript
+import tailwindcss from '@tailwindcss/vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import {defineConfig} from 'vite';
+
+export default defineConfig(() => {
+  return {
+    plugins: [react(), tailwindcss()],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, '.'),
+      },
+    },
+    server: {
+      // HMR is disabled in AI Studio via DISABLE_HMR env var.
+      // Do not modify—file watching is disabled to prevent flickering during agent edits.
+      hmr: process.env.DISABLE_HMR !== 'true',
+      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
+      watch: process.env.DISABLE_HMR === 'true' ? null : {},
+    },
+  };
+});
+
+```
+
+---
+
+## FILE: `package.json`
+
+```json
+{
+  "name": "react-example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "start": "tsx server.ts",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "lucide-react": "^0.546.0",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "vite": "^8.3.0",
+    "express": "^4.21.2",
+    "dotenv": "^17.2.3",
+    "motion": "^12.23.24"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.4.21",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.21.0",
+    "typescript": "^7.0.2",
+    "@types/express": "^4.17.21"
+  }
+}
+
+```
+
+---
+
+## FILE: `index.html`
+
+```html
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tales of the Dark Moon — Mythios</title>
+    <meta name="description" content="Asynchronous multiplayer story RPG in a chat app for 2 to 6 friends over 6 weeks, told by Mythios AI, with the full Handoff Audit & Verifier Workbench." />
+    <meta property="og:title" content="Tales of the Dark Moon — Mythios" />
+    <meta property="og:description" content="Asynchronous multiplayer story RPG in a chat app for 2 to 6 friends over 6 weeks, told by Mythios AI." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#0D0714] text-[#F4F1F8] antialiased selection:bg-[#D4B876]/30 selection:text-[#D4B876]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+```
+
+---
 

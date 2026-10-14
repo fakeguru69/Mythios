@@ -7,7 +7,21 @@ import {
   EPISODE_NUMBERS,
   GEAR_TABLE,
   getTierInfo,
+  WEEKDAY_DC_BY_WEEK,
+  PartyFriend,
+  calculateAttributeGrowth,
 } from '../data/mythiosRulesData';
+import {
+  GOLD_CHALLENGE_WIN,
+  GOLD_CHALLENGE_LOSS,
+  GOLD_PRESS_ON_WIN,
+  GOLD_UNITED_EFFORT_WIN,
+  GOLD_LOOK_CLOSER_WIN,
+  GOLD_MATCH_BASE_PER_PICK,
+  GOLD_MATCH_PERFECT_PER_PICK,
+  GOLD_FAN_OUT_CACHE_WIN,
+  GOLD_DETOUR_FIGHT_WIN,
+} from '../data/economy';
 import { WEEKDAY_INVENTORY } from '../data/mythiosChaptersData';
 import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
 import { GATHERINGS_DATA } from '../data/mythiosGatheringsAndAudit';
@@ -492,11 +506,17 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setDetourFightDone(false);
 
     if (cleared) {
-      onGainAttribute(activeAttr, 3, d20 === 20);
-      onEarnGold(150);
+      const daysPlayedThisWeek = completedDays.filter((id) => id.startsWith(`${currentWeek}-`)).length + 1;
+      const tier = getTierInfo(attrPoints);
+      const weekdayDC = WEEKDAY_DC_BY_WEEK[currentWeek] || 7;
+      const growth = calculateAttributeGrowth(attrPoints, daysPlayedThisWeek, d20, tier.bonus, weekdayDC);
+      onGainAttribute(activeAttr, growth, d20 === 20);
+      onEarnGold(GOLD_CHALLENGE_WIN);
       if (!dayData.hasFight) {
         onSealDay(currentWeek, currentDay, dayData.place);
       }
+    } else {
+      onEarnGold(-GOLD_CHALLENGE_LOSS);
     }
   };
 
@@ -555,7 +575,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
         setDetourFightDone(true);
         if (nextRound.enemyHpAfter <= 0) {
-          onEarnGold(50);
+          onEarnGold(GOLD_DETOUR_FIGHT_WIN);
         }
         onGainAttribute(dayData.challengeAttrs?.[0] || 'Might', 2);
         onSealDay(currentWeek, currentDay, dayData.place);
@@ -1984,33 +2004,33 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                         id: 'BRANCH_SKIP_CAMP',
                         branchType: 'CAMPFIRE',
                         title: 'HEAD NORTH TOWARD THE INN',
-                        badge: 'SKIP · 0G',
-                        color: '#E0645C',
+                        badge: 'FINISHED DAY',
+                        color: '#6FD39A',
                         label:
-                          'Leave the roadside unsearched and follow the torn list north toward The Hollow Wake Inn.',
-                        playerDeclaration: `The light is fading fast over ${dayData.place}—I have the torn list and the Seeker Fragment, so I’ll skip the extra roadside sweep and head north toward The Hollow Wake Inn.`,
-                        arrivalParagraph1: `You decide against lingering in the darkening timber around ${dayData.place}, strapping your pack tight and turning north up the wet drove road.`,
-                        arrivalParagraph2: `By pressing on immediately, you pass up the +150g roadside cache and today’s 1st-letter Seeker Fragment cipher-key—setting your sights on the warm lamplight of The Hollow Wake Inn ahead.`,
+                          'Finish today\'s chapter and follow the drove road north toward The Hollow Wake Inn.',
+                        playerDeclaration: `The light is fading fast over ${dayData.place}—I have the torn list and today's Seeker Fragment, so I’ll head north toward The Hollow Wake Inn.`,
+                        arrivalParagraph1: `You strap your pack tight at ${dayData.place} and turn north up the wet drove road toward the inn.`,
+                        arrivalParagraph2: `With today's chapter complete, you look ahead toward the warm lamplight of The Hollow Wake Inn.`,
                       });
                     } else {
                       handleSelectFanOutBranch({
                         id: 'BRANCH_SKIP_CAMP',
                         branchType: 'CAMPFIRE',
-                        title: 'BACK TO CAMPFIRE',
-                        badge: 'SKIP · 0G',
-                        color: '#E0645C',
+                        title: 'HEAD TO THE CAMPFIRE',
+                        badge: 'FINISHED DAY',
+                        color: '#F0A552',
                         label:
-                          'Leave the dusk perimeter unsearched and walk straight to the campfire.',
-                        playerDeclaration: `The light is fading fast over ${dayData.place}—I’ll skip the extra dusk sweep and head straight to the campfire with the main Fragment.`,
-                        arrivalParagraph1: `You decide against pressing further into the dusk shadows around ${dayData.place}, leaving the outer perimeter unsearched while Mei, Dev, and Arjun finish their sectors.`,
-                        arrivalParagraph2: `By turning in early, you pass up the +150g solo cache, today’s 1st-letter Seeker Fragment cipher-key, and your personal finding for the Campfire Clue Board—arriving first by the fire as the kettle begins to boil.`,
+                          'Finish today\'s chapter and walk straight to the campfire.',
+                        playerDeclaration: `The light is fading over ${dayData.place}—I’ll head straight to the campfire with today's Fragment.`,
+                        arrivalParagraph1: `You finish your day at ${dayData.place} and walk straight toward the woodsmoke of the campfire.`,
+                        arrivalParagraph2: `Your day is complete. You arrive at the fire as the kettle begins to boil and will catch up with tonight's clues from the board.`,
                       });
                     }
                   }}
                   className={`w-full p-2.5 rounded-xl text-left transition border ${
                     fanOutBranch?.id === 'BRANCH_SKIP_CAMP'
-                      ? 'bg-[#2A1622] border-[#E0645C] shadow-sm'
-                      : 'bg-[#140B1C] border-[#E0645C]/45 hover:border-[#E0645C]'
+                      ? 'bg-[#1E1232] border-[#D4B876] shadow-sm'
+                      : 'bg-[#140B1C] border-[#3A2555] hover:border-[#D4B876]'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
@@ -2021,28 +2041,21 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                         ? '🏠 '
                         : '🔥 '}
                       {isSoloW1D1
-                        ? 'HEAD NORTH TO THE INN (SKIP SOLO SWEEP)'
-                        : 'BACK TO CAMPFIRE (SKIP SOLO SWEEP)'}
+                        ? 'HEAD NORTH TO THE INN (FINISH DAY)'
+                        : 'HEAD TO THE CAMPFIRE (FINISH DAY)'}
                     </span>
-                    <span className="px-1.5 py-0.5 rounded bg-[#2A1420] border border-[#E0645C]/70 font-['Cinzel'] font-bold text-[10px] text-[#E0645C] whitespace-nowrap shrink-0">
-                      ⚠️ FORFEITS +150G
+                    <span className="px-1.5 py-0.5 rounded bg-[#1A102A] border border-[#6FD39A]/60 font-['Cinzel'] font-bold text-[10px] text-[#6FD39A] whitespace-nowrap shrink-0">
+                      FINISHED DAY
                     </span>
                   </div>
                   <p className="text-[13px] font-sans text-[#D8CEE8] mt-0.5 leading-snug">
                     {isSoloW1D1 ? (
                       <>
-                        Head up the drove road without rolling.{' '}
-                        <span className="text-[#E0645C] font-semibold">Forewarning:</span>{' '}
-                        Forfeits <span className="text-[#E5C158] font-semibold">+150g</span> and the{' '}
-                        <span className="text-[#6FD39A] font-semibold">1st-letter Seeker hint</span>.
+                        Head up the drove road toward the inn. Your day is complete without the extra search.
                       </>
                     ) : (
                       <>
-                        Turn in early without rolling.{' '}
-                        <span className="text-[#E0645C] font-semibold">Forewarning:</span>{' '}
-                        Forfeits <span className="text-[#E5C158] font-semibold">+150g</span>, the{' '}
-                        <span className="text-[#6FD39A] font-semibold">1st-letter hint</span>, and your{' '}
-                        <span className="text-[#C4A1FF] font-semibold">Campfire Board clue</span>.
+                        Head straight to the fire. A finished day with no extra roll—you can read tonight’s clue from the board.
                       </>
                     )}
                   </p>
