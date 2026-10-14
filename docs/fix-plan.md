@@ -14,6 +14,8 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 0: decisions that shape the plan
 
+**Decided by Fake Guru, 14 Oct:** D1 demo on one phone · D2 go (after Phase 1) · D3 fix the line · D4 other names wanted (Lin/Sam not chosen) · D5 the story delivers the reveal · D6 different finds per friend · D7 remove the private ballot. Fan Out and Campfire design: see `docs/design/fan-out-and-campfire-proposal.md` (proposal, awaiting approval).
+
 | # | Decision | Why it matters | Recommendation |
 |---|---|---|---|
 | D1 | **Direction:** keep improving the 6-week demo on one phone, or start real friends on their own phones (Week 1 first, accounts, a shared clock)? | Real phones need a server, accounts and push notifications; much of Phase 4 changes shape. | Do Phases 1–3 on the demo first (they are needed either way), then decide. |
@@ -28,7 +30,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 1: rules and loopholes (code only, no story changes)
 
-1. **[Fix] The Challenge roll** (Task 1). d20 + tier bonus against the week's DC; success on a margin of 1 or more; no automatic 20; "You succeed on X+". The same rule for [PRESS ON], Fan Out and the Gathering Approach. Remove the "Obstacle" bar.
+1. ✅ **Done 14 Oct.** **[Fix] The Challenge roll** (Task 1). Also fixed a crash that stopped every passed Challenge from paying, growing or finishing the day. The Approach now uses its roller's own bonus; the map +2 is kept pending Fake Guru (not in canon). d20 + tier bonus against the week's DC; success on a margin of 1 or more; no automatic 20; "You succeed on X+". The same rule for [PRESS ON], Fan Out and the Gathering Approach. Remove the "Obstacle" bar.
 2. **[Fix] Fights.** Hit on d20 + Weapon − DEF ≥ 1; damage d20 × 2; the player strikes first. No per-round ROLL button: play the fight beat by beat with tumbling dice (canon, 4 Oct). Remove the invented +2 Weapon / −15 HP on days with a Challenge and a fight, and make the "strike first" text true.
 3. **[Fix] Pay.** Turn off patch L4 so fights on Challenge-and-fight days pay 0 (Task 2). Result cards show the real numbers (Task 3). No hard-coded gold (Task 4).
 4. **[Fix] Loopholes.**

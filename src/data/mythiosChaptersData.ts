@@ -71,7 +71,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     hasPressOn: true, pressOnTitle: 'READ THE STUBS',
     pressOnDetail: 'Each stub has a faint straight line scored down it. She cut them against a rule, one at a time, with care. She meant to send them.',
     fightReward: 0,
-    passBranchText: 'Yours is the third stub. It fits like a key. With the place put to it, the page is about two children: one taken two winters back and held near that rock, and another born on the same dark-moon night living in Fenmark under its shadow.',
+    passBranchText: 'Your stub fits like a key. With the place put to it, the page is about two children: one taken two winters back and held near that rock, and another born on the same dark-moon night living in Fenmark under its shadow.',
     failBranchText: 'You try it against every stub but the right one until Mei turns your page the other way up. When you ask the innkeeper to guide you, he looks to Mei instead of you.',
     pullLine: 'First light. Two hours north. A child was held at that rock, and whatever it is has not finished.',
     summaryLearned: 'The list is Meira\'s. Her page records a child held near the Widow\'s Tooth two winters back, and warns of another marked child in Fenmark.',

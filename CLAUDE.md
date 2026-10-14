@@ -182,9 +182,9 @@ These are not locked forever; the design is still moving. They mean: do not do t
 
 ## 9. Waiting on Fake Guru (remind him)
 
-1. "Go" for the numbers pass (sets the PENDING amounts in `economy.ts` and settles §15).
-2. Direction: keep polishing the 6-week single-phone demo, or go back to the handover plan (Week 1 only, 2–4 real friends, real accounts, a shared party clock). The previous Claude recommended the handover plan.
-3. OK on sample names "Lin" and "Sam".
+1. ~~"Go" for the numbers pass~~ Given 14 Oct: do it after the Phase 1 rule fixes (`docs/fix-plan.md`).
+2. ~~Direction~~ Decided 14 Oct: the 6-week demo on one phone.
+3. Sample names for friends 5 and 6: Fake Guru wants other suggestions (14 Oct).
 4. Before any public launch: technology for real multiplayer (backend, accounts, push), terms and privacy.
 
 ## 10. Git

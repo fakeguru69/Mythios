@@ -99,6 +99,18 @@ export function calculateAttributeGrowth(
   return Math.max(1, calculated);
 }
 
+// Core Rules §3/§12: a Challenge is d20 + tier bonus (+4 Relic) against the DC.
+// Success when the net is 1 or more; a tie fails; no automatic success on a 20.
+export function resolveChallengeRoll(d20: number, bonus: number, dc: number): { net: number; success: boolean } {
+  const net = d20 + bonus - dc;
+  return { net, success: net >= 1 };
+}
+
+// The card's "You succeed on X+" number, clamped to 2..20.
+export function challengeSucceedOn(dc: number, bonus: number): number {
+  return Math.min(20, Math.max(2, dc + 1 - bonus));
+}
+
 export function getTierInfo(val: number): { name: string; bonus: number; rate: number; nextAt: number | null; pctInTier: number } {
   if (val <= 25) return { name: 'Novice', bonus: 0, rate: 1.0, nextAt: 26, pctInTier: Math.min(100, Math.round((val / 25) * 100)) };
   if (val <= 50) return { name: 'Apprentice', bonus: 2, rate: 1.0, nextAt: 51, pctInTier: Math.min(100, Math.round(((val - 25) / 25) * 100)) };

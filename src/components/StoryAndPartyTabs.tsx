@@ -10,6 +10,8 @@ import {
   WEEKDAY_DC_BY_WEEK,
   PartyFriend,
   calculateAttributeGrowth,
+  resolveChallengeRoll,
+  challengeSucceedOn,
 } from '../data/mythiosRulesData';
 import {
   GOLD_CHALLENGE_WIN,
@@ -117,11 +119,34 @@ interface RollState {
   d20: number;
   attr: AttributeName;
   attrPoints: number;
+  tierBonus: number;
   relicBonus: number;
   total: number;
-  obstacle: number;
+  dc: number;
+  succeedOn: number;
   margin: number;
   cleared: boolean;
+}
+
+// Core Rules §12a: the server rolls every die. Fall back to a local d20 only if
+// the server can't be reached; the pass/fail rule is the same either way.
+async function rollChallengeD20(dc: number, bonus: number, relicBonus: number): Promise<number> {
+  try {
+    const res = await fetch('/api/roll-challenge', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ dc, bonus, relicBonus }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (Number.isInteger(data.roll) && data.roll >= 1 && data.roll <= 20) {
+        return data.roll;
+      }
+    }
+  } catch {
+    // Server unreachable: use the local fallback below.
+  }
+  return Math.floor(Math.random() * 20) + 1;
 }
 
 interface FightRoundEntry {
@@ -333,6 +358,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   onShareFanOutClue,
   privateTheoryPromptsByDay = {},
   onSavePrivateTheoryPrompt,
+  completedDays = [],
 }) => {
   const [selectedAttr, setSelectedAttr] = useState<AttributeName | null>(null);
   const [privatePromptCustomText, setPrivatePromptCustomText] = useState('');
@@ -419,7 +445,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   };
   const activeAttrScore = getDisplayScore(activeAttr);
 
-  const obstacleTarget = 36 + currentWeek * 6;
+  const weekdayDC = WEEKDAY_DC_BY_WEEK[currentWeek] || 7;
+  const activeTierBonus = getTierInfo(activeAttrScore).bonus;
   const availableAttrRelics = relics[activeAttr] || 0;
   const availableBattleRelics = relics['Battle'] ?? relics['Combat'] ?? 0;
 
@@ -477,14 +504,18 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     if (onSetShowChapterPicker) onSetShowChapterPicker(false);
   };
 
-  // #2: Failed Challenges grant ZERO Attribute points and ZERO Gold, and force a real-cost Detour!
-  const handleRollChallenge = () => {
-    const d20 = Math.floor(Math.random() * 20) + 1;
+  const [isRollingChallenge, setIsRollingChallenge] = useState(false);
+
+  // Weekday Challenge (Core Rules §3): d20 + tier bonus (+4 Relic) against the week's DC.
+  const handleRollChallenge = async () => {
+    if (rollOutcome || isRollingChallenge) return;
+    setIsRollingChallenge(true);
     const attrPoints = attributes[activeAttr] || 20;
+    const tierBonus = getTierInfo(attrPoints).bonus;
     const relicBonus = useAttrRelic && availableAttrRelics > 0 ? 4 : 0;
-    const total = d20 + attrPoints + relicBonus;
-    const margin = total - obstacleTarget;
-    const cleared = total >= obstacleTarget || d20 === 20;
+    const d20 = await rollChallengeD20(weekdayDC, tierBonus, relicBonus);
+    const { net: margin, success: cleared } = resolveChallengeRoll(d20, tierBonus + relicBonus, weekdayDC);
+    const total = d20 + tierBonus + relicBonus;
 
     if (relicBonus > 0) {
       onUseRelic(activeAttr);
@@ -495,21 +526,22 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       d20,
       attr: activeAttr,
       attrPoints,
+      tierBonus,
       relicBonus,
       total,
-      obstacle: obstacleTarget,
+      dc: weekdayDC,
+      succeedOn: challengeSucceedOn(weekdayDC, tierBonus + relicBonus),
       margin,
       cleared,
     });
+    setIsRollingChallenge(false);
     setRecoveryChoice(null);
     setDetourFightRounds([]);
     setDetourFightDone(false);
 
     if (cleared) {
       const daysPlayedThisWeek = completedDays.filter((id) => id.startsWith(`${currentWeek}-`)).length + 1;
-      const tier = getTierInfo(attrPoints);
-      const weekdayDC = WEEKDAY_DC_BY_WEEK[currentWeek] || 7;
-      const growth = calculateAttributeGrowth(attrPoints, daysPlayedThisWeek, d20, tier.bonus, weekdayDC);
+      const growth = calculateAttributeGrowth(attrPoints, daysPlayedThisWeek, d20, tierBonus, weekdayDC);
       onGainAttribute(activeAttr, growth, d20 === 20);
       onEarnGold(GOLD_CHALLENGE_WIN);
       if (!dayData.hasFight) {
@@ -821,12 +853,15 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     : Boolean(rollOutcome && (rollOutcome.cleared || detourFightDone || recoveryChoice));
 
   // Fanning Out Solo Encounter handlers (#7)
-  const fanOutObstacle = 34 + currentWeek * 5;
+  // Fan Out Challenge: same rule as the weekday Challenge, against the week's DC.
+  // (No separate Fan Out DC exists in canon; pending the numbers pass, Core Rules §15.)
   const activeFanOutAttr: AttributeName =
     fanOutSelectedAttr ||
     (fanOutBranch?.challengeAttrs?.[0] as AttributeName) ||
     'Craft';
   const activeFanOutAttrScore = attributes[activeFanOutAttr] || 20;
+  const activeFanOutTierBonus = getTierInfo(activeFanOutAttrScore).bonus;
+  const [isRollingFanOut, setIsRollingFanOut] = useState(false);
 
   const handleSelectFanOutBranch = (opt: FanOutBranchOption) => {
     setFanOutBranch(opt);
@@ -861,24 +896,28 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setFanOutCompleted(true);
   };
 
-  const handleRollFanOutChallenge = () => {
-    if (!fanOutBranch) return;
-    const d20 = Math.floor(Math.random() * 20) + 1;
+  const handleRollFanOutChallenge = async () => {
+    if (!fanOutBranch || fanOutRollOutcome || isRollingFanOut) return;
+    setIsRollingFanOut(true);
     const attrPoints = attributes[activeFanOutAttr] || 20;
-    const total = d20 + attrPoints;
-    const margin = total - fanOutObstacle;
-    const cleared = total >= fanOutObstacle || d20 === 20;
+    const tierBonus = getTierInfo(attrPoints).bonus;
+    const d20 = await rollChallengeD20(weekdayDC, tierBonus, 0);
+    const { net: margin, success: cleared } = resolveChallengeRoll(d20, tierBonus, weekdayDC);
+    const total = d20 + tierBonus;
 
     setFanOutRollOutcome({
       d20,
       attr: activeFanOutAttr,
       attrPoints,
+      tierBonus,
       relicBonus: 0,
       total,
-      obstacle: fanOutObstacle,
+      dc: weekdayDC,
+      succeedOn: challengeSucceedOn(weekdayDC, tierBonus),
       margin,
       cleared,
     });
+    setIsRollingFanOut(false);
 
     if (cleared) {
       onGainAttribute(activeFanOutAttr, 1, d20 === 20);
@@ -1121,7 +1160,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                   🎯 CHALLENGE · {dayData.challengeTitle.toUpperCase()}
                 </span>
                 <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] whitespace-nowrap shrink-0">
-                  Obstacle {obstacleTarget}
+                  You succeed on {challengeSucceedOn(weekdayDC, activeTierBonus + (useAttrRelic ? 4 : 0))}+
                 </span>
               </div>
 
@@ -1166,18 +1205,14 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                         {dayData.challengeTitle.toUpperCase()}
                       </span>
                     </div>
-                    <div className="w-full h-1.5 bg-[#2A1B40] rounded-full overflow-hidden mt-1.5">
-                      <div
-                        className="h-full bg-[#E5C158] transition-all"
-                        style={{
-                          width: `${Math.min(100, obstacleTarget)}%`,
-                        }}
-                      />
-                    </div>
                     <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
                       <div className="flex items-center justify-between font-semibold text-[#E5C158]">
-                        <span>Obstacle</span>
-                        <span className="font-bold">{obstacleTarget}</span>
+                        <span>Difficulty</span>
+                        <span className="font-bold">{weekdayDC}</span>
+                      </div>
+                      <div className="flex items-center justify-between font-semibold text-[#B7A9CC]">
+                        <span>{getTierInfo(activeAttrScore).name} bonus</span>
+                        <span className="font-bold">+{activeTierBonus}</span>
                       </div>
                     </div>
                   </div>
@@ -1247,9 +1282,12 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                     <button
                       type="button"
                       onClick={handleRollChallenge}
+                      disabled={isRollingChallenge}
                       className="flex-1 min-w-0 py-2 px-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[12px] tracking-[0.6px] uppercase transition whitespace-nowrap truncate"
                     >
-                      🎲 ROLL D20 + {activeAttrScore + (useAttrRelic ? 4 : 0)}
+                      {isRollingChallenge
+                        ? '🎲 ROLLING…'
+                        : `🎲 ROLL D20 + ${activeTierBonus + (useAttrRelic ? 4 : 0)}`}
                     </button>
                   </div>
                 )}
@@ -1266,7 +1304,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                             color: ATTRIBUTE_META[rollOutcome.attr].color,
                           }}
                         >
-                          {rollOutcome.attr} {rollOutcome.attrPoints}
+                          {rollOutcome.attr} +{rollOutcome.tierBonus}
                         </span>
                         {rollOutcome.relicBonus > 0 && (
                           <>
@@ -1278,7 +1316,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                         )}
                         <span className="text-[#8B7A9E]">−</span>
                         <span className="text-[#E5C158]">
-                          Obs {rollOutcome.obstacle}
+                          DC {rollOutcome.dc}
                         </span>
                         <span className="text-[#8B7A9E]">=</span>
                         <span
@@ -2113,7 +2151,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                           {(fanOutBranch.challengeTitle || 'LOCKED COURIER CACHE').toUpperCase()}
                         </span>
                         <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] whitespace-nowrap shrink-0">
-                          Obstacle {fanOutObstacle}
+                          You succeed on {challengeSucceedOn(weekdayDC, activeFanOutTierBonus)}+
                         </span>
                       </div>
 
@@ -2166,9 +2204,12 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                           <button
                             type="button"
                             onClick={handleRollFanOutChallenge}
+                            disabled={isRollingFanOut}
                             className="w-full py-2 px-3 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[12px] tracking-[0.8px] uppercase transition"
                           >
-                            🎲 ROLL D20 + {activeFanOutAttrScore}
+                            {isRollingFanOut
+                              ? '🎲 ROLLING…'
+                              : `🎲 ROLL D20 + ${activeFanOutTierBonus}`}
                           </button>
                         )}
 
@@ -2186,11 +2227,11 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                                     color: ATTRIBUTE_META[fanOutRollOutcome.attr].color,
                                   }}
                                 >
-                                  {fanOutRollOutcome.attr} {fanOutRollOutcome.attrPoints}
+                                  {fanOutRollOutcome.attr} +{fanOutRollOutcome.tierBonus}
                                 </span>
                                 <span className="text-[#8B7A9E]">−</span>
                                 <span className="text-[#E5C158]">
-                                  Obs {fanOutRollOutcome.obstacle}
+                                  DC {fanOutRollOutcome.dc}
                                 </span>
                                 <span className="text-[#8B7A9E]">=</span>
                                 <span
@@ -3550,7 +3591,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                 🎯 PHASE 1 · {gathering.approachQuestion}
               </span>
               <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#E5C158] whitespace-nowrap">
-                Obstacle {epMeta.gatheringDC}
+                Difficulty {epMeta.gatheringDC}
               </span>
             </div>
 
@@ -3609,17 +3650,19 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                     const heroTierBonus = getTierInfo(
                       attributes[chosen.attr as AttributeName] || 20
                     ).bonus;
+                    // Core Rules §11: one friend steps up and rolls with their own tier bonus
+                    // against the Gathering DC (weekday + 2). Same pass rule as every Challenge.
                     const d20 = Math.floor(Math.random() * 20) + 1;
-                    const bonus = chosen.bestBonus + heroTierBonus + mapBonus;
+                    const bonus = heroTierBonus + mapBonus;
                     const dc = epMeta.gatheringDC || 8;
-                    const margin = d20 + bonus - dc;
+                    const { net: margin, success: cleared } = resolveChallengeRoll(d20, bonus, dc);
                     setApproachRolled({
                       d20,
                       attr: chosen.attr as AttributeName,
                       bonus,
                       dc,
                       margin,
-                      cleared: d20 + bonus >= dc,
+                      cleared,
                     });
                   }}
                   className="w-full py-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[13px] tracking-[1px] uppercase transition"
@@ -3629,7 +3672,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
               ) : (
                 <div className="p-2.5 rounded-xl bg-[#1A102A] border border-[#3A2555] space-y-1 text-[13.5px] font-sans">
                   <div className="flex flex-wrap items-center gap-1.5 font-semibold">
-                    <span className="text-[#6FD39A] font-bold">YOU & PARTY:</span>
+                    <span className="text-[#6FD39A] font-bold">YOU:</span>
                     <span className="text-[#F4F1F8]">🎲 {approachRolled.d20}</span>
                     <span className="text-[#8B7A9E]">+</span>
                     <span
@@ -3638,10 +3681,10 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                           ATTRIBUTE_META[approachRolled.attr]?.color || '#D4B876',
                       }}
                     >
-                      {approachRolled.attr}, Tier & Map +{approachRolled.bonus}
+                      {approachRolled.attr} +{approachRolled.bonus}
                     </span>
                     <span className="text-[#8B7A9E]">−</span>
-                    <span className="text-[#E5C158]">Obstacle {approachRolled.dc}</span>
+                    <span className="text-[#E5C158]">DC {approachRolled.dc}</span>
                     <span className="text-[#8B7A9E]">=</span>
                     <span
                       className={`font-bold ${
