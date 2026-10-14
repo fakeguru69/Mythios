@@ -14,7 +14,7 @@ The chapter data holds content that the story screen never shows:
 - **The "look here or look there" choices** (W1D1, W2D2, W3D5, W4D3, W6D3) are never offered. The W1D1 discovery of the charcoal rubbing is not played. "WREN" on the doorframe and "Until the throne rise whole" (W3D5) only appear as summary lines.
 - **[PRESS ON] is not built on weekdays.** *Correction (made during Point 5):* 12 [PRESS ON] details do reach players as that day's Fan Out clue and on the Campfire board. They are missing only from the day's own story.
 - **The "who strikes first" choice before a fight is not built.** The player always strikes first.
-- **Garrick's weekday lines are not shown on the story screen.** These include the finale plants: W1D6 "We always pour one for whoever can't be with us", W3D2 "My family's been in these hills longer than the roads have", W4D1 "not one of you has died", and W5D4 "My family's waited a long time…". The extra cup does appear on 8 Campfire nights.
+- **Garrick's weekday lines are not shown on the story screen.** These include the finale plants: W1D6 "We always pour one for whoever can't be with us", W3D2 "My family's been in these hills longer than the roads have", W4D1 "not one of you has died", and W5D4 "My family's waited a long time…". The extra cup does appear on 8 Campfire nights. *(Checked during Point 6: the older Campfire prompt file `garrickCampfirePrompts.ts`, which also holds these lines, is computed but never shown on screen, so these Garrick lines reach players nowhere.)*
 - **Gathering 3 never shows "the box going up the vent"** (canon `episode-3`, line 673), but Gathering 4's question asks about it.
 
 ### A1. Story contradictions and timeline slips
@@ -34,7 +34,7 @@ The chapter data holds content that the story screen never shows:
 - The Fan Out text on every day from W1D2: "the four of you pause at …" (`soloLandmarkProse.ts:339`).
 - The W1D2 recap: "a torn stub listing four names".
 - W1D1: "a list of the company names" (`[N]` becomes "the company").
-- The older Campfire prompts: `[N]` becomes "four"; "all four of us".
+- ~~The older Campfire prompts: `[N]` becomes "four"; "all four of us".~~ *Correction (Point 6): that file is never shown on screen; it is dead code.*
 - Gathering 2's answer: "every date beside our four names".
 - Fixed friends in the story text: Mei (W1D2, W1D4, W4D6), Dev (W1D6), Arjun (W2D2), Mei and Arjun (W2D3).
 - Fixed friends at Gatherings: each approach's "best friend"; Gathering 1's United Effort bar "Dev HP"; hints spoken by Mei or Arjun.
