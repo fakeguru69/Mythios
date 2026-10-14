@@ -303,7 +303,7 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
               Tales of the Dark Moon — Narrative Continuity & 4-Layer GM Memory Workbench
             </h1>
             <p className="text-xs sm:text-sm text-[#B7A9CC] mt-1">
-              All <span className="text-[#6FD39A] font-semibold">L1–L6 Continuity Fixes</span> are locked & active, and the <span className="text-[#D4B876] font-semibold">4-Layer Tiny-Token GM Memory Engine</span> is live in Tab 1.
+              All <span className="text-[#6FD39A] font-semibold">L1–L3 Continuity Fixes</span> are active (L4–L6 removed 14 Oct), and the <span className="text-[#D4B876] font-semibold">4-Layer Tiny-Token GM Memory Engine</span> is live in Tab 1.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -327,7 +327,7 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
             {(
               [
                 { id: 'campfire', label: '🔥 Campfire v2.2 & Canon Report' },
-                { id: 'continuity', label: '0. Continuity & Loopholes (L1–L6 Locked)' },
+                { id: 'continuity', label: '0. Continuity & Loopholes (L1–L3)' },
                 { id: 'garrick', label: '1. 4-Layer GM Token Cache & Garrick Router' },
                 { id: 'findings', label: '2. Audit Log (C1–C11 & B1–B15)' },
                 { id: 'verifier', label: '3. Numbers & Anagrams' },
@@ -356,7 +356,7 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
             { label: 'Challenges', val: `${verifier.totalChallenges} / 29` },
             { label: 'Weekday Fights', val: `${verifier.totalWeekdayFights} / 12` },
             { label: 'Dual Days', val: `${verifier.totalDualDays} / 5` },
-            { label: 'L1–L6 Locked', val: `${appliedLoopholeIds.length} / 6 Active` },
+            { label: 'L1–L3', val: `${appliedLoopholeIds.length} / ${NEW_CONTINUITY_LOOPHOLES.length} Active` },
             { label: 'Lock Anagrams', val: `${verifier.validAnagrams} / 72` },
             { label: 'Buckets 1–4 Cost', val: '0 Tokens' },
             { label: 'Bucket 5 Savings', val: '98.4% Saved' },
@@ -369,17 +369,17 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
         </div>
       </div>
 
-      {/* SUBTAB 0: NARRATIVE CONTINUITY & LOOPHOLE DETECTOR (L1-L6 LOCKED) */}
+      {/* SUBTAB 0: NARRATIVE CONTINUITY & LOOPHOLE DETECTOR (L1-L3) */}
       {subTab === 'continuity' && (
         <div className="space-y-6">
           <div className="rounded-xl border border-[#7E68B8] bg-[#1E1232] p-4 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div>
                 <div className="font-['Cinzel'] text-xs font-bold tracking-[2px] text-[#D4B876]">
-                  5-RULE AUTOMATED NARRATIVE CONTINUITY ENGINE (ALL L1–L6 FIXES LOCKED)
+                  5-RULE AUTOMATED NARRATIVE CONTINUITY ENGINE (L1–L3)
                 </div>
                 <p className="text-xs text-[#B7A9CC] mt-0.5">
-                  All 6 continuity loopholes (L1–L6) are now locked and active in the 390px phone preview. You can toggle any card below to compare the original Before text against the Locked Fix.
+                  Continuity fixes L1–L3 are active (L4–L6 were removed on 14 Oct because they broke canon) in the 390px phone preview. You can toggle any card below to compare the original Before text against the Locked Fix.
                 </p>
               </div>
               <button
@@ -425,14 +425,14 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <div className="font-['Cinzel'] text-xs font-bold tracking-[2px] text-[#D4B876]">
-                CONTINUITY FIXES L1–L6 ({filteredLoopholes.length} OF 6 SHOWN) — BEFORE VS. LOCKED FIX
+                CONTINUITY FIXES L1–L3 ({filteredLoopholes.length} OF {NEW_CONTINUITY_LOOPHOLES.length} SHOWN) — BEFORE VS. LOCKED FIX
               </div>
               {ruleFilter !== 'ALL' && (
                 <button
                   onClick={() => setRuleFilter('ALL')}
                   className="text-xs text-[#D4B876] underline font-['Cinzel']"
                 >
-                  Show All 6 Fixes
+                  Show All Fixes
                 </button>
               )}
             </div>

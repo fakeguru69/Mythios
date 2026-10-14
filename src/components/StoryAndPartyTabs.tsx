@@ -1835,7 +1835,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                           <span className="px-2.5 py-1 rounded-lg bg-[#2A1B40] border border-[#D4B876] text-[13px] font-sans font-bold text-[#E5C158]">
                             {(dayData.fightReward !== undefined ? dayData.fightReward : 300) > 0
                               ? `🎁 Reward: +${dayData.fightReward !== undefined ? dayData.fightReward : 300}g Earned`
-                              : '✓ Sentry Driven Off · Trail Unbarred'}
+                              : '✓ Driven Off · No fight gold today (the Challenge was the paid beat)'}
                           </span>
                         ) : (
                           <span className="px-2.5 py-1 rounded-lg bg-[#2A1420] border border-[#E0645C]/70 text-[12.5px] font-sans font-bold text-[#E0645C]">
@@ -2748,7 +2748,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   onShareSoloClueToBoard,
   sharedFanOutClues = {},
   onShareFanOutClue,
-  appliedLoopholeIds = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6'],
+  appliedLoopholeIds = ['L1', 'L2', 'L3'],
   relics = {},
   onGiveRelic,
   privateTheoryPromptsByDay = {},
