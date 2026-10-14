@@ -215,7 +215,7 @@ On the Record and in the Store a piece of gear reads `Sword-Cane — Lv. 2 · We
 - **A hit does damage equal to its margin × 5** (the Roll + Weapon − DEF result, times five). The same for both sides. *(Changed 14 Oct 2026, Fake Guru: keep the build's clear round line, e.g. "HIT +11 × 5 = 55. FOE HP 100 → 45". Was: a d20, doubled. Fight length and balance to be checked in the numbers pass.)*
 - If your hit takes the enemy to 0 HP, the fight ends at once; the enemy does not strike back. Ties are impossible.
 - A fight lasts about 8 rounds on average. It has no round limit; it ends when one side reaches 0 HP.
-- **A fight rolls itself, one beat at a time** (decided 4 Oct 2026). The player taps [FIGHT] once. Each round then fills in line by line in one message: the player's die tumbles for about a second and lands; on a hit the damage die does the same; then the enemy's. There is no button to roll each blow and no setting for it. A round is never shown all at once.
+- **Each round is one tap** *(changed 14 Oct 2026, Fake Guru: keep the build's per-round tap, with a short pause after the tap to show the roll; this replaces the 4 Oct rule below)*. Earlier rule: **a fight rolls itself, one beat at a time** (decided 4 Oct 2026). The player taps [FIGHT] once. Each round then fills in line by line in one message: the player's die tumbles for about a second and lands; on a hit the damage die does the same; then the enemy's. There is no button to roll each blow and no setting for it. A round is never shown all at once.
 
 **Enemies**
 - **Each Gathering has one kind of enemy, the same for every friend,** with a fixed reward. Each friend present fights one of them. The table is in §12.
@@ -251,6 +251,7 @@ Enemy Rolls 7 + ATK 15 − Armor 27 = −5. MISS
 ```
 
 - A hit is followed by a line with the damage and the target's HP before and after, with no indent and no mark in front of it. A miss has no second line.
+- **The Challenge line shows the score and its bonus** *(14 Oct 2026, Fake Guru)*: "🎲 13 + Charm 38 (+2) − DC 7 = +8". The score is shown so the number the player grows is visible; only the tier bonus counts.
 - **Words and numbers are in different colours** (numbers in the gold standard, `mythios-visual-style-guide.md`).
 
 **The result**

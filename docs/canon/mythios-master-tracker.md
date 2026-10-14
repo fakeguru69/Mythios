@@ -200,3 +200,4 @@ First-use lines applied (5 Oct, 13:00): Battle, Look Closer and United Effort, i
 - 14 Oct: DECIDED (Fake Guru): the +2 map bonus on the Gathering Approach (all six fragment words solved) stays; Core Rules §15 item 7, number pending.
 - 14 Oct: DECIDED (Fake Guru): sample friends 5 and 6 are Priya and Theo.
 - 14 Oct: APPROVED (Fake Guru): the Fan Out and Campfire proposal, `docs/design/fan-out-and-campfire-proposal.md`.
+- 14 Oct: DECIDED (Fake Guru): fights keep one tap per round, with a short pause to show the roll (replaces the 4 Oct auto-roll rule). The Challenge line shows the score and its bonus: "🎲 13 + Charm 38 (+2) − DC 7 = +8".

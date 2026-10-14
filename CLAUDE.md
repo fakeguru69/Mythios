@@ -97,11 +97,11 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 - Tiers: Novice 1–25 = +0; Apprentice 26–50 = +2; Adept 51–75 = +4; Expert 76–100 = +6; Master 101+ = +8. Growth rate: 100% / 100% / 60% / 30% / 10%.
 - Weekday DC by week: 6, 7, 7, 8, 9, 9. Gathering Challenge = +2. Trial and [PRESS ON] = +4.
 - **Success when d20 + bonus − DC is 1 or more. A tie fails. No automatic success on a natural 20.**
-- The card shows "You succeed on X+" (X = DC + 1 − bonus, clamped 2 to 20).
+- The card shows "You succeed on X+" (X = DC + 1 − bonus, clamped 2 to 20). The roll line shows the score and its bonus: "🎲 13 + Charm 38 (+2) − DC 7 = +8" (Fake Guru, 14 Oct).
 - Pass: +500g, Attribute grows. Fail: −150g (gold never below 0). [PRESS ON] pass: +200g, no growth.
 - Growth on a passed Daily Challenge only: 12, 9, 7, 5, 4, 3, 3 for the player's 1st to 7th day played that week, × tier rate, rounded, minimum 1; only if the roll was truly uncertain (a 1 could fail and a 20 could pass, judged before Relics).
 
-**Fights (§4):** 100 HP each side. Hit when d20 + Weapon − DEF ≥ 1 (enemy: d20 + ATK − Armor ≥ 1); tie misses. Damage = the hit's margin × 5 (changed 14 Oct by Fake Guru; was d20 × 2). Player strikes first. Gear: Weapon 14–18, Armor 27–31 (Level 1–5); step-up costs 950, 1,100, 1,750, 2,400 per track. Weekday enemy DEF/ATK by week: 21/14, 22/15, 23/16, 23/16, 24/17, 24/17. Gathering enemy: one higher each; reward 380, 520, 740, 740, 1,030, 1,030.
+**Fights (§4):** 100 HP each side. Hit when d20 + Weapon − DEF ≥ 1 (enemy: d20 + ATK − Armor ≥ 1); tie misses. Damage = the hit's margin × 5 (changed 14 Oct by Fake Guru; was d20 × 2). One tap per round with a short roll pause (Fake Guru, 14 Oct). Player strikes first. Gear: Weapon 14–18, Armor 27–31 (Level 1–5); step-up costs 950, 1,100, 1,750, 2,400 per track. Weekday enemy DEF/ATK by week: 21/14, 22/15, 23/16, 23/16, 24/17, 24/17. Gathering enemy: one higher each; reward 380, 520, 740, 740, 1,030, 1,030.
 
 **Pay (§12):** weekday fight on a day with no Challenge 300g win / 0 loss; **weekday fight on a day that also has a Challenge pays nothing**; [LOOK CLOSER] +75g; Match 50g per right pick (100g if every friend present is right); United Effort +300g each if done; fragment lock word +25g; Relic 150g. Untested (PENDING in `economy.ts`): Fan Out cache 150, Detour 150/75, riddles 10/15, hidden cache 25, W6D3 +1 bonuses.
 

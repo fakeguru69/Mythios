@@ -1304,7 +1304,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                             color: ATTRIBUTE_META[rollOutcome.attr].color,
                           }}
                         >
-                          {rollOutcome.attr} +{rollOutcome.tierBonus}
+                          {rollOutcome.attr} {rollOutcome.attrPoints} (+{rollOutcome.tierBonus})
                         </span>
                         {rollOutcome.relicBonus > 0 && (
                           <>
@@ -2227,7 +2227,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                                     color: ATTRIBUTE_META[fanOutRollOutcome.attr].color,
                                   }}
                                 >
-                                  {fanOutRollOutcome.attr} +{fanOutRollOutcome.tierBonus}
+                                  {fanOutRollOutcome.attr} {fanOutRollOutcome.attrPoints} (+{fanOutRollOutcome.tierBonus})
                                 </span>
                                 <span className="text-[#8B7A9E]">−</span>
                                 <span className="text-[#E5C158]">
@@ -2786,6 +2786,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const [approachRolled, setApproachRolled] = useState<{
     d20: number;
     attr: AttributeName;
+    attrScore: number;
+    tierBonus: number;
+    mapBonus: number;
     bonus: number;
     dc: number;
     margin: number;
@@ -3659,6 +3662,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                     setApproachRolled({
                       d20,
                       attr: chosen.attr as AttributeName,
+                      attrScore: attributes[chosen.attr as AttributeName] || 20,
+                      tierBonus: heroTierBonus,
+                      mapBonus,
                       bonus,
                       dc,
                       margin,
@@ -3681,8 +3687,14 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                           ATTRIBUTE_META[approachRolled.attr]?.color || '#D4B876',
                       }}
                     >
-                      {approachRolled.attr} +{approachRolled.bonus}
+                      {approachRolled.attr} {approachRolled.attrScore} (+{approachRolled.tierBonus})
                     </span>
+                    {approachRolled.mapBonus > 0 && (
+                      <>
+                        <span className="text-[#8B7A9E]">+</span>
+                        <span className="text-[#D4B876]">Map {approachRolled.mapBonus}</span>
+                      </>
+                    )}
                     <span className="text-[#8B7A9E]">−</span>
                     <span className="text-[#E5C158]">DC {approachRolled.dc}</span>
                     <span className="text-[#8B7A9E]">=</span>
