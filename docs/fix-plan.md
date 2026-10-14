@@ -14,6 +14,8 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 0: decisions that shape the plan
 
+**Decided by Fake Guru, 14 Oct:** D1 demo on one phone · D2 go (after Phase 1) · D3 fix the line · D4 other names wanted (Lin/Sam not chosen) · D5 the story delivers the reveal · D6 different finds per friend · D7 remove the private ballot. Fan Out and Campfire design: see `docs/design/fan-out-and-campfire-proposal.md` (proposal, awaiting approval).
+
 | # | Decision | Why it matters | Recommendation |
 |---|---|---|---|
 | D1 | **Direction:** keep improving the 6-week demo on one phone, or start real friends on their own phones (Week 1 first, accounts, a shared clock)? | Real phones need a server, accounts and push notifications; much of Phase 4 changes shape. | Do Phases 1–3 on the demo first (they are needed either way), then decide. |
