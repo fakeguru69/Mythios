@@ -178,7 +178,7 @@
 > IF YOU FAIL: it takes you the whole evening, with three strangers watching you get it wrong
 
 *On a pass:*
-> Yours is the third stub. It fits like a key. There are [N] stubs, and [N] of you.
+> Your stub fits like a key. There are [N] stubs, and [N] of you.
 
 *On a failure:*
 > You try it against every stub but the right one. Mei, in the end, reaches over and turns your page the other way up. It fits. There are [N] stubs, and [N] of you.
