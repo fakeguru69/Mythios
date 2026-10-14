@@ -41,7 +41,7 @@ Canon's rule is that a fragment pays off when a Gathering quotes it back word fo
 
 ### A3. The puzzle and its rewards
 
-- **The Day 6 map forms whether or not you solved anything.** Day 6's story text says "the six fragments settle into a map" on both pass and fail, so solving fragments isn't needed to move on.
+- ~~The Day 6 map forms whether or not you solved anything.~~ **Correction (14 Oct):** this is canon, not a bug. Core Rules §6: "At the end of Day 6 anything unsolved completes itself, with no gold and no name on it, and the six fragments form the week's map." Solving still matters for the 25g per word and, since 14 Oct, the +2 map bonus on the Approach.
 - **The hints stack up:** Fan Out gives the first letter of word 1, and retries are unlimited (Point 1). Canon's rule is "after 5 wrong tries, wait 2 minutes", and the server checks the answer.
 - **Canon says each friend may fill one word per fragment until the day ends,** then anyone may fill the rest. The app lets one player fill both at once. With 2 to 6 friends this rule is what makes fragments a shared, social puzzle.
 - Everything solved is credited to "Jennifer".

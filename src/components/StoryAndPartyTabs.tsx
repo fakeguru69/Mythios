@@ -23,6 +23,8 @@ import {
   GOLD_MATCH_PERFECT_PER_PICK,
   GOLD_FAN_OUT_CACHE_WIN,
   GOLD_DETOUR_FIGHT_WIN,
+  GOLD_RIDDLE_BONUS,
+  GOLD_GATHERING_BATTLE_REWARDS,
 } from '../data/economy';
 import { WEEKDAY_INVENTORY } from '../data/mythiosChaptersData';
 import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
@@ -126,6 +128,7 @@ interface RollState {
   succeedOn: number;
   margin: number;
   cleared: boolean;
+  growth?: number;
 }
 
 // Core Rules §12a: the server rolls every die. Fall back to a local d20 only if
@@ -542,6 +545,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     if (cleared) {
       const daysPlayedThisWeek = completedDays.filter((id) => id.startsWith(`${currentWeek}-`)).length + 1;
       const growth = calculateAttributeGrowth(attrPoints, daysPlayedThisWeek, d20, tierBonus, weekdayDC);
+      setRollOutcome((prev) => (prev ? { ...prev, growth } : prev));
       onGainAttribute(activeAttr, growth, d20 === 20);
       onEarnGold(GOLD_CHALLENGE_WIN);
       if (!dayData.hasFight) {
@@ -921,7 +925,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
 
     if (cleared) {
       onGainAttribute(activeFanOutAttr, 1, d20 === 20);
-      onEarnGold(150);
+      onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
       unlockFanOutPayoff(fanOutBranch);
     } else {
       setFanOutCompleted(true);
@@ -996,7 +1000,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
         setFanOutFightDone(true);
         if (nextRound.enemyHpAfter <= 0) {
-          onEarnGold(150);
+          onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
           unlockFanOutPayoff(fanOutBranch);
         } else {
           setFanOutCompleted(true);
@@ -1165,6 +1169,13 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
               </div>
 
               <div className="p-2.5 space-y-2">
+                {currentWeek === 1 && currentDay === 1 && !rollOutcome && (
+                  <p className="text-[13.5px] font-sans text-[#B7A9CC] leading-snug px-0.5">
+                    A Challenge. Pick the skill you trust and roll. Pass, and you earn{' '}
+                    {GOLD_CHALLENGE_WIN} gold and that skill grows. Fail, and it costs{' '}
+                    {GOLD_CHALLENGE_LOSS} gold.
+                  </p>
+                )}
                 <div className="grid grid-cols-2 gap-2">
                   <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
                     <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
@@ -1352,10 +1363,10 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                               color: ATTRIBUTE_META[rollOutcome.attr].color,
                             }}
                           >
-                            +3 {rollOutcome.attr}
+                            +{rollOutcome.growth ?? 0} {rollOutcome.attr}
                           </span>{' '}
                           <span className="text-[#8B7A9E]">·</span>{' '}
-                          <span className="text-[#E5C158]">+150g</span>
+                          <span className="text-[#E5C158]">+{GOLD_CHALLENGE_WIN}g</span>
                           {dayData.hasFight && (
                             <span className="text-[#6FD39A] ml-1">
                               · +2 WEP R1
@@ -1364,7 +1375,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                         </span>
                       ) : (
                         <span className="px-2.5 py-1 rounded-lg bg-[#2A1420] border border-[#E0645C]/70 text-[12.5px] font-sans font-bold text-[#E0645C]">
-                          ⚠️ No Reward (0g) ·{' '}
+                          ⚠️ −{GOLD_CHALLENGE_LOSS}g ·{' '}
                           {dayData.hasFight
                             ? 'Caught Off-Guard (−15 HP R1)'
                             : 'Forced onto Perimeter Detour'}
@@ -1416,7 +1427,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                   </p>
                 </div>
 
-                {/* MANDATORY STORY-TRIGGERED ALERTED LOOKOUT SKIRMISH CARD (+50g Consolation Recovery on Victory) */}
+                {/* MANDATORY STORY-TRIGGERED ALERTED LOOKOUT SKIRMISH CARD (Detour fight, pay pending the numbers pass) */}
                 {!dayData.hasFight && (
                   <div className="w-full rounded-xl bg-[#180F29] border border-[#E0645C]/70 overflow-hidden shadow-lg">
                     <div className="px-3 py-2 bg-[#2A1628] border-b border-[#3A2555] flex items-center justify-between gap-2">
@@ -2254,7 +2265,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                                 }`}
                               >
                                 {fanOutRollOutcome.cleared
-                                  ? 'PASSED · +150g + 1st-Letter Hint Unlocked!'
+                                  ? `PASSED · +${GOLD_FAN_OUT_CACHE_WIN}g + 1st-Letter Hint Unlocked!`
                                   : isSoloW1D1
                                   ? 'FAILED · 0g Earned — Pressing On Toward the Inn'
                                   : 'FAILED · 0g Earned — Returning to Campfire'}
@@ -3133,7 +3144,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     if (formed.length === currentRiddle.answerWord.length) {
       if (formed.toUpperCase() === currentRiddle.answerWord.toUpperCase()) {
         onAnswerDailyRiddle(currentRiddle.id, 0);
-        onEarnGold(15);
+        onEarnGold(GOLD_RIDDLE_BONUS);
         setRiddleTypedIndices([]);
       } else {
         setTimeout(() => setRiddleTypedIndices([]), 350);
@@ -3274,7 +3285,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       if (enemyHp <= 0 || partyHp <= 0) {
         setBattleDone(true);
         if (enemyHp <= 0) {
-          onEarnGold(epMeta.gReward || 500);
+          onEarnGold(GOLD_GATHERING_BATTLE_REWARDS[currentWeek] ?? epMeta.gReward);
         }
       }
       setIsRollingBattleRound(false);
@@ -3311,7 +3322,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       battleRounds.length > 0 &&
       battleRounds[battleRounds.length - 1].enemyHpLeft <= 0;
     if (cleared) {
-      onEarnGold(300);
+      onEarnGold(GOLD_UNITED_EFFORT_WIN);
       if (bossWon) {
         onUnlockGatheringBadge();
       }
@@ -3330,7 +3341,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     const bossWon =
       battleRounds.length > 0 &&
       battleRounds[battleRounds.length - 1].enemyHpLeft <= 0;
-    onEarnGold(300);
+    onEarnGold(GOLD_UNITED_EFFORT_WIN);
     if (bossWon) {
       onUnlockGatheringBadge();
     }
@@ -3344,7 +3355,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const handleGatheringLookCloser = () => {
     if (lookCloserDone) return;
     setLookCloserDone(true);
-    onEarnGold(75);
+    onEarnGold(GOLD_LOOK_CLOSER_WIN);
   };
 
   return (
@@ -4245,7 +4256,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                               ✓ CHAMBER INSPECTED (+75G RECOVERED)
                             </div>
                             <p className="font-sans text-[16px] text-[#F4F1F8] leading-[1.5]">
-                              Because your party held {gathering.ueTitle.toLowerCase()}, you have time to search the inner chamber undisturbed—securing +75g in salvaged relics and setting every physical clue in order before the table question.
+                              Because your party held {gathering.ueTitle.toLowerCase()}, you have time to search the inner chamber undisturbed—securing +{GOLD_LOOK_CLOSER_WIN}g in salvaged relics and setting every physical clue in order before the table question.
                             </p>
                           </div>
                         )}
@@ -4381,7 +4392,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                                             [mIdx]: true,
                                           }));
                                           onMatchScripture();
-                                          onEarnGold(75);
+                                          onEarnGold(GOLD_MATCH_BASE_PER_PICK);
                                         } else {
                                           setWrongMatchPick((prev) => ({
                                             ...prev,

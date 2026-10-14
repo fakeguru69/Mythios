@@ -109,7 +109,7 @@ export default function App() {
   const [stakeIndex, setStakeIndex] = useState<number>(initialSave?.stakeIndex ?? 0);
   const [showHeroSetupModal, setShowHeroSetupModal] = useState<boolean>(false);
 
-  const [gold, setGold] = useState<number>(initialSave?.gold ?? 1240);
+  const [gold, setGold] = useState<number>(initialSave?.gold ?? 0) // Core Rules §12: starting gold is 0;
   const [weaponLevel, setWeaponLevel] = useState<number>(initialSave?.weaponLevel ?? 2);
   const [armorLevel, setArmorLevel] = useState<number>(initialSave?.armorLevel ?? 2);
   const [storeLocked, setStoreLocked] = useState<boolean>(initialSave?.storeLocked ?? false);
@@ -314,7 +314,7 @@ export default function App() {
     setCurrentWeek(1);
     setCurrentDay(1);
     setCompletedDays([]);
-    setGold(600);
+    setGold(0); // Core Rules §12: starting gold is 0
     setWeaponLevel(1);
     setArmorLevel(1);
     setStoreLocked(false);
