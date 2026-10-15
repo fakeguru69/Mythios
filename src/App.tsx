@@ -1119,7 +1119,7 @@ export default function App() {
                         🌱 START FRESH (W1·D1)
                       </div>
                       <div className="font-sans text-[10.5px] text-[#B7A9CC] truncate">
-                        The Forest Road · 600g · Solo Start
+                        The Forest Road · 0g · Solo Start
                       </div>
                     </button>
                     <button
@@ -1452,6 +1452,12 @@ export default function App() {
                   appliedLoopholeIds={appliedLoopholeIds}
                   relics={relics}
                   onGiveRelic={handleGiveRelic}
+                  onUseRelic={(relicType) => {
+                    setRelics((prev) => ({
+                      ...prev,
+                      [relicType]: Math.max(0, (prev[relicType] || 0) - 1),
+                    }));
+                  }}
                   privateTheoryPromptsByDay={privateTheoryPromptsByDay}
                   onLeaveFire={() => {
                     setChatChannel('MINE');
