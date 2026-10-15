@@ -1,4 +1,4 @@
-# Week 2: Fan Out leads and fire questions (DRAFT, 15 Oct 2026)
+# Week 2: Fan Out leads and fire questions (APPROVED 15 Oct 2026)
 
 **Status: APPROVED by Fake Guru, 15 Oct 2026 ("yes"; Claude's calls on the doubts: "ok"). In the game: `src/data/fanOutLeads.ts`, `fragmentMeaningQuestions.ts`, `weekQuestions.ts`.** Every NEW line needs his yes before it ships. Built on the approved Week 1 draft (`docs/drafts/week-1-fan-out-and-fire-draft.md`): same shape, same rules.
 

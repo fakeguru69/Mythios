@@ -1,4 +1,4 @@
-# Week 1: Fan Out leads and fire questions (DRAFT, 15 Oct 2026)
+# Week 1: Fan Out leads and fire questions (APPROVED 15 Oct 2026)
 
 **Status: APPROVED by Fake Guru, 15 Oct 2026 ("yes"). In the game: `src/data/fanOutLeads.ts`, `fragmentMeaningQuestions.ts`, `weekQuestions.ts`.** Doubts decided by Claude on his "your call": 1 keep the W1D4 gate clue (canon, true; a player who wonders about Garrick is the season working); 2 no extra leads from W1D5's look choices; 3 W1D1 as is. Checked against canon 15 Oct: fragment words, places and quotes match `episode-1-the-list.md`; two place labels corrected (W1D4: canon has "the men" with the elder, not "two younger men"; W1D5: the woman comes to the party's fire, it is not hers). Every NEW line needs his yes before it ships.
 
