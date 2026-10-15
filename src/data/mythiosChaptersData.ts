@@ -1,4 +1,5 @@
 import { AttributeName } from './mythiosRulesData';
+import { GOLD_WEEKDAY_FIGHT_ONLY_WIN, GOLD_WEEKDAY_FIGHT_WITH_CHALLENGE_WIN } from './economy';
 
 export interface WeekdayInventoryItem {
   week: number;
@@ -42,7 +43,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     question: 'Who is this man, and what does he want with me?',
     challengeTitle: 'OPEN THE BOX',
     challengeAttrs: ['Might', 'Craft'],
-    hasFight: true, fightEnemyName: 'A Man on the Road', fightReward: 300,
+    hasFight: true, fightEnemyName: 'A Man on the Road', fightReward: GOLD_WEEKDAY_FIGHT_ONLY_WIN,
     asymmetricChoices: [
       {
         label: 'LOOK WHERE HE STOOD',
@@ -82,7 +83,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
   {
     week: 1, day: 3, place: 'The Widow\'s Tooth',
     question: 'Is the child still at the rock?',
-    hasFight: true, fightEnemyName: 'The Man in the Bracken', fightReward: 300,
+    hasFight: true, fightEnemyName: 'The Man in the Bracken', fightReward: GOLD_WEEKDAY_FIGHT_ONLY_WIN,
     preFightChoice: {
       optA: 'FOLLOW THE CART-RUTS',
       optB: 'GO TO THE MARKING',
@@ -111,7 +112,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
   {
     week: 1, day: 5, place: 'The old charcoal camp',
     question: 'Who has seen the curved knife, and what happened that time?',
-    hasFight: true, fightEnemyName: 'The Runner from Fenmark', fightReward: 300,
+    hasFight: true, fightEnemyName: 'The Runner from Fenmark', fightReward: GOLD_WEEKDAY_FIGHT_ONLY_WIN,
     preFightChoice: {
       optA: 'LOOK AT THE PATH',
       optB: 'LOOK AT THE STEP',
@@ -183,7 +184,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     question: 'Where did the cart go?',
     challengeTitle: 'WHERE THE TRACKS STOP',
     challengeAttrs: ['Craft', 'Agility'],
-    hasFight: true, fightEnemyName: 'The Dog on the Chain', fightReward: 0,
+    hasFight: true, fightEnemyName: 'The Dog on the Chain', fightReward: GOLD_WEEKDAY_FIGHT_WITH_CHALLENGE_WIN,
     passBranchText: 'You come down onto the hidden path from above and strike first against the chained dog. Beyond it lies a stranger dead a week, his lockpick jammed in a Seeker housing that opens at your touch.',
     failBranchText: 'You walk straight up the path in plain view and the chained dog strikes first. Mei and Arjun drag you clear. Beyond it, the dead stranger\'s jammed housing opens for your hand.',
     pullLine: 'Where was he trying to get to? The path goes on past him, and up.',
@@ -206,7 +207,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
   {
     week: 2, day: 5, place: 'The hillside by night',
     question: 'Who are these people, and what are they making ready?',
-    hasFight: true, fightEnemyName: 'The One Sent Up to Look', fightReward: 300,
+    hasFight: true, fightEnemyName: 'The One Sent Up to Look', fightReward: GOLD_WEEKDAY_FIGHT_ONLY_WIN,
     preFightChoice: {
       optA: 'WALK THE HILL',
       optB: 'READ MEIRA\'S PAGES',
@@ -240,7 +241,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
   {
     week: 3, day: 1, place: 'Somewhere warm',
     question: 'A girl was held here too, and moved "somewhere warm". Who is she, and where is that?',
-    hasFight: true, fightEnemyName: 'The One Who Came Up After You', fightReward: 300,
+    hasFight: true, fightEnemyName: 'The One Who Came Up After You', fightReward: GOLD_WEEKDAY_FIGHT_ONLY_WIN,
     preFightChoice: {
       optA: 'WATCH THE SHAFT MOUTH',
       optB: 'PACK THE HORSES FIRST',
@@ -302,7 +303,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
   {
     week: 3, day: 5, place: 'The shepherd\'s hut',
     question: 'Is she in the hut?',
-    hasFight: true, fightEnemyName: 'The Grey Coat on the Ridge', fightReward: 300,
+    hasFight: true, fightEnemyName: 'The Grey Coat on the Ridge', fightReward: GOLD_WEEKDAY_FIGHT_ONLY_WIN,
     preFightChoice: {
       optA: 'WREN\'S LINE',
       optB: 'THE RIDERS\' LINE',
@@ -361,7 +362,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     question: 'Who rode north ahead of you, and what are they carrying?',
     challengeTitle: 'THE CARTER',
     challengeAttrs: ['Charm', 'Intellect'],
-    hasFight: true, fightEnemyName: 'The Men at the Ford', fightReward: 0,
+    hasFight: true, fightEnemyName: 'The Men at the Ford', fightReward: GOLD_WEEKDAY_FIGHT_WITH_CHALLENGE_WIN,
     passBranchText: 'The carter gets straight to the point: four armed men guarding one small box "no bigger than a bread crock", no child, and he gives you the scraped coin they paid him with.',
     failBranchText: 'It takes an hour of his opinions on his brother-in-law before he tells you about the four armed men, the small box, and the scraped coin.',
     pullLine: 'Four armed men for one small box, riding away from the boy. What is in it? Reedham, by noon tomorrow.',
@@ -410,7 +411,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     question: 'Where did the boat take him, and what has it been doing since?',
     challengeTitle: 'THE FOG',
     challengeAttrs: ['Aim', 'Craft'],
-    hasFight: true, fightEnemyName: 'The Man with the Boat', fightReward: 0,
+    hasFight: true, fightEnemyName: 'The Man with the Boat', fightReward: GOLD_WEEKDAY_FIGHT_WITH_CHALLENGE_WIN,
     passBranchText: 'You come in behind the willow reeds unseen and strike first, taking the Order\'s ferry boat with Joss\'s fresh wood-shavings and split tiny hull inside.',
     failBranchText: 'You row in a slow circle in the fog and land on the open side where the boat-guard strikes first before slipping into the reeds.',
     pullLine: 'Why would anyone keep watch on an empty tower? After that lamp, tonight, in their own boat.',
@@ -452,7 +453,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
   {
     week: 5, day: 2, place: 'The old kingdom\'s road',
     question: 'What is the heartbeat doing to the country?',
-    hasFight: true, fightEnemyName: 'What Was a Farm Dog', fightReward: 300,
+    hasFight: true, fightEnemyName: 'What Was a Farm Dog', fightReward: GOLD_WEEKDAY_FIGHT_ONLY_WIN,
     preFightChoice: {
       optA: 'CAMP ON THE OPEN ROAD',
       optB: 'CAMP AT THE HEAD OF THE ROWS',
@@ -574,7 +575,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
   {
     week: 6, day: 4, place: 'The hill behind the hall (Three nights)',
     question: 'Where is the Seekers\' own way in?',
-    hasFight: true, fightEnemyName: 'The One in the Crack', fightReward: 300,
+    hasFight: true, fightEnemyName: 'The One in the Crack', fightReward: GOLD_WEEKDAY_FIGHT_ONLY_WIN,
     preFightChoice: {
       optA: 'DRAW BEFORE IT TURNS',
       optB: 'TRY TO SLIP PAST ITS SHOULDER',
@@ -611,7 +612,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     question: 'How does the blank rock open?',
     challengeTitle: 'THE STREET',
     challengeAttrs: ['Agility', 'Might'],
-    hasFight: true, fightEnemyName: 'The One That Turned', fightReward: 0,
+    hasFight: true, fightEnemyName: 'The One That Turned', fightReward: GOLD_WEEKDAY_FIGHT_WITH_CHALLENGE_WIN,
     passBranchText: 'You cross between two walking ranks of iron without a helm turning, and strike first when the one soldier at the crack turns round. The six fragments show the blank rock is a door marked "here."',
     failBranchText: 'A shoulder of iron takes you in the chest as the rank closes, and the soldier at the crack strikes first. Inside, the map shows the blank rock is the Seekers\' door.',
     pullLine: 'Tomorrow night, when the moon goes dark: through the Seekers\' door, into his hall, with the fifth in your hands.',

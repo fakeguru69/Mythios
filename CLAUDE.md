@@ -68,7 +68,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 - `src/App.tsx` (1,493): app shell, save/load in localStorage (`mythios_dark_moon_save_v2`), gold, attributes, relics, party messages, layout switcher (PHONE_ONLY / SPLIT / AUDIT_ONLY), badges.
 - `src/components/StoryAndPartyTabs.tsx` (~4,700): the weekday chapter (the chapter script, Challenge, [PRESS ON], fights, Fan Out) and the Gathering (Approach, Battle, United Effort, Lore, "Phase 5 Table Question"). Most fixes are here.
 - `src/components/CampfireEveningView.tsx` (1,611): the Campfire evening.
-- `src/components/BagAndStoreTabs.tsx` (1,013): Bag, Seeker Chest word-lock puzzle (the best part of the build, protect it), Store, scripture verses (correctly gated by week).
+- `src/components/BagAndStoreTabs.tsx` (1,013): Bag, Seeker Chest word-lock puzzle (the best part of the build, protect it), Store, scripture verses (each joins the Bag on its week's Day 7, when the Gathering reads it; fixed 15 Oct).
 - `src/components/RecordTabView.tsx` (573): the Record.
 - `src/components/AuditWorkbench.tsx` (1,417): internal QA screen. Shows Garrick's hidden meanings. **Must never be reachable by a player.**
 - `src/data/economy.ts`: every gold amount, one constant each. Good. Use it everywhere.
@@ -88,11 +88,11 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 ## 5. Current state
 
-**Good and must be kept:** the Seeker word-lock puzzle; Campfire v2.3 data (exact); `economy.ts`; the growth formula; gold never below 0; verses gated by week; Garrick present all of Week 6 (no empty seat); Malakor's name gated to Gathering 2 or later; continuity fixes reach the player view; the Gathering boss only loses at 0 HP; Fan Out's "Head to the Campfire" shown as a finished day; 0 HP = "Bruised Scrape", story goes on.
+**Good and must be kept:** the Seeker word-lock puzzle; Campfire v2.3 data (exact); `economy.ts`; the growth formula; gold never below 0; verses gated to each week's Gathering; Garrick present all of Week 6 (no empty seat); Malakor's name gated to Gathering 2 or later; continuity fixes reach the player view; the Gathering boss only loses at 0 HP; Fan Out's "Head to the Campfire" shown as a finished day; 0 HP = "Bruised Scrape", story goes on.
 
-**Broken at the 14 Oct handover (each is a task in §7; progress is ticked in `docs/fix-plan.md`):** the Challenge roll; result-card numbers; seven hard-coded gold amounts; Combat Relic never spent; United Effort not canon; party fixed at four; `[N]` replaced with "the company"; sample friends named after story characters; continuity patches L4 and L5 wrong and on; Store-lock switch left over; Audit Workbench reachable; small text errors. *(15 Oct: all fixed except the small text errors (Phase 7). The party of 2–6 and the sample names were fixed 15 Oct; its wording lists wait on Fake Guru.)*
+**Broken at the 14 Oct handover (each is a task in §7; progress is ticked in `docs/fix-plan.md`):** the Challenge roll; result-card numbers; seven hard-coded gold amounts; Combat Relic never spent; United Effort not canon; party fixed at four; `[N]` replaced with "the company"; sample friends named after story characters; continuity patches L4 and L5 wrong and on; Store-lock switch left over; Audit Workbench reachable; small text errors. *(15 Oct: all fixed, small text errors included (Task 10). The full rule check is `docs/build-check-15oct.md`; its nine open decisions wait on Fake Guru.)*
 
-**Not verified yet:** whether the Gathering "Phase 5 Table Question" choice changes anything (the 9 Oct audit said the first button revealed the same twist whatever was chosen).
+**Checked 15 Oct (Task 11):** the Gathering "Phase 5 Table Question" is gone; the Gatherings play canon word for word and offer no quiz. Its old text still sits unused in `mythiosGatheringsAndAudit.ts` (removal waits on Fake Guru).
 
 ---
 

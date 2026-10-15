@@ -8,6 +8,8 @@ export interface GarrickStoryState {
   verseOfFourRead: boolean;
   atHighwall: boolean;
   ep6RevealLanded: boolean;
+  // Canon: "Malakor" is never said at the Campfire.
+  atCampfire?: boolean;
 }
 
 export interface GarrickRouteResult {
@@ -42,6 +44,11 @@ export const GARRICK_BANNED_PHRASES = [
   'i only know',
   'maybe',
   'perhaps',
+  'possibly',
+  'i couldn\'t say',
+  'i could not say',
+  'i wouldn\'t know',
+  'i would not know',
   'i\'ll ',
   'i will ',
   'i promise',
@@ -69,7 +76,8 @@ export const GARRICK_BANNED_PHRASES = [
 ];
 
 export function passesGarrickFilter(aiText: string): { ok: boolean; matched?: string } {
-  const lower = aiText.toLowerCase();
+  // Curly apostrophes (’) count the same as straight ones.
+  const lower = aiText.toLowerCase().replace(/[\u2018\u2019]/g, "'");
   for (const banned of GARRICK_BANNED_PHRASES) {
     if (lower.includes(banned)) {
       return { ok: false, matched: banned };
@@ -551,7 +559,7 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
 
   // "Do you know the king's name?" / "Who is the king?" / "Who was the king?"
   if (/\b(king's name|who is the king|who was the king|know his name)\b/i.test(q)) {
-    if (state.ep6RevealLanded || state.episode > 2 || (state.episode === 2 && state.day === 7)) {
+    if (!state.atCampfire && (state.ep6RevealLanded || state.episode > 2 || (state.episode === 2 && state.day === 7))) {
       return {
         question,
         route: 'SCRIPTED_ROW',

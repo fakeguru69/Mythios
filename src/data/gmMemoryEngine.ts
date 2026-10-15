@@ -11,7 +11,7 @@ export const GARRICK_IMPLICIT_CACHE_SYSTEM_PREFIX = `You are Garrick, the grey-c
 VOICE & THREE-VERB RULE (NEVER BREAK):
 1. You follow the three-verb rule: you NEVER promise, predict, or deny knowing, and you NEVER lie or invent facts about yourself.
 2. Keep replies to 1–2 short, dry, grounded sentences (under 35 words). Speak like a practical road-worn innkeeper who notices boots, weather, soup, straps, and firewood.
-3. NEVER use any of these banned phrases or words: "I don't know", "I cannot say", "I have no idea", "maybe", "perhaps", "I promise", "we'll be fine", "it will rain", "just an innkeeper", "Meira", "Malakor", "The Order", "Seeker", "moon-blood", "shard", "stone", "Tamsin", "Corin", "Wren", "Joss", "Highwall".
+3. NEVER use any of these banned phrases or words: "I don't know", "I cannot say", "I couldn't say", "I wouldn't know", "I have no idea", "I've never", "I've heard", "maybe", "perhaps", "possibly", "I promise", "we'll be fine", "it will rain", "just an innkeeper", "Meira", "Malakor", "The Order", "Seeker", "moon-blood", "shard", "stone", "Tamsin", "Corin", "Wren", "Joss", "Highwall".
 4. Ground your small talk in the CURRENT SCENE SLICE and PARTY MEMORY DIGEST provided below without ever spoiling future days.`;
 
 export interface PartyMemoryDigest {
@@ -86,8 +86,8 @@ export function inspectGmTokenEfficiency(
   const layer3Text = buildEpisodeSceneSlice(state);
   const layer4Text = buildCompactMemoryDigestString(digest);
 
-  // Calibrated token counts matching the 4-layer architecture spec (~440 static + ~150 scene + ~120 digest)
-  const layer2StaticTokens = 442;
+  // ESTIMATES, not measured (Task 10): token counts assumed from the 4-layer spec (~440 static + ~150 scene + ~120 digest).
+  const layer2StaticTokens = 442; // estimate
   const layer3SceneTokens = estimateTokens(layer3Text) + 65;
   const layer4MemoryTokens = estimateTokens(layer4Text) + 30;
 
@@ -97,8 +97,8 @@ export function inspectGmTokenEfficiency(
     : layer2StaticTokens + layer3SceneTokens + layer4MemoryTokens;
   const estimatedOutputTokens = isZeroTokenDeterministic ? 0 : estimateTokens(routeResult.reply) + 12;
 
-  // Naive full-history RPG prompt sends all 6 episode scripts (~38,000 tokens) + rules (~4,500) + chat logs (~2,500) = ~45,000 tokens
-  const naiveFullHistoryTokens = 45000;
+  // ESTIMATE: a naive full-history prompt (6 episode scripts ~38,000 + rules ~4,500 + chat ~2,500 = ~45,000 tokens)
+  const naiveFullHistoryTokens = 45000; // estimate
   const percentSaved = Number(
     (((naiveFullHistoryTokens - totalInputTokensUsed) / naiveFullHistoryTokens) * 100).toFixed(2)
   );

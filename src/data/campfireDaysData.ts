@@ -36,7 +36,7 @@ export interface CampfireDayEntry {
   opener: string;
   forkA: string;
   forkB: string;
-  callback: string;
+  callback: string | null;
   riddle: CampfireRiddleEntry | null;
   nudge: string;
   fanOutClue: CampfireFanOutClueInternal;

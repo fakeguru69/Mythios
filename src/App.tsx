@@ -15,23 +15,8 @@ type BottomTab = 'CHAT' | 'RECORD' | 'BAG' | 'STORE';
 type ChatChannel = 'MINE' | 'PARTY';
 type WorkspaceLayout = 'SPLIT' | 'AUDIT_ONLY' | 'PHONE_ONLY';
 
-const PERSONAL_STAKES: { id: string; label: string; text: string }[] = [
-  {
-    id: 'sister',
-    label: 'The Fenmark Promise (Tamsin’s Kin)',
-    text: 'Before I left the low woods, I promised Tamsin’s cousins in Fenmark that no child of the dark-moon birth would be left in the hands of the quiet riders.',
-  },
-  {
-    id: 'apprentice',
-    label: 'The Seeker’s Blood-Debt (Meira’s Note)',
-    text: 'Scholar Meira sent me a sealed warning three weeks before she vanished—naming my own dark-moon birthnight beside the old Seeker stones.',
-  },
-  {
-    id: 'oath',
-    label: 'The Mill-Valley Oath (The Four Children)',
-    text: 'I swore on the old ridge road that all four marked children—from the Low Ford to the Stillwater—would be brought home alive before the moon goes dark.',
-  },
-];
+// Session Zero step 4 (Core Rules §7): two optional questions that feed the personal stake beside the
+// player's name on Meira's list. The three pre-written stakes were removed 15 Oct (Task 13: they invented lore).
 
 const SAVE_STORAGE_KEY = 'mythios_dark_moon_save_v2';
 
@@ -61,7 +46,9 @@ interface SavedCampaignState {
   partySize?: number; // 2 to 6 (Campfire v2.3 §M); saves from before 15 Oct have none and get 4
   characterClass: ClassName;
   secondAttr?: AttributeName;
-  stakeIndex: number;
+  stakeIndex?: number; // retired 15 Oct (pre-written stakes removed); old saves may still carry it
+  birthplace?: string; // Session Zero: "Where were you born?" (optional)
+  grandparentName?: string; // Session Zero: "What was a grandparent's name?" (optional)
   gold: number;
   weaponLevel: number;
   armorLevel: number;
@@ -131,7 +118,8 @@ export default function App() {
   const [partyName, setPartyName] = useState<string>(
     initialSave?.partyName ?? 'The Iron Lantern'
   );
-  const [stakeIndex, setStakeIndex] = useState<number>(initialSave?.stakeIndex ?? 0);
+  const [birthplace, setBirthplace] = useState<string>(initialSave?.birthplace ?? '');
+  const [grandparentName, setGrandparentName] = useState<string>(initialSave?.grandparentName ?? '');
   const [weekBoard, setWeekBoard] = useState<
     Record<number, Record<string, { name: string; entries: { day: number; text: string }[] }>>
   >(initialSave?.weekBoard ?? {});
@@ -157,8 +145,8 @@ export default function App() {
     setClaimedRewards(Array.from(claimedRewardsRef.current));
     return true;
   };
-  const [weaponLevel, setWeaponLevel] = useState<number>(initialSave?.weaponLevel ?? 2);
-  const [armorLevel, setArmorLevel] = useState<number>(initialSave?.armorLevel ?? 2);
+  const [weaponLevel, setWeaponLevel] = useState<number>(initialSave?.weaponLevel ?? 1);
+  const [armorLevel, setArmorLevel] = useState<number>(initialSave?.armorLevel ?? 1);
 
   const [attributes, setAttributes] = useState<Record<AttributeName, number>>(
     initialSave?.attributes ?? {
@@ -256,7 +244,8 @@ export default function App() {
         weekBoard,
         characterClass,
         secondAttr,
-        stakeIndex,
+        birthplace,
+        grandparentName,
         gold,
         weaponLevel,
         armorLevel,
@@ -289,7 +278,8 @@ export default function App() {
     weekBoard,
     characterClass,
     secondAttr,
-    stakeIndex,
+    birthplace,
+    grandparentName,
     gold,
     weaponLevel,
     armorLevel,
@@ -539,7 +529,7 @@ export default function App() {
     partyName,
     activePlayer: characterName,
     playerClass: characterClass,
-    personalStakeShort: PERSONAL_STAKES[stakeIndex].label,
+    personalStakeShort: [birthplace && `born in ${birthplace}`, grandparentName && `grandparent ${grandparentName}`].filter(Boolean).join('; '),
     recentRolls,
     relicsGiven: relicsGivenLog,
     solvedFragmentsCount: stats.fragmentsSolved || 5,
@@ -788,17 +778,6 @@ export default function App() {
               <option value="Archer">Class: Archer (Aim)</option>
             </select>
 
-            <select
-              value={stakeIndex}
-              onChange={(e) => setStakeIndex(Number(e.target.value))}
-              className="bg-[#181224] border border-white/10 rounded-[8px] px-2.5 py-1 text-[12.5px] text-[#F4F1F8]"
-            >
-              {PERSONAL_STAKES.map((s, idx) => (
-                <option key={s.id} value={idx}>
-                  Stake: {s.label}
-                </option>
-              ))}
-            </select>
 
             <div className="flex rounded-[8px] overflow-hidden border border-white/10">
               <button
@@ -1233,35 +1212,31 @@ export default function App() {
                       </div>
                     </div>
 
-                    <div>
-                      <label className="block font-['Cinzel'] font-bold text-[10.5px] text-[#D4B876] uppercase mb-1.5">
-                        PERSONAL STAKE IN THE DARK MOON
+                    {/* Session Zero step 4 (Core Rules §7), canon wording; both optional. */}
+                    <div className="space-y-2">
+                      <label htmlFor="sz-birthplace" className="block font-['Cinzel'] font-bold text-[10.5px] text-[#D4B876] uppercase">
+                        Where were you born?
                       </label>
-                      <div className="space-y-1.5">
-                        {PERSONAL_STAKES.map((st, idx) => {
-                          const selected = stakeIndex === idx;
-                          return (
-                            <button
-                              key={st.id}
-                              type="button"
-                              onClick={() => setStakeIndex(idx)}
-                              className={`w-full p-2.5 rounded-xl border text-left transition ${
-                                selected
-                                  ? 'bg-[#2A1B40] border-[#D4B876]'
-                                  : 'bg-[#150D22] border-[#3A2555] opacity-85 hover:opacity-100'
-                              }`}
-                            >
-                              <div className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158]">
-                                {selected ? '✓ ' : ''}
-                                {st.label}
-                              </div>
-                              <p className="font-sans text-[12px] text-[#E6E0F0] mt-0.5 leading-snug">
-                                {st.text}
-                              </p>
-                            </button>
-                          );
-                        })}
-                      </div>
+                      <input
+                        id="sz-birthplace"
+                        value={birthplace}
+                        maxLength={30}
+                        onChange={(e) => setBirthplace(e.target.value)}
+                        className="w-full bg-[#0D0714] border border-[#3A2555] rounded-lg px-2.5 py-1.5 text-[14px] text-[#F4F1F8] focus:outline-none focus:border-[#D4B876]"
+                      />
+                      <label htmlFor="sz-grandparent" className="block font-['Cinzel'] font-bold text-[10.5px] text-[#D4B876] uppercase">
+                        What was a grandparent's name?
+                      </label>
+                      <input
+                        id="sz-grandparent"
+                        value={grandparentName}
+                        maxLength={20}
+                        onChange={(e) => setGrandparentName(e.target.value)}
+                        className="w-full bg-[#0D0714] border border-[#3A2555] rounded-lg px-2.5 py-1.5 text-[14px] text-[#F4F1F8] focus:outline-none focus:border-[#D4B876]"
+                      />
+                      <p className="font-sans italic text-[12px] text-[#B7A9CC]">
+                        You can skip these. They only make the story a little more yours.
+                      </p>
                     </div>
                   </div>
 
@@ -1315,9 +1290,7 @@ export default function App() {
                       setStats((s) => ({ ...s, perfectRolls: (s.perfectRolls ?? 0) + 1 }));
                     }
                     setRecentRolls((prev) => [
-                      `W${currentWeek}D${currentDay}: ${
-                        isNat20 ? 'NAT 20!' : delta >= 3 ? 'Cleared' : 'Hard Road'
-                      } (${attr} +${delta})`,
+                      `W${currentWeek}D${currentDay}: Passed${delta > 0 ? ` (${attr} +${delta})` : ''}`,
                       ...prev.slice(0, 4),
                     ]);
                   }}
@@ -1464,7 +1437,7 @@ export default function App() {
                   }
                   ledgerOpened={ledgerOpened}
                   onAskGarrickForLedger={() => setLedgerOpened(true)}
-                  personalStakeText={PERSONAL_STAKES[stakeIndex].text}
+                  completedDays={completedDays}
                   currentWeek={currentWeek}
                   currentDay={currentDay}
                   initialSubTab={bagInitialSubTab}

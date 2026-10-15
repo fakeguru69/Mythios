@@ -535,13 +535,15 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
         const routed = routeGarrickMessage(trimmed, {
           episode: currentWeek,
           day: currentDay,
-          ledgerOpened: currentWeek > 1 || currentDay >= 2,
+          // The ledger is opened at Gathering 2.
+          ledgerOpened: currentWeek > 2,
           prisonerHeld: currentWeek === 4 && currentDay === 1,
           prisonerAskedLeader: currentWeek >= 4,
           allFourChildrenHome: currentWeek >= 5,
           verseOfFourRead: currentWeek >= 4,
           atHighwall: currentWeek >= 5,
           ep6RevealLanded: false,
+          atCampfire: true,
         });
         nextFeed.push({
           id: `garrick-${Date.now() + 1}`,
@@ -741,7 +743,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                       : 'bg-[#0D0714] border-[#3A2555] text-[#B7A9CC]'
                   }`}
                 >
-                  {simBruisedScrape ? '✓ Bruised Arm' : 'Bruised Arm'}
+                  {simBruisedScrape ? '✓ Bruised Scrape' : 'Bruised Scrape'}
                 </button>
                 <button
                   type="button"
@@ -978,6 +980,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
         {/* -------------------------------------------------------------------
             STEP 4: THE CALLBACK
            ------------------------------------------------------------------- */}
+        {dayEntry.callback && (
         <div
           className={`rounded-xl border p-3.5 space-y-1.5 transition bg-[#150D22] border-[#3A2555]/80`}
         >
@@ -988,6 +991,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             “{dayEntry.callback}”
           </p>
         </div>
+        )}
 
         {/* -------------------------------------------------------------------
             STEP 5: THE SEEKER FRAGMENT WORD-LOCK (With 1st-Letter Hint & Zero Gold Text)
