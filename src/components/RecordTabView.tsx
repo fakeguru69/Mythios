@@ -175,7 +175,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
                 {displayCharName.toUpperCase()}
               </h2>
               <span className="px-2 py-0.5 rounded-full bg-[#130B1F] border border-[#6FD39A]/50 font-['Cinzel'] font-bold text-[11px] text-[#6FD39A] whitespace-nowrap shrink-0">
-                🔥 {stats.bestStreak || 6}D
+                🔥 {stats.bestStreak ?? 0}D
               </span>
             </div>
 
@@ -496,7 +496,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
         }}
         className="w-full py-3 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[13px] tracking-[1px] uppercase shadow-md transition"
       >
-        SHARE HERO RECORD CARD
+        SHARE MY RECORD
       </button>
 
       {/* SHAREABLE COLLECTOR CARD MODAL */}
@@ -523,7 +523,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="p-2.5 rounded-xl bg-[#2A1B40] border border-[#D4B876]/40">
                 <div className="font-['Cinzel'] font-bold text-[18px] text-[#D4B876]">
-                  🔥 {stats.bestStreak || 6}
+                  🔥 {stats.bestStreak ?? 0}
                 </div>
                 <div className="text-[11.5px] font-sans text-[#B7A9CC] mt-0.5">
                   Best Streak
@@ -531,7 +531,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
               </div>
               <div className="p-2.5 rounded-xl bg-[#2A1B40] border border-[#D4B876]/40">
                 <div className="font-['Cinzel'] font-bold text-[18px] text-[#D4B876]">
-                  👑 {stats.fragmentsSolved || 6}
+                  👑 {stats.fragmentsSolved ?? 0}
                 </div>
                 <div className="text-[11.5px] font-sans text-[#B7A9CC] mt-0.5">
                   Solved
@@ -539,7 +539,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
               </div>
               <div className="p-2.5 rounded-xl bg-[#2A1B40] border border-[#D4B876]/40">
                 <div className="font-['Cinzel'] font-bold text-[18px] text-[#D4B876]">
-                  ⚔️ {stats.enemiesDefeated || 4}
+                  ⚔️ {stats.enemiesDefeated ?? 0}
                 </div>
                 <div className="text-[11.5px] font-sans text-[#B7A9CC] mt-0.5">
                   Felled
@@ -550,7 +550,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
             <div className="flex items-center gap-2">
               <button
                 onClick={() => {
-                  const shareText = `MYTHIOS · ${displayCharName} (${characterClass})\nParty: ${displayPartyName}\n🔥 ${stats.bestStreak || 6}d Streak · 👑 ${stats.fragmentsSolved || 6} Fragments Solved · ⚔️ ${stats.enemiesDefeated || 4} Enemies Felled`;
+                  const shareText = `MYTHIOS · ${displayCharName} (${characterClass})\nParty: ${displayPartyName}\n🔥 ${stats.bestStreak ?? 0}d Streak · 👑 ${stats.fragmentsSolved ?? 0} Fragments Solved · ⚔️ ${stats.enemiesDefeated ?? 0} Enemies Felled`;
                   navigator.clipboard?.writeText(shareText);
                   setShareCopied(true);
                 }}

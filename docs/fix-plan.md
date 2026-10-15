@@ -122,7 +122,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 34. ✅ **Done 15 Oct.** **[Fix] Small fixes** (Task 10): "retired innkeeper", estimate labels, the workbench note.
 35. ✅ **Done 15 Oct (stake wording waits on Fake Guru).** The three invented stakes are gone; Session Zero asks canon's two optional questions (saved as birthplace and grandparent). The shelf is "Clues", built from canon's "You hold:" lines; four invented items removed (`docs/clue-shelf-report-15oct.md`). **Personal stakes and the clue shelf** (Task 13): stakes from the Session Zero answers; "Keepsakes" becomes "Clues"; check each clue against canon; remove the Day 1 stakes that leak the story.
 36. ✅ **Done 15 Oct.** The quiz no longer exists: since the Gatherings play canon word for word (Phase 3, D5), no Gathering asks a Table Question and no choice is offered. Its old text (question, three answers, hints, twist lines) is still stored, unused, in `src/data/mythiosGatheringsAndAudit.ts`; nothing reads it. Removing it waits on Fake Guru. **Report on Gathering 5's Table Question** (Task 11). Answered by the audits: the choice changes nothing; a wrong pick just shows a hint.
-37. **Full check and report** (Task 12): every rule in `CLAUDE.md` §6 against the code, pass or fail with file and line.
+37. ✅ **Done 15 Oct** (`docs/build-check-15oct.md`): 44 rules; 34 passed, 10 faults fixed (weekday enemy DEF, starting gear, Approach growth, fight pay constants, Bruised Scrape at the fire, banned-phrase filter, Malakor at the fire, the ledger at the fire, verses before their Gathering, Record share card); 9 decisions sent to Fake Guru. **Full check and report** (Task 12): every rule in `CLAUDE.md` §6 against the code, pass or fail with file and line.
 
 ---
 

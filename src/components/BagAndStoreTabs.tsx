@@ -539,7 +539,11 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
               <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#D4B876] uppercase">
                 CUMULATIVE DARK MOON VERSES
               </div>
-              {CUMULATIVE_SCRIPTURE.filter((v) => v.week <= currentWeek).map((v) => (
+              {/* Each week's verse is read at that week's Gathering (Day 7), so it joins the Bag from then on. */}
+              {CUMULATIVE_SCRIPTURE.filter((v) => v.week < currentWeek || (v.week === currentWeek && currentDay >= 7)).length === 0 && (
+                <div className="text-[13px] font-sans text-[#B7A9CC]">None yet.</div>
+              )}
+              {CUMULATIVE_SCRIPTURE.filter((v) => v.week < currentWeek || (v.week === currentWeek && currentDay >= 7)).map((v) => (
                 <div
                   key={v.week}
                   className="p-3 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-1"

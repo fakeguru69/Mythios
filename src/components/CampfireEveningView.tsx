@@ -535,13 +535,15 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
         const routed = routeGarrickMessage(trimmed, {
           episode: currentWeek,
           day: currentDay,
-          ledgerOpened: currentWeek > 1 || currentDay >= 2,
+          // The ledger is opened at Gathering 2.
+          ledgerOpened: currentWeek > 2,
           prisonerHeld: currentWeek === 4 && currentDay === 1,
           prisonerAskedLeader: currentWeek >= 4,
           allFourChildrenHome: currentWeek >= 5,
           verseOfFourRead: currentWeek >= 4,
           atHighwall: currentWeek >= 5,
           ep6RevealLanded: false,
+          atCampfire: true,
         });
         nextFeed.push({
           id: `garrick-${Date.now() + 1}`,
