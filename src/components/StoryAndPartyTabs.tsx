@@ -3098,7 +3098,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
               )}
             </div>
           );
-          return { nodes, done: true, reachedTwist };
+          return { nodes, done: true, reachedTwist, reachedSummary };
         }
       }
     }
