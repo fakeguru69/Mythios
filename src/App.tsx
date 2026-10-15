@@ -1432,6 +1432,7 @@ export default function App() {
               {activeTab === 'BAG' && (
                 <BagTabView
                   party={party}
+                  gatheringsDone={[1, 2, 3, 4, 5, 6].filter((w) => w < currentWeek || claimedRewards.includes(`G${w}:done`))}
                   gold={gold}
                   relics={relics}
                   solvedWords={solvedWords}

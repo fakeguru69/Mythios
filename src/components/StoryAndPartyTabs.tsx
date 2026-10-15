@@ -2795,7 +2795,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   );
   const gWalk = (() => {
     const nodes: React.ReactNode[] = [];
-    if (!gatheringScript) return { nodes, done: true, reachedTwist: false };
+    if (!gatheringScript) return { nodes, done: true, reachedTwist: false, reachedSummary: false };
     // The case so far, read back by MYTHIOS at the opening (Fan Out and Campfire proposal §3.4): at most three
     // friends by name (Campfire v2.3 §M), the most recently updated first; where a line changed, its first day too.
     // Days are named by number, never by weekday (Fake Guru, 15 Oct). Never graded.
@@ -2824,7 +2824,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     }
     const steps = gatheringScript.steps;
     let reachedTwist = false;
-    const stop = () => ({ nodes, done: false, reachedTwist });
+    let reachedSummary = false;
+    const stop = () => ({ nodes, done: false, reachedTwist, reachedSummary });
     for (let i = 0; i < steps.length; i++) {
       const st = steps[i];
       const key = `g${i}`;
@@ -3045,6 +3046,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
           break;
         }
         case 'summary': {
+          reachedSummary = true;
           const [titleLine, ...rest] = st.lines;
           const earned: string[] = [];
           if (approachRolled && approachPaid) {
@@ -3096,12 +3098,17 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
               )}
             </div>
           );
-          return { nodes, done: true, reachedTwist };
+          return { nodes, done: true, reachedTwist, reachedSummary };
         }
       }
     }
-    return { nodes, done: true, reachedTwist };
+    return { nodes, done: true, reachedTwist, reachedSummary };
   })();
+
+  // The Gathering is read to its end: its verses and pages join the Bag (bagVerses.ts).
+  useEffect(() => {
+    if (gWalk.reachedSummary && !hasClaimedReward(`G${currentWeek}:done`)) onClaimReward(`G${currentWeek}:done`);
+  }, [gWalk.reachedSummary, currentWeek]);
 
   // Garrick's Week 6 lines change once the first twist lands.
   useEffect(() => {

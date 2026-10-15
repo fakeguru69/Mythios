@@ -1,6 +1,6 @@
 # Draft: the Bag's "Dark Moon Verses" in canon's words (for Fake Guru's OK)
 
-Status: DRAFT, 15 Oct 2026. Nothing below is in the game yet.
+Status: APPROVED 15 Oct 2026 (Fake Guru: "1 yes 2 yes"), built in `src/data/bagVerses.ts`. Checked against the Cult Bible: every line matches. Two stage notes ("The page is torn here…", the watch-tally) are not shown, as at the Gathering.
 
 ## What the Bag shows today (build text, not canon)
 
