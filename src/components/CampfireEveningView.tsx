@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AttributeName } from '../data/mythiosRulesData';
+import { AttributeName, PartyFriend, friendScores } from '../data/mythiosRulesData';
 import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
 import { wordLockSecondsLeft, registerWrongWordTry, clearWordTries } from '../data/wordLocks';
 import {
@@ -19,6 +19,8 @@ import {
 import { routeGarrickMessage } from '../data/garrickRouter';
 
 export interface CampfireEveningViewProps {
+  /** The party in play (2 to 6), the player first. */
+  party: PartyFriend[];
   currentWeek: number;
   currentDay: number;
   characterName: string;
@@ -79,6 +81,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   relicGiftedTodayTo = null,
   challengeClearedToday = true,
   bruisedScrapeToday = false,
+  party,
 }) => {
   const dayKey = `${currentWeek}-${currentDay}`;
   const dayEntry = getCampfireDayEntry(currentWeek, currentDay);
@@ -86,28 +89,24 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   const w1d1Clue = getPublicFanOutClue(1, 1);
 
   const youDisplay = characterName || 'You';
-  const friendNames: Record<FriendId, string> = {
-    YOU: youDisplay,
-    MEI: 'Mei',
-    DEV: 'Dev',
-    ARJUN: 'Arjun',
-  };
-  const friendColors: Record<FriendId, string> = {
-    YOU: '#6FD39A',
-    MEI: '#F49CBB',
-    DEV: '#5BC0EB',
-    ARJUN: '#4FD1C5',
-  };
+  const partyIds: FriendId[] = party.map((f) => f.id);
+  const friendNames: Record<FriendId, string> = Object.fromEntries(
+    party.map((f) => [f.id, f.id === 'YOU' ? youDisplay : f.name])
+  );
+  const friendColors: Record<FriendId, string> = Object.fromEntries(
+    party.map((f) => [f.id, f.id === 'YOU' ? '#6FD39A' : f.color])
+  );
 
   // Active real-player seat for testing multi-friend mechanics without AI-scripted friend lines
   const [activeSeat, setActiveSeat] = useState<FriendId>('YOU');
   const [showSeatControls, setShowSeatControls] = useState<boolean>(false);
-  const [arrivedFriends, setArrivedFriends] = useState<FriendId[]>([
-    'YOU',
-    'MEI',
-    'DEV',
-    'ARJUN',
-  ]);
+  const [arrivedFriends, setArrivedFriends] = useState<FriendId[]>(partyIds);
+  // A smaller or larger party (workbench switch) resets who is at the fire.
+  useEffect(() => {
+    setArrivedFriends(partyIds);
+    if (!partyIds.includes(activeSeat)) setActiveSeat('YOU');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [partyIds.join('|')]);
   const [isPastDawnCutoff, setIsPastDawnCutoff] = useState<boolean>(false);
   const [simBruisedScrape, setSimBruisedScrape] = useState<boolean>(bruisedScrapeToday);
   const [simMissedYesterday, setSimMissedYesterday] = useState<boolean>(false);
@@ -175,14 +174,16 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     return () => window.clearInterval(timer);
   }, []);
 
-  const dayBranches = fanOutBranchesByDay[dayKey] || {
-    YOU: seekerFirstLetterHints[dayKey] ? 'CHALLENGE' : 'CHALLENGE',
-    MEI: 'CHALLENGE',
-    DEV: 'FIGHT',
-    ARJUN: 'CAMPFIRE',
+  // Test default: the sample friends fan out in turn (Challenge, fight, Campfire); the player's own pick is saved.
+  const sampleBranches: ('CHALLENGE' | 'FIGHT' | 'CAMPFIRE')[] = ['CHALLENGE', 'FIGHT', 'CAMPFIRE'];
+  const dayBranches: Record<FriendId, 'CHALLENGE' | 'FIGHT' | 'CAMPFIRE'> = {
+    ...Object.fromEntries(
+      partyIds.map((fid, i) => [fid, fid === 'YOU' ? 'CHALLENGE' : sampleBranches[(i - 1) % sampleBranches.length]])
+    ),
+    ...(fanOutBranchesByDay[dayKey] || {}),
   };
 
-  const clueContributors = (['YOU', 'MEI', 'DEV', 'ARJUN'] as FriendId[]).filter(
+  const clueContributors = partyIds.filter(
     (fid) => dayBranches[fid] === 'CHALLENGE' || dayBranches[fid] === 'FIGHT'
   );
 
@@ -196,17 +197,17 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   const canPeekOtherPins = Boolean(activeSeatPin) || isPastDawnCutoff;
 
   // Dynamic {friend:Attribute} nudge resolution
-  const partyAttributes: Record<FriendId, Record<AttributeName, number>> = {
-    YOU: attributes,
-    MEI: { Intellect: 44, Charm: 40, Craft: 30, Agility: 28, Aim: 26, Might: 24 },
-    DEV: { Aim: 44, Agility: 40, Might: 32, Craft: 28, Charm: 26, Intellect: 26 },
-    ARJUN: { Craft: 44, Might: 42, Intellect: 32, Aim: 28, Agility: 24, Charm: 24 },
-  };
-  const nudgeResolved = resolveCampfireNudgeText(
-    dayEntry.nudge,
-    partyAttributes,
-    youDisplay
-  );
+  // Campfire v2.3 §M: the nudge picks from friends at the fire, and rotates (yesterday's friend sits out).
+  const prevDayKey = currentDay > 1 ? `${currentWeek}-${currentDay - 1}` : null;
+  const friendsAtFire = party
+    .filter((f) => arrivedFriends.includes(f.id))
+    .map((f) => ({ id: f.id, name: friendNames[f.id], scores: friendScores(f.id, attributes) }));
+  const lastNudged = (() => {
+    if (!prevDayKey) return null;
+    const prev = getCampfireDayEntry(currentWeek, currentDay - 1);
+    return prev ? resolveCampfireNudgeText(prev.nudge, friendsAtFire).targetFriend : null;
+  })();
+  const nudgeResolved = resolveCampfireNudgeText(dayEntry.nudge, friendsAtFire, lastNudged);
 
   // Active Seeker Fragment for Step 5
   const activeFragment =
@@ -223,7 +224,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     Boolean(seekerFirstLetterHints[dayKey]);
 
   // Evaluate at most 2 true Noticing lines for Step 1
-  const notYetArrivedNames = (['YOU', 'MEI', 'DEV', 'ARJUN'] as FriendId[])
+  const notYetArrivedNames = partyIds
     .filter((fid) => !arrivedFriends.includes(fid))
     .map((fid) => friendNames[fid]);
 
@@ -460,7 +461,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
 
   const factualTodayLines = buildWhatWeDidTodayLines({
     dayEntry,
-    youName: youDisplay,
+    party: party.map((f) => ({ id: f.id, name: friendNames[f.id] })),
     arrivedFriends,
     clueContributors,
     solvedWord1By: activeFragSolved.w1,
@@ -604,8 +605,8 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             </button>
           </div>
 
-          <div className="grid grid-cols-4 gap-1.5">
-            {(['YOU', 'MEI', 'DEV', 'ARJUN'] as FriendId[]).map((fid) => {
+          <div className="grid grid-cols-3 gap-1.5">
+            {partyIds.map((fid) => {
               const isSelected = activeSeat === fid;
               const hasPinned = Boolean(dayTheoryPins[fid]);
               return (
@@ -637,10 +638,10 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           <div className="grid grid-cols-2 gap-2 pt-1 border-t border-[#3A2555]/60">
             <div className="space-y-1">
               <div className="text-[10.5px] font-['Cinzel'] font-bold text-[#B7A9CC] uppercase">
-                Arrived at Fire ({arrivedFriends.length}/4):
+                Arrived at Fire ({arrivedFriends.length}/{partyIds.length}):
               </div>
               <div className="flex flex-wrap gap-1">
-                {(['YOU', 'MEI', 'DEV', 'ARJUN'] as FriendId[]).map((fid) => {
+                {partyIds.map((fid) => {
                   const here = arrivedFriends.includes(fid);
                   return (
                     <button
@@ -806,7 +807,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             <span className="text-[#B7A9CC]">
               {arrivedFriends.length === 1
                 ? 'First at the fire'
-                : `${arrivedFriends.length}/4 friends by the fire`}
+                : `${arrivedFriends.length}/${partyIds.length} friends by the fire`}
             </span>
           </div>
 
@@ -957,23 +958,19 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                 {publicClue.text}
               </p>
               <div className="text-[11.5px] font-sans text-[#B7A9CC] pt-1 border-t border-white/[0.06]">
-                {(
-                  ['YOU', 'MEI', 'DEV', 'ARJUN'] as FriendId[]
-                )
+                {partyIds
                   .filter((fid) => dayBranches[fid] === 'CAMPFIRE')
                   .map((fid) => friendNames[fid])
                   .join(', ') ? (
                   <span>
                     Head to Campfire branch (learned from board):{' '}
-                    {(
-                      ['YOU', 'MEI', 'DEV', 'ARJUN'] as FriendId[]
-                    )
+                    {partyIds
                       .filter((fid) => dayBranches[fid] === 'CAMPFIRE')
                       .map((fid) => friendNames[fid])
                       .join(', ')}
                   </span>
                 ) : (
-                  <span>All four friends searched the dusk perimeter today.</span>
+                  <span>Every friend searched the dusk perimeter today.</span>
                 )}
               </div>
             </div>
@@ -1098,7 +1095,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           {/* Pinned Theories Board (Enforces Pin-Before-Peek) */}
           <div className="pt-2 border-t border-white/[0.08] space-y-2">
             <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold text-[#B7A9CC]">
-              <span>PARTY THEORY PINS ({Object.keys(dayTheoryPins).length}/4)</span>
+              <span>PARTY THEORY PINS ({Object.keys(dayTheoryPins).length}/{partyIds.length})</span>
               <span>No right/wrong marks · No gold</span>
             </div>
 

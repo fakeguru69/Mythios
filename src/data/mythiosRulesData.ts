@@ -45,21 +45,53 @@ export interface PartyFriend {
   color: string;
 }
 
-export const DEFAULT_PARTY_MEMBERS: PartyFriend[] = [
-  { id: 'YOU', name: 'Jennifer', cls: 'Trickster', attr: 'Charm', color: '#EE8BC3' },
-  { id: 'MEI', name: 'Mei', cls: 'Sage', attr: 'Intellect', color: '#F49CBB' },
-  { id: 'DEV', name: 'Dev', cls: 'Archer', attr: 'Aim', color: '#5BC0EB' },
-  { id: 'ARJUN', name: 'Arjun', cls: 'Warrior', attr: 'Might', color: '#4FD1C5' },
-];
-
+// The sample party for the one-phone demo (Campfire v2.3 §M: 2 to 6 friends). Friend 1 is the player;
+// the others stand in for real friends until real accounts exist. Friends 5 and 6 renamed 14 Oct
+// (Fake Guru): "Tamsin" is a kidnapped child in the story and "Rowan" was cut lore.
 export const ALL_SAMPLE_HEROES: PartyFriend[] = [
   { id: 'YOU', name: 'Jennifer', cls: 'Trickster', attr: 'Charm', color: '#EE8BC3' },
   { id: 'MEI', name: 'Mei', cls: 'Sage', attr: 'Intellect', color: '#F49CBB' },
   { id: 'DEV', name: 'Dev', cls: 'Archer', attr: 'Aim', color: '#5BC0EB' },
   { id: 'ARJUN', name: 'Arjun', cls: 'Warrior', attr: 'Might', color: '#4FD1C5' },
-  { id: 'TAMSIN_HERO', name: 'Tamsin', cls: 'Artificer', attr: 'Craft', color: '#C084FC' },
-  { id: 'ROWAN_HERO', name: 'Rowan', cls: 'Assassin', attr: 'Agility', color: '#38BDF8' },
+  { id: 'PRIYA', name: 'Priya', cls: 'Artificer', attr: 'Craft', color: '#C084FC' },
+  { id: 'THEO', name: 'Theo', cls: 'Assassin', attr: 'Agility', color: '#38BDF8' },
 ];
+
+export const MIN_PARTY_SIZE = 2;
+export const MAX_PARTY_SIZE = 6;
+export const DEFAULT_PARTY_SIZE = 4;
+
+/** The party in play: the player first (with their own name and class), then the sample friends. */
+export function buildParty(size: number, you: { name: string; cls: ClassName }): PartyFriend[] {
+  const n = Math.min(MAX_PARTY_SIZE, Math.max(MIN_PARTY_SIZE, Math.round(size) || DEFAULT_PARTY_SIZE));
+  return ALL_SAMPLE_HEROES.slice(0, n).map((f) =>
+    f.id === 'YOU'
+      ? { ...f, name: you.name.trim() || 'You', cls: you.cls, attr: CLASS_META[you.cls]?.attribute ?? f.attr }
+      : f
+  );
+}
+
+/** Test scores for the sample friends (the player uses their own). Each leads with their class Attribute. */
+export const SAMPLE_FRIEND_SCORES: Record<string, Record<AttributeName, number>> = {
+  MEI: { Intellect: 44, Charm: 40, Craft: 30, Agility: 28, Aim: 26, Might: 24 },
+  DEV: { Aim: 44, Agility: 40, Might: 32, Craft: 28, Charm: 26, Intellect: 26 },
+  ARJUN: { Might: 44, Craft: 42, Intellect: 32, Aim: 28, Agility: 24, Charm: 24 },
+  PRIYA: { Craft: 44, Intellect: 40, Might: 32, Aim: 28, Agility: 26, Charm: 24 },
+  THEO: { Agility: 44, Aim: 40, Charm: 32, Might: 28, Craft: 26, Intellect: 24 },
+};
+
+/** A friend's Attribute scores: the player's own, or the sample friend's test scores. */
+export function friendScores(id: string, playerAttributes: Record<AttributeName, number>): Record<AttributeName, number> {
+  return id === 'YOU' ? playerAttributes : SAMPLE_FRIEND_SCORES[id] ?? playerAttributes;
+}
+
+/** A number as a word for player text ("two" … "six"). */
+export function partySizeWord(n: number): string {
+  return ['none', 'one', 'two', 'three', 'four', 'five', 'six', 'seven'][n] ?? String(n);
+}
+
+/** The demo's default party of four (used only where no live party list is passed in). */
+export const DEFAULT_PARTY_MEMBERS: PartyFriend[] = ALL_SAMPLE_HEROES.slice(0, DEFAULT_PARTY_SIZE);
 
 export const WEEKDAY_DC_BY_WEEK: Record<number, number> = {
   1: 6,

@@ -1,22 +1,7 @@
-import { AttributeName } from './mythiosRulesData';
-import { WEEKDAY_INVENTORY, WeekdayInventoryItem } from './mythiosChaptersData';
+import { AttributeName, partySizeWord } from './mythiosRulesData';
+import { WeekdayInventoryItem } from './mythiosChaptersData';
 import { SEEKER_FRAGMENTS } from './mythiosFragments';
 import { getPublicFanOutClue } from './campfireDaysData';
-
-export interface TeammateBoardFinding {
-  id: string;
-  member: 'MEI' | 'DEV' | 'ARJUN';
-  author: string;
-  role: string;
-  roleTag: string;
-  color: string;
-  title: string;
-  clueTitle: string;
-  summary: string;
-  clueText: string;
-  garrickCrossCheckPrompt: string;
-  memberFollowUpReply: string;
-}
 
 export interface DayFanOutData {
   leadInParagraph1: string;
@@ -24,7 +9,6 @@ export interface DayFanOutData {
   branchA: FanOutBranchChallenge;
   branchB: FanOutBranchFight;
   branchC: FanOutBranchChallenge;
-  teammateFindings: TeammateBoardFinding[];
   garrickSynthesisWhenPlayerShares: (playerClueText: string, fragWord1: string) => string;
 }
 
@@ -54,7 +38,7 @@ export interface FanOutBranchFight extends FanOutBranchOption {
   winParagraph2: string;
 }
 
-export function getFanOutEncounterData(dayData: WeekdayInventoryItem): DayFanOutData {
+export function getFanOutEncounterData(dayData: WeekdayInventoryItem, partySize: number): DayFanOutData {
   const place = dayData.place;
   const placeShort = place.replace(/^The\s+/i, '');
   const dayFrag = SEEKER_FRAGMENTS.find(
@@ -83,7 +67,7 @@ export function getFanOutEncounterData(dayData: WeekdayInventoryItem): DayFanOut
 
   const leadInParagraph1 = isW1D1
     ? `With today’s carved Seeker Fragment safely tucked into your satchel beside the torn stub naming The Hollow Wake Inn, you stand alone at ${place} as long purple shadows stretch across the wet timber.`
-    : `With today’s carved Seeker Fragment safely tucked into your satchel, the four of you pause at ${place} as long purple shadows stretch across the ground. There is still half an hour of grey light left before ${campHostRef}.`;
+    : `With today’s carved Seeker Fragment safely tucked into your satchel, the ${partySizeWord(partySize)} of you pause at ${place} as long purple shadows stretch across the ground. There is still half an hour of grey light left before ${campHostRef}.`;
   const leadInParagraph2 = isW1D1
     ? `Before you follow the drove road north toward The Hollow Wake Inn, you can fan out on a Challenge or Fight branch to uncover today’s clue ("${canonicalClue.title}") and the Seeker Fragment first-letter hint, or head straight on.`
     : `Before nightfall, each friend can take a Fan Out branch (Challenge or Fight — both bring back today’s clue "${canonicalClue.title}" and the Seeker Fragment first-letter hint) or choose Head to Campfire (bringing no clue and learning it from the board).`;
@@ -178,51 +162,6 @@ export function getFanOutEncounterData(dayData: WeekdayInventoryItem): DayFanOut
     soloClueText: '',
   };
 
-  const teammateFindings: TeammateBoardFinding[] = [
-    {
-      id: `tf-mei-${dayData.week}-${dayData.day}`,
-      member: 'MEI',
-      author: 'Mei',
-      role: 'SAGE · INTELLECT',
-      roleTag: 'Fan Out Clue',
-      color: '#F49CBB',
-      title: canonicalClue.title,
-      clueTitle: canonicalClue.title,
-      summary: canonicalClue.text,
-      clueText: canonicalClue.text,
-      garrickCrossCheckPrompt: '',
-      memberFollowUpReply: '',
-    },
-    {
-      id: `tf-dev-${dayData.week}-${dayData.day}`,
-      member: 'DEV',
-      author: 'Dev',
-      role: 'ARCHER · AIM',
-      roleTag: 'Fan Out Clue',
-      color: '#5BC0EB',
-      title: canonicalClue.title,
-      clueTitle: canonicalClue.title,
-      summary: canonicalClue.text,
-      clueText: canonicalClue.text,
-      garrickCrossCheckPrompt: '',
-      memberFollowUpReply: '',
-    },
-    {
-      id: `tf-arjun-${dayData.week}-${dayData.day}`,
-      member: 'ARJUN',
-      author: 'Arjun',
-      role: 'ARTIFICER · CRAFT',
-      roleTag: 'Fan Out Clue',
-      color: '#4FD1C5',
-      title: canonicalClue.title,
-      clueTitle: canonicalClue.title,
-      summary: canonicalClue.text,
-      clueText: canonicalClue.text,
-      garrickCrossCheckPrompt: '',
-      memberFollowUpReply: '',
-    },
-  ];
-
   const garrickSynthesisWhenPlayerShares = () => '';
 
   return {
@@ -231,34 +170,10 @@ export function getFanOutEncounterData(dayData: WeekdayInventoryItem): DayFanOut
     branchA,
     branchB,
     branchC,
-    teammateFindings,
     garrickSynthesisWhenPlayerShares,
   };
 }
 
-export function getPartyBoardCluesForDay(week: number, day: number): TeammateBoardFinding[] {
-  const ch =
-    WEEKDAY_INVENTORY.find((d) => d.week === week && d.day === day) || WEEKDAY_INVENTORY[0];
-  return getFanOutEncounterData(ch).teammateFindings;
-}
-
-export function getSoloFanOutEncounter(
-  week: number,
-  day: number
-): {
-  soloClueTitle: string;
-  soloClueText: string;
-  seekerFirstLetter: string;
-} {
-  const canonicalClue = getPublicFanOutClue(week, day);
-  const frag =
-    SEEKER_FRAGMENTS.find((f) => f.week === week && f.day === day) || SEEKER_FRAGMENTS[0];
-  return {
-    soloClueTitle: canonicalClue.title,
-    soloClueText: canonicalClue.text,
-    seekerFirstLetter: (frag.word1[0] || 'L').toUpperCase(),
-  };
-}
 
 export interface FanOutBranchOption {
   id: string;

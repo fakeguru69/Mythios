@@ -93,7 +93,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 4: a real party of 2 to 6
 
-22. **[Fix] One party list everywhere** (Task 7): Battle, United Effort, Campfire, Match, fragments, chat. `[N]` as the party size in words. Remove "the four of you" and the fixed Mei, Dev and Arjun lines. A workbench switch for 2–6. Sample friends 5 and 6 are Priya and Theo.
+22. ✅ **Done 15 Oct (wording lists waiting on Fake Guru).** One party list (`buildParty` in `mythiosRulesData.ts`, size saved with the game) feeds the weekday text, Campfire, Battle, United Effort (each friend rolls their own score), Match, Ask, the Gathering chat and Relic giving. Workbench switch for 2–6. Priya and Theo replace Tamsin and Rowan. A new game no longer starts with made-up friend messages, pins and rolls. Removed the dead `garrickCampfirePrompts.ts` and `garrickDailyRiddles.ts` (unused; they held "all four of us" and scripted Mei/Dev lines). Waiting on Fake Guru: `docs/party-size-wording-15oct.md` (7 he/she lines, 10 lines that need more friends than a small party has). **[Fix] One party list everywhere** (Task 7): Battle, United Effort, Campfire, Match, fragments, chat. `[N]` as the party size in words. Remove "the four of you" and the fixed Mei, Dev and Arjun lines. A workbench switch for 2–6. Sample friends 5 and 6 are Priya and Theo.
 23. **[Fix] Campfire §M rules:** nudges rotate among friends at the fire; at most 3 pins read aloud; the riddle is shared with 3 tries each.
 24. **[Fix] Fragments:** canon's "one word per friend per day", credited to the real player, not "Jennifer".
 25. **[Decide D6] Fan Out by friend:** different finds per friend, so each brings something to the fire.

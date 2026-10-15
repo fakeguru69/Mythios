@@ -21,7 +21,12 @@ export function fillScriptTokens(text: string, t: ScriptTokens): string {
     .replace(atStart, (_, pre, tok) => pre + cap(word(tok === 'N' ? t.partySize : t.partySize - 1)))
     .replace(/\{N-1\}/g, word(t.partySize - 1))
     .replace(/\{N\}/g, word(t.partySize))
-    .replace(/\{F([123])\}/g, (_, i) => t.friends[Number(i) - 1] ?? 'a friend');
+    // Canon writes for three friends. In a smaller party the names go round again (a party of two:
+    // every stand-in is the one friend; of three: Jo is Mei's friend again). Lines that name two
+    // friends at once are listed for Fake Guru (Phase 4) for a small-party wording.
+    .replace(/\{F([123])\}/g, (_, i) =>
+      t.friends.length ? t.friends[(Number(i) - 1) % t.friends.length] : 'a friend'
+    );
 }
 
 /** Inline **bold** and *italic*, as canon marks them. */

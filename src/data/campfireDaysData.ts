@@ -1,6 +1,7 @@
 import { AttributeName } from './mythiosRulesData';
 
-export type FriendId = 'YOU' | 'MEI' | 'DEV' | 'ARJUN' | 'TAMSIN_HERO' | 'ROWAN_HERO' | string;
+// A friend's id in the party list (mythiosRulesData `buildParty`): 'YOU' for the player, then the sample friends.
+export type FriendId = string;
 
 export interface CampfireRiddleEntry {
   q: string;
@@ -1214,51 +1215,24 @@ export function getPublicFanOutClue(week: number, day: number): CampfireFanOutCl
 }
 
 /**
- * Resolves `{friend:Attribute}` dynamically to the friend with the highest score in that Attribute.
+ * Resolves `{friend:Attribute}` to a friend at the fire (Campfire v2.3 §M): the one with the highest score in
+ * that Attribute, leaving out whoever the last nudge named, so the nudges rotate round the fire.
  */
 export function resolveCampfireNudgeText(
   nudgeTemplate: string,
-  partyAttributes?: Record<FriendId, Record<AttributeName, number>>,
-  youName: string = 'You'
+  friendsAtFire: { id: FriendId; name: string; scores: Record<AttributeName, number> }[],
+  lastNudged?: FriendId | null
 ): { resolvedText: string; targetFriend: FriendId; attribute: AttributeName } {
   const match = nudgeTemplate.match(/\{friend:([A-Za-z]+)\}/);
   const attr = ((match?.[1] as AttributeName) || 'Intellect') as AttributeName;
-
-  const defaultScores: Record<FriendId, Record<AttributeName, number>> = {
-    YOU: { Charm: 38, Agility: 34, Intellect: 30, Might: 26, Craft: 28, Aim: 32 },
-    MEI: { Intellect: 44, Charm: 40, Craft: 30, Agility: 28, Aim: 26, Might: 24 },
-    DEV: { Aim: 44, Agility: 40, Might: 32, Craft: 28, Charm: 26, Intellect: 26 },
-    ARJUN: { Craft: 44, Might: 42, Intellect: 32, Aim: 28, Agility: 24, Charm: 24 },
-  };
-
-  const scores = partyAttributes || defaultScores;
-  const order: FriendId[] = ['MEI', 'DEV', 'ARJUN', 'YOU'];
-  let bestFriend: FriendId = 'MEI';
-  let bestScore = -1;
-
-  for (const fid of order) {
-    const val = scores[fid]?.[attr] ?? 0;
-    if (val > bestScore) {
-      bestScore = val;
-      bestFriend = fid;
-    }
-  }
-
-  const displayNames: Record<FriendId, string> = {
-    YOU: youName,
-    MEI: 'Mei',
-    DEV: 'Dev',
-    ARJUN: 'Arjun',
-  };
-
-  const resolvedText = nudgeTemplate.replace(
-    /\{friend:[A-Za-z]+\}/g,
-    displayNames[bestFriend]
+  const pool = friendsAtFire.length > 1 ? friendsAtFire.filter((f) => f.id !== lastNudged) : friendsAtFire;
+  const best = pool.reduce<(typeof pool)[number] | null>(
+    (top, f) => (!top || (f.scores[attr] ?? 0) > (top.scores[attr] ?? 0) ? f : top),
+    null
   );
-
   return {
-    resolvedText,
-    targetFriend: bestFriend,
+    resolvedText: nudgeTemplate.replace(/\{friend:[A-Za-z]+\}/g, best?.name ?? 'someone'),
+    targetFriend: best?.id ?? 'YOU',
     attribute: attr,
   };
 }
@@ -1366,7 +1340,7 @@ export function evaluateEveningNoticings(params: {
  */
 export function buildWhatWeDidTodayLines(params: {
   dayEntry: CampfireDayEntry;
-  youName: string;
+  party: { id: FriendId; name: string }[];
   arrivedFriends: FriendId[];
   clueContributors: FriendId[];
   solvedWord1By?: string;
@@ -1375,15 +1349,10 @@ export function buildWhatWeDidTodayLines(params: {
   challengeClearedByYou?: boolean;
   bruisedScrapeByYou?: boolean;
 }): { friendId: FriendId; friendName: string; line: string }[] {
-  const nameMap: Record<FriendId, string> = {
-    YOU: params.youName || 'You',
-    MEI: 'Mei',
-    DEV: 'Dev',
-    ARJUN: 'Arjun',
-  };
+  const nameMap: Record<FriendId, string> = Object.fromEntries(params.party.map((f) => [f.id, f.name]));
 
   const results: { friendId: FriendId; friendName: string; line: string }[] = [];
-  const roster: FriendId[] = ['YOU', 'MEI', 'DEV', 'ARJUN'];
+  const roster: FriendId[] = params.party.map((f) => f.id);
 
   for (const fid of roster) {
     const fname = nameMap[fid];
