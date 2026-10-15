@@ -929,7 +929,11 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             </div>
           )}
 
-          {dayLeads.map((lead, li) =>
+          {/* Found leads first, then the ones nobody took. */}
+          {dayLeads
+            .map((lead, li) => ({ lead, li }))
+            .sort((a, b) => Number(leadFinders[b.li].length > 0) - Number(leadFinders[a.li].length > 0))
+            .map(({ lead, li }) =>
             leadFinders[li].length > 0 ? (
               <div key={lead.id} className="p-3 rounded-lg bg-[#130B1F] border border-[#3A2555] space-y-1.5">
                 <div className="flex flex-wrap items-center justify-between gap-2">
