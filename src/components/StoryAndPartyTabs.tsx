@@ -421,6 +421,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       setRollOutcome((prev) => (prev ? { ...prev, growth } : prev));
       onGainAttribute(activeAttr, growth, d20 === 20);
       onEarnGold(GOLD_CHALLENGE_WIN);
+      onClaimReward(`${dayKey}:challenge-cleared`);
+      onClaimReward(`cleared-attr:${activeAttr}`);
     } else {
       onEarnGold(-GOLD_CHALLENGE_LOSS);
       // Read at that evening's Campfire: a clue missed on a fail is shared there (Core Rules §3, 15 Oct).
@@ -459,6 +461,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       margin,
       cleared,
     });
+    onClaimReward(`${dayKey}:press-tried`);
     if (cleared && claimReward(`${dayKey}:press`)) onEarnGold(GOLD_PRESS_ON_WIN);
     setIsRollingPress(false);
   };
@@ -552,6 +555,9 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
         }
         // Down at 0 HP: a Bruised Scrape (Core Rules §4). The fire notices it that evening.
         if (nextRound.playerHpAfter <= 0 && nextRound.enemyHpAfter > 0) onClaimReward(`${dayKey}:fight-lost`);
+        if (nextRound.enemyHpAfter <= 0) onClaimReward(`${dayKey}:fight-won`);
+        // "Down to a Thread": a fight won with 10 HP or less left.
+        if (nextRound.enemyHpAfter <= 0 && nextRound.playerHpAfter <= 10) onClaimReward('down-to-thread');
       }
       setIsRollingRound(false);
     }, 420);
@@ -641,7 +647,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                             ROUND {r.round}
                           </span>
                           <span className="text-[11px] font-sans font-semibold text-[#B7A9CC]">
-                            Diff × 5 Damage
+                            Damage = Margin × 5
                           </span>
                         </div>
 
@@ -2038,6 +2044,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     setTimeout(() => {
       const next = playBattleRound(battle ?? beginBattle());
       setBattle(next);
+      const myFighter = next.fighters.find((f) => f.id === 'YOU');
+      if (next.outcome === 'won' && myFighter && !myFighter.fallen && myFighter.hp <= 10) onClaimReward('down-to-thread');
       if (next.outcome === 'won' && onClaimReward(`G${currentWeek}:battle`)) {
         onEarnGold(GOLD_GATHERING_BATTLE_REWARDS[currentWeek] ?? epMeta.gReward);
       }
@@ -2200,6 +2208,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
         setApproachGrowth(growth);
         onGainAttribute?.(attr, growth, d20 === 20);
         onEarnGold(GOLD_CHALLENGE_WIN);
+        onClaimReward(`G${currentWeek}:approach-cleared`);
+        onClaimReward(`cleared-attr:${attr}`);
       } else {
         onEarnGold(-GOLD_CHALLENGE_LOSS);
       }
@@ -3248,6 +3258,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       {partyMode === 'CAMPFIRE' && (
         <CampfireEveningView
           party={party}
+          sharedFanOutClues={sharedFanOutClues}
           meaningPins={meaningPins}
           onPinMeaning={onPinMeaning}
           weekBoard={weekBoard}

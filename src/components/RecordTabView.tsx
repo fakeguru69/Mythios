@@ -154,7 +154,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
   };
 
   const earnedBadgesCount = BADGES_META.filter(
-    (b) => b.earned || earnedBadgeIds.includes(b.id)
+    (b) => earnedBadgeIds.includes(b.id)
   ).length;
 
   return (
@@ -319,7 +319,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
             THE RECORD · 12 MILESTONES
           </span>
           <span className="text-[12px] font-sans text-[#B7A9CC]">
-            👑 = Party Lead · Tap cell
+            Tap a number to see what it counts
           </span>
         </div>
 
@@ -328,7 +328,8 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
           {RECORD_STATS_META.map((stat, idx) => {
             const val = stats[stat.key] ?? 0;
             const isSelected = selectedStatKey === stat.key;
-            const isPartyLead = val >= stat.leadNextVal;
+            // Who leads the party needs every friend's real numbers: it waits for multiplayer (15 Oct).
+            const isPartyLead = false;
             const colIdx = idx % 4;
             const rowIdx = Math.floor(idx / 4);
 
@@ -377,11 +378,6 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
               <p className="font-sans text-[14.5px] text-[#F4F1F8] mt-0.5 leading-snug">
                 {selectedStat.explainer}
               </p>
-              <div className="text-[12.5px] font-sans text-[#6FD39A] font-semibold mt-1">
-                {(stats[selectedStat.key] ?? 0) >= selectedStat.leadNextVal
-                  ? '👑 You lead the party!'
-                  : `Party Lead: ${selectedStat.leadFriend} (${selectedStat.leadNextVal})`}
-              </div>
             </div>
             <button
               onClick={() => setSelectedStatKey(null)}
@@ -408,7 +404,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
 
         <div className="grid grid-cols-4 gap-2">
           {BADGES_META.map((b) => {
-            const isEarned = b.earned || earnedBadgeIds.includes(b.id);
+            const isEarned = earnedBadgeIds.includes(b.id);
             const isSelected = selectedBadgeId === b.id;
 
             return (
@@ -461,21 +457,18 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
                 </span>
                 <span
                   className={`text-[11px] font-bold uppercase px-2 py-0.5 rounded ${
-                    selectedBadge.earned || earnedBadgeIds.includes(selectedBadge.id)
+                    earnedBadgeIds.includes(selectedBadge.id)
                       ? 'bg-[#6FD39A]/20 text-[#6FD39A]'
                       : 'bg-[#2A1B40] text-[#B7A9CC]'
                   }`}
                 >
-                  {selectedBadge.earned || earnedBadgeIds.includes(selectedBadge.id)
+                  {earnedBadgeIds.includes(selectedBadge.id)
                     ? '✓ Earned'
                     : 'Locked'}
                 </span>
               </div>
               <p className="font-sans text-[14.5px] text-[#F4F1F8] mt-1 leading-snug">
                 {selectedBadge.requirement}
-              </p>
-              <p className="font-sans text-[12.5px] text-[#B7A9CC] mt-0.5">
-                {selectedBadge.progressText}
               </p>
             </div>
             <button
