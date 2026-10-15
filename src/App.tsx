@@ -427,6 +427,17 @@ export default function App() {
     setChatChannel('MINE');
   };
 
+  // Days Played and Best Streak come straight from the days finished, so they can never drift (15 Oct).
+  const liveStats = useMemo<Record<string, number>>(() => {
+    const played = completedDays
+      .map((k) => { const [w, d] = k.split('-').map(Number); return (w - 1) * 6 + d; })
+      .sort((a, b) => a - b);
+    let run = 0;
+    let best = 0;
+    played.forEach((n, i) => { run = i > 0 && n === played[i - 1] + 1 ? run + 1 : 1; best = Math.max(best, run); });
+    return { ...stats, daysPlayed: played.length, bestStreak: best };
+  }, [stats, completedDays]);
+
   // Live dynamic badge evaluation so RECORD reflects every unlocked achievement in real time
   const computedEarnedBadges = useMemo(() => {
     const set = new Set<string>(earnedBadgeIds);
@@ -442,16 +453,16 @@ export default function App() {
     if (weeks.some((w) => [1, 2, 3, 4, 5, 6].every((d) => completedDays.includes(`${w}-${d}`)) && has(`G${w}:done`))) set.add('whole-week');
     if (weeks.every((w) => has(`G${w}:done`))) set.add('long-road');
     if (hasAdeptAttr) set.add('sharpened');
-    if ((stats.relicsGiven || 0) >= 1) set.add('open-hand');
+    if ((liveStats.relicsGiven || 0) >= 1) set.add('open-hand');
     // The whole party first sits down together at the inn, at the end of Day 2.
     if (completedDays.includes('1-2')) set.add('whole-table');
-    if ((stats.perfectRolls || 0) >= 1) set.add('perfect');
+    if ((liveStats.perfectRolls || 0) >= 1) set.add('perfect');
     if (weeks.some((w) => claimedRewards.filter((k) => k.startsWith(`${w}-`) && k.endsWith(':press')).length >= 3)) set.add('never-enough');
     if (claimedRewards.filter((k) => k.startsWith('cleared-attr:')).length >= 4) set.add('many-hands');
     if (has('down-to-thread')) set.add('down-to-thread');
     // "Lifeline" needs a friend's roll to follow, so it waits for real multiplayer.
     return Array.from(set);
-  }, [earnedBadgeIds, completedDays, stats, attributes, claimedRewards]);
+  }, [earnedBadgeIds, completedDays, liveStats, attributes, claimedRewards]);
 
   const [tickerIndex, setTickerIndex] = useState<number>(0);
 
@@ -595,16 +606,7 @@ export default function App() {
   const handleSealDay = (week: number, day: number, summaryNote: string) => {
     const key = `${week}-${day}`;
     if (!completedDays.includes(key)) {
-      setCompletedDays((prev) => [...prev, key]);
-      // Days played, and the longest run of days played in a row (by week and day).
-      const played = [...completedDays, key].map((k) => { const [w, d] = k.split('-').map(Number); return (w - 1) * 6 + d; }).sort((a, b) => a - b);
-      let run = 0, bestRun = 0;
-      played.forEach((n, i) => { run = i > 0 && n === played[i - 1] + 1 ? run + 1 : 1; bestRun = Math.max(bestRun, run); });
-      setStats((s) => ({
-        ...s,
-        daysPlayed: played.length,
-        bestStreak: Math.max(s.bestStreak ?? 0, bestRun),
-      }));
+      setCompletedDays((prev) => (prev.includes(key) ? prev : [...prev, key]));
       setPartyMessages((msgs) => [
         `✦ ${characterName} finished Day ${day}: ${summaryNote}.`,
         ...msgs,
@@ -1405,7 +1407,7 @@ export default function App() {
                   }}
                   pinnedClues={pinnedClues}
                   completedDays={completedDays}
-                  stats={stats}
+                  stats={liveStats}
                   characterName={characterName}
                   characterClass={characterClass}
                   weaponLevel={weaponLevel}
@@ -1484,7 +1486,7 @@ export default function App() {
                   attributes={attributes}
                   weaponLevel={weaponLevel}
                   armorLevel={armorLevel}
-                  stats={stats}
+                  stats={liveStats}
                   earnedBadgeIds={computedEarnedBadges}
                 />
               )}
