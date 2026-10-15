@@ -58,7 +58,7 @@ interface SavedCampaignState {
   attributes: Record<AttributeName, number>;
   relics: Record<string, number>;
   solvedWords: Record<string, { w1?: string; w2?: string }>;
-  watchPageStrokesLeft: number;
+  watchPageStrokesLeft?: number; // old saves only; unused since 15 Oct
   ledgerOpened: boolean;
   solvedRiddleIds: Record<string, number>;
   seekerFirstLetterHints: Record<string, HintMask>; // which fragment words have a first-letter hint (fanOutLeads.ts)
@@ -177,9 +177,6 @@ export default function App() {
     initialSave?.solvedWords ?? demoSolvedWords(buildParty(DEFAULT_PARTY_SIZE, { name: 'Jennifer', cls: 'Trickster' }).map((f) => f.name))
   );
 
-  const [watchPageStrokesLeft, setWatchPageStrokesLeft] = useState<number>(
-    initialSave?.watchPageStrokesLeft ?? 3
-  );
   const [ledgerOpened, setLedgerOpened] = useState<boolean>(initialSave?.ledgerOpened ?? false);
   const [solvedRiddleIds, setSolvedRiddleIds] = useState<Record<string, number>>(
     initialSave?.solvedRiddleIds ?? {}
@@ -254,7 +251,6 @@ export default function App() {
         attributes,
         relics,
         solvedWords,
-        watchPageStrokesLeft,
         ledgerOpened,
         solvedRiddleIds,
         seekerFirstLetterHints,
@@ -288,7 +284,6 @@ export default function App() {
     attributes,
     relics,
     solvedWords,
-    watchPageStrokesLeft,
     ledgerOpened,
     solvedRiddleIds,
     seekerFirstLetterHints,
@@ -337,7 +332,6 @@ export default function App() {
       Aim: primaryAttr === 'Aim' ? 1 : 0,
     });
     setSolvedWords({});
-    setWatchPageStrokesLeft(3);
     setLedgerOpened(false);
     setSolvedRiddleIds({});
     setSeekerFirstLetterHints({});
@@ -392,7 +386,6 @@ export default function App() {
       Aim: 0,
     });
     setSolvedWords(demoSolvedWords(party.map((f) => f.name)));
-    setWatchPageStrokesLeft(3);
     setLedgerOpened(false);
     setSolvedRiddleIds({});
     setSeekerFirstLetterHints({ '1-6': true });
@@ -1438,10 +1431,6 @@ export default function App() {
                   solvedWords={solvedWords}
                   onSolveWord={handleSolveWord}
                   onGiveRelic={handleGiveRelic}
-                  watchPageStrokesLeft={watchPageStrokesLeft}
-                  onStrikeWatchPage={() =>
-                    setWatchPageStrokesLeft((s) => (s > 0 ? s - 1 : 3))
-                  }
                   ledgerOpened={ledgerOpened}
                   onAskGarrickForLedger={() => setLedgerOpened(true)}
                   completedDays={completedDays}

@@ -4,6 +4,7 @@ import {
   runMythiosVerifier,
 } from '../data/mythiosGatheringsAndAudit';
 import { WEEKDAY_INVENTORY } from '../data/mythiosChaptersData';
+import { canonDayFacts } from '../data/canonDayFacts';
 import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
 import { ATTRIBUTE_META, AttributeName, EPISODE_NUMBERS } from '../data/mythiosRulesData';
 import { GarrickRouteResult, GarrickStoryState, routeGarrickMessage } from '../data/garrickRouter';
@@ -1307,13 +1308,8 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
                     </div>
                   </div>
                   <h4 className="font-['Cinzel'] text-base font-bold text-[#F4F1F8]">{day.place}</h4>
-                  <p className="text-xs text-[#B7A9CC] italic">Question: {day.question}</p>
-                  <p className="text-xs text-[#F4F1F8]">{day.summaryLearned}</p>
-                  {day.auditFixesApplied && day.auditFixesApplied.length > 0 && (
-                    <div className="rounded-lg bg-[#130B1F] border border-[#6FD39A]/40 p-2 text-[11px] text-[#6FD39A]">
-                      Audit Upgrades: {day.auditFixesApplied.join(' · ')}
-                    </div>
-                  )}
+                  <p className="text-xs text-[#B7A9CC] italic">Question: {canonDayFacts(day.week, day.day).question}</p>
+                  <p className="text-xs text-[#F4F1F8]">{canonDayFacts(day.week, day.day).learned}</p>
                 </div>
 
                 <button

@@ -205,27 +205,4 @@ export const BADGES_META: BadgeMeta[] = [
   { id: 'down-to-thread', labelLines: ['Close', 'Thread'], title: 'Down to a Thread', earned: false, requirement: 'Win a fight with 10 HP or less left.', progressText: 'Closest fight won so far: 28 HP left.', iconType: 'heart' },
 ];
 
-export interface GlossaryTerm {
-  term: string;
-  category: string;
-  definition: string;
-}
-
-export const GLOSSARY_TERMS: GlossaryTerm[] = [
-  { term: 'Mythios', category: 'Core', definition: 'The storyteller and keeper of the record for your party across all six weeks.' },
-  { term: 'Garrick', category: 'Core', definition: 'The innkeeper of the Hollow Wake Inn and your grey-cloaked guide on the road. He follows the three-verb rule: he never promises, predicts, or denies knowing, and invents no facts about himself.' },
-  { term: 'Chapter', category: 'Play', definition: 'One weekday session (Days 1–6) played on your own schedule in about five minutes: arrive at the landmark, resolve the encounter, and open its Seeker housing.' },
-  { term: 'Campfire', category: 'Play', definition: 'The asynchronous evening camp where friends converge after their solo day to review the day\'s clues from Fan Out, choose a theory fork, solve today\'s Seeker Fragment word-lock, and share stored banter and riddles with Garrick.' },
-  { term: 'Gathering', category: 'Play', definition: 'The Day 7 synchronous finale across 5 Beats: Arrival & Order\'s Claim, Opening Approach, Party Battle & United Effort (+300g per friend), Scripture Match (+50g/100g), and the Table Twist.' },
-  { term: 'Challenge', category: 'Rolls', definition: 'A d20 + tier bonus roll against the weekday difficulty (6 to 9). Clearing it awards +500g and skill growth based on days played that week; failing costs 150g (gold never falls below 0); the story goes on, a little worse.' },
-  { term: 'Press On', category: 'Rolls', definition: 'An optional harder Challenge (+4 difficulty above the day) that awards +200g on success, with no skill growth.' },
-  { term: 'Solo Fan-Out', category: 'Rolls', definition: 'A 3-branch solo exploration beat after the landmark encounter (Challenge, Fight, or Head to Campfire). Winning gives a Seeker 1st-letter hint and the day\'s canonical clue for the evening Campfire board. Heading directly to camp finishes the day with no penalty.' },
-  { term: 'Relic', category: 'Items', definition: 'A single-use stone charm (150g in Store: +4 to one Attribute roll, or +1 Weapon and +1 Armor for one fight) that you can use yourself or give to a friend. Spent upon use.' },
-  { term: 'Seeker Housing', category: 'Seeker Chest', definition: 'A blood-locked stone socket or niche hidden at each of the 36 weekday landmarks that opens only at the touch of a marked Seeker descendant.' },
-  { term: 'Fragment', category: 'Seeker Chest', definition: 'A torn piece of Dark Moon scripture recovered from each weekday\'s Seeker housing with two jumbled lock-words (+25g each). All 6 fragments in a week interlock on Day 6 to form the Day 7 Map (+2 to all Gathering rolls).' },
-  { term: 'Solved', category: 'Seeker Chest', definition: 'A Fragment whose two jumbled lock-words have both been unjumbled by the party at the Campfire or in the Seeker Chest.' },
-  { term: 'The Four Stones', category: 'Lore', definition: 'Wind, Fire, Water, and Earth Stones that seal the dry well beneath Highwall Keep.' },
-  { term: 'The King\'s Stone', category: 'Lore', definition: 'The fifth stone—waking only when the Four Children of the Narrow Window are brought together at Highwall.' },
-];
-
 

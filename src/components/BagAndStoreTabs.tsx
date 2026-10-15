@@ -25,8 +25,6 @@ interface BagTabViewProps {
   /** Returns false when the word can't be taken (already filled, or this friend's one word for today is used). */
   onSolveWord: (fragId: string, wordIndex: 1 | 2, solverName: string) => boolean;
   onGiveRelic: (relicKey: string, friendName: string) => void;
-  watchPageStrokesLeft: number;
-  onStrikeWatchPage: () => void;
   ledgerOpened: boolean;
   onAskGarrickForLedger: () => void;
   /** Days the player has finished, "week-day" (the Clues shelf lists what those days left you holding). */
@@ -45,8 +43,6 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
   solvedWords,
   onSolveWord,
   onGiveRelic,
-  watchPageStrokesLeft,
-  onStrikeWatchPage,
   ledgerOpened,
   onAskGarrickForLedger,
   completedDays,
