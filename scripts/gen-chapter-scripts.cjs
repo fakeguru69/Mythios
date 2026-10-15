@@ -97,6 +97,8 @@ function quoteText(lines) {
     lines
       .filter((l) => !/^\*MYTHIOS explains/.test(l.trim()))
       .join('\n')
+      // Writer's notes inside story text ("*(Added 14 Oct 2026, Fake Guru: …)*") never reach the player.
+      .replace(/\s*\*\((?:Added|Changed|Moved|Approved|Corrected|Decided|Cut|Note)\b[^)]*\)\*/g, '')
       .replace(/\n{3,}/g, '\n\n')
       .trim()
   );
