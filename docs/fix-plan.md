@@ -75,6 +75,10 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 3: the Gatherings tell their week's story
 
+**Steps 15–18 and 20 done 15 Oct; 19 for the Gatherings.** Each Gathering now plays its episode file's Day 7 word for word: `scripts/gen-gathering-scripts.cjs` builds `src/data/gatheringScripts.ts`, and the Party screen plays it. That brings back: the Approach vote and its card (the volunteer's Day 7 Challenge: +500g / −150g and growth, and who strikes first); the Battle with canon's lines around it; Notice by highest Attribute (the "from the floor" line for a friend who fell) and [LOOK CLOSER]; the United Effort with its scene and both endings; each rescue; the scripture read paragraph by paragraph with [READ ON] and the Match cards in canon's places; the table's question with its nudge and answer (the old three-choice quiz and its invented wrong answers are gone, D5); the Ask boards (◆ questions answered anyway if nobody asks); Garrick's lines; the ledger, the pen, the torn page, the hidden room, the attempt, the Watch; Gathering 6's choices (give or hold back the fifth, the act, say a name); the night summary card with real numbers. Gathering 1's friend in the drop is whoever fell in the Battle (canon), and they don't roll while being hauled.
+- My choices, to confirm: [LOOK CLOSER] rolls against the Gathering Challenge DC (canon gives no DC); in the one-phone demo the player makes every group choice (the vote, the picks) and asks up to one question per friend on an Ask board; Gathering 2's lost-room puzzle (put three clumps in order) is read in order.
+- Still to do: the Garrick Recap (21); its content file is not in the canon zip.
+
 15. **[Restore] On screen, from canon's scripts:** each child's rescue, the prisoner's capture (G3), taking the fifth Stone (G5), the ledger and naming the Order (G2), the Lore Reveal and Ask.
 16. **[Restore] Canon's quote-backs:** Week 4's "We made our children the only key…"; the finale's season quote-back (1-5, 1-6, 3-3, 3-5, 4-4, 5-3, 6-6). No Order scripture in Week 1.
 17. **[Fix] Gathering 4's answer:** "your blood", not "the children's blood".

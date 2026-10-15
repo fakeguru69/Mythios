@@ -1409,6 +1409,7 @@ export default function App() {
 
               {activeTab === 'CHAT' && chatChannel === 'PARTY' && isPartyFormed && (
                 <PartyTabView
+                  onGainAttribute={(attr, delta) => setAttributes((prev) => ({ ...prev, [attr]: prev[attr] + delta }))}
                   onClaimReward={handleClaimReward}
                   hasClaimedReward={(key) => claimedRewardsRef.current.has(key)}
                   currentWeek={currentWeek}

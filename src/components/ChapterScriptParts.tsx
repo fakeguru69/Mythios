@@ -136,13 +136,13 @@ export function pickNoticeLine(
   return { attr: best, text: adept && entry.second ? `${entry.first} ${entry.second}` : entry.first };
 }
 
-export const NoticeBlock: React.FC<{ attr: AttributeName; text: string }> = ({ attr, text }) => (
+export const NoticeBlock: React.FC<{ attr: AttributeName; text: string; label?: string }> = ({ attr, text, label }) => (
   <div className="rounded-xl bg-[#130B1F] border border-[#3A2555] px-3 py-2 space-y-1">
     <div
       className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] uppercase"
-      style={{ color: ATTRIBUTE_META[attr]?.color || '#D4B876' }}
+      style={{ color: label ? '#B7A9CC' : ATTRIBUTE_META[attr]?.color || '#D4B876' }}
     >
-      What you notice · {attr}
+      {label ?? `What you notice · ${attr}`}
     </div>
     <ScriptText text={text} className="font-sans text-[14.5px] text-[#E6E0F0] leading-[1.42]" />
   </div>

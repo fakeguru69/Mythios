@@ -78,6 +78,7 @@ import {
   unitedEffortEligible,
 } from '../data/gatheringEngine';
 import { UNITED_EFFORT_STORIES } from '../data/unitedEffortStories';
+import { GATHERING_SCRIPTS, GatheringCond, GatheringStep } from '../data/gatheringScripts';
 
 /** A roll's net: +3, 0 or −2 (a true minus sign). */
 const formatMargin = (m: number) => (m > 0 ? `+${m}` : m === 0 ? '0' : `−${Math.abs(m)}`);
@@ -2247,6 +2248,7 @@ interface PartyTabViewProps {
   onSendPartyMessage: (msg: string) => void;
   onEarnGold: (amt: number) => void;
   onUnlockGatheringBadge: () => void;
+  onGainAttribute?: (attr: AttributeName, delta: number, isNat20?: boolean) => void;
   pinnedClues: PinnedPartyClue[];
   completedDays: string[];
   onClaimReward?: (key: string) => boolean;
@@ -2319,6 +2321,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   onLeaveFire,
   onClaimReward = () => true,
   hasClaimedReward = () => false,
+  onGainAttribute,
 }) => {
   const [internalPartyMode, setInternalPartyMode] = useState<'CAMPFIRE' | 'GATHERING'>(
     'CAMPFIRE'
@@ -2356,7 +2359,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
 
   // Day 7 Gathering 5-Phase State Machine
   const [lastGatheringWeek, setLastGatheringWeek] = useState<number>(currentWeek);
-  const [approachPick, setApproachPick] = useState<'A' | 'B'>('A');
   const [approachRolled, setApproachRolled] = useState<{
     d20: number;
     attr: AttributeName;
@@ -2382,16 +2384,31 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const [isRollingUe, setIsRollingUe] = useState(false);
   const ueDone = Boolean(ue && ue.outcome !== 'ongoing');
   const ueCleared = ue?.outcome === 'won';
-  const [lookCloserDone, setLookCloserDone] = useState(false);
 
-  const [matchedQuotes, setMatchedQuotes] = useState<Record<number, boolean>>({});
-  const [wrongMatchPick, setWrongMatchPick] = useState<Record<number, string | null>>({});
-  const [tableHypothesisPick, setTableHypothesisPick] = useState<'A' | 'B' | 'C' | null>(null);
   const [twistRevealed, setTwistRevealed] = useState(false);
+
+  // The Gathering script (canon Day 7): picks, taps, Match picks, the table's answers, Ask boards.
+  const [gPicks, setGPicks] = useState<Record<number, number>>({});
+  const [gTaps, setGTaps] = useState<Record<number, boolean>>({});
+  const [gMatch, setGMatch] = useState<Record<number, string>>({});
+  const [gTurn, setGTurn] = useState<Record<number, { hint: boolean; answered: boolean; text: string }>>({});
+  const [gAsked, setGAsked] = useState<Record<number, number[]>>({});
+  const [gAskDone, setGAskDone] = useState<Record<number, boolean>>({});
+  const [gLookCloser, setGLookCloser] = useState<{
+    attr: AttributeName;
+    d20: number;
+    score: number;
+    tierBonus: number;
+    dc: number;
+    margin: number;
+    cleared: boolean;
+    skipped?: boolean;
+  } | null>(null);
+  const [approachPaid, setApproachPaid] = useState(false);
+  const [approachGrowth, setApproachGrowth] = useState(0);
 
   if (lastGatheringWeek !== currentWeek) {
     setLastGatheringWeek(currentWeek);
-    setApproachPick('A');
     setApproachRolled(null);
     setBattle(null);
     setIsRollingBattleRound(false);
@@ -2400,11 +2417,16 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     setUeRelicArmed(false);
     setUeStory([]);
     setIsRollingUe(false);
-    setLookCloserDone(false);
-    setMatchedQuotes({});
-    setWrongMatchPick({});
-    setTableHypothesisPick(null);
     setTwistRevealed(false);
+    setGPicks({});
+    setGTaps({});
+    setGMatch({});
+    setGTurn({});
+    setGAsked({});
+    setGAskDone({});
+    setGLookCloser(null);
+    setApproachPaid(false);
+    setApproachGrowth(0);
   }
   const [partyInput, setPartyInput] = useState('');
   const [activeSpeakerTarget, setActiveSpeakerTarget] = useState<
@@ -2741,6 +2763,16 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     color: f.color,
   }));
   const gatheringPartyIds = gatheringParty.map((f) => f.id);
+  // Gathering 1: canon's "Dev" in the drop is the friend who fell in the Battle, or else the
+  // friend who finished it with the least HP. They are the one being hauled, so they don't roll.
+  const riskFriend = (() => {
+    const fighters = (battle?.fighters || []).filter((f) => f.id !== 'YOU');
+    if (!fighters.length) return gatheringParty.find((f) => f.id !== 'YOU') || gatheringParty[0];
+    const pickF = fighters.find((f) => f.fallen) || [...fighters].sort((a, b) => a.hp - b.hp)[0];
+    return gatheringParty.find((f) => f.id === pickF.id) || gatheringParty[0];
+  })();
+  const riskFriendName = riskFriend.name;
+  const ueRollerIds = currentWeek === 1 ? gatheringPartyIds.filter((id) => id !== riskFriend.id) : gatheringPartyIds;
   const partyName = (id: string) => gatheringParty.find((f) => f.id === id)?.name || id;
   const playerWeapon = GEAR_TABLE[weaponLevel]?.weapon || 14;
   const playerArmor = GEAR_TABLE[armorLevel]?.armor || 27;
@@ -2784,7 +2816,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   };
 
   // United Effort: who rolls next. The player hands on by choice; a friend's turn passes to the next in the party list.
-  const ueEligible = ue ? unitedEffortEligible(ue, gatheringPartyIds) : gatheringPartyIds;
+  const ueEligible = ue ? unitedEffortEligible(ue, ueRollerIds) : ueRollerIds;
   const ueRollerId = ueEligible.includes(ueNextId) ? ueNextId : ueEligible[0];
   const ueAttrScore = attributes[gathering.ueAttr] || 1;
   const ueTierBonus = getTierInfo(ueAttrScore).bonus;
@@ -2812,7 +2844,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
         { id: rollerId, name: partyName(rollerId), score: ueAttrScore, tierBonus: ueTierBonus },
         ueDc,
         relicType ? 4 : 0,
-        gatheringPartyIds
+        ueRollerIds
       );
       const last = next.rolls[next.rolls.length - 1];
 
@@ -2837,7 +2869,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       setUeRelicArmed(false);
 
       if (next.outcome === 'ongoing') {
-        const eligible = unitedEffortEligible(next, gatheringPartyIds);
+        const eligible = unitedEffortEligible(next, ueRollerIds);
         // MYTHIOS names the next friend after a sample friend's turn; the player chooses after their own.
         if (rollerId !== 'YOU') setUeNextId(eligible[0]);
         else setUeNextId(eligible.find((id) => id !== 'YOU') ?? eligible[0]);
@@ -2861,442 +2893,220 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     }, 360);
   };
 
-  const handleGatheringLookCloser = () => {
-    if (lookCloserDone) return;
-    setLookCloserDone(true);
-    if (onClaimReward(`G${currentWeek}:look-closer`)) {
-      onEarnGold(GOLD_LOOK_CLOSER_WIN);
+
+  // ---------------------------------------------------------------------------
+  // The Gathering, played from canon (Day 7 of docs/canon/episode-*.md via gatheringScripts.ts).
+  // Steps show in order; the first one waiting on the player stops the page.
+  // ---------------------------------------------------------------------------
+  const gatheringScript = GATHERING_SCRIPTS.find((g) => g.week === currentWeek);
+  const gatheringFriends = DEFAULT_PARTY_MEMBERS.filter((f) => f.id !== 'YOU');
+  const gFill = (text: string) =>
+    fillScriptTokens(text.replace(/\{RISK\}/g, riskFriendName), {
+      friends: gatheringFriends.map((f) => f.name),
+      partySize: DEFAULT_PARTY_MEMBERS.length,
+    });
+
+  const weekFragments = SEEKER_FRAGMENTS.filter((f) => f.week === currentWeek);
+  const normText = (s: string) => s.toLowerCase().replace(/[^a-z ]/g, '').replace(/\s+/g, ' ').trim();
+  const fragmentForMatch = (text: string) => {
+    const n = normText(text);
+    return SEEKER_FRAGMENTS.find((f) => normText(f.fullText) === n) || null;
+  };
+
+  const lastPickBefore = (index: number): number | undefined => {
+    if (!gatheringScript) return undefined;
+    for (let k = index - 1; k >= 0; k--) {
+      const st = gatheringScript.steps[k];
+      if (st.t === 'pick' && !st.vote && gPicks[k] !== undefined) return gPicks[k];
+    }
+    return undefined;
+  };
+
+  const gCondMet = (c: GatheringCond | undefined, index: number): boolean => {
+    if (!c) return true;
+    if (c.on === 'approach') return Boolean(approachRolled) && approachRolled!.cleared === c.pass;
+    if (c.on === 'ue') return ueDone && ueCleared === c.won;
+    if (c.on === 'pick') return lastPickBefore(index) === c.option;
+    if (c.on === 'alone') return DEFAULT_PARTY_MEMBERS.length <= 1;
+    return false;
+  };
+
+  const voteIndex = gatheringScript?.steps.findIndex((st) => st.t === 'pick' && st.vote) ?? -1;
+  const approachWay = voteIndex >= 0 ? gPicks[voteIndex] : undefined;
+
+  // The Approach (Core Rules §11): one volunteer rolls the Gathering DC; it is that friend's
+  // Daily Challenge for Day 7 (+500g / −150g, growth), and decides who strikes first.
+  const handleRollApproach = (attr: AttributeName) => {
+    if (approachRolled) return;
+    const weekSolvedAll6 = weekFragments.every((f) => solvedWords[f.id]?.w1 && solvedWords[f.id]?.w2);
+    const mapBonus = weekSolvedAll6 ? 2 : 0;
+    const attrScore = attributes[attr] || 1;
+    const tierBonus = getTierInfo(attrScore).bonus;
+    const d20 = Math.floor(Math.random() * 20) + 1;
+    const bonus = tierBonus + mapBonus;
+    const dc = epMeta.gatheringDC || 8;
+    const { net: margin, success: cleared } = resolveChallengeRoll(d20, bonus, dc);
+    setApproachRolled({ d20, attr, attrScore, tierBonus, mapBonus, bonus, dc, margin, cleared });
+    if (onClaimReward(`G${currentWeek}:approach`)) {
+      if (cleared) {
+        const growth = calculateAttributeGrowth(attrScore, 7, d20, tierBonus, dc);
+        setApproachGrowth(growth);
+        onGainAttribute?.(attr, growth, d20 === 20);
+        onEarnGold(GOLD_CHALLENGE_WIN);
+      } else {
+        onEarnGold(-GOLD_CHALLENGE_LOSS);
+      }
+      setApproachPaid(true);
     }
   };
 
-  return (
-    <div className="flex-1 flex flex-col min-h-0 bg-[#0D0714]">
-      {/* =====================================================================
-          UNIFIED COLLAPSIBLE ACTIVITY & CHAPTER DRAWER (#6, #7, #8)
-          Toggled from the top header's W2·D2 · CAMPFIRE ▾ / W2·D7 · GATHERING ▾ button!
-         ===================================================================== */}
-      {showChapterPicker && (
-        <div className="p-3 bg-[#150D22] border-b border-[#3A2555] space-y-2.5 shrink-0">
-          <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold text-[#B7A9CC] uppercase tracking-[1px]">
-            <span>PARTY ACTIVITY & CHAPTERS</span>
-            <button
-              onClick={() => onSetShowChapterPicker && onSetShowChapterPicker(false)}
-              className="text-[#D4B876] hover:underline"
-            >
-              Close ✕
-            </button>
-          </div>
+  // [LOOK CLOSER] (Core Rules §11): optional, on the friend's highest Attribute, +75g on a pass,
+  // a miss costs nothing. Rolled against the Gathering Challenge DC (no separate DC in canon).
+  const playerFell = Boolean(battle?.fighters.find((f) => f.id === 'YOU')?.fallen);
+  const handleRollLookCloser = (attr: AttributeName) => {
+    if (gLookCloser) return;
+    const score = attributes[attr] || 1;
+    const tierBonus = getTierInfo(score).bonus;
+    const d20 = Math.floor(Math.random() * 20) + 1;
+    const dc = epMeta.gatheringDC || 8;
+    const { net: margin, success: cleared } = resolveChallengeRoll(d20, tierBonus, dc);
+    setGLookCloser({ attr, d20, score, tierBonus, dc, margin, cleared });
+    if (cleared && onClaimReward(`G${currentWeek}:look-closer`)) onEarnGold(GOLD_LOOK_CLOSER_WIN);
+  };
 
-          <div className="grid grid-cols-2 gap-1.5">
-            <button
-              onClick={() => {
-                setPartyMode('CAMPFIRE');
-                if (onSetShowChapterPicker) onSetShowChapterPicker(false);
-              }}
-              className={`py-2 px-3 rounded-lg font-['Cinzel'] font-bold text-[11.5px] border transition ${
-                partyMode === 'CAMPFIRE'
-                  ? 'bg-[#2E1B42] border-[#D4B876] text-[#E5C158]'
-                  : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
-              }`}
-            >
-              🔥 CAMPFIRE (DAYS 1–6)
-            </button>
-            <button
-              onClick={() => {
-                setPartyMode('GATHERING');
-                if (onSetShowChapterPicker) onSetShowChapterPicker(false);
-              }}
-              className={`py-2 px-3 rounded-lg font-['Cinzel'] font-bold text-[11.5px] border transition ${
-                partyMode === 'GATHERING'
-                  ? 'bg-[#2E1B42] border-[#D4B876] text-[#E5C158]'
-                  : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
-              }`}
-            >
-              ⚔️ DAY 7 GATHERING
-            </button>
-          </div>
+  const highestAttr = (lines: Partial<Record<string, string>>): AttributeName => {
+    const avail = (Object.keys(lines) as AttributeName[]).filter((a) => a !== ('floor' as AttributeName));
+    return avail.reduce((top, a) => ((attributes[a] || 0) > (attributes[top] || 0) ? a : top), avail[0]);
+  };
 
-          <div className="grid grid-cols-6 gap-1">
-            {[1, 2, 3, 4, 5, 6].map((w) => (
-              <button
-                key={w}
-                onClick={() => {
-                  onSelectWeek(w);
-                  setApproachRolled(null);
-                  setBattle(null);
-                  setUe(null);
-                  setUeStory([]);
-                  setTwistRevealed(false);
-                }}
-                className={`py-1.5 rounded font-['Cinzel'] font-bold text-[11.5px] border transition ${
-                  currentWeek === w
-                    ? 'bg-[#2E1B42] border-[#D4B876] text-[#D4B876]'
-                    : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
-                }`}
-              >
-                WK {w}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-7 gap-1">
-            {[1, 2, 3, 4, 5, 6].map((d) => (
-              <button
-                key={d}
-                onClick={() => {
-                  setPartyMode('CAMPFIRE');
-                  if (onSelectWeekDay) onSelectWeekDay(currentWeek, d);
-                }}
-                className={`py-1.5 rounded font-['Cinzel'] font-bold text-[11px] border transition ${
-                  partyMode === 'CAMPFIRE' && currentDay === d
-                    ? 'bg-[#2E1B42] border-[#D4B876] text-[#D4B876]'
-                    : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
-                }`}
-              >
-                D{d}
-              </button>
-            ))}
-            <button
-              onClick={() => setPartyMode('GATHERING')}
-              className={`py-1.5 rounded font-['Cinzel'] font-bold text-[10.5px] border transition ${
-                partyMode === 'GATHERING'
-                  ? 'bg-[#2E1B42] border-[#D4B876] text-[#E5C158]'
-                  : 'bg-[#2A1B40] border-[#D4B876]/60 text-[#E5C158]'
-              }`}
-            >
-              ⚔️ D7
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* =====================================================================
-          MODE 1: CAMPFIRE v2.2 (8-Step Evening Flow, Stored-Line Engine, Real Friends)
-         ===================================================================== */}
-      {partyMode === 'CAMPFIRE' && missedClueShare && (
-        <div className="mx-3 mt-2.5 rounded-xl bg-[#180F29] border border-[#D4B876]/60 px-3 py-2.5 space-y-1.5 shrink-0">
-          <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#E5C158] uppercase">
-            {missedClueShare.friend} saw what you missed
-          </div>
-          {missedClueShare.texts.map((t, i) => (
-            <ScriptText
-              key={i}
-              text={t}
-              className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.42]"
-            />
-          ))}
-        </div>
-      )}
-      {partyMode === 'CAMPFIRE' && (
-        <CampfireEveningView
-          currentWeek={currentWeek}
-          currentDay={currentDay}
-          characterName={characterName}
-          attributes={attributes}
-          solvedWords={solvedWords}
-          onSolveWord={onSolveWord}
-          seekerFirstLetterHints={seekerFirstLetterHints}
-          fanOutBranchesByDay={campfireFanOutBranches}
-          onChangeFriendFanOutBranch={(dk, friendId, branch) =>
-            setCampfireFanOutBranches((prev) => ({ ...prev, [dk]: { ...(prev[dk] || {}), [friendId]: branch } }))
-          }
-          theoryPinsByDay={campfireTheoryPins}
-          onPinTheory={(dk, pin) =>
-            setCampfireTheoryPins((prev) => ({ ...prev, [dk]: { ...(prev[dk] || {}), [pin.friendId]: pin } }))
-          }
-          questionPinsByDay={campfireQuestionPins}
-          onPinQuestion={(dk, q) =>
-            setCampfireQuestionPins((prev) => ({ ...prev, [dk]: [...(prev[dk] || []), q] }))
-          }
-          bottleMessagesByDay={campfireBottles}
-          onLeaveBottleMessage={(dk, msg) => setCampfireBottles((prev) => ({ ...prev, [dk]: msg }))}
-          telemetryByDay={campfireTelemetry}
-          onUpdateTelemetry={(dk, t) => setCampfireTelemetry((prev) => ({ ...prev, [dk]: t }))}
-          onJumpToGathering={() => setPartyMode('GATHERING')}
-          challengeClearedToday={!hasClaimedReward(`${currentWeek}-${currentDay}:challenge-failed`)}
+  const gBubble = (key: string, text: string, alone?: boolean) =>
+    alone ? (
+      <div key={key} className="py-3 text-center">
+        <ScriptText
+          text={gFill(text)}
+          className="font-['Cormorant_Garamond',serif] italic text-[20px] text-[#F4E8C1] leading-[1.35]"
         />
-      )}
+      </div>
+    ) : (
+      <NarrationBlock key={key} text={gFill(text)} />
+    );
 
-      {/* =====================================================================
-          MODE 2: DAY 7 GATHERING STREAM (Narrow Mythios mr-6 #C4A1FF + Full-Width Action Cards w-full #5E4585)
-         ===================================================================== */}
-      {partyMode === 'GATHERING' && (
-        <div className="flex-1 min-h-0 overflow-y-auto px-3.5 py-3.5 space-y-4">
-          {/* Quick Bar + 5-Phase Gathering State Machine Stepper */}
-          <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] p-3 space-y-2.5">
-            <div className="flex items-center justify-between">
-              <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#E5C158] uppercase">
-                ⚔️ WEEK {currentWeek} · DAY 7 GATHERING
-              </span>
-              <button
-                type="button"
-                onClick={() => setPartyMode('CAMPFIRE')}
-                className="px-2.5 py-1 rounded-lg bg-[#2E1B42] hover:bg-[#3A2555] border border-[#D4B876]/70 font-['Cinzel'] font-bold text-[10.5px] text-[#E5C158] transition"
-              >
-                🔥 BACK TO CAMPFIRE
-              </button>
-            </div>
-
-            {/* 5-Phase Progress Stepper */}
-            {(() => {
-              const p1Done = Boolean(approachRolled);
-              const p2Done = Boolean(battleDone);
-              const p3Done = ueDone && (!ueCleared || lookCloserDone);
-              const p4Done =
-                p3Done &&
-                (gathering.matches.length === 0 ||
-                  gathering.matches.every((_, idx) => Boolean(matchedQuotes[idx])));
-              const p5Done = Boolean(twistRevealed);
-
-              const activePhase = !p1Done
-                ? 1
-                : !p2Done
-                ? 2
-                : !p3Done
-                ? 3
-                : !p4Done
-                ? 4
-                : 5;
-
-              const steps = [
-                { num: 1, label: 'Approach', done: p1Done },
-                { num: 2, label: 'Battle', done: p2Done },
-                { num: 3, label: 'Trial', done: p3Done },
-                { num: 4, label: 'Scripture', done: p4Done },
-                { num: 5, label: 'Reveal', done: p5Done },
-              ];
-
-              return (
-                <div className="grid grid-cols-5 gap-1">
-                  {steps.map((st) => {
-                    const isCurrent = activePhase === st.num && !st.done;
-                    return (
-                      <div
-                        key={st.num}
-                        className={`px-1.5 py-1.5 rounded-lg border text-center transition ${
-                          st.done
-                            ? 'bg-[#1E1232] border-[#6FD39A]/65 text-[#6FD39A]'
-                            : isCurrent
-                            ? 'bg-[#2A1B40] border-[#E5C158] text-[#E5C158]'
-                            : 'bg-[#130B1F] border-[#3A2555]/60 text-[#8B7A9E] opacity-65'
-                        }`}
-                      >
-                        <div className="font-['Cinzel'] font-bold text-[10px] tracking-[0.4px] truncate">
-                          {st.done ? '✓ ' : `${st.num}. `}
-                          {st.label}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              );
-            })()}
+  const renderApproachCard = (step: Extract<GatheringStep, { t: 'approach' }>) => {
+    const way = step.ways[approachWay ?? 0] || step.ways[0];
+    // Once rolled, the card keeps the score it was rolled with (growth lands after).
+    const score = approachRolled?.attrScore ?? (attributes[way.attr] || 1);
+    const tier = getTierInfo(score).bonus;
+    const weekSolvedAll6 = weekFragments.every((f) => solvedWords[f.id]?.w1 && solvedWords[f.id]?.w2);
+    const bonus = tier + (weekSolvedAll6 ? 2 : 0);
+    const dc = epMeta.gatheringDC || 8;
+    const extra = step.reward.replace(/^\+?500g\s*/, '');
+    return (
+      <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
+        <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+          <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">🎯 {step.title}</span>
+          <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] whitespace-nowrap shrink-0">
+            You succeed on {challengeSucceedOn(dc, bonus)}+
+          </span>
+        </div>
+        <div className="p-2.5 space-y-2">
+          <div className="text-[13.5px] font-sans text-[#E6E0F0]">
+            <span className="font-semibold" style={{ color: ATTRIBUTE_META[way.attr]?.color }}>
+              {way.by} · {way.attr} {score} (+{tier})
+            </span>{' '}
+            · {gFill(way.verb)}
+            {weekSolvedAll6 && <span className="text-[#D4B876]"> · the map +2</span>}
           </div>
-
-          {/* PHASE 1: MYTHIOS ARRIVAL BUBBLE + GARRICK & DEV OPENING SETUP */}
-          <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
-            <div className="flex items-center justify-between gap-2 leading-none">
-              <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] text-[#C4A1FF] uppercase truncate">
-                MYTHIOS · {gathering.title.toUpperCase()}
-              </span>
-              <span className="text-[11px] font-['Cinzel'] font-bold text-[#6FD39A] whitespace-nowrap shrink-0">
-                Phase 1 of 5 · Map +2 Active
-              </span>
+          <div className="text-[12.5px] font-sans leading-snug space-y-0.5">
+            <div className="text-[#E5C158] font-semibold">
+              REWARD: +{GOLD_CHALLENGE_WIN}g {extra && <ScriptInline text={extra} />}
             </div>
-            <div className="font-['Cinzel'] font-bold text-[14px] text-[#D4B876]">
-              📍 {gathering.location}
+            <div className="text-[#E0645C] font-semibold">
+              IF YOU FAIL: −{GOLD_CHALLENGE_LOSS}g · <ScriptInline text={gFill(step.fail)} />
             </div>
-            <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-              {gathering.tonightMessage}
-            </p>
           </div>
-
-          {/* Opening Tactical Voice from Garrick across all 6 Gatherings (including Week 6 before the Phase 7 reveal) */}
-          <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
-            <div className="flex items-center justify-between leading-none">
-              <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] uppercase text-[#F0A552]">
-                GARRICK · FIRST OATH
+          {!approachRolled ? (
+            <ScriptButton label="🎲 STEP UP" onClick={() => handleRollApproach(way.attr)} />
+          ) : (
+            <div className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 text-[12.5px] font-sans font-semibold flex flex-wrap items-center gap-1">
+              <span className="text-[#6FD39A] font-bold">YOU:</span>
+              <span className="text-[#F4F1F8]">🎲 {approachRolled.d20}</span>
+              <span className="text-[#8B7A9E]">+</span>
+              <span style={{ color: ATTRIBUTE_META[approachRolled.attr]?.color }}>
+                {approachRolled.attr} {approachRolled.attrScore} (+{approachRolled.tierBonus})
               </span>
-              <span className="text-[11.5px] font-sans text-[#B7A9CC]">
-                Phase 1 · Arrival
-              </span>
-            </div>
-            <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-              {`Stay close, ${
-                characterName || 'friend'
-              }. Mythios sets the trial before us at ${
-                gathering.location
-              }, and I’m right beside you four—choose our approach carefully before steel is drawn.`}
-            </p>
-          </div>
-
-          {/* PHASE 1 CARD: OPENING APPROACH CHALLENGE CARD */}
-          <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
-            <div className="px-3.5 py-2.5 bg-[#241638] border-b border-[#3A2555]/80 flex items-center justify-between gap-2">
-              <span className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">
-                🎯 PHASE 1 · {gathering.approachQuestion}
-              </span>
-              <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#E5C158] whitespace-nowrap">
-                Difficulty {epMeta.gatheringDC}
-              </span>
-            </div>
-
-            <div className="p-3.5 space-y-2.5">
-              {[
-                { key: 'A' as const, opt: gathering.approachOptA },
-                { key: 'B' as const, opt: gathering.approachOptB },
-              ].map(({ key, opt }) => {
-                const isSelected = approachPick === key;
-                const attrColor =
-                  ATTRIBUTE_META[opt.attr as AttributeName]?.color || '#D4B876';
-                return (
-                  <button
-                    key={key}
-                    disabled={!!approachRolled}
-                    onClick={() => setApproachPick(key)}
-                    className={`w-full p-3 rounded-xl text-left border transition ${
-                      isSelected
-                        ? 'bg-[#2A1B40] border-[#D4B876]'
-                        : 'bg-[#130B1F] border-[#3A2555] opacity-85 hover:opacity-100'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span
-                        className="font-['Cinzel'] font-bold text-[13.5px]"
-                        style={{ color: attrColor }}
-                      >
-                        {isSelected ? '✓ ' : ''}
-                        {opt.label}
-                      </span>
-                      <span
-                        className="font-['Cinzel'] font-bold text-[12.5px] whitespace-nowrap"
-                        style={{ color: attrColor }}
-                      >
-                        {opt.attr} · You +{getTierInfo(attributes[opt.attr as AttributeName] || 20).bonus} · {opt.bestFriend} +{opt.bestBonus}
-                      </span>
-                    </div>
-                    <p className="font-sans text-[14.5px] text-[#E6E0F0] mt-1 leading-snug">
-                      {opt.desc}
-                    </p>
-                  </button>
-                );
-              })}
-
-              {!approachRolled ? (
-                <button
-                  onClick={() => {
-                    const chosen =
-                      approachPick === 'A'
-                        ? gathering.approachOptA
-                        : gathering.approachOptB;
-                    const weekSolvedAll6 = SEEKER_FRAGMENTS.filter(
-                      (f) => f.week === currentWeek
-                    ).every((f) => solvedWords[f.id]?.w1 && solvedWords[f.id]?.w2);
-                    const mapBonus = weekSolvedAll6 ? 2 : 0;
-                    const heroTierBonus = getTierInfo(
-                      attributes[chosen.attr as AttributeName] || 20
-                    ).bonus;
-                    // Core Rules §11: one friend steps up and rolls with their own tier bonus
-                    // against the Gathering DC (weekday + 2). Same pass rule as every Challenge.
-                    const d20 = Math.floor(Math.random() * 20) + 1;
-                    const bonus = heroTierBonus + mapBonus;
-                    const dc = epMeta.gatheringDC || 8;
-                    const { net: margin, success: cleared } = resolveChallengeRoll(d20, bonus, dc);
-                    setApproachRolled({
-                      d20,
-                      attr: chosen.attr as AttributeName,
-                      attrScore: attributes[chosen.attr as AttributeName] || 20,
-                      tierBonus: heroTierBonus,
-                      mapBonus,
-                      bonus,
-                      dc,
-                      margin,
-                      cleared,
-                    });
-                  }}
-                  className="w-full py-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[13px] tracking-[1px] uppercase transition"
-                >
-                  🎲 STEP UP & ROLL APPROACH
-                </button>
-              ) : (
-                <div className="p-2.5 rounded-xl bg-[#1A102A] border border-[#3A2555] space-y-1 text-[13.5px] font-sans">
-                  <div className="flex flex-wrap items-center gap-1.5 font-semibold">
-                    <span className="text-[#6FD39A] font-bold">YOU:</span>
-                    <span className="text-[#F4F1F8]">🎲 {approachRolled.d20}</span>
-                    <span className="text-[#8B7A9E]">+</span>
-                    <span
-                      style={{
-                        color:
-                          ATTRIBUTE_META[approachRolled.attr]?.color || '#D4B876',
-                      }}
-                    >
-                      {approachRolled.attr} {approachRolled.attrScore} (+{approachRolled.tierBonus})
-                    </span>
-                    {approachRolled.mapBonus > 0 && (
-                      <>
-                        <span className="text-[#8B7A9E]">+</span>
-                        <span className="text-[#D4B876]">Map {approachRolled.mapBonus}</span>
-                      </>
-                    )}
-                    <span className="text-[#8B7A9E]">−</span>
-                    <span className="text-[#E5C158]">DC {approachRolled.dc}</span>
-                    <span className="text-[#8B7A9E]">=</span>
-                    <span
-                      className={`font-bold ${
-                        approachRolled.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
-                      }`}
-                    >
-                      {formatMargin(approachRolled.margin)}
-                    </span>
-                  </div>
-                  <div
-                    className={`font-bold text-[13px] ${
-                      approachRolled.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
-                    }`}
-                  >
-                    {approachRolled.cleared
-                      ? 'PASSED · The party strikes first in the Battle'
-                      : 'FAILED · The enemy strikes first in the Battle'}
-                  </div>
-                </div>
+              {approachRolled.mapBonus > 0 && (
+                <>
+                  <span className="text-[#8B7A9E]">+</span>
+                  <span className="text-[#D4B876]">Map {approachRolled.mapBonus}</span>
+                </>
               )}
+              <span className="text-[#8B7A9E]">−</span>
+              <span className="text-[#E5C158]">DC {approachRolled.dc}</span>
+              <span className="text-[#8B7A9E]">=</span>
+              <span className={`font-bold ${approachRolled.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'}`}>
+                {formatMargin(approachRolled.margin)} {approachRolled.cleared ? 'PASSED' : 'FAILED'}
+              </span>
             </div>
-          </div>
+          )}
+        </div>
+      </div>
+    );
+  };
 
-          {/* =================================================================
-              PHASE 2: THE BATTLE (Core Rules §4). Each friend fights their own enemy,
-              all in lockstep rounds; one tap plays a round.
-             ================================================================= */}
-          {approachRolled && (
-            <>
-              <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
-                <div className="flex items-center justify-between leading-none">
-                  <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] text-[#C4A1FF] uppercase">
-                    MYTHIOS · THE BATTLE
-                  </span>
-                  <span
-                    className={`text-[12px] font-bold ${
-                      approachRolled.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
-                    }`}
-                  >
-                    {approachRolled.cleared ? 'You strike first' : 'They strike first'}
-                  </span>
-                </div>
-                <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                  {approachRolled.cleared
-                    ? `"${
-                        (approachPick === 'A' ? gathering.approachOptA : gathering.approachOptB).label
-                      }" works. You are on them before they are ready.`
-                    : `"${
-                        (approachPick === 'A' ? gathering.approachOptA : gathering.approachOptB).label
-                      }" gives you away. They are ready for you.`}
-                </p>
+  const renderMatchCard = (index: number, step: Extract<GatheringStep, { t: 'match' }>) => {
+    const answer = fragmentForMatch(step.fragment);
+    const picked = gMatch[index];
+    const right = Boolean(answer && picked === answer.id);
+    return (
+      <div className="w-full rounded-xl bg-[#180F29] border border-[#D4B876]/60 overflow-hidden shadow-lg">
+        <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] font-['Cinzel'] font-bold text-[12px] text-[#E5C158]">
+          MATCH · {step.question}
+        </div>
+        <div className="p-2.5 space-y-2">
+          <ScriptText text={gFill(step.quote)} className="font-['Cormorant_Garamond',serif] italic text-[17px] text-[#F4F1F8]" />
+          {!picked ? (
+            <div className="space-y-1.5">
+              {weekFragments.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  data-script-step
+                  onClick={() => {
+                    setGMatch((p) => ({ ...p, [index]: f.id }));
+                    if (answer && f.id === answer.id) {
+                      onMatchScripture();
+                      if (onClaimReward(`G${currentWeek}:match:${index}`)) onEarnGold(GOLD_MATCH_BASE_PER_PICK);
+                    }
+                  }}
+                  className="w-full text-left p-2 rounded-lg bg-[#130B1F] border border-[#3A2555] hover:border-[#D4B876] text-[13.5px] font-sans text-[#E6E0F0]"
+                >
+                  <span className="font-['Cinzel'] font-bold text-[11px] text-[#D4B876] mr-1.5">PICK</span>
+                  {f.fullText}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-1">
+              <div className={`text-[13px] font-sans font-semibold ${right ? 'text-[#6FD39A]' : 'text-[#B7A9CC]'}`}>
+                {right ? `You matched it. +${GOLD_MATCH_BASE_PER_PICK}g` : 'It was this one:'}
               </div>
+              <p className="text-[14px] font-sans text-[#F4F1F8]">
+                {gFill(step.source)}: <em className="italic">"{answer ? answer.fullText : step.fragment}"</em>
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
 
+
+  // The Battle and United Effort cards, placed by the Gathering script.
+  const renderBattleCard = (battleName: string) => (
               <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
                 <div className="px-3.5 py-2.5 bg-[#241638] border-b border-[#3A2555]/80 flex items-center justify-between gap-2">
                   <span className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8] truncate">
-                    ⚔️ {gathering.enemyName.toUpperCase()}
+                    ⚔️ {battleName.toUpperCase()}
                   </span>
                   <span className="font-['Cinzel'] font-bold text-[12px] text-[#FB923C] whitespace-nowrap shrink-0">
                     DEF {epMeta.gDef} · ATK {epMeta.gAtk}
@@ -3550,15 +3360,12 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                   )}
                 </div>
               </div>
-            </>
-          )}
+  );
 
-          {/* =================================================================
-              PHASE 3: THE UNITED EFFORT (Core Rules §5). One friend at a time rolls a
-              Challenge in the night's Attribute against the weekday DC.
-             ================================================================= */}
-          {battleDone && (
-            <>
+  // Gathering 1: canon writes the friend in the drop as "Dev"; it is the friend who fell.
+  const ueBarBName = currentWeek === 1 ? `${riskFriendName} HP` : gathering.ueBarBName;
+  const riskify = (text: string) => (currentWeek === 1 ? text.replace(/\bDev\b/g, riskFriendName) : text);
+  const renderUeCard = () => (
               <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
                 <div className="px-3.5 py-2.5 bg-[#241638] border-b border-[#3A2555]/80 flex items-center justify-between gap-2">
                   <span className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">
@@ -3583,7 +3390,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                       <div className="grid grid-cols-2 gap-2">
                         {[
                           { name: gathering.ueBarAName, value: way, color: '#6FD39A' },
-                          { name: gathering.ueBarBName, value: risk, color: '#E5C158' },
+                          { name: ueBarBName, value: risk, color: '#E5C158' },
                         ].map((bar) => (
                           <div key={bar.name} className="p-3 rounded-xl bg-[#130B1F] border border-[#3A2555]">
                             <div className="flex items-center justify-between font-['Cinzel'] font-bold text-[12px]">
@@ -3607,7 +3414,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                   })()}
 
                   <div className="text-[13px] font-sans text-[#E6E0F0] leading-snug">
-                    A SUCCESS damages {gathering.ueBarAName}. A FAIL damages {gathering.ueBarBName}.
+                    A SUCCESS damages {gathering.ueBarAName}. A FAIL damages {ueBarBName}.
                     Damage = 10 + Roll. REWARD: +{GOLD_UNITED_EFFORT_WIN}g to every friend, if{' '}
                     {gathering.ueBarAName} reaches 0.
                   </div>
@@ -3649,7 +3456,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                               Damage = 10 + Roll {r.damageRoll} = {r.damage}. {barName} {r.barBefore} → {r.barAfter}
                             </div>
                             {st?.line && (
-                              <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.42]">{st.line}</p>
+                              <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.42]">{riskify(st.line)}</p>
                             )}
                             {st?.between && (
                               <p className="font-sans italic text-[14px] text-[#B7A9CC] leading-[1.42]">
@@ -3741,458 +3548,456 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                       <span>
                         {ueCleared
                           ? `${gathering.ueBarAName} reaches 0. The job is done.`
-                          : `${gathering.ueBarBName} reaches 0. The job is lost.`}
+                          : `${ueBarBName} reaches 0. The job is lost.`}
                       </span>
                       <span>{ueCleared ? `+${GOLD_UNITED_EFFORT_WIN}g` : 'No reward'}</span>
                     </div>
                   )}
                 </div>
               </div>
-
-              {/* Mythios Outcome Bubble + Interactive [LOOK CLOSER (+75G)] Card when United Effort is rolled */}
-              {ueDone && (
-                <>
-                  <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
-                    <div className="flex items-center justify-between leading-none">
-                      <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] text-[#C4A1FF] uppercase">
-                        MYTHIOS · {gathering.ueTitle}
-                      </span>
-                      <span
-                        className={`text-[12px] font-bold ${
-                          ueCleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
-                        }`}
-                      >
-                        {ueCleared ? 'United Effort Won' : 'United Effort Lost'}
-                      </span>
-                    </div>
-                    <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                      {ueCleared ? gathering.ueWinText : gathering.ueLoseText}
-                    </p>
-                  </div>
-
-                  {/* Interactive [LOOK CLOSER (+75G)] Room Inspection when United Effort is cleared */}
-                  {ueCleared && (
-                    <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
-                      <div className="px-3.5 py-2.5 bg-[#241638] border-b border-[#3A2555]/80 flex items-center justify-between">
-                        <span className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">
-                          🔍 LOOK CLOSER · CHAMBER INSPECTION
-                        </span>
-                        <span className="font-['Cinzel'] font-bold text-[12px] text-[#6FD39A]">
-                          +75G BONUS
-                        </span>
-                      </div>
-                      <div className="p-3.5 space-y-2.5">
-                        {!lookCloserDone ? (
-                          <button
-                            type="button"
-                            onClick={handleGatheringLookCloser}
-                            className="w-full py-2.5 rounded-xl bg-[#2A1B40] hover:bg-[#D4B876]/25 border border-[#D4B876] font-['Cinzel'] font-bold text-[12.5px] text-[#E5C158] uppercase tracking-[0.8px] transition"
-                          >
-                            🔍 LOOK CLOSER IN THE CHAMBER (+75G)
-                          </button>
-                        ) : (
-                          <div className="p-3 rounded-xl bg-[#130B1F] border border-[#6FD39A]/50 space-y-1.5">
-                            <div className="font-['Cinzel'] font-bold text-[12px] text-[#6FD39A]">
-                              ✓ CHAMBER INSPECTED (+75G RECOVERED)
-                            </div>
-                            <p className="font-sans text-[16px] text-[#F4F1F8] leading-[1.5]">
-                              Because your party held {gathering.ueTitle.toLowerCase()}, you have time to search the inner chamber undisturbed—securing +{GOLD_LOOK_CLOSER_WIN}g in salvaged relics and setting every physical clue in order before the table question.
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </>
+  );
+  const gWalk = (() => {
+    const nodes: React.ReactNode[] = [];
+    if (!gatheringScript) return { nodes, done: true, reachedTwist: false };
+    const steps = gatheringScript.steps;
+    let reachedTwist = false;
+    const stop = () => ({ nodes, done: false, reachedTwist });
+    for (let i = 0; i < steps.length; i++) {
+      const st = steps[i];
+      const key = `g${i}`;
+      if (st.section === 'The first twist') reachedTwist = true;
+      if (st.cond && !gCondMet(st.cond, i)) continue;
+      switch (st.t) {
+        case 'section':
+        case 'ue':
+        case 'ueEnd':
+          if (st.t === 'ue') {
+            if (!battleDone) return stop();
+            nodes.push(<React.Fragment key={key}>{renderUeCard()}</React.Fragment>);
+            if (!ueDone) return stop();
+          }
+          break;
+        case 'tonight':
+          nodes.push(
+            <div key={key} className="rounded-xl bg-[#130B1F] border border-[#3A2555] px-3 py-2 text-[13.5px] font-sans text-[#B7A9CC] italic">
+              {gFill(st.text)}
+            </div>
+          );
+          break;
+        case 'say':
+          nodes.push(gBubble(key, st.text, st.alone));
+          break;
+        case 'act':
+          // [LOOK CLOSER] is offered by the roll card that follows it.
+          if (st.label === 'LOOK CLOSER' && steps[i + 1]?.t === 'lookCloser') break;
+          if (gTaps[i]) nodes.push(<TapEcho key={key} label={gFill(st.label)} />);
+          else {
+            nodes.push(<ScriptButton key={key} label={gFill(st.label)} onClick={() => setGTaps((p) => ({ ...p, [i]: true }))} />);
+            return stop();
+          }
+          break;
+        case 'pick': {
+          const chosen = gPicks[i];
+          if (chosen !== undefined) {
+            nodes.push(<TapEcho key={key} label={gFill(st.options[chosen].label)} />);
+            break;
+          }
+          nodes.push(
+            <div key={key} className="space-y-1.5">
+              {st.question && (
+                <div className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.8px] text-[#E5C158]">{gFill(st.question)}</div>
               )}
-            </>
-          )}
-
-          {/* =================================================================
-              PHASE 4: CULT SCRIPTURE PRESENTATION & FRAGMENT MATCH CARD
-              Gated until Phase 3 (United Effort + Look Closer if won) is complete!
-             ================================================================= */}
-          {ueDone &&
-            (!ueCleared || lookCloserDone) &&
-            gathering.matches.length > 0 && (
-              <>
-                {/* Phase 3 -> Phase 4 Narrative Transition Bubble */}
-                <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
-                  <div className="flex items-center justify-between leading-none">
-                    <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] text-[#C4A1FF] uppercase">
-                      MYTHIOS · PHASE 4 UNLOCKED
-                    </span>
-                    <span className="text-[12px] font-bold text-[#E5C158]">
-                      Cult Scripture Recovery
-                    </span>
-                  </div>
-                  <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                    From the fallen commander’s satchel at {gathering.location}, you recover a sealed strip of Dark Moon Scripture—waiting to be paired against the Seeker Fragments your party decoded across Week {currentWeek}.
-                  </p>
-                </div>
-
-                <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
-                  <div className="flex items-center justify-between leading-none">
-                    <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] text-[#F49CBB] uppercase">
-                      MEI · SAGE
-                    </span>
-                    <span className="text-[11.5px] font-sans text-[#B7A9CC]">
-                      Phase 4 · Scripture Match
-                    </span>
-                  </div>
-                  <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                    I’ve laid our decoded Week {currentWeek} Seeker Fragments beside the Dark Moon verse. Compare the imagery in each line—only the true matching stone-record will unlock the verse’s meaning!
-                  </p>
-                </div>
-
-                <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
-                  <div className="px-3.5 py-2.5 bg-[#241638] border-b border-[#3A2555]/80 flex items-center justify-between">
-                    <span className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">
-                      📜 PHASE 4 · WEEK {currentWeek} DARK MOON VERSE (3 MATCHES)
-                    </span>
-                    <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158]">
-                      +75G PER MATCH
-                    </span>
-                  </div>
-
-                  <div className="p-3.5 space-y-3">
-                    <p className="font-sans text-[14.5px] text-[#B7A9CC] leading-snug">
-                      Recovered from the Cult Commander at {gathering.location}. Match each Dark Moon Scripture verse line with the Seeker Fragment your party decoded during the week:
-                    </p>
-
-                    {gathering.matches.map((m, mIdx) => {
-                      const isMatched = !!matchedQuotes[mIdx];
-                      const weekFragments = SEEKER_FRAGMENTS.filter(
-                        (f) => f.week === currentWeek
-                      );
-                      const correctFrag =
-                        weekFragments.find((f) => f.id === m.correctFragmentId) ||
-                        weekFragments[0];
-                      const otherFrags = weekFragments.filter(
-                        (f) => f.id !== m.correctFragmentId
-                      );
-                      const d1 = otherFrags[(mIdx * 2) % otherFrags.length];
-                      const d2 = otherFrags[(mIdx * 2 + 1) % otherFrags.length];
-                      const distractors = [d1, d2].filter(Boolean);
-                      const candidateFrags = [correctFrag, ...distractors]
-                        .filter(Boolean)
-                        .sort((a, b) => a.id.localeCompare(b.id));
-                      const wrongFragId = wrongMatchPick[mIdx];
-
-                      return (
-                        <div
-                          key={mIdx}
-                          className="p-3.5 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-2.5"
-                        >
-                          <div className="flex items-center justify-between">
-                            <span className="text-[11.5px] font-['Cinzel'] font-bold text-[#D4B876] uppercase tracking-[0.8px]">
-                              CULT SCRIPTURE · VERSE {currentWeek}.{mIdx + 1}
-                            </span>
-                            <span className="text-[11px] font-['Cinzel'] font-bold text-[#B794F4]">
-                              {isMatched
-                                ? `✓ PAIRED WITH FRAGMENT ${m.correctFragmentId}`
-                                : 'SELECT MATCHING SEEKER FRAGMENT'}
-                            </span>
-                          </div>
-
-                          <p className="font-['Cormorant_Garamond'] font-medium text-[20px] text-[#F4F1F8] leading-[1.55]">
-                            {m.scriptureQuote}
-                          </p>
-
-                          {!isMatched ? (
-                            <div className="space-y-2 pt-1">
-                              <div className="text-[12px] font-['Cinzel'] font-bold text-[#B7A9CC] uppercase tracking-[0.6px]">
-                                Which Week {currentWeek} Seeker Fragment answers this verse?
-                              </div>
-                              <div className="space-y-1.5">
-                                {candidateFrags.map((cand) => {
-                                  const cSolved = solvedWords[cand.id] || {};
-                                  const w1Text = cSolved.w1
-                                    ? cand.word1.toUpperCase()
-                                    : `[${cand.jumble1.join('')}]`;
-                                  const w2Text = cSolved.w2
-                                    ? cand.word2.toUpperCase()
-                                    : `[${cand.jumble2.join('')}]`;
-                                  const solvedText = cand.displayTemplate
-                                    .replace('{0}', w1Text)
-                                    .replace('{1}', w2Text);
-                                  const isWrongPick = wrongFragId === cand.id;
-                                  return (
-                                    <button
-                                      key={cand.id}
-                                      type="button"
-                                      onClick={() => {
-                                        if (cand.id === m.correctFragmentId) {
-                                          setWrongMatchPick((prev) => ({
-                                            ...prev,
-                                            [mIdx]: null,
-                                          }));
-                                          setMatchedQuotes((prev) => ({
-                                            ...prev,
-                                            [mIdx]: true,
-                                          }));
-                                          onMatchScripture();
-                                          if (onClaimReward(`G${currentWeek}:match:${mIdx}`)) {
-                                            onEarnGold(GOLD_MATCH_BASE_PER_PICK);
-                                          }
-                                        } else {
-                                          setWrongMatchPick((prev) => ({
-                                            ...prev,
-                                            [mIdx]: cand.id,
-                                          }));
-                                        }
-                                      }}
-                                      className={`w-full p-2.5 rounded-lg text-left border transition ${
-                                        isWrongPick
-                                          ? 'bg-[#2A1420] border-[#E0645C] text-[#E0645C]'
-                                          : 'bg-[#1E1232] hover:bg-[#2A1B40] border-[#5E4585] hover:border-[#D4B876] text-[#F4F1F8]'
-                                      }`}
-                                    >
-                                      <div className="flex items-center justify-between gap-2">
-                                        <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158]">
-                                          📜 FRAGMENT {cand.id} · {cand.landmark}
-                                        </span>
-                                        <span className="font-['Cinzel'] font-bold text-[11px] text-[#6FD39A]">
-                                          {isWrongPick ? '✕ MISMATCH' : 'PAIR (+75G) →'}
-                                        </span>
-                                      </div>
-                                      <p className="font-['Cormorant_Garamond'] text-[16.5px] text-[#E6E0F0] mt-1 leading-snug">
-                                        “{solvedText}”
-                                      </p>
-                                    </button>
-                                  );
-                                })}
-                              </div>
-                              {wrongFragId && (
-                                <div className="text-[12.5px] font-sans font-semibold text-[#E0645C]">
-                                  ✕ Fragment {wrongFragId} speaks to a different part of the record—read the verse imagery closely and try another fragment.
-                                </div>
-                              )}
-                            </div>
-                          ) : (
-                            <div className="p-2.5 rounded-lg bg-[#1E1232] border border-[#6FD39A]/45 space-y-1">
-                              <div className="text-[12px] font-['Cinzel'] font-bold text-[#6FD39A]">
-                                ✓ MATCHED TO SEEKER FRAGMENT {m.correctFragmentId} (+75G)
-                              </div>
-                              <p className="font-sans text-[15.5px] text-[#F4F1F8] leading-snug">
-                                {m.revealLine}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </>
-            )}
-
-          {/* =================================================================
-              PHASE 5: THE TABLE QUESTION & GARRICK'S WEEK-END REVEAL
-              Gated until all Scripture matches for the week are completed!
-             ================================================================= */}
-          {ueDone &&
-            (!ueCleared || lookCloserDone) &&
-            gathering.matches.every((_, idx) => Boolean(matchedQuotes[idx])) && (
-              <>
-                {/* Phase 4 -> Phase 5 Narrative Transition Bubble */}
-                <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
-                  <div className="flex items-center justify-between leading-none">
-                    <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] text-[#4FD1C5] uppercase">
-                      ARJUN · ARTIFICER
-                    </span>
-                    <span className="text-[11.5px] font-sans text-[#B7A9CC]">
-                      Phase 5 · The Table Question
-                    </span>
-                  </div>
-                  <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                    Every piece from {gathering.location} is on the table now, {characterName || 'friend'}. Make the call for our group—what does all of this prove?
-                  </p>
-                </div>
-
-                <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
-                  <div className="px-3.5 py-2.5 bg-[#241638] border-b border-[#3A2555]/80 flex items-center justify-between">
-                    <span className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">
-                      🧭 PHASE 5 · THE TABLE QUESTION & REVEAL
-                    </span>
-                    <span className="text-[11.5px] font-sans text-[#D4B876]">
-                      Phase 5 of 5
-                    </span>
-                  </div>
-
-                  <div className="p-3.5 space-y-3">
-                    <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                      {gathering.tableQuestion}
-                    </p>
-
-                    {/* Step 1 of Phase 5: Player chooses between three distinct table hypotheses */}
-                    <div className="space-y-2">
-                      {[
-                        {
-                          key: 'A' as const,
-                          title: gathering.hypothesisA.title,
-                          line: gathering.hypothesisA.line,
-                        },
-                        {
-                          key: 'B' as const,
-                          title: gathering.hypothesisB.title,
-                          line: gathering.hypothesisB.line,
-                        },
-                        {
-                          key: 'C' as const,
-                          title: gathering.hypothesisC.title,
-                          line: gathering.hypothesisC.line,
-                        },
-                      ].map((hyp) => {
-                        const selected = tableHypothesisPick === hyp.key;
-                        const isWrong =
-                          selected && hyp.key !== gathering.correctHypothesis;
-                        const isRight =
-                          selected && hyp.key === gathering.correctHypothesis;
-                        return (
-                          <button
-                            key={hyp.key}
-                            type="button"
-                            onClick={() => {
-                              setTableHypothesisPick(hyp.key);
-                              if (hyp.key === gathering.correctHypothesis) {
-                                setTwistRevealed(true);
-                              } else {
-                                setTwistRevealed(false);
-                              }
-                            }}
-                            className={`w-full p-3 rounded-xl text-left border transition ${
-                              isRight
-                                ? 'bg-[#2A1B40] border-[#6FD39A]'
-                                : isWrong
-                                ? 'bg-[#2A1420] border-[#E0645C]'
-                                : 'bg-[#130B1F] hover:bg-[#1E1232] border-[#3A2555] hover:border-[#D4B876]'
-                            }`}
-                          >
-                            <div className="flex items-center justify-between gap-2">
-                              <span
-                                className={`font-['Cinzel'] font-bold text-[12.5px] ${
-                                  isRight
-                                    ? 'text-[#6FD39A]'
-                                    : isWrong
-                                    ? 'text-[#E0645C]'
-                                    : 'text-[#E5C158]'
-                                }`}
-                              >
-                                {isRight ? '✓ ' : isWrong ? '✕ ' : '🗣️ '}
-                                {hyp.title}
-                              </span>
-                              <span
-                                className={`font-['Cinzel'] font-bold text-[11px] shrink-0 ${
-                                  isRight
-                                    ? 'text-[#6FD39A]'
-                                    : isWrong
-                                    ? 'text-[#E0645C]'
-                                    : 'text-[#6FD39A]'
-                                }`}
-                              >
-                                {isRight
-                                  ? 'TRUE DEDUCTION'
-                                  : isWrong
-                                  ? 'RE-CHECK CLUES'
-                                  : 'SPEAK AT TABLE →'}
-                              </span>
-                            </div>
-                            <p className="font-sans text-[14.5px] text-[#E6E0F0] mt-1 leading-snug">
-                              “{hyp.line}”
-                            </p>
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    {tableHypothesisPick &&
-                      tableHypothesisPick !== gathering.correctHypothesis && (
-                        <div className="p-3 rounded-xl bg-[#2A1420] border border-[#E0645C] space-y-1">
-                          <div className="font-['Cinzel'] font-bold text-[11.5px] text-[#E0645C] uppercase">
-                            🔍 RE-EXAMINE THE WEEK {currentWeek} CLUES
-                          </div>
-                          <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-snug">
-                            {gathering.wrongHypothesisHint}
-                          </p>
-                        </div>
-                      )}
-
-                    {twistRevealed && (
-                      <div className="space-y-3 pt-1">
-                        {/* Player's Table Declaration Bubble (ml-6) */}
-                        <div className="ml-6 flex flex-col items-end">
-                          <div className="w-full rounded-2xl rounded-tr-sm bg-[#4A3B24] border border-[#E5C77B] p-3.5 space-y-1.5 shadow-md">
-                            <div className="flex items-center justify-between leading-none">
-                              <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.2px] text-[#F3D88B] uppercase">
-                                {characterName || 'YOU'}
-                              </span>
-                              <span className="text-[11.5px] font-sans text-[#F3D88B]">
-                                Table Deduction
-                              </span>
-                            </div>
-                            <p className="font-sans text-[17px] text-[#F4F1F8] leading-[1.5]">
-                              {tableHypothesisPick === 'C'
-                                ? gathering.hypothesisC.line
-                                : tableHypothesisPick === 'B'
-                                ? gathering.hypothesisB.line
-                                : gathering.hypothesisA.line}
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="p-3.5 rounded-xl bg-[#130B1F] border border-[#6FD39A] space-y-1">
-                          <div className="font-['Cinzel'] font-bold text-[13.5px] text-[#6FD39A]">
-                            → {gathering.twistHeadline}
-                          </div>
-                          <p className="font-sans text-[17px] text-[#F4F1F8] leading-[1.5]">
-                            {gathering.tableAnswer}
-                          </p>
-                        </div>
-
-                        <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
-                          <div className="flex items-center justify-between leading-none">
-                            <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] text-[#F0A552] uppercase">
-                              GARRICK · END OF WEEK {currentWeek}
-                            </span>
-                            <span className="text-[11.5px] font-sans text-[#B7A9CC]">
-                              First Oath Cliffhanger
-                            </span>
-                          </div>
-                          <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                            {gathering.cliffhangerText.replace(/^[“"]|[”"]$/g, '')}
-                          </p>
-                        </div>
-
-                        {/* Next-Week Transition CTA */}
-                        {currentWeek < 6 ? (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              onSelectWeek(currentWeek + 1);
-                              if (onSelectWeekDay) onSelectWeekDay(currentWeek + 1, 1);
-                              setPartyMode('CAMPFIRE');
-                            }}
-                            className="w-full py-3 px-4 rounded-xl bg-[#2A2018] hover:bg-[#3A2E1C] border border-[#F0A552] font-['Cinzel'] font-bold text-[13px] tracking-[1px] text-[#F0A552] hover:text-[#F4F1F8] transition uppercase shadow-md"
-                          >
-                            ⚔️ WEEK {currentWeek} COMPLETE · PROCEED TO WEEK {currentWeek + 1} · DAY 1 →
-                          </button>
-                        ) : (
-                          <div className="p-3 rounded-xl bg-[#2A1B40] border border-[#E5C158] text-center space-y-1">
-                            <div className="font-['Cinzel'] font-bold text-[13px] text-[#E5C158] uppercase">
-                              👑 SEASON 1 FINALE COMPLETE · TALES OF THE DARK MOON
-                            </div>
-                            <p className="font-sans text-[14.5px] text-[#F4F1F8]">
-                              All five Stones have answered and the truth of the First Oath stands revealed in His Hall.
-                            </p>
-                          </div>
-                        )}
-                      </div>
+              {st.options.map((o, oi) => (
+                <button
+                  key={oi}
+                  type="button"
+                  data-script-step
+                  onClick={() => setGPicks((p) => ({ ...p, [i]: oi }))}
+                  className="w-full text-left p-2.5 rounded-xl bg-[#2A1B40] hover:bg-[#3A2555] border border-[#D4B876] text-[#F4F1F8]"
+                >
+                  <span className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] uppercase">{gFill(o.label)}</span>
+                  {o.desc && <span className="block text-[13.5px] font-sans text-[#E6E0F0] mt-0.5">{gFill(o.desc)}</span>}
+                </button>
+              ))}
+            </div>
+          );
+          return stop();
+        }
+        case 'approach':
+          nodes.push(<React.Fragment key={key}>{renderApproachCard(st)}</React.Fragment>);
+          if (!approachRolled) return stop();
+          break;
+        case 'battle': {
+          if (st.desc) {
+            nodes.push(
+              <div key={`${key}-d`} className="px-1">
+                <ScriptText text={gFill(st.desc)} className="font-sans italic text-[14px] text-[#B7A9CC] leading-[1.4]" />
+              </div>
+            );
+          }
+          if (st.firstLines) nodes.push(gBubble(`${key}-f`, approachRolled?.cleared ? st.firstLines[0] : st.firstLines[1]));
+          nodes.push(<React.Fragment key={key}>{renderBattleCard(st.name || gathering.enemyName)}</React.Fragment>);
+          if (!battleDone) return stop();
+          break;
+        }
+        case 'notice': {
+          if (playerFell && st.lines.floor) {
+            nodes.push(
+              <React.Fragment key={key}>
+                <NoticeBlock attr={'Might' as AttributeName} label="From the floor" text={gFill(st.lines.floor)} />
+              </React.Fragment>
+            );
+          } else {
+            const a = highestAttr(st.lines);
+            if (st.lines[a]) nodes.push(<NoticeBlock key={key} attr={a} text={gFill(st.lines[a]!)} />);
+          }
+          break;
+        }
+        case 'lookCloser': {
+          // A friend who fell gets no roll; at Gathering 5 a lost roll-call leaves no time for it (canon).
+          if (playerFell || (currentWeek === 5 && ueDone && !ueCleared)) break;
+          const a = highestAttr(st.lines);
+          if (!gLookCloser) {
+            nodes.push(
+              <div key={key} className="flex gap-1.5">
+                <ScriptButton label={`🎲 LOOK CLOSER · ${a}`} onClick={() => handleRollLookCloser(a)} />
+                <button
+                  type="button"
+                  onClick={() => setGLookCloser({ attr: a, d20: 0, score: 0, tierBonus: 0, dc: 0, margin: 0, cleared: false, skipped: true })}
+                  className="px-3 rounded-xl bg-[#130B1F] border border-[#3A2555] text-[#B7A9CC] font-['Cinzel'] font-bold text-[11.5px] uppercase"
+                >
+                  Leave it
+                </button>
+              </div>
+            );
+            return stop();
+          }
+          if (!gLookCloser.skipped) {
+            nodes.push(
+              <div key={`${key}-r`} className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 text-[12.5px] font-sans font-semibold">
+                <span className="text-[#6FD39A] font-bold">YOU:</span> 🎲 {gLookCloser.d20} + {gLookCloser.attr} {gLookCloser.score} (+
+                {gLookCloser.tierBonus}) − DC {gLookCloser.dc} ={' '}
+                <span className={gLookCloser.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'}>
+                  {formatMargin(gLookCloser.margin)} {gLookCloser.cleared ? `PASSED · +${GOLD_LOOK_CLOSER_WIN}g` : 'FAILED'}
+                </span>
+              </div>
+            );
+            if (gLookCloser.cleared && st.lines[gLookCloser.attr]) {
+              nodes.push(<NoticeBlock key={`${key}-l`} attr={gLookCloser.attr} text={gFill(st.lines[gLookCloser.attr]!)} />);
+            }
+          }
+          break;
+        }
+        case 'match':
+          nodes.push(<React.Fragment key={key}>{renderMatchCard(i, st)}</React.Fragment>);
+          if (!gMatch[i]) return stop();
+          break;
+        case 'turn': {
+          const state = gTurn[i] || { hint: false, answered: false, text: '' };
+          nodes.push(
+            <div key={key} className="rounded-xl bg-[#180F29] border border-[#C4A1FF]/70 px-3 py-2.5 space-y-2">
+              <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#C4A1FF] uppercase">MYTHIOS asks the table</div>
+              <ScriptText text={gFill(st.question)} className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]" />
+              {state.hint && st.nudge && (
+                <ScriptText text={gFill(st.nudge)} className="font-sans text-[14px] text-[#B7A9CC] leading-[1.42]" />
+              )}
+              {!state.answered && (
+                <div className="space-y-1.5">
+                  <input
+                    value={state.text}
+                    onChange={(e) => setGTurn((p) => ({ ...p, [i]: { ...state, text: e.target.value } }))}
+                    placeholder="Your answer, for the table"
+                    className="w-full bg-[#0D0714] border border-[#3A2555] rounded-xl px-3 py-2 text-[15px] font-sans text-[#F4F1F8] placeholder-[#8B7A9E]"
+                  />
+                  <div className="flex gap-1.5">
+                    <ScriptButton label="SAY IT" onClick={() => setGTurn((p) => ({ ...p, [i]: { ...state, answered: true } }))} />
+                    {!state.hint && st.nudge && (
+                      <button
+                        type="button"
+                        onClick={() => setGTurn((p) => ({ ...p, [i]: { ...state, hint: true } }))}
+                        className="px-3 rounded-xl bg-[#130B1F] border border-[#3A2555] text-[#B7A9CC] font-['Cinzel'] font-bold text-[11.5px] uppercase"
+                      >
+                        Wait
+                      </button>
                     )}
                   </div>
                 </div>
-              </>
-            )}
+              )}
+            </div>
+          );
+          if (!state.answered) return stop();
+          if (state.text.trim()) nodes.push(<TapEcho key={`${key}-y`} label={state.text.trim()} />);
+          if (st.answer) nodes.push(gBubble(`${key}-a`, st.answer));
+          break;
+        }
+        case 'ask': {
+          const asked = gAsked[i] || [];
+          const limit = DEFAULT_PARTY_MEMBERS.length; // "Each of you, one question."
+          const finished = gAskDone[i] || asked.length >= limit;
+          asked.forEach((ri) => {
+            const row = st.rows[ri];
+            nodes.push(<TapEcho key={`${key}-q${ri}`} label={gFill(row.questions[0])} />);
+            nodes.push(gBubble(`${key}-a${ri}`, row.answer));
+          });
+          if (!finished) {
+            nodes.push(
+              <div key={`${key}-board`} className="space-y-1.5">
+                <div className="text-[12px] font-sans text-[#B7A9CC]">
+                  {asked.length} of {limit} questions asked
+                </div>
+                {st.rows.map((row, ri) =>
+                  asked.includes(ri) ? null : (
+                    <button
+                      key={ri}
+                      type="button"
+                      data-script-step
+                      onClick={() => setGAsked((p) => ({ ...p, [i]: [...(p[i] || []), ri] }))}
+                      className="w-full text-left p-2 rounded-lg bg-[#130B1F] border border-[#3A2555] hover:border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] tracking-[0.5px] text-[#E6E0F0] uppercase"
+                    >
+                      {row.sealed ? '◆ ' : ''}
+                      {gFill(row.questions[0])}
+                      {row.note && <span className="normal-case font-sans font-normal text-[#8B7A9E]"> {gFill(row.note)}</span>}
+                    </button>
+                  )
+                )}
+                <button
+                  type="button"
+                  onClick={() => setGAskDone((p) => ({ ...p, [i]: true }))}
+                  className="w-full py-2 rounded-xl bg-[#130B1F] border border-[#3A2555] text-[#B7A9CC] font-['Cinzel'] font-bold text-[11.5px] uppercase"
+                >
+                  Go on
+                </button>
+              </div>
+            );
+            return stop();
+          }
+          // A sealed question nobody asked is answered anyway (canon).
+          st.rows.forEach((row, ri) => {
+            if (row.sealed && !asked.includes(ri)) {
+              if (st.unaskedLine) nodes.push(gBubble(`${key}-u${ri}`, st.unaskedLine));
+              nodes.push(gBubble(`${key}-ua${ri}`, row.answer));
+            }
+          });
+          break;
+        }
+        case 'summary': {
+          const [titleLine, ...rest] = st.lines;
+          const earned: string[] = [];
+          if (approachRolled && approachPaid) {
+            earned.push(approachRolled.cleared ? `+${GOLD_CHALLENGE_WIN}g · ${approachRolled.attr} +${approachGrowth}` : `−${GOLD_CHALLENGE_LOSS}g`);
+          }
+          if (battle?.outcome === 'won') earned.push(`+${GOLD_GATHERING_BATTLE_REWARDS[currentWeek] ?? epMeta.gReward}g`);
+          if (ueCleared) earned.push(`+${GOLD_UNITED_EFFORT_WIN}g`);
+          if (gLookCloser?.cleared) earned.push(`+${GOLD_LOOK_CLOSER_WIN}g`);
+          const matchesRight = Object.entries(gMatch).filter(([idx, id]) => fragmentForMatch((steps[+idx] as { fragment: string }).fragment)?.id === id).length;
+          if (matchesRight) earned.push(`Match +${matchesRight * GOLD_MATCH_BASE_PER_PICK}g`);
+          const partyLine = `The party: Battle ${battle?.outcome === 'won' ? 'won' : 'lost'} · ${gathering.ueTitle.toLowerCase()}: ${ueCleared ? 'done' : 'lost'}`;
+          const shown = rest
+            .map((l) => {
+              if (/^You earned:/.test(l)) return `You earned: ${earned.length ? earned.join(' · ') : 'nothing new'}`;
+              if (/^The party:/.test(l)) return partyLine;
+              // The Garrick Recap is not built yet, so the card does not promise it.
+              if (/Garrick's Recap/.test(l)) return null;
+              return l;
+            })
+            .filter((l): l is string => Boolean(l));
+          nodes.push(
+            <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#D4B876]/70 overflow-hidden shadow-lg">
+              <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555]">
+                <ScriptText text={gFill(titleLine)} className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] text-[#E5C158]" />
+              </div>
+              <div className="p-3 space-y-1">
+                {shown.map((l, li) => (
+                  <ScriptText key={li} text={gFill(l)} className="font-sans text-[14px] text-[#E6E0F0] leading-[1.42]" />
+                ))}
+              </div>
+            </div>
+          );
+          return { nodes, done: true, reachedTwist };
+        }
+      }
+    }
+    return { nodes, done: true, reachedTwist };
+  })();
+
+  // Garrick's Week 6 lines change once the first twist lands.
+  useEffect(() => {
+    if (gWalk.reachedTwist && !twistRevealed) setTwistRevealed(true);
+  }, [gWalk.reachedTwist, twistRevealed]);
+
+
+
+  return (
+    <div className="flex-1 flex flex-col min-h-0 bg-[#0D0714]">
+      {/* =====================================================================
+          UNIFIED COLLAPSIBLE ACTIVITY & CHAPTER DRAWER (#6, #7, #8)
+          Toggled from the top header's W2·D2 · CAMPFIRE ▾ / W2·D7 · GATHERING ▾ button!
+         ===================================================================== */}
+      {showChapterPicker && (
+        <div className="p-3 bg-[#150D22] border-b border-[#3A2555] space-y-2.5 shrink-0">
+          <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold text-[#B7A9CC] uppercase tracking-[1px]">
+            <span>PARTY ACTIVITY & CHAPTERS</span>
+            <button
+              onClick={() => onSetShowChapterPicker && onSetShowChapterPicker(false)}
+              className="text-[#D4B876] hover:underline"
+            >
+              Close ✕
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 gap-1.5">
+            <button
+              onClick={() => {
+                setPartyMode('CAMPFIRE');
+                if (onSetShowChapterPicker) onSetShowChapterPicker(false);
+              }}
+              className={`py-2 px-3 rounded-lg font-['Cinzel'] font-bold text-[11.5px] border transition ${
+                partyMode === 'CAMPFIRE'
+                  ? 'bg-[#2E1B42] border-[#D4B876] text-[#E5C158]'
+                  : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
+              }`}
+            >
+              🔥 CAMPFIRE (DAYS 1–6)
+            </button>
+            <button
+              onClick={() => {
+                setPartyMode('GATHERING');
+                if (onSetShowChapterPicker) onSetShowChapterPicker(false);
+              }}
+              className={`py-2 px-3 rounded-lg font-['Cinzel'] font-bold text-[11.5px] border transition ${
+                partyMode === 'GATHERING'
+                  ? 'bg-[#2E1B42] border-[#D4B876] text-[#E5C158]'
+                  : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
+              }`}
+            >
+              ⚔️ DAY 7 GATHERING
+            </button>
+          </div>
+
+          <div className="grid grid-cols-6 gap-1">
+            {[1, 2, 3, 4, 5, 6].map((w) => (
+              <button
+                key={w}
+                onClick={() => {
+                  onSelectWeek(w);
+                  setApproachRolled(null);
+                  setBattle(null);
+                  setUe(null);
+                  setUeStory([]);
+                  setTwistRevealed(false);
+                }}
+                className={`py-1.5 rounded font-['Cinzel'] font-bold text-[11.5px] border transition ${
+                  currentWeek === w
+                    ? 'bg-[#2E1B42] border-[#D4B876] text-[#D4B876]'
+                    : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
+                }`}
+              >
+                WK {w}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-7 gap-1">
+            {[1, 2, 3, 4, 5, 6].map((d) => (
+              <button
+                key={d}
+                onClick={() => {
+                  setPartyMode('CAMPFIRE');
+                  if (onSelectWeekDay) onSelectWeekDay(currentWeek, d);
+                }}
+                className={`py-1.5 rounded font-['Cinzel'] font-bold text-[11px] border transition ${
+                  partyMode === 'CAMPFIRE' && currentDay === d
+                    ? 'bg-[#2E1B42] border-[#D4B876] text-[#D4B876]'
+                    : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
+                }`}
+              >
+                D{d}
+              </button>
+            ))}
+            <button
+              onClick={() => setPartyMode('GATHERING')}
+              className={`py-1.5 rounded font-['Cinzel'] font-bold text-[10.5px] border transition ${
+                partyMode === 'GATHERING'
+                  ? 'bg-[#2E1B42] border-[#D4B876] text-[#E5C158]'
+                  : 'bg-[#2A1B40] border-[#D4B876]/60 text-[#E5C158]'
+              }`}
+            >
+              ⚔️ D7
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* =====================================================================
+          MODE 1: CAMPFIRE v2.2 (8-Step Evening Flow, Stored-Line Engine, Real Friends)
+         ===================================================================== */}
+      {partyMode === 'CAMPFIRE' && missedClueShare && (
+        <div className="mx-3 mt-2.5 rounded-xl bg-[#180F29] border border-[#D4B876]/60 px-3 py-2.5 space-y-1.5 shrink-0">
+          <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#E5C158] uppercase">
+            {missedClueShare.friend} saw what you missed
+          </div>
+          {missedClueShare.texts.map((t, i) => (
+            <ScriptText
+              key={i}
+              text={t}
+              className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.42]"
+            />
+          ))}
+        </div>
+      )}
+      {partyMode === 'CAMPFIRE' && (
+        <CampfireEveningView
+          currentWeek={currentWeek}
+          currentDay={currentDay}
+          characterName={characterName}
+          attributes={attributes}
+          solvedWords={solvedWords}
+          onSolveWord={onSolveWord}
+          seekerFirstLetterHints={seekerFirstLetterHints}
+          fanOutBranchesByDay={campfireFanOutBranches}
+          onChangeFriendFanOutBranch={(dk, friendId, branch) =>
+            setCampfireFanOutBranches((prev) => ({ ...prev, [dk]: { ...(prev[dk] || {}), [friendId]: branch } }))
+          }
+          theoryPinsByDay={campfireTheoryPins}
+          onPinTheory={(dk, pin) =>
+            setCampfireTheoryPins((prev) => ({ ...prev, [dk]: { ...(prev[dk] || {}), [pin.friendId]: pin } }))
+          }
+          questionPinsByDay={campfireQuestionPins}
+          onPinQuestion={(dk, q) =>
+            setCampfireQuestionPins((prev) => ({ ...prev, [dk]: [...(prev[dk] || []), q] }))
+          }
+          bottleMessagesByDay={campfireBottles}
+          onLeaveBottleMessage={(dk, msg) => setCampfireBottles((prev) => ({ ...prev, [dk]: msg }))}
+          telemetryByDay={campfireTelemetry}
+          onUpdateTelemetry={(dk, t) => setCampfireTelemetry((prev) => ({ ...prev, [dk]: t }))}
+          onJumpToGathering={() => setPartyMode('GATHERING')}
+          challengeClearedToday={!hasClaimedReward(`${currentWeek}-${currentDay}:challenge-failed`)}
+        />
+      )}
+
+      {/* =====================================================================
+          MODE 2: DAY 7 GATHERING STREAM (Narrow Mythios mr-6 #C4A1FF + Full-Width Action Cards w-full #5E4585)
+         ===================================================================== */}
+      {partyMode === 'GATHERING' && (
+        <div className="flex-1 min-h-0 overflow-y-auto px-3.5 py-3.5 space-y-4">
+          {/* Quick Bar + 5-Phase Gathering State Machine Stepper */}
+          <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] p-3 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#E5C158] uppercase">
+                ⚔️ WEEK {currentWeek} · DAY 7 GATHERING
+              </span>
+              <button
+                type="button"
+                onClick={() => setPartyMode('CAMPFIRE')}
+                className="px-2.5 py-1 rounded-lg bg-[#2E1B42] hover:bg-[#3A2555] border border-[#D4B876]/70 font-['Cinzel'] font-bold text-[10.5px] text-[#E5C158] transition"
+              >
+                🔥 BACK TO CAMPFIRE
+              </button>
+            </div>
+
+          </div>
+
+          {gWalk.nodes}
 
           {/* LIVE GATHERING PARTY & GARRICK CHAT STREAM */}
           <div className="space-y-3 pb-2">
