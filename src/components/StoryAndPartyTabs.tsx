@@ -9,7 +9,7 @@ import {
   getTierInfo,
   WEEKDAY_DC_BY_WEEK,
   PartyFriend,
-  DEFAULT_PARTY_MEMBERS,
+  friendScores,
   calculateAttributeGrowth,
   resolveChallengeRoll,
   challengeSucceedOn,
@@ -32,12 +32,7 @@ import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
 import { GATHERINGS_DATA } from '../data/mythiosGatheringsAndAudit';
 import { getChapterWithContinuityFixes } from '../data/narrativeContinuityAudit';
 import { routeGarrickMessage, GarrickRouteResult } from '../data/garrickRouter';
-import { getDailyCampfireRiddles } from '../data/garrickDailyRiddles';
 import { getFanOutEncounterData, FanOutBranchOption } from '../data/soloLandmarkProse';
-import {
-  getBoardCrossCheckSynthesis,
-  buildBoardClueDiscussionExchange,
-} from '../data/garrickCampfirePrompts';
 import {
   getCampfireDayEntry,
   CampfireEveningTelemetry,
@@ -99,7 +94,12 @@ export interface PinnedPartyClue {
   text: string;
 }
 
+/** Who a Gathering chat line is from or to: 'YOU', 'GARRICK', or a friend's id from the party list. */
+type SpeakerId = string;
+
 interface StoryTabViewProps {
+  /** The party in play (2 to 6), the player first. */
+  party: PartyFriend[];
   currentWeek: number;
   currentDay: number;
   onSelectWeekDay: (w: number, d: number) => void;
@@ -214,6 +214,7 @@ interface FightRoundEntry {
 }
 
 export const StoryTabView: React.FC<StoryTabViewProps> = ({
+  party,
   currentWeek,
   currentDay,
   onSelectWeekDay,
@@ -880,7 +881,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       ? startPlayerHp
       : fightRounds[fightRounds.length - 1].playerHpAfter;
 
-  const fanOutEncounter = getFanOutEncounterData(dayData);
+  const fanOutEncounter = getFanOutEncounterData(dayData, party.length);
 
   const solvedFragCount = dayFragment
     ? (solvedWords[dayFragment.id]?.w1 ? 1 : 0) +
@@ -1053,8 +1054,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   // Steps show in order; the first one waiting on the player (a tap, a choice, a roll, a fight) stops the page.
   // ---------------------------------------------------------------------------
   const scriptTokens: ScriptTokens = {
-    friends: DEFAULT_PARTY_MEMBERS.filter((f) => f.id !== 'YOU').map((f) => f.name),
-    partySize: DEFAULT_PARTY_MEMBERS.length,
+    friends: party.filter((f) => f.id !== 'YOU').map((f) => f.name),
+    partySize: party.length,
   };
   const fill = (text: string) => fillScriptTokens(text, scriptTokens);
 
@@ -2237,6 +2238,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
    ============================================================================ */
 
 interface PartyTabViewProps {
+  /** The party in play (2 to 6), the player first. */
+  party: PartyFriend[];
   currentWeek: number;
   currentDay: number;
   onSelectWeek: (w: number) => void;
@@ -2287,6 +2290,7 @@ interface PartyTabViewProps {
 }
 
 export const PartyTabView: React.FC<PartyTabViewProps> = ({
+  party,
   currentWeek,
   currentDay,
   onSelectWeek,
@@ -2343,10 +2347,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const [riddleOpen, setRiddleOpen] = useState(false);
   const [seekerOpen, setSeekerOpen] = useState(false);
   const [boardOpen, setBoardOpen] = useState(true);
-  const [activeRiddleSlot, setActiveRiddleSlot] = useState<
-    'MORNING' | 'MIDDAY' | 'NIGHTFALL'
-  >('MORNING');
-  const [riddleTypedIndices, setRiddleTypedIndices] = useState<number[]>([]);
 
   const [seekerSlot, setSeekerSlot] = useState<0 | 1>(0);
   const [seekerTypedIndices, setSeekerTypedIndices] = useState<number[]>([]);
@@ -2433,31 +2433,22 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   }
   const [partyInput, setPartyInput] = useState('');
   const [activeSpeakerTarget, setActiveSpeakerTarget] = useState<
-    'GARRICK' | 'DEV' | 'MEI' | 'ARJUN'
+    SpeakerId
   >('GARRICK');
-  const [campfireTurns, setCampfireTurns] = useState<
-    Array<{
-      sender: 'YOU' | 'GARRICK' | 'DEV' | 'MEI' | 'ARJUN';
-      target?: 'GARRICK' | 'DEV' | 'MEI' | 'ARJUN';
-      text: string;
-    }>
-  >([]);
   const [gatheringTurns, setGatheringTurns] = useState<
     Array<{
-      sender: 'YOU' | 'GARRICK' | 'DEV' | 'MEI' | 'ARJUN';
-      target?: 'GARRICK' | 'DEV' | 'MEI' | 'ARJUN';
+      sender: SpeakerId;
+      target?: SpeakerId;
       text: string;
     }>
   >([]);
-  const [usedCampfireChips, setUsedCampfireChips] = useState<Record<string, boolean>>({});
-  const [viewAsRecipient, setViewAsRecipient] = useState<'YOU' | 'MEI'>('YOU');
 
   const rawDayData =
     WEEKDAY_INVENTORY.find((d) => d.week === currentWeek && d.day === currentDay) ||
     WEEKDAY_INVENTORY[0];
   const dayData = getChapterWithContinuityFixes(rawDayData, appliedLoopholeIds);
   const dayKey = `${currentWeek}-${currentDay}`;
-  const fanOutDayData = getFanOutEncounterData(dayData);
+  const fanOutDayData = getFanOutEncounterData(dayData, party.length);
   // A clue the player missed on a failed Challenge comes back at the fire from a friend who passed
   // (Core Rules §3, 15 Oct). The sample friend stands in for a real player who passed.
   const missedClueShare = (() => {
@@ -2468,8 +2459,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       summary?.t === 'summary' && summary.lines.some((l) => /Someone at the fire may have seen it/.test(l));
     if (!promisesShare) return null;
     const tokens: ScriptTokens = {
-      friends: DEFAULT_PARTY_MEMBERS.filter((f) => f.id !== 'YOU').map((f) => f.name),
-      partySize: DEFAULT_PARTY_MEMBERS.length,
+      friends: party.filter((f) => f.id !== 'YOU').map((f) => f.name),
+      partySize: party.length,
     };
     const texts = script.steps
       .filter((st) => st.t === 'say' && st.cond?.on === 'challenge' && st.cond.pass)
@@ -2491,67 +2482,56 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const isW1D1Campfire = currentWeek === 1 && currentDay === 1;
   const isGarrickAbsentAtCamp = isW1D1Campfire;
 
-  // Signature speaker metadata (distinct header colors inside the unified #1E1232 / #B794F4 bubble, avoiding Green/Red reserved for YOU/FOE)
-  const PARTY_SPEAKER_META: Record<
-    'GARRICK' | 'DEV' | 'MEI' | 'ARJUN',
-    {
-      shortName: string;
-      campfireTitle: string;
-      gatheringTitle: string;
-      roleTag: string;
-      color: string;
-      chipIcon: string;
-    }
-  > = {
+  // Speaker metadata for the Gathering chat: Garrick, then each friend in the party list.
+  const CLASS_CHIP_ICON: Record<string, string> = {
+    Warrior: '🛡️',
+    Artificer: '⚙️',
+    Sage: '📖',
+    Trickster: '🎭',
+    Assassin: '🗡️',
+    Archer: '🏹',
+  };
+  const PARTY_SPEAKER_META: Record<SpeakerId, { shortName: string; gatheringTitle: string; roleTag: string; color: string; chipIcon: string }> = {
     GARRICK: {
       shortName: 'Garrick',
-      campfireTitle: 'GARRICK · CAMPFIRE HOST',
       gatheringTitle: 'GARRICK · FIRST OATH',
       roleTag: 'First Oath',
       color: '#F0A552', // Warm Hearth Amber
       chipIcon: '🔥',
     },
-    DEV: {
-      shortName: 'Dev',
-      campfireTitle: 'DEV · ARCHER',
-      gatheringTitle: 'DEV · ARCHER',
-      roleTag: 'Vanguard Scout',
-      color: '#5BC0EB', // Sky Blue
-      chipIcon: '🏹',
-    },
-    MEI: {
-      shortName: 'Mei',
-      campfireTitle: 'MEI · SAGE',
-      gatheringTitle: 'MEI · SAGE',
-      roleTag: 'Lorekeeper',
-      color: '#F49CBB', // Soft Rose
-      chipIcon: '📖',
-    },
-    ARJUN: {
-      shortName: 'Arjun',
-      campfireTitle: 'ARJUN · ARTIFICER',
-      gatheringTitle: 'ARJUN · ARTIFICER',
-      roleTag: 'Relic Smith',
-      color: '#4FD1C5', // Arcane Teal
-      chipIcon: '⚙️',
-    },
+    ...Object.fromEntries(
+      party
+        .filter((f) => f.id !== 'YOU')
+        .map((f) => [
+          f.id,
+          {
+            shortName: f.name,
+            gatheringTitle: `${f.name.toUpperCase()} · ${f.cls.toUpperCase()}`,
+            roleTag: f.cls,
+            color: f.color,
+            chipIcon: CLASS_CHIP_ICON[f.cls] || '•',
+          },
+        ])
+    ),
   };
+  const talkToIds: SpeakerId[] = ['GARRICK', ...party.filter((f) => f.id !== 'YOU').map((f) => f.id)];
 
   // Detect if player typed a specific companion's name in the message; otherwise use activeSpeakerTarget
   const detectAddressedSpeaker = (
     text: string,
-    fallback: 'GARRICK' | 'DEV' | 'MEI' | 'ARJUN'
-  ): 'GARRICK' | 'DEV' | 'MEI' | 'ARJUN' => {
-    if (/\bdev\b/i.test(text)) return 'DEV';
-    if (/\bmei\b/i.test(text)) return 'MEI';
-    if (/\barjun\b/i.test(text)) return 'ARJUN';
+    fallback: SpeakerId
+  ): SpeakerId => {
+    const named = party.find(
+      (f) => f.id !== 'YOU' && new RegExp(`\\b${f.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(text)
+    );
+    if (named) return named.id;
     if (/\bgarrick\b/i.test(text)) return 'GARRICK';
     return fallback;
   };
 
-  // Build reply for Garrick in Day 7 Gathering (Mei, Dev, and Arjun are real human friends — never generate AI replies for them)
+  // Build reply for Garrick at the Gathering (the friends are real players — never generate replies for them)
   const buildCompanionReply = (
-    speaker: 'GARRICK' | 'DEV' | 'MEI' | 'ARJUN',
+    speaker: SpeakerId,
     playerMessage: string,
     mode: 'CAMPFIRE' | 'GATHERING'
   ): string | null => {
@@ -2575,131 +2555,24 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       });
       return routed.reply.replace(/^[“"]|[”"]$/g, '');
     }
-    // Mei, Dev, and Arjun are real human players — never write scripted lines for them
+    // The friends are real players — never write scripted lines for them
     return null;
   };
 
-  const handleSendPartyBanter = (
-    textToSend: string,
-    chipKey?: string,
-    forcedTarget?: 'GARRICK' | 'DEV' | 'MEI' | 'ARJUN'
-  ) => {
+  const handleSendPartyBanter = (textToSend: string, forcedTarget?: SpeakerId) => {
     const trimmed = textToSend.trim();
     if (!trimmed) return;
-    if (chipKey) {
-      setUsedCampfireChips((prev) => ({ ...prev, [chipKey]: true }));
-    }
-    const targetSpeaker =
-      forcedTarget || detectAddressedSpeaker(trimmed, activeSpeakerTarget);
+    const targetSpeaker = forcedTarget || detectAddressedSpeaker(trimmed, activeSpeakerTarget);
     setActiveSpeakerTarget(targetSpeaker);
-    const replyText = buildCompanionReply(targetSpeaker, trimmed, partyMode);
-
-    if (partyMode === 'GATHERING') {
-      setGatheringTurns((prev) => [
-        ...prev,
-        { sender: 'YOU', target: targetSpeaker, text: trimmed },
-        ...(replyText ? [{ sender: targetSpeaker, text: replyText }] : []),
-      ]);
-    } else {
-      setCampfireTurns((prev) => [
-        ...prev,
-        { sender: 'YOU', target: targetSpeaker, text: trimmed },
-        ...(replyText ? [{ sender: targetSpeaker, text: replyText }] : []),
-      ]);
-    }
+    const replyText = buildCompanionReply(targetSpeaker, trimmed, 'GATHERING');
+    setGatheringTurns((prev) => [
+      ...prev,
+      { sender: 'YOU', target: targetSpeaker, text: trimmed },
+      ...(replyText ? [{ sender: targetSpeaker, text: replyText }] : []),
+    ]);
     onSendPartyMessage(trimmed);
     setPartyInput('');
   };
-
-  const activeModeKey = `${dayKey}-${partyMode}`;
-  const partyPromptChips: Array<{
-    key: string;
-    speaker: 'GARRICK' | 'DEV' | 'MEI' | 'ARJUN';
-    label: string;
-    prompt: string;
-  }> = (
-    partyMode === 'CAMPFIRE'
-      ? [
-          {
-            key: `${activeModeKey}-garrick-place`,
-            speaker: 'GARRICK' as const,
-            label: `Ask Garrick about ${dayData.place.replace(/^The\s+/i, '')}`,
-            prompt: `Garrick, what do you make of what we found at ${dayData.place}?`,
-          },
-          {
-            key: `${activeModeKey}-dev-scout`,
-            speaker: 'DEV' as const,
-            label: 'Ask Dev about Fragment & tracks',
-            prompt: `Dev, what did you spot on the ridge above ${dayData.place}?`,
-          },
-          {
-            key: `${activeModeKey}-mei-lore`,
-            speaker: 'MEI' as const,
-            label: 'Ask Mei about the Seeker verse',
-            prompt: `Mei, how does today's clue at ${dayData.place} connect to Sunday's Gathering?`,
-          },
-          {
-            key: `${activeModeKey}-arjun-gear`,
-            speaker: 'ARJUN' as const,
-            label: 'Ask Arjun about our Relic gear',
-            prompt: `Arjun, how is our gear holding up for the Day 7 Gathering?`,
-          },
-          {
-            key: `${activeModeKey}-garrick-cup`,
-            speaker: 'GARRICK' as const,
-            label:
-              currentWeek <= 2
-                ? 'Ask Garrick about the extra tin cup'
-                : currentWeek <= 4
-                ? 'Ask Garrick how he knew the path'
-                : 'Ask Garrick about his bound palm',
-            prompt:
-              currentWeek <= 2
-                ? 'Why do you set out an extra tin cup by the campfire every night, Garrick?'
-                : currentWeek <= 4
-                ? 'How did you know the exact turn to the stone before anyone pointed it out, Garrick?'
-                : 'Why are your fingers dusty with grey stone from the socket, Garrick?',
-          },
-        ]
-      : [
-          {
-            key: `${activeModeKey}-garrick-oath`,
-            speaker: 'GARRICK' as const,
-            label: 'Ask Garrick for tactical advice',
-            prompt: `Garrick, what should we watch for in this Week ${currentWeek} Gathering?`,
-          },
-          {
-            key: `${activeModeKey}-dev-vantage`,
-            speaker: 'DEV' as const,
-            label: 'Coordinate bow fire with Dev',
-            prompt: `Dev, are you in position to cover our approach roll?`,
-          },
-          {
-            key: `${activeModeKey}-mei-scripture`,
-            speaker: 'MEI' as const,
-            label: 'Ask Mei about the Cult Scripture',
-            prompt: `Mei, what do you make of the Dark Moon Scripture verse we uncovered here?`,
-          },
-          {
-            key: `${activeModeKey}-arjun-strike`,
-            speaker: 'ARJUN' as const,
-            label: 'Check frontline readiness with Arjun',
-            prompt: `Arjun, are our shields and relics ready to break their DEF?`,
-          },
-        ]
-  ).filter(
-    (c) =>
-      !usedCampfireChips[c.key] &&
-      !(partyMode === 'CAMPFIRE' && isGarrickAbsentAtCamp && c.speaker === 'GARRICK') &&
-      !(partyMode === 'GATHERING' && currentWeek === 6 && !twistRevealed && c.speaker === 'GARRICK')
-  );
-  const riddles = getDailyCampfireRiddles(currentWeek, currentDay, dayData.place);
-  const currentRiddle =
-    riddles.find((r) => r.slot === activeRiddleSlot) || riddles[0];
-  const isRiddleSolved = solvedRiddleIds[currentRiddle.id] !== undefined;
-  const solvedRiddlesTodayCount = riddles.filter(
-    (r) => solvedRiddleIds[r.id] !== undefined
-  ).length;
 
   const activeFragment =
     SEEKER_FRAGMENTS.find((f) => f.week === currentWeek && f.day === currentDay) ||
@@ -2715,24 +2588,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const epMeta =
     EPISODE_NUMBERS.find((e) => e.week === currentWeek) || EPISODE_NUMBERS[0];
 
-  // Handle tapping letter tiles for Garrick's lighthearted campfire pun (#15, #16)
-  const handleTapRiddleLetter = (idx: number) => {
-    if (riddleTypedIndices.includes(idx) || isRiddleSolved) return;
-    const next = [...riddleTypedIndices, idx];
-    const formed = next.map((i) => currentRiddle.jumbleLetters[i]).join('');
-    if (formed.length === currentRiddle.answerWord.length) {
-      if (formed.toUpperCase() === currentRiddle.answerWord.toUpperCase()) {
-        onAnswerDailyRiddle(currentRiddle.id, 0);
-        onEarnGold(GOLD_RIDDLE_BONUS);
-        setRiddleTypedIndices([]);
-      } else {
-        setTimeout(() => setRiddleTypedIndices([]), 350);
-      }
-    } else {
-      setRiddleTypedIndices(next);
-    }
-  };
-
   // Handle tapping letter tiles for Campfire Seeker Fragment
   const handleTapSeekerLetter = (idx: number) => {
     if (seekerTypedIndices.includes(idx)) return;
@@ -2746,7 +2601,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
         onSolveWord(
           activeFragment.id,
           seekerSlot === 0 ? 1 : 2,
-          characterName || 'Jennifer'
+          characterName || 'You'
         );
         setSeekerTypedIndices([]);
       } else {
@@ -2758,9 +2613,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   };
 
   // The party for the Gathering, in party-list order (the host first).
-  // Prototype: the sample friends use the player's gear and Attribute scores as stand-ins
-  // until each friend has their own saved character.
-  const gatheringParty = DEFAULT_PARTY_MEMBERS.map((f) => ({
+  // Prototype: the sample friends use the player's gear as a stand-in, and their own test
+  // Attribute scores (SAMPLE_FRIEND_SCORES), until each friend has their own saved character.
+  const gatheringParty = party.map((f) => ({
     id: f.id,
     name: f.id === 'YOU' ? characterName || 'You' : f.name,
     color: f.color,
@@ -2821,7 +2676,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   // United Effort: who rolls next. The player hands on by choice; a friend's turn passes to the next in the party list.
   const ueEligible = ue ? unitedEffortEligible(ue, ueRollerIds) : ueRollerIds;
   const ueRollerId = ueEligible.includes(ueNextId) ? ueNextId : ueEligible[0];
-  const ueAttrScore = attributes[gathering.ueAttr] || 1;
+  const ueScoreOf = (id: string) => friendScores(id, attributes)[gathering.ueAttr] || 1;
+  const ueAttrScore = ueScoreOf(ueRollerId);
   const ueTierBonus = getTierInfo(ueAttrScore).bonus;
   const ueRelicsHeld = relics[gathering.ueAttr] || 0;
   const ueAnyAttrRelic =
@@ -2844,7 +2700,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       }
       const next = rollUnitedEffortTurn(
         current,
-        { id: rollerId, name: partyName(rollerId), score: ueAttrScore, tierBonus: ueTierBonus },
+        { id: rollerId, name: partyName(rollerId), score: ueScoreOf(rollerId), tierBonus: getTierInfo(ueScoreOf(rollerId)).bonus },
         ueDc,
         relicType ? 4 : 0,
         ueRollerIds
@@ -2902,11 +2758,11 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   // Steps show in order; the first one waiting on the player stops the page.
   // ---------------------------------------------------------------------------
   const gatheringScript = GATHERING_SCRIPTS.find((g) => g.week === currentWeek);
-  const gatheringFriends = DEFAULT_PARTY_MEMBERS.filter((f) => f.id !== 'YOU');
+  const gatheringFriends = party.filter((f) => f.id !== 'YOU');
   const gFill = (text: string) =>
     fillScriptTokens(text.replace(/\{RISK\}/g, riskFriendName), {
       friends: gatheringFriends.map((f) => f.name),
-      partySize: DEFAULT_PARTY_MEMBERS.length,
+      partySize: party.length,
     });
 
   const weekFragments = SEEKER_FRAGMENTS.filter((f) => f.week === currentWeek);
@@ -2930,7 +2786,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     if (c.on === 'approach') return Boolean(approachRolled) && approachRolled!.cleared === c.pass;
     if (c.on === 'ue') return ueDone && ueCleared === c.won;
     if (c.on === 'pick') return lastPickBefore(index) === c.option;
-    if (c.on === 'alone') return DEFAULT_PARTY_MEMBERS.length <= 1;
+    if (c.on === 'alone') return party.length <= 1;
     return false;
   };
 
@@ -3735,7 +3591,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
         }
         case 'ask': {
           const asked = gAsked[i] || [];
-          const limit = DEFAULT_PARTY_MEMBERS.length; // "Each of you, one question."
+          // Core Rules §11: one question per friend; two each in a party of two, four alone.
+          const limit = party.length <= 1 ? 4 : party.length === 2 ? 4 : party.length;
           const finished = gAskDone[i] || asked.length >= limit;
           asked.forEach((ri) => {
             const row = st.rows[ri];
@@ -3969,6 +3826,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       )}
       {partyMode === 'CAMPFIRE' && (
         <CampfireEveningView
+          party={party}
           currentWeek={currentWeek}
           currentDay={currentDay}
           characterName={characterName}
@@ -4084,7 +3942,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
             <span className="text-[11px] font-['Cinzel'] font-bold text-[#B7A9CC] uppercase tracking-[0.8px] shrink-0 mr-0.5">
               Talk to:
             </span>
-            {(['GARRICK', 'DEV', 'MEI', 'ARJUN'] as const).map((spk) => {
+            {talkToIds.map((spk) => {
               const meta = PARTY_SPEAKER_META[spk];
               const isSelected = activeSpeakerTarget === spk;
               return (

@@ -4,7 +4,7 @@ import { AuditBackupRestorePayload, AuditWorkbench } from './components/AuditWor
 import { BagTabView, StoreTabView } from './components/BagAndStoreTabs';
 import { RecordTabView } from './components/RecordTabView';
 import { PartyTabView, PinnedPartyClue, StoryTabView } from './components/StoryAndPartyTabs';
-import { AttributeName, CLASS_META, ClassName } from './data/mythiosRulesData';
+import { AttributeName, CLASS_META, ClassName, DEFAULT_PARTY_SIZE, MAX_PARTY_SIZE, MIN_PARTY_SIZE, buildParty } from './data/mythiosRulesData';
 import { WEEKDAY_INVENTORY } from './data/mythiosChaptersData';
 import { runMythiosVerifier } from './data/mythiosGatheringsAndAudit';
 import { NEW_CONTINUITY_LOOPHOLES } from './data/narrativeContinuityAudit';
@@ -34,12 +34,28 @@ const PERSONAL_STAKES: { id: string; label: string; text: string }[] = [
 
 const SAVE_STORAGE_KEY = 'mythios_dark_moon_save_v2';
 
+// The mid-season demo (Week 2 · Day 2): the Week 1 fragments already solved, credited round the party.
+function demoSolvedWords(names: string[]): Record<string, { w1?: string; w2?: string }> {
+  const at = (i: number) => names[i % names.length];
+  return {
+    '1-1': { w1: at(1), w2: at(0) },
+    '1-2': { w1: at(2), w2: at(3) },
+    '1-3': { w1: at(1), w2: at(0) },
+    '1-4': { w1: at(2), w2: at(1) },
+    '1-5': { w1: at(3), w2: at(0) },
+    '1-6': { w1: at(1), w2: at(2) },
+    '2-1': { w1: at(1) },
+    '2-2': { w1: at(2) },
+  };
+}
+
 interface SavedCampaignState {
   currentWeek: number;
   currentDay: number;
   completedDays: string[];
   characterName?: string;
   partyName?: string;
+  partySize?: number; // 2 to 6 (Campfire v2.3 §M); saves from before 15 Oct have none and get 4
   characterClass: ClassName;
   secondAttr?: AttributeName;
   stakeIndex: number;
@@ -113,6 +129,12 @@ export default function App() {
     initialSave?.partyName ?? 'The Iron Lantern'
   );
   const [stakeIndex, setStakeIndex] = useState<number>(initialSave?.stakeIndex ?? 0);
+  // The party in play: the player first, then the sample friends (2 to 6; workbench switch).
+  const [partySize, setPartySize] = useState<number>(initialSave?.partySize ?? DEFAULT_PARTY_SIZE);
+  const party = useMemo(
+    () => buildParty(partySize, { name: characterName, cls: characterClass }),
+    [partySize, characterName, characterClass]
+  );
   const [showHeroSetupModal, setShowHeroSetupModal] = useState<boolean>(false);
 
   const [gold, setGold] = useState<number>(initialSave?.gold ?? 0); // Core Rules §12: starting gold is 0
@@ -153,16 +175,7 @@ export default function App() {
   );
 
   const [solvedWords, setSolvedWords] = useState<Record<string, { w1?: string; w2?: string }>>(
-    initialSave?.solvedWords ?? {
-      '1-1': { w1: 'Mei', w2: 'Jennifer' },
-      '1-2': { w1: 'Dev', w2: 'Arjun' },
-      '1-3': { w1: 'Mei', w2: 'Jennifer' },
-      '1-4': { w1: 'Dev', w2: 'Mei' },
-      '1-5': { w1: 'Arjun', w2: 'Jennifer' },
-      '1-6': { w1: 'Mei', w2: 'Dev' },
-      '2-1': { w1: 'Mei' },
-      '2-2': { w1: 'Dev' },
-    }
+    initialSave?.solvedWords ?? demoSolvedWords(buildParty(DEFAULT_PARTY_SIZE, { name: 'Jennifer', cls: 'Trickster' }).map((f) => f.name))
   );
 
   const [watchPageStrokesLeft, setWatchPageStrokesLeft] = useState<number>(
@@ -216,36 +229,11 @@ export default function App() {
   );
 
   const [pinnedClues, setPinnedClues] = useState<PinnedPartyClue[]>(
-    initialSave?.pinnedClues ?? [
-      {
-        id: 'pin-w2d1',
-        week: 2,
-        day: 1,
-        place: 'The Mill Road',
-        author: 'Mei',
-        authorClass: 'Sage',
-        tag: 'SCOUT PLANT',
-        text: 'The taker cart left four nights ago along the Mill Road; its iron-shod left wheel pulls deep into the wet clay.',
-      },
-      {
-        id: 'pin-w1d6',
-        week: 1,
-        day: 6,
-        place: 'The Low Ford',
-        author: 'Jennifer',
-        authorClass: 'Trickster',
-        tag: 'ADEPT CLUE',
-        text: 'High on the muddy bank above the Low Ford, a cart with a pulling left wheel backed down and turned north while a boat met Tamsin at the water’s edge.',
-      },
-    ]
+    initialSave?.pinnedClues ?? []
   );
 
   const [partyMessages, setPartyMessages] = useState<string[]>(
-    initialSave?.partyMessages ?? [
-      'Dev (Archer): I solved Lock 1 on Fragment 2-2 (The mill wheel)! Someone jump into BAG to complete the Matched Fragment.',
-      'Mei (Sage): I covered W2D1 on the Mill Road while you were out, Jennifer — opened the farmhouse beam housing & pinned the cart-rut clue!',
-      'Arjun (Warrior): Thanks for the Might Relic, Jennifer! Ready for Sunday\'s Day 7 Sync Gathering.',
-    ]
+    initialSave?.partyMessages ?? []
   );
 
   // Automatic localStorage persistence whenever campaign state changes
@@ -257,6 +245,7 @@ export default function App() {
         completedDays,
         characterName,
         partyName,
+        partySize,
         characterClass,
         secondAttr,
         stakeIndex,
@@ -287,6 +276,7 @@ export default function App() {
     completedDays,
     characterName,
     partyName,
+    partySize,
     characterClass,
     secondAttr,
     stakeIndex,
@@ -399,16 +389,7 @@ export default function App() {
       Agility: 0,
       Aim: 0,
     });
-    setSolvedWords({
-      '1-1': { w1: 'Mei', w2: 'Jennifer' },
-      '1-2': { w1: 'Dev', w2: 'Arjun' },
-      '1-3': { w1: 'Mei', w2: 'Jennifer' },
-      '1-4': { w1: 'Dev', w2: 'Mei' },
-      '1-5': { w1: 'Arjun', w2: 'Jennifer' },
-      '1-6': { w1: 'Mei', w2: 'Dev' },
-      '2-1': { w1: 'Mei' },
-      '2-2': { w1: 'Dev' },
-    });
+    setSolvedWords(demoSolvedWords(party.map((f) => f.name)));
     setWatchPageStrokesLeft(3);
     setLedgerOpened(false);
     setSolvedRiddleIds({});
@@ -435,33 +416,8 @@ export default function App() {
       perfectRolls: 1,
     });
     setEarnedBadgeIds(['first-light', 'open-hand', 'whole-table', 'perfect']);
-    setPinnedClues([
-      {
-        id: 'pin-w2d1',
-        week: 2,
-        day: 1,
-        place: 'The Mill Road',
-        author: 'Mei',
-        authorClass: 'Sage',
-        tag: 'SCOUT PLANT',
-        text: 'The taker cart left four nights ago along the Mill Road; its iron-shod left wheel pulls deep into the wet clay.',
-      },
-      {
-        id: 'pin-w1d6',
-        week: 1,
-        day: 6,
-        place: 'The Low Ford',
-        author: 'Jennifer',
-        authorClass: 'Trickster',
-        tag: 'ADEPT CLUE',
-        text: 'High on the muddy bank above the Low Ford, a cart with a pulling left wheel backed down and turned north while a boat met Tamsin at the water’s edge.',
-      },
-    ]);
-    setPartyMessages([
-      'Dev (Archer): I solved Lock 1 on Fragment 2-2 (The mill wheel)! Someone jump into BAG to complete the Matched Fragment.',
-      'Mei (Sage): I covered W2D1 on the Mill Road while you were out, Jennifer — opened the farmhouse beam housing & pinned the cart-rut clue!',
-      'Arjun (Warrior): Thanks for the Might Relic, Jennifer! Ready for Sunday\'s Day 7 Sync Gathering.',
-    ]);
+    setPinnedClues([]);
+    setPartyMessages([]);
     setPartyMode('CAMPFIRE');
     setActiveTab('CHAT');
     setChatChannel('MINE');
@@ -493,15 +449,8 @@ export default function App() {
   const [tickerIndex, setTickerIndex] = useState<number>(0);
 
   // Live rolling Party Memory Digest (~120 tokens) for Layer 4 of the GM Memory Engine
-  const [recentRolls, setRecentRolls] = useState<string[]>([
-    'W2D1 THE MAN WITH THE AXE: Cleared by Mei (Intellect +3)',
-    'W1D6 READ THE WATERLINE: Cleared by Jennifer (Agility +3)',
-    'W1D4 FIND WHO LEFT IT: Cleared by Jennifer (Charm +3)',
-  ]);
-  const [relicsGivenLog, setRelicsGivenLog] = useState<string[]>([
-    'Jennifer -> Mei (Charm Relic)',
-    'Jennifer -> Arjun (Might Relic)',
-  ]);
+  const [recentRolls, setRecentRolls] = useState<string[]>([]);
+  const [relicsGivenLog, setRelicsGivenLog] = useState<string[]>([]);
 
   const verifier = runMythiosVerifier();
 
@@ -564,11 +513,15 @@ export default function App() {
             setChatChannel('MINE');
           },
         },
-    {
-      text: `★ Recent Roll: ${recentRolls[0] || 'Mei rolled 19 on W2D1'}`,
-      actionLabel: 'RECORD →',
-      onAction: () => setActiveTab('RECORD'),
-    },
+    ...(recentRolls[0]
+      ? [
+          {
+            text: `★ Recent Roll: ${recentRolls[0]}`,
+            actionLabel: 'RECORD →',
+            onAction: () => setActiveTab('RECORD'),
+          },
+        ]
+      : []),
   ];
   const currentTicker = liveTickerItems[tickerIndex % liveTickerItems.length];
 
@@ -870,6 +823,9 @@ export default function App() {
         {layout !== 'PHONE_ONLY' && (
           <div className={`${layout === 'SPLIT' ? 'lg:w-[58%] border-r border-white/10' : 'w-full'} h-full min-h-0 flex flex-col overflow-hidden`}>
             <AuditWorkbench
+              partySize={party.length}
+              partyNames={party.map((f) => f.name)}
+              onSetPartySize={(n) => setPartySize(Math.min(MAX_PARTY_SIZE, Math.max(MIN_PARTY_SIZE, n)))}
               onJumpToDay={(week, day) => {
                 handleSelectWeekDay(week, day);
                 setActiveTab('CHAT');
@@ -1043,7 +999,7 @@ export default function App() {
                       title={
                         isPartyFormed
                           ? 'Switch to Party Campfire & Gathering Chat'
-                          : 'Locked until your team forms with Garrick, Mei, Dev & Arjun at The Hollow Wake Inn (W1·D2)'
+                          : 'Locked until your party forms at The Hollow Wake Inn (W1·D2)'
                       }
                       className={`px-3 py-0.5 rounded-[12px] font-['Cinzel'] font-bold text-[11px] tracking-[0.8px] whitespace-nowrap transition flex items-center gap-1 ${
                         !isPartyFormed
@@ -1320,6 +1276,7 @@ export default function App() {
               {/* ACTIVE TAB CONTENT */}
               {activeTab === 'CHAT' && (chatChannel === 'MINE' || !isPartyFormed) && (
                 <StoryTabView
+                  party={party}
                   onClaimReward={handleClaimReward}
                   hasClaimedReward={(key) => claimedRewardsRef.current.has(key)}
                   currentWeek={currentWeek}
@@ -1409,6 +1366,7 @@ export default function App() {
 
               {activeTab === 'CHAT' && chatChannel === 'PARTY' && isPartyFormed && (
                 <PartyTabView
+                  party={party}
                   onGainAttribute={(attr, delta) => setAttributes((prev) => ({ ...prev, [attr]: prev[attr] + delta }))}
                   onClaimReward={handleClaimReward}
                   hasClaimedReward={(key) => claimedRewardsRef.current.has(key)}
@@ -1470,6 +1428,7 @@ export default function App() {
 
               {activeTab === 'BAG' && (
                 <BagTabView
+                  party={party}
                   gold={gold}
                   relics={relics}
                   solvedWords={solvedWords}

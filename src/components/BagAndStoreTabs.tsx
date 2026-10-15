@@ -6,6 +6,7 @@ import {
   ClassName,
   EPISODE_NUMBERS,
   GEAR_TABLE,
+  PartyFriend,
 } from '../data/mythiosRulesData';
 import { SEEKER_FRAGMENTS, SeekerFragmentData } from '../data/mythiosFragments';
 import { wordLockSecondsLeft, registerWrongWordTry, clearWordTries } from '../data/wordLocks';
@@ -63,6 +64,8 @@ const CUMULATIVE_SCRIPTURE = [
 ];
 
 interface BagTabViewProps {
+  /** The party in play (2 to 6), the player first. */
+  party: PartyFriend[];
   gold: number;
   relics: Record<string, number>;
   solvedWords: Record<string, { w1?: string; w2?: string }>;
@@ -80,6 +83,7 @@ interface BagTabViewProps {
 }
 
 export const BagTabView: React.FC<BagTabViewProps> = ({
+  party,
   relics,
   solvedWords,
   onSolveWord,
@@ -258,11 +262,8 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
     );
   };
 
-  const partyFriends = [
-    { id: 'mei', name: 'Mei', className: 'Sage' },
-    { id: 'arjun', name: 'Arjun', className: 'Artificer' },
-    { id: 'dev', name: 'Dev', className: 'Archer' },
-  ];
+  // Relics can be given to any friend in the party (Core Rules §5).
+  const partyFriends = party.filter((f) => f.id !== 'YOU').map((f) => ({ id: f.id, name: f.name, className: f.cls }));
 
   const relicKeys = [
     'Might',

@@ -47,7 +47,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
   const selectedStat = RECORD_STATS_META.find((s) => s.key === selectedStatKey) || null;
   const selectedBadge = BADGES_META.find((b) => b.id === selectedBadgeId) || null;
 
-  const displayCharName = (characterName || 'Jennifer').slice(0, 16);
+  const displayCharName = (characterName || 'You').slice(0, 16);
   const displayPartyName = (partyName || 'The Iron Lantern').slice(0, 20);
 
   // Class Emblem SVG inside the 76px Gold-Ringed Collector Medallion (#25)

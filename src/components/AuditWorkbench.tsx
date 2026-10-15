@@ -37,6 +37,10 @@ interface AuditWorkbenchProps {
   onRestoreLoopholeIds?: (ids: string[]) => void;
   onRestoreAuditBackup?: (backup: AuditBackupRestorePayload) => void;
   memoryDigest: PartyMemoryDigest;
+  /** The party in play (2 to 6) and the switch that sets it (Task 7). */
+  partySize: number;
+  partyNames: string[];
+  onSetPartySize: (size: number) => void;
 }
 
 const PRESET_TEST_QUESTIONS = [
@@ -109,6 +113,9 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
   onRestoreLoopholeIds,
   onRestoreAuditBackup,
   memoryDigest,
+  partySize,
+  partyNames,
+  onSetPartySize,
 }) => {
   const verifier = runMythiosVerifier();
   const campfireVerifier = runCampfireV22Verifier();
@@ -303,8 +310,26 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
               Tales of the Dark Moon — Narrative Continuity & 4-Layer GM Memory Workbench
             </h1>
             <p className="text-xs sm:text-sm text-[#B7A9CC] mt-1">
-              All <span className="text-[#6FD39A] font-semibold">L1 and L3 Continuity Fixes</span> are active (L2 became canon; L4–L6 removed 14 Oct), and the <span className="text-[#D4B876] font-semibold">4-Layer Tiny-Token GM Memory Engine</span> is live in Tab 1.
+              The <span className="text-[#6FD39A] font-semibold">continuity patches are all retired</span> (the day plays canon's own text since 15 Oct), and the <span className="text-[#D4B876] font-semibold">4-Layer Tiny-Token GM Memory Engine</span> is live in Tab 1.
             </p>
+            <div className="mt-3 flex flex-wrap items-center gap-1.5" data-party-size-switch>
+              <span className="font-['Cinzel'] text-[11px] font-bold tracking-[1px] text-[#D4B876] uppercase mr-1">Party size:</span>
+              {[2, 3, 4, 5, 6].map((n) => (
+                <button
+                  key={n}
+                  type="button"
+                  onClick={() => onSetPartySize(n)}
+                  className={`min-w-[32px] h-[30px] rounded-lg border font-['Cinzel'] font-bold text-xs ${
+                    partySize === n
+                      ? 'bg-[#D4B876]/25 border-[#D4B876] text-[#F4F1F8]'
+                      : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC] hover:border-[#D4B876]/60'
+                  }`}
+                >
+                  {n}
+                </button>
+              ))}
+              <span className="text-xs text-[#B7A9CC] ml-1">{partyNames.join(' · ')}</span>
+            </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <button
