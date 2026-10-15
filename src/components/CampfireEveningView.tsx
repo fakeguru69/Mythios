@@ -20,7 +20,7 @@ import { routeGarrickMessage } from '../data/garrickRouter';
 import { CHAPTER_SCRIPTS } from '../data/chapterScripts';
 import { FRAGMENT_MEANING_QUESTIONS } from '../data/fragmentMeaningQuestions';
 import { HintMask, hintHas } from '../data/fanOutLeads';
-import { NarrationBlock, fillScriptTokens } from './ChapterScriptParts';
+import { NarrationBlock, ScriptInline, fillScriptTokens } from './ChapterScriptParts';
 
 export interface CampfireEveningViewProps {
   /** The party in play (2 to 6), the player first. */
@@ -1047,7 +1047,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           {fragSolvedState[0] && fragSolvedState[1] && FRAGMENT_MEANING_QUESTIONS[activeFragment.id] && (
             <div className="space-y-2 p-2.5 rounded-lg bg-[#130B1F] border border-[#3A2555]">
               <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.45]">
-                {FRAGMENT_MEANING_QUESTIONS[activeFragment.id]}
+                <ScriptInline text={FRAGMENT_MEANING_QUESTIONS[activeFragment.id]} />
               </p>
               {Object.entries(meaningPins[activeFragment.id] || {}).map(([fid, pin]) => (
                 <p key={fid} className="text-[13.5px] font-sans text-[#D8CEE8]">

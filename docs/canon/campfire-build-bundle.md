@@ -247,7 +247,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 
 **3-6 · The cairn**
 - Opener: "Fire's built up. Sit by it before you decide anything."
-- Fork: A "We go in now." / B "We watch the watcher first."
+- Fork: A "We go in now." / B "We watch the lamp first."
 - Fan Out clue (leans both; new): Not one horse is tethered at the foot of the Kiln, though six rode this way.
 - Callback: "Eight chips led here, and a lamp went in ahead of you."
 - Riddle: *What can you keep only after you've given it?* A: your word. Garrick: "Mind who hears yours."
@@ -1145,7 +1145,7 @@ From the crack's mouth you can see the whole street climbing toward you. Every h
    "cupNight": false,
    "opener": "Fire's built up. Sit by it before you decide anything.",
    "forkA": "We go in now.",
-   "forkB": "We watch the watcher first.",
+   "forkB": "We watch the lamp first.",
    "callback": "Eight chips led here, and a lamp went in ahead of you.",
    "riddle": {
     "q": "What can you keep only after you've given it?",

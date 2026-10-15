@@ -615,7 +615,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "cupNight": false,
     "opener": "Fire's built up. Sit by it before you decide anything.",
     "forkA": "We go in now.",
-    "forkB": "We watch the watcher first.",
+    "forkB": "We watch the lamp first.",
     "callback": "Eight chips led here, and a lamp went in ahead of you.",
     "riddle": {
       "q": "What can you keep only after you've given it?",
