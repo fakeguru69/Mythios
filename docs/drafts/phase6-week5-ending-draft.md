@@ -1,3 +1,5 @@
+**APPROVED 15 Oct 2026 (Fake Guru: "yes to all") and applied.** See the tracker entry of the same day.
+
 # Draft: the Week 5 ending (fix plan item 31)
 
 15 Oct 2026. **A proposal only.** No canon file and no code was changed. Everything below waits on Fake Guru's yes or no.

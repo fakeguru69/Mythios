@@ -394,6 +394,7 @@ In the ruins, the trail's first fragment waits on the Seekers' own stretch of wa
 | What he said | What it meant |
 |---|---|
 | *(after the failure)* *"The old telling names a place, and a night."* | True. He's naming two real missing variables — location and timing — while never naming the one that matters most: whose blood. **Corrected 2026-09-23 (independent review):** the old opening, "Maybe it needs more than blood," faked an uncertainty he doesn't have — he knows exactly why it failed. |
+| *(the cliffhanger, at the moon, seven nights left)* *"We're early."* | True. He stands in his ancestor's city, with the fifth carried there by friends, a full week before the one night his family has waited centuries for. Players hear "we're ahead of the night; there is time to find the way in." He means early for the waking, not for stopping it, and "we" is his house as much as the party. Present tense: no prediction, no promise. **Added 15 Oct 2026 (Fake Guru, Phase 6: Grok's Week 5 ending as changed).** |
 
 **Fair-play clue planted:** he offers the Tomb/eclipse detail unprompted, immediately after the failure — reads as a genuinely helpful ally's move, and is also exactly the redirection that keeps the real gap from ever being asked about.
 

@@ -545,7 +545,7 @@ export function runMythiosVerifier() {
     totalChallenges: challengeDays.length, // 29
     totalWeekdayFights: fightDays.length, // 12
     totalDualDays: dualDays.length, // 6
-    totalPressOnDays: pressOnDays.length, // 12
+    totalPressOnDays: pressOnDays.length, // 11 (W3D4's was dropped 15 Oct)
     totalFragments: SEEKER_FRAGMENTS.length, // 36
     validAnagrams, // 72 of 72
     attrCounts, // Agility 12, Aim 11, Craft 10, Might 9, Intellect 8, Charm 8

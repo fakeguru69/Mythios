@@ -190,6 +190,11 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
         "when": "After the failure",
         "line": "*\"The old telling names a place, and a night.\"*",
         "meaning": "True. He's naming two real missing variables — location and timing — while never naming the one that matters most: whose blood."
+      },
+      {
+        "when": "The cliffhanger, at the moon, seven nights left",
+        "line": "*\"We're early.\"*",
+        "meaning": "True. He stands in his ancestor's city, with the fifth carried there by friends, a full week before the one night his family has waited centuries for. Players hear \"we're ahead of the night; there is time to find the way in.\" He means early for the waking, not for stopping it, and \"we\" is his house as much as the party. Present tense: no prediction, no promise."
       }
     ]
   },

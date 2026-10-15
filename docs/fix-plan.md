@@ -113,9 +113,9 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 6: story-level proposals (only with Fake Guru's OK)
 
-31. **[Story]** Grok's Week 5 ending ("We are not hidden. We are early.").
-32. **[Story]** Weak days: W3D4 (filler), W4D3, W6D1–D3 alike, W2D1; the repeated "family of a missing child" scene; the repeated slot shapes.
-33. **[Story]** Lock-word pairs that give each other away (locks/unlocks, woke/wake, four/five, gives/takes, gave/take).
+31. ✅ **Done 15 Oct (Fake Guru: "yes to all"; `docs/drafts/phase6-*.md`).** **[Story]** Grok's Week 5 ending ("We are not hidden. We are early.").
+32. ✅ **Done 15 Oct (Fake Guru: "yes to all"; `docs/drafts/phase6-*.md`).** **[Story]** Weak days: W3D4 (filler), W4D3, W6D1–D3 alike, W2D1; the repeated "family of a missing child" scene; the repeated slot shapes.
+33. ✅ **Done 15 Oct (Fake Guru: "yes to all"; `docs/drafts/phase6-*.md`).** **[Story]** Lock-word pairs that give each other away (locks/unlocks, woke/wake, four/five, gives/takes, gave/take).
 
 ## Phase 7: finish
 

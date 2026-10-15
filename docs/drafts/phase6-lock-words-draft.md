@@ -1,3 +1,5 @@
+**APPROVED 15 Oct 2026 (Fake Guru: "yes to all") and applied.** See the tracker entry of the same day.
+
 # Draft: weaker fragment lock words (Phase 6)
 
 **Status:** proposal only, for Fake Guru. Nothing here has been changed in canon or code.

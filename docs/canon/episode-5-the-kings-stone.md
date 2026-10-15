@@ -853,11 +853,15 @@
 
 > Seven strokes left on the tally. Seven nights.
 >
+> The fifth lies in your cut palms and stays cold. Garrick has bound every one of them in his white linen. He does not tell you it will be all right.
+>
 > You look out at the hall. The doors are shut, as they've been for centuries, sealed in a way no hand you know of can open — and somewhere inside, slow and heavy, you can hear it again. The heartbeat from the north. It isn't far away any more.
 >
 > Overhead, the moon hangs at the half — seven nights from full, seven nights from swallowed whole.
 >
-> Then, across the square below the hall, a new lantern comes out of the dark. A watchman — a fresh one, come up to take the watch — stops at the board propped beside the Order's fire, takes up the chalk, and strikes tonight's stroke, late. Seven on the board now, the same as the page.
+> Garrick looks at the moon a long moment. *"We're early."*
+>
+> Then, across the square below the hall, a new lantern comes out of the dark. A watchman — a fresh one — takes up the chalk and draws it through tonight's stroke, late. Seven left.
 >
 > He turns, lantern raised, and looks straight down the hill at the wall. At the slit window you're standing behind.
 
@@ -878,7 +882,7 @@
 - **The United Effort is the roll-call.** The dying watchman's scene is story, not a roll. If the hill is satisfied he says the Verse himself and a second Match is offered. If not, the party runs for the wall, reads the page inside, has no time to Look Closer, and Week 6 Day 1's Challenge is two harder.
 - **The watch-page is taken,** in four words, because Week 6 opens with the party holding it.
 - **Cut:** "One of you opens his fist"; "Whoever carries Meira's notes says it first…"; "He fell in there… So will we."
-- **Garrick:** one spoken line, the approved one. His answers if asked ("Meira thought so." · "The page says 'whose.' It doesn't say who." · "I'm not of your blood.") are unchanged and stay available to a typed question.
+- **Garrick:** two spoken lines: the approved one, and *"We're early."* at the cliffhanger (added 15 Oct 2026, Fake Guru: Phase 6, Grok's Week 5 ending as changed, `docs/drafts/phase6-week5-ending-draft.md`). The cliffhanger also gains the cold fifth in bound palms and "Seven left." His answers if asked ("Meira thought so." · "The page says 'whose.' It doesn't say who." · "I'm not of your blood.") are unchanged and stay available to a typed question.
 - **The hollowed** getting up once is a placeholder condition until the simulation has looked at it.
 
 **Answers kept from the earlier script, for a question a friend types that the buttons and boards do not cover** *(every line unchanged)*
@@ -891,7 +895,7 @@
 
 **Fragments re-quoted here before 4 Oct (the quote-backs are now Matches; see the script) (series audit 2026-09-29 — the three strongest of the week):** Ep5 Days 4 (the frozen soldiers), 5 and 6 (Day 6 found by the players when the GM asks); Meira's Ep4 gloss. *(No longer quoted here: Ep5 Day 1, "He gave us the war. Then it began to take.", and Day 2, "We had fought beside every one of them…" — both do their work on the day.)* **Dropped earlier:** the Ep2 Day 4 fragment "What stayed closest was never meant to be found by searching" (cut from the registry entirely) and the shelved "He sleeps. It is not death...". Drama upgrade (season audit, decision 3): Garrick binds the party's cut palms in white linen, matching every rescued child's — pays off at Ep6. *(Kept deliberately out of this scene: Ep5 Day 3 — "Four of us gave to the four. None of us gave to the fifth." — and the Ep4 Day 4 fragment itself; quoted together right after the failed attempt, they would let a sharp party reason their way to royal blood. Both close in Ep6.)*
 
-**Deception Table cross-reference:** Garrick says nothing at "Moon-blood — that's us" *(changed 2026-09-28: his old line "You're all moon-marked. No question of that" agreed by implication)*. *"The old telling names a place, and a night."* — true; names two real missing conditions and never the one that matters most. It now comes after the players have found the fragment themselves, so it confirms rather than tells.
+**Deception Table cross-reference:** Garrick says nothing at "Moon-blood — that's us" *(changed 2026-09-28: his old line "You're all moon-marked. No question of that" agreed by implication)*. *"The old telling names a place, and a night."* — true; names two real missing conditions and never the one that matters most. It now comes after the players have found the fragment themselves, so it confirms rather than tells. *"We're early."* (cliffhanger, added 15 Oct 2026) — true: they stand in his city a week before the one night his family has waited for; early for the waking, not for stopping it.
 
 **Cliffhanger type:** Named Clock, with a hand on the door — seven nights, and a fresh stroke already going through the tally as a watchman looks straight at their window. It becomes the spine of Episode 6: Day 1 opens on that watchman calling out, and each day eats one stroke while the party solves the six fragments that make up the Seekers' one way into the sealed hall. The map completes on the last night.
 

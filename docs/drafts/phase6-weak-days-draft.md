@@ -1,3 +1,5 @@
+**APPROVED 15 Oct 2026 (Fake Guru: "yes to all") and applied.** See the tracker entry of the same day.
+
 # Phase 6: the weak days (fix plan item 32), draft for Fake Guru
 
 Drafted 15 Oct 2026. **Nothing here is applied.** No canon file and no code was changed.

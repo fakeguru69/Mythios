@@ -477,11 +477,11 @@
    },
    "nudge": "{friend:Agility}, you followed Wren's chips up the ridges. Left for us, or for herself?",
    "fanOutClue": {
-    "title": "The crack in the niche",
-    "text": "A single die, carved from bone, its spots worn almost smooth by somebody's fingers. Whoever slept here had long nights too.",
-    "source": "press-on",
+    "title": "Scratched on the back",
+    "text": "Turn the chips over. One has a single short scratch on its back, one has two, and one has three.",
+    "source": "fan-out",
     "bearsOnFork": "both",
-    "qaNote": "Existing [PRESS ON] detail."
+    "qaNote": "Approved Fan Out lead 3-4-3 (15 Oct: the die moved onto the main path)."
    }
   },
   {

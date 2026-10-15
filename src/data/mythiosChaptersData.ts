@@ -267,8 +267,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     question: 'Is she still alive?',
     challengeTitle: 'THE BURIED DOORWAY',
     challengeAttrs: ['Craft', 'Might'],
-    hasPressOn: true, pressOnTitle: 'THE CRACK IN THE NICHE',
-    pressOnDetail: 'A single die, carved from bone, its spots worn almost smooth by somebody\'s fingers. Whoever slept here had long nights too.',
+    // No [PRESS ON] since 15 Oct (Fake Guru, Phase 6): its bone die is on the day's main path.
     fightReward: 0,
     passBranchText: 'The doorway opens cleanly into the Seekers\' ancient sleeping shelter. You camp inside the doorway.',
     failBranchText: 'Half the rockfall comes down across the threshold, forcing you to build tonight\'s fire further out on the open ridge where the valley can see it.',

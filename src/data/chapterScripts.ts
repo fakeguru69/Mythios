@@ -1181,7 +1181,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "*No lamps. Moving like they'd done it before.*\n\nThe boy at Fenmark said that, in nearly those words, a week ago and a whole county away."
+        "text": "*No lamps. Moving like they'd done it before.*\n\nThe boy at Fenmark said that, in nearly those words, a week ago and a whole county away.\n\nThe same people."
       },
       {
         "t": "say",
@@ -1214,7 +1214,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "lines": [
           "**THE MILL ROAD** · Day 1",
           "You earned: `[gold]` · Charm or Aim `[growth]`",
-          "You learned: the next name is **Corin**, the miller's boy. A cart with no lamps went up to the mill three nights ago and came back before dawn. It turned upriver.",
+          "You learned: the next name is **Corin**, the miller's boy. A cart with no lamps went up to the mill three nights ago and came back before dawn. It turned upriver. The same people who took Tamsin.",
           "*On a failure:* You missed something on the mill road. Someone at the fire may have seen it.",
           "Fragment: 1 found, locked",
           "Tomorrow: **the mill, at first light**"
@@ -2528,7 +2528,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Inside is a room cut from the ridge. Old soot blackens its ceiling, from fires that went out centuries ago. Cut into the walls at sleeping height, facing each other across the floor, is a row of niches, each just long enough for a person to lie in.\n\nWhoever wrote your fragments slept here, walking this same country, a long time ago.\n\nBetween the niches, at chest height, is a housing."
+        "text": "Inside is a room cut from the ridge. Old soot blackens its ceiling, from fires that went out centuries ago. Cut into the walls at sleeping height, facing each other across the floor, is a row of niches, each just long enough for a person to lie in.\n\nWhoever wrote your fragments slept here, walking this same country, a long time ago.\n\nIn a crack in the nearest niche is a single die, carved from bone, its spots worn almost smooth by somebody's fingers.\n\nWhoever slept here had long nights too.\n\nBetween the niches, at chest height, is a housing."
       },
       {
         "t": "act",
@@ -2538,20 +2538,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "t": "say",
         "text": "Its face slides back. The ridge has been warm all day. What is inside is colder than the rock round it.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
-      },
-      {
-        "t": "press",
-        "title": "THE CRACK IN THE NICHE",
-        "detail": "something is wedged in it; work it loose without snapping it",
-        "harder": 4,
-        "reward": "+200g, and one more detail"
-      },
-      {
-        "t": "say",
-        "text": "A single die, carved from bone, its spots worn almost smooth by somebody's fingers.\n\nWhoever slept here had long nights too.",
-        "cond": {
-          "on": "press"
-        }
       },
       {
         "t": "say",
@@ -2575,7 +2561,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "lines": [
           "**THE BLACK RIDGES** · Day 4",
           "You earned: `[gold]` · Craft or Might `[growth]`",
-          "You learned: **Wren is alive.** She is dropping her glass chips for whoever comes after, and the men who have her have not noticed. And the people who wrote your fragments once slept in a room the riders rode straight past.",
+          "You learned: **Wren is alive.** She is dropping her glass chips for whoever comes after, and the men who have her have not noticed. And the people who wrote your fragments once slept in a room the riders rode straight past. They had long nights too.",
           "You hold: three of Wren's chips",
           "Fragments: 4 found",
           "Tomorrow: **the shepherd's hut, at first light**"
@@ -3271,15 +3257,22 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Joss's grandmother keeps the house at the top of the lane. She lets you in, and says one thing.\n\n*\"They asked for him by name,\"* she says, *\"and they knew the night he was born.\"*\n\nAfter that she only stands, and lets you look."
+        "text": "Joss's grandmother keeps the house at the top of the lane. She lets you in, and says one thing.\n\n*\"They asked for him by name,\"* she says, *\"and they knew the night he was born.\"*\n\nYou have heard those words before: at the mill, and in Ashcombe.\n\nAfter that she only stands, with her hand on the doorpost."
+      },
+      {
+        "t": "say",
+        "text": "Notches, cut with a kitchen knife, fresh and pale in the old wood. One for every night.\n\nEight."
+      },
+      {
+        "t": "say",
+        "text": "Eight nights. He was taken before you had even found Wren.\n\nThey needed Wren *only the once*, and kept her two weeks. They have kept Joss eight nights already.\n\nThey are waiting for something."
       },
       {
         "t": "choice",
         "id": 0,
         "labels": [
           "THE SHELF",
-          "THE WINDOW",
-          "THE DOORPOST"
+          "THE WINDOW"
         ],
         "mode": "each",
         "branches": [
@@ -3294,12 +3287,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
               1
             ],
             "text": "A lamp is burning in it, at noon.\n\nOn the shingle, later, the fisherman tells you why. In Reedham a lamp is lit in every window on a dark-moon night; it always has been. Joss came into the world with the whole village lit up round him. She has not let that one go out since he went."
-          },
-          {
-            "options": [
-              2
-            ],
-            "text": "Notches, cut with a kitchen knife, fresh and pale in the old wood. One for every night.\n\nEight."
           }
         ]
       },
@@ -3331,10 +3318,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "second": "And from the tower, this window."
           }
         }
-      },
-      {
-        "t": "say",
-        "text": "Eight nights. He was taken before you had even found Wren.\n\nThey needed Wren *only the once*, and kept her two weeks. They have kept Joss eight nights already.\n\nThey are waiting for something."
       },
       {
         "t": "say",
@@ -4702,10 +4685,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Nobody lights a candle that night. For hours the lanterns move along the foot of the wall and up onto the wall-walk.\n\nTwice, boots scrape right past the room's hidden door.\n\nTwice, they walk on."
       },
       {
-        "t": "say",
-        "text": "It is a long wall, and from the square every slit in it looks the same. In all its centuries here the Order has never known this room was there. It still does not.\n\nYou have a safe room in the enemy's city."
-      },
-      {
         "t": "notice",
         "lines": {
           "Might": {
@@ -4817,6 +4796,10 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "Garrick watches the stroke go on. *\"I kept a tally behind my bar for years,\"* he says. *\"Most of it was who owed me.\"*"
+      },
+      {
+        "t": "say",
+        "text": "It is a long wall, and from the square every slit in it looks the same. In all its centuries here the Order has never known this room was there. It still does not.\n\nYou have a safe room in the enemy's city."
       },
       {
         "t": "say",
@@ -5107,7 +5090,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The stone is warm.\n\nNot sun-warm. There has been no sun for days. Something on the other side of this wall is warm, and has been for a very long time."
+        "text": "The stone is warm.\n\nNot sun-warm. There has been no sun for days. Something on the other side of this wall is warm, and has been for a very long time.\n\nThen the heartbeat comes, and you feel it in the stone under your hand before you hear it."
       },
       {
         "t": "say",
@@ -5128,7 +5111,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "lines": [
           "**FOUR NIGHTS** · Day 3",
           "You earned: `[gold]` · Agility or Charm `[growth]`",
-          "You learned: **the hall's wall is warm.** Something behind it has been warm for a very long time. There is no way in at the front, and twice as many watchmen as before.",
+          "You learned: **the hall's wall is warm, and the heartbeat comes through it.** Something behind it has been warm for a very long time. There is no way in at the front, and twice as many watchmen as before.",
           "You hold: the fifth · the watch-page: **four left**",
           "Fragments: 3 found",
           "Tomorrow: **the hill behind the hall**"

@@ -161,10 +161,21 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
     const isW1Solved = Boolean(entry.w1);
     const isW2Solved = Boolean(entry.w2);
     const parts = frag.displayTemplate.split(/(\{0\}|\{1\})/g);
+    // A solved word that opens a sentence takes its capital (2-6 "Morning", 3-5 "Bloodlines", 5-3 "None").
+    const asWritten = (word: string, idx: number) =>
+      idx === 0 || /^\s*$/.test(parts[idx - 1]) && idx === 1 || /[.!?]\s*$/.test(parts[idx - 1]) ? word.charAt(0).toUpperCase() + word.slice(1) : word;
     return (
       <p className="font-['Cormorant_Garamond'] font-medium text-[20px] text-[#F4F1F8] leading-[1.6]">
         “
         {parts.map((part, idx) => {
+          // Two locks side by side (5-2) get a faint dot between them while both are locked, so they read as two.
+          if (!part.trim() && parts[idx - 1] === '{0}' && parts[idx + 1] === '{1}' && !isW1Solved && !isW2Solved) {
+            return (
+              <span key={idx} className="mx-1 text-[#8B7A9E] not-italic" aria-hidden="true">
+                ·
+              </span>
+            );
+          }
           if (part === '{0}') {
             if (isW1Solved) {
               return (
@@ -172,7 +183,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
                   key={idx}
                   className="font-['Cormorant_Garamond'] font-bold text-[20px] text-[#6FD39A] underline decoration-[#6FD39A]/60 underline-offset-4 px-1"
                 >
-                  {frag.word1}
+                  {asWritten(frag.word1, idx)}
                 </span>
               );
             }
@@ -202,7 +213,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
                   key={idx}
                   className="font-['Cormorant_Garamond'] font-bold text-[20px] text-[#6FD39A] underline decoration-[#6FD39A]/60 underline-offset-4 px-1"
                 >
-                  {frag.word2}
+                  {asWritten(frag.word2, idx)}
                 </span>
               );
             }
