@@ -1,69 +1,115 @@
-// Multiplayer step 1: signing in, making a party, the invite link, the host letting friends in (Core Rules §12a).
+// Multiplayer step 1: sign-in, parties, the invite, the host letting friends in, Session Zero, the party clock and
+// starting the story (Core Rules §7, §11, §12a). Every screen's words are from review-accounts-and-invites.md.
 // Opened with ?online=1, or by an invite link (?join=CODE). The one-phone demo is unchanged.
 import { useCallback, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import {
   supabase,
   plainError,
+  allTimeZones,
+  homeTimeZone,
+  timeZoneLabel,
+  dayOneWord,
   MAX_PLAYER_NAME,
   MAX_PARTY_NAME,
   MAX_PARTY_SIZE,
+  PARTY_COLUMNS,
+  MEMBER_COLUMNS,
   type PartyRow,
   type MemberRow,
+  type InviteDetails,
 } from './supabaseClient';
+import { CREDIT_LINE, INVITE_BULLETS, PREMISE_LINE, SZ_DOOR, TAGLINE } from './onlineText';
+import SessionZero from './SessionZero';
+import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
-const params = new URLSearchParams(window.location.search);
+const startQuery = new URLSearchParams(window.location.search);
 const inviteLink = (code: string) => `${window.location.origin}/?join=${code}`;
+const codeFrom = (text: string) => (text.match(/join=([0-9a-f]+)/i)?.[1] ?? text.trim()).toLowerCase();
+const clearJoinFromUrl = () => window.history.replaceState(null, '', `${window.location.pathname}?online=1`);
 
-// Shared look: the game's night palette and Cinzel headings.
-const card = 'rounded-2xl bg-[#1E1232] border border-[#3A2555] p-4 space-y-3';
-const input =
-  'w-full rounded-lg bg-[#130B1F] border border-[#3A2555] px-3 py-2 text-[15px] text-[#F4F1F8] placeholder-[#8B7A9E] focus:outline-none focus:border-[#D4B876]';
-const goldButton =
-  'w-full rounded-lg bg-[#D4B876] hover:bg-[#E5C158] disabled:opacity-50 px-3 py-2 font-[Cinzel] font-bold text-[13px] text-[#130B1F] transition';
-const quietButton =
-  'rounded-lg border border-[#3A2555] hover:border-[#D4B876] px-3 py-1.5 text-[13px] text-[#B7A9CC] transition';
-const heading = "font-['Cinzel'] font-bold text-[#E5C158]";
+// "Arjun", "Arjun and Dev", "Arjun, Dev and Mei".
+const nameList = (names: string[]) =>
+  names.length <= 1 ? names.join('') : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
 
-function Shell({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen bg-[#130B1F] text-[#F4F1F8] font-sans">
-      <div className="max-w-[440px] mx-auto px-4 py-6 space-y-4">
-        <h1 className={`${heading} text-[22px] text-center`}>Tales of the Dark Moon</h1>
-        {children}
-      </div>
-    </div>
-  );
-}
+// The party list: the host, then the friends in the order they finished Session Zero (§12a);
+// friends still choosing follow, in the order they joined.
+const partyOrder = (party: PartyRow) => (a: MemberRow, b: MemberRow) => {
+  const key = (r: MemberRow) => (r.user_id === party.host_id ? '0' : `1${r.session_zero_done_at ?? '9'}${r.joined_at}`);
+  return key(a).localeCompare(key(b));
+};
 
-function ErrorLine({ text }: { text: string | null }) {
-  return text ? <p className="text-[13px] text-[#F08A8A]">{text}</p> : null;
-}
-
-// The invite page's heading and offer (Core Rules §12a, "The invite page").
-function InviteHeader({ code }: { code: string }) {
-  const [info, setInfo] = useState<{ party_name: string; host_name: string; open: boolean } | null | undefined>(undefined);
+function useInvite(code: string | null) {
+  const [info, setInfo] = useState<InviteDetails | null | undefined>(undefined);
   useEffect(() => {
-    supabase.rpc('invite_info', { p_invite_code: code }).then(({ data }) => setInfo(data?.[0] ?? null));
+    if (!code) return;
+    supabase.rpc('invite_details', { p_invite_code: code }).then(({ data }) => setInfo((data as InviteDetails[] | null)?.[0] ?? null));
   }, [code]);
+  return info;
+}
+
+// Screen 1: the invite (review §1), and what it says when the party can no longer be joined (§3).
+function InviteCard({ info, onJoin }: { info: InviteDetails | null | undefined; onJoin?: () => void }) {
+  if (info === undefined) return <p className="text-center text-[#B7A9CC]">…</p>;
+  if (!info) {
+    return (
+      <div className={card}>
+        <p className="text-[15px]">This invite no longer works. Ask for a new link.</p>
+      </div>
+    );
+  }
+  if (info.set_off) {
+    return (
+      <div className={card}>
+        <h2 className={`${heading} text-[17px]`}>This party has set off.</h2>
+        <p className="text-[15px]">Their story has started, and nobody can join it now. You can start a party of your own.</p>
+      </div>
+    );
+  }
+  if (info.full) {
+    return (
+      <div className={card}>
+        <h2 className={`${heading} text-[17px]`}>This party is full.</h2>
+        <p className="text-[15px]">Six is as many as the road will hold.</p>
+      </div>
+    );
+  }
+  if (!info.open) {
+    return (
+      <div className={card}>
+        <p className="text-[15px]">This invite no longer works. Ask for a new link.</p>
+      </div>
+    );
+  }
   return (
     <div className={card}>
-      <h2 className={`${heading} text-[17px]`}>Join the adventure in Tales of the Dark Moon</h2>
-      {info === undefined ? null : info && info.open ? (
-        <p className="text-[15px]">
-          {info.host_name} asks you to join <span className="text-[#E5C158]">{info.party_name}</span>.
-        </p>
-      ) : (
-        <p className="text-[15px] text-[#F08A8A]">This invite no longer works. Ask for a new link.</p>
+      <h2 className={`${heading} text-[18px]`}>Join the adventure in Tales of the Dark Moon</h2>
+      <p className="text-[15px]">
+        {info.host_name} has invited you to join <span className="font-semibold text-[#E5C158]">{info.party_name}</span>.
+      </p>
+      <p className="text-[15px]">{PREMISE_LINE}</p>
+      <p className="text-[15px]">{TAGLINE}</p>
+      <ul className="list-disc pl-5 text-[15px] space-y-0.5">
+        {INVITE_BULLETS.map((b) => (
+          <li key={b}>{b}</li>
+        ))}
+      </ul>
+      <p className="text-[15px]">Free.</p>
+      {onJoin && (
+        <button className={goldButton} onClick={onJoin}>
+          JOIN {info.party_name.toUpperCase()}
+        </button>
       )}
-      <p className="text-[14px] text-[#B7A9CC]">Six weeks. About five minutes a day, and one evening a week. Free.</p>
-      <p className="text-[12px] text-[#8B7A9E]">A fake guru game. The story is told by Mythios AI.</p>
+      {info.members && <p className={`${note} italic`}>Already in the party: {info.members}.</p>}
+      <p className="text-[12px] text-[#8B7A9E]">{CREDIT_LINE}</p>
     </div>
   );
 }
 
+// Screen 2 and 3: sign in (review §1). Google and Apple come later; email and a password today.
 function SignIn() {
-  const [mode, setMode] = useState<'in' | 'up'>('in');
+  const [open, setOpen] = useState(false);
+  const [mode, setMode] = useState<'in' | 'up'>('up');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -80,7 +126,7 @@ function SignIn() {
     } else {
       const trimmed = name.trim();
       if (trimmed.length < 1 || trimmed.length > MAX_PLAYER_NAME) {
-        setError(`Your name is 1 to ${MAX_PLAYER_NAME} characters.`);
+        setError(`A name is 1 to ${MAX_PLAYER_NAME} characters.`);
         setBusy(false);
         return;
       }
@@ -98,103 +144,134 @@ function SignIn() {
   if (sent) {
     return (
       <div className={card}>
-        <p className="text-[15px]">We sent a link to {email.trim()}. Open it to finish making your account.</p>
+        <p className="text-[15px]">We sent a link to {email.trim()}. Open it to finish.</p>
       </div>
     );
   }
   return (
     <div className={card}>
-      <h2 className={`${heading} text-[16px]`}>{mode === 'in' ? 'Sign in' : 'Make an account'}</h2>
-      {mode === 'up' && (
-        <input
-          className={input}
-          placeholder={`Your name (1 to ${MAX_PLAYER_NAME} characters)`}
-          maxLength={MAX_PLAYER_NAME}
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+      <h2 className={`${heading} text-[17px]`}>First, so the story knows you.</h2>
+      {!open ? (
+        <button className={goldButton} onClick={() => setOpen(true)}>
+          USE EMAIL AND A PASSWORD
+        </button>
+      ) : (
+        <>
+          {mode === 'up' && (
+            <>
+              <label className="block text-[15px] font-semibold">What should your friends call you?</label>
+              <p className={`${note} italic`}>This is the name they will see. It can be changed later.</p>
+              <input className={input} maxLength={MAX_PLAYER_NAME} value={name} onChange={(e) => setName(e.target.value)} />
+            </>
+          )}
+          <input className={input} type="email" placeholder="Email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            className={input}
+            type="password"
+            placeholder="Password"
+            autoComplete={mode === 'in' ? 'current-password' : 'new-password'}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && submit()}
+          />
+          <ErrorLine text={error} />
+          <button className={goldButton} disabled={busy || !email || !password} onClick={submit}>
+            {mode === 'in' ? 'SIGN IN' : 'GO ON'}
+          </button>
+          <button
+            className="w-full text-[13px] text-[#B7A9CC] underline"
+            onClick={() => {
+              setMode(mode === 'in' ? 'up' : 'in');
+              setError(null);
+            }}
+          >
+            {mode === 'in' ? 'New here? Make an account' : 'Have an account? Sign in'}
+          </button>
+        </>
       )}
-      <input className={input} type="email" placeholder="Email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input
-        className={input}
-        type="password"
-        placeholder="Password"
-        autoComplete={mode === 'in' ? 'current-password' : 'new-password'}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && submit()}
-      />
-      <ErrorLine text={error} />
-      <button className={goldButton} disabled={busy || !email || !password} onClick={submit}>
-        {mode === 'in' ? 'SIGN IN' : 'MAKE MY ACCOUNT'}
-      </button>
-      <button
-        className="w-full text-[13px] text-[#B7A9CC] underline"
-        onClick={() => {
-          setMode(mode === 'in' ? 'up' : 'in');
-          setError(null);
-        }}
-      >
-        {mode === 'in' ? 'New here? Make an account' : 'Have an account? Sign in'}
-      </button>
     </div>
   );
 }
 
-function AskToJoin({ code, accountName, onAsked }: { code: string; accountName: string; onAsked: (partyId: string) => void }) {
-  // The character name starts as the account name and can be changed (Core Rules §12a, "Two names").
-  const [characterName, setCharacterName] = useState(accountName);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const ask = async () => {
-    setBusy(true);
-    setError(null);
-    const { data, error: e } = await supabase.rpc('request_join', { p_invite_code: code, p_character_name: characterName.trim() });
-    setBusy(false);
-    if (e) setError(plainError(e.message));
-    else onAsked(data as string);
-  };
-  return (
-    <div className={card}>
-      <label className="block text-[13px] text-[#B7A9CC]">Your name in this party</label>
-      <input className={input} maxLength={MAX_PLAYER_NAME} value={characterName} onChange={(e) => setCharacterName(e.target.value)} />
-      <ErrorLine text={error} />
-      <button className={goldButton} disabled={busy || !characterName.trim()} onClick={ask}>
-        ASK TO JOIN
-      </button>
-    </div>
-  );
-}
-
-function MakeParty({ accountName, onMade }: { accountName: string; onMade: (partyId: string) => void }) {
+// Screen 2 of the host's path: start a party (review §2).
+function StartParty({ accountName, onMade, onBack }: { accountName: string; onMade: (id: string) => void; onBack: () => void }) {
   const [partyName, setPartyName] = useState('');
-  const [characterName, setCharacterName] = useState(accountName);
+  const [tz, setTz] = useState(homeTimeZone());
+  const [changing, setChanging] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const make = async () => {
     setBusy(true);
     setError(null);
-    const { data, error: e } = await supabase.rpc('create_party', { p_name: partyName.trim(), p_character_name: characterName.trim() });
+    const { data, error: e } = await supabase.rpc('make_party', { p_name: partyName.trim(), p_character_name: accountName, p_time_zone: tz });
     setBusy(false);
     if (e) setError(plainError(e.message));
     else onMade(data as string);
   };
   return (
     <div className={card}>
-      <h2 className={`${heading} text-[16px]`}>Make a party</h2>
-      <input
-        className={input}
-        placeholder={`The party's name (1 to ${MAX_PARTY_NAME} characters)`}
-        maxLength={MAX_PARTY_NAME}
-        value={partyName}
-        onChange={(e) => setPartyName(e.target.value)}
-      />
-      <label className="block text-[13px] text-[#B7A9CC]">Your name in this party</label>
-      <input className={input} maxLength={MAX_PLAYER_NAME} value={characterName} onChange={(e) => setCharacterName(e.target.value)} />
+      <h2 className={`${heading} text-[18px]`}>Who walks with you?</h2>
+      <p className="text-[15px]">You need at least one friend, and no more than five.</p>
+      <label className="block text-[14px] font-semibold">Name your party:</label>
+      <input className={input} maxLength={MAX_PARTY_NAME} value={partyName} onChange={(e) => setPartyName(e.target.value)} />
+      <label className="block text-[14px] font-semibold">Your party's clock:</label>
+      {!changing ? (
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-[15px]">{timeZoneLabel(tz)}</span>
+          <button className={quietButton} onClick={() => setChanging(true)}>
+            CHANGE
+          </button>
+        </div>
+      ) : (
+        <select className={input} value={tz} onChange={(e) => { setTz(e.target.value); setChanging(false); }}>
+          {allTimeZones().map((z) => (
+            <option key={z} value={z}>
+              {timeZoneLabel(z)}
+            </option>
+          ))}
+        </select>
+      )}
+      <p className={`${note} italic`}>Every day of the story opens at 5:00am on this clock. It cannot be changed once the story starts.</p>
       <ErrorLine text={error} />
-      <button className={goldButton} disabled={busy || !partyName.trim() || !characterName.trim()} onClick={make}>
-        MAKE THE PARTY
+      <button className={goldButton} disabled={busy || !partyName.trim()} onClick={make}>
+        MAKE THE INVITE
       </button>
+      <button className={quietButton} onClick={onBack}>
+        Back
+      </button>
+    </div>
+  );
+}
+
+function HaveInvite({ onCode, onBack }: { onCode: (code: string) => void; onBack: () => void }) {
+  const [text, setText] = useState('');
+  return (
+    <div className={card}>
+      <label className="block text-[15px]">Paste the invite link your friend sent you.</label>
+      <input className={input} value={text} onChange={(e) => setText(e.target.value)} />
+      <button className={goldButton} disabled={!text.trim()} onClick={() => onCode(codeFrom(text))}>
+        GO ON
+      </button>
+      <button className={quietButton} onClick={onBack}>
+        Back
+      </button>
+    </div>
+  );
+}
+
+function Confirm({ title, body, yes, no, onYes, onNo }: { title: string; body: string; yes: string; no: string; onYes: () => void; onNo: () => void }) {
+  return (
+    <div className={`${card} border-[#D4B876]/70`}>
+      <h3 className={`${heading} text-[16px]`}>{title}</h3>
+      <p className="text-[15px]">{body}</p>
+      <div className="flex gap-2">
+        <button className="flex-1 rounded-lg bg-[#D4B876] px-3 py-2 font-[Cinzel] font-bold text-[12px] text-[#130B1F]" onClick={onYes}>
+          {yes}
+        </button>
+        <button className={`flex-1 ${quietButton}`} onClick={onNo}>
+          {no}
+        </button>
+      </div>
     </div>
   );
 }
@@ -202,90 +279,221 @@ function MakeParty({ accountName, onMade }: { accountName: string; onMade: (part
 function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: string; onBack: () => void }) {
   const [party, setParty] = useState<PartyRow | null>(null);
   const [members, setMembers] = useState<MemberRow[]>([]);
-  const [myStatus, setMyStatus] = useState<string | null>(null);
+  const [hostName, setHostName] = useState('');
+  const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
-  const [confirmLeave, setConfirmLeave] = useState(false);
+  const [doingSessionZero, setDoingSessionZero] = useState(false);
+  const [confirm, setConfirm] = useState<null | { kind: 'leave' } | { kind: 'remove'; user: string; name: string } | { kind: 'start' }>(null);
+  const [changingClock, setChangingClock] = useState(false);
+  const [editingName, setEditingName] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
-      supabase.from('parties').select('id,name,host_id,invite_code,invite_open').eq('id', partyId).maybeSingle(),
-      supabase.from('party_members').select('party_id,user_id,character_name,status,joined_at,session_zero_done_at').eq('party_id', partyId),
+      supabase.from('parties').select(PARTY_COLUMNS).eq('id', partyId).maybeSingle(),
+      supabase.from('party_members').select(MEMBER_COLUMNS).eq('party_id', partyId),
     ]);
-    setParty((p as PartyRow) ?? null);
-    setMembers((m as MemberRow[]) ?? []);
-    setMyStatus(((m as MemberRow[]) ?? []).find((r) => r.user_id === userId)?.status ?? null);
-  }, [partyId, userId]);
+    const rows = (m as MemberRow[] | null) ?? [];
+    setParty((p as PartyRow | null) ?? null);
+    setMembers(rows);
+    if (p) setHostName(rows.find((r) => r.user_id === (p as PartyRow).host_id)?.character_name ?? '');
+    else {
+      // Before being let in, a friend cannot read the party itself: only its name and its host's.
+      const { data: sum } = await supabase.rpc('my_party_summary', { p_party: partyId });
+      setHostName((sum as { host_name: string }[] | null)?.[0]?.host_name ?? '');
+    }
+    setLoaded(true);
+  }, [partyId]);
 
   useEffect(() => {
     load();
-    const t = window.setInterval(load, 5000); // the host sees new requests without reloading
+    const t = window.setInterval(load, 5000); // the page follows the host and friends without reloading
     return () => window.clearInterval(t);
   }, [load]);
+
+  const me = members.find((r) => r.user_id === userId);
 
   const act = async (fn: string, args: Record<string, unknown>) => {
     setError(null);
     const { error: e } = await supabase.rpc(fn, args);
     if (e) setError(plainError(e.message));
     await load();
+    return !e;
   };
 
-  if (myStatus === 'pending') {
+  const back = (
+    <button className={quietButton} onClick={onBack}>
+      ← Your parties
+    </button>
+  );
+  const host = hostName || 'The host';
+
+  if (!loaded) return <p className="text-center text-[#B7A9CC]">…</p>;
+
+  if (me?.status === 'pending') {
     return (
-      <div className={card}>
-        <p className="text-[15px]">You asked to join. The host lets each friend in; this page will change when they do.</p>
-        <button className={quietButton} onClick={onBack}>
-          Back
-        </button>
+      <div className="space-y-4">
+        {back}
+        <div className={card}>
+          <h2 className={`${heading} text-[18px]`}>You've knocked.</h2>
+          <p className="text-[15px]">{host} will let you in. We'll tell you the moment they do.</p>
+        </div>
       </div>
     );
   }
-  if (!party) {
+  if (me?.status === 'turned_away') {
     return (
-      <div className={card}>
-        <p className="text-[15px] text-[#B7A9CC]">{myStatus === 'removed' || myStatus === 'left' ? 'You are no longer in this party.' : 'Loading…'}</p>
-        <button className={quietButton} onClick={onBack}>
-          Back
-        </button>
+      <div className="space-y-4">
+        {back}
+        <div className={card}>
+          <h2 className={`${heading} text-[18px]`}>Not this time.</h2>
+          <p className="text-[15px]">{host} hasn't let you into this party.</p>
+        </div>
+      </div>
+    );
+  }
+  if (!party || !me || me.status !== 'approved') {
+    return (
+      <div className="space-y-4">
+        {back}
+        <div className={card}>
+          <h2 className={`${heading} text-[18px]`}>You're no longer in this party.</h2>
+        </div>
       </div>
     );
   }
 
   const isHost = party.host_id === userId;
-  // The party list: the host, then the friends in the order they finished Session Zero (§12a).
-  // Session Zero is not built yet, so friends who have not finished it follow in the order they joined.
-  const order = (r: MemberRow) => (r.user_id === party.host_id ? '0' : `1${r.session_zero_done_at ?? '9'}${r.joined_at}`);
-  const approved = members.filter((r) => r.status === 'approved').sort((a, b) => order(a).localeCompare(order(b)));
+  const approved = members.filter((r) => r.status === 'approved').sort(partyOrder(party));
   const pending = members.filter((r) => r.status === 'pending').sort((a, b) => a.joined_at.localeCompare(b.joined_at));
   const full = approved.length >= MAX_PARTY_SIZE;
+  const started = !!party.season_started_at;
+  const readyCount = approved.filter((r) => r.ready).length;
+  const choosing = approved.filter((r) => !r.ready).map((r) => r.character_name);
+  const setOff = !!party.day1_opens_at && Date.now() >= new Date(party.day1_opens_at).getTime() + 2 * 86400000;
+
+  if (doingSessionZero) {
+    return (
+      <SessionZero
+        partyId={party.id}
+        userId={userId}
+        members={members}
+        onDone={async () => {
+          setDoingSessionZero(false);
+          await load();
+        }}
+      />
+    );
+  }
+
+  // Screen 5 of the friend's path: let in, before Session Zero.
+  if (!me.session_zero_done_at && !isHost) {
+    return (
+      <div className="space-y-4">
+        {back}
+        <div className={card}>
+          <h2 className={`${heading} text-[18px]`}>{host} has let you in.</h2>
+          <button className={goldButton} onClick={() => setDoingSessionZero(true)}>
+            BEGIN
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const partyList = (
+    <ul className="space-y-1.5">
+      {approved.map((r) => (
+        <li key={r.user_id} className="flex items-center justify-between gap-2">
+          <span className="text-[15px]">
+            {r.user_id === userId ? 'You' : r.character_name}
+            {r.user_id === party.host_id ? ' (host)' : ''}
+            <span className="text-[#B7A9CC]"> — {r.ready ? 'ready' : 'choosing'}</span>
+          </span>
+          {isHost && r.user_id !== userId && (
+            <button className={quietButton} onClick={() => setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name })}>
+              Remove
+            </button>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <div className="space-y-4">
-      <button className={quietButton} onClick={onBack}>
-        ← Your parties
-      </button>
+      {back}
+
+      {confirm?.kind === 'remove' && (
+        <Confirm
+          title={`Remove ${confirm.name} from the party?`}
+          body="They will lose their place in this story and can't come back to it."
+          yes="REMOVE"
+          no="KEEP"
+          onYes={async () => {
+            await act('set_member_status', { p_party: party.id, p_user: confirm.user, p_status: 'removed' });
+            setConfirm(null);
+          }}
+          onNo={() => setConfirm(null)}
+        />
+      )}
+      {confirm?.kind === 'leave' && (
+        <Confirm
+          title="Leave the party?"
+          body="Your friends will carry on without you. You can't come back to this story."
+          yes="LEAVE"
+          no="STAY"
+          onYes={async () => {
+            await act('leave_party', { p_party: party.id });
+            onBack();
+          }}
+          onNo={() => setConfirm(null)}
+        />
+      )}
+      {confirm?.kind === 'start' && (
+        <Confirm
+          title={`Start the story for ${readyCount} of you?`}
+          body={`Day 1 opens at 5:00am ${dayOneWord(party.time_zone)}.${
+            choosing.length
+              ? ` ${nameList(choosing)} ${choosing.length === 1 ? "hasn't" : "haven't"} finished choosing. They can still join until the end of Day 2.`
+              : ''
+          }`}
+          yes="START"
+          no="NOT YET"
+          onYes={async () => {
+            await act('start_season', { p_party: party.id });
+            setConfirm(null);
+          }}
+          onNo={() => setConfirm(null)}
+        />
+      )}
+
+      {/* Screen 6 (a friend) or Screen 4 (the host): the waiting room. */}
       <div className={card}>
-        <h2 className={`${heading} text-[18px]`}>{party.name}</h2>
-        <p className="text-[13px] text-[#B7A9CC]">
-          {approved.length} of {MAX_PARTY_SIZE} friends
-        </p>
-        <ul className="space-y-2">
-          {approved.map((r) => (
-            <li key={r.user_id} className="flex items-center justify-between gap-2">
-              <span className="text-[15px]">
-                {r.character_name}
-                {r.user_id === party.host_id && <span className="ml-2 text-[12px] text-[#E5C158]">host</span>}
-                {r.user_id === userId && <span className="ml-2 text-[12px] text-[#8B7A9E]">you</span>}
-              </span>
-              {isHost && r.user_id !== userId && (
-                <button className={quietButton} onClick={() => act('set_member_status', { p_party: party.id, p_user: r.user_id, p_status: 'removed' })}>
-                  Remove
-                </button>
-              )}
-            </li>
-          ))}
-        </ul>
+        {isHost ? (
+          <h2 className={`${heading} text-[18px]`}>Your party</h2>
+        ) : (
+          <>
+            {!started && <h2 className={`${heading} text-[18px]`}>You're ready.</h2>}
+            <h3 className={`${heading} text-[15px]`}>The party</h3>
+          </>
+        )}
+        <p className={note}>{party.name}</p>
+        {partyList}
+        {!isHost && (
+          <p className="text-[15px] pt-1">{started ? SZ_DOOR : `The road opens when ${host} says so.`}</p>
+        )}
+        {isHost && started && <p className="text-[15px] pt-1">{SZ_DOOR}</p>}
       </div>
+
+      {isHost && !me.session_zero_done_at && (
+        <div className={card}>
+          <p className="text-[15px]">Your own character comes first.</p>
+          <button className={goldButton} onClick={() => setDoingSessionZero(true)}>
+            BEGIN
+          </button>
+        </div>
+      )}
 
       {isHost && pending.length > 0 && (
         <div className={card}>
@@ -296,13 +504,13 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
               <span className="flex gap-2">
                 <button
                   className="rounded-lg bg-[#D4B876] px-3 py-1.5 font-[Cinzel] font-bold text-[12px] text-[#130B1F] disabled:opacity-50"
-                  disabled={full}
+                  disabled={full || setOff}
                   onClick={() => act('set_member_status', { p_party: party.id, p_user: r.user_id, p_status: 'approved' })}
                 >
                   LET IN
                 </button>
                 <button className={quietButton} onClick={() => act('set_member_status', { p_party: party.id, p_user: r.user_id, p_status: 'removed' })}>
-                  Turn away
+                  NOT THIS TIME
                 </button>
               </span>
             </div>
@@ -310,64 +518,117 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         </div>
       )}
 
+      {/* Screen 3 of the host's path: the invite. */}
+      {isHost && !full && !setOff && (
+        <div className={card}>
+          <h3 className={`${heading} text-[15px]`}>Send this to your friends.</h3>
+          <p className="break-all text-[13px] text-[#B7A9CC]">{inviteLink(party.invite_code)}</p>
+          <div className="flex flex-wrap gap-2">
+            <button
+              className={quietButton}
+              onClick={async () => {
+                try {
+                  await navigator.clipboard.writeText(inviteLink(party.invite_code));
+                  setCopied(true);
+                  window.setTimeout(() => setCopied(false), 1500);
+                } catch {
+                  setCopied(false);
+                }
+              }}
+            >
+              {copied ? 'COPIED' : 'COPY'}
+            </button>
+            {typeof navigator.share === 'function' && (
+              <button
+                className={quietButton}
+                onClick={() => navigator.share({ title: 'Tales of the Dark Moon', url: inviteLink(party.invite_code) }).catch(() => undefined)}
+              >
+                SHARE
+              </button>
+            )}
+            <button className={quietButton} onClick={() => act('new_invite_code', { p_party: party.id })}>
+              NEW LINK
+            </button>
+          </div>
+          <p className={note}>Anyone you send it to can ask to join. Nobody gets in until you say so.</p>
+        </div>
+      )}
+
       {isHost && (
         <div className={card}>
-          <h3 className={`${heading} text-[15px]`}>Invite link</h3>
-          {party.invite_open && !full ? (
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[14px]">
+              <span className="font-semibold">Your party's clock:</span> {timeZoneLabel(party.time_zone)}
+            </span>
+            {!started && !changingClock && (
+              <button className={quietButton} onClick={() => setChangingClock(true)}>
+                CHANGE
+              </button>
+            )}
+          </div>
+          {changingClock && (
+            <select
+              className={input}
+              value={party.time_zone}
+              onChange={async (e) => {
+                await act('set_party_clock', { p_party: party.id, p_time_zone: e.target.value });
+                setChangingClock(false);
+              }}
+            >
+              {allTimeZones().map((z) => (
+                <option key={z} value={z}>
+                  {timeZoneLabel(z)}
+                </option>
+              ))}
+            </select>
+          )}
+          {!started && (
             <>
-              <p className="break-all text-[13px] text-[#B7A9CC]">{inviteLink(party.invite_code)}</p>
-              <div className="flex gap-2">
-                <button
-                  className={quietButton}
-                  onClick={async () => {
-                    try {
-                      await navigator.clipboard.writeText(inviteLink(party.invite_code));
-                      setCopied(true);
-                      window.setTimeout(() => setCopied(false), 1500);
-                    } catch {
-                      setCopied(false);
-                    }
-                  }}
-                >
-                  {copied ? 'Copied' : 'Copy link'}
-                </button>
-                <button className={quietButton} onClick={() => act('new_invite_code', { p_party: party.id })}>
-                  New link
-                </button>
-              </div>
-              <p className="text-[12px] text-[#8B7A9E]">A new link stops the old one working.</p>
+              <button className={goldButton} disabled={readyCount < 2} onClick={() => setConfirm({ kind: 'start' })}>
+                START THE STORY
+              </button>
+              <p className={`${note} italic`}>Needs two of you ready. Day 1 opens at the next 5:00am.</p>
             </>
-          ) : (
-            <p className="text-[13px] text-[#B7A9CC]">{full ? 'The party is full.' : 'The invite is closed.'}</p>
           )}
         </div>
       )}
 
       <ErrorLine text={error} />
+
       <div className={card}>
-        {!confirmLeave ? (
-          <button className={quietButton} onClick={() => setConfirmLeave(true)}>
-            Leave this party
-          </button>
+        {editingName === null ? (
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[14px]">
+              <span className="font-semibold">Your name in this party:</span> {me.character_name}
+            </span>
+            <button className={quietButton} onClick={() => setEditingName(me.character_name)}>
+              CHANGE
+            </button>
+          </div>
         ) : (
-          <div className="space-y-2">
-            <p className="text-[14px]">If you leave, you cannot come back to this story.</p>
-            <div className="flex gap-2">
-              <button
-                className={quietButton}
-                onClick={async () => {
-                  await act('leave_party', { p_party: party.id });
-                  onBack();
-                }}
-              >
-                Leave
-              </button>
-              <button className={quietButton} onClick={() => setConfirmLeave(false)}>
-                Stay
-              </button>
-            </div>
+          <div className="flex gap-2">
+            <input className={input} maxLength={MAX_PLAYER_NAME} value={editingName} onChange={(e) => setEditingName(e.target.value)} />
+            <button
+              className={quietButton}
+              disabled={!editingName.trim()}
+              onClick={async () => {
+                const { error: e } = await supabase
+                  .from('party_members')
+                  .update({ character_name: editingName.trim() })
+                  .eq('party_id', party.id)
+                  .eq('user_id', userId);
+                if (e) setError(plainError(e.message));
+                setEditingName(null);
+                await load();
+              }}
+            >
+              SAVE
+            </button>
           </div>
         )}
+        <button className={quietButton} onClick={() => setConfirm({ kind: 'leave' })}>
+          Leave the party
+        </button>
       </div>
     </div>
   );
@@ -377,30 +638,37 @@ function Home({ session }: { session: Session }) {
   const userId = session.user.id;
   const [accountName, setAccountName] = useState('');
   const [rows, setRows] = useState<(MemberRow & { parties: { name: string } | null })[]>([]);
+  const [view, setView] = useState<'list' | 'start' | 'invite'>('list');
   const [openParty, setOpenParty] = useState<string | null>(null);
-  const [joinCode, setJoinCode] = useState<string | null>(params.get('join'));
+  const [joinCode, setJoinCode] = useState<string | null>(startQuery.get('join'));
+  const [joinError, setJoinError] = useState<string | null>(null);
+  const [editingName, setEditingName] = useState<string | null>(null);
+  const info = useInvite(joinCode);
 
   const load = useCallback(async () => {
     const [{ data: prof }, { data: mine }] = await Promise.all([
       supabase.from('profiles').select('display_name').eq('id', userId).maybeSingle(),
       supabase
         .from('party_members')
-        .select('party_id,user_id,character_name,status,joined_at,session_zero_done_at,parties(name)')
+        .select(`${MEMBER_COLUMNS},parties(name)`)
         .eq('user_id', userId)
-        .in('status', ['approved', 'pending']),
+        .in('status', ['approved', 'pending', 'turned_away']),
     ]);
     setAccountName(prof?.display_name ?? '');
-    setRows((mine as unknown as (MemberRow & { parties: { name: string } | null })[]) ?? []);
+    const list = (mine as unknown as (MemberRow & { parties: { name: string } | null })[]) ?? [];
+    // A party not yet joined cannot be read; its name comes from my_party_summary.
+    for (const r of list) {
+      if (r.parties) continue;
+      const { data: sum } = await supabase.rpc('my_party_summary', { p_party: r.party_id });
+      const name = (sum as { party_name: string }[] | null)?.[0]?.party_name;
+      if (name) r.parties = { name };
+    }
+    setRows(list);
   }, [userId]);
 
   useEffect(() => {
     load();
   }, [load]);
-
-  const leaveInvite = () => {
-    setJoinCode(null);
-    window.history.replaceState(null, '', `${window.location.pathname}?online=1`);
-  };
 
   if (openParty) {
     return (
@@ -415,76 +683,132 @@ function Home({ session }: { session: Session }) {
     );
   }
 
+  if (joinCode) {
+    return (
+      <div className="space-y-4">
+        <InviteCard
+          info={info}
+          onJoin={
+            accountName
+              ? async () => {
+                  setJoinError(null);
+                  const { data, error } = await supabase.rpc('request_join', { p_invite_code: joinCode, p_character_name: accountName });
+                  if (error) return setJoinError(plainError(error.message));
+                  clearJoinFromUrl();
+                  setJoinCode(null);
+                  setOpenParty(data as string);
+                }
+              : undefined
+          }
+        />
+        <ErrorLine text={joinError} />
+        <button
+          className={quietButton}
+          onClick={() => {
+            clearJoinFromUrl();
+            setJoinCode(null);
+          }}
+        >
+          Back
+        </button>
+      </div>
+    );
+  }
+
+  if (view === 'start') return <StartParty accountName={accountName} onMade={(id) => { setView('list'); setOpenParty(id); }} onBack={() => setView('list')} />;
+  if (view === 'invite') return <HaveInvite onCode={(c) => { setView('list'); setJoinCode(c); }} onBack={() => setView('list')} />;
+
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <span className="text-[14px] text-[#B7A9CC]">Signed in as {accountName || '…'}</span>
+      {rows.length === 0 && <p className="text-center text-[15px]">{TAGLINE}</p>}
+      {rows.length > 0 && (
+        <div className={card}>
+          <h2 className={`${heading} text-[16px]`}>Your parties</h2>
+          {rows.map((r) => (
+            <button
+              key={r.party_id}
+              className="w-full flex items-center justify-between rounded-lg border border-[#3A2555] hover:border-[#D4B876] px-3 py-2 text-left"
+              onClick={() => setOpenParty(r.party_id)}
+            >
+              <span className="text-[15px]">{r.parties?.name ?? '…'}</span>
+              <span className={note}>{r.character_name}</span>
+            </button>
+          ))}
+        </div>
+      )}
+      <button className={goldButton} onClick={() => setView('start')} disabled={!accountName}>
+        START A PARTY
+      </button>
+      <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={() => setView('invite')}>
+        I HAVE AN INVITE
+      </button>
+
+      <div className={`${card} mt-6`}>
+        {editingName === null ? (
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[14px]">
+              <span className="font-semibold">Your name:</span> {accountName || '…'}
+            </span>
+            <button className={quietButton} onClick={() => setEditingName(accountName)}>
+              CHANGE
+            </button>
+          </div>
+        ) : (
+          <div className="flex gap-2">
+            <input className={input} maxLength={MAX_PLAYER_NAME} value={editingName} onChange={(e) => setEditingName(e.target.value)} />
+            <button
+              className={quietButton}
+              disabled={!editingName.trim()}
+              onClick={async () => {
+                await supabase.from('profiles').update({ display_name: editingName.trim() }).eq('id', userId);
+                setEditingName(null);
+                load();
+              }}
+            >
+              SAVE
+            </button>
+          </div>
+        )}
         <button className={quietButton} onClick={() => supabase.auth.signOut()}>
           Sign out
         </button>
       </div>
-
-      {joinCode && accountName && (
-        <>
-          <InviteHeader code={joinCode} />
-          <AskToJoin
-            code={joinCode}
-            accountName={accountName}
-            onAsked={(id) => {
-              leaveInvite();
-              setOpenParty(id);
-            }}
-          />
-          <button className={quietButton} onClick={leaveInvite}>
-            Not now
-          </button>
-        </>
-      )}
-
-      {!joinCode && (
-        <>
-          <div className={card}>
-            <h2 className={`${heading} text-[16px]`}>Your parties</h2>
-            {rows.length === 0 && <p className="text-[14px] text-[#B7A9CC]">None yet. Make one, or open a friend's invite link.</p>}
-            {rows.map((r) => (
-              <button
-                key={r.party_id}
-                className="w-full flex items-center justify-between rounded-lg border border-[#3A2555] hover:border-[#D4B876] px-3 py-2 text-left"
-                onClick={() => setOpenParty(r.party_id)}
-              >
-                <span className="text-[15px]">{r.parties?.name ?? 'A party'}</span>
-                <span className="text-[12px] text-[#8B7A9E]">{r.status === 'pending' ? 'waiting for the host' : r.character_name}</span>
-              </button>
-            ))}
-          </div>
-          {accountName && <MakeParty accountName={accountName} onMade={(id) => setOpenParty(id)} />}
-        </>
-      )}
+      <p className="text-center text-[12px] text-[#8B7A9E]">{CREDIT_LINE}</p>
     </div>
   );
 }
 
 export default function OnlineApp() {
   const [session, setSession] = useState<Session | null | undefined>(undefined);
+  const joinCode = startQuery.get('join');
+  const info = useInvite(joinCode);
+  const [wantsSignIn, setWantsSignIn] = useState(false);
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
     const { data } = supabase.auth.onAuthStateChange((_event, s) => setSession(s));
     return () => data.subscription.unsubscribe();
   }, []);
-  const joinCode = params.get('join');
 
-  return (
-    <Shell>
-      {session === undefined ? (
-        <p className="text-center text-[#B7A9CC]">Loading…</p>
-      ) : session ? (
-        <Home session={session} />
-      ) : (
-        <>
-          {joinCode && <InviteHeader code={joinCode} />}
-          <SignIn />
-        </>
-      )}
-    </Shell>
-  );
+  let body;
+  if (session === undefined) body = <p className="text-center text-[#B7A9CC]">…</p>;
+  else if (session) body = <Home session={session} />;
+  else if (joinCode && !wantsSignIn) body = <InviteCard info={info} onJoin={() => setWantsSignIn(true)} />;
+  else if (!joinCode && !wantsSignIn) {
+    // Home, for someone with no party (review §2 Screen 1).
+    body = (
+      <div className="space-y-4">
+        <p className="text-center text-[15px]">{TAGLINE}</p>
+        <button className={goldButton} onClick={() => setWantsSignIn(true)}>
+          START A PARTY
+        </button>
+        <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={() => setWantsSignIn(true)}>
+          I HAVE AN INVITE
+        </button>
+        <p className="text-center text-[12px] text-[#8B7A9E]">{CREDIT_LINE}</p>
+      </div>
+    );
+  } else body = <SignIn />;
+
+  return <Shell>{body}</Shell>;
 }
