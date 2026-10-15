@@ -618,9 +618,13 @@ export default function App() {
     setRelics((prev) => ({ ...prev, [relicType]: (prev[relicType] || 0) + 1 }));
   };
 
-  const handleSolveWord = (fragId: string, wordIndex: 1 | 2, solverName: string) => {
+  const handleSolveWord = (fragId: string, wordIndex: 1 | 2, solverName: string): boolean => {
     // Each word pays once (Core Rules §6): ignore a word that is already filled.
-    if (solvedWords[fragId]?.[wordIndex === 1 ? 'w1' : 'w2']) return;
+    const entry = solvedWords[fragId] || {};
+    if (entry[wordIndex === 1 ? 'w1' : 'w2']) return false;
+    // Core Rules §6: until the fragment's own day ends, a player may fill only one of its two words.
+    const otherBy = entry[wordIndex === 1 ? 'w2' : 'w1'];
+    if (fragId === `${currentWeek}-${currentDay}` && otherBy && otherBy === solverName) return false;
     setSolvedWords((prev) => {
       const curr = prev[fragId] || {};
       const updated = {
@@ -642,6 +646,7 @@ export default function App() {
       `🔓 [Seeker Chest · ${solverName}]: Solved Lock ${wordIndex} on Fragment ${fragId} (+${GOLD_FRAGMENT_WORD_SOLVED}g)!`,
       ...msgs,
     ]);
+    return true;
   };
 
   const handleGiveRelic = (relicType: string, friendName: string) => {
