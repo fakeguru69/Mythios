@@ -74,6 +74,7 @@ import {
 import { UNITED_EFFORT_STORIES } from '../data/unitedEffortStories';
 import { GATHERING_SCRIPTS, GatheringCond, GatheringStep } from '../data/gatheringScripts';
 import { GARRICK_RECAP } from '../data/garrickRecap';
+import { WEEK_QUESTIONS } from '../data/weekQuestions';
 
 /** A roll's net: +3, 0 or −2 (a true minus sign). */
 const formatMargin = (m: number) => (m > 0 ? `+${m}` : m === 0 ? '0' : `−${Math.abs(m)}`);
@@ -1636,6 +1637,8 @@ interface PartyTabViewProps {
   party: PartyFriend[];
   meaningPins: Record<string, Record<string, { name: string; text: string }>>;
   onPinMeaning: (fragId: string, friendId: string, name: string, text: string) => void;
+  weekBoard: Record<number, Record<string, { name: string; entries: { day: number; text: string }[] }>>;
+  onSetWeekLine: (week: number, friendId: string, name: string, day: number, text: string) => void;
   currentWeek: number;
   currentDay: number;
   onSelectWeek: (w: number) => void;
@@ -1686,6 +1689,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   party,
   meaningPins,
   onPinMeaning,
+  weekBoard,
+  onSetWeekLine,
   currentWeek,
   currentDay,
   onSelectWeek,
@@ -2777,6 +2782,32 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const gWalk = (() => {
     const nodes: React.ReactNode[] = [];
     if (!gatheringScript) return { nodes, done: true, reachedTwist: false };
+    // The case so far, read back by MYTHIOS at the opening (Fan Out and Campfire proposal §3.4): at most three
+    // friends by name (Campfire v2.3 §M), the most recently updated first; where a line changed, its first day too.
+    // Days are named by number, never by weekday (Fake Guru, 15 Oct). Never graded.
+    {
+      const board = weekBoard[currentWeek] || {};
+      const lines = Object.values(board)
+        .filter((f) => f.entries.length)
+        .sort((a, b) => b.entries[b.entries.length - 1].day - a.entries[a.entries.length - 1].day);
+      if (WEEK_QUESTIONS[currentWeek] && lines.length) {
+        const said = lines.slice(0, 3).map((f) => {
+          const first = f.entries[0];
+          const last = f.entries[f.entries.length - 1];
+          return first.text !== last.text
+            ? `On Day ${first.day}, ${f.name} thought: “${first.text}” Tonight: “${last.text}”`
+            : `${f.name}: “${last.text}”`;
+        });
+        nodes.push(
+          <div key="g-case" className="space-y-1.5" data-week-readback>
+            <div className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] uppercase text-[#B7A9CC]">The case so far</div>
+            <NarrationBlock
+              text={[`*${WEEK_QUESTIONS[currentWeek]}*`, ...said, ...(lines.length > 3 ? ['The rest are on the board.'] : [])].join('\n\n')}
+            />
+          </div>
+        );
+      }
+    }
     const steps = gatheringScript.steps;
     let reachedTwist = false;
     const stop = () => ({ nodes, done: false, reachedTwist });
@@ -3188,6 +3219,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
           party={party}
           meaningPins={meaningPins}
           onPinMeaning={onPinMeaning}
+          weekBoard={weekBoard}
+          onSetWeekLine={onSetWeekLine}
           currentWeek={currentWeek}
           currentDay={currentDay}
           characterName={characterName}

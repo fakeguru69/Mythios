@@ -19,6 +19,7 @@ import {
 import { routeGarrickMessage } from '../data/garrickRouter';
 import { CHAPTER_SCRIPTS } from '../data/chapterScripts';
 import { FRAGMENT_MEANING_QUESTIONS } from '../data/fragmentMeaningQuestions';
+import { WEEK_QUESTIONS } from '../data/weekQuestions';
 import { HintMask, hintHas } from '../data/fanOutLeads';
 import { NarrationBlock, ScriptInline, fillScriptTokens } from './ChapterScriptParts';
 
@@ -28,6 +29,9 @@ export interface CampfireEveningViewProps {
   /** One-line answers to a fragment's meaning question, per fragment and friend (read back at the Gathering). */
   meaningPins: Record<string, Record<FriendId, { name: string; text: string }>>;
   onPinMeaning: (fragId: string, friendId: FriendId, name: string, text: string) => void;
+  /** The case so far: per week, each friend's one-line theory, dated by day (Fan Out and Campfire proposal §3.3). */
+  weekBoard: Record<number, Record<FriendId, { name: string; entries: { day: number; text: string }[] }>>;
+  onSetWeekLine: (week: number, friendId: FriendId, name: string, day: number, text: string) => void;
   currentWeek: number;
   currentDay: number;
   characterName: string;
@@ -81,6 +85,8 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   party,
   meaningPins,
   onPinMeaning,
+  weekBoard,
+  onSetWeekLine,
 }) => {
   const dayKey = `${currentWeek}-${currentDay}`;
   const dayEntry = getCampfireDayEntry(currentWeek, currentDay);
@@ -118,6 +124,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partyIds.join('|')]);
   const [meaningDraft, setMeaningDraft] = useState<string>('');
+  const [weekLineDraft, setWeekLineDraft] = useState<string>('');
   const [isPastDawnCutoff, setIsPastDawnCutoff] = useState<boolean>(false);
   const [simBruisedScrape, setSimBruisedScrape] = useState<boolean>(bruisedScrapeToday);
   const [simMissedYesterday, setSimMissedYesterday] = useState<boolean>(false);
@@ -1409,6 +1416,80 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             </div>
           )}
         </div>
+
+        {/* -------------------------------------------------------------------
+            THE CASE SO FAR: the week's one question, each friend's current line (dated by day)
+           ------------------------------------------------------------------- */}
+        {WEEK_QUESTIONS[currentWeek] && (() => {
+          const board = weekBoard[currentWeek] || {};
+          const mine = board[activeSeat]?.entries || [];
+          const latestMine = mine[mine.length - 1]?.text || '';
+          const tonightPin = activeSeatPin
+            ? [activeSeatPin.readingText, activeSeatPin.customLine].filter(Boolean).join(' ')
+            : '';
+          const save = (text: string) => {
+            const t = text.trim().slice(0, 140);
+            if (!t) return;
+            onSetWeekLine(currentWeek, activeSeat, friendNames[activeSeat], currentDay, t);
+            setWeekLineDraft('');
+          };
+          return (
+            <div className="rounded-xl border p-3.5 space-y-2.5 bg-[#150D22] border-[#3A2555]/80" data-week-board>
+              <div className="text-[11px] font-['Cinzel'] font-bold tracking-[0.8px] text-[#D4B876] uppercase">
+                The case so far · Week {currentWeek}
+              </div>
+              <p className="font-['Cormorant_Garamond'] font-medium text-[19px] text-[#F4F1F8] leading-[1.4]">
+                {WEEK_QUESTIONS[currentWeek]}
+              </p>
+              <div className="space-y-1">
+                {partyIds
+                  .filter((fid) => board[fid]?.entries.length)
+                  .map((fid) => {
+                    const e = board[fid]!.entries;
+                    const last = e[e.length - 1];
+                    return (
+                      <p key={fid} className="text-[13.5px] font-sans text-[#D8CEE8]">
+                        <strong style={{ color: friendColors[fid] }}>{friendNames[fid]}</strong>
+                        <span className="text-[#8B7A9E]"> · Day {last.day}</span>: {last.text}
+                      </p>
+                    );
+                  })}
+                {!partyIds.some((fid) => board[fid]?.entries.length) && (
+                  <p className="text-[13px] font-sans text-[#8B7A9E]">No lines yet this week.</p>
+                )}
+              </div>
+              {!isPastDawnCutoff && (
+                <form
+                  className="flex gap-2"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    save(weekLineDraft);
+                  }}
+                >
+                  <input
+                    id="week-line"
+                    value={weekLineDraft}
+                    onChange={(e) => setWeekLineDraft(e.target.value.slice(0, 140))}
+                    placeholder={latestMine ? `Yours: ${latestMine}` : 'Your answer, in one line'}
+                    className="flex-1 min-w-0 bg-[#0D0714] border border-[#3A2555] rounded-lg px-2.5 py-1.5 text-[14px] text-[#F4F1F8] placeholder-[#8B7A9E] focus:outline-none focus:border-[#D4B876]"
+                  />
+                  <button type="submit" className="px-3 rounded-lg border border-[#D4B876] bg-[#D4B876]/20 font-['Cinzel'] font-bold text-[11.5px] text-[#F4F1F8] uppercase">
+                    Save
+                  </button>
+                </form>
+              )}
+              {!isPastDawnCutoff && tonightPin && tonightPin !== latestMine && (
+                <button
+                  type="button"
+                  onClick={() => save(tonightPin)}
+                  className="text-[12.5px] font-sans text-[#D4B876] hover:underline"
+                >
+                  Use tonight's pin: “{tonightPin}”
+                </button>
+              )}
+            </div>
+          );
+        })()}
 
         {/* -------------------------------------------------------------------
             STEP 6: THE RIDDLE (Tone-Aware, 3 Tries or Give Up, Zero Gold)
