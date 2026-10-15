@@ -111,4 +111,13 @@ Test 3 needs no code. It could start this week and tell us the most.
   - Make a party (its name, and your name in it, which starts as your account name); ask to join; the host lets each friend in or turns them away, and can remove a friend; copy the link or make a new one; leave (with canon's warning that you cannot come back).
   - The party list is the host, then friends in Session Zero order; until Session Zero is built, in the order they joined.
   - Tested in a browser with three test accounts against the real server: every step above worked.
+- **16 Oct: the screens in canon's words, Session Zero, the clock and the start.** Wording from `docs/canon/review-accounts-and-invites.md` (Fake Guru sent it 16 Oct) and Core Rules §7; every line is in `src/online/onlineText.ts`.
+  - The invite page: who invited you, the premise line, the offer, who is already in, the credit line; and "This party has set off.", "This party is full." and "This invite no longer works."
+  - "First, so the story knows you." and "What should your friends call you?"; "You've knocked.", "TV has let you in." [BEGIN], "Not this time.", "You're no longer in this party."
+  - Start a party: "Who walks with you?", the party's name and its clock (5:00am, locked once the story starts).
+  - Session Zero (`SessionZero.tsx`): the premise, the six class cards (with "Mei is already a Sage."), a second strength, the two optional questions, the starting card (14 / 12 / 10, Weapon 14, Armor 27, HP 100, Gold 0), [READY].
+  - Waiting rooms with "ready" or "choosing"; [LET IN] / [NOT THIS TIME]; [REMOVE] / [KEEP]; [LEAVE] / [STAY]; [COPY] / [SHARE] / new link; [START THE STORY] (two ready), its confirm, and "Day 1 opens at 5:00am. Sleep, if you can."
+  - The server keeps the rules (`0004`–`0006`): turned away is not the same as removed; the invite closes at the end of Day 2; Day 1 opens at the next 5:00am on the party's clock; players can change only their names directly.
+  - Tested in a browser with three test accounts against the server: every step worked.
+- **The public website** (Vercel, `vercel.json`) builds only the online screens (`VITE_ONLINE_ONLY=1`). The one-phone demo carries the whole season's text, the secret included, so it is never put on the public site.
 - **Not yet:** the party chat lines for leaving and a new host ("Dev has left the road.", "Mei now leads the party.") come with the party chat (step 4). Session Zero, the party clock and [READY] come next in step 1. Friends can use it only once the app is on the web (a hosting choice for Fake Guru).

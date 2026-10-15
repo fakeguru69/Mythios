@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "VITE_ONLINE_ONLY=1 vite build",
+  "outputDirectory": "dist"
+}
