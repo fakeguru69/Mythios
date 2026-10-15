@@ -46,6 +46,8 @@ Rules he has set. Follow them in every reply:
 
 The list below says where each kind of fact usually lives. It is a guide for where to look first, not a fixed winner. **When two sources disagree (code vs canon, or canon vs canon), do not pick one yourself: show Fake Guru both versions side by side, say which you would choose and why, and let him decide.** Then update every file that holds the losing version.
 
+**Canon is the starting point, not a cage** (Fake Guru, 15 Oct). Stick to canon by default, but look at it critically. Where the build already does something better, or a better idea comes up, say so: show canon's version and the better one side by side, say why, and let him decide. Never swap canon out on your own.
+
 1. `docs/canon/mythios-core-rules.md` is the rulebook. **§12 holds every number in force.** §15 lists the 8 Oct approvals that are "approved in principle, numbers pending": §12 stays the number source until a numbers pass.
 2. The six episode files (`episode-1-the-list.md` … `episode-6-the-finale.md`) are the master story text, Days 1 to 7.
 3. `garrick-deception-table.md` is the truth for every Garrick line and what it secretly means. `garrick-stored-lines.md` holds the router rules and stored lines.
@@ -71,9 +73,11 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 - `src/components/AuditWorkbench.tsx` (1,417): internal QA screen. Shows Garrick's hidden meanings. **Must never be reachable by a player.**
 - `src/data/economy.ts`: every gold amount, one constant each. Good. Use it everywhere.
 - `src/data/mythiosRulesData.ts`: tiers (`getTierInfo`), `WEEKDAY_DC_BY_WEEK`, `calculateAttributeGrowth` (correct), `PartyFriend`, `DEFAULT_PARTY_MEMBERS`, glossary, badges.
-- `src/data/mythiosChaptersData.ts`: the 36 weekday chapters (`WEEKDAY_INVENTORY`). Contains `[N]` placeholders.
+- `src/data/chapterScripts.ts` (15 Oct): the 36 weekday chapters as canon writes them, generated from the episode files by `scripts/gen-chapter-scripts.cjs`. **The Story screen plays these.** Never edit by hand: change the episode file and run the script.
+- `src/data/gatheringEngine.ts` + `unitedEffortStories.ts` (15 Oct): the Gathering Battle and United Effort rules, and the United Effort story lines generated from canon.
+- `src/data/mythiosChaptersData.ts`: the build's short summary of each weekday (`WEEKDAY_INVENTORY`): Challenge Attributes, fight pay, place names. Still used for rules and the workbench; its story fields are no longer shown in the day.
 - `src/data/soloLandmarkProse.ts`: generated arrival and result prose around each chapter.
-- `src/data/narrativeContinuityAudit.ts`: continuity patches L1 to L6 applied over the chapters (`getChapterWithContinuityFixes`). **All six are on by default; L4 and L5 are wrong** (see Task 2).
+- `src/data/narrativeContinuityAudit.ts`: the old continuity patches. **All retired** (L4–L6 on 14 Oct, L1 and L3 on 15 Oct; L2 became canon); the day now plays canon text, so nothing is patched.
 - `src/data/campfireDaysData.ts` + `campfire-days-v23.json`: Campfire v2.3 (correct) plus first-use checks.
 - `src/data/garrickRouter.ts`: deterministic router for Garrick questions with story-state guards. `garrickCampfirePrompts.ts`: older Campfire prompt bank (still has "all four of us"). `garrickDailyRiddles.ts`, `gmMemoryEngine.ts` (memory digest; has made-up token figures), `mythiosFragments.ts`, `mythiosGatheringsAndAudit.ts`.
 - `public/*.md`: audit bundles (old snapshots, ignore). `docs/`: a few older docs. `simulators/g_final.py`: the economy simulator.
@@ -84,7 +88,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 **Good and must be kept:** the Seeker word-lock puzzle; Campfire v2.3 data (exact); `economy.ts`; the growth formula; gold never below 0; verses gated by week; Garrick present all of Week 6 (no empty seat); Malakor's name gated to Gathering 2 or later; continuity fixes reach the player view; the Gathering boss only loses at 0 HP; Fan Out's "Head to the Campfire" shown as a finished day; the Detour fight; 0 HP = "Bruised Scrape", story goes on.
 
-**Broken (each is a task in §7):** the Challenge roll; result-card numbers; seven hard-coded gold amounts; Combat Relic never spent; United Effort not canon; party fixed at four; `[N]` replaced with "the company"; sample friends named after story characters; continuity patches L4 and L5 wrong and on; Store-lock switch left over; Audit Workbench reachable; small text errors.
+**Broken at the 14 Oct handover (each is a task in §7; progress is ticked in `docs/fix-plan.md`):** the Challenge roll; result-card numbers; seven hard-coded gold amounts; Combat Relic never spent; United Effort not canon; party fixed at four; `[N]` replaced with "the company"; sample friends named after story characters; continuity patches L4 and L5 wrong and on; Store-lock switch left over; Audit Workbench reachable; small text errors. *(15 Oct: all fixed except the party of 2–6, the sample names and the small text errors, which are Phases 4 and 7.)*
 
 **Not verified yet:** whether the Gathering "Phase 5 Table Question" choice changes anything (the 9 Oct audit said the first button revealed the same twist whatever was chosen).
 

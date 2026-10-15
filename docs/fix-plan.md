@@ -51,6 +51,11 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 2: build the weekday from canon (restores the story)
 
+**Steps 10, 11 (weekday part) and 13 done 15 Oct; step 12 done for the day itself.** The weekday now plays canon's own text, word for word, from the six episode files: `scripts/gen-chapter-scripts.cjs` turns them into `src/data/chapterScripts.ts` (run it again whenever an episode file changes), and the Story screen plays it step by step: the scene, the "look" choices, What you notice (by highest Attribute, with the second sentence from Adept), the Challenge card with canon's verbs and its cost, the pass or fail text, [PRESS ON] (+200g, 4 harder, a miss costs nothing), who strikes first before a fight, the acts ([PULL IT OUT] and the rest), the fragment, the Pull, and the day summary card with the real gold and growth. W1D6's supper, the extra cup and the courier, and Garrick's weekday lines are back with it. Patches L1 and L3 are retired (L1 was wrong: canon plants the cart at the ford). The "Tell Mythios what you do" box and the made-up "Search around…" chips are gone. The build's recap card and template prose ("Relying on your…", "Following yesterday's lead…") no longer show in the day.
+- Also: W6D1 is two harder after a lost Gathering 5 roll-call (canon, never built before); W4D1 shows Wren walking or carried by Gathering 3's result.
+- Still to do here: Fan Out's lead-in still uses template prose (Phase 5 replaces Fan Out); canon's "You can now afford" line on the summary card; the missed-days recap line (Core Rules §11).
+- For Fake Guru (asked 15 Oct): drop the Detour fight? Drop the +2 Weapon / −15 HP now canon's "who strikes first" covers those days?
+
 10. **[Restore] Canon's day shape**, from the episode files:
     - scene
     - the two "look" choices
