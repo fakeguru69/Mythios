@@ -116,13 +116,15 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   // Active real-player seat for testing multi-friend mechanics without AI-scripted friend lines
   const [activeSeat, setActiveSeat] = useState<FriendId>('YOU');
   const [showSeatControls, setShowSeatControls] = useState<boolean>(false);
-  const [arrivedFriends, setArrivedFriends] = useState<FriendId[]>(partyIds);
-  // A smaller or larger party (workbench switch) resets who is at the fire.
+  // W1D1 is played alone and the party has not met (proposal §3.1): only the player is at that fire.
+  const seatedAtStart = (): FriendId[] => (dayEntry.narratedNoGarrick ? ['YOU'] : partyIds);
+  const [arrivedFriends, setArrivedFriends] = useState<FriendId[]>(seatedAtStart);
+  // A new day, or a smaller or larger party (workbench switch), resets who is at the fire.
   useEffect(() => {
-    setArrivedFriends(partyIds);
-    if (!partyIds.includes(activeSeat)) setActiveSeat('YOU');
+    setArrivedFriends(seatedAtStart());
+    if (!partyIds.includes(activeSeat) || dayEntry.narratedNoGarrick) setActiveSeat('YOU');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [partyIds.join('|')]);
+  }, [partyIds.join('|'), dayKey]);
   const [meaningDraft, setMeaningDraft] = useState<string>('');
   const [weekLineDraft, setWeekLineDraft] = useState<string>('');
   const [isPastDawnCutoff, setIsPastDawnCutoff] = useState<boolean>(false);
@@ -1208,11 +1210,12 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           {/* Dynamic {friend:Attribute} Nudge */}
           <div className="p-2.5 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[14.5px] font-['Cormorant_Garamond'] text-[#F4E8C1] leading-snug">
             <span className="font-['Cinzel'] font-bold text-[10.5px] text-[#F0A552] uppercase block mb-0.5 not-italic">
+              {/* No rule text in the game (CLAUDE.md §1.10): just who is asked. */}
               {dayEntry.narratedNoGarrick
-                ? `ROADSIDE NUDGE · ${nudgeResolved.attribute.toUpperCase()}`
-                : `GARRICK NUDGE · HIGHEST ${nudgeResolved.attribute.toUpperCase()} (${
-                    friendNames[nudgeResolved.targetFriend]
-                  })`}
+                ? 'A question for the road'
+                : friendsAtFire.length > 1
+                ? `Garrick asks ${friendNames[nudgeResolved.targetFriend]}`
+                : 'Garrick asks'}
             </span>
             “{nudgeResolved.resolvedText}”
           </div>
