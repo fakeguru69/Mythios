@@ -44,7 +44,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "You've paid for your rooms and you haven't burned anything down. That's more than most guests manage."
 - Fork: A "Meira left in a hurry." / B "Meira left on purpose."
 - Fan Out clue (leans B; press-on): Each stub has a faint straight line scored down it. She cut them against a rule, one at a time, with care. She meant to send them.
-- Callback: "Yesterday you had a list and an inn's name. Tonight you have her satchel."
+- Callback: "She hasn't sat in that seat for three weeks. Your pages all reached you on the road within the same few days."
 - Riddle: *What has a neck but no head?* A: a bottle. Garrick: "The inn is full of them. None of them talk."
 - Nudge: `{friend:Craft}`, how would you test whether the page is hers?
 
@@ -52,31 +52,31 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "You've not eaten. Sit."
 - Fork: A "The man in the bracken was guarding the rock." / B "He was waiting for us."
 - Fan Out clue (leans both; new): In the flattened bracken a flask has left a ring in the dew, and a second ring beside it where he set it down again.
-- Callback: "Meira's page named this rock. Today you stood at it."
+- Callback: "The man on the forest road was carrying her rubbing. The man in the bracken was watching her rock."
 - Riddle: *The more you take, the more you leave behind. What am I?* A: footsteps. Garrick: "There's bracken full of them out there."
-- Nudge: `{friend:Agility}`, which way did he bolt?
+- Nudge: `{friend:Aim}`, from his hollow in the bracken, what was he watching?
 
 **1-4 · Fenmark**
 - Opener: "A village that won't talk is still talking. Mostly with its shutters."
 - Fork: A "The village is protecting the girl." / B "The village is protecting itself."
 - Fan Out clue (leans B; new): The gate at the end of the lane is swinging, but its bar has been lifted and leaned neatly against the post, not thrown down.
-- Callback: "Yesterday the ruts led here. Today you have her name."
+- Callback: "The boy says they moved like they'd done it before. The little horse at the rock had sat out a winter or two."
 - Riddle: *What breaks the moment you say its name?* A: silence. Garrick: "Fenmark's had plenty of practice."
-- Nudge: `{friend:Charm}`, what would you say to a door that won't open?
+- Nudge: `{friend:Charm}`, when Fenmark shut its doors on us, who was it protecting?
 
 **1-5 · The old charcoal camp**
 - Opener: "Two winters between two children. Some people count in winters. It's a way of keeping still."
 - Fork: A "It's the same man, twice." / B "It's a way of working, not one man."
 - Fan Out clue (leans B; new): She says she never saw his face, only the knife, and it is the knife she knows him by.
-- Callback: "At Fenmark a boy counted you. Here a woman counts winters."
+- Callback: "The road, the rock, and tonight her shutters. Not one of those men has said a word."
 - Riddle: *I grow, but I'm not alive. I need air, but I have no lungs. Water kills me. What am I?* A: fire. Garrick: "Which is why I tend this one myself."
-- Nudge: `{friend:Aim}`, how do you stop a runner without hurting him?
+- Nudge: `{friend:Intellect}`, two children, two winters apart. One man's habit, or someone's way of working?
 
 **1-6 · The Low Ford**
 - Opener: "Six pieces, one map. Eat something before you stare at it."
 - Fork: A "They carried her across the water." / B "They wanted us to think so."
 - Fan Out clue (leans A; press-on): Mid-stream, on the upstream side of the ford-stone, a scrape of fresh paint on the rock at the height of a gunwale. There was a boat.
-- Callback: "Five days ago it was a list. Tonight it's a map of six pieces."
+- Callback: "Meira had this shape on paper before any of you found a piece. Tonight the pieces drew it."
 - Riddle: *I have a bed but never sleep, a mouth but never speak. What am I?* A: a river. Garrick: "The one in front of us says nothing, and I believe it."
 - Nudge: `{friend:Intellect}`, what do you notice about how the pieces settled?
 
@@ -84,17 +84,17 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 
 **2-1 · The mine, then the mill road**
 - Opener: "Beds are in the barn tonight. Pick a corner and take it."
-- Fork: A "Corin is next because the cart went there." / B "Corin is next because the wall says so."
+- Fork: A "They're keeping Corin close, upriver." / B "Upriver is only the road away."
 - Fan Out clue (leans A; new): The old man says the horse never balked at his gate or at the fork, in full dark and with no lamp. It took the mill lane at a steady walk.
-- Callback: "Last week ended with four names. Tonight the next one has a place."
+- Callback: "The mine wall put Tamsin's name first and Corin's second. Tamsin heard them say \"the mill boy next\"."
 - Riddle: *I have a face and two hands but no arms or legs. What am I?* A: a clock. Garrick: "Time's the one thing the cart has on us."
-- Nudge: `{friend:Agility}`, how fast could we reach the mill at first light?
+- Nudge: `{friend:Aim}`, the cart turned upriver. How far do you think it went?
 
 **2-2 · The mill**
 - Opener: "Asked for by name, and by the night he was born. That's an odd thing to ask for."
 - Fork: A "They had a list with birthdays." / B "They knew him personally."
 - Fan Out clue (leans A; press-on): The left wheel pulls. You have seen that track before, coming down a muddy bank to a ford. It is the same cart.
-- Callback: "Yesterday: three names. Today: the mark from the rubbing, cut into a mill's footing."
+- Callback: "In the mine, that shape was a hole, and what sat in it was gone. Here it's cut into the mill's footing."
 - Riddle: *I have teeth but cannot bite. What am I?* A: a comb (or a cog). Garrick: "A mill's full of them."
 - Nudge: `{friend:Craft}`, how was the mark cut, and with what tool?
 
@@ -102,17 +102,17 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "A stranger dead at a lock, and a lock that opened for you. Rooms like that have opinions."
 - Fork: A "The stranger wanted the same door." / B "The stranger was left as a warning."
 - Fan Out clue (leans A; new): The stone round the housing is scored with dozens of short scratches, some weathered and some bright. He tried it more than once, on more than one day.
-- Callback: "At the mill someone asked for Corin by name. Here a stranger died at a lock."
+- Callback: "Corin was asked for by name. Today a lock that wouldn't open for a dead man opened for you."
 - Riddle: *What has many keys but opens no door?* A: a piano. Garrick: "Not like that lock. It opened for you."
-- Nudge: `{friend:Might}`, what do you do with a dog and a chain?
+- Nudge: `{friend:Intellect}`, did that stranger die trying the lock, or was he left for us?
 
 **2-4 · The shaft in the hillside**
 - Opener: "Sit down before you fall down."
-- Fork: A "We were heard." / B "We weren't, and they know anyway."
+- Fork: A "Now they'll hurry." / B "They won't change a thing for us."
 - Fan Out clue (leans B; new): A second lamp stands lit at the foot of the shaft, filled and trimmed, the same make as the ring in the chamber. Nobody grabbed it in a hurry.
-- Callback: "Yesterday, a lock. Today, a shaft."
+- Callback: "Yesterday a branch swung on the slope with no wind. Today they knew you were at the shaft."
 - Riddle: *What can fill a cave and weigh nothing?* A: light. Garrick: "Bring a lantern. Bring two."
-- Nudge: `{friend:Charm}`, how do you talk past a lookout?
+- Nudge: `{friend:Charm}`, the voices below all said the same words. What were they getting ready?
 
 **2-5 · The hillside by night**
 - Opener: "A small black circle. Somebody wanted a thing forgotten, and somebody else wouldn't let it be."
@@ -126,33 +126,33 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "Digging toward an older room. You have to respect the effort."
 - Fork: A "They're digging toward the old room to get in." / B "They're digging to find something that's already there."
 - Fan Out clue (leans B; press-on): Under the room with the lamps there is another hollow. It is bigger. And there is nobody in it at all.
-- Callback: "Last night: a circle. Tonight: picks."
+- Callback: "In the mine, you reached the mark after it was emptied. Tonight they're still digging toward the older room."
 - Riddle: *I have rivers with no water and cities with no houses. What am I?* A: a map. Garrick: "You're carrying one."
-- Nudge: `{friend:Craft}`, how would you open an old shaft quietly?
+- Nudge: `{friend:Might}`, you've heard them digging. Cutting a way in, or searching for something?
 
 ## WEEK 3
 
 **3-1 · Somewhere warm**
 - Opener: "Somewhere warm. I'd settle for a warm supper. Eat."
-- Fork: A "Wren's in Ashcombe." / B "'Somewhere warm' means somewhere else."
+- Fork: A "They need her at home." / B "Home is only the first stop."
 - Fan Out clue (leans A; new): Corin has a child's woollen mitten tucked in his belt that is not his. The wool is rough and grey, and it smells of sheep.
-- Callback: "Last week ended with a boy rescued. This week starts with a girl taken."
+- Callback: "Corin was held a morning's walk from his own mill. Wren was told she was going home first."
 - Riddle: *What has to be broken before you can use it?* A: an egg. Garrick: "Ashcombe's hens have views."
-- Nudge: `{friend:Aim}`, who watches the road while we walk west?
+- Nudge: `{friend:Intellect}`, they took Wren back to where she was born. Why home, of all places?
 
 **3-2 · Ashcombe**
 - Opener: "Eat first. Then think. It goes better in that order."
-- Fork: A "They took her willingly with manners." / B "The manners are the trick."
+- Fork: A "The manners were real." / B "The manners are the trick."
 - Fan Out clue (leans both; new): At the well a boy holds his chip out low and quick, then shoves it back into his shirt before you have looked at it properly.
-- Callback: "Yesterday: 'somewhere warm'. Today: two polite men and a chip of black glass."
+- Callback: "Tamsin and Corin each came home with one cut palm, bound clean. Wren's taker said they'd only need her the once."
 - Riddle: *What has an eye but cannot see?* A: a needle. Garrick: "Sharp little thing. Sharper than a polite man."
-- Nudge: `{friend:Charm}`, how do you ask a village what it saw?
+- Nudge: `{friend:Charm}`, why would men taking a child bother with good manners?
 
 **3-3 · The Blackglass**
 - Opener: "Mind your hands on that glass, all of you."
 - Fork: A "The children were chosen for their place." / B "The places were chosen for the children."
 - Fan Out clue (leans both; press-on): Six horses. One of them is carrying double, and the second rider weighs almost nothing.
-- Callback: "At Ashcombe, black chips. Here, the whole hill is made of them."
+- Callback: "At the Widow's Tooth a man lay in the bracken watching the rock. Here the riders went past this one without slowing."
 - Riddle: *Black when you buy it, red when you burn it, grey when you throw it away. What is it?* A: coal. Garrick: "Charcoal's cheaper than glass. Kinder to knees."
 - Nudge: `{friend:Intellect}`, why would a scholar write down a number she doubted?
 
@@ -160,15 +160,15 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "She's leaving chips on the trail. Clever girl."
 - Fork: A "The chips are for us." / B "The chips are for herself."
 - Fan Out clue (leans both; press-on): A single die, carved from bone, its spots worn almost smooth by somebody's fingers. Whoever slept here had long nights too.
-- Callback: "Yesterday a footnote with a doubtful number. Today a trail of glass."
+- Callback: "Tamsin wasn't asleep; she was counting. Wren is dropping her chips, one by one, on their trail."
 - Riddle: *What follows you all day and vanishes at dark?* A: your shadow. Garrick: "Long ones on a ridge at dusk."
-- Nudge: `{friend:Agility}`, what do you do when the ridge narrows?
+- Nudge: `{friend:Agility}`, you followed Wren's chips up the ridges. Left for us, or for herself?
 
 **3-5 · The shepherd's hut**
 - Opener: "That was an empty hut. Come nearer the fire."
 - Fork: A "They left her bed as a message." / B "They left it in a hurry."
 - Fan Out clue (leans A; new): Each stroke of the name has been cut twice, the second pass deeper than the first.
-- Callback: "Three chips yesterday. Eight today."
+- Callback: "At the mine someone took the time to bind Tamsin's hand in clean linen. Here someone folded one blanket with care, and threw the other down."
 - Riddle: *What goes through a door but never goes in or out?* A: a keyhole. Garrick: "Doors keep secrets better than people."
 - Nudge: `{friend:Craft}`, what tool cuts letters like that into wood?
 
@@ -176,9 +176,9 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "Fire's built up. Sit by it before you decide anything."
 - Fork: A "We go in now." / B "We watch the lamp first."
 - Fan Out clue (leans both; new): Not one horse is tethered at the foot of the Kiln, though six rode this way.
-- Callback: "Eight chips led here, and a lamp went in ahead of you."
+- Callback: "Corin said Wren's home was always warm. Tonight the map ends at a hill that breathes warm air."
 - Riddle: *What can you keep only after you've given it?* A: your word. Garrick: "Mind who hears yours."
-- Nudge: `{friend:Might}`, who goes first through the crack?
+- Nudge: `{friend:Aim}`, a lamp went into the hill ahead of us. Whose was it?
 
 ## WEEK 4
 
@@ -186,15 +186,15 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "Count yourselves. I will, too."
 - Fork: A "He had help in the room." / B "He didn't need any."
 - Fan Out clue (leans A; press-on): They end where the ash gives out and the rock turns to bare black glass. No prints come in. Whoever cut him loose came over the glass and was waiting.
-- Callback: "Last night: a lamp going in ahead of you. Today: ropes cut, a man gone."
+- Callback: "Every one of them you've fought has run at the first gap. Tonight one stood among you with a blade and cut only rope."
 - Riddle: *What can you break without ever touching it?* A: a promise. Garrick: "Careful what you hand out."
-- Nudge: `{friend:Aim}`, where in that room would you stand?
+- Nudge: `{friend:Craft}`, the ropes were cut clean in the dark. His own hand, or another's?
 
 **4-2 · The north road**
 - Opener: "Cold road. Put your hands round that cup."
 - Fork: A "The box matters more than the swords." / B "The swords are the real message."
 - Fan Out clue (leans A; new): The carter says the four never spoke to each other, and never once looked at the road or the lake. Every eye stayed on the cart.
-- Callback: "Yesterday a prisoner walked out. Today four men carry something small."
+- Callback: "The carter's coin has the king's face scraped off. Meira wrote that every record of him had been scraped clean."
 - Riddle: *What has a head and a tail but no body?* A: a coin. Garrick: "Someone scrubbed a face off this one."
 - Nudge: `{friend:Intellect}`, who scrapes a face off a coin?
 
@@ -202,7 +202,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "A lamp in a window at noon. Somebody has kept it lit for eight nights."
 - Fork: A "They're waiting for the right night." / B "They're waiting for the right child."
 - Fan Out clue (leans A; new): On the shingle the fisherman says he hears oars out on the lake every night, at the same hour, just after dusk. He has never gone to look.
-- Callback: "Two days ago Wren, held two weeks. Now Joss, gone eight nights."
+- Callback: "In Ashcombe a baby born when the moon goes out is given a chip of black glass. In Reedham every window is lit for one."
 - Riddle: *What gets wetter the more it dries?* A: a towel. Garrick: "Hang it by the fire."
 - Nudge: `{friend:Craft}`, what does a skiff tell you about its owner?
 
@@ -210,17 +210,17 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "Meira had a gloss for it: 'the old songs' word for the marked.' She was careful with her words."
 - Fork: A "'Moon-blood' just means the marked children." / B "It means something else."
 - Fan Out clue (leans both; press-on): In one place the small prints stop and turn with both heels dug in: from that exact spot, you can see his grandmother's window on the shore with its lamp burning.
-- Callback: "Yesterday: a boat, a boy. Today: a street under water."
+- Callback: "At the ford, Tamsin's small prints stopped at the water. Today Joss's stop at the edge of deep water."
 - Riddle: *What is full of holes but still holds water?* A: a sponge. Garrick: "A drowned street is a sponge."
-- Nudge: `{friend:Agility}`, how do you move in a drowned street?
+- Nudge: `{friend:Intellect}`, why would Meira use an old song's word when a plain one would do?
 
 **4-5 · The reed island**
 - Opener: "Pale curls of whittled wood. Somebody's still carving."
-- Fork: A "Joss is safe while he carves." / B "They let him carve to keep him calm."
+- Fork: A "They still move Joss by boat." / B "Joss is held in one place now."
 - Fan Out clue (leans B; new): Every curl in the bottom of the boat is long and unbroken, and all of them are fresh. Nobody hurried him.
-- Callback: "A drowned street yesterday. A night ferry today."
+- Callback: "At the Widow's Tooth a little carved horse was left behind. Today, in their boat, a little carved hull was thrown away."
 - Riddle: *What floats when empty and sinks when full?* A: a boat. Garrick: "Yours is on loan. I'd return it."
-- Nudge: `{friend:Aim}`, how do you steady a boat for a shot?
+- Nudge: `{friend:Aim}`, they moved Joss by water once. Would they risk the lake again?
 
 **4-6 · The tower at night**
 - Opener: "Someone lay under that tower and heard every word."
@@ -228,7 +228,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Fan Out clue (leans B; new): As you tie up at the tower, rings are already spreading from the dark under its wall, and your oars have been still for a minute.
 - Callback: "Yesterday you took their boat. Tonight someone took your words."
 - Riddle: *What can you hear but never touch?* A: an echo. Garrick: "Towers hand it back."
-- Nudge: `{friend:Charm}`, how do we keep our voices down in a crowd?
+- Nudge: `{friend:Aim}`, whoever lay under the tower: did they follow us, or wait for us?
 
 ## WEEK 5
 
@@ -236,39 +236,39 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "North, then. That's a long road for tired boots."
 - Fork: A "The fifth is a Stone like the others." / B "The fifth is something different."
 - Fan Out clue (leans B; new): Frost has eaten the old carving, but the edges of the cut-out line are crisp. Not one letter of it is left.
-- Callback: "Last night: Joss home. Four home, four Stones. Now a fifth."
+- Callback: "Meira looked for a fifth and never found one. Today, on the road north, somebody had cut a line out of a stone."
 - Riddle: *What goes on for miles but never moves?* A: a road. Garrick: "North, and mind your boots."
 - Nudge: `{friend:Intellect}`, what would a dead city hide?
 
 **5-2 · The old kingdom's road**
 - Opener: "The grass on a war grave shouldn't shiver. I'd say that's the heartbeat."
-- Fork: A "The heartbeat is turning the beasts." / B "The beasts are afraid, not turned."
+- Fork: A "The beat calls them north." / B "The beat only maddens them."
 - Fan Out clue (leans both; new): When the beat stops, every dog stops with it, heads down, mid-stride. Not one runs away, and not one comes on.
-- Callback: "Yesterday Highwall was a name. Today the road to it is alive."
+- Callback: "On the Stillwater the birds went quiet at the first beat. Tonight the dogs came with it."
 - Riddle: *What bends in the wind but never breaks?* A: grass. Garrick: "Not this lot."
-- Nudge: `{friend:Might}`, what do you do with a dog that used to be friendly?
+- Nudge: `{friend:Might}`, you stood over the cart. Did the beat call those dogs, or only madden them?
 
 **5-3 · The herald's gate**
 - Opener: "A bar of new timber in brackets worn bright. Somebody's been barring this gate for centuries, and the wood's new."
-- Fork: A "Someone is inside." / B "Someone wanted us to think so."
+- Fork: A "The bar keeps the world out." / B "The bar keeps something in."
 - Fan Out clue (leans both; press-on): Stacked against the gatehouse wall lie dozens of old bars, the lowest rotted to a brown line. Whoever changes the bar has kept every one.
-- Callback: "The road shivered yesterday. Today the gate is barred."
+- Callback: "Upriver, somebody kept a hidden path clear and a dog on new iron. Here somebody keeps a new bar on an old gate."
 - Riddle: *The more of me there is, the less you see. What am I?* A: darkness. Garrick: "The city has plenty."
-- Nudge: `{friend:Craft}`, how do you open a gate barred from within?
+- Nudge: `{friend:Craft}`, new wood in brackets worn bright. Who keeps barring this gate?
 
 **5-4 · The dead streets**
 - Opener: "Nobody's kept a fire here for us. Keep this one small."
 - Fork: A "The soldiers are only standing." / B "One helm has turned."
 - Fan Out clue (leans A; press-on): Its left foot is forward, the heel just lifted. So is the next one's. So is every one's. They all stopped on the same step.
-- Callback: "A barred gate yesterday. A company of soldiers today."
+- Callback: "On the road, when the beat stopped, the dogs stopped where they stood. These soldiers stopped mid-stride, and never started again."
 - Riddle: *What turns but never leaves its post?* A: a weathervane. Garrick: "The wind decides. Mostly."
-- Nudge: `{friend:Agility}`, how do you pass a company that might turn?
+- Nudge: `{friend:Aim}`, did one of those helms turn, or did the dusk play tricks?
 
 **5-5 · Below the hall**
 - Opener: "One chalk stroke each dusk. Somebody's counting."
-- Fork: A "They're counting to a date." / B "They're counting for a signal."
+- Fork: A "Their count began when the Stones drank." / B "Their count was set long ago."
 - Fan Out clue (leans A; new): Every stroke on the board is in the same thick, square hand, the crossed ones and the ones still to cross. The chalk has been gone over many times, never redrawn.
-- Callback: "Yesterday soldiers who stopped. Today people who wait."
+- Callback: "At Reedham they kept Joss eight nights, waiting for something. Here they strike off one night every dusk."
 - Riddle: *What burns shorter every night but is never cut?* A: a candle. Garrick: "Fires and candles, same trade."
 - Nudge: `{friend:Intellect}`, what ends when the count ends?
 
@@ -276,7 +276,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "A slit window, a hidden room, a night nobody heard you."
 - Fork: A "The room was built to hide the fifth." / B "The room was built to watch the hall."
 - Fan Out clue (leans A; new): The slit is no wider than a hand, low in the wall's face. Unless you lean out over the parapet and look straight down the stone, you cannot see it at all.
-- Callback: "Chalk strokes yesterday. A wall with a window today."
+- Callback: "Every map before tonight was read out loud. Tonight it went hand to hand, and nobody heard."
 - Riddle: *What gets bigger the more you take away?* A: a hole. Garrick: "A room hollowed out of a wall is one."
 - Nudge: `{friend:Aim}`, what can you see through one slit?
 
@@ -284,43 +284,43 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 
 **6-1 · The wall room (Six nights)**
 - Opener: "Quiet's good in a hole in a wall. I'll take it."
-- Fork: A "He looked at the window because he saw us." / B "He looked because it's the only window."
+- Fork: A "They think the light was nothing." / B "They know someone's in the wall."
 - Fan Out clue (leans B; new): Not a candle burns in the room. Every lantern you can see from the slit is out in the square, and none of them reaches in.
-- Callback: "Last night: the fifth in your hands. Tonight: boots at the door."
+- Callback: "At dusk you crossed the wall and nobody heard. By the end of the night a watchman was looking straight at your window."
 - Riddle: *What can fill a room and take no space?* A: light. Garrick: "A little of it, please."
-- Nudge: `{friend:Charm}`, how do you keep a team calm in a wall?
+- Nudge: `{friend:Aim}`, an arrow under the window, pointing down. What does it want us to find?
 
 **6-2 · The barracks under the wall (Five nights)**
 - Opener: "The dead move when nobody watches, and they passed you by. Sit down a minute."
 - Fork: A "They go up to the hall to answer a call." / B "They go up to guard it."
 - Fan Out clue (leans B; new): The spear-racks along the wall are empty, and the dust under every one is swept clean in the same short arc.
-- Callback: "Yesterday: six nights. Today: five and an arrow."
+- Callback: "Last week you couldn't be sure a helm had turned toward you. Today one stood in your doorway and looked at the fallen stone instead."
 - Riddle: *What can you hold but never see, and the more you hold it the less you speak?* A: your breath. Garrick: "Hold yours."
-- Nudge: `{friend:Agility}`, how do you move among the walking dead?
+- Nudge: `{friend:Agility}`, the dead passed us by on their way up. Called, or on guard?
 
 **6-3 · The great square (Four nights)**
 - Opener: "The hall's warm from within. More faithful arriving. What's missing is a door."
 - Fork: A "There is no way in at the front." / B "There is, and it isn't ours."
 - Fan Out clue (leans both; press-on): Eleven watchmen. Six have road-dust to the knee and packs not yet unrolled. They did not send for men to hunt you; these were already coming for the night.
-- Callback: "Yesterday the dead walked. Tonight the faithful arrive."
+- Callback: "The soldiers are three streets nearer the hall. Round the Order's fire there are twice as many as before."
 - Riddle: *What is warm in the cold but has no fire?* A: a blanket. Garrick: "Bring one."
 - Nudge: `{friend:Intellect}`, where would the Seekers have left a door?
 
 **6-4 · The hill behind the hall (Three nights)**
 - Opener: "That hill was steeper than it looked. Sit."
-- Fork: A "The crack is the Seekers' own door." / B "The crack is a trap."
+- Fork: A "The rock waits for the dark moon." / B "The rock will open for us now."
 - Fan Out clue (leans A; new): Past where the soldier stood, the grit on the crack's floor lies smooth and untouched. Your boots are the first marks in it.
-- Callback: "Yesterday the front was sealed. Today the back is cracked."
+- Callback: "Upriver, a dog on a chain kept the hidden path. Today a soldier stood in the crack with its back to the hall."
 - Riddle: *What changes shape but is never touched?* A: the moon. Garrick: "It keeps its own hours."
-- Nudge: `{friend:Craft}`, how do you open a sealed Seeker door?
+- Nudge: `{friend:Craft}`, nobody has walked that crack before us. Why keep a soldier at it?
 
 **6-5 · The moon-tower (Two nights)**
 - Opener: "Two nights. Eat while there's something to eat."
-- Fork: A "The record means the moon will come back as it did." / B "The record is only a guess."
+- Fork: A "The Seekers chose the dark moon." / B "The dark moon came by chance."
 - Fan Out clue (leans both; press-on): On the ledge under the last moon, a chisel is lying where it was put down, the mallet beside it. Nobody came back for them.
-- Callback: "Yesterday a crack. Today a record that stops on the night he fell."
+- Callback: "The Order's board has counted down for generations. The sky-watchers' wall, counted forward, lands on the same night."
 - Riddle: *What is taken every night and returned at dawn?* A: sleep. Garrick: "Get some."
-- Nudge: `{friend:Aim}`, what do you see from the top of a tower?
+- Nudge: `{friend:Intellect}`, the sky-watchers' record stops on one night. Why that night?
 
 **6-6 · The crack in the hill (One night)**
 - Opener: "Last night of the count. Eat what you like."
@@ -328,7 +328,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Fan Out clue (leans B; new): From the crack's mouth you can see the whole street climbing toward you. Every helm in it is turned to the hall, not one to the hill.
 - Callback: "Six nights ago you had a hidden room. Tonight you have one stroke left."
 - Riddle: *What gets better when you share it and worse when you keep it?* A: a story. Garrick: "Tell one."
-- Nudge: `{friend:Might}`, who stands the first watch?
+- Nudge: `{friend:Intellect}`, not one of the dead turned its head. What do they know that we don't?
 
 ---
 

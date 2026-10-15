@@ -1,5 +1,7 @@
 # Campfire callbacks: rewrite draft (15 Oct 2026)
 
+**Status: APPROVED by Fake Guru, 15 Oct 2026 ("yes"; Claude's calls "ok"). The final set is `campfire-fixes-proposed.json` (it differs from this draft where the review page says so: 5-2 safer pair, four nudges matched to new forks, W6D2 callback).**
+
 **Status: DRAFT for Fake Guru. Nothing in the game has changed.** The live lines are in `src/data/campfire-days-v23.json` (field `callback`) and `docs/canon/mythios-campfire-table-v2.md`. If he approves, both get the new lines together.
 
 **What a callback is:** the one line Garrick says at the fire under "Garrick remembers", tying today to an earlier day.

@@ -1,5 +1,7 @@
 # Campfire nudges: rewrite draft (DRAFT, 15 Oct 2026, not approved)
 
+**Status: APPROVED by Fake Guru, 15 Oct 2026 ("yes"; Claude's calls "ok"). The final set is `campfire-fixes-proposed.json` (it differs from this draft where the review page says so: 5-2 safer pair, four nudges matched to new forks, W6D2 callback).**
+
 **Status: DRAFT for Fake Guru. Nothing in the game has changed.** If approved, the new lines go into `docs/canon/mythios-campfire-table-v2.md` first (it is the Campfire master), then `src/data/campfire-days-v23.json` and `src/data/campfireDaysData.ts` (both hold a copy of each nudge).
 
 **What a nudge is.** Garrick's one question to one friend at the fire, stored as `{friend:Attribute}, question?`. The game puts in the name of the friend at the fire with the highest score in that Attribute, skipping yesterday's friend (Campfire §M). With one friend at the fire, the name is dropped and the question is asked straight to them.

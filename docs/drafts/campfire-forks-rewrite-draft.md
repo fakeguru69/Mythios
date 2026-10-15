@@ -1,5 +1,7 @@
 # Campfire forks: rewrite draft (15 Oct 2026)
 
+**Status: APPROVED by Fake Guru, 15 Oct 2026 ("yes"; Claude's calls "ok"). The final set is `campfire-fixes-proposed.json` (it differs from this draft where the review page says so: 5-2 safer pair, four nudges matched to new forks, W6D2 callback).**
+
 **Status: DRAFT for Fake Guru. Nothing here is in the game yet.** Each NEW fork needs his yes.
 
 The fork is tonight's question at the fire: two readings, A and B, that the party argues about (a friend may also write their own). The audit (`docs/audits/point-6-campfire-discussions.md`, §A2 and Part B) found 10 weak forks and one awkward line. This draft proposes a fix for each.
