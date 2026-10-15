@@ -203,9 +203,6 @@ export default function App() {
       },
     }
   );
-  const [privateTheoryPromptsByDay, setPrivateTheoryPromptsByDay] = useState<
-    Record<string, { reading: 'A' | 'B' | 'NEITHER'; customLine?: string }>
-  >({});
 
   const [stats, setStats] = useState<Record<string, number>>(
     initialSave?.stats ?? {
@@ -1362,10 +1359,6 @@ export default function App() {
                     setSharedFanOutClues((prev) => ({ ...prev, [dayKey]: payload }));
                     setSeekerFirstLetterHints((prev) => ({ ...prev, [dayKey]: true }));
                   }}
-                  privateTheoryPromptsByDay={privateTheoryPromptsByDay}
-                  onSavePrivateTheoryPrompt={(dayKey, payload) => {
-                    setPrivateTheoryPromptsByDay((prev) => ({ ...prev, [dayKey]: payload }));
-                  }}
                 />
               )}
 
@@ -1424,7 +1417,6 @@ export default function App() {
                       [relicType]: Math.max(0, (prev[relicType] || 0) - 1),
                     }));
                   }}
-                  privateTheoryPromptsByDay={privateTheoryPromptsByDay}
                   onLeaveFire={() => {
                     setChatChannel('MINE');
                   }}

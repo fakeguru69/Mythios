@@ -143,14 +143,6 @@ interface StoryTabViewProps {
     dayKey: string,
     clue: { title: string; text: string; firstLetter: string }
   ) => void;
-  privateTheoryPromptsByDay?: Record<
-    string,
-    { reading: 'A' | 'B' | 'NEITHER'; customLine?: string }
-  >;
-  onSavePrivateTheoryPrompt?: (
-    dayKey: string,
-    payload: { reading: 'A' | 'B' | 'NEITHER'; customLine?: string }
-  ) => void;
 }
 
 interface RollState {
@@ -239,14 +231,11 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   onUnlockSeekerHint,
   onRecordSoloFanOutClue,
   onShareFanOutClue,
-  privateTheoryPromptsByDay = {},
-  onSavePrivateTheoryPrompt,
   completedDays = [],
   onClaimReward = () => true,
   hasClaimedReward = () => false,
 }) => {
   const [selectedAttr, setSelectedAttr] = useState<AttributeName | null>(null);
-  const [privatePromptCustomText, setPrivatePromptCustomText] = useState('');
   const [useAttrRelic, setUseAttrRelic] = useState(false);
   const [rollOutcome, setRollOutcome] = useState<RollState | null>(null);
   const [isReplayRoll, setIsReplayRoll] = useState(false);
@@ -2089,93 +2078,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                   </div>
                 )}
 
-                {/* PRIVATE DAILY THEORY PROMPT (Counts as your pin on the Campfire board when you arrive) */}
-                {fanOutCompleted && (() => {
-                  const campfireEntry = getCampfireDayEntry(currentWeek, currentDay);
-                  const savedPrivatePin = privateTheoryPromptsByDay[dayKey];
-                  return (
-                    <div className="w-full rounded-xl bg-[#180F29] border border-[#D4B876]/60 overflow-hidden shadow-lg">
-                      <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-                        <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] truncate">
-                          📌 PRIVATE DAILY THEORY PROMPT · {dayKey}
-                        </span>
-                        <span className="font-['Cinzel'] font-bold text-[10.5px] text-[#6FD39A] whitespace-nowrap shrink-0">
-                          {savedPrivatePin
-                            ? '✓ Pinned for Campfire Board'
-                            : 'Counts as Your Campfire Pin'}
-                        </span>
-                      </div>
-                      <div className="p-2.5 space-y-2">
-                        <p className="font-sans text-[13px] text-[#D8CEE8] leading-snug">
-                          Your answer here automatically pins your theory to the Campfire board when you arrive tonight (no gold awarded; theories are for the party table):
-                        </p>
-                        <div className="space-y-1.5">
-                          {(
-                            [
-                              { key: 'A' as const, label: `Reading A: ${campfireEntry.forkA}` },
-                              { key: 'B' as const, label: `Reading B: ${campfireEntry.forkB}` },
-                              { key: 'NEITHER' as const, label: 'Neither — my own reading' },
-                            ] as const
-                          ).map((opt) => {
-                            const active = savedPrivatePin?.reading === opt.key;
-                            return (
-                              <button
-                                key={opt.key}
-                                type="button"
-                                onClick={() => {
-                                  if (onSavePrivateTheoryPrompt) {
-                                    onSavePrivateTheoryPrompt(dayKey, {
-                                      reading: opt.key,
-                                      customLine:
-                                        privatePromptCustomText.trim() ||
-                                        savedPrivatePin?.customLine,
-                                    });
-                                  }
-                                }}
-                                className={`w-full p-2.5 rounded-xl border text-left transition ${
-                                  active
-                                    ? 'bg-[#2A1B40] border-[#6FD39A] text-[#F4F1F8]'
-                                    : 'bg-[#130B1F] border-[#3A2555] text-[#E6E0F0] hover:border-[#D4B876]'
-                                }`}
-                              >
-                                <div className="font-sans text-[13.5px] font-semibold leading-snug">
-                                  {active ? '✓ ' : ''}
-                                  {opt.label}
-                                </div>
-                              </button>
-                            );
-                          })}
-                        </div>
-                        <div className="flex items-center gap-1.5 pt-1">
-                          <input
-                            type="text"
-                            maxLength={140}
-                            value={privatePromptCustomText}
-                            onChange={(e) => setPrivatePromptCustomText(e.target.value)}
-                            placeholder="Optional one-line note for your pin..."
-                            className="flex-1 px-2.5 py-1.5 rounded-lg bg-[#0D0714] border border-[#3A2555] font-sans text-[13px] text-[#F4F1F8] placeholder-[#8B7A9E] focus:outline-none focus:border-[#D4B876]"
-                          />
-                          {savedPrivatePin && privatePromptCustomText.trim() && (
-                            <button
-                              type="button"
-                              onClick={() => {
-                                if (onSavePrivateTheoryPrompt) {
-                                  onSavePrivateTheoryPrompt(dayKey, {
-                                    reading: savedPrivatePin.reading,
-                                    customLine: privatePromptCustomText.trim(),
-                                  });
-                                }
-                              }}
-                              className="px-2.5 py-1.5 rounded-lg bg-[#2A1B40] border border-[#D4B876] font-['Cinzel'] font-bold text-[10.5px] text-[#E5C158] uppercase"
-                            >
-                              Save Note
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })()}
               </>
             )}
           </>
@@ -2283,10 +2185,6 @@ interface PartyTabViewProps {
   relics?: Record<string, number>;
   onGiveRelic?: (relicType: string, friendName: string) => void;
   onUseRelic?: (relicType: string) => void;
-  privateTheoryPromptsByDay?: Record<
-    string,
-    { reading: 'A' | 'B' | 'NEITHER'; customLine?: string }
-  >;
   onLeaveFire?: () => void;
 }
 
@@ -2323,7 +2221,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   relics = {},
   onGiveRelic,
   onUseRelic,
-  privateTheoryPromptsByDay = {},
   onLeaveFire,
   onClaimReward = () => true,
   hasClaimedReward = () => false,
