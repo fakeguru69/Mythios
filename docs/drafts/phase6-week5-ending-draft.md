@@ -78,14 +78,14 @@ Checklist: literally true · innocent first, damning on reread · he knows it on
 
 ## 3. Week 6 Day 1: the matching change (minimal)
 
-The fix for "answered at once" is to **hold the answer**, not cut the scene. Move the `[PLANT]` paragraph from the opening to dusk, after the party strikes the page. The search, the boots twice, the Challenge's "the boots come back" now carry real doubt through the whole day.
+The fix for "answered at once" is to **hold the answer**, not cut the scene. Move the `[PLANT]` paragraph from the opening to dusk, after the party strikes the page and Garrick's tally line ("Most of it was who owed me."), just before the day's Pull. (Same place as the weak-days draft, §3.) The search, the boots twice, the Challenge's "the boots come back" now carry real doubt through the whole day.
 
 | Canon (Ep6 lines 35–54, then 103–109) | Proposed |
 |---|---|
 | Question: *he looked straight at the window. Are you found?* | *(unchanged)* |
 | Nobody breathes… Twice, they walk on. | *(unchanged)* |
 | `[PLANT]` It is a long wall… It still does not. You have a safe room in the enemy's city. *(right after the search)* | *(moved, see below)* |
-| `[STRIKE THE PAGE]` … Six. You are keeping the enemy's count now. | `[STRIKE THE PAGE]` … Six. You are keeping the enemy's count now. |
+| `[STRIKE THE PAGE]` … Six. You are keeping the enemy's count now. Garrick: *"I kept a tally behind my bar for years… Most of it was who owed me."* | *(unchanged)* |
 | — | `[PLANT]` It is a long wall, and from the square every slit in it looks the same. In all its centuries here the Order has never known this room was there. It still does not. You have a safe room in the enemy's city. *(same words, new place)* |
 
 No word of W6D1 changes; one block moves. The Intellect notice line ("He saw a light. He did not see where.") still lets a sharp player guess early, which is a fair reward. The day summary card ("you are not found") stays.
@@ -102,7 +102,7 @@ Take Grok's three good images (the cold Stone in cut palms, Garrick not saying i
 
 1. `docs/canon/episode-5-the-kings-stone.md`: the Cliffhanger (lines 854–862); designer's note "one spoken line" (line 881); Deception Table cross-reference (line 894); a dated history note.
 2. `docs/canon/mythios-gathering-scripts.md`: the same Cliffhanger (lines 1279–1287).
-3. `docs/canon/episode-6-the-finale.md`: move the `[PLANT]` block (lines 50–54) to after line 109; a dated history note.
+3. `docs/canon/episode-6-the-finale.md`: move the `[PLANT]` block (lines 50–54) to after Garrick's tally line (line 111); a dated history note.
 4. `docs/canon/garrick-deception-table.md`: the new row in the Episode 5 section (after the "place, and a night" row, ~line 395).
 5. `docs/canon/mythios-season-reveal-map.md` line 239: the cliffhanger summary.
 6. `docs/canon/mythios-master-tracker.md`: decision log entry.
