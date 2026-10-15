@@ -238,7 +238,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Inside is a notebook, packed to the margins in the hand you all know by now. Your names are in it. Every one of you.\n\nAnd near the back, where the binding shows, some pages are gone."
+        "text": "Inside is a notebook, packed to the margins in the hand you all know by now. Your names are in it. Every one of you.\n\n{STAKE}\n\nAnd near the back, where the binding shows, some pages are gone."
       },
       {
         "t": "notice",

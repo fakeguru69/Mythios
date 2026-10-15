@@ -30,6 +30,13 @@ function getGenAI() {
   });
 }
 
+// The old audit bundles hold the whole secret: served only with ?dev=1 (decided 15 Oct).
+app.use((req, res, next) => {
+  const isBundle = /^\/(api\/download-audit-bundle|mythios-full-audit-bundle)/.test(req.path);
+  if (isBundle && req.query.dev !== '1') return res.status(404).end();
+  next();
+});
+
 // Direct attachment download route so browsers/iframes reliably download the 14 Oct & 10 Oct Audit Bundle
 app.get(
   [

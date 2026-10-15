@@ -10,6 +10,18 @@ export interface ScriptTokens {
   /** The friends after the player, in party order (canon's Mei, Dev, Jo). */
   friends: string[];
   partySize: number;
+  /** The player's personal stake line (W1D2), built from their Session Zero answers; empty when both were skipped. */
+  stake?: string;
+}
+
+/** The player's line beside their name on Meira's list (approved 15 Oct). Empty when both answers were skipped. */
+export function personalStakeLine(birthplace?: string, grandparent?: string): string {
+  const b = (birthplace || '').trim();
+  const g = (grandparent || '').trim();
+  if (b && g) return `Beside yours, in the same neat hand: ${b}, and a second name, ${g}.`;
+  if (b) return `Beside yours, in the same neat hand: ${b}.`;
+  if (g) return `Beside yours, in the same neat hand, a second name: ${g}.`;
+  return '';
 }
 
 /** Fills canon's stand-ins: {F1} {F2} {F3} with friends' names, {N} and {N-1} with the party size in words. */
@@ -18,7 +30,11 @@ export function fillScriptTokens(text: string, t: ScriptTokens): string {
   const cap = (w: string) => w.charAt(0).toUpperCase() + w.slice(1);
   // A number word that opens a sentence takes a capital ("**Four names.** Yours is one of them.").
   const atStart = /(^|[.!?]\s+|\*\*|\n)\{(N-1|N)\}/g;
-  return applySmallPartyLines(text, t.friends.length)
+  // {STAKE} stands alone as a paragraph; with no stake the whole paragraph goes.
+  const withStake = t.stake
+    ? text.replace(/\{STAKE\}/g, t.stake)
+    : text.replace(/\n\n\{STAKE\}(?=\n|$)/g, '').replace(/\{STAKE\}\n\n/g, '').replace(/\{STAKE\}/g, '');
+  return applySmallPartyLines(withStake, t.friends.length)
     .replace(atStart, (_, pre, tok) => pre + cap(word(tok === 'N' ? t.partySize : t.partySize - 1)))
     .replace(/\{N-1\}/g, word(t.partySize - 1))
     .replace(/\{N\}/g, word(t.partySize))

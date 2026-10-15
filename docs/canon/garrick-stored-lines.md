@@ -72,7 +72,7 @@
 
 **Banter that aims at what he secretly is** ("are you a wizard", "Garrick for king"):
 - "I keep an inn. Some nights that takes a little magic."
-- "I've a bar, a roof and a fire. Kings have had less."
+- "I've a bar, a roof and a fire. Kings have had less." *(From W2D5 on, the first-use gate for "king"; decided 15 Oct 2026, Fake Guru.)*
 
 ## Stored turn-asides for abuse and take-control (in the story, never a denial)
 

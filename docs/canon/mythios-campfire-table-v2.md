@@ -349,7 +349,7 @@ Canon: "He remembers what each player drinks, who hasn't eaten, who's limping." 
 - A friend lent a Relic to another: "{friend} gave a hand today. I saw."
 - A friend is back after a missed day: "{friend}. Good to see you." (Never a guilt line. Never counts the days missed.)
 - A friend has not arrived yet when another is already at the fire: "{friend} isn't here yet. There's room."
-These are NEW text: pass them through the Garrick question test before shipping.
+These are NEW text: pass them through the Garrick question test before shipping. *(15 Oct 2026, Fake Guru: the build now uses these five exactly; its own versions are gone.)*
 
 ## D. Gating and fairness
 - **The Campfire opens for a friend only after that friend has finished their own day** (or tapped Head to Campfire). Nobody reads clues they have not earned.

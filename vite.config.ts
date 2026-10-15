@@ -6,6 +6,12 @@ import {defineConfig} from 'vite';
 export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
+    build: {
+      // public/ holds only the old audit bundles (the whole secret): never ship them with the game.
+      copyPublicDir: false,
+      // SINGLE_FILE=1 builds one script (for the one-file playable demo).
+      ...(process.env.SINGLE_FILE === '1' ? { rolldownOptions: { output: { codeSplitting: false } } } : {}),
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
