@@ -222,7 +222,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The taproom is warm and low and smells of woodsmoke. There are {N-1} strangers in it who are not drinking.\n\n{F1} has a torn page flat on the table under her hand. {F2} is turning one over and over. {F3} has his folded small, the way you fold a thing you have read too many times.\n\nYou put yours down beside them. The same neat hand. The same names, each with a date beside it.\n\nNobody has to explain."
+        "text": "The taproom is warm and low and smells of woodsmoke. There are {N-1} strangers in it who are not drinking.\n\n{F1} has a torn page flat on the table under one hand. {F2} is turning one over and over. {F3}'s is folded small, the way you fold a thing you have read too many times.\n\nYou put yours down beside them. The same neat hand. The same names, each with a date beside it.\n\nNobody has to explain."
       },
       {
         "t": "say",
@@ -283,7 +283,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "it takes you the whole evening, with three strangers watching you get it wrong"
+        "fail": "it takes you the whole evening, with strangers watching you get it wrong"
       },
       {
         "t": "say",
@@ -798,7 +798,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The same silence. The same way of leaving: the first gap, and gone, north through the trees this time.\n\n{F1} has a hand on {F2}'s arm, to stop him following into the dark."
+        "text": "The same silence. The same way of leaving: the first gap, and gone, north through the trees this time.\n\n{F1} has a hand on {F2}'s arm, to stop {F2} following into the dark."
       },
       {
         "t": "say",
@@ -1701,7 +1701,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "{F1} comes back off the hill, shaking her head. {F3} is holding a page under the lamp with one finger on the margin."
+        "text": "{F1} comes back off the hill with a shake of the head. {F3} is holding a page under the lamp with one finger on the margin."
       },
       {
         "t": "say",
@@ -2489,7 +2489,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               1
             ],
-            "text": "{F2} keeps on along the trail. He comes back with a third chip in his fist."
+            "text": "{F2} keeps on along the trail, and comes back with a third chip in hand."
           }
         ]
       },
@@ -2607,7 +2607,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "The hoof-scratches go the long way, round the head of the fold. You follow them in, in the open. {F2} takes the goat-track that her chips mark, and comes down it with five more in his fist."
+            "text": "The hoof-scratches go the long way, round the head of the fold. You follow them in, in the open. {F2} takes the goat-track that her chips mark, and comes down it with five more in hand."
           },
           {
             "options": [
@@ -4559,7 +4559,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "{F1} goes to the corner of the gate-tower, where she can see the square and you can see her hand."
+        "text": "{F1} goes to the corner of the gate-tower, where {F1} can see the square and you can see {F1}'s hand."
       },
       {
         "t": "notice",

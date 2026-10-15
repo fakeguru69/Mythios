@@ -1,5 +1,6 @@
 import React from 'react';
 import { AttributeName, ATTRIBUTE_META } from '../data/mythiosRulesData';
+import { applySmallPartyLines } from '../data/smallPartyLines';
 
 // Display pieces for the weekday chapter as canon writes it (docs/canon/episode-*.md).
 
@@ -17,13 +18,12 @@ export function fillScriptTokens(text: string, t: ScriptTokens): string {
   const cap = (w: string) => w.charAt(0).toUpperCase() + w.slice(1);
   // A number word that opens a sentence takes a capital ("**Four names.** Yours is one of them.").
   const atStart = /(^|[.!?]\s+|\*\*|\n)\{(N-1|N)\}/g;
-  return text
+  return applySmallPartyLines(text, t.friends.length)
     .replace(atStart, (_, pre, tok) => pre + cap(word(tok === 'N' ? t.partySize : t.partySize - 1)))
     .replace(/\{N-1\}/g, word(t.partySize - 1))
     .replace(/\{N\}/g, word(t.partySize))
-    // Canon writes for three friends. In a smaller party the names go round again (a party of two:
-    // every stand-in is the one friend; of three: Jo is Mei's friend again). Lines that name two
-    // friends at once are listed for Fake Guru (Phase 4) for a small-party wording.
+    // Canon writes for three friends. Lines naming more friends than a small party has get their short
+    // version first (smallPartyLines.ts); any other stand-in goes round the friends again.
     .replace(/\{F([123])\}/g, (_, i) =>
       t.friends.length ? t.friends[(Number(i) - 1) % t.friends.length] : 'a friend'
     );

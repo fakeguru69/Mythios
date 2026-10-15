@@ -219,3 +219,4 @@ First-use lines applied (5 Oct, 13:00): Battle, Look Closer and United Effort, i
 - 15 Oct: DECIDED (Fake Guru): in the one-phone demo the player makes every group choice (votes and picks) for the party.
 - 15 Oct: DONE: the Garrick Recap, built from `garrick-deception-table.md` (`mythios-garrick-recap.md` was never written). Opens only from the Gathering 6 summary card.
 - 15 Oct: DONE: Phase 4 step 22, one party list of 2 to 6 everywhere (workbench switch), sample friends 5 and 6 are Priya and Theo, each sample friend rolls their own scores. Wording for small parties and the he/she lines sent for approval (`docs/party-size-wording-15oct.md`).
+- 15 Oct: DECIDED (Fake Guru): the 7 he/she lines reworded in the episode files, and small-party versions for 10 lines (`docs/party-size-wording-15oct.md`, `src/data/smallPartyLines.ts`).

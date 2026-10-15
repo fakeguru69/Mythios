@@ -530,7 +530,7 @@
 
 *The player chooses who keeps watch.*
 
-> Mei goes to the corner of the gate-tower, where she can see the square and you can see her hand.
+> Mei goes to the corner of the gate-tower, where Mei can see the square and you can see Mei's hand.
 
 **What you notice**
 > **Might** · The parapet on the city side is waist-high and a yard thick. *The wall under you is thicker than any wall needs to be.*
