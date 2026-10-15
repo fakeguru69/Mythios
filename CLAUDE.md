@@ -92,7 +92,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 **Broken at the 14 Oct handover (each is a task in §7; progress is ticked in `docs/fix-plan.md`):** the Challenge roll; result-card numbers; seven hard-coded gold amounts; Combat Relic never spent; United Effort not canon; party fixed at four; `[N]` replaced with "the company"; sample friends named after story characters; continuity patches L4 and L5 wrong and on; Store-lock switch left over; Audit Workbench reachable; small text errors. *(15 Oct: all fixed except the small text errors (Phase 7). The party of 2–6 and the sample names were fixed 15 Oct; its wording lists wait on Fake Guru.)*
 
-**Not verified yet:** whether the Gathering "Phase 5 Table Question" choice changes anything (the 9 Oct audit said the first button revealed the same twist whatever was chosen).
+**Checked 15 Oct (Task 11):** the Gathering "Phase 5 Table Question" is gone; the Gatherings play canon word for word and offer no quiz. Its old text still sits unused in `mythiosGatheringsAndAudit.ts` (removal waits on Fake Guru).
 
 ---
 
