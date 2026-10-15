@@ -119,8 +119,8 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 ## Phase 7: finish
 
-34. **[Fix] Small fixes** (Task 10): "retired innkeeper", estimate labels, the workbench note.
-35. **Personal stakes and the clue shelf** (Task 13): stakes from the Session Zero answers; "Keepsakes" becomes "Clues"; check each clue against canon; remove the Day 1 stakes that leak the story.
+34. ✅ **Done 15 Oct.** **[Fix] Small fixes** (Task 10): "retired innkeeper", estimate labels, the workbench note.
+35. ✅ **Done 15 Oct (stake wording waits on Fake Guru).** The three invented stakes are gone; Session Zero asks canon's two optional questions (saved as birthplace and grandparent). The shelf is "Clues", built from canon's "You hold:" lines; four invented items removed (`docs/clue-shelf-report-15oct.md`). **Personal stakes and the clue shelf** (Task 13): stakes from the Session Zero answers; "Keepsakes" becomes "Clues"; check each clue against canon; remove the Day 1 stakes that leak the story.
 36. **Report on Gathering 5's Table Question** (Task 11). Answered by the audits: the choice changes nothing; a wrong pick just shows a hint.
 37. **Full check and report** (Task 12): every rule in `CLAUDE.md` §6 against the code, pass or fail with file and line.
 

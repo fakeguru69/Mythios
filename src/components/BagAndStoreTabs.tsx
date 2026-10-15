@@ -12,6 +12,8 @@ import { SEEKER_FRAGMENTS, SeekerFragmentData } from '../data/mythiosFragments';
 import { wordLockSecondsLeft, registerWrongWordTry, clearWordTries } from '../data/wordLocks';
 import { GOLD_FRAGMENT_WORD_SOLVED, GOLD_RELIC_COST } from '../data/economy';
 import { HintMask, hintHas } from '../data/fanOutLeads';
+import { CHAPTER_SCRIPTS } from '../data/chapterScripts';
+import { ScriptInline, fillScriptTokens } from './ChapterScriptParts';
 
 const CUMULATIVE_SCRIPTURE = [
   {
@@ -77,7 +79,8 @@ interface BagTabViewProps {
   onStrikeWatchPage: () => void;
   ledgerOpened: boolean;
   onAskGarrickForLedger: () => void;
-  personalStakeText: string;
+  /** Days the player has finished, "week-day" (the Clues shelf lists what those days left you holding). */
+  completedDays: string[];
   currentWeek: number;
   currentDay: number;
   initialSubTab?: 'RELICS' | 'SEEKER' | 'ALL' | 'ITEMS' | 'SCROLLS';
@@ -94,7 +97,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
   onStrikeWatchPage,
   ledgerOpened,
   onAskGarrickForLedger,
-  personalStakeText,
+  completedDays,
   currentWeek,
   currentDay,
   initialSubTab,
@@ -434,140 +437,37 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
             </div>
           )}
 
-          {/* PHYSICAL EVIDENCE & PERSONAL KEEPSAKES LOCKER */}
+          {/* CLUES (Task 13, 15 Oct): what canon says you hold at the end of each day played ("You hold:" on the
+              day summary card, docs/canon/episode-*.md), newest first. Keepsakes stay retired (Core Rules §14). */}
           <div className="pt-2 space-y-2.5">
             <div className="flex items-center justify-between px-0.5">
               <span className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876] uppercase">
-                📜 PHYSICAL EVIDENCE & KEEPSAKES
+                📜 Clues
               </span>
-              <span className="text-[11.5px] font-sans text-[#B7A9CC]">
-                Week 1–{currentWeek} Clues
-              </span>
+              <span className="text-[11.5px] font-sans text-[#B7A9CC]">What you hold</span>
             </div>
-
-            {/* Personal Stake Keepsake */}
-            <div className="p-3 rounded-xl bg-[#180F29] border border-[#5E4585] space-y-1">
-              <div className="flex items-center justify-between">
-                <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] uppercase">
-                  🕯️ YOUR PERSONAL OATH & STAKE
-                </span>
-                <span className="text-[11px] font-['Cinzel'] font-bold text-[#6FD39A]">
-                  CARRIED SINCE DAY 1
-                </span>
-              </div>
-              <p className="font-sans text-[13.5px] text-[#E6E0F0] leading-snug">
-                {personalStakeText}
-              </p>
-            </div>
-
-            {/* 1. The Hollow Wake Inn Guest Ledger (Unlocked from W1·D2 onward) */}
-            {(currentWeek > 1 || currentDay >= 2) && (
-              <div className="p-3 rounded-xl bg-[#180F29] border border-[#3A2555] space-y-2">
-                <div className="flex items-center justify-between gap-2">
-                  <div>
-                    <div className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8]">
-                      📖 THE HOLLOW WAKE INN GUEST LEDGER
-                    </div>
-                    <div className="text-[11.5px] font-sans text-[#B7A9CC]">
-                      W1·D2 · Four guest lines in the margin, one line torn free
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={onAskGarrickForLedger}
-                    className="px-2.5 py-1 rounded-lg bg-[#2A1B40] hover:bg-[#3A2555] border border-[#D4B876]/70 font-['Cinzel'] font-bold text-[10.5px] text-[#E5C158] whitespace-nowrap transition shrink-0"
-                  >
-                    {ledgerOpened ? '✓ INSPECTED' : 'INSPECT PAGE'}
-                  </button>
-                </div>
-                {ledgerOpened && (
-                  <div className="p-2.5 rounded-lg bg-[#130B1F] border border-[#D4B876]/40 text-[13px] font-sans text-[#E6E0F0] leading-snug">
-                    {currentWeek === 1
-                      ? 'Four travellers checked into the Hollow Wake Inn the night before the road ambush—each riding in from a different ridge village. A fifth tin cup was set at their corner table, though no fifth name was signed.'
-                      : currentWeek === 2
-                      ? 'Cross-checking the inn ledger against the Mill shows the first two guests rode in from Tamsin’s woods and Corin’s mill-valley. A fifth cup was set at their table, though no fifth name was signed.'
-                      : 'Four travellers checked into the Hollow Wake Inn—each matching one of the ridge villages where Tamsin, Corin, Wren, and Joss were taken. A fifth cup was set at their table, though no fifth name was signed.'}
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* 2. Charcoal Rubbing & Watch-Log (Progressive by Week) */}
-            <div className="p-3 rounded-xl bg-[#180F29] border border-[#3A2555] space-y-2">
-              <div className="flex items-center justify-between gap-2">
-                <div>
-                  <div className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8]">
-                    🪨 {currentWeek >= 5 ? 'HIGHWALL WATCH-LOG RUBBING' : 'MEIRA’S CHARCOAL RUBBING'}
-                  </div>
-                  <div className="text-[11.5px] font-sans text-[#B7A9CC]">
-                    {currentWeek >= 5
-                      ? 'W5 · Indented parchment from the watch-post'
-                      : 'W1·D1 · Half-burned rubbing from your cargo box'}
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={onStrikeWatchPage}
-                  className="px-2.5 py-1 rounded-lg bg-[#2A1B40] hover:bg-[#3A2555] border border-[#D4B876]/70 font-['Cinzel'] font-bold text-[10.5px] text-[#E5C158] whitespace-nowrap transition shrink-0"
-                >
-                  {watchPageStrokesLeft > 0
-                    ? `SHADE RUBBING (${watchPageStrokesLeft} LEFT)`
-                    : '✓ FULLY REVEALED'}
-                </button>
-              </div>
-              {watchPageStrokesLeft === 0 && (
-                <div className="p-2.5 rounded-lg bg-[#130B1F] border border-[#6FD39A]/50 text-[13px] font-sans text-[#E6E0F0] leading-snug">
-                  {currentWeek >= 5 ? (
-                    <>
-                      Beneath the charcoal shading, the indented watch-note emerges:{' '}
-                      <strong className="text-[#6FD39A]">
-                        “FOUR SOCKETS ANSWERED — FIFTH INSIDE THE WALL.”
-                      </strong>
-                    </>
-                  ) : (
-                    <>
-                      Beneath the charcoal shading, the indented margin note emerges:{' '}
-                      <strong className="text-[#6FD39A]">
-                        “FOUR MARKS ON THE RIDGE — FOLLOW THE OLD STONES.”
-                      </strong>
-                    </>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* 3. Progressive Fair-Play Mystery Plants (Weeks 2–5) */}
-            {currentWeek >= 2 && (
-              <div className="p-3 rounded-xl bg-[#180F29] border border-[#3A2555] space-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8]">
-                    ⚫ BLACK CIRCLE CHARCOAL RUBBING
-                  </span>
-                  <span className="text-[10.5px] font-['Cinzel'] font-bold text-[#D4B876]">
-                    W2 · THE STANDING STONE
+            {(() => {
+              const held = CHAPTER_SCRIPTS.filter(
+                (c) => c.week < currentWeek || (c.week === currentWeek && c.day < currentDay) || completedDays.includes(`${c.week}-${c.day}`)
+              )
+                .map((c) => {
+                  const sm = c.steps.find((st) => st.t === 'summary');
+                  const line = sm && sm.t === 'summary' ? sm.lines.find((l) => /^You hold:/.test(l)) : undefined;
+                  return line ? { key: `${c.week}-${c.day}`, week: c.week, day: c.day, text: line.replace(/^You hold:\s*/, '') } : null;
+                })
+                .filter((x): x is { key: string; week: number; day: number; text: string } => Boolean(x))
+                .reverse();
+              if (!held.length)
+                return <p className="text-[13px] font-sans text-[#8B7A9E] px-0.5">Nothing yet.</p>;
+              return held.map((h) => (
+                <div key={h.key} className="p-3 rounded-xl bg-[#180F29] border border-[#3A2555] flex items-baseline gap-2.5">
+                  <span className="font-['Cinzel'] font-bold text-[10.5px] text-[#D4B876] shrink-0 tabular-nums">W{h.week}·D{h.day}</span>
+                  <span className="font-sans text-[13.5px] text-[#E6E0F0] leading-snug min-w-0">
+                    <ScriptInline text={fillScriptTokens(h.text, { friends: party.filter((f) => f.id !== 'YOU').map((f) => f.name), partySize: party.length })} />
                   </span>
                 </div>
-                <p className="font-sans text-[12.5px] text-[#B7A9CC] leading-snug">
-                  A hollowed ring cut into the standing stone: “Until the throne rise whole.”
-                </p>
-              </div>
-            )}
-
-            {currentWeek >= 3 && (
-              <div className="p-3 rounded-xl bg-[#180F29] border border-[#3A2555] space-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8]">
-                    🪙 SCRAPED SILVER COIN & MEIRA’S GLOSS
-                  </span>
-                  <span className="text-[10.5px] font-['Cinzel'] font-bold text-[#D4B876]">
-                    W3 · SUNKEN KEEP
-                  </span>
-                </div>
-                <p className="font-sans text-[12.5px] text-[#B7A9CC] leading-snug">
-                  Old-mint coin with the king’s crest scraped off—matching the coin Garrick turns over his knuckles—and Meira’s note translating “the marked” as “moon-blood.”
-                </p>
-              </div>
-            )}
+              ));
+            })()}
           </div>
         </div>
       )}
