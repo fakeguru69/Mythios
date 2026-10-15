@@ -482,6 +482,8 @@ export default function App() {
   const handleSelectWeekDay = (w: number, d: number) => {
     setCurrentWeek(w);
     setCurrentDay(d);
+    // A weekday's Party tab is that evening's fire, even after a Gathering (15 Oct season run).
+    setPartyMode('CAMPFIRE');
     if (w === 1 && d === 1) {
       setCompletedDays((prev) => prev.filter((k) => k !== '1-1' && k !== '1-2'));
       setChatChannel('MINE');
@@ -849,6 +851,7 @@ export default function App() {
                 setCompletedDays((prev) =>
                   prev.includes('1-2') ? prev : [...prev, '1-2']
                 );
+                setPartyMode('GATHERING');
                 setActiveTab('CHAT');
                 setChatChannel('PARTY');
                 if (layout === 'AUDIT_ONLY') setLayout('SPLIT');
