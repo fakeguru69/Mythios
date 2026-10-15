@@ -340,7 +340,7 @@ for (let w = 1; w <= 6; w++) {
   console.log(`| ${w} | ${cells.join(' | ')} |`);
 }
 
-console.log('\n## The same fight under the 5 Oct rule (d20 × 2 damage), player first, to compare with Core Rules §12\n');
+console.log('\n## The same fight under the 5 Oct rule (d20 × 2 damage), player first (today\'s enemies)\n');
 console.log('| Week | L1 | L2 | L3 | L4 | L5 |');
 console.log('|---|---|---|---|---|---|');
 for (let w = 1; w <= 6; w++) {
@@ -404,12 +404,11 @@ function table(label: string, o: Opts, size = 4) {
 }
 
 const BASE: Opts = { failCost: E.GOLD_CHALLENGE_LOSS, mapBonus: 2, wordGold: E.GOLD_FRAGMENT_WORD_SOLVED, damage: 'margin5' };
-table('as built today (margin × 5, −150g fail, map +2, 25g a word a day)', BASE);
-table('the 5 Oct rules for comparison (d20 × 2 damage, no word gold)', { ...BASE, damage: 'd20x2', wordGold: 0 });
-table('§15 item 1: a failed Challenge costs nothing', { ...BASE, failCost: 0 });
+// Since 15 Oct the game's enemies are one higher (Proposal A, approved), so BASE is the game as built.
+table('as built (margin × 5, enemies +1 since 15 Oct, −150g fail, map +2, 25g a word a day)', BASE);
+table('before Proposal A (enemies as on 14 Oct)', { ...BASE, weekdayBoost: -1, gatheringBoost: -1 });
+table('the 5 Oct rules for comparison (d20 × 2 damage, 14 Oct enemies, no word gold)', { ...BASE, damage: 'd20x2', wordGold: 0, weekdayBoost: -1, gatheringBoost: -1 });
+table('a failed Challenge costs nothing (§15 item 1, not chosen)', { ...BASE, failCost: 0 });
 table('no map bonus', { ...BASE, mapBonus: 0 });
-table('weekday enemy +1 DEF and ATK', { ...BASE, weekdayBoost: 1 });
-table('weekday enemy +2 DEF and ATK', { ...BASE, weekdayBoost: 2 });
-table('weekday +1 and Gathering +1', { ...BASE, weekdayBoost: 1, gatheringBoost: 1 });
 table('as built, party of 2', BASE, 2);
 table('as built, party of 6', BASE, 6);

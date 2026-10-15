@@ -4,6 +4,8 @@ import { createServer as createViteServer } from 'vite';
 import { GoogleGenAI } from '@google/genai';
 import dotenv from 'dotenv';
 import { routeGarrickMessage, passesGarrickFilter, GarrickStoryState } from './src/data/garrickRouter';
+import { EPISODE_NUMBERS, GEAR_TABLE } from './src/data/mythiosRulesData';
+import { GOLD_WEEKDAY_FIGHT_ONLY_WIN } from './src/data/economy';
 import {
   buildCompactMemoryDigestString,
   buildEpisodeSceneSlice,
@@ -81,13 +83,14 @@ app.post('/api/roll-challenge', (req, res) => {
 // Server-authoritative Fight Resolver (Core Rules §4: 100 HP each, d20 + Weapon - DEF >= 1, damage = margin * 5)
 app.post('/api/resolve-fight', (req, res) => {
   const {
-    weapon = 15,
-    armor = 28,
-    enemyDef = 22,
-    enemyAtk = 15,
+    // Defaults: Level 1 gear against Week 1's weekday enemy (Core Rules §12).
+    weapon = GEAR_TABLE[1].weapon,
+    armor = GEAR_TABLE[1].armor,
+    enemyDef = EPISODE_NUMBERS[0].wDef,
+    enemyAtk = EPISODE_NUMBERS[0].wAtk,
     enemyFirst = false,
     combatRelicActive = false,
-    rewardGold = 300,
+    rewardGold = GOLD_WEEKDAY_FIGHT_ONLY_WIN,
   } = req.body;
 
   const effWeapon = weapon + (combatRelicActive ? 1 : 0);

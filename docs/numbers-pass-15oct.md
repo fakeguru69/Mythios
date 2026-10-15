@@ -1,6 +1,8 @@
 # Numbers pass, 15 Oct 2026
 
-Fake Guru gave the go on 14 Oct; it runs after the rule fixes, so it tests the game as it is now built. Nothing in the game is changed by this report. Every proposal below waits on Fake Guru.
+**Decided 15 Oct 2026 (Fake Guru, "as per your suggestion"): every recommendation below is applied.** Proposal A is in the game (`EPISODE_NUMBERS`), the open amounts are closed in `economy.ts`, and Core Rules §4, §12 and §15 are updated. The simulator's "as built" row now includes Proposal A.
+
+Fake Guru gave the go on 14 Oct; it runs after the rule fixes, so it tests the game as built.
 
 - **Simulator:** `simulators/numbers-pass-15oct.ts`. Run it with `npx tsx simulators/numbers-pass-15oct.ts 2000`. It reads the 36 canon days, the six Gatherings, the Gathering battle engine, tiers, growth, DCs and `economy.ts` straight from the game, so it tests what is built, not a copy.
 - **Full output:** `docs/numbers-pass-15oct-output.md` (2,000 seasons per row).

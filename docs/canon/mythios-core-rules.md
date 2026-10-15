@@ -215,7 +215,7 @@ On the Record and in the Store a piece of gear reads `Sword-Cane — Lv. 2 · We
 - **Your attack hits when Roll + Weapon − DEF is 1 or more.** The enemy's attack hits when its Roll + ATK − your Armor is 1 or more. A tie misses.
 - **A hit does damage equal to its margin × 5** (the Roll + Weapon − DEF result, times five). The same for both sides. *(Changed 14 Oct 2026, Fake Guru: keep the build's clear round line, e.g. "HIT +11 × 5 = 55. FOE HP 100 → 45". Was: a d20, doubled. Fight length and balance to be checked in the numbers pass.)*
 - If your hit takes the enemy to 0 HP, the fight ends at once; the enemy does not strike back. Ties are impossible.
-- A fight lasts about 8 rounds on average. It has no round limit; it ends when one side reaches 0 HP.
+- A fight lasts about 4 to 6 rounds on average (re-simulated 15 Oct 2026 with margin × 5 damage; it was about 8 with a d20 × 2). It has no round limit; it ends when one side reaches 0 HP.
 - **Each round is one tap** *(changed 14 Oct 2026, Fake Guru: keep the build's per-round tap, with a short pause after the tap to show the roll; this replaces the 4 Oct rule below)*. Earlier rule: **a fight rolls itself, one beat at a time** (decided 4 Oct 2026). The player taps [FIGHT] once. Each round then fills in line by line in one message: the player's die tumbles for about a second and lands; on a hit the damage die does the same; then the enemy's. There is no button to roll each blow and no setting for it. A round is never shown all at once.
 
 **Enemies**
@@ -226,11 +226,11 @@ On the Record and in the Store a piece of gear reads `Sword-Cane — Lv. 2 · We
 **The enemy card,** one chat message from MYTHIOS:
 
 ```
-MINE GUARD · DEF 22 · ATK 15
+MINE GUARD · DEF 23 · ATK 16
 YOU · Weapon 14 · Armor 27
 
-You Hit On 9+ (Roll + Weapon 14 − DEF 22)
-Enemy Hits On 13+ (Roll + ATK 15 − Armor 27)
+You Hit On 10+ (Roll + Weapon 14 − DEF 23)
+Enemy Hits On 12+ (Roll + ATK 16 − Armor 27)
 
 Damage = Margin × 5
 REWARD: 380g
@@ -246,9 +246,9 @@ REWARD: 380g
 
 ```
 Round 1
-You Roll 14 + Weapon 14 − DEF 22 = 6. HIT
-Damage = 6 × 5 = 30. Guard HP 100 → 70
-Enemy Rolls 7 + ATK 15 − Armor 27 = −5. MISS
+You Roll 14 + Weapon 14 − DEF 23 = 5. HIT
+Damage = 5 × 5 = 25. Guard HP 100 → 75
+Enemy Rolls 7 + ATK 16 − Armor 27 = −4. MISS
 ```
 
 - A hit is followed by a line with the damage and the target's HP before and after, with no indent and no mark in front of it. A miss has no second line.
@@ -664,16 +664,18 @@ Both tracks to Level 5 cost 12,400g.
 
 | | Ep1 | Ep2 | Ep3 | Ep4 | Ep5 | Ep6 |
 |---|---|---|---|---|---|---|
-| DEF | 22 | 23 | 24 | 24 | 25 | 25 |
-| ATK | 15 | 16 | 17 | 17 | 18 | 18 |
+| DEF | 23 | 24 | 25 | 25 | 26 | 26 |
+| ATK | 16 | 17 | 18 | 18 | 19 | 19 |
 | Reward | 380g | 520g | 740g | 740g | 1,030g | 1,030g |
 
 **The weekday enemy, by episode** (the tutorial and every weekday fight)
 
 | | Ep1 | Ep2 | Ep3 | Ep4 | Ep5 | Ep6 |
 |---|---|---|---|---|---|---|
-| DEF | 21 | 22 | 23 | 23 | 24 | 24 |
-| ATK | 14 | 15 | 16 | 16 | 17 | 17 |
+| DEF | 22 | 23 | 24 | 24 | 25 | 25 |
+| ATK | 15 | 16 | 17 | 17 | 18 | 18 |
+
+*Both enemy tables raised by 1 DEF and 1 ATK on 15 Oct 2026 (Fake Guru, numbers pass Proposal A, `docs/numbers-pass-15oct.md`): margin × 5 damage had made fights much easier. The Gathering enemy stays one higher than the weekday enemy.*
 
 The tutorial fight pays 300g. A weekday fight on a day with no Challenge pays 300g on a win and 0 on a loss; on a day that also has a Challenge it pays nothing.
 
@@ -709,7 +711,20 @@ Cost to the weakest two-person party (two Rare players, gear Level 1 and 2): abo
 
 **Relics:** 150g each, all seven types.
 
-**What these numbers produce** (simulated 5 Oct 2026 after Audit G, and re-run the same day without the safety net once optional play was cut: the 29 Challenge cards and 12 weekday fights as written, [PRESS ON] on 12 days, Match, [LOOK CLOSER], the Battle conditions above, four friends of the same kind of player; fights and Challenge odds worked out exactly, the season rolled by simulation)
+**What these numbers produce, 15 Oct 2026** (the numbers pass: `simulators/numbers-pass-15oct.ts` on the game's own data and engine, 2,000 seasons a row; margin × 5 damage, the enemies above, the Battle conditions, fragment words at 25g, every friend at every Gathering; full output in `docs/numbers-pass-15oct-output.md`)
+
+| Player | Days a week | Passes a weekday Challenge, first roll | Weekday fights won | Own Gathering fight survived | Party wins the Battle | Gear at the end | Both tracks Level 5 | Gold earned | Gold left |
+|---|---|---|---|---|---|---|---|---|---|
+| Daily | 6 | 64–70% | 95% | 92% | 100% | 5.0 | 100% | 20,900 | 7,100 |
+| Regular | 4 | 63–70% | 92% | 87% | 100% | 5.0 | 95% | 16,300 | 3,000 |
+| Occasional | 2 | 60–70% | 87% | 76% | 99% | 4.5 | 15% | 11,600 | 1,200 |
+| Rare | 1 | 57–70% | 85% | 67% | 96% | 4.0 | 0% | 9,200 | 1,200 |
+
+A single Gathering fight, both gear tracks at the same level, the player striking first (exact): Episode 1: 76 / 90 / 97 / 100 / 100%; Episode 2: 54 / 76 / 90 / 97 / 100%; Episodes 3–4: 32 / 54 / 76 / 90 / 97%; Episodes 5–6: 14 / 32 / 54 / 76 / 90% (Levels 1 to 5). The weekday enemy is one column easier. Each gear level is worth 7 to 22 points. Fights take 4 to 6 rounds.
+
+*The 5 Oct figures below are kept for the record; they used a d20 × 2 damage and one lower enemies, and assumed fewer Gatherings for Rare and Occasional players.*
+
+**What these numbers produced on 5 Oct 2026** (simulated 5 Oct 2026 after Audit G, and re-run the same day without the safety net once optional play was cut: the 29 Challenge cards and 12 weekday fights as written, [PRESS ON] on 12 days, Match, [LOOK CLOSER], the Battle conditions above, four friends of the same kind of player; fights and Challenge odds worked out exactly, the season rolled by simulation)
 
 | Player | Weekdays played | Passes a weekday Challenge, first roll | Wins own Gathering fight | Gear at season's end | Both tracks Level 5 | Gold earned | Gold left for Relics |
 |---|---|---|---|---|---|---|---|
@@ -855,12 +870,12 @@ These appear in older documents and logs. None is in force. The reasoning for ea
 
 On 8 Oct 2026 Fake Guru (formerly TV / TVMen) approved the following changes that the build's author had made. They are **approved as design**. **None has been simulated, and none overrides §12.** Until a numbers pass sets them, **§12 stays the source of every number** and the build must follow §12.
 
-1. **A failed Challenge pays no gold** (build) against §12's −150g. Decide in the numbers pass which stands; the build's 150g Challenge pay does not match §12's +500g and cannot stand with the 12,400g gear curve.
+1. **Closed 15 Oct 2026 (numbers pass, Fake Guru): a failed Challenge costs 150g, as §12 says.** Was: **A failed Challenge pays no gold** (build) against §12's −150g. Decide in the numbers pass which stands; the build's 150g Challenge pay does not match §12's +500g and cannot stand with the 12,400g gear curve.
 2. ~~**The Detour fight** after a failed Challenge on a day with no fight: a short, easier fight so a failure has a consequence.~~ **Dropped 15 Oct 2026 (Fake Guru):** canon's fail already costs 150g and shows a worse scene; the extra fight broke scenes (a "lookout" inside the inn on W1D2). Missed clues are now sent to the Campfire instead (§3). Pay not set (build used 150g win / 75g loss).
 3. ~~**Ambush and first-strike numbers** (build: −15 HP on an ambush, +2 weapon on a strike, a 70 HP Fan Out enemy).~~ **Dropped 15 Oct 2026 (Fake Guru):** the days themselves say who strikes first (a choice, or the day's Challenge), as the episode files write it; the +2 / −15 counted that Challenge twice. (The Fan Out enemy goes with the Fan Out redesign.)
-4. **Fan Out** (a solo choice after the day's main beat: Challenge, Fight or Head to the Campfire). It reopens part of the optional play retired on 5 Oct, so **"one paid beat a day" no longer holds as written**. Head to the Campfire counts as a finished day; the other two are optional depth. A win gives a first-letter hint to the day's Seeker Fragment.
-5. **Riddle and Fragment gold** (build: riddles +10g/+15g, lock words +25g). §12 has only the +25g word. Pending.
-6. **W6D3's two small bonuses** (+1 Agility on THE WATCH, +1 Charm on THE BOARD). Pending.
-7. **The map bonus** (build): +2 to the Gathering's Approach roll when the party has solved all six of that week's fragment words. Kept 14 Oct 2026 (Fake Guru, on Claude's suggestion: it gives the fragment puzzle a real reward). Number pending.
+4. *(Gold closed 15 Oct 2026, numbers pass: a Fan Out lead pays no gold; the clue and the hint are the reward.)* **Fan Out** (a solo choice after the day's main beat: Challenge, Fight or Head to the Campfire). It reopens part of the optional play retired on 5 Oct, so **"one paid beat a day" no longer holds as written**. Head to the Campfire counts as a finished day; the other two are optional depth. A win gives a first-letter hint to the day's Seeker Fragment.
+5. **Riddle and Fragment gold.** Closed 15 Oct 2026 (numbers pass, Fake Guru): riddles pay no gold; a lock word pays 25g. The hidden roadside cache (+25g) is retired.
+6. ~~**W6D3's two small bonuses** (+1 Agility on THE WATCH, +1 Charm on THE BOARD).~~ **Retired 15 Oct 2026** (numbers pass, Fake Guru): no canon source, and never in play.
+7. **The map bonus** (build): +2 to the Gathering's Approach roll when the party has solved all six of that week's fragment words. Kept 14 Oct 2026 (Fake Guru, on Claude's suggestion: it gives the fragment puzzle a real reward). Closed 15 Oct 2026 (numbers pass, Fake Guru): +2 stands.
 
 **Corrections the same day (not decisions):** Garrick stays with the party all of Week 6 and the Store is never locked (the build's "empty seat" and Store lock are removed; see `review-build-audit-9oct.md`). Garrick may give the king's name the first time he is asked, **from the Ep2 Gathering on** (Deception Table), not before. A Challenge rolls d20 plus the tier bonus against the DC; never the raw Attribute.

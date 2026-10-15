@@ -366,7 +366,7 @@ These are NEW text: pass them through the Garrick question test before shipping.
 Each day has `tone`: **wry** (default) or **quiet**. On quiet days there is no joke and no riddle (the riddle appears only if a friend taps "a riddle?"), and the opener is plain. Quiet days: **W1D4, W3D2, W4D3, W4D6, W5D4, W6D2**. Canon: he is plain and gentle, never light, when a child is in danger.
 
 ## G. Riddle rules
-One riddle per evening, optional. A friend types an answer or taps **Give up**. Accept the answer plus the variants in the data file. After three wrong tries (or Give up), show the answer. The reveal ends with the quip line. A riddle never carries a clue. **No gold amount is set** (pending the numbers pass).
+One riddle per evening, optional. A friend types an answer or taps **Give up**. Accept the answer plus the variants in the data file. After three wrong tries (or Give up), show the answer. The reveal ends with the quip line. A riddle never carries a clue. **A riddle pays no gold** (numbers pass, 15 Oct 2026).
 
 ## H. Pace
 At most **eight** Garrick messages to one friend per evening. A **Leave the fire** button is always visible and ends the evening with a closer. Target 2 to 4 minutes. The day is complete without the Campfire.

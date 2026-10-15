@@ -20,12 +20,6 @@ export interface WeekdayInventoryItem {
     optB: string; // enemy strikes first
     noticeHint: string;
   };
-  asymmetricChoices?: {
-    label: string;
-    detail: string;
-    friendSummary: string;
-    bonusAttr?: AttributeName;
-  }[];
   passBranchText: string;
   failBranchText: string;
   pullLine: string;
@@ -44,18 +38,6 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     challengeTitle: 'OPEN THE BOX',
     challengeAttrs: ['Might', 'Craft'],
     hasFight: true, fightEnemyName: 'A Man on the Road', fightReward: GOLD_WEEKDAY_FIGHT_ONLY_WIN,
-    asymmetricChoices: [
-      {
-        label: 'LOOK WHERE HE STOOD',
-        detail: 'A scrap of parchment in the leaf-mould, half burned. Somebody laid it over something hard and raised, and rubbed charcoal across it until the shape came through. [PLANT]',
-        friendSummary: 'Your cargo box has fresh scratches round its jammed lock—he was at it before you saw him.',
-      },
-      {
-        label: 'LOOK AT WHAT HE WAS AT',
-        detail: 'Your cargo box. The lock is jammed, and the scratches round it are fresh. They are not yours. He was at this before you ever saw him.',
-        friendSummary: 'Where he stood in the leaf-mould lies a half-burned charcoal rubbing of something hard and raised. [PLANT]',
-      },
-    ],
     passBranchText: 'It gives at the first try. Nothing has been taken—something has been put in: a list of [N] names, yours among them, and "The Hollow Wake Inn, on the drove road."',
     failBranchText: 'It gives in the end. Your knuckles are bleeding and the trees have gone from green to black. Inside sits a list of [N] names and "The Hollow Wake Inn, on the drove road."',
     pullLine: 'One day north: the Hollow Wake Inn. Somebody wants you there.',
@@ -167,11 +149,6 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     hasPressOn: true, pressOnTitle: 'THE RUTS',
     pressOnDetail: 'The left wheel pulls. You have seen that track before, coming down a muddy bank to a ford. It is the same cart.',
     fightReward: 0,
-    asymmetricChoices: [
-      { label: 'THE LATCH', detail: 'It hangs by one nail, broken from outside with a single push.', friendSummary: 'Mei reads the four-night-old ruts; Dev holds the rubbing against the mill-wheel\'s old stone footing—it fits.' },
-      { label: 'THE LANE', detail: 'Ruts in and out, four nights old. Someone led the horse about by its head without a sound.', friendSummary: 'Arjun checks the broken latch; Dev matches the rubbing to the carving on the wheel\'s stone footing.' },
-      { label: 'THE WHEEL\'S FOOTING', detail: 'Worn into the old stone under the wheel-housing is the exact shape from Meira\'s rubbing.', friendSummary: 'Arjun checks the broken latch; Mei traces the silent four-night-old cart ruts in the lane.' },
-    ],
     passBranchText: 'She tells you at once: he asked for Corin by name and knew the night he was born—and she presses a horn button torn from the taker\'s sleeve into your hand.',
     failBranchText: 'She shuts the door in your face. She only speaks to Arjun at dusk after Arjun mends her latch, and never gives you the horn button.',
     pullLine: 'Upriver. The ruts are four nights old, and there is weather coming.',
@@ -309,11 +286,6 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
       optB: 'THE RIDERS\' LINE',
       noticeHint: 'Agility / Craft Notice: Wren\'s glass chips mark a hidden goat-track through the rocks that comes in above the lookout.',
     },
-    asymmetricChoices: [
-      { label: 'LOW ON THE DOORFRAME', detail: 'Scratched fresh into the wood at a child\'s height: WREN. [PLANT]', friendSummary: 'Mei checks the catching pot on the fire; Dev reads the old carving on the beam over the bed: "Until the throne rise whole." [PLANT]' },
-      { label: 'THE BEAM OVER THE PALLET', detail: 'Cut deep and neat into the old beam over the pallet, dark with years of smoke: "Until the throne rise whole." [PLANT]', friendSummary: 'Arjun finds WREN scratched low on the doorframe [PLANT]; Mei checks the catching pot and dropped tin cup by the fire.' },
-      { label: 'THE FIRE', detail: 'A pot still catching, a dropped tin cup, one blanket folded and one thrown down: they were here within the hour and left at a run.', friendSummary: 'Arjun finds WREN scratched on the doorframe [PLANT]; Dev reads "Until the throne rise whole" cut into the beam over her bed. [PLANT]' },
-    ],
     passBranchText: 'You come down Wren\'s goat-track with five more chips and strike first; the lookout flees without his stitched hat.',
     failBranchText: 'He spots you on the open riders\' line and strikes first before retreating over the bare black rock.',
     pullLine: 'A step, now, and no more. The cairn on the highest ridge, before the light goes.',
@@ -378,11 +350,6 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     challengeTitle: 'HER SKIFF',
     challengeAttrs: ['Craft', 'Might'],
     fightReward: 0,
-    asymmetricChoices: [
-      { label: 'THE SHELF', detail: 'A row of little carved wooden boats; the newest has its hull and no mast, the knife lying beside it.', friendSummary: 'Mei checks the lamp burning in the noon window; Dev counts eight fresh knife-notches on the doorpost.' },
-      { label: 'THE WINDOW', detail: 'A lamp burning at noon—lit in every Reedham window on a dark-moon night, and never put out since Joss was taken.', friendSummary: 'Arjun looks at Joss\'s unfinished carved boat on the shelf; Dev counts eight notches on the doorpost.' },
-      { label: 'THE DOORPOST', detail: 'Eight fresh notches cut with a kitchen knife—one for every night Joss has been gone.', friendSummary: 'Arjun inspects the unfinished little boat on the shelf; Mei learns why the lamp burns in the window at noon.' },
-    ],
     passBranchText: 'You patch the sprung plank and row dry out to the drowned tower, where the fourth mark and housing wait.',
     failBranchText: 'The leaking skiff grounds on the outer shoal and you have to wade the last thirty yards chest-deep in freezing lake water to reach the tower.',
     pullLine: 'Someone has been rowing out to the drowned village by night. Old Reedham, at the shallow end, tomorrow.',
@@ -561,10 +528,6 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     hasPressOn: true, pressOnTitle: 'THE FIRE',
     pressOnDetail: 'Eleven watchmen. Six have road-dust to the knee and packs not yet unrolled—they did not send for men to hunt you; these were already coming for the night.',
     fightReward: 0,
-    asymmetricChoices: [
-      { label: 'THE WATCH (+1 Agility)', detail: 'You time the exact breath when the relief says "Keep the dark" and neither watchman is looking across the flags. (+1 to Agility roll)', friendSummary: 'Dev checks the chalk board by their fire: four strokes left, matching your page.', bonusAttr: 'Agility' },
-      { label: 'THE BOARD (+1 Charm)', detail: 'Four strokes left uncrossed on their board—and the new men sit apart, afraid of the hall, easy to read and steady your party past. (+1 to Charm roll)', friendSummary: 'Mei times the change of the watch at the corner flagstone.', bonusAttr: 'Charm' },
-    ],
     passBranchText: 'You cross into the lee of the hall\'s wall unseen and lay your palm flat on the stone: it is warm from the inside.',
     failBranchText: 'A lantern swings your way and pins you flat against the cold flags for an hour while the watchman calls two more men up from the dark streets.',
     pullLine: 'He is on the other side of this wall. The cracked hill behind the hall.',
