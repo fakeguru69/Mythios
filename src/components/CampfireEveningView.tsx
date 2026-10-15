@@ -548,7 +548,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           speaker: 'GARRICK · INNKEEPER',
           color: '#F0A552',
           text: routed.reply,
-          meta: 'Stored Line',
+          meta: undefined,
         });
         setGarrickExtraBySeat((prev) => ({ ...prev, [activeSeat]: (prev[activeSeat] || 0) + 1 }));
       } else {
@@ -557,7 +557,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           speaker: 'GARRICK · INNKEEPER',
           color: '#F0A552',
           text: pickRotatedCampfireLine('closers', senderName),
-          meta: baseGarrickCount >= 8 ? '8-Message Cap Reached' : 'Room Cap (12) Reached',
+          meta: undefined,
         });
       }
     }
@@ -970,7 +970,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             </div>
           ) : (
             <div className="p-3 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[13.5px] font-sans text-[#B7A9CC]">
-              Every friend chose Head to Campfire today — no Fan Out clue was brought back.
+              Nobody followed a lead tonight.
             </div>
           )}
         </div>
@@ -983,7 +983,6 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
         >
           <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
             <span className="text-[#D4B876] uppercase">GARRICK REMEMBERS</span>
-            <span className="text-[#B7A9CC]">Earlier thread connection</span>
           </div>
           <p className="font-['Cormorant_Garamond'] font-medium text-[19px] text-[#F4F1F8] leading-[1.5]">
             “{dayEntry.callback}”
@@ -1363,7 +1362,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             className="pt-2 border-t border-white/[0.08] space-y-2"
           >
             <div className="text-[11px] font-['Cinzel'] font-bold text-[#B7A9CC] uppercase">
-              QUESTION PIN (GARRICK READS IT TO THE NEXT FRIEND WITHOUT ANSWERING):
+              A question for whoever comes next:
             </div>
             <div className="flex items-center gap-2">
               <input
@@ -1406,7 +1405,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           {currentDay === 6 && earlierWeekPins.length > 0 && (
             <div className="p-2.5 rounded-lg bg-[#130B1F] border border-[#D4B876]/55 space-y-1">
               <div className="font-['Cinzel'] font-bold text-[10.5px] text-[#D4B876] uppercase">
-                DAY 6 WEEKLY PIN REVISIT · GARRICK
+                Garrick remembers the week
               </div>
               {earlierWeekPins.map((item, idx) => (
                 <p key={idx} className="text-[13px] font-sans text-[#E6E0F0]">
@@ -1494,6 +1493,8 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           );
         })()}
 
+        {dayEntry.riddle && (
+        <>
         {/* -------------------------------------------------------------------
             STEP 6: THE RIDDLE (Tone-Aware, 3 Tries or Give Up, Zero Gold)
            ------------------------------------------------------------------- */}
@@ -1504,7 +1505,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             <span className="text-[#D4B876] uppercase">THE RIDDLE</span>
             <span className="text-[#B7A9CC]">
               {!dayEntry.riddle
-                ? 'None on W1·D1'
+                ? ''
                 : dayEntry.tone === 'quiet' && !quietRiddleRequested
                 ? 'Quiet evening · Hidden unless asked'
                 : `${riddleTries}/${dayEntry.riddle.maxTries} tries`}
@@ -1582,8 +1583,11 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             </div>
           )}
         </div>
+        </>
+        )}
 
         <div id="campfire-leaving" className="space-y-3.5 scroll-mt-3">
+
         {/* -------------------------------------------------------------------
             STEP 7: WHAT WE DID TODAY (Factual Only, Obeys Match-Label Rule)
            ------------------------------------------------------------------- */}
@@ -1607,7 +1611,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             </div>
           ) : (
             <p className="text-[13.5px] font-sans text-[#B7A9CC]">
-              No rolls, Fragment lock-words, Relics, or Fan Out clues recorded yet today.
+              Nothing yet today.
             </p>
           )}
         </div>
@@ -1620,15 +1624,6 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
         >
           <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
             <span className="text-[#F0A552] uppercase">{dayEntry.narratedNoGarrick ? 'LEAVING' : 'LEAVING · GARRICK'}</span>
-            <button
-              type="button"
-              onClick={() =>
-                setCloserLine(pickRotatedCampfireLine('closers', friendNames[activeSeat]))
-              }
-              className="text-[11px] text-[#D4B876] hover:underline"
-            >
-              Rotate Closer ↻
-            </button>
           </div>
           {!dayEntry.narratedNoGarrick && (
             <p className="font-['Cormorant_Garamond'] font-medium text-[19.5px] text-[#F4F1F8] leading-[1.5]">
@@ -1683,7 +1678,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                     : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC]'
                 }`}
               >
-                🔥 Ask Garrick (Stored Router)
+                🔥 Ask Garrick
               </button>
             )}
             <button
