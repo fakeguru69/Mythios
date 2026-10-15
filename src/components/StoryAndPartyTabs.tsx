@@ -9,6 +9,7 @@ import {
   getTierInfo,
   WEEKDAY_DC_BY_WEEK,
   PartyFriend,
+  DEFAULT_PARTY_MEMBERS,
   calculateAttributeGrowth,
   resolveChallengeRoll,
   challengeSucceedOn,
@@ -43,12 +44,28 @@ import {
   FanOutBranchOption,
 } from '../data/soloLandmarkProse';
 import {
-  getGarrickCampfireDailyPrompt,
   getBoardCrossCheckSynthesis,
   buildBoardClueDiscussionExchange,
 } from '../data/garrickCampfirePrompts';
 import { getCampfireDayEntry } from '../data/campfireDaysData';
 import { CampfireEveningView } from './CampfireEveningView';
+import {
+  BattleState,
+  BattleStrikeLine,
+  UnitedEffortState,
+  armCombatRelic,
+  canTakeCombatRelic,
+  playBattleRound,
+  rollUnitedEffortTurn,
+  startBattle,
+  startUnitedEffort,
+  unitedEffortBand,
+  unitedEffortEligible,
+} from '../data/gatheringEngine';
+import { UNITED_EFFORT_STORIES } from '../data/unitedEffortStories';
+
+/** A roll's net: +3, 0 or −2 (a true minus sign). */
+const formatMargin = (m: number) => (m > 0 ? `+${m}` : m === 0 ? '0' : `−${Math.abs(m)}`);
 
 /* ============================================================================
    CHAT -> MINE (STORY TAB VIEW)
@@ -1050,7 +1067,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
             {[
               { label: '1. Challenge + Scroll', sub: 'W2·D2 · The Mill', w: 2, d: 2 },
               { label: '2. Fight + Scroll', sub: "W1·D3 · Widow's Tooth", w: 1, d: 3 },
-              { label: '3. Challenge + Fight', sub: 'W1·D6 · The Low Ford', w: 1, d: 6 },
+              { label: '3. Challenge + Fight', sub: 'W2·D3 · Upriver', w: 2, d: 3 },
             ].map((preset) => {
               const active = currentWeek === preset.w && currentDay === preset.d;
               return (
@@ -1348,9 +1365,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                             rollOutcome.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
                           }`}
                         >
-                          {rollOutcome.margin >= 0
-                            ? `+${rollOutcome.margin}`
-                            : rollOutcome.margin}
+                          {formatMargin(rollOutcome.margin)}
                         </span>
                       </div>
 
@@ -1549,7 +1564,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                                       r.hit ? 'text-[#6FD39A]' : 'text-[#9A90B8]'
                                     }`}
                                   >
-                                    {r.margin >= 0 ? `+${r.margin}` : r.margin}
+                                    {formatMargin(r.margin)}
                                   </span>
                                 </div>
                                 <div className="text-[12px] font-bold">
@@ -1788,7 +1803,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                                 r.hit ? 'text-[#6FD39A]' : 'text-[#9A90B8]'
                               }`}
                             >
-                              {r.margin >= 0 ? `+${r.margin}` : r.margin}
+                              {formatMargin(r.margin)}
                             </span>
                           </div>
                           <div className="text-[12px] font-bold">
@@ -2269,9 +2284,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                                       : 'text-[#E0645C]'
                                   }`}
                                 >
-                                  {fanOutRollOutcome.margin >= 0
-                                    ? `+${fanOutRollOutcome.margin}`
-                                    : fanOutRollOutcome.margin}
+                                  {formatMargin(fanOutRollOutcome.margin)}
                                 </span>
                               </div>
                               <div
@@ -2677,8 +2690,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
    - Clear visual separation between A+B (Top Mode Bar), C (Warm Campfire Tray),
      and D (True Left-Aligned Party Chat Bubbles with Avatars)
    - Lighthearted Garrick Campfire Riddles solved via Letter Tiles (#15, #16)
-   - Day 7 Gathering: Unified Opening Approach Card (#18, #19), Individual Hero
-     Strikes + Assist/Relic in Battle (#21), and separated Mythios Narration (#22),
+   - Day 7 Gathering: Approach Card (#18, #19), the Battle (each friend against their
+     own enemy, Core Rules §4) and the United Effort (§5), Mythios Narration (#22),
      Scripture Match Card (#23), and Table Twist Question Card (#24)
    ============================================================================ */
 
@@ -2722,32 +2735,12 @@ interface PartyTabViewProps {
   appliedLoopholeIds?: string[];
   relics?: Record<string, number>;
   onGiveRelic?: (relicType: string, friendName: string) => void;
+  onUseRelic?: (relicType: string) => void;
   privateTheoryPromptsByDay?: Record<
     string,
     { reading: 'A' | 'B' | 'NEITHER'; customLine?: string }
   >;
   onLeaveFire?: () => void;
-}
-
-interface PartyRoundHeroStrike {
-  hero: string;
-  cls: string;
-  d20: number;
-  atk: number;
-  def: number;
-  margin: number;
-  hit: boolean;
-  dmg: number;
-  enemyHpBefore: number;
-  enemyHpAfter: number;
-}
-
-interface PartyBattleRound {
-  round: number;
-  strikes: PartyRoundHeroStrike[];
-  totalDmg: number;
-  partyHpLeft: number;
-  enemyHpLeft: number;
 }
 
 export const PartyTabView: React.FC<PartyTabViewProps> = ({
@@ -2765,6 +2758,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   characterName,
   characterClass = 'Trickster',
   weaponLevel = 2,
+  armorLevel = 2,
   attributes,
   solvedWords,
   onSolveWord,
@@ -2777,9 +2771,10 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   onShareSoloClueToBoard,
   sharedFanOutClues = {},
   onShareFanOutClue,
-  appliedLoopholeIds = ['L1', 'L2', 'L3'],
+  appliedLoopholeIds = ['L1', 'L3'],
   relics = {},
   onGiveRelic,
+  onUseRelic,
   privateTheoryPromptsByDay = {},
   onLeaveFire,
   onClaimReward = () => true,
@@ -2825,26 +2820,19 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     cleared: boolean;
   } | null>(null);
 
-  const [battleAssisted, setBattleAssisted] = useState(false);
-  const [assistedCompanion, setAssistedCompanion] = useState<'MEI' | 'DEV' | 'ARJUN' | null>(
-    null
-  );
-  const [battleRelicUsed, setBattleRelicUsed] = useState(false);
-  const [battleRounds, setBattleRounds] = useState<PartyBattleRound[]>([]);
+  // Core Rules §4: each friend fights their own enemy, all in lockstep rounds.
+  const [battle, setBattle] = useState<BattleState | null>(null);
   const [isRollingBattleRound, setIsRollingBattleRound] = useState(false);
-  const [battleDone, setBattleDone] = useState(false);
+  const battleDone = Boolean(battle && battle.outcome !== 'ongoing');
 
-  const [ueRolled, setUeRolled] = useState<{
-    totalProgress: number;
-    cleared: boolean;
-    heroRolls: Array<{
-      hero: string;
-      color: string;
-      d20: number;
-      bonus: number;
-      contribution: number;
-    }>;
-  } | null>(null);
+  // Core Rules §5: the United Effort, one friend at a time until either thing reaches 0.
+  const [ue, setUe] = useState<UnitedEffortState | null>(null);
+  const [ueNextId, setUeNextId] = useState<string>('YOU');
+  const [ueRelicArmed, setUeRelicArmed] = useState(false);
+  const [ueStory, setUeStory] = useState<Array<{ line?: string; between?: string }>>([]);
+  const [isRollingUe, setIsRollingUe] = useState(false);
+  const ueDone = Boolean(ue && ue.outcome !== 'ongoing');
+  const ueCleared = ue?.outcome === 'won';
   const [lookCloserDone, setLookCloserDone] = useState(false);
 
   const [matchedQuotes, setMatchedQuotes] = useState<Record<number, boolean>>({});
@@ -2856,13 +2844,13 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     setLastGatheringWeek(currentWeek);
     setApproachPick('A');
     setApproachRolled(null);
-    setBattleAssisted(false);
-    setAssistedCompanion(null);
-    setBattleRelicUsed(false);
-    setBattleRounds([]);
+    setBattle(null);
     setIsRollingBattleRound(false);
-    setBattleDone(false);
-    setUeRolled(null);
+    setUe(null);
+    setUeNextId('YOU');
+    setUeRelicArmed(false);
+    setUeStory([]);
+    setIsRollingUe(false);
     setLookCloserDone(false);
     setMatchedQuotes({});
     setWrongMatchPick({});
@@ -2908,26 +2896,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     ).toUpperCase(),
   };
   const isSoloClueShared = Boolean(sharedFanOutClues[dayKey] || sharedBoardClues[dayKey]);
-  const hasTodayFirstLetterHint = Boolean(seekerFirstLetterHints[dayKey]);
-  const dailyMysteryBeat = getGarrickCampfireDailyPrompt(
-    currentWeek,
-    currentDay,
-    characterName,
-    soloClueForToday.text,
-    hasTodayFirstLetterHint
-  );
   const isW1D1Campfire = currentWeek === 1 && currentDay === 1;
   const isGarrickAbsentAtCamp = isW1D1Campfire;
-
-  // 36-Evening Campfire Table prompt derived directly from dailyMysteryBeat.eveningEntry
-  const storytellerPrompt = {
-    clueTag: dailyMysteryBeat.eveningEntry.clueTag,
-    shape: dailyMysteryBeat.eveningEntry.shape,
-    shapeLabel: dailyMysteryBeat.eveningEntry.shapeLabel,
-    storytellerLead: `${dailyMysteryBeat.eveningEntry.garrickObservation} ${dailyMysteryBeat.eveningEntry.garrickQuestion}`,
-    chips: dailyMysteryBeat.eveningEntry.chips,
-    friendHook: dailyMysteryBeat.eveningEntry.friendHook,
-  };
 
   // Signature speaker metadata (distinct header colors inside the unified #1E1232 / #B794F4 bubble, avoiding Green/Red reserved for YOU/FOE)
   const PARTY_SPEAKER_META: Record<
@@ -3195,164 +3165,130 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     }
   };
 
-  // Step-by-step Round-by-Round Day 7 Gathering 4-Hero Boss Battle (#21 + G10 Battle Conditions)
+  // The party for the Gathering, in party-list order (the host first).
+  // Prototype: the sample friends use the player's gear and Attribute scores as stand-ins
+  // until each friend has their own saved character.
+  const gatheringParty = DEFAULT_PARTY_MEMBERS.map((f) => ({
+    id: f.id,
+    name: f.id === 'YOU' ? characterName || 'You' : f.name,
+    color: f.color,
+  }));
+  const gatheringPartyIds = gatheringParty.map((f) => f.id);
+  const partyName = (id: string) => gatheringParty.find((f) => f.id === id)?.name || id;
+  const playerWeapon = GEAR_TABLE[weaponLevel]?.weapon || 14;
+  const playerArmor = GEAR_TABLE[armorLevel]?.armor || 27;
+  const combatRelicsHeld = relics.Battle || 0;
+
+  const beginBattle = () =>
+    startBattle(
+      currentWeek,
+      gatheringParty.map((f) => ({ id: f.id, name: f.name, weapon: playerWeapon, armor: playerArmor })),
+      { name: gathering.enemyName, def: epMeta.gDef, atk: epMeta.gAtk },
+      // Core Rules §11: the Approach decides who strikes first.
+      Boolean(approachRolled?.cleared)
+    );
+
+  // One tap per round, with a short pause for the roll (Fake Guru, 14 Oct).
   const handleRollNextGatheringRound = () => {
     if (isRollingBattleRound || battleDone) return;
     setIsRollingBattleRound(true);
-
     setTimeout(() => {
-      const prev = battleRounds;
-      const nextRoundNum = prev.length + 1;
-      const prevEnemyHp = prev.length === 0 ? 100 : prev[prev.length - 1].enemyHpLeft;
-      const prevPartyHp = prev.length === 0 ? 100 : prev[prev.length - 1].partyHpLeft;
-
-      // Approach Momentum in Round 1: +1 WEP if Approach passed, or +1 Enemy DEF if Hard Entry
-      const approachWepBonus =
-        nextRoundNum === 1 && approachRolled?.cleared ? 1 : 0;
-      const approachDefPenalty =
-        nextRoundNum === 1 && approachRolled && !approachRolled.cleared ? 1 : 0;
-
-      // Battle Condition 1 (Weeks 2 & 6 — The Chant): DEF +1 while > 50% HP
-      const chantDefBonus =
-        (currentWeek === 2 || currentWeek === 6) && prevEnemyHp > 50 ? 1 : 0;
-
-      const baseDef =
-        Math.max(18, (epMeta.gDef || 22) - 2) + approachDefPenalty + chantDefBonus;
-      const assistBonus = battleAssisted || assistedCompanion ? 2 : 0;
-      const relicBonus = battleRelicUsed ? 1 : 0;
-
-      const playerBaseWep = (GEAR_TABLE[weaponLevel]?.weapon || 14) + 2;
-      const heroes = [
-        {
-          name: 'YOU',
-          cls: characterClass || 'Trickster',
-          baseAtk: playerBaseWep + assistBonus + relicBonus + approachWepBonus,
-        },
-        {
-          name: 'MEI',
-          cls: 'Sage',
-          baseAtk: 15 + (assistedCompanion === 'MEI' ? 2 : 0) + approachWepBonus,
-        },
-        {
-          name: 'ARJUN',
-          cls: 'Artificer',
-          baseAtk: 16 + (assistedCompanion === 'ARJUN' ? 2 : 0) + approachWepBonus,
-        },
-        {
-          name: 'DEV',
-          cls: 'Archer',
-          baseAtk: 16 + (assistedCompanion === 'DEV' ? 2 : 0) + relicBonus + approachWepBonus,
-        },
-      ];
-
-      let enemyHp = prevEnemyHp;
-      const strikes: PartyRoundHeroStrike[] = [];
-      let roundDmg = 0;
-
-      for (const h of heroes) {
-        const hpBefore = enemyHp;
-        const d20 = Math.floor(Math.random() * 20) + 1;
-        const margin = d20 + h.baseAtk - baseDef;
-        // Battle Condition 2 (Week 4 — Knee-Deep): rolling 1, 2, or 3 slips in the flood
-        const kneeDeepSlip = currentWeek === 4 && d20 <= 3;
-        const hit = !kneeDeepSlip && margin > 0;
-        const dmg = hit ? margin * 5 : 0;
-        roundDmg += dmg;
-        enemyHp = Math.max(0, enemyHp - dmg);
-        strikes.push({
-          hero: h.name,
-          cls: h.cls,
-          d20,
-          atk: h.baseAtk,
-          def: baseDef,
-          margin,
-          hit,
-          dmg,
-          enemyHpBefore: hpBefore,
-          enemyHpAfter: enemyHp,
-        });
-      }
-
-      // Battle Condition 3 (Weeks 5 & 6 — The Hollowed): first time put down in Round 1-2, rises once at 2 HP
-      if (
-        (currentWeek === 5 || currentWeek === 6) &&
-        enemyHp <= 0 &&
-        nextRoundNum < 3 &&
-        !prev.some((r) => r.enemyHpLeft === 2)
-      ) {
-        enemyHp = 2;
-      }
-
-      // Battle Condition 4 (Week 3 — Blade & Torch): extra burn damage after round 1
-      const torchBurn = currentWeek === 3 && nextRoundNum > 1 ? 4 : 0;
-      const partyHp = Math.max(
-        0,
-        prevPartyHp - (enemyHp > 0 ? 15 + torchBurn : 0)
-      );
-      const nextRound: PartyBattleRound = {
-        round: nextRoundNum,
-        strikes,
-        totalDmg: roundDmg,
-        partyHpLeft: partyHp,
-        enemyHpLeft: enemyHp,
-      };
-
-      const updated = [...prev, nextRound];
-      setBattleRounds(updated);
-      if (enemyHp <= 0 || partyHp <= 0) {
-        setBattleDone(true);
-        if (enemyHp <= 0) {
-          if (onClaimReward(`G${currentWeek}:battle`)) {
-            onEarnGold(GOLD_GATHERING_BATTLE_REWARDS[currentWeek] ?? epMeta.gReward);
-          }
-        }
+      const next = playBattleRound(battle ?? beginBattle());
+      setBattle(next);
+      if (next.outcome === 'won' && onClaimReward(`G${currentWeek}:battle`)) {
+        onEarnGold(GOLD_GATHERING_BATTLE_REWARDS[currentWeek] ?? epMeta.gReward);
       }
       setIsRollingBattleRound(false);
     }, 360);
   };
 
-  // Phase 3: Interactive 100/100 United Effort 4-Hero Roll (+300g on clear per Core Rules §12)
+  // Core Rules §5: a Combat Relic is +1 Weapon and +1 Armor from the next round, spent at once.
+  const handleUseCombatRelic = () => {
+    const current = battle ?? beginBattle();
+    if (combatRelicsHeld <= 0 || !canTakeCombatRelic(current, 'YOU')) return;
+    onUseRelic?.('Battle');
+    setBattle(armCombatRelic(current, 'YOU', partyName('YOU')));
+  };
+
+  const handleGiveCombatRelic = (friendId: string) => {
+    if (!battle || combatRelicsHeld <= 0 || !canTakeCombatRelic(battle, friendId)) return;
+    onGiveRelic?.('Battle', partyName(friendId));
+    setBattle(armCombatRelic(battle, friendId, partyName('YOU')));
+  };
+
+  // United Effort: who rolls next. The player hands on by choice; a friend's turn passes to the next in the party list.
+  const ueEligible = ue ? unitedEffortEligible(ue, gatheringPartyIds) : gatheringPartyIds;
+  const ueRollerId = ueEligible.includes(ueNextId) ? ueNextId : ueEligible[0];
+  const ueAttrScore = attributes[gathering.ueAttr] || 1;
+  const ueTierBonus = getTierInfo(ueAttrScore).bonus;
+  const ueRelicsHeld = relics[gathering.ueAttr] || 0;
+  const ueAnyAttrRelic =
+    ueRelicsHeld > 0
+      ? gathering.ueAttr
+      : Object.keys(relics).find((k) => k !== 'Battle' && (relics[k] || 0) > 0) || null;
+  const ueDc = epMeta.ueDC;
+
   const handleRollUnitedEffort = () => {
-    if (ueRolled) return;
-    const playerAttrScore = attributes[gathering.ueAttr] || 18;
-    const playerTierBonus = getTierInfo(playerAttrScore).bonus;
-    const ueHeroes = [
-      { hero: 'YOU', color: '#6FD39A', bonus: Math.max(1, playerTierBonus) },
-      { hero: 'MEI', color: '#F49CBB', bonus: 3 },
-      { hero: 'DEV', color: '#5BC0EB', bonus: 2 },
-      { hero: 'ARJUN', color: '#4FD1C5', bonus: 3 },
-    ];
-    let sum = 0;
-    const heroRolls = ueHeroes.map((h) => {
-      const d20 = Math.floor(Math.random() * 20) + 1; // true 1..20 d20
-      const contribution = (d20 + h.bonus) * 2;
-      sum += contribution;
-      return {
-        hero: h.hero,
-        color: h.color,
-        d20,
-        bonus: h.bonus,
-        contribution,
-      };
-    });
-    const totalProgress = Math.min(100, sum);
-    const cleared = totalProgress >= 100;
-    const bossWon =
-      battleRounds.length > 0 &&
-      battleRounds[battleRounds.length - 1].enemyHpLeft <= 0;
-    if (cleared) {
-      if (onClaimReward(`G${currentWeek}:united-effort`)) {
-        onEarnGold(GOLD_UNITED_EFFORT_WIN);
+    if (ueDone || isRollingUe) return;
+    const current = ue ?? startUnitedEffort(gatheringParty.length);
+    const rollerId = ueRollerId;
+    // The player's own Relic must match the night's Attribute; a Relic given to a friend may be any.
+    const relicType = ueRelicArmed ? (rollerId === 'YOU' ? gathering.ueAttr : ueAnyAttrRelic) : null;
+    setIsRollingUe(true);
+    setTimeout(() => {
+      if (relicType) {
+        if (rollerId === 'YOU') onUseRelic?.(relicType);
+        else onGiveRelic?.(relicType, partyName(rollerId));
       }
-      if (bossWon) {
-        onUnlockGatheringBadge();
+      const next = rollUnitedEffortTurn(
+        current,
+        { id: rollerId, name: partyName(rollerId), score: ueAttrScore, tierBonus: ueTierBonus },
+        ueDc,
+        relicType ? 4 : 0,
+        gatheringPartyIds
+      );
+      const last = next.rolls[next.rolls.length - 1];
+
+      // One line of story, chosen by where the damaged thing now stands; each line is said once.
+      const story = UNITED_EFFORT_STORIES[currentWeek];
+      let line: string | undefined;
+      let between: string | undefined;
+      if (story) {
+        const band = unitedEffortBand(last.barAfter, next.start);
+        const side = last.success ? 'success' : 'fail';
+        const usedBefore = next.rolls
+          .slice(0, -1)
+          .filter((r) => r.success === last.success && unitedEffortBand(r.barAfter, next.start) === band).length;
+        line = story[side][band][usedBefore];
+        const turn = next.rolls.length;
+        if (next.outcome === 'ongoing' && (turn === 2 || turn === 4 || turn === 6)) {
+          between = story.between[turn / 2 - 1];
+        }
       }
-    }
-    setUeRolled({
-      totalProgress,
-      cleared,
-      heroRolls,
-    });
+      setUeStory((prev) => [...prev, { line, between }]);
+      setUe(next);
+      setUeRelicArmed(false);
+
+      if (next.outcome === 'ongoing') {
+        const eligible = unitedEffortEligible(next, gatheringPartyIds);
+        // MYTHIOS names the next friend after a sample friend's turn; the player chooses after their own.
+        if (rollerId !== 'YOU') setUeNextId(eligible[0]);
+        else setUeNextId(eligible.find((id) => id !== 'YOU') ?? eligible[0]);
+      } else if (next.outcome === 'won') {
+        if (onClaimReward(`G${currentWeek}:united-effort`)) {
+          onEarnGold(GOLD_UNITED_EFFORT_WIN);
+        }
+        // A Clean Night: the opening roll cleared, the Battle won with nobody down, and the United Effort won.
+        if (
+          approachRolled?.cleared &&
+          battle?.outcome === 'won' &&
+          battle.fighters.every((f) => !f.fallen)
+        ) {
+          onUnlockGatheringBadge();
+        }
+      }
+      setIsRollingUe(false);
+    }, 360);
   };
 
   const handleGatheringLookCloser = () => {
@@ -3417,8 +3353,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                 onClick={() => {
                   onSelectWeek(w);
                   setApproachRolled(null);
-                  setBattleDone(false);
-                  setBattleRounds([]);
+                  setBattle(null);
+                  setUe(null);
+                  setUeStory([]);
                   setTwistRevealed(false);
                 }}
                 className={`py-1.5 rounded font-['Cinzel'] font-bold text-[11.5px] border transition ${
@@ -3514,7 +3451,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
             {(() => {
               const p1Done = Boolean(approachRolled);
               const p2Done = Boolean(battleDone);
-              const p3Done = Boolean(ueRolled && (!ueRolled.cleared || lookCloserDone));
+              const p3Done = ueDone && (!ueCleared || lookCloserDone);
               const p4Done =
                 p3Done &&
                 (gathering.matches.length === 0 ||
@@ -3719,9 +3656,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                         approachRolled.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
                       }`}
                     >
-                      {approachRolled.margin >= 0
-                        ? `+${approachRolled.margin}`
-                        : approachRolled.margin}
+                      {formatMargin(approachRolled.margin)}
                     </span>
                   </div>
                   <div
@@ -3730,8 +3665,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                     }`}
                   >
                     {approachRolled.cleared
-                      ? 'PASSED · Opening Momentum (+1 WEP in Round 1)'
-                      : 'HARD ENTRY · Enemy Braced (+1 DEF in Round 1)'}
+                      ? 'PASSED · The party strikes first in the Battle'
+                      : 'FAILED · The enemy strikes first in the Battle'}
                   </div>
                 </div>
               )}
@@ -3739,372 +3674,305 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
           </div>
 
           {/* =================================================================
-              PHASE 2 (BEAT 3): ROUND-BY-ROUND 4-HERO PARTY BATTLE CARD
-              Gated until Phase 1 Approach Challenge is rolled!
+              PHASE 2: THE BATTLE (Core Rules §4). Each friend fights their own enemy,
+              all in lockstep rounds; one tap plays a round.
              ================================================================= */}
           {approachRolled && (
             <>
-              {/* Phase 1 -> Phase 2 Narrative Transition Bubble */}
               <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
                 <div className="flex items-center justify-between leading-none">
                   <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] text-[#C4A1FF] uppercase">
-                    MYTHIOS · PHASE 2 UNLOCKED
+                    MYTHIOS · THE BATTLE
                   </span>
                   <span
                     className={`text-[12px] font-bold ${
                       approachRolled.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
                     }`}
                   >
-                    {approachRolled.cleared
-                      ? 'Opening Momentum (+1 WEP R1)'
-                      : 'Hard Entry (+1 DEF R1)'}
+                    {approachRolled.cleared ? 'You strike first' : 'They strike first'}
                   </span>
                 </div>
                 <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
                   {approachRolled.cleared
-                    ? `Your party executes "${
-                        (approachPick === 'A'
-                          ? gathering.approachOptA
-                          : gathering.approachOptB
-                        ).label
-                      }" cleanly across ${gathering.location}, catching ${gathering.enemyName} off-balance and granting all four heroes +1 WEP in Round 1!`
-                    : `As your party attempts "${
-                        (approachPick === 'A'
-                          ? gathering.approachOptA
-                          : gathering.approachOptB
-                        ).label
-                      }" at ${gathering.location}, a loose stone gives you away—allowing ${gathering.enemyName} to brace their guard (+1 DEF in Round 1) as the battle begins!`}
-                </p>
-              </div>
-
-              <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
-                <div className="flex items-center justify-between leading-none">
-                  <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] text-[#5BC0EB] uppercase">
-                    DEV · ARCHER
-                  </span>
-                  <span className="text-[11.5px] font-sans text-[#B7A9CC]">
-                    Phase 2 · Boss Battle
-                  </span>
-                </div>
-                <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                  Sightlines are locked on {gathering.enemyName}. Toggle Assist Party or hand me the combat relic before each round if you want extra punch on our strikes!
+                    ? `"${
+                        (approachPick === 'A' ? gathering.approachOptA : gathering.approachOptB).label
+                      }" works. You are on them before they are ready.`
+                    : `"${
+                        (approachPick === 'A' ? gathering.approachOptA : gathering.approachOptB).label
+                      }" gives you away. They are ready for you.`}
                 </p>
               </div>
 
               <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
                 <div className="px-3.5 py-2.5 bg-[#241638] border-b border-[#3A2555]/80 flex items-center justify-between gap-2">
                   <span className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8] truncate">
-                    ⚔️ PHASE 2 · {gathering.enemyName.toUpperCase()}
+                    ⚔️ {gathering.enemyName.toUpperCase()}
                   </span>
                   <span className="font-['Cinzel'] font-bold text-[12px] text-[#FB923C] whitespace-nowrap shrink-0">
-                    DEF {Math.max(18, (epMeta.gDef || 22) - 2)} ·{' '}
-                    <span className="text-[#E5C158]">+{epMeta.gReward}G</span>
+                    DEF {epMeta.gDef} · ATK {epMeta.gAtk}
                   </span>
                 </div>
 
-              <div className="p-3.5 space-y-3">
-                <p className="font-sans text-[15.5px] text-[#B7A9CC] leading-snug">
-                  {gathering.conditionText}
-                </p>
-
-                {/* Live Party HP vs Foe HP Bars (Updated after every round) */}
-                {(() => {
-                  const curPartyHp =
-                    battleRounds.length > 0
-                      ? battleRounds[battleRounds.length - 1].partyHpLeft
-                      : 100;
-                  const curEnemyHp =
-                    battleRounds.length > 0
-                      ? battleRounds[battleRounds.length - 1].enemyHpLeft
-                      : 100;
-                  return (
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="p-3 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-                        <div className="flex items-center justify-between font-['Cinzel'] font-bold text-[12.5px]">
-                          <span className="text-[#6FD39A]">YOU & PARTY</span>
-                          <span className="text-[#6FD39A] whitespace-nowrap">
-                            {curPartyHp}/100 HP
-                          </span>
-                        </div>
-                        <div className="w-full h-2 bg-[#2A1B40] rounded-full overflow-hidden mt-2">
-                          <div
-                            className="h-full bg-[#6FD39A] transition-all duration-300"
-                            style={{ width: `${curPartyHp}%` }}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="p-3 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-                        <div className="flex items-center justify-between font-['Cinzel'] font-bold text-[12.5px]">
-                          <span className="text-[#E0645C] truncate mr-1">
-                            FOE · {gathering.enemyName.replace(/^The\s+/i, '').slice(0, 8)}
-                          </span>
-                          <span className="text-[#E0645C] whitespace-nowrap">
-                            {curEnemyHp}/100 HP
-                          </span>
-                        </div>
-                        <div className="w-full h-2 bg-[#2A1B40] rounded-full overflow-hidden mt-2">
-                          <div
-                            className="h-full bg-[#E0645C] transition-all duration-300"
-                            style={{ width: `${curEnemyHp}%` }}
-                          />
-                        </div>
-                      </div>
+                <div className="p-3.5 space-y-3">
+                  <div className="text-[13.5px] font-sans text-[#E6E0F0] space-y-0.5">
+                    <div>
+                      You hit on{' '}
+                      <span className="text-[#E5C158] font-bold">
+                        {Math.min(20, Math.max(2, epMeta.gDef + 1 - playerWeapon))}+
+                      </span>{' '}
+                      (Roll + Weapon {playerWeapon} − DEF {epMeta.gDef})
                     </div>
-                  );
-                })()}
+                    <div>
+                      Enemy hits on{' '}
+                      <span className="text-[#E5C158] font-bold">
+                        {Math.min(20, Math.max(2, playerArmor + 1 - epMeta.gAtk))}+
+                      </span>{' '}
+                      (Roll + ATK {epMeta.gAtk} − Armor {playerArmor})
+                    </div>
+                    <div>
+                      Damage = Margin × 5 · REWARD:{' '}
+                      <span className="text-[#E5C158] font-bold">
+                        {GOLD_GATHERING_BATTLE_REWARDS[currentWeek] ?? epMeta.gReward}g
+                      </span>{' '}
+                      to every friend if the party wins
+                    </div>
+                  </div>
+                  {currentWeek !== 1 && (
+                    <p className="font-sans text-[14px] text-[#B7A9CC] leading-snug">
+                      {gathering.conditionText}
+                    </p>
+                  )}
 
-                {/* Rolled Battle Rounds History (Displayed Round-by-Round) */}
-                {battleRounds.length > 0 && (
-                  <div className="space-y-2.5">
-                    {battleRounds.map((r) => (
-                      <div
-                        key={r.round}
-                        className="p-3 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-2"
-                      >
-                        <div className="flex items-center justify-between border-b border-white/[0.06] pb-1">
+                  {/* Each friend's fight: their HP against their own enemy's HP */}
+                  <div className="space-y-1.5">
+                    {gatheringParty.map((f) => {
+                      const fighter = battle?.fighters.find((x) => x.id === f.id);
+                      const foe = battle?.foes.find((x) => x.ownerId === f.id);
+                      const hp = fighter?.hp ?? 100;
+                      const foeHp = foe?.hp ?? 100;
+                      return (
+                        <div
+                          key={f.id}
+                          className="p-2 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[12.5px] font-sans"
+                        >
+                          <div className="flex items-center justify-between gap-2 font-bold">
+                            <span style={{ color: f.color }}>
+                              {f.name.toUpperCase()}
+                              {fighter?.relicFrom ? ' ♦' : ''}
+                              {fighter?.fallen ? ' · DOWN' : ''}
+                            </span>
+                            <span className="text-[#6FD39A]">HP {hp}</span>
+                            <span className="text-[#E0645C]">
+                              {foeHp > 0 ? `Foe HP ${foeHp}` : 'Foe down'}
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-2 mt-1">
+                            <div className="h-1.5 bg-[#2A1B40] rounded-full overflow-hidden">
+                              <div className="h-full bg-[#6FD39A]" style={{ width: `${hp}%` }} />
+                            </div>
+                            <div className="h-1.5 bg-[#2A1B40] rounded-full overflow-hidden">
+                              <div className="h-full bg-[#E0645C]" style={{ width: `${foeHp}%` }} />
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* The rounds, newest last. Each friend's fight shows its own lines. */}
+                  {battle && battle.log.length > 0 && (
+                    <div className="space-y-2.5">
+                      {battle.log.map((r) => (
+                        <div
+                          key={r.round}
+                          className="p-3 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-2"
+                        >
                           <span className="px-2 py-0.5 rounded bg-[#D4B876]/20 border border-[#D4B876]/50 font-['Cinzel'] font-bold text-[11px] text-[#D4B876]">
                             ROUND {r.round}
                           </span>
-                          <span className="text-[12px] font-sans font-bold text-[#6FD39A]">
-                            Group Total: −{r.totalDmg} HP (
-                            <span className="text-[#E0645C]">FOE {r.enemyHpLeft}/100</span>)
-                          </span>
-                        </div>
-
-                        {r.strikes.map((st, sIdx) => (
-                          <div
-                            key={sIdx}
-                            className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/70 space-y-0.5 text-[13px] font-sans"
-                          >
-                            <div className="flex flex-wrap items-center gap-1.5 font-semibold">
-                              <span
-                                className="font-bold"
-                                style={{
-                                  color:
-                                    st.hero === 'YOU'
-                                      ? '#6FD39A'
-                                      : st.hero === 'DEV'
-                                      ? '#5BC0EB'
-                                      : st.hero === 'MEI'
-                                      ? '#F49CBB'
-                                      : '#4FD1C5',
-                                }}
+                          {r.fights
+                            .filter((fight) => fight.lines.length > 0)
+                            .map((fight) => (
+                              <div
+                                key={fight.ownerId}
+                                className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/70 space-y-1 text-[13px] font-sans"
                               >
-                                {st.hero}:
-                              </span>
-                              <span className="text-[#F4F1F8]">🎲 {st.d20}</span>
-                              <span className="text-[#8B7A9E]">+</span>
-                              <span className="text-[#E5C158]">WEP {st.atk}</span>
-                              <span className="text-[#8B7A9E]">−</span>
-                              <span className="text-[#FB923C]">DEF {st.def}</span>
-                              <span className="text-[#8B7A9E]">=</span>
-                              <span
-                                className={`font-bold ${
-                                  st.hit ? 'text-[#6FD39A]' : 'text-[#9A90B8]'
-                                }`}
-                              >
-                                {st.margin >= 0 ? `+${st.margin}` : st.margin}
-                              </span>
-                            </div>
-                            <div className="text-[12.5px] font-bold">
-                              {st.hit ? (
-                                <span className="text-[#6FD39A]">
-                                  HIT +{st.margin} × 5 = {st.dmg}.{'  '}
-                                  <span className="text-[#E0645C]">
-                                    FOE HP {st.enemyHpBefore} → {st.enemyHpAfter}
-                                  </span>
-                                </span>
-                              ) : (
-                                <span className="text-[#9A90B8]">
-                                  MISSED.{'  '}
-                                  <span className="text-[#E0645C]">
-                                    FOE HP {st.enemyHpBefore} → {st.enemyHpAfter}
-                                  </span>
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Per-Round Named Companion Assist & Combat Relic Controls + Next Round Roll Button */}
-                {!battleDone ? (
-                  <div className="space-y-2.5">
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold text-[#D4B876]">
-                        <span>🤝 CALL COMPANION ASSIST (+2 WEP):</span>
-                        {assistedCompanion && (
-                          <span className="text-[#6FD39A]">
-                            ✓ {assistedCompanion} ASSISTING
-                          </span>
-                        )}
-                      </div>
-                      <div className="grid grid-cols-3 gap-1.5">
-                        {(
-                          [
-                            {
-                              id: 'MEI',
-                              label: 'CALL MEI (+2)',
-                              color: '#F49CBB',
-                              callout:
-                                'Mei reads the rhythm of the boss’s guard and calls out the opening before you strike!',
-                            },
-                            {
-                              id: 'DEV',
-                              label: 'CALL DEV (+2)',
-                              color: '#5BC0EB',
-                              callout:
-                                'Dev looses a pinning arrow across the boss’s flank, forcing their shield arm wide!',
-                            },
-                            {
-                              id: 'ARJUN',
-                              label: 'CALL ARJUN (+2)',
-                              color: '#4FD1C5',
-                              callout:
-                                'Arjun hooks the boss’s weapon-haft with his wrench-staff, opening a clean lane for your blow!',
-                            },
-                          ] as const
-                        ).map((comp) => {
-                          const active = assistedCompanion === comp.id;
-                          return (
-                            <button
-                              key={comp.id}
-                              type="button"
-                              onClick={() => {
-                                const next = active ? null : comp.id;
-                                setAssistedCompanion(next);
-                                setBattleAssisted(Boolean(next));
-                              }}
-                              className={`py-2 px-2 rounded-xl font-['Cinzel'] font-bold text-[10.5px] border transition ${
-                                active
-                                  ? 'bg-[#2A1B40] border-[#6FD39A] text-[#6FD39A]'
-                                  : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC] hover:text-[#F4F1F8]'
-                              }`}
+                                {fight.lines.map((ln: BattleStrikeLine, i) => {
+                                  const isParty = ln.side === 'party';
+                                  const who = ln.attacker.toUpperCase();
+                                  if (ln.lost) {
+                                    return (
+                                      <div key={i} className="text-[#9A90B8] font-semibold">
+                                        {who}:{' '}
+                                        {ln.lost === 'risen'
+                                          ? 'still rising. No strike this round.'
+                                          : 'slips in the flood. No strike this round.'}
+                                      </div>
+                                    );
+                                  }
+                                  if (ln.roll === undefined) {
+                                    return (
+                                      <div key={i} className="text-[#E0645C] font-semibold">
+                                        {ln.note} {ln.target.toUpperCase()} HP {ln.hpBefore} → {ln.hpAfter}
+                                      </div>
+                                    );
+                                  }
+                                  return (
+                                    <div key={i}>
+                                      {ln.note && isParty && (
+                                        <div className="text-[11.5px] text-[#B7A9CC]">{ln.note}</div>
+                                      )}
+                                      <div className="flex flex-wrap items-center gap-1.5 font-semibold">
+                                        <span
+                                          className="font-bold"
+                                          style={{ color: isParty ? '#6FD39A' : '#E0645C' }}
+                                        >
+                                          {isParty ? who : 'FOE'}:
+                                        </span>
+                                        <span className="text-[#F4F1F8]">🎲 {ln.roll}</span>
+                                        <span className="text-[#8B7A9E]">+</span>
+                                        <span className="text-[#E5C158]">
+                                          {isParty ? 'WEP' : 'ATK'} {ln.attack}
+                                        </span>
+                                        <span className="text-[#8B7A9E]">−</span>
+                                        <span className="text-[#FB923C]">
+                                          {isParty ? 'DEF' : 'AMR'} {ln.defence}
+                                        </span>
+                                        <span className="text-[#8B7A9E]">=</span>
+                                        <span
+                                          className={`font-bold ${
+                                            ln.hit ? 'text-[#6FD39A]' : 'text-[#9A90B8]'
+                                          }`}
+                                        >
+                                          {formatMargin(ln.margin ?? 0)}
+                                        </span>
+                                      </div>
+                                      <div className="text-[12.5px] font-bold">
+                                        {ln.hit ? (
+                                          <span className="text-[#6FD39A]">
+                                            HIT +{ln.margin} × 5 = {ln.damage}.{'  '}
+                                            <span className="text-[#E0645C]">
+                                              {isParty ? 'FOE' : ln.target.toUpperCase()} HP {ln.hpBefore} → {ln.hpAfter}
+                                            </span>
+                                            {!isParty && ln.hpAfter === 0 && (
+                                              <span className="text-[#E0645C]"> · DOWN</span>
+                                            )}
+                                            {isParty && ln.hpAfter === 2 && (
+                                              <span className="text-[#B7A9CC]"> · It rises with 2 HP.</span>
+                                            )}
+                                          </span>
+                                        ) : (
+                                          <span className="text-[#9A90B8]">MISS</span>
+                                        )}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            ))}
+                          {r.helpCalls.map((call) => (
+                            <div
+                              key={call.id}
+                              className="p-2 rounded-lg bg-[#2A1420] border border-[#E0645C]/60 text-[12.5px] font-['Cinzel'] font-bold text-[#E0645C]"
                             >
-                              {active ? `✓ ${comp.id} (+2)` : comp.label}
-                            </button>
-                          );
-                        })}
-                      </div>
-                      {assistedCompanion && (
-                        <div className="p-2 rounded-lg bg-[#130B1F] border border-[#6FD39A]/50 text-[12px] font-sans text-[#E6E0F0]">
-                          <span className="font-bold text-[#6FD39A]">
-                            {assistedCompanion} ASSIST:
-                          </span>{' '}
-                          {assistedCompanion === 'MEI'
-                            ? 'Mei reads the rhythm of the boss’s guard and calls out the opening before you strike (+2 WEP).'
-                            : assistedCompanion === 'DEV'
-                            ? 'Dev looses a pinning arrow across the boss’s flank, forcing their shield arm wide (+2 WEP).'
-                            : 'Arjun hooks the boss’s weapon-haft with his wrench-staff, opening a clean lane for your blow (+2 WEP).'}
+                              {partyName(call.id).toUpperCase()} IS IN TROUBLE · HP {call.hp}
+                            </div>
+                          ))}
                         </div>
-                      )}
+                      ))}
                     </div>
+                  )}
 
-                    {(() => {
-                      const usableRelicKey =
-                        currentWeek >= 4 && (relics.Battle || 0) > 0
-                          ? 'Battle'
-                          : Object.keys(relics).find(
-                              (k) => k !== 'Battle' && (relics[k] || 0) > 0
-                            ) || null;
-                      const usableRelicCount = Object.entries(relics).reduce(
-                        (acc, [k, count]) =>
-                          k === 'Battle' && currentWeek < 4 ? acc : acc + (count || 0),
-                        0
-                      );
-                      return (
+                  {!battleDone ? (
+                    <div className="space-y-2">
+                      {/* Help-calls from the last round stay open until the next round starts. */}
+                      {battle &&
+                        battle.log.length > 0 &&
+                        battle.log[battle.log.length - 1].helpCalls
+                          .map((call) => call.id)
+                          .filter((id) => id !== 'YOU' && canTakeCombatRelic(battle, id))
+                          .map((id) => (
+                            <button
+                              key={id}
+                              type="button"
+                              disabled={combatRelicsHeld <= 0}
+                              onClick={() => handleGiveCombatRelic(id)}
+                              className="w-full py-2 px-2.5 rounded-xl font-['Cinzel'] font-bold text-[11.5px] border bg-[#130B1F] border-[#E0645C]/70 text-[#F4F1F8] hover:bg-[#2A1B40] disabled:opacity-50 disabled:cursor-not-allowed transition"
+                            >
+                              {combatRelicsHeld > 0
+                                ? `♦ GIVE A COMBAT RELIC TO ${partyName(id).toUpperCase()} (+1 WEP, +1 AMR · ${combatRelicsHeld} IN BAG)`
+                                : `NO COMBAT RELIC TO GIVE ${partyName(id).toUpperCase()}`}
+                            </button>
+                          ))}
+
+                      {canTakeCombatRelic(battle ?? beginBattle(), 'YOU') && (
                         <button
                           type="button"
-                          disabled={battleRelicUsed || !usableRelicKey}
-                          onClick={() => {
-                            if (battleRelicUsed || !usableRelicKey) return;
-                            if (onGiveRelic) {
-                              onGiveRelic(usableRelicKey, 'Dev');
-                            }
-                            setBattleRelicUsed(true);
-                          }}
-                          className={`w-full py-2 px-2.5 rounded-xl font-['Cinzel'] font-bold text-[11.5px] border transition ${
-                            battleRelicUsed
-                              ? 'bg-[#D4B876]/25 border-[#D4B876] text-[#F4F1F8]'
-                              : usableRelicKey
-                              ? 'bg-[#130B1F] hover:bg-[#2A1B40] border-[#3A2555] hover:border-[#D4B876] text-[#B7A9CC] hover:text-[#F4F1F8]'
-                              : 'bg-[#0D0714] border-[#2A1B40] text-[#6E6485] opacity-65 cursor-not-allowed'
-                          }`}
+                          disabled={combatRelicsHeld <= 0}
+                          onClick={handleUseCombatRelic}
+                          className="w-full py-2 px-2.5 rounded-xl font-['Cinzel'] font-bold text-[11.5px] border bg-[#130B1F] hover:bg-[#2A1B40] border-[#3A2555] hover:border-[#D4B876] text-[#B7A9CC] hover:text-[#F4F1F8] disabled:opacity-50 disabled:cursor-not-allowed transition"
                         >
-                          {battleRelicUsed
-                            ? '✓ RELIC GIVEN TO DEV (+1 WEP)'
-                            : usableRelicKey
-                            ? `♦ GIVE ${usableRelicKey.toUpperCase()} RELIC TO DEV (+1 WEP · ${usableRelicCount} IN BAG)`
-                            : '🔒 NO USABLE RELICS IN BAG FOR DEV (0 AVAILABLE)'}
+                          {combatRelicsHeld > 0
+                            ? `♦ USE RELIC: COMBAT (+1 WEP, +1 AMR from next round · ${combatRelicsHeld} IN BAG)`
+                            : '♦ NO COMBAT RELIC IN BAG'}
                         </button>
-                      );
-                    })()}
+                      )}
+                      {battle?.fighters.find((x) => x.id === 'YOU')?.relicPending && (
+                        <div className="text-[12px] font-sans text-[#D4B876]">
+                          ♦ Your Combat Relic works from the next round.
+                        </div>
+                      )}
 
-                    <button
-                      type="button"
-                      disabled={isRollingBattleRound}
-                      onClick={handleRollNextGatheringRound}
-                      className="w-full py-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[13px] tracking-[1px] uppercase transition disabled:opacity-50"
-                    >
-                      {isRollingBattleRound
-                        ? `🎲 ROLLING ROUND ${battleRounds.length + 1} STRIKES...`
-                        : `🎲 ROLL ROUND ${battleRounds.length + 1} STRIKES (4 HEROES)`}
-                    </button>
-                  </div>
-                ) : battleRounds.length > 0 &&
-                  battleRounds[battleRounds.length - 1].enemyHpLeft <= 0 ? (
-                  <div className="p-2.5 rounded-xl bg-[#1A102A] border border-[#6FD39A]/60 flex items-center justify-between">
-                    <span className="font-['Cinzel'] font-bold text-[12px] text-[#6FD39A]">
-                      ✓ BOSS DEFEATED IN {battleRounds.length} ROUNDS
-                    </span>
-                    <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158]">
-                      +{epMeta.gReward}G EARNED
-                    </span>
-                  </div>
-                ) : (
-                  <div className="p-2.5 rounded-xl bg-[#2A1420] border border-[#E0645C]/60 flex items-center justify-between">
-                    <span className="font-['Cinzel'] font-bold text-[12px] text-[#E0645C]">
-                      ✕ PARTY DRIVEN BACK AT 0 HP ({battleRounds.length} ROUNDS)
-                    </span>
-                    <span className="font-['Cinzel'] font-bold text-[12px] text-[#E0645C]">
-                      0G · BOUNTY FORFEITED
-                    </span>
-                  </div>
-                )}
+                      <button
+                        type="button"
+                        disabled={isRollingBattleRound}
+                        onClick={handleRollNextGatheringRound}
+                        className="w-full py-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[13px] tracking-[1px] uppercase transition disabled:opacity-50"
+                      >
+                        {isRollingBattleRound
+                          ? `🎲 ROLLING ROUND ${(battle?.round ?? 0) + 1}...`
+                          : `🎲 ROUND ${(battle?.round ?? 0) + 1}`}
+                      </button>
+                    </div>
+                  ) : battle?.outcome === 'won' ? (
+                    <div className="p-2.5 rounded-xl bg-[#1A102A] border border-[#6FD39A]/60 space-y-1">
+                      <div className="font-['Cinzel'] font-bold text-[12px] text-[#6FD39A]">
+                        VICTORY. Every enemy is down in {battle.round} rounds.
+                      </div>
+                      <div className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158]">
+                        REWARD: +{GOLD_GATHERING_BATTLE_REWARDS[currentWeek] ?? epMeta.gReward}g
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="p-2.5 rounded-xl bg-[#2A1420] border border-[#E0645C]/60 space-y-1">
+                      <div className="font-['Cinzel'] font-bold text-[12px] text-[#E0645C]">
+                        DEFEATED. They step over you and leave you alive.
+                      </div>
+                      <div className="font-['Cinzel'] font-bold text-[12px] text-[#E0645C]">
+                        REWARD: none
+                      </div>
+                    </div>
+                  )}
+                  {battle?.fighters.find((x) => x.id === 'YOU')?.fallen && battle.outcome === 'ongoing' && (
+                    <div className="text-[12.5px] font-sans text-[#E0645C]">
+                      DEFEATED. You are down for this Battle. Your friends fight on.
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
             </>
           )}
 
           {/* =================================================================
-              PHASE 3 (BEAT 4): INTERACTIVE 100/100 UNITED EFFORT TRIAL & [LOOK CLOSER]
-              Gated until Phase 2 Boss Battle is completed!
+              PHASE 3: THE UNITED EFFORT (Core Rules §5). One friend at a time rolls a
+              Challenge in the night's Attribute against the weekday DC.
              ================================================================= */}
           {battleDone && (
             <>
-              {/* Phase 2 -> Phase 3 Narrative Transition Bubble */}
-              <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
-                <div className="flex items-center justify-between leading-none">
-                  <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1.3px] text-[#C4A1FF] uppercase">
-                    MYTHIOS · PHASE 3 UNLOCKED
-                  </span>
-                  <span className="text-[12px] font-bold text-[#E5C158]">
-                    United Effort Trial
-                  </span>
-                </div>
-                <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                  With {gathering.enemyName} driven back in {battleRounds.length} rounds, the crisis in the chamber reaches its breaking point—all four of you must now combine your {gathering.ueAttr} for the United Effort: {gathering.ueTitle}!
-                </p>
-              </div>
-
               <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
                 <div className="px-3.5 py-2.5 bg-[#241638] border-b border-[#3A2555]/80 flex items-center justify-between gap-2">
                   <span className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">
-                    ⚡ PHASE 3 · {gathering.ueTitle.toUpperCase()}
+                    ⚡ {gathering.ueTitle.toUpperCase()} · United Effort
                   </span>
                   <span
                     className="font-['Cinzel'] font-bold text-[12px] whitespace-nowrap"
@@ -4112,99 +3980,187 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                       color: ATTRIBUTE_META[gathering.ueAttr]?.color || '#D4B876',
                     }}
                   >
-                    {gathering.ueAttr} · 100/100 Target
+                    {gathering.ueAttr} · DC {ueDc}
                   </span>
                 </div>
 
                 <div className="p-3.5 space-y-3">
-                  {/* Dual Opposing Progress Bars (100/100 Scale) */}
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="p-3 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-                      <div className="flex items-center justify-between font-['Cinzel'] font-bold text-[12px]">
-                        <span className="text-[#6FD39A] truncate mr-1">
-                          {gathering.ueBarAName.toUpperCase()}
-                        </span>
-                        <span className="text-[#6FD39A] whitespace-nowrap">
-                          {ueRolled ? `${ueRolled.totalProgress}/100` : '0/100'}
-                        </span>
-                      </div>
-                      <div className="w-full h-2 bg-[#2A1B40] rounded-full overflow-hidden mt-2">
-                        <div
-                          className="h-full bg-[#6FD39A] transition-all duration-500"
-                          style={{
-                            width: `${ueRolled ? ueRolled.totalProgress : 0}%`,
-                          }}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="p-3 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-                      <div className="flex items-center justify-between font-['Cinzel'] font-bold text-[12px]">
-                        <span className="text-[#E5C158] truncate mr-1">
-                          {gathering.ueBarBName.toUpperCase()}
-                        </span>
-                        <span className="text-[#E5C158] whitespace-nowrap">
-                          {ueRolled ? (ueRolled.cleared ? 'HELD' : 'STRAINED') : '100/100'}
-                        </span>
-                      </div>
-                      <div className="w-full h-2 bg-[#2A1B40] rounded-full overflow-hidden mt-2">
-                        <div
-                          className="h-full bg-[#E5C158] transition-all duration-500"
-                          style={{
-                            width: ueRolled ? (ueRolled.cleared ? '100%' : '35%') : '100%',
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {!ueRolled ? (
-                    <button
-                      type="button"
-                      onClick={handleRollUnitedEffort}
-                      className="w-full py-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[13px] tracking-[1px] uppercase transition"
-                    >
-                      🎲 ROLL UNITED EFFORT ({gathering.ueAttr.toUpperCase()} · 4 HEROES)
-                    </button>
-                  ) : (
-                    <div className="space-y-2">
-                      <div className="grid grid-cols-2 gap-1.5">
-                        {ueRolled.heroRolls.map((hr, idx) => (
-                          <div
-                            key={idx}
-                            className="p-2 rounded-lg bg-[#130B1F] border border-[#3A2555]/80 flex items-center justify-between text-[12.5px] font-sans"
-                          >
-                            <span className="font-bold" style={{ color: hr.color }}>
-                              {hr.hero}: 🎲{hr.d20}+{hr.bonus}
-                            </span>
-                            <span className="font-bold text-[#6FD39A]">
-                              +{hr.contribution}
-                            </span>
+                  {(() => {
+                    const start = ue?.start ?? (gatheringParty.length <= 1 ? 60 : 100);
+                    const way = ue?.way ?? start;
+                    const risk = ue?.risk ?? start;
+                    return (
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          { name: gathering.ueBarAName, value: way, color: '#6FD39A' },
+                          { name: gathering.ueBarBName, value: risk, color: '#E5C158' },
+                        ].map((bar) => (
+                          <div key={bar.name} className="p-3 rounded-xl bg-[#130B1F] border border-[#3A2555]">
+                            <div className="flex items-center justify-between font-['Cinzel'] font-bold text-[12px]">
+                              <span className="truncate mr-1" style={{ color: bar.color }}>
+                                {bar.name.toUpperCase()}
+                              </span>
+                              <span className="whitespace-nowrap" style={{ color: bar.color }}>
+                                {bar.value}
+                              </span>
+                            </div>
+                            <div className="w-full h-2 bg-[#2A1B40] rounded-full overflow-hidden mt-2">
+                              <div
+                                className="h-full transition-all duration-500"
+                                style={{ width: `${(bar.value / start) * 100}%`, background: bar.color }}
+                              />
+                            </div>
                           </div>
                         ))}
                       </div>
-                      <div
-                        className={`p-2 rounded-lg border text-[13px] font-['Cinzel'] font-bold flex items-center justify-between ${
-                          ueRolled.cleared
-                            ? 'bg-[#1E1232] border-[#6FD39A]/60 text-[#6FD39A]'
-                            : 'bg-[#2A1628] border-[#E0645C]/60 text-[#E0645C]'
-                        }`}
-                      >
-                        <span>
-                          {ueRolled.cleared
-                            ? `✓ UNITED EFFORT CLEARED (${ueRolled.totalProgress}/100)`
-                            : `✕ UNITED EFFORT FELL SHORT (${ueRolled.totalProgress}/100)`}
+                    );
+                  })()}
+
+                  <div className="text-[13px] font-sans text-[#E6E0F0] leading-snug">
+                    A SUCCESS damages {gathering.ueBarAName}. A FAIL damages {gathering.ueBarBName}.
+                    Damage = 10 + Roll. REWARD: +{GOLD_UNITED_EFFORT_WIN}g to every friend, if{' '}
+                    {gathering.ueBarAName} reaches 0.
+                  </div>
+
+                  {/* Each turn: the Challenge line, the damage line, then one line of story. */}
+                  {ue && ue.rolls.length > 0 && (
+                    <div className="space-y-2">
+                      {ue.rolls.map((r, idx) => {
+                        const barName = r.bar === 'way' ? gathering.ueBarAName : gathering.ueBarBName;
+                        const st = ueStory[idx];
+                        return (
+                          <div
+                            key={idx}
+                            className="p-2.5 rounded-lg bg-[#130B1F] border border-[#3A2555]/80 space-y-1 text-[13px] font-sans"
+                          >
+                            <div className="flex flex-wrap items-center gap-1.5 font-semibold">
+                              <span className="font-bold text-[#6FD39A]">
+                                {r.rollerName.toUpperCase()}:
+                              </span>
+                              <span className="text-[#F4F1F8]">🎲 {r.roll}</span>
+                              <span className="text-[#8B7A9E]">+</span>
+                              <span style={{ color: ATTRIBUTE_META[gathering.ueAttr]?.color || '#D4B876' }}>
+                                {gathering.ueAttr} {r.score} (+{r.tierBonus})
+                              </span>
+                              {r.relicBonus > 0 && (
+                                <>
+                                  <span className="text-[#8B7A9E]">+</span>
+                                  <span className="text-[#D4B876]">Relic {r.relicBonus}</span>
+                                </>
+                              )}
+                              <span className="text-[#8B7A9E]">−</span>
+                              <span className="text-[#E5C158]">DC {r.dc}</span>
+                              <span className="text-[#8B7A9E]">=</span>
+                              <span className={`font-bold ${r.success ? 'text-[#6FD39A]' : 'text-[#E0645C]'}`}>
+                                {formatMargin(r.margin)} {r.success ? 'SUCCESS' : 'FAIL'}
+                              </span>
+                            </div>
+                            <div className="text-[12.5px] font-bold text-[#E6E0F0]">
+                              Damage = 10 + Roll {r.damageRoll} = {r.damage}. {barName} {r.barBefore} → {r.barAfter}
+                            </div>
+                            {st?.line && (
+                              <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.42]">{st.line}</p>
+                            )}
+                            {st?.between && (
+                              <p className="font-sans italic text-[14px] text-[#B7A9CC] leading-[1.42]">
+                                {st.between}
+                              </p>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {!ueDone ? (
+                    <div className="space-y-2">
+                      {/* After the player's own turn, they hand it on to a friend who has not yet gone. */}
+                      {ue &&
+                        ue.rolls.length > 0 &&
+                        ue.rolls[ue.rolls.length - 1].rollerId === 'YOU' &&
+                        ueEligible.filter((id) => id !== 'YOU').length > 1 && (
+                          <div className="flex flex-wrap gap-1.5">
+                            {ueEligible
+                              .filter((id) => id !== 'YOU')
+                              .map((id) => (
+                                <button
+                                  key={id}
+                                  type="button"
+                                  onClick={() => setUeNextId(id)}
+                                  className={`px-2.5 py-1.5 rounded-lg font-['Cinzel'] font-bold text-[11px] border transition ${
+                                    ueRollerId === id
+                                      ? 'bg-[#2A1B40] border-[#D4B876] text-[#E5C158]'
+                                      : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC]'
+                                  }`}
+                                >
+                                  TO {partyName(id).toUpperCase()}
+                                </button>
+                              ))}
+                          </div>
+                        )}
+
+                      <div className="text-[13px] font-sans text-[#E6E0F0]">
+                        {ueRollerId === 'YOU' ? 'Your turn.' : `${partyName(ueRollerId)}'s turn.`}{' '}
+                        {gathering.ueAttr} +{ueTierBonus + (ueRelicArmed ? 4 : 0)} · Succeeds on{' '}
+                        <span className="text-[#E5C158] font-bold">
+                          {challengeSucceedOn(ueDc, ueTierBonus + (ueRelicArmed ? 4 : 0))}+
                         </span>
-                        <span>{gathering.ueTitle}</span>
                       </div>
 
+                      {(ueRollerId === 'YOU' ? ueRelicsHeld > 0 : Boolean(ueAnyAttrRelic)) && (
+                        <button
+                          type="button"
+                          onClick={() => setUeRelicArmed((v) => !v)}
+                          className={`w-full py-2 px-2.5 rounded-xl font-['Cinzel'] font-bold text-[11.5px] border transition ${
+                            ueRelicArmed
+                              ? 'bg-[#D4B876]/25 border-[#D4B876] text-[#F4F1F8]'
+                              : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC] hover:text-[#F4F1F8]'
+                          }`}
+                        >
+                          {ueRollerId === 'YOU'
+                            ? ueRelicArmed
+                              ? `✓ ${gathering.ueAttr.toUpperCase()} RELIC ON THIS ROLL (+4)`
+                              : `♦ USE ${gathering.ueAttr.toUpperCase()} RELIC (+4 · ${ueRelicsHeld} IN BAG)`
+                            : ueRelicArmed
+                            ? `✓ GIVING ${String(ueAnyAttrRelic).toUpperCase()} RELIC TO ${partyName(ueRollerId).toUpperCase()} (+4)`
+                            : `♦ GIVE ${String(ueAnyAttrRelic).toUpperCase()} RELIC TO ${partyName(ueRollerId).toUpperCase()} (+4)`}
+                        </button>
+                      )}
+
+                      <button
+                        type="button"
+                        disabled={isRollingUe}
+                        onClick={handleRollUnitedEffort}
+                        className="w-full py-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[13px] tracking-[1px] uppercase transition disabled:opacity-50"
+                      >
+                        {isRollingUe
+                          ? '🎲 ROLLING...'
+                          : ueRollerId === 'YOU'
+                          ? `🎲 ROLL ${gathering.ueAttr.toUpperCase()}`
+                          : `🎲 ${partyName(ueRollerId).toUpperCase()} ROLLS`}
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      className={`p-2 rounded-lg border text-[13px] font-['Cinzel'] font-bold flex items-center justify-between ${
+                        ueCleared
+                          ? 'bg-[#1E1232] border-[#6FD39A]/60 text-[#6FD39A]'
+                          : 'bg-[#2A1628] border-[#E0645C]/60 text-[#E0645C]'
+                      }`}
+                    >
+                      <span>
+                        {ueCleared
+                          ? `${gathering.ueBarAName} reaches 0. The job is done.`
+                          : `${gathering.ueBarBName} reaches 0. The job is lost.`}
+                      </span>
+                      <span>{ueCleared ? `+${GOLD_UNITED_EFFORT_WIN}g` : 'No reward'}</span>
                     </div>
                   )}
                 </div>
               </div>
 
               {/* Mythios Outcome Bubble + Interactive [LOOK CLOSER (+75G)] Card when United Effort is rolled */}
-              {ueRolled && (
+              {ueDone && (
                 <>
                   <div className="mr-6 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3.5 space-y-2 shadow-md">
                     <div className="flex items-center justify-between leading-none">
@@ -4213,19 +4169,19 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                       </span>
                       <span
                         className={`text-[12px] font-bold ${
-                          ueRolled.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
+                          ueCleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
                         }`}
                       >
-                        {ueRolled.cleared ? 'United Effort Won' : 'Hard Hold'}
+                        {ueCleared ? 'United Effort Won' : 'United Effort Lost'}
                       </span>
                     </div>
                     <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                      {ueRolled.cleared ? gathering.ueWinText : gathering.ueLoseText}
+                      {ueCleared ? gathering.ueWinText : gathering.ueLoseText}
                     </p>
                   </div>
 
                   {/* Interactive [LOOK CLOSER (+75G)] Room Inspection when United Effort is cleared */}
-                  {ueRolled.cleared && (
+                  {ueCleared && (
                     <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
                       <div className="px-3.5 py-2.5 bg-[#241638] border-b border-[#3A2555]/80 flex items-center justify-between">
                         <span className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">
@@ -4266,8 +4222,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
               PHASE 4: CULT SCRIPTURE PRESENTATION & FRAGMENT MATCH CARD
               Gated until Phase 3 (United Effort + Look Closer if won) is complete!
              ================================================================= */}
-          {ueRolled &&
-            (!ueRolled.cleared || lookCloserDone) &&
+          {ueDone &&
+            (!ueCleared || lookCloserDone) &&
             gathering.matches.length > 0 && (
               <>
                 {/* Phase 3 -> Phase 4 Narrative Transition Bubble */}
@@ -4445,8 +4401,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
               PHASE 5: THE TABLE QUESTION & GARRICK'S WEEK-END REVEAL
               Gated until all Scripture matches for the week are completed!
              ================================================================= */}
-          {ueRolled &&
-            (!ueRolled.cleared || lookCloserDone) &&
+          {ueDone &&
+            (!ueCleared || lookCloserDone) &&
             gathering.matches.every((_, idx) => Boolean(matchedQuotes[idx])) && (
               <>
                 {/* Phase 4 -> Phase 5 Narrative Transition Bubble */}
