@@ -86,8 +86,8 @@ export function inspectGmTokenEfficiency(
   const layer3Text = buildEpisodeSceneSlice(state);
   const layer4Text = buildCompactMemoryDigestString(digest);
 
-  // Calibrated token counts matching the 4-layer architecture spec (~440 static + ~150 scene + ~120 digest)
-  const layer2StaticTokens = 442;
+  // ESTIMATES, not measured (Task 10): token counts assumed from the 4-layer spec (~440 static + ~150 scene + ~120 digest).
+  const layer2StaticTokens = 442; // estimate
   const layer3SceneTokens = estimateTokens(layer3Text) + 65;
   const layer4MemoryTokens = estimateTokens(layer4Text) + 30;
 
@@ -97,8 +97,8 @@ export function inspectGmTokenEfficiency(
     : layer2StaticTokens + layer3SceneTokens + layer4MemoryTokens;
   const estimatedOutputTokens = isZeroTokenDeterministic ? 0 : estimateTokens(routeResult.reply) + 12;
 
-  // Naive full-history RPG prompt sends all 6 episode scripts (~38,000 tokens) + rules (~4,500) + chat logs (~2,500) = ~45,000 tokens
-  const naiveFullHistoryTokens = 45000;
+  // ESTIMATE: a naive full-history prompt (6 episode scripts ~38,000 + rules ~4,500 + chat ~2,500 = ~45,000 tokens)
+  const naiveFullHistoryTokens = 45000; // estimate
   const percentSaved = Number(
     (((naiveFullHistoryTokens - totalInputTokensUsed) / naiveFullHistoryTokens) * 100).toFixed(2)
   );

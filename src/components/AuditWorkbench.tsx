@@ -384,7 +384,7 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
             { label: 'L1, L3', val: `${appliedLoopholeIds.length} / ${NEW_CONTINUITY_LOOPHOLES.length} Active` },
             { label: 'Lock Anagrams', val: `${verifier.validAnagrams} / 72` },
             { label: 'Buckets 1–4 Cost', val: '0 Tokens' },
-            { label: 'Bucket 5 Savings', val: '98.4% Saved' },
+            { label: 'Bucket 5 Savings (estimate)', val: '~98% saved' },
           ].map((stat) => (
             <div key={stat.label} className="rounded-xl bg-[#130B1F] border border-[#3A2555] px-2.5 py-2 text-center">
               <div className="font-['Cinzel'] text-sm font-bold text-[#6FD39A]">{stat.val}</div>
@@ -650,7 +650,10 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
                   4-LAYER TINY-TOKEN GM MEMORY & FREE GOOGLE AI IMPLICIT CACHE INSPECTOR
                 </div>
                 <p className="text-xs text-[#B7A9CC] mt-1">
-                  Shows how Mythios & Garrick remember your entire 6-week campaign while costing <strong className="text-[#6FD39A]">0 tokens on ~85% of turns</strong> and only <strong className="text-[#D4B876]">~710 tokens on live AI Small Talk</strong> (98.4% saved vs. a 45,000-token full-script prompt).
+                  Shows how Mythios & Garrick remember your entire 6-week campaign. <strong className="text-[#D4B876]">All figures here are estimates, not measured:</strong> 0 tokens on an estimated ~85% of turns, ~710 tokens on live AI small talk, ~98% saved against an estimated 45,000-token full-script prompt.
+                </p>
+                <p className="text-xs text-[#E0645C] mt-1">
+                  Garrick Ask (free AI small talk through Gemini): not yet in the player view. Players' questions to Garrick go to the stored-line router only.
                 </p>
               </div>
               <button
@@ -667,7 +670,7 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
                   LAYER 1 · DETERMINISTIC ROUTER
                 </div>
                 <div className="font-['Cinzel'] text-lg font-bold text-[#F4F1F8] mt-1">
-                  0 Tokens (~85% of turns)
+                  0 tokens (est. ~85% of turns)
                 </div>
                 <p className="text-[11px] text-[#B7A9CC] mt-1">
                   All 36 chapters, challenges, fights, and Garrick Buckets 1–4 (Deception Table, Stored Bank, In-World Answers, Abuse Guard) run locally for 0 API tokens.
@@ -727,10 +730,10 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
                   <strong className="font-['Cinzel'] text-[#6FD39A]">
                     {tokenBreakdown.totalInputTokensUsed} tokens
                   </strong>{' '}
-                  (vs. 45,000 naive full-history)
+                  (vs. an estimated 45,000 for a full-history prompt)
                 </span>
                 <span className="px-2.5 py-1 rounded bg-[#6FD39A]/20 text-[#6FD39A] font-['Cinzel'] font-bold">
-                  {tokenBreakdown.percentSaved}% TOKENS SAVED
+                  ~{Math.round(tokenBreakdown.percentSaved)}% SAVED (ESTIMATE)
                 </span>
               </div>
             </div>
@@ -860,7 +863,7 @@ export const AuditWorkbench: React.FC<AuditWorkbenchProps> = ({
                         1. VOICE & LENGTH LOCK (1–2 SENTENCES MAX)
                       </div>
                       <div className="text-[11px] text-[#B7A9CC] mt-0.5">
-                        Dry, practical, road-worn retired innkeeper. Under 35 words. Notices boots, soup, straps, and firewood—never flowery or theatrical.
+                        Dry, practical, road-worn innkeeper. Under 35 words. Notices boots, soup, straps, and firewood—never flowery or theatrical.
                       </div>
                     </div>
 
