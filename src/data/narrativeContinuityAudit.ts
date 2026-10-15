@@ -55,48 +55,17 @@ export interface ContinuityLoopholeRecord {
   proposedFixText: string;
 }
 
-export const NEW_CONTINUITY_LOOPHOLES: ContinuityLoopholeRecord[] = [
-  {
-    id: 'L1',
-    ruleId: 'RULE_1_PLANT_PAYOFF',
-    severity: 'HIGH',
-    week: 2,
-    day: 2,
-    relatedCoord: 'W2D2 ↔ W1D3 / W1D6 / W2D1',
-    title: 'Unplanted Ford Cart-Ruts Callback in Week 2 · Day 2 [PRESS ON: THE RUTS]',
-    whyLoophole:
-      'In Week 2 · Day 2 (The Mill), [PRESS ON: THE RUTS] says: "The left wheel pulls. You have seen that track before, coming down a muddy bank to a ford. It is the same cart." However, on Week 1 · Day 6 (The Ford), Tamsin walked on foot to the water\'s edge and was lifted into a boat—no cart tracks were planted at the ford! Cart-ruts were only seen at The Widow\'s Tooth (W1D3) and mentioned on the mill road (W2D1).',
-    beforeText:
-      'W2D2 [PRESS ON: THE RUTS]: "The left wheel pulls. You have seen that track before, coming down a muddy bank to a ford. It is the same cart." (While W1D6 had only foot-prints to a boat.)',
-    proposedFixText:
-      'W2D2 [PRESS ON: THE RUTS]: "The left wheel pulls—cutting a deeper groove on the near side. You saw that same lopsided rut in the bracken below the Widow\'s Tooth, and where the cart backed down the high bank above the ford. One cart, working both roads." (And plant the matching high-bank wheel mark on W1D6.)',
-  },
-  // L2 (the horn button's cuff) became canon on 14 Oct (Fake Guru) and now lives in the chapter data.
-  {
-    id: 'L3',
-    ruleId: 'RULE_2_CLIFFHANGER_HOOK',
-    severity: 'MEDIUM',
-    week: 2,
-    day: 3,
-    relatedCoord: 'W2D2 pullLine → W2D3 opening',
-    title: 'Unresolved Weather Cliffhanger Between Week 2 · Day 2 and Week 2 · Day 3',
-    whyLoophole:
-      'Week 2 · Day 2 ends with the urgency hook: "Upriver. The ruts are four nights old, and there is weather coming." Yet Week 2 · Day 3 (Upriver — Where the Tracks Stop) never mentions rain or weather threatening to wash out the four-night-old ruts.',
-    beforeText:
-      'W2D3 summaryLearned: "The cart took a hidden path into the hillside. A stranger died trying to pick a Seeker lock that opened for you." (No mention of the coming squall from Day 2\'s cliffhanger.)',
-    proposedFixText:
-      'W2D3 summaryLearned: "Just as the first cold river squall begins to blur the four-night-old ruts, you trace the dragging left wheel off the road onto a dry hidden path under the trees—where a stranger died a week ago with his pick jammed in a Seeker lock that opens at your touch."',
-  },
-  // L4, L5 and L6 were removed on 14 Oct 2026 (Fake Guru's fix plan, Phase 1):
-  // L4 paid 300g for fights on Challenge-and-fight days (canon pays 0) and promised a
-  // "strike first" rule the fight engine doesn't have; L5 said "seven left" a day early
-  // (canon: 8 at W5D5, 7 after Gathering 5, 6 at W6D1); L6 rewrote the W4D1 escape
-  // against canon (episode-4-the-water-stone.md).
-];
+// Every patch is now retired. The weekday plays canon's own text (src/data/chapterScripts.ts), so:
+// - L1 (15 Oct) was wrong: canon W1D6 already plants the cart at the ford ("The near bank is churned
+//   to mud. A cart went over"); only the build's short chapter summary had lost it.
+// - L3 (15 Oct) patched a summary line the day no longer shows. W2D3 not mentioning Day 2's
+//   "weather coming" is a point in canon itself, reported to Fake Guru rather than patched.
+// - L2 became canon on 14 Oct; L4, L5 and L6 were removed on 14 Oct (Phase 1 of the fix plan).
+export const NEW_CONTINUITY_LOOPHOLES: ContinuityLoopholeRecord[] = [];
 
 export function getChapterWithContinuityFixes(
   chapter: WeekdayInventoryItem,
-  appliedLoopholeIds: string[]
+  _appliedLoopholeIds: string[]
 ): WeekdayInventoryItem {
   const computedKind: 'CHALLENGE' | 'FIGHT' | 'CHALLENGE_AND_FIGHT' =
     chapter.challengeTitle && chapter.hasFight
@@ -105,24 +74,6 @@ export function getChapterWithContinuityFixes(
       ? 'FIGHT'
       : 'CHALLENGE';
   const patched: WeekdayInventoryItem = { ...chapter, kind: computedKind };
-
-  if (appliedLoopholeIds.includes('L1')) {
-    if (patched.week === 1 && patched.day === 6) {
-      patched.passBranchText =
-        'High on the muddy bank above the ford, a heavy cart with a pulling left wheel backed down and turned north; below it, her small prints walk unhurt to the water\'s edge where a man lifted her into a boat.';
-    }
-    if (patched.week === 2 && patched.day === 2) {
-      patched.pressOnDetail =
-        'The left wheel pulls—cutting a deeper groove on the near side. You saw that same lopsided rut in the bracken below the Widow\'s Tooth, and where the cart backed down the high bank above the ford. It is the same cart.';
-    }
-  }
-
-  if (appliedLoopholeIds.includes('L3')) {
-    if (patched.week === 2 && patched.day === 3) {
-      patched.summaryLearned =
-        'Just as the first cold river squall begins to blur the four-night-old ruts, you trace the dragging left wheel onto a dry hidden path into the hillside. A stranger died trying to pick a Seeker lock that opened for you.';
-    }
-  }
 
   return patched;
 }

@@ -88,7 +88,7 @@ export default function App() {
   const [topBannerExpanded, setTopBannerExpanded] = useState<boolean>(false);
   const [bagInitialSubTab, setBagInitialSubTab] = useState<'RELICS' | 'SEEKER'>('RELICS');
 
-  // Continuity fixes L1 and L3 are active by default (L2 became canon; L4–L6 removed 14 Oct)
+  // Continuity patches: all retired on 15 Oct (the weekday now plays canon's own text)
   const [appliedLoopholeIds, setAppliedLoopholeIds] = useState<string[]>(() =>
     NEW_CONTINUITY_LOOPHOLES.map((l) => l.id)
   );
@@ -1321,6 +1321,7 @@ export default function App() {
               {activeTab === 'CHAT' && (chatChannel === 'MINE' || !isPartyFormed) && (
                 <StoryTabView
                   onClaimReward={handleClaimReward}
+                  hasClaimedReward={(key) => claimedRewardsRef.current.has(key)}
                   currentWeek={currentWeek}
                   currentDay={currentDay}
                   onSelectWeekDay={handleSelectWeekDay}

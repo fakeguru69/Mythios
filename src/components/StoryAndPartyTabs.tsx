@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   AttributeName,
   ATTRIBUTE_META,
@@ -26,6 +26,7 @@ import {
   GOLD_DETOUR_FIGHT_WIN,
   GOLD_RIDDLE_BONUS,
   GOLD_GATHERING_BATTLE_REWARDS,
+  GOLD_FRAGMENT_WORD_SOLVED,
 } from '../data/economy';
 import { WEEKDAY_INVENTORY } from '../data/mythiosChaptersData';
 import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
@@ -33,22 +34,30 @@ import { GATHERINGS_DATA } from '../data/mythiosGatheringsAndAudit';
 import { getChapterWithContinuityFixes } from '../data/narrativeContinuityAudit';
 import { routeGarrickMessage, GarrickRouteResult } from '../data/garrickRouter';
 import { getDailyCampfireRiddles } from '../data/garrickDailyRiddles';
-import {
-  getDailyRecap,
-  getOpeningProseParagraphs,
-  getChallengePassProseParagraphs,
-  getChallengeFailProseParagraphs,
-  getRecoveryProseParagraphs,
-  getFightWinProseParagraphs,
-  getFanOutEncounterData,
-  FanOutBranchOption,
-} from '../data/soloLandmarkProse';
+import { getFanOutEncounterData, FanOutBranchOption } from '../data/soloLandmarkProse';
 import {
   getBoardCrossCheckSynthesis,
   buildBoardClueDiscussionExchange,
 } from '../data/garrickCampfirePrompts';
 import { getCampfireDayEntry } from '../data/campfireDaysData';
 import { CampfireEveningView } from './CampfireEveningView';
+import {
+  CHAPTER_SCRIPTS,
+  ScriptCond,
+  ScriptStep,
+  StrikeFirstRule,
+} from '../data/chapterScripts';
+import {
+  NarrationBlock,
+  NoticeBlock,
+  ScriptButton,
+  ScriptInline,
+  ScriptText,
+  ScriptTokens,
+  TapEcho,
+  fillScriptTokens,
+  pickNoticeLine,
+} from './ChapterScriptParts';
 import {
   BattleState,
   BattleStrikeLine,
@@ -105,6 +114,8 @@ interface StoryTabViewProps {
   appliedLoopholeIds: string[];
   completedDays: string[];
   onClaimReward?: (key: string) => boolean;
+  /** Whether a reward key has been claimed (also marks results such as 'G3:united-effort-lost'). */
+  hasClaimedReward?: (key: string) => boolean;
   onSealDay: (week: number, day: number, summaryNote: string) => void;
   pinnedClues: PinnedPartyClue[];
   onPinClue: (clue: Omit<PinnedPartyClue, 'id'>) => void;
@@ -187,168 +198,11 @@ interface FightRoundEntry {
   dmgToPlayer: number;
   playerHpBefore: number;
   playerHpAfter: number;
-}
-
-// Helper: Short D&D Action Title for left side of each Challenge Choice (#13)
-function getChallengeActionTitle(
-  attr: AttributeName,
-  place: string
-): string {
-  if (place.toLowerCase().includes('mill') && attr === 'Charm') {
-    return 'SPEAK GENTLY';
-  }
-  if (place.toLowerCase().includes('mill') && attr === 'Intellect') {
-    return 'PIECE TOGETHER CLUES';
-  }
-  switch (attr) {
-    case 'Charm':
-      return 'WIN THEIR TRUST';
-    case 'Intellect':
-      return 'STUDY THE EVIDENCE';
-    case 'Might':
-      return 'FORCE THE OBSTACLE';
-    case 'Craft':
-      return 'INSPECT THE MECHANISM';
-    case 'Agility':
-      return 'SLIP PAST UNSEEN';
-    case 'Aim':
-      return 'READ THE TRACKS';
-  }
-}
-
-// Helper: 1-line D&D narrative description for each Attribute choice on a Challenge Card
-function getChallengeActionNarrative(
-  attr: AttributeName,
-  place: string,
-  challengeTitle?: string
-): string {
-  if (place.toLowerCase().includes('mill') && attr === 'Charm') {
-    return "Speak gently so she trusts you with Corin's name.";
-  }
-  if (place.toLowerCase().includes('mill') && attr === 'Intellect') {
-    return 'Piece together the timeline from the broken latch and ruts.';
-  }
-  const target = (challengeTitle || place || 'the scene').toLowerCase();
-  switch (attr) {
-    case 'Charm':
-      return `Speak gently and win trust at ${target} so the truth comes out willingly.`;
-    case 'Intellect':
-      return `Piece together the timeline and physical clues left around ${target}.`;
-    case 'Might':
-      return `Force your way through the obstacle at ${target} with raw strength.`;
-    case 'Craft':
-      return `Examine the mechanism and stonework at ${target} with a maker's eye.`;
-    case 'Agility':
-      return `Move silently along the blind side of ${target} without being spotted.`;
-    case 'Aim':
-      return `Read the tracks and sightlines from a distance before approaching ${target}.`;
-  }
-}
-
-interface DecisionChoiceOption {
-  title: string;
-  badge: string;
-  color: string;
-  label: string;
-  outcomeText: string;
-}
-
-// Helper: 2-line guided recovery choices when a player fails a Challenge (#1, #2, #3, #20, #21)
-function getRecoveryOptions(place: string): DecisionChoiceOption[] {
-  if (place.toLowerCase().includes('mill')) {
-    return [
-      {
-        title: 'MEND THE BROKEN LATCH',
-        badge: 'CRAFT · PARTY',
-        color: '#F6BD60', // Craft Amber
-        label: 'Wait until dusk and have Arjun mend her broken door-latch so she opens up.',
-        outcomeText:
-          'At dusk, Arjun quietly mends the broken door-latch. Seeing the repair, the Miller’s Wife softens and opens the door a crack to tell you what happened.',
-      },
-      {
-        title: 'SEARCH THE WHEEL FOOTING',
-        badge: 'INSPECT · TRAIL',
-        color: '#4FD1C5', // Aim Teal
-        label: 'Circle behind the mill-wheel to inspect the cart ruts and stone base.',
-        outcomeText:
-          'You circle behind the mill-house to inspect the four-night-old cart ruts and the ancient stone footing beneath the water-wheel.',
-      },
-    ];
-  }
-  return [
-    {
-      title: 'SEARCH THE PERIMETER',
-      badge: 'PARTY · RECON',
-      color: '#4FD1C5', // Aim Teal
-      label: `Sweep the perimeter of ${place} with your companions for missed signs.`,
-      outcomeText: `Working together around ${place}, you and your companions piece together the trail the direct approach missed.`,
-    },
-    {
-      title: 'TRACE THE STONE MARKS',
-      badge: 'INSPECT · CLUE',
-      color: '#5BC0EB', // Sky Blue
-      label: `Crouch beside the weathered stonework at ${place} to read the chisel marks.`,
-      outcomeText: `Crouching beside the worn stone at ${place}, you trace the faint chisel marks left behind in the dust.`,
-    },
-  ];
-}
-
-interface NextMoveChoiceOption {
-  title: string;
-  badge: string;
-  color: string;
-  label: string;
-  playerText: string;
-  mythiosReply: string;
-  outcomeTag: string;
-  rewardType?: 'AIM' | 'GOLD' | 'CAMPFIRE';
-}
-
-// Helper: 3 genuinely distinct end-of-scene choices with matched title & badge colors (#1, #2)
-function getNextMoveOptions(
-  place: string,
-  pullLine: string,
-  week: number = 1
-): NextMoveChoiceOption[] {
-  const sentryLabel = week <= 2 ? 'hooded lookouts' : 'Order sentries';
-  const sealLabel =
-    week === 1
-      ? 'a black wax seal'
-      : week <= 4
-      ? 'a scraped silver mark'
-      : 'a Highwall wax seal';
-  return [
-    {
-      title: 'SCOUT THE FORWARD TRAIL',
-      badge: '+1 AIM · RECON',
-      color: '#4FD1C5', // Aim Teal
-      label: `Follow the fresh wheel-ruts a quarter-mile ahead to spot ${sentryLabel}.`,
-      playerText: `I'll scout a quarter-mile ahead from ${place} while the wheel-ruts are still clear.`,
-      mythiosReply: `Crouching beside the milestone north of ${place}, you spot a fresh tally-notch marking their night route (+1 Aim earned). ${pullLine}`,
-      outcomeTag: '✓ Patrol Route Marked (+1 Aim)',
-      rewardType: 'AIM',
-    },
-    {
-      title: 'SEARCH FOR HIDDEN CACHE',
-      badge: '+25G · LOOT',
-      color: '#E5C158', // Warm Gold
-      label: `Pry beneath the loose flagstones at ${place} for anything left behind.`,
-      playerText: `Before we leave ${place}, I'll check under the loose flagstones by the wall.`,
-      mythiosReply: `Prying up the mossy flagstone at ${place}, you uncover a dropped coin-pouch (+25g earned) stamped with ${sealLabel}!`,
-      outcomeTag: '✓ Hidden Cache Found (+25g)',
-      rewardType: 'GOLD',
-    },
-    {
-      title: 'RETURN TO THE CAMPFIRE',
-      badge: 'CAMPFIRE HOST',
-      color: '#F0A552', // Hearth Amber
-      label: 'Head straight back to the woodsmoke where Garrick and your party wait.',
-      playerText: `Let's head straight back to the campfire and lay this fragment beside the others.`,
-      mythiosReply: `You cover your tracks at ${place} and follow the woodsmoke back to camp, where Garrick has the kettle on the fire and your companions are waiting to compare notes.`,
-      outcomeTag: '✓ Back at Campfire',
-      rewardType: 'CAMPFIRE',
-    },
-  ];
+  /** The enemy struck first this round (canon: set by a choice or the day's Challenge). */
+  enemyFirst?: boolean;
+  /** False when that side was already down and did not strike this round. */
+  playerStruck?: boolean;
+  enemyStruck?: boolean;
 }
 
 export const StoryTabView: React.FC<StoryTabViewProps> = ({
@@ -380,14 +234,13 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   onSavePrivateTheoryPrompt,
   completedDays = [],
   onClaimReward = () => true,
+  hasClaimedReward = () => false,
 }) => {
   const [selectedAttr, setSelectedAttr] = useState<AttributeName | null>(null);
   const [privatePromptCustomText, setPrivatePromptCustomText] = useState('');
   const [useAttrRelic, setUseAttrRelic] = useState(false);
   const [rollOutcome, setRollOutcome] = useState<RollState | null>(null);
   const [isReplayRoll, setIsReplayRoll] = useState(false);
-  const [recoveryChoice, setRecoveryChoice] = useState<DecisionChoiceOption | null>(null);
-  const [nextMoveChoice, setNextMoveChoice] = useState<NextMoveChoiceOption | null>(null);
 
   // Mandatory Detour Skirmish state when failing a Challenge on a Challenge-only day (#2)
   const [detourFightRounds, setDetourFightRounds] = useState<FightRoundEntry[]>([]);
@@ -403,19 +256,21 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   const [isRollingFanOutRound, setIsRollingFanOutRound] = useState(false);
   const [fanOutCompleted, setFanOutCompleted] = useState(false);
 
+  // The chapter script: taps made, choices picked (in order), and [PRESS ON].
+  const [scriptTaps, setScriptTaps] = useState<Record<number, boolean>>({});
+  const [choicePicks, setChoicePicks] = useState<Record<number, number[]>>({});
+  const [pressOutcome, setPressOutcome] = useState<RollState | null>(null);
+  const [pressLeft, setPressLeft] = useState(false);
+  const [pressRelic, setPressRelic] = useState(false);
+  const [isRollingPress, setIsRollingPress] = useState(false);
+  // Whether each of today's rewards was paid (false = the day was already played).
+  const [claimResults, setClaimResults] = useState<Record<string, boolean>>({});
+
   const [useCombatRelic, setUseCombatRelic] = useState(false);
   const [fightRounds, setFightRounds] = useState<FightRoundEntry[]>([]);
   const [fightDone, setFightDone] = useState(false);
   const [isRollingRound, setIsRollingRound] = useState(false);
 
-  const [chatInput, setChatInput] = useState('');
-  const [chatHistory, setChatHistory] = useState<
-    Array<{
-      sender: 'YOU' | 'MYTHIOS';
-      text: string;
-    }>
-  >([]);
-  const [usedPromptChips, setUsedPromptChips] = useState<Record<string, boolean>>({});
 
   const rawDayData =
     WEEKDAY_INVENTORY.find((d) => d.week === currentWeek && d.day === currentDay) ||
@@ -428,6 +283,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   );
   const dayKey = `${currentWeek}-${currentDay}`;
   const isSoloW1D1 = currentWeek === 1 && currentDay === 1;
+  const chapterScript = CHAPTER_SCRIPTS.find((c) => c.week === currentWeek && c.day === currentDay);
 
   // Reset per-day interactive states whenever dayKey changes from parent or presets
   const [lastDayKey, setLastDayKey] = useState<string>(dayKey);
@@ -437,8 +293,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setUseAttrRelic(false);
     setRollOutcome(null);
     setIsReplayRoll(false);
-    setRecoveryChoice(null);
-    setNextMoveChoice(null);
     setDetourFightRounds([]);
     setDetourFightDone(false);
     setIsRollingDetourRound(false);
@@ -453,7 +307,13 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setFightRounds([]);
     setFightDone(false);
     setIsRollingRound(false);
-    setChatHistory([]);
+    setScriptTaps({});
+    setChoicePicks({});
+    setPressOutcome(null);
+    setPressLeft(false);
+    setPressRelic(false);
+    setIsRollingPress(false);
+    setClaimResults({});
   }
 
   const activeAttr: AttributeName =
@@ -469,6 +329,15 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   const activeAttrScore = getDisplayScore(activeAttr);
 
   const weekdayDC = WEEKDAY_DC_BY_WEEK[currentWeek] || 7;
+  // Core Rules §11: a lost roll-call at Gathering 5 makes Week 6 Day 1's Challenge two harder.
+  const scriptChallenge = chapterScript?.steps.find(
+    (st): st is Extract<ScriptStep, { t: 'challenge' }> => st.t === 'challenge'
+  );
+  const challengeHarder =
+    scriptChallenge?.harderIf && hasClaimedReward(scriptChallenge.harderIf.key) === scriptChallenge.harderIf.has
+      ? scriptChallenge.harderIf.by
+      : 0;
+  const challengeDC = weekdayDC + challengeHarder;
   const activeTierBonus = getTierInfo(activeAttrScore).bonus;
   const availableAttrRelics = relics[activeAttr] || 0;
   const availableBattleRelics = relics['Battle'] ?? relics['Combat'] ?? 0;
@@ -476,17 +345,31 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   // Two-Way Fight Stats (#1, #2, #3):
   // If the day has a Challenge + Fight, passing the Challenge grants +2 WEP First-Strike Advantage;
   // failing the Challenge inflicts -15 HP Opening Ambush Penalty before Round 1!
-  const challengeCombatBonus =
-    dayData.challengeTitle && dayData.hasFight && rollOutcome?.cleared ? 2 : 0;
-  const challengeFailHpPenalty =
-    dayData.challengeTitle && dayData.hasFight && rollOutcome && !rollOutcome.cleared
-      ? 15
-      : 0;
+  // Only where the day's Challenge comes before its fight (not W1D1 or W4D2, where the fight is first).
+  const challengeBeforeFight = (() => {
+    const steps = chapterScript?.steps || [];
+    const c = steps.findIndex((st) => st.t === 'challenge');
+    const f = steps.findIndex((st) => st.t === 'fight');
+    return c >= 0 && f >= 0 && c < f;
+  })();
+  const challengeCombatBonus = challengeBeforeFight && rollOutcome?.cleared ? 2 : 0;
+  const challengeFailHpPenalty = challengeBeforeFight && rollOutcome && !rollOutcome.cleared ? 15 : 0;
   const baseWeaponAtk = GEAR_TABLE[weaponLevel]?.weapon || 14;
   const baseArmorDef = GEAR_TABLE[armorLevel]?.armor || 27;
   const playerAtk = baseWeaponAtk + (useCombatRelic ? 1 : 0) + challengeCombatBonus;
   const playerArmor = baseArmorDef + (useCombatRelic ? 1 : 0);
   const enemyDef = Math.max(16, (epMeta.wDef || 21) - 2);
+  // Canon: who strikes first in the day's fight is set by a choice or by the day's Challenge.
+  const scriptFight = chapterScript?.steps.find(
+    (st): st is Extract<ScriptStep, { t: 'fight' }> => st.t === 'fight'
+  );
+  const fightEnemyFirst = (() => {
+    const rule = scriptFight?.strikeFirst;
+    if (!rule || rule.on === 'player') return false;
+    if (rule.on === 'challenge') return !rollOutcome?.cleared;
+    const first = (choicePicks[rule.choice] || [])[0];
+    return !(first !== undefined && rule.options.includes(first));
+  })();
   const enemyAtk = epMeta.wAtk || 14;
 
   // Detour Skirmish Foe Stats (60 HP Perimeter Watchman, 0g reward)
@@ -507,8 +390,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setUseAttrRelic(false);
     setRollOutcome(null);
     setIsReplayRoll(false);
-    setRecoveryChoice(null);
-    setNextMoveChoice(null);
     setDetourFightRounds([]);
     setDetourFightDone(false);
     setIsRollingDetourRound(false);
@@ -523,7 +404,13 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setFightRounds([]);
     setFightDone(false);
     setIsRollingRound(false);
-    setChatHistory([]);
+    setScriptTaps({});
+    setChoicePicks({});
+    setPressOutcome(null);
+    setPressLeft(false);
+    setPressRelic(false);
+    setIsRollingPress(false);
+    setClaimResults({});
     onSelectWeekDay(w, d);
     if (onSetShowChapterPicker) onSetShowChapterPicker(false);
   };
@@ -537,8 +424,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     const attrPoints = attributes[activeAttr] || 20;
     const tierBonus = getTierInfo(attrPoints).bonus;
     const relicBonus = useAttrRelic && availableAttrRelics > 0 ? 4 : 0;
-    const d20 = await rollChallengeD20(weekdayDC, tierBonus, relicBonus);
-    const { net: margin, success: cleared } = resolveChallengeRoll(d20, tierBonus + relicBonus, weekdayDC);
+    const d20 = await rollChallengeD20(challengeDC, tierBonus, relicBonus);
+    const { net: margin, success: cleared } = resolveChallengeRoll(d20, tierBonus + relicBonus, challengeDC);
     const total = d20 + tierBonus + relicBonus;
 
     if (relicBonus > 0) {
@@ -553,13 +440,12 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       tierBonus,
       relicBonus,
       total,
-      dc: weekdayDC,
-      succeedOn: challengeSucceedOn(weekdayDC, tierBonus + relicBonus),
+      dc: challengeDC,
+      succeedOn: challengeSucceedOn(challengeDC, tierBonus + relicBonus),
       margin,
       cleared,
     });
     setIsRollingChallenge(false);
-    setRecoveryChoice(null);
     setDetourFightRounds([]);
     setDetourFightDone(false);
 
@@ -570,17 +456,52 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       // no gold, no growth
     } else if (cleared) {
       const daysPlayedThisWeek = completedDays.filter((id) => id.startsWith(`${currentWeek}-`)).length + 1;
-      const growth = calculateAttributeGrowth(attrPoints, daysPlayedThisWeek, d20, tierBonus, weekdayDC);
+      const growth = calculateAttributeGrowth(attrPoints, daysPlayedThisWeek, d20, tierBonus, challengeDC);
       setRollOutcome((prev) => (prev ? { ...prev, growth } : prev));
       onGainAttribute(activeAttr, growth, d20 === 20);
       onEarnGold(GOLD_CHALLENGE_WIN);
-      if (!dayData.hasFight) {
-        onSealDay(currentWeek, currentDay, dayData.place);
-      }
     } else {
       onEarnGold(-GOLD_CHALLENGE_LOSS);
     }
   };
+
+  // [PRESS ON] (Core Rules §3): 4 harder, on the same Attribute; +200g on a pass, no growth, a miss costs nothing.
+  const claimReward = (key: string) => {
+    const ok = onClaimReward(key);
+    setClaimResults((p) => ({ ...p, [key]: ok }));
+    return ok;
+  };
+  const handleRollPressOn = async (dc: number) => {
+    if (pressOutcome || isRollingPress || !rollOutcome) return;
+    setIsRollingPress(true);
+    const attr = rollOutcome.attr;
+    const attrPoints = attributes[attr] || 1;
+    const tierBonus = getTierInfo(attrPoints).bonus;
+    const relicBonus = pressRelic && (relics[attr] || 0) > 0 ? 4 : 0;
+    const d20 = await rollChallengeD20(dc, tierBonus, relicBonus);
+    const { net: margin, success: cleared } = resolveChallengeRoll(d20, tierBonus + relicBonus, dc);
+    if (relicBonus > 0) {
+      onUseRelic(attr);
+      setPressRelic(false);
+    }
+    setPressOutcome({
+      d20,
+      attr,
+      attrPoints,
+      tierBonus,
+      relicBonus,
+      total: d20 + tierBonus + relicBonus,
+      dc,
+      succeedOn: challengeSucceedOn(dc, tierBonus + relicBonus),
+      margin,
+      cleared,
+    });
+    if (cleared && claimReward(`${dayKey}:press`)) onEarnGold(GOLD_PRESS_ON_WIN);
+    setIsRollingPress(false);
+  };
+  const pressReplay = claimResults[`${dayKey}:press`] === false;
+  const fightReplay = claimResults[`${dayKey}:fight`] === false;
+  const detourReplay = claimResults[`${dayKey}:detour`] === false;
 
   // Mandatory Detour Skirmish round calculation on failed Challenge-only days (#2 — Honest d20 rolls)
   const computeNextDetourRound = (prevRounds: FightRoundEntry[]): FightRoundEntry => {
@@ -602,9 +523,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     const enemyD20 = Math.floor(Math.random() * 20) + 1;
     const enemyMargin = enemyD20 + detourEnemyAtk - baseArmorDef;
     const enemyHit = enemyHpAfter > 0 && enemyMargin > 0;
-    const rawDmgToPlayer = enemyHit ? enemyMargin * 5 : 0;
-    const playerHpAfter = Math.max(0, playerHpBefore - rawDmgToPlayer);
-    const dmgToPlayer = playerHpBefore - playerHpAfter;
+    const dmgToPlayer = enemyHit ? enemyMargin * 5 : 0;
+    const playerHpAfter = Math.max(0, playerHpBefore - dmgToPlayer);
 
     return {
       round: r,
@@ -637,10 +557,9 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
         setDetourFightDone(true);
         // Core Rules §3: growth only on a passed Daily Challenge, so the Detour gives none.
-        if (nextRound.enemyHpAfter <= 0 && onClaimReward(`${dayKey}:detour`)) {
+        if (nextRound.enemyHpAfter <= 0 && claimReward(`${dayKey}:detour`)) {
           onEarnGold(GOLD_DETOUR_FIGHT_WIN);
         }
-        onSealDay(currentWeek, currentDay, dayData.place);
       }
       setIsRollingDetourRound(false);
     }, 380);
@@ -657,21 +576,44 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
         : prevRounds[prevRounds.length - 1].playerHpAfter;
 
     const d20 = Math.floor(Math.random() * 20) + 1;
-
-    const margin = d20 + playerAtk - enemyDef;
-    const hit = margin > 0;
-    const dmgToEnemy = hit ? margin * 5 : 0;
-    const enemyHpAfter = Math.max(0, enemyHpBefore - dmgToEnemy);
-
     const enemyD20 = Math.floor(Math.random() * 20) + 1;
     const enemyMargin = enemyD20 + enemyAtk - playerArmor;
-    const enemyHit = enemyHpAfter > 0 && enemyMargin > 0;
-    const rawDmgToPlayer = enemyHit ? enemyMargin * 5 : 0;
-    const playerHpAfter = Math.max(0, playerHpBefore - rawDmgToPlayer);
-    const dmgToPlayer = playerHpBefore - playerHpAfter;
+    const margin = d20 + playerAtk - enemyDef;
+    let playerHpAfter = playerHpBefore;
+    let enemyHpAfter = enemyHpBefore;
+    let hit = false;
+    let enemyHit = false;
+    let playerStruck = false;
+    let enemyStruck = false;
+    const playerStrikes = () => {
+      if (playerHpAfter <= 0) return;
+      playerStruck = true;
+      hit = margin > 0;
+      if (hit) enemyHpAfter = Math.max(0, enemyHpAfter - margin * 5);
+    };
+    const enemyStrikes = () => {
+      if (enemyHpAfter <= 0) return;
+      enemyStruck = true;
+      enemyHit = enemyMargin > 0;
+      if (enemyHit) playerHpAfter = Math.max(0, playerHpAfter - enemyMargin * 5);
+    };
+    // Whoever strikes first strikes first every round; a fighter at 0 HP does not strike back.
+    if (fightEnemyFirst) {
+      enemyStrikes();
+      playerStrikes();
+    } else {
+      playerStrikes();
+      enemyStrikes();
+    }
+    // Damage is the margin × 5 (Core Rules §4); HP stops at 0.
+    const dmgToEnemy = hit ? margin * 5 : 0;
+    const dmgToPlayer = enemyHit ? enemyMargin * 5 : 0;
 
     return {
       round: r,
+      enemyFirst: fightEnemyFirst,
+      playerStruck,
+      enemyStruck,
       d20,
       playerAtk,
       enemyDef,
@@ -703,764 +645,242 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       setFightRounds(updated);
       if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
         setFightDone(true);
-        const fullFightGold =
-          dayData.fightReward !== undefined ? dayData.fightReward : 300;
-        const earnedGold = nextRound.enemyHpAfter <= 0 ? fullFightGold : 0;
-        if (earnedGold > 0 && onClaimReward(`${dayKey}:fight`)) {
+        const earnedGold = nextRound.enemyHpAfter <= 0 ? dayData.fightReward ?? 0 : 0;
+        if (earnedGold > 0 && claimReward(`${dayKey}:fight`)) {
           onEarnGold(earnedGold);
         }
-        onSealDay(currentWeek, currentDay, dayData.place);
       }
       setIsRollingRound(false);
     }, 420);
   };
 
-  const handleSendToMythios = (textToSend: string, chipKey?: string) => {
-    const trimmed = textToSend.trim();
-    if (!trimmed) return;
-    if (chipKey) {
-      setUsedPromptChips((prev) => ({ ...prev, [chipKey]: true }));
-    }
 
-    const lower = trimmed.toLowerCase();
-    let mythiosReply = `You take a careful look around ${dayData.place.toLowerCase()}. ${dayData.summaryLearned} ${dayData.pullLine}`;
-    if (lower.includes('track') || lower.includes('rut') || lower.includes('road') || lower.includes('north')) {
-      mythiosReply = `Crouching by the ground at ${dayData.place.toLowerCase()}, you trace the fresh marks leading away from the landmark. ${dayData.pullLine}`;
-    } else if (lower.includes('stone') || lower.includes('fragment') || lower.includes('carv')) {
-      mythiosReply = isSoloW1D1
-        ? `You run your thumb along the weathered Seeker stonework at ${dayData.place.toLowerCase()}—its recessed lock-socket matches the fragment now resting in your bag alongside the torn stub pointing north to The Hollow Wake Inn.`
-        : `You run your thumb along the weathered Seeker stonework at ${dayData.place.toLowerCase()}—its recessed lock-socket matches the fragment now resting in your bag. Back at the campfire, Garrick and your party are waiting to hear what you found.`;
-    } else if (lower.includes('camp') || lower.includes('return') || lower.includes('party') || lower.includes('inn')) {
-      mythiosReply = isSoloW1D1
-        ? `You strap your gear tight at ${dayData.place.toLowerCase()} and look north up the drove road toward The Hollow Wake Inn, where the address on the torn list leads. ${dayData.pullLine}`
-        : `You gather your gear at ${dayData.place.toLowerCase()} and head back toward the woodsmoke of the party's campfire, where Garrick has the kettle on. ${dayData.pullLine}`;
-    }
-
-    setChatHistory((prev) => [
-      ...prev,
-      { sender: 'YOU', text: trimmed },
-      { sender: 'MYTHIOS', text: mythiosReply },
-    ]);
-    setChatInput('');
-  };
-
-  const contextChips = [
-    {
-      key: `${dayKey}-inspect`,
-      label: `Search around ${dayData.place.replace(/^The\s+/i, '')}`,
-      prompt: `I check the ground around ${dayData.place} for any other signs before leaving.`,
-    },
-    {
-      key: `${dayKey}-stone`,
-      label: 'Examine the Seeker stone socket',
-      prompt: 'I inspect the carved stone socket where the Seeker fragment was hidden.',
-    },
-    isSoloW1D1
-      ? {
-          key: `${dayKey}-road-north`,
-          label: 'Check the drove road to the inn',
-          prompt: `I check the drove road leading north from ${dayData.place} toward The Hollow Wake Inn.`,
-        }
-      : {
-          key: `${dayKey}-camp`,
-          label: 'Head back to the campfire',
-          prompt: `I pack up my findings at ${dayData.place} and head back to the campfire.`,
-        },
-  ].filter((c) => !usedPromptChips[c.key]);
-
-  const hasFirstLetterHint = dayFragment ? Boolean(seekerFirstLetterHints[dayFragment.id]) : false;
-
-  const renderArtifactFragmentQuote = () => {
-    if (!dayFragment) return null;
-    const sEntry = solvedWords[dayFragment.id] || {};
-    const w1Done = Boolean(sEntry.w1);
-    const w2Done = Boolean(sEntry.w2);
-    const parts = dayFragment.displayTemplate.split(/(\{0\}|\{1\})/g);
-    return (
-      <p className="font-['Cormorant_Garamond'] font-medium text-[20px] text-[#F4F1F8] leading-[1.55]">
-        “
-        {parts.map((part, idx) => {
-          if (part === '{0}') {
-            return w1Done ? (
-              <span
-                key={idx}
-                className="font-['Cormorant_Garamond'] font-bold text-[20px] text-[#6FD39A] underline decoration-[#6FD39A]/50 underline-offset-4 px-1"
-              >
-                {dayFragment.word1}
-              </span>
-            ) : (
-              <span
-                key={idx}
-                className="mx-1 px-2.5 py-0.5 rounded-md bg-[#2A1B40] border border-[#D4B876]/65 font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#D4B876] not-italic inline-block"
-              >
-                {hasFirstLetterHint ? (
-                  <>
-                    <span className="text-[#6FD39A] underline mr-1">
-                      [{dayFragment.word1[0].toUpperCase()}]
-                    </span>
-                    {dayFragment.jumble1.join('')}
-                  </>
-                ) : (
-                  dayFragment.jumble1.join('')
-                )}
-              </span>
-            );
-          }
-          if (part === '{1}') {
-            return w2Done ? (
-              <span
-                key={idx}
-                className="font-['Cormorant_Garamond'] font-bold text-[20px] text-[#6FD39A] underline decoration-[#6FD39A]/50 underline-offset-4 px-1"
-              >
-                {dayFragment.word2}
-              </span>
-            ) : (
-              <span
-                key={idx}
-                className="mx-1 px-2.5 py-0.5 rounded-md bg-[#2A1B40] border border-[#D4B876]/65 font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#D4B876] not-italic inline-block"
-              >
-                {hasFirstLetterHint ? (
-                  <>
-                    <span className="text-[#6FD39A] underline mr-1">
-                      [{dayFragment.word2[0].toUpperCase()}]
-                    </span>
-                    {dayFragment.jumble2.join('')}
-                  </>
-                ) : (
-                  dayFragment.jumble2.join('')
-                )}
-              </span>
-            );
-          }
-          return <span key={idx}>{part}</span>;
-        })}
-        ”
-      </p>
-    );
-  };
-
-  const enemyFullHp = 100;
-  const enemyRemainingHp =
-    fightRounds.length === 0
-      ? 100
-      : fightRounds[fightRounds.length - 1].enemyHpAfter;
-  const playerMaxHp = 100;
-  const startPlayerHp = Math.max(20, 100 - challengeFailHpPenalty);
-  const playerRemainingHp =
-    fightRounds.length === 0
-      ? startPlayerHp
-      : fightRounds[fightRounds.length - 1].playerHpAfter;
-
-  // Multi-Paragraph Non-Repeating Prose & Daily Recap (#4)
-  const dailyRecap = getDailyRecap(currentWeek, currentDay);
-  const openingParagraphs = getOpeningProseParagraphs(dayData);
-  const challengePassParagraphs = getChallengePassProseParagraphs(
-    dayData,
-    rollOutcome?.attr || activeAttr
-  );
-  const challengeFailParagraphs = getChallengeFailProseParagraphs(
-    dayData,
-    rollOutcome?.attr || activeAttr
-  );
-  const recoveryParagraphs = getRecoveryProseParagraphs(
-    dayData,
-    'Perimeter Watchman Skirmish'
-  );
-  const fightWinParagraphs = getFightWinProseParagraphs(
-    dayData,
-    rollOutcome ? rollOutcome.cleared : true
-  );
-  const fanOutEncounter = getFanOutEncounterData(dayData);
-
-  const solvedFragCount = dayFragment
-    ? (solvedWords[dayFragment.id]?.w1 ? 1 : 0) +
-      (solvedWords[dayFragment.id]?.w2 ? 1 : 0)
-    : 0;
-
-  // Seeker Fragment unlocks after passing the Challenge, winning the Detour Skirmish, or winning the main Fight
-  const isArtifactUnlocked = dayData.hasFight
-    ? fightDone
-    : Boolean(rollOutcome && (rollOutcome.cleared || detourFightDone || recoveryChoice));
-
-  // Fanning Out Solo Encounter handlers (#7)
-  // Fan Out Challenge: same rule as the weekday Challenge, against the week's DC.
-  // (No separate Fan Out DC exists in canon; pending the numbers pass, Core Rules §15.)
-  const activeFanOutAttr: AttributeName =
-    fanOutSelectedAttr ||
-    (fanOutBranch?.challengeAttrs?.[0] as AttributeName) ||
-    'Craft';
-  const activeFanOutAttrScore = attributes[activeFanOutAttr] || 20;
-  const activeFanOutTierBonus = getTierInfo(activeFanOutAttrScore).bonus;
-  const [isRollingFanOut, setIsRollingFanOut] = useState(false);
-
-  const handleSelectFanOutBranch = (opt: FanOutBranchOption) => {
-    setFanOutBranch(opt);
-    setFanOutSelectedAttr(opt.challengeAttrs ? opt.challengeAttrs[0] : null);
-    setFanOutRollOutcome(null);
-    setFanOutFightRounds([]);
-    setFanOutFightDone(false);
-    if (opt.branchType === 'CAMPFIRE') {
-      setFanOutCompleted(true);
-    } else {
-      setFanOutCompleted(false);
-    }
-  };
-
-  const unlockFanOutPayoff = (opt: FanOutBranchOption) => {
-    if (dayFragment && onUnlockSeekerHint) {
-      onUnlockSeekerHint(dayFragment.id);
-    }
-    if (dayFragment && opt.soloClueTitle && opt.soloClueText) {
-      const payload = {
-        title: opt.soloClueTitle,
-        text: opt.soloClueText,
-        firstLetter: dayFragment.word1[0].toUpperCase(),
-      };
-      if (onRecordSoloFanOutClue) {
-        onRecordSoloFanOutClue(dayKey, payload);
-      }
-      if (onShareFanOutClue) {
-        onShareFanOutClue(dayKey, payload);
-      }
-    }
-    setFanOutCompleted(true);
-  };
-
-  const handleRollFanOutChallenge = async () => {
-    if (!fanOutBranch || fanOutRollOutcome || isRollingFanOut) return;
-    setIsRollingFanOut(true);
-    const attrPoints = attributes[activeFanOutAttr] || 20;
-    const tierBonus = getTierInfo(attrPoints).bonus;
-    const d20 = await rollChallengeD20(weekdayDC, tierBonus, 0);
-    const { net: margin, success: cleared } = resolveChallengeRoll(d20, tierBonus, weekdayDC);
-    const total = d20 + tierBonus;
-
-    setFanOutRollOutcome({
-      d20,
-      attr: activeFanOutAttr,
-      attrPoints,
-      tierBonus,
-      relicBonus: 0,
-      total,
-      dc: weekdayDC,
-      succeedOn: challengeSucceedOn(weekdayDC, tierBonus),
-      margin,
-      cleared,
-    });
-    setIsRollingFanOut(false);
-
-    if (cleared) {
-      // No growth from Fan Out (Core Rules §3: growth only on the Daily Challenge).
-      if (onClaimReward(`${dayKey}:fanout`)) {
-        onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
-      }
-      unlockFanOutPayoff(fanOutBranch);
-    } else {
-      setFanOutCompleted(true);
-    }
-  };
-
-  const fanOutEnemyFullHp = fanOutBranch?.enemyHp || 70;
-  const fanOutEnemyDef = fanOutBranch?.enemyDef || 18;
-  const fanOutEnemyAtk = fanOutBranch?.enemyAtk || 13;
-  const fanOutEnemyRemainingHp =
-    fanOutFightRounds.length === 0
-      ? fanOutEnemyFullHp
-      : fanOutFightRounds[fanOutFightRounds.length - 1].enemyHpAfter;
-  const fanOutPlayerRemainingHp =
-    fanOutFightRounds.length === 0
-      ? Math.max(25, playerRemainingHp)
-      : fanOutFightRounds[fanOutFightRounds.length - 1].playerHpAfter;
-
-  const computeNextFanOutFightRound = (prevRounds: FightRoundEntry[]): FightRoundEntry => {
-    const r = prevRounds.length + 1;
-    const enemyHpBefore =
-      prevRounds.length === 0
-        ? fanOutEnemyFullHp
-        : prevRounds[prevRounds.length - 1].enemyHpAfter;
-    const playerHpBefore =
-      prevRounds.length === 0
-        ? Math.max(25, playerRemainingHp)
-        : prevRounds[prevRounds.length - 1].playerHpAfter;
-
-    const d20 = Math.floor(Math.random() * 20) + 1;
-
-    const margin = d20 + baseWeaponAtk - fanOutEnemyDef;
-    const hit = margin > 0;
-    const dmgToEnemy = hit ? margin * 5 : 0;
-    const enemyHpAfter = Math.max(0, enemyHpBefore - dmgToEnemy);
-
-    const enemyD20 = Math.floor(Math.random() * 20) + 1;
-    const enemyMargin = enemyD20 + fanOutEnemyAtk - baseArmorDef;
-    const enemyHit = enemyHpAfter > 0 && enemyMargin > 0;
-    const rawDmgToPlayer = enemyHit ? enemyMargin * 5 : 0;
-    const playerHpAfter = Math.max(0, playerHpBefore - rawDmgToPlayer);
-    const dmgToPlayer = playerHpBefore - playerHpAfter;
-
-    return {
-      round: r,
-      d20,
-      playerAtk: baseWeaponAtk,
-      enemyDef: fanOutEnemyDef,
-      margin,
-      hit,
-      dmgToEnemy,
-      enemyHpBefore,
-      enemyHpAfter,
-      enemyD20,
-      enemyAtk: fanOutEnemyAtk,
-      playerArmor: baseArmorDef,
-      enemyMargin,
-      enemyHit,
-      dmgToPlayer,
-      playerHpBefore,
-      playerHpAfter,
-    };
-  };
-
-  const handleRollFanOutFightRound = () => {
-    if (!fanOutBranch || isRollingFanOutRound || fanOutFightDone) return;
-    setIsRollingFanOutRound(true);
-    setTimeout(() => {
-      const nextRound = computeNextFanOutFightRound(fanOutFightRounds);
-      const updated = [...fanOutFightRounds, nextRound];
-      setFanOutFightRounds(updated);
-      if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
-        setFanOutFightDone(true);
-        if (nextRound.enemyHpAfter <= 0) {
-          if (onClaimReward(`${dayKey}:fanout`)) {
-            onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
-          }
-          unlockFanOutPayoff(fanOutBranch);
-        } else {
-          setFanOutCompleted(true);
-        }
-      }
-      setIsRollingFanOutRound(false);
-    }, 380);
-  };
-
-  // Grey out bottom ACT button, input bar, and suggestion chips whenever an Action Card requires action
-  const isActionCardPending =
-    Boolean(dayData.challengeTitle && !rollOutcome) ||
-    Boolean(rollOutcome && !rollOutcome.cleared && !dayData.hasFight && !detourFightDone) ||
-    Boolean(dayData.hasFight && !fightDone) ||
-    Boolean(isArtifactUnlocked && !fanOutCompleted);
-
-  return (
-    <div className="flex-1 flex flex-col min-h-0 bg-[#0D0714]">
-      {/* Unified Chapter & Activity Drawer (Toggled from #7 in the top header) */}
-      {showChapterPicker && (
-        <div className="p-3 bg-[#150D22] border-b border-[#3A2555] space-y-2.5 shrink-0">
-          <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold text-[#B7A9CC] uppercase tracking-[1px]">
-            <span>TODAY’S ACTIVITY & CHAPTERS</span>
-            <button
-              onClick={() => onSetShowChapterPicker && onSetShowChapterPicker(false)}
-              className="text-[#D4B876] hover:underline"
-            >
-              Close ✕
-            </button>
-          </div>
-
-          {/* 3 Scene Permutation Presets */}
-          <div className="grid grid-cols-3 gap-1.5">
-            {[
-              { label: '1. Challenge + Scroll', sub: 'W2·D2 · The Mill', w: 2, d: 2 },
-              { label: '2. Fight + Scroll', sub: "W1·D3 · Widow's Tooth", w: 1, d: 3 },
-              { label: '3. Challenge + Fight', sub: 'W2·D3 · Upriver', w: 2, d: 3 },
-            ].map((preset) => {
-              const active = currentWeek === preset.w && currentDay === preset.d;
-              return (
-                <button
-                  key={preset.label}
-                  onClick={() => resetDayInteractions(preset.w, preset.d)}
-                  className={`p-2 rounded-lg text-left transition border ${
-                    active
-                      ? 'bg-[#2E1B42] border-[#D4B876] text-[#E5C158]'
-                      : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC] hover:text-[#F4F1F8]'
-                  }`}
-                >
-                  <div className="font-['Cinzel'] font-bold text-[10.5px] truncate">
-                    {preset.label}
-                  </div>
-                  <div className="font-sans text-[10.5px] text-[#9E92B2] truncate mt-0.5">
-                    {preset.sub}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="grid grid-cols-6 gap-1">
-            {[1, 2, 3, 4, 5, 6].map((w) => (
-              <button
-                key={w}
-                onClick={() => resetDayInteractions(w, currentDay)}
-                className={`py-1.5 rounded font-['Cinzel'] font-bold text-[11.5px] border transition ${
-                  currentWeek === w
-                    ? 'bg-[#2E1B42] border-[#D4B876] text-[#D4B876]'
-                    : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
-                }`}
-              >
-                WK {w}
-              </button>
-            ))}
-          </div>
-          <div className="grid grid-cols-7 gap-1">
-            {[1, 2, 3, 4, 5, 6].map((d) => (
-              <button
-                key={d}
-                onClick={() => resetDayInteractions(currentWeek, d)}
-                className={`py-1.5 rounded font-['Cinzel'] font-bold text-[11px] border transition ${
-                  currentDay === d
-                    ? 'bg-[#2E1B42] border-[#D4B876] text-[#D4B876]'
-                    : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
-                }`}
-              >
-                D{d}
-              </button>
-            ))}
-            <button
-              onClick={() => {
-                if (onSetShowChapterPicker) onSetShowChapterPicker(false);
-                onJumpToGathering(currentWeek);
-              }}
-              className="py-1.5 rounded font-['Cinzel'] font-bold text-[10.5px] border bg-[#2A1B40] border-[#D4B876]/70 text-[#E5C158] hover:bg-[#2E1B42] transition"
-              title="Jump to Day 7 Gathering"
-            >
-              ⚔️ D7
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* =====================================================================
-          TWO-FAMILY STREAM HIERARCHY (#6):
-          - FAMILY A: NARRATION & CHAT BUBBLES (MYTHIOS / YOU — 17.5px Sans-Serif)
-          - FAMILY B: UNIFIED "SPIN-OFF" CARDS (🎯 CHALLENGE, ⚔️ FIGHT, 🧭 DECISION, 📜 SEEKER FRAGMENT)
-            All Spin-Off Cards share the exact same #1E1232 frame, #7E68B8 border, and #2E1B42 header bar!
-         ===================================================================== */}
-      <div className="flex-1 min-h-0 overflow-y-auto px-3 py-2.5 space-y-2.5">
-        {/* ===================================================================
-            TIER 1A: STANDALONE FULL-WIDTH DAILY RECAP CARD (Hidden on W1·D1 since Episode 1 just begins!)
-           =================================================================== */}
-        {!isSoloW1D1 && (
-          <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
-            <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-              <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
-                📜 PREVIOUSLY ON THE TRAIL
-              </span>
-              <span className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158] whitespace-nowrap truncate max-w-[145px]">
-                {dailyRecap.yesterdayPlace}
-              </span>
-            </div>
-            <div className="p-2.5">
-              <p className="font-sans text-[13.5px] text-[#D8CEE8] leading-[1.4]">
-                {dailyRecap.recapText}
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* ===================================================================
-            TIER 1B: MYTHIOS OPENING SCENE NARRATION BUBBLE (#1: 15px SMS size, #2: compact gap)
-           =================================================================== */}
-        <div className="mr-5 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3 space-y-1.5 shadow-md">
-          <div className="flex items-center justify-between gap-2 leading-none">
-            <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#C4A1FF] uppercase shrink-0">
-              MYTHIOS
-            </span>
-            <span className="text-[11.5px] font-sans font-medium text-[#D4B876] whitespace-nowrap truncate">
-              {dayData.place}
-            </span>
-          </div>
-
-          <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-            {openingParagraphs[0]}
-          </p>
-          <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-            {openingParagraphs[1]}
-          </p>
-        </div>
-
-        {/* ===================================================================
-            ACTION CARD 1 — 🎯 CHALLENGE CARD (#2: Compact vertical gaps)
-           =================================================================== */}
-        {dayData.challengeTitle && dayData.challengeAttrs && (
-          <>
+  // The day's fight card and the Detour card, placed by the chapter script.
+  const renderFightCard = (fightName: string) => (
             <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
               <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
                 <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
-                  🎯 CHALLENGE · {dayData.challengeTitle.toUpperCase()}
+                  ⚔️ {fightName.toUpperCase()}
                 </span>
-                <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] whitespace-nowrap shrink-0">
-                  You succeed on {challengeSucceedOn(weekdayDC, activeTierBonus + (useAttrRelic ? 4 : 0))}+
+                <span className="font-['Cinzel'] font-bold text-[11.5px] whitespace-nowrap shrink-0">
+                  <span className="text-[#E5C158]">WEP {playerAtk}</span>{' '}
+                  <span className="text-[#B7A9CC]">vs</span>{' '}
+                  <span className="text-[#FB923C]">DEF {enemyDef}</span>
                 </span>
               </div>
 
               <div className="p-2.5 space-y-2">
-                {currentWeek === 1 && currentDay === 1 && !rollOutcome && (
-                  <p className="text-[13.5px] font-sans text-[#B7A9CC] leading-snug px-0.5">
-                    A Challenge. Pick the skill you trust and roll. Pass, and you earn{' '}
-                    {GOLD_CHALLENGE_WIN} gold and that skill grows. Fail, and it costs{' '}
-                    {GOLD_CHALLENGE_LOSS} gold.
-                  </p>
-                )}
                 <div className="grid grid-cols-2 gap-2">
                   <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
                     <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
                       <span className="text-[#6FD39A] truncate">YOU</span>
-                      <span
-                        className="whitespace-nowrap shrink-0"
-                        style={{ color: ATTRIBUTE_META[activeAttr].color }}
-                      >
-                        {activeAttr} {activeAttrScore}
+                      <span className="text-[#6FD39A] whitespace-nowrap shrink-0">
+                        {playerRemainingHp}/{playerMaxHp} HP
                       </span>
                     </div>
                     <div className="w-full h-1.5 bg-[#2A1B40] rounded-full overflow-hidden mt-1.5">
                       <div
-                        className="h-full transition-all"
+                        className="h-full bg-[#6FD39A] transition-all duration-300"
                         style={{
-                          width: `${Math.min(100, activeAttrScore)}%`,
-                          backgroundColor: ATTRIBUTE_META[activeAttr].color,
+                          width: `${Math.round((playerRemainingHp / playerMaxHp) * 100)}%`,
                         }}
                       />
                     </div>
                     <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
-                      {dayData.challengeAttrs.slice(0, 2).map((a) => (
-                        <div
-                          key={a}
-                          className="flex items-center justify-between font-semibold"
-                          style={{ color: ATTRIBUTE_META[a].color }}
-                        >
-                          <span>{a}</span>
-                          <span className="font-bold">{getDisplayScore(a)}</span>
-                        </div>
-                      ))}
+                      <div className="flex items-center justify-between font-semibold text-[#E5C158]">
+                        <span>Weapon WEP</span>
+                        <span className="font-bold">{playerAtk}</span>
+                      </div>
+                      <div className="flex items-center justify-between font-semibold text-[#7AA7FF]">
+                        <span>Armour AMR</span>
+                        <span className="font-bold">{playerArmor}</span>
+                      </div>
                     </div>
                   </div>
 
                   <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
                     <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
-                      <span className="text-[#E5C158] truncate">
-                        {dayData.challengeTitle.toUpperCase()}
+                      <span className="text-[#E0645C] truncate">FOE</span>
+                      <span className="text-[#E0645C] whitespace-nowrap shrink-0">
+                        {enemyRemainingHp}/{enemyFullHp} HP
                       </span>
                     </div>
+                    <div className="w-full h-1.5 bg-[#2A1B40] rounded-full overflow-hidden mt-1.5">
+                      <div
+                        className="h-full bg-[#E0645C] transition-all duration-300"
+                        style={{
+                          width: `${Math.round((enemyRemainingHp / enemyFullHp) * 100)}%`,
+                        }}
+                      />
+                    </div>
                     <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
-                      <div className="flex items-center justify-between font-semibold text-[#E5C158]">
-                        <span>Difficulty</span>
-                        <span className="font-bold">{weekdayDC}</span>
+                      <div className="flex items-center justify-between font-semibold text-[#FB923C]">
+                        <span>Defence DEF</span>
+                        <span className="font-bold">{enemyDef}</span>
                       </div>
-                      <div className="flex items-center justify-between font-semibold text-[#B7A9CC]">
-                        <span>{getTierInfo(activeAttrScore).name} bonus</span>
-                        <span className="font-bold">+{activeTierBonus}</span>
+                      <div className="flex items-center justify-between font-semibold text-[#C084FC]">
+                        <span>Attack ATK</span>
+                        <span className="font-bold">{enemyAtk}</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
-                  {dayData.challengeAttrs.map((attr) => {
-                    const meta = ATTRIBUTE_META[attr];
-                    const score = getDisplayScore(attr);
-                    const isSelected = activeAttr === attr;
-                    const actionTitle = getChallengeActionTitle(attr, dayData.place);
-                    const actionDesc = getChallengeActionNarrative(
-                      attr,
-                      dayData.place,
-                      dayData.challengeTitle
-                    );
-
-                    return (
-                      <button
-                        key={attr}
-                        disabled={!!rollOutcome}
-                        onClick={() => setSelectedAttr(attr)}
-                        className={`w-full p-2.5 rounded-xl text-left transition border ${
-                          isSelected
-                            ? 'bg-[#2A1B40] border-[#D4B876] shadow-sm'
-                            : 'bg-[#130B1F] border-[#3A2555] opacity-85 hover:opacity-100'
-                        }`}
+                {(fightRounds.length > 0 || isRollingRound) && (
+                  <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-2">
+                    {fightRounds.map((r) => (
+                      <div
+                        key={r.round}
+                        className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 flex flex-col gap-1.5 text-[12px] font-sans"
                       >
-                        <div className="flex items-center justify-between gap-2">
-                          <span
-                            className="font-['Cinzel'] font-bold text-[12.5px] truncate"
-                            style={{ color: meta.color }}
-                          >
-                            {isSelected ? '✓ ' : ''}
-                            {actionTitle}
+                        <div className="flex items-center justify-between border-b border-white/[0.06] pb-1">
+                          <span className="px-1.5 py-0.5 rounded bg-[#D4B876]/20 border border-[#D4B876]/50 font-['Cinzel'] font-bold text-[10.5px] text-[#E5C158]">
+                            ROUND {r.round}
                           </span>
-                          <span
-                            className="font-['Cinzel'] font-bold text-[12px] whitespace-nowrap shrink-0"
-                            style={{ color: meta.color }}
-                          >
-                            {attr.toUpperCase()} {score}
+                          <span className="text-[11px] font-sans font-semibold text-[#B7A9CC]">
+                            Diff × 5 Damage
                           </span>
                         </div>
-                        <p className="text-[13.5px] font-sans text-[#E6E0F0] mt-0.5 leading-snug">
-                          {actionDesc}
-                        </p>
-                      </button>
-                    );
-                  })}
-                </div>
 
-                {!rollOutcome && (
-                  <div className="flex items-center gap-1.5">
-                    <button
-                      type="button"
-                      disabled={availableAttrRelics <= 0}
-                      onClick={() => setUseAttrRelic(!useAttrRelic)}
-                      className={`px-2.5 py-2 rounded-xl font-['Cinzel'] font-bold text-[11px] border transition whitespace-nowrap shrink-0 ${
-                        useAttrRelic
-                          ? 'bg-[#D4B876]/25 border-[#D4B876] text-[#F4F1F8]'
-                          : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC] disabled:opacity-40'
-                      }`}
-                    >
-                      ♦ RELIC +4
-                    </button>
+                        {/* #5: One-line combat math row */}
+                        <div className={`space-y-0.5 ${r.enemyFirst ? 'order-2' : 'order-1'} ${r.playerStruck === false ? 'hidden' : ''}`}>
+                          <div className="flex items-center gap-1 font-semibold whitespace-nowrap overflow-x-auto no-scrollbar">
+                            <span className="text-[#6FD39A] font-bold">YOU:</span>
+                            <span className="text-[#F4F1F8]">🎲 {r.d20}</span>
+                            <span className="text-[#8B7A9E]">+</span>
+                            <span className="text-[#E5C158]">WEP {r.playerAtk}</span>
+                            <span className="text-[#8B7A9E]">−</span>
+                            <span className="text-[#FB923C]">DEF {r.enemyDef}</span>
+                            <span className="text-[#8B7A9E]">=</span>
+                            <span
+                              className={`font-bold ${
+                                r.hit ? 'text-[#6FD39A]' : 'text-[#9A90B8]'
+                              }`}
+                            >
+                              {formatMargin(r.margin)}
+                            </span>
+                          </div>
+                          <div className="text-[12px] font-bold">
+                            {r.hit ? (
+                              <span className="text-[#6FD39A]">
+                                HIT +{r.margin} × 5 = {r.dmgToEnemy}.{' '}
+                                <span className="text-[#E0645C]">
+                                  FOE HP {r.enemyHpBefore} → {r.enemyHpAfter}
+                                </span>
+                              </span>
+                            ) : (
+                              <span className="text-[#9A90B8]">
+                                MISSED.{' '}
+                                <span className="text-[#E0645C]">
+                                  FOE HP {r.enemyHpBefore} → {r.enemyHpAfter}
+                                </span>
+                              </span>
+                            )}
+                          </div>
+                        </div>
 
-                    <button
-                      type="button"
-                      onClick={handleRollChallenge}
-                      disabled={isRollingChallenge}
-                      className="flex-1 min-w-0 py-2 px-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[12px] tracking-[0.6px] uppercase transition whitespace-nowrap truncate"
-                    >
-                      {isRollingChallenge
-                        ? '🎲 ROLLING…'
-                        : `🎲 ROLL D20 + ${activeTierBonus + (useAttrRelic ? 4 : 0)}`}
-                    </button>
+                        <div className={`space-y-0.5 pt-1 border-t border-white/[0.04] ${r.enemyFirst ? 'order-1' : 'order-2'} ${r.enemyStruck === false ? 'hidden' : ''}`}>
+                          <div className="flex items-center gap-1 font-semibold whitespace-nowrap overflow-x-auto no-scrollbar">
+                            <span className="text-[#E0645C] font-bold">FOE:</span>
+                            <span className="text-[#F4F1F8]">🎲 {r.enemyD20}</span>
+                            <span className="text-[#8B7A9E]">+</span>
+                            <span className="text-[#C084FC]">ATK {r.enemyAtk}</span>
+                            <span className="text-[#8B7A9E]">−</span>
+                            <span className="text-[#7AA7FF]">AMR {r.playerArmor}</span>
+                            <span className="text-[#8B7A9E]">=</span>
+                            <span
+                              className={`font-bold ${
+                                r.enemyHit ? 'text-[#E0645C]' : 'text-[#9A90B8]'
+                              }`}
+                            >
+                              {formatMargin(r.enemyMargin)}
+                            </span>
+                          </div>
+                          <div className="text-[12px] font-bold">
+                            {r.enemyHit ? (
+                              <span className="text-[#E0645C]">
+                                HIT +{r.enemyMargin} × 5 = {r.dmgToPlayer}.{' '}
+                                <span className="text-[#6FD39A]">
+                                  YOU HP {r.playerHpBefore} → {r.playerHpAfter}
+                                </span>
+                              </span>
+                            ) : (
+                              <span className="text-[#9A90B8]">
+                                MISSED.{' '}
+                                <span className="text-[#6FD39A]">
+                                  YOU HP {r.playerHpBefore} → {r.playerHpAfter}
+                                </span>
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+
+                    {isRollingRound && (
+                      <div className="p-2.5 rounded-lg bg-[#2A1B40]/70 border border-[#D4B876] flex items-center justify-center gap-2 animate-pulse">
+                        <span className="text-[15px]">🎲</span>
+                        <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[0.8px] text-[#F4E8C1] uppercase">
+                          Rolling Round {fightRounds.length + 1} d20...
+                        </span>
+                      </div>
+                    )}
+
+                    {fightDone && (
+                      <div className="pt-1 border-t border-white/[0.06] flex items-center justify-between">
+                        {enemyRemainingHp <= 0 ? (
+                          <span className="px-2.5 py-1 rounded-lg bg-[#2A1B40] border border-[#D4B876] text-[13px] font-sans font-bold text-[#E5C158]">
+                            {(dayData.fightReward ?? 0) > 0
+                              ? `VICTORY · REWARD: +${dayData.fightReward}g`
+                              : 'VICTORY · No fight gold today: the Challenge was the paid beat'}
+                          </span>
+                        ) : (
+                          <span className="px-2.5 py-1 rounded-lg bg-[#2A1420] border border-[#E0645C]/70 text-[12.5px] font-sans font-bold text-[#E0645C]">
+                            DEFEATED · REWARD: none
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
                 )}
 
-                {rollOutcome && (
-                  <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-1.5">
-                    <div className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 space-y-0.5 text-[12px] font-sans">
-                      <div className="flex items-center gap-1 font-semibold whitespace-nowrap overflow-x-auto no-scrollbar">
-                        <span className="text-[#6FD39A] font-bold">YOU:</span>
-                        <span className="text-[#F4F1F8]">🎲 {rollOutcome.d20}</span>
-                        <span className="text-[#8B7A9E]">+</span>
-                        <span
-                          style={{
-                            color: ATTRIBUTE_META[rollOutcome.attr].color,
-                          }}
-                        >
-                          {rollOutcome.attr} {rollOutcome.attrPoints} (+{rollOutcome.tierBonus})
-                        </span>
-                        {rollOutcome.relicBonus > 0 && (
-                          <>
-                            <span className="text-[#8B7A9E]">+</span>
-                            <span className="text-[#D4B876]">
-                              Relic {rollOutcome.relicBonus}
-                            </span>
-                          </>
-                        )}
-                        <span className="text-[#8B7A9E]">−</span>
-                        <span className="text-[#E5C158]">
-                          DC {rollOutcome.dc}
-                        </span>
-                        <span className="text-[#8B7A9E]">=</span>
-                        <span
-                          className={`font-bold ${
-                            rollOutcome.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
-                          }`}
-                        >
-                          {formatMargin(rollOutcome.margin)}
-                        </span>
-                      </div>
-
-                      <div
-                        className={`font-bold text-[12.5px] ${
-                          rollOutcome.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'
+                {/* #4: Sized so RELIC +1 and ROLL ROUND 1 fit on one line without text overrun */}
+                {!fightDone && (
+                  <div className="flex items-center gap-1.5">
+                    {fightRounds.length === 0 && (
+                      <button
+                        type="button"
+                        disabled={availableBattleRelics <= 0 || isRollingRound}
+                        onClick={() => setUseCombatRelic(!useCombatRelic)}
+                        className={`px-2.5 py-2 rounded-xl font-['Cinzel'] font-bold text-[11px] border transition whitespace-nowrap shrink-0 ${
+                          useCombatRelic
+                            ? 'bg-[#D4B876]/25 border-[#D4B876] text-[#F4F1F8]'
+                            : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC] disabled:opacity-40'
                         }`}
                       >
-                        {rollOutcome.cleared
-                          ? 'PASSED'
-                          : dayData.hasFight
-                          ? 'FAILED · Sentry Alerted (−15 HP Opening Ambush)'
-                          : 'FAILED · Direct Path Blocked — Detour Skirmish Triggered'}
-                      </div>
-                    </div>
+                        ♦ RELIC +1
+                      </button>
+                    )}
 
-                    <div className="flex items-center justify-between pt-1 border-t border-white/[0.06]">
-                      {isReplayRoll ? (
-                        <span className="px-2.5 py-1 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[12.5px] font-sans font-semibold text-[#B7A9CC]">
-                          Already played: no gold or growth this time.
-                        </span>
-                      ) : rollOutcome.cleared ? (
-                        <span className="px-2.5 py-1 rounded-lg bg-[#2A1B40] border border-[#D4B876] text-[13px] font-sans font-bold text-[#F4F1F8]">
-                          🎁 Reward:{' '}
-                          <span
-                            style={{
-                              color: ATTRIBUTE_META[rollOutcome.attr].color,
-                            }}
-                          >
-                            +{rollOutcome.growth ?? 0} {rollOutcome.attr}
-                          </span>{' '}
-                          <span className="text-[#8B7A9E]">·</span>{' '}
-                          <span className="text-[#E5C158]">+{GOLD_CHALLENGE_WIN}g</span>
-                          {dayData.hasFight && (
-                            <span className="text-[#6FD39A] ml-1">
-                              · +2 WEP R1
-                            </span>
-                          )}
-                        </span>
-                      ) : (
-                        <span className="px-2.5 py-1 rounded-lg bg-[#2A1420] border border-[#E0645C]/70 text-[12.5px] font-sans font-bold text-[#E0645C]">
-                          ⚠️ −{GOLD_CHALLENGE_LOSS}g ·{' '}
-                          {dayData.hasFight
-                            ? 'Caught Off-Guard (−15 HP R1)'
-                            : 'Forced onto Perimeter Detour'}
-                        </span>
-                      )}
-                    </div>
+                    <button
+                      type="button"
+                      disabled={isRollingRound}
+                      onClick={handleRollSingleFightRound}
+                      className="flex-1 min-w-0 py-2 px-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[11.5px] tracking-[0.5px] uppercase transition whitespace-nowrap truncate disabled:opacity-50"
+                    >
+                      {isRollingRound
+                        ? '🎲 ROLLING...'
+                        : fightRounds.length === 0
+                        ? '⚔️ FIGHT'
+                        : `🎲 ROUND ${fightRounds.length + 1}`}
+                    </button>
                   </div>
                 )}
               </div>
             </div>
+  );
 
-            {/* POST-CHALLENGE PASS: 2-Paragraph Non-Repeating Prose (#1: 15px SMS font) */}
-            {rollOutcome && rollOutcome.cleared && (
-              <div className="mr-5 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3 space-y-1.5 shadow-md">
-                <div className="flex items-center justify-between gap-2 leading-none">
-                  <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#C4A1FF] uppercase shrink-0">
-                    MYTHIOS
-                  </span>
-                  <span className="text-[11px] font-sans font-bold text-[#6FD39A] whitespace-nowrap truncate">
-                    ✓ Challenge Passed
-                  </span>
-                </div>
-                <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                  {challengePassParagraphs[0]}
-                </p>
-                <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                  {challengePassParagraphs[1]}
-                </p>
-              </div>
-            )}
-
-            {/* POST-CHALLENGE FAIL: 2-Paragraph Story Fail Prose + Mandatory Alerted Lookout Skirmish (#3: single-line header) */}
-            {rollOutcome && !rollOutcome.cleared && (
-              <>
-                <div className="mr-5 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3 space-y-1.5 shadow-md">
-                  <div className="flex items-center justify-between gap-2 leading-none">
-                    <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#C4A1FF] uppercase shrink-0">
-                      MYTHIOS
-                    </span>
-                    <span className="text-[11px] font-sans font-bold text-[#E0645C] whitespace-nowrap truncate">
-                      ✕ Failed · Lookout Alerted
-                    </span>
-                  </div>
-                  <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                    {challengeFailParagraphs[0]}
-                  </p>
-                  <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                    {challengeFailParagraphs[1]}
-                  </p>
-                </div>
-
-                {/* MANDATORY STORY-TRIGGERED ALERTED LOOKOUT SKIRMISH CARD (Detour fight, pay pending the numbers pass) */}
-                {!dayData.hasFight && (
+  const renderDetourCard = () => (
                   <div className="w-full rounded-xl bg-[#180F29] border border-[#E0645C]/70 overflow-hidden shadow-lg">
                     <div className="px-3 py-2 bg-[#2A1628] border-b border-[#3A2555] flex items-center justify-between gap-2">
                       <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
@@ -1470,7 +890,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                         <span className="text-[#E5C158]">WEP {baseWeaponAtk}</span>{' '}
                         <span className="text-[#B7A9CC]">vs</span>{' '}
                         <span className="text-[#FB923C]">DEF {detourEnemyDef}</span>
-                        <span className="text-[#6FD39A] ml-1">+50G</span>
                       </span>
                     </div>
 
@@ -1586,7 +1005,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                                 </div>
                               </div>
 
-                              <div className="space-y-0.5 pt-1 border-t border-white/[0.04]">
+                              <div className={`space-y-0.5 pt-1 border-t border-white/[0.04] ${r.enemyStruck ?? r.enemyHpAfter > 0 ? '' : 'hidden'}`}>
                                 <div className="flex items-center gap-1 font-semibold whitespace-nowrap overflow-x-auto no-scrollbar">
                                   <span className="text-[#E0645C] font-bold">FOE:</span>
                                   <span className="text-[#F4F1F8]">🎲 {r.enemyD20}</span>
@@ -1600,7 +1019,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                                       r.enemyHit ? 'text-[#E0645C]' : 'text-[#9A90B8]'
                                     }`}
                                   >
-                                    {r.enemyMargin >= 0 ? `+${r.enemyMargin}` : r.enemyMargin}
+                                    {formatMargin(r.enemyMargin)}
                                   </span>
                                 </div>
                                 <div className="text-[12px] font-bold">
@@ -1637,11 +1056,11 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                             <div className="pt-1 border-t border-white/[0.06] flex items-center justify-between">
                               {detourEnemyRemainingHp <= 0 ? (
                                 <span className="px-2.5 py-1 rounded-lg bg-[#2A1B40] border border-[#6FD39A]/60 text-[12.5px] font-sans font-bold text-[#6FD39A]">
-                                  ✓ Lookout Defeated · +50G Recovered
+                                  ✓ Lookout driven off · +{GOLD_DETOUR_FIGHT_WIN}g
                                 </span>
                               ) : (
                                 <span className="px-2.5 py-1 rounded-lg bg-[#2A1420] border border-[#E0645C]/70 text-[12.5px] font-sans font-bold text-[#E0645C]">
-                                  ✕ Bruised Scrape · 0G Earned
+                                  ✕ Bruised Scrape · no gold
                                 </span>
                               )}
                             </div>
@@ -1665,338 +1084,845 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                       )}
                     </div>
                   </div>
+  );
+
+
+  const hasFirstLetterHint = dayFragment ? Boolean(seekerFirstLetterHints[dayFragment.id]) : false;
+
+  const renderArtifactFragmentQuote = () => {
+    if (!dayFragment) return null;
+    const sEntry = solvedWords[dayFragment.id] || {};
+    const w1Done = Boolean(sEntry.w1);
+    const w2Done = Boolean(sEntry.w2);
+    const parts = dayFragment.displayTemplate.split(/(\{0\}|\{1\})/g);
+    return (
+      <p className="font-['Cormorant_Garamond'] font-medium text-[20px] text-[#F4F1F8] leading-[1.55]">
+        “
+        {parts.map((part, idx) => {
+          if (part === '{0}') {
+            return w1Done ? (
+              <span
+                key={idx}
+                className="font-['Cormorant_Garamond'] font-bold text-[20px] text-[#6FD39A] underline decoration-[#6FD39A]/50 underline-offset-4 px-1"
+              >
+                {dayFragment.word1}
+              </span>
+            ) : (
+              <span
+                key={idx}
+                className="mx-1 px-2.5 py-0.5 rounded-md bg-[#2A1B40] border border-[#D4B876]/65 font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#D4B876] not-italic inline-block"
+              >
+                {hasFirstLetterHint ? (
+                  <>
+                    <span className="text-[#6FD39A] underline mr-1">
+                      [{dayFragment.word1[0].toUpperCase()}]
+                    </span>
+                    {dayFragment.jumble1.join('')}
+                  </>
+                ) : (
+                  dayFragment.jumble1.join('')
                 )}
-
-                {/* 3. Post-Skirmish 2-Paragraph Mythios Narration (#1: 15px SMS font) */}
-                {!dayData.hasFight && detourFightDone && (
-                  <div className="mr-5 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3 space-y-1.5 shadow-md">
-                    <div className="flex items-center justify-between gap-2 leading-none">
-                      <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#C4A1FF] uppercase shrink-0">
-                        MYTHIOS
-                      </span>
-                      <span
-                        className={`text-[11px] font-sans font-bold whitespace-nowrap truncate ${
-                          detourEnemyRemainingHp <= 0 ? 'text-[#6FD39A]' : 'text-[#E0645C]'
-                        }`}
-                      >
-                        {detourEnemyRemainingHp <= 0
-                          ? '✓ Lookout Driven Off (+50G)'
-                          : '✕ Bruised Scrape (0G)'}
-                      </span>
-                    </div>
-                    <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                      {recoveryParagraphs[0]}
-                    </p>
-                    <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                      {recoveryParagraphs[1]}
-                    </p>
-                  </div>
+              </span>
+            );
+          }
+          if (part === '{1}') {
+            return w2Done ? (
+              <span
+                key={idx}
+                className="font-['Cormorant_Garamond'] font-bold text-[20px] text-[#6FD39A] underline decoration-[#6FD39A]/50 underline-offset-4 px-1"
+              >
+                {dayFragment.word2}
+              </span>
+            ) : (
+              <span
+                key={idx}
+                className="mx-1 px-2.5 py-0.5 rounded-md bg-[#2A1B40] border border-[#D4B876]/65 font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#D4B876] not-italic inline-block"
+              >
+                {hasFirstLetterHint ? (
+                  <>
+                    <span className="text-[#6FD39A] underline mr-1">
+                      [{dayFragment.word2[0].toUpperCase()}]
+                    </span>
+                    {dayFragment.jumble2.join('')}
+                  </>
+                ) : (
+                  dayFragment.jumble2.join('')
                 )}
-              </>
-            )}
-          </>
-        )}
+              </span>
+            );
+          }
+          return <span key={idx}>{part}</span>;
+        })}
+        ”
+      </p>
+    );
+  };
 
-        {/* ===================================================================
-            ACTION CARD 2 — ⚔️ FIGHT CARD (#2: Compact gaps, #4: Roll button fit, #5: 1-line math)
-            On dual Challenge + Fight days (like W1·D1), unlocks after the Challenge roll!
-           =================================================================== */}
-        {dayData.hasFight && (!dayData.challengeTitle || rollOutcome !== null) && (
-          <>
-            <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
-              <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-                <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
-                  ⚔️ FIGHT · {(dayData.fightEnemyName || 'Order Sentry').toUpperCase()}
-                </span>
-                <span className="font-['Cinzel'] font-bold text-[11.5px] whitespace-nowrap shrink-0">
-                  <span className="text-[#E5C158]">WEP {playerAtk}</span>{' '}
-                  <span className="text-[#B7A9CC]">vs</span>{' '}
-                  <span className="text-[#FB923C]">DEF {enemyDef}</span>
-                </span>
-              </div>
+  const enemyFullHp = 100;
+  const enemyRemainingHp =
+    fightRounds.length === 0
+      ? 100
+      : fightRounds[fightRounds.length - 1].enemyHpAfter;
+  const playerMaxHp = 100;
+  const startPlayerHp = Math.max(20, 100 - challengeFailHpPenalty);
+  const playerRemainingHp =
+    fightRounds.length === 0
+      ? startPlayerHp
+      : fightRounds[fightRounds.length - 1].playerHpAfter;
 
-              <div className="p-2.5 space-y-2">
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-                    <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
-                      <span className="text-[#6FD39A] truncate">YOU</span>
-                      <span className="text-[#6FD39A] whitespace-nowrap shrink-0">
-                        {playerRemainingHp}/{playerMaxHp} HP
-                      </span>
-                    </div>
-                    <div className="w-full h-1.5 bg-[#2A1B40] rounded-full overflow-hidden mt-1.5">
-                      <div
-                        className="h-full bg-[#6FD39A] transition-all duration-300"
-                        style={{
-                          width: `${Math.round((playerRemainingHp / playerMaxHp) * 100)}%`,
-                        }}
-                      />
-                    </div>
-                    <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
-                      <div className="flex items-center justify-between font-semibold text-[#E5C158]">
-                        <span>Weapon WEP</span>
-                        <span className="font-bold">{playerAtk}</span>
-                      </div>
-                      <div className="flex items-center justify-between font-semibold text-[#7AA7FF]">
-                        <span>Armour AMR</span>
-                        <span className="font-bold">{playerArmor}</span>
-                      </div>
-                    </div>
-                  </div>
+  const fanOutEncounter = getFanOutEncounterData(dayData);
 
-                  <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-                    <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
-                      <span className="text-[#E0645C] truncate">FOE</span>
-                      <span className="text-[#E0645C] whitespace-nowrap shrink-0">
-                        {enemyRemainingHp}/{enemyFullHp} HP
-                      </span>
-                    </div>
-                    <div className="w-full h-1.5 bg-[#2A1B40] rounded-full overflow-hidden mt-1.5">
-                      <div
-                        className="h-full bg-[#E0645C] transition-all duration-300"
-                        style={{
-                          width: `${Math.round((enemyRemainingHp / enemyFullHp) * 100)}%`,
-                        }}
-                      />
-                    </div>
-                    <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
-                      <div className="flex items-center justify-between font-semibold text-[#FB923C]">
-                        <span>Defence DEF</span>
-                        <span className="font-bold">{enemyDef}</span>
-                      </div>
-                      <div className="flex items-center justify-between font-semibold text-[#C084FC]">
-                        <span>Attack ATK</span>
-                        <span className="font-bold">{enemyAtk}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+  const solvedFragCount = dayFragment
+    ? (solvedWords[dayFragment.id]?.w1 ? 1 : 0) +
+      (solvedWords[dayFragment.id]?.w2 ? 1 : 0)
+    : 0;
 
-                {(fightRounds.length > 0 || isRollingRound) && (
-                  <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-2">
-                    {fightRounds.map((r) => (
-                      <div
-                        key={r.round}
-                        className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 space-y-1.5 text-[12px] font-sans"
-                      >
-                        <div className="flex items-center justify-between border-b border-white/[0.06] pb-1">
-                          <span className="px-1.5 py-0.5 rounded bg-[#D4B876]/20 border border-[#D4B876]/50 font-['Cinzel'] font-bold text-[10.5px] text-[#E5C158]">
-                            ROUND {r.round}
-                          </span>
-                          <span className="text-[11px] font-sans font-semibold text-[#B7A9CC]">
-                            Diff × 5 Damage
-                          </span>
-                        </div>
+  // Seeker Fragment unlocks after passing the Challenge, winning the Detour Skirmish, or winning the main Fight
 
-                        {/* #5: One-line combat math row */}
-                        <div className="space-y-0.5">
-                          <div className="flex items-center gap-1 font-semibold whitespace-nowrap overflow-x-auto no-scrollbar">
-                            <span className="text-[#6FD39A] font-bold">YOU:</span>
-                            <span className="text-[#F4F1F8]">🎲 {r.d20}</span>
-                            <span className="text-[#8B7A9E]">+</span>
-                            <span className="text-[#E5C158]">WEP {r.playerAtk}</span>
-                            <span className="text-[#8B7A9E]">−</span>
-                            <span className="text-[#FB923C]">DEF {r.enemyDef}</span>
-                            <span className="text-[#8B7A9E]">=</span>
-                            <span
-                              className={`font-bold ${
-                                r.hit ? 'text-[#6FD39A]' : 'text-[#9A90B8]'
-                              }`}
-                            >
-                              {formatMargin(r.margin)}
-                            </span>
-                          </div>
-                          <div className="text-[12px] font-bold">
-                            {r.hit ? (
-                              <span className="text-[#6FD39A]">
-                                HIT +{r.margin} × 5 = {r.dmgToEnemy}.{' '}
-                                <span className="text-[#E0645C]">
-                                  FOE HP {r.enemyHpBefore} → {r.enemyHpAfter}
-                                </span>
-                              </span>
-                            ) : (
-                              <span className="text-[#9A90B8]">
-                                MISSED.{' '}
-                                <span className="text-[#E0645C]">
-                                  FOE HP {r.enemyHpBefore} → {r.enemyHpAfter}
-                                </span>
-                              </span>
-                            )}
-                          </div>
-                        </div>
 
-                        <div className="space-y-0.5 pt-1 border-t border-white/[0.04]">
-                          <div className="flex items-center gap-1 font-semibold whitespace-nowrap overflow-x-auto no-scrollbar">
-                            <span className="text-[#E0645C] font-bold">FOE:</span>
-                            <span className="text-[#F4F1F8]">🎲 {r.enemyD20}</span>
-                            <span className="text-[#8B7A9E]">+</span>
-                            <span className="text-[#C084FC]">ATK {r.enemyAtk}</span>
-                            <span className="text-[#8B7A9E]">−</span>
-                            <span className="text-[#7AA7FF]">AMR {r.playerArmor}</span>
-                            <span className="text-[#8B7A9E]">=</span>
-                            <span
-                              className={`font-bold ${
-                                r.enemyHit ? 'text-[#E0645C]' : 'text-[#9A90B8]'
-                              }`}
-                            >
-                              {r.enemyMargin >= 0 ? `+${r.enemyMargin}` : r.enemyMargin}
-                            </span>
-                          </div>
-                          <div className="text-[12px] font-bold">
-                            {r.enemyHit ? (
-                              <span className="text-[#E0645C]">
-                                HIT +{r.enemyMargin} × 5 = {r.dmgToPlayer}.{' '}
-                                <span className="text-[#6FD39A]">
-                                  YOU HP {r.playerHpBefore} → {r.playerHpAfter}
-                                </span>
-                              </span>
-                            ) : (
-                              <span className="text-[#9A90B8]">
-                                MISSED.{' '}
-                                <span className="text-[#6FD39A]">
-                                  YOU HP {r.playerHpBefore} → {r.playerHpAfter}
-                                </span>
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+  // Fanning Out Solo Encounter handlers (#7)
+  // Fan Out Challenge: same rule as the weekday Challenge, against the week's DC.
+  // (No separate Fan Out DC exists in canon; pending the numbers pass, Core Rules §15.)
+  const activeFanOutAttr: AttributeName =
+    fanOutSelectedAttr ||
+    (fanOutBranch?.challengeAttrs?.[0] as AttributeName) ||
+    'Craft';
+  const activeFanOutAttrScore = attributes[activeFanOutAttr] || 20;
+  const activeFanOutTierBonus = getTierInfo(activeFanOutAttrScore).bonus;
+  const [isRollingFanOut, setIsRollingFanOut] = useState(false);
 
-                    {isRollingRound && (
-                      <div className="p-2.5 rounded-lg bg-[#2A1B40]/70 border border-[#D4B876] flex items-center justify-center gap-2 animate-pulse">
-                        <span className="text-[15px]">🎲</span>
-                        <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[0.8px] text-[#F4E8C1] uppercase">
-                          Rolling Round {fightRounds.length + 1} d20...
-                        </span>
-                      </div>
-                    )}
+  const handleSelectFanOutBranch = (opt: FanOutBranchOption) => {
+    setFanOutBranch(opt);
+    setFanOutSelectedAttr(opt.challengeAttrs ? opt.challengeAttrs[0] : null);
+    setFanOutRollOutcome(null);
+    setFanOutFightRounds([]);
+    setFanOutFightDone(false);
+    if (opt.branchType === 'CAMPFIRE') {
+      setFanOutCompleted(true);
+    } else {
+      setFanOutCompleted(false);
+    }
+  };
 
-                    {fightDone && (
-                      <div className="pt-1 border-t border-white/[0.06] flex items-center justify-between">
-                        {enemyRemainingHp <= 0 ? (
-                          <span className="px-2.5 py-1 rounded-lg bg-[#2A1B40] border border-[#D4B876] text-[13px] font-sans font-bold text-[#E5C158]">
-                            {(dayData.fightReward !== undefined ? dayData.fightReward : 300) > 0
-                              ? `🎁 Reward: +${dayData.fightReward !== undefined ? dayData.fightReward : 300}g Earned`
-                              : '✓ Driven Off · No fight gold today (the Challenge was the paid beat)'}
-                          </span>
-                        ) : (
-                          <span className="px-2.5 py-1 rounded-lg bg-[#2A1420] border border-[#E0645C]/70 text-[12.5px] font-sans font-bold text-[#E0645C]">
-                            ✕ Bruised Scrape · 0g Earned · Trail Unbarred
-                          </span>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
+  const unlockFanOutPayoff = (opt: FanOutBranchOption) => {
+    if (dayFragment && onUnlockSeekerHint) {
+      onUnlockSeekerHint(dayFragment.id);
+    }
+    if (dayFragment && opt.soloClueTitle && opt.soloClueText) {
+      const payload = {
+        title: opt.soloClueTitle,
+        text: opt.soloClueText,
+        firstLetter: dayFragment.word1[0].toUpperCase(),
+      };
+      if (onRecordSoloFanOutClue) {
+        onRecordSoloFanOutClue(dayKey, payload);
+      }
+      if (onShareFanOutClue) {
+        onShareFanOutClue(dayKey, payload);
+      }
+    }
+    setFanOutCompleted(true);
+  };
 
-                {/* #4: Sized so RELIC +1 and ROLL ROUND 1 fit on one line without text overrun */}
-                {!fightDone && (
-                  <div className="flex items-center gap-1.5">
-                    {fightRounds.length === 0 && (
-                      <button
-                        type="button"
-                        disabled={availableBattleRelics <= 0 || isRollingRound}
-                        onClick={() => setUseCombatRelic(!useCombatRelic)}
-                        className={`px-2.5 py-2 rounded-xl font-['Cinzel'] font-bold text-[11px] border transition whitespace-nowrap shrink-0 ${
-                          useCombatRelic
-                            ? 'bg-[#D4B876]/25 border-[#D4B876] text-[#F4F1F8]'
-                            : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC] disabled:opacity-40'
-                        }`}
-                      >
-                        ♦ RELIC +1
-                      </button>
-                    )}
+  const handleRollFanOutChallenge = async () => {
+    if (!fanOutBranch || fanOutRollOutcome || isRollingFanOut) return;
+    setIsRollingFanOut(true);
+    const attrPoints = attributes[activeFanOutAttr] || 20;
+    const tierBonus = getTierInfo(attrPoints).bonus;
+    const d20 = await rollChallengeD20(weekdayDC, tierBonus, 0);
+    const { net: margin, success: cleared } = resolveChallengeRoll(d20, tierBonus, weekdayDC);
+    const total = d20 + tierBonus;
 
-                    <button
-                      type="button"
-                      disabled={isRollingRound}
-                      onClick={handleRollSingleFightRound}
-                      className="flex-1 min-w-0 py-2 px-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[11.5px] tracking-[0.5px] uppercase transition whitespace-nowrap truncate disabled:opacity-50"
+    setFanOutRollOutcome({
+      d20,
+      attr: activeFanOutAttr,
+      attrPoints,
+      tierBonus,
+      relicBonus: 0,
+      total,
+      dc: weekdayDC,
+      succeedOn: challengeSucceedOn(weekdayDC, tierBonus),
+      margin,
+      cleared,
+    });
+    setIsRollingFanOut(false);
+
+    if (cleared) {
+      // No growth from Fan Out (Core Rules §3: growth only on the Daily Challenge).
+      if (onClaimReward(`${dayKey}:fanout`)) {
+        onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
+      }
+      unlockFanOutPayoff(fanOutBranch);
+    } else {
+      setFanOutCompleted(true);
+    }
+  };
+
+  const fanOutEnemyFullHp = fanOutBranch?.enemyHp || 70;
+  const fanOutEnemyDef = fanOutBranch?.enemyDef || 18;
+  const fanOutEnemyAtk = fanOutBranch?.enemyAtk || 13;
+  const fanOutEnemyRemainingHp =
+    fanOutFightRounds.length === 0
+      ? fanOutEnemyFullHp
+      : fanOutFightRounds[fanOutFightRounds.length - 1].enemyHpAfter;
+  const fanOutPlayerRemainingHp =
+    fanOutFightRounds.length === 0
+      ? Math.max(25, playerRemainingHp)
+      : fanOutFightRounds[fanOutFightRounds.length - 1].playerHpAfter;
+
+  const computeNextFanOutFightRound = (prevRounds: FightRoundEntry[]): FightRoundEntry => {
+    const r = prevRounds.length + 1;
+    const enemyHpBefore =
+      prevRounds.length === 0
+        ? fanOutEnemyFullHp
+        : prevRounds[prevRounds.length - 1].enemyHpAfter;
+    const playerHpBefore =
+      prevRounds.length === 0
+        ? Math.max(25, playerRemainingHp)
+        : prevRounds[prevRounds.length - 1].playerHpAfter;
+
+    const d20 = Math.floor(Math.random() * 20) + 1;
+
+    const margin = d20 + baseWeaponAtk - fanOutEnemyDef;
+    const hit = margin > 0;
+    const dmgToEnemy = hit ? margin * 5 : 0;
+    const enemyHpAfter = Math.max(0, enemyHpBefore - dmgToEnemy);
+
+    const enemyD20 = Math.floor(Math.random() * 20) + 1;
+    const enemyMargin = enemyD20 + fanOutEnemyAtk - baseArmorDef;
+    const enemyHit = enemyHpAfter > 0 && enemyMargin > 0;
+    const dmgToPlayer = enemyHit ? enemyMargin * 5 : 0;
+    const playerHpAfter = Math.max(0, playerHpBefore - dmgToPlayer);
+
+    return {
+      round: r,
+      d20,
+      playerAtk: baseWeaponAtk,
+      enemyDef: fanOutEnemyDef,
+      margin,
+      hit,
+      dmgToEnemy,
+      enemyHpBefore,
+      enemyHpAfter,
+      enemyD20,
+      enemyAtk: fanOutEnemyAtk,
+      playerArmor: baseArmorDef,
+      enemyMargin,
+      enemyHit,
+      dmgToPlayer,
+      playerHpBefore,
+      playerHpAfter,
+    };
+  };
+
+  const handleRollFanOutFightRound = () => {
+    if (!fanOutBranch || isRollingFanOutRound || fanOutFightDone) return;
+    setIsRollingFanOutRound(true);
+    setTimeout(() => {
+      const nextRound = computeNextFanOutFightRound(fanOutFightRounds);
+      const updated = [...fanOutFightRounds, nextRound];
+      setFanOutFightRounds(updated);
+      if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
+        setFanOutFightDone(true);
+        if (nextRound.enemyHpAfter <= 0) {
+          if (onClaimReward(`${dayKey}:fanout`)) {
+            onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
+          }
+          unlockFanOutPayoff(fanOutBranch);
+        } else {
+          setFanOutCompleted(true);
+        }
+      }
+      setIsRollingFanOutRound(false);
+    }, 380);
+  };
+
+
+
+  // ---------------------------------------------------------------------------
+  // The weekday chapter, played from canon (docs/canon/episode-*.md via chapterScripts.ts).
+  // Steps show in order; the first one waiting on the player (a tap, a choice, a roll, a fight) stops the page.
+  // ---------------------------------------------------------------------------
+  const scriptTokens: ScriptTokens = {
+    friends: DEFAULT_PARTY_MEMBERS.filter((f) => f.id !== 'YOU').map((f) => f.name),
+    partySize: DEFAULT_PARTY_MEMBERS.length,
+  };
+  const fill = (text: string) => fillScriptTokens(text, scriptTokens);
+
+  const scriptCondMet = (c?: ScriptCond): boolean => {
+    if (!c) return true;
+    if (c.on === 'challenge') return Boolean(rollOutcome) && rollOutcome!.cleared === c.pass;
+    if (c.on === 'press') return Boolean(pressOutcome?.cleared);
+    if (c.on === 'fight') return fightDone && (enemyRemainingHp <= 0) === c.won;
+    if (c.on === 'claim') return hasClaimedReward(c.key) === c.has;
+    return false;
+  };
+
+  const strikeFirstFor = (rule: StrikeFirstRule): boolean => {
+    if (rule.on === 'challenge') return Boolean(rollOutcome?.cleared);
+    if (rule.on === 'choice') {
+      const first = (choicePicks[rule.choice] || [])[0];
+      return first !== undefined && rule.options.includes(first);
+    }
+    return true;
+  };
+
+  const renderChallengeCard = (step: Extract<ScriptStep, { t: 'challenge' }>) => {
+    const extraReward = step.reward.replace(/^\+?500g\s*/, '');
+    const shownBonus = activeTierBonus + (useAttrRelic ? 4 : 0);
+    return (
+      <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
+        <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+          <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
+            🎯 {step.title}
+          </span>
+          <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] whitespace-nowrap shrink-0">
+            You succeed on {challengeSucceedOn(challengeDC, shownBonus)}+
+          </span>
+        </div>
+        <div className="p-2.5 space-y-2">
+          <ScriptText
+            text={fill(step.desc)}
+            className="font-sans text-[14px] text-[#E6E0F0] leading-[1.4]"
+          />
+          {challengeHarder > 0 && step.harderIf && (
+            <ScriptText
+              text={fill(step.harderIf.line)}
+              className="font-sans text-[13.5px] text-[#E0645C] leading-[1.4]"
+            />
+          )}
+          {currentWeek === 1 && currentDay === 1 && !rollOutcome && (
+            <p className="text-[13.5px] font-sans text-[#B7A9CC] leading-snug">
+              A Challenge. Pick the skill you trust and roll. Pass, and you earn{' '}
+              {GOLD_CHALLENGE_WIN} gold and that skill grows. Fail, and it costs{' '}
+              {GOLD_CHALLENGE_LOSS} gold.
+            </p>
+          )}
+          <div className="space-y-1.5">
+            {step.options.map((opt) => {
+              const meta = ATTRIBUTE_META[opt.attr];
+              const score = getDisplayScore(opt.attr);
+              const isSelected = activeAttr === opt.attr;
+              return (
+                <button
+                  key={opt.attr}
+                  type="button"
+                  disabled={!!rollOutcome}
+                  onClick={() => setSelectedAttr(opt.attr)}
+                  className={`w-full p-2.5 rounded-xl text-left transition border ${
+                    isSelected
+                      ? 'bg-[#2A1B40] border-[#D4B876] shadow-sm'
+                      : 'bg-[#130B1F] border-[#3A2555] opacity-85 hover:opacity-100'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span
+                      className="font-['Cinzel'] font-bold text-[12.5px]"
+                      style={{ color: meta.color }}
                     >
-                      {isRollingRound
-                        ? '🎲 ROLLING...'
-                        : `🎲 ROLL ROUND ${fightRounds.length + 1} (D20 + ${playerAtk})`}
-                    </button>
+                      {isSelected ? '✓ ' : ''}
+                      {opt.attr} {score} (+{getTierInfo(score).bonus})
+                    </span>
+                    <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] whitespace-nowrap">
+                      {challengeSucceedOn(challengeDC, getTierInfo(score).bonus)}+
+                    </span>
                   </div>
-                )}
-              </div>
+                  <p className="text-[13.5px] font-sans text-[#E6E0F0] mt-0.5 leading-snug">
+                    {fill(opt.verb)}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+          <div className="text-[12.5px] font-sans leading-snug space-y-0.5">
+            <div className="text-[#E5C158] font-semibold">
+              REWARD: +{GOLD_CHALLENGE_WIN}g
+              {extraReward && <ScriptInline text={` ${extraReward}`} />}
             </div>
-
-            {/* POST-FIGHT 2-PARAGRAPH NON-REPEATING PROSE (#1: 15px SMS font) */}
-            {fightDone && (
-              <div className="mr-5 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3 space-y-1.5 shadow-md">
-                <div className="flex items-center justify-between gap-2 leading-none">
-                  <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#C4A1FF] uppercase shrink-0">
-                    MYTHIOS
-                  </span>
-                  <span className="text-[11px] font-sans font-bold text-[#6FD39A] whitespace-nowrap truncate">
-                    ✓ Foe Defeated
-                  </span>
-                </div>
-                <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                  {fightWinParagraphs[0]}
-                </p>
-                <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                  {fightWinParagraphs[1]}
-                </p>
-              </div>
-            )}
-          </>
-        )}
-
-        {/* ===================================================================
-            W1·D2 TEAM FORMATION UNLOCK BANNER (When FIT THE PAGE is completed at The Hollow Wake Inn)
-           =================================================================== */}
-        {currentWeek === 1 && currentDay === 2 && isArtifactUnlocked && (
-          <div className="w-full rounded-xl bg-[#180F29] border border-[#6FD39A] overflow-hidden shadow-lg">
-            <div className="px-3 py-2 bg-[#1A2A24] border-b border-[#6FD39A]/45 flex items-center justify-between gap-2">
-              <span className="font-['Cinzel'] font-bold text-[12px] text-[#6FD39A] truncate">
-                🤝 TEAM FORMED · THE HOLLOW WAKE INN
-              </span>
-              <span className="font-['Cinzel'] font-bold text-[10.5px] text-[#E5C158] whitespace-nowrap shrink-0">
-                🔓 PARTY & CAMPFIRE ACTIVE
-              </span>
-            </div>
-            <div className="p-2.5 space-y-1">
-              <p className="font-sans text-[13.5px] text-[#F4F1F8] leading-[1.4]">
-                With all four torn stubs fitted into Scholar Meira’s notebook, you,{' '}
-                <span className="text-[#F49CBB] font-semibold">Mei</span>,{' '}
-                <span className="text-[#5BC0EB] font-semibold">Dev</span>, and{' '}
-                <span className="text-[#4FD1C5] font-semibold">Arjun</span>—guided by{' '}
-                <span className="text-[#F0A552] font-semibold">Garrick</span>—have formed a party to rescue the first child before the dark moon rises. The{' '}
-                <span className="text-[#E5C158] font-semibold">PARTY</span> button above and your Episode 1 Campfires are now unlocked!
-              </p>
+            <div className="text-[#E0645C] font-semibold">
+              IF YOU FAIL: −{GOLD_CHALLENGE_LOSS}g · <ScriptInline text={fill(step.fail)} />
             </div>
           </div>
-        )}
 
-        {/* ===================================================================
-            ACTION CARD 3 — 📜 SEEKER FRAGMENT ARTIFACT CARD
-           =================================================================== */}
-        {dayFragment && isArtifactUnlocked && (
-          <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
-            <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-              <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] whitespace-nowrap truncate">
-                📜 SEEKER FRAGMENT {dayFragment.id}
-              </span>
-              <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#D4B876] whitespace-nowrap shrink-0">
-                {solvedFragCount}/2 Solved
-              </span>
-            </div>
-
-            <div className="p-2.5 space-y-2 bg-[#160E26]">
-              {renderArtifactFragmentQuote()}
-
+          {!rollOutcome ? (
+            <div className="flex items-center gap-1.5">
               <button
-                onClick={() => onOpenSeekerInBag(currentWeek, currentDay)}
-                className="w-full py-2 px-3 rounded-xl bg-[#2A1B40] hover:bg-[#D4B876]/25 border border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] tracking-[0.8px] text-[#D4B876] hover:text-[#F4F1F8] transition uppercase"
+                type="button"
+                disabled={availableAttrRelics <= 0}
+                onClick={() => setUseAttrRelic(!useAttrRelic)}
+                className={`px-2.5 py-2 rounded-xl font-['Cinzel'] font-bold text-[11px] border transition whitespace-nowrap shrink-0 ${
+                  useAttrRelic
+                    ? 'bg-[#D4B876]/25 border-[#D4B876] text-[#F4F1F8]'
+                    : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC] disabled:opacity-40'
+                }`}
               >
-                UNJUMBLE IN BAG (+25G) →
+                ♦ RELIC +4
+              </button>
+              <button
+                type="button"
+                onClick={handleRollChallenge}
+                disabled={isRollingChallenge}
+                className="flex-1 min-w-0 py-2 px-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[12px] tracking-[0.6px] uppercase transition whitespace-nowrap truncate"
+              >
+                {isRollingChallenge ? '🎲 ROLLING…' : `🎲 ROLL ${activeAttr.toUpperCase()}`}
               </button>
             </div>
+          ) : (
+            <div className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 space-y-1 text-[12.5px] font-sans">
+              <div className="flex flex-wrap items-center gap-1 font-semibold">
+                <span className="text-[#6FD39A] font-bold">YOU:</span>
+                <span className="text-[#F4F1F8]">🎲 {rollOutcome.d20}</span>
+                <span className="text-[#8B7A9E]">+</span>
+                <span style={{ color: ATTRIBUTE_META[rollOutcome.attr].color }}>
+                  {rollOutcome.attr} {rollOutcome.attrPoints} (+{rollOutcome.tierBonus})
+                </span>
+                {rollOutcome.relicBonus > 0 && (
+                  <>
+                    <span className="text-[#8B7A9E]">+</span>
+                    <span className="text-[#D4B876]">Relic {rollOutcome.relicBonus}</span>
+                  </>
+                )}
+                <span className="text-[#8B7A9E]">−</span>
+                <span className="text-[#E5C158]">DC {rollOutcome.dc}</span>
+                <span className="text-[#8B7A9E]">=</span>
+                <span className={`font-bold ${rollOutcome.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'}`}>
+                  {formatMargin(rollOutcome.margin)} {rollOutcome.cleared ? 'PASSED' : 'FAILED'}
+                </span>
+              </div>
+              <div className="font-bold">
+                {isReplayRoll ? (
+                  <span className="text-[#B7A9CC]">Already played: no gold or growth this time.</span>
+                ) : rollOutcome.cleared ? (
+                  <span className="text-[#F4F1F8]">
+                    <span className="text-[#E5C158]">+{GOLD_CHALLENGE_WIN}g</span>
+                    {' · '}
+                    <span style={{ color: ATTRIBUTE_META[rollOutcome.attr].color }}>
+                      {rollOutcome.attr} {rollOutcome.attrPoints} → {rollOutcome.attrPoints + (rollOutcome.growth ?? 0)}
+                    </span>
+                  </span>
+                ) : (
+                  <span className="text-[#E0645C]">−{GOLD_CHALLENGE_LOSS}g</span>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const renderPressCard = (step: Extract<ScriptStep, { t: 'press' }>) => {
+    const dc = challengeDC + step.harder;
+    const attr = rollOutcome?.attr || activeAttr;
+    const bonus = getTierInfo(attributes[attr] || 1).bonus + (pressRelic ? 4 : 0);
+    const relicsForAttr = relics[attr] || 0;
+    return (
+      <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
+        <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+          <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
+            PRESS ON · {step.title}
+          </span>
+          <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] whitespace-nowrap shrink-0">
+            You succeed on {challengeSucceedOn(dc, bonus)}+
+          </span>
+        </div>
+        <div className="p-2.5 space-y-2">
+          <p className="font-sans text-[14px] text-[#E6E0F0] leading-[1.4]">
+            {fill(step.detail)}. {step.harder} harder, on {attr}.
+          </p>
+          <div className="text-[12.5px] font-sans font-semibold text-[#E5C158]">
+            REWARD: +{GOLD_PRESS_ON_WIN}g, and one more detail · a miss costs nothing
           </div>
-        )}
+          {pressOutcome ? (
+            <div className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 text-[12.5px] font-sans font-semibold flex flex-wrap items-center gap-1">
+              <span className="text-[#6FD39A] font-bold">YOU:</span>
+              <span className="text-[#F4F1F8]">🎲 {pressOutcome.d20}</span>
+              <span className="text-[#8B7A9E]">+</span>
+              <span style={{ color: ATTRIBUTE_META[pressOutcome.attr].color }}>
+                {pressOutcome.attr} {pressOutcome.attrPoints} (+{pressOutcome.tierBonus})
+              </span>
+              {pressOutcome.relicBonus > 0 && (
+                <>
+                  <span className="text-[#8B7A9E]">+</span>
+                  <span className="text-[#D4B876]">Relic {pressOutcome.relicBonus}</span>
+                </>
+              )}
+              <span className="text-[#8B7A9E]">−</span>
+              <span className="text-[#E5C158]">DC {pressOutcome.dc}</span>
+              <span className="text-[#8B7A9E]">=</span>
+              <span className={`font-bold ${pressOutcome.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'}`}>
+                {formatMargin(pressOutcome.margin)} {pressOutcome.cleared ? 'PASSED' : 'FAILED'}
+              </span>
+              {pressOutcome.cleared && !pressReplay && (
+                <span className="text-[#E5C158] font-bold ml-1">+{GOLD_PRESS_ON_WIN}g</span>
+              )}
+            </div>
+          ) : pressLeft ? null : (
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                disabled={relicsForAttr <= 0}
+                onClick={() => setPressRelic(!pressRelic)}
+                className={`px-2.5 py-2 rounded-xl font-['Cinzel'] font-bold text-[11px] border transition whitespace-nowrap shrink-0 ${
+                  pressRelic
+                    ? 'bg-[#D4B876]/25 border-[#D4B876] text-[#F4F1F8]'
+                    : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC] disabled:opacity-40'
+                }`}
+              >
+                ♦ RELIC +4
+              </button>
+              <button
+                type="button"
+                disabled={isRollingPress}
+                onClick={() => handleRollPressOn(dc)}
+                className="flex-1 py-2 px-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[12px] uppercase transition disabled:opacity-50"
+              >
+                {isRollingPress ? '🎲 ROLLING…' : '🎲 PRESS ON'}
+              </button>
+              <button
+                type="button"
+                onClick={() => setPressLeft(true)}
+                className="px-3 py-2 rounded-xl bg-[#130B1F] border border-[#3A2555] text-[#B7A9CC] font-['Cinzel'] font-bold text-[12px] uppercase"
+              >
+                LEAVE IT
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const renderSummaryCard = (step: Extract<ScriptStep, { t: 'summary' }>) => {
+    const [titleLine, ...rest] = step.lines;
+    const earned: string[] = [];
+    if (rollOutcome && !isReplayRoll) {
+      if (rollOutcome.cleared) {
+        earned.push(`+${GOLD_CHALLENGE_WIN}g`);
+        earned.push(`${rollOutcome.attr} ${rollOutcome.attrPoints} → ${rollOutcome.attrPoints + (rollOutcome.growth ?? 0)}`);
+      } else earned.push(`−${GOLD_CHALLENGE_LOSS}g`);
+    }
+    if (pressOutcome?.cleared && !pressReplay) earned.push(`+${GOLD_PRESS_ON_WIN}g`);
+    if (fightDone && enemyRemainingHp <= 0 && (dayData.fightReward ?? 0) > 0 && !fightReplay) earned.push(`+${dayData.fightReward}g`);
+    if (detourFightDone && detourEnemyRemainingHp <= 0 && !detourReplay) earned.push(`+${GOLD_DETOUR_FIGHT_WIN}g`);
+    const shown = rest
+      .map((l) => {
+        if (/^You earned:/.test(l)) return `You earned: ${earned.length ? earned.join(' · ') : 'nothing new today'}`;
+        // A line kept only for one branch of the roll.
+        const pass = l.match(/^\*On a pass:\*\s*(.*)$/);
+        if (pass) return rollOutcome?.cleared ? pass[1] : null;
+        const fail = l.match(/^\*On a failure:\*\s*(.*)$/);
+        if (fail) return rollOutcome && !rollOutcome.cleared ? fail[1] : null;
+        // Canon's sample line ("You can now afford…") is an example, not a fixed line.
+        if (/^You can now afford:/.test(l)) return null;
+        return l;
+      })
+      .filter((l): l is string => Boolean(l));
+    return (
+      <div className="w-full rounded-xl bg-[#180F29] border border-[#D4B876]/70 overflow-hidden shadow-lg">
+        <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555]">
+          <ScriptText
+            text={fill(titleLine)}
+            className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] text-[#E5C158]"
+          />
+        </div>
+        <div className="p-3 space-y-1">
+          {shown.map((l, i) => (
+            <ScriptText
+              key={i}
+              text={fill(l)}
+              className="font-sans text-[14px] text-[#E6E0F0] leading-[1.42]"
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const renderFragmentCard = () =>
+    dayFragment ? (
+      <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
+        <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+          <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] whitespace-nowrap truncate">
+            📜 SEEKER FRAGMENT {dayFragment.id}
+          </span>
+          <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#D4B876] whitespace-nowrap shrink-0">
+            {solvedFragCount}/2 Solved
+          </span>
+        </div>
+        <div className="p-2.5 space-y-2 bg-[#160E26]">
+          {renderArtifactFragmentQuote()}
+          <button
+            onClick={() => onOpenSeekerInBag(currentWeek, currentDay)}
+            className="w-full py-2 px-3 rounded-xl bg-[#2A1B40] hover:bg-[#D4B876]/25 border border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] tracking-[0.8px] text-[#D4B876] hover:text-[#F4F1F8] transition uppercase"
+          >
+            OPEN THE SEEKER CHEST (+{GOLD_FRAGMENT_WORD_SOLVED}g a word) →
+          </button>
+        </div>
+      </div>
+    ) : null;
+
+  const scriptWalk = (() => {
+    const nodes: React.ReactNode[] = [];
+    let done = false;
+    if (!chapterScript) return { nodes, done: true };
+    const steps = chapterScript.steps;
+    // A failed Challenge on a day with no fight brings the Detour fight (Core Rules §15 item 2).
+    // It comes at the end of the chapter, before the summary card, so it never breaks a canon scene
+    // (straight after the Challenge it put a "lookout" fight inside the inn's taproom on W1D2).
+    const needsDetour = Boolean(rollOutcome && !rollOutcome.cleared && !dayData.hasFight);
+    let detourShown = false;
+    const maybeDetour = (): boolean => {
+      if (!needsDetour || detourShown) return false;
+      detourShown = true;
+      nodes.push(<React.Fragment key="detour">{renderDetourCard()}</React.Fragment>);
+      return !detourFightDone;
+    };
+    for (let i = 0; i < steps.length; i++) {
+      const step = steps[i];
+      const key = `s${i}`;
+      if (step.t === 'say') {
+        if (!scriptCondMet(step.cond)) continue;
+        nodes.push(<NarrationBlock key={key} text={fill(step.text)} pull={step.pull} />);
+        if (step.fragment) nodes.push(<React.Fragment key={`${key}-frag`}>{renderFragmentCard()}</React.Fragment>);
+        continue;
+      }
+      if (step.t === 'act') {
+        if (scriptTaps[i]) {
+          nodes.push(<TapEcho key={key} label={fill(step.label)} />);
+          continue;
+        }
+        nodes.push(
+          <ScriptButton key={key} label={fill(step.label)} onClick={() => setScriptTaps((p) => ({ ...p, [i]: true }))} />
+        );
+        return { nodes, done: false };
+      }
+      if (step.t === 'choice') {
+        const picks = choicePicks[step.id] || [];
+        const branchFor = (opt: number) => step.branches.find((b) => b.options.includes(opt));
+        const shownBranches = new Set<number>();
+        const showPick = (opt: number, mine: boolean) => {
+          const b = branchFor(opt);
+          if (mine) nodes.push(<TapEcho key={`${key}-p${opt}`} label={fill(step.labels[opt])} />);
+          if (b && !shownBranches.has(step.branches.indexOf(b))) {
+            shownBranches.add(step.branches.indexOf(b));
+            nodes.push(<NarrationBlock key={`${key}-b${opt}`} text={fill(b.text)} />);
+          }
+        };
+        picks.forEach((opt) => showPick(opt, true));
+        // Options still open: every option before the first pick; in "each" mode, any whose branch is unseen.
+        const open = step.labels
+          .map((_, oi) => oi)
+          .filter((oi) => {
+            if (picks.length === 0) return true;
+            if (step.mode !== 'each') return false;
+            const b = branchFor(oi);
+            return Boolean(b) && !shownBranches.has(step.branches.indexOf(b!));
+          });
+        if (picks.length > 0 && step.mode === 'auto') {
+          step.branches.forEach((b, bi) => {
+            if (!shownBranches.has(bi)) {
+              shownBranches.add(bi);
+              nodes.push(<NarrationBlock key={`${key}-auto${bi}`} text={fill(b.text)} />);
+            }
+          });
+        }
+        if (open.length > 0) {
+          nodes.push(
+            <div key={`${key}-opts`} className="space-y-1.5">
+              {open.map((oi) => (
+                <ScriptButton
+                  key={oi}
+                  label={fill(step.labels[oi])}
+                  onClick={() => {
+                    setChoicePicks((p) => ({ ...p, [step.id]: [...(p[step.id] || []), oi] }));
+                    // A look that names one of the Challenge's two ways picks that way on the card.
+                    const next = steps[i + 1];
+                    if (step.mode === 'flavor' && next?.t === 'challenge' && next.options.length === step.labels.length) {
+                      setSelectedAttr(next.options[oi].attr);
+                    }
+                  }}
+                />
+              ))}
+            </div>
+          );
+          return { nodes, done: false };
+        }
+        continue;
+      }
+      if (step.t === 'notice') {
+        const line = pickNoticeLine(step.lines, attributes, CLASS_META[characterClass].attribute);
+        if (line) nodes.push(<NoticeBlock key={key} attr={line.attr} text={fill(line.text)} />);
+        continue;
+      }
+      if (step.t === 'challenge') {
+        nodes.push(<React.Fragment key={key}>{renderChallengeCard(step)}</React.Fragment>);
+        if (!rollOutcome) return { nodes, done: false };
+        continue;
+      }
+      if (step.t === 'press') {
+        if (!rollOutcome?.cleared) continue;
+        nodes.push(<React.Fragment key={key}>{renderPressCard(step)}</React.Fragment>);
+        if (!pressOutcome && !pressLeft) return { nodes, done: false };
+        if (pressLeft && !pressOutcome) nodes.push(<TapEcho key={`${key}-leave`} label="LEAVE IT" />);
+        continue;
+      }
+      if (step.t === 'fight') {
+        const playerFirst = strikeFirstFor(step.strikeFirst);
+        // Canon's fight card: the enemy's line, then who strikes first.
+        nodes.push(
+          <div key={`${key}-desc`} className="font-sans italic text-[14px] text-[#B7A9CC] px-1">
+            {fill(step.desc)}
+          </div>
+        );
+        if (step.firstLines) {
+          nodes.push(
+            <NarrationBlock key={`${key}-first`} text={fill(playerFirst ? step.firstLines[0] : step.firstLines[1])} />
+          );
+        }
+        nodes.push(<React.Fragment key={key}>{renderFightCard(step.name)}</React.Fragment>);
+        if (!fightDone) return { nodes, done: false };
+        continue;
+      }
+      if (step.t === 'summary') {
+        if (maybeDetour()) return { nodes, done: false };
+        nodes.push(<React.Fragment key={key}>{renderSummaryCard(step)}</React.Fragment>);
+        done = true;
+      }
+    }
+    return { nodes, done };
+  })();
+
+  const renderChapterScript = () => (
+    <>
+      {chapterScript && (
+        <div className="font-['Cinzel'] font-bold text-[13px] tracking-[1px] text-[#D4B876] uppercase pt-1">
+          {fill(chapterScript.heading)}
+        </div>
+      )}
+      {scriptWalk.nodes}
+    </>
+  );
+
+  const isArtifactUnlocked = scriptWalk.done;
+
+  // Follow the story down as each new beat appears; a new day starts at the top.
+  const storyScrollRef = useRef<HTMLDivElement>(null);
+  const storyProgress = `${scriptWalk.nodes.length}|${fightRounds.length}|${detourFightRounds.length}|${Boolean(rollOutcome)}|${Boolean(pressOutcome)}`;
+  const lastScrolledDay = useRef(dayKey);
+  useEffect(() => {
+    const el = storyScrollRef.current;
+    if (!el) return;
+    if (lastScrolledDay.current !== dayKey) {
+      lastScrolledDay.current = dayKey;
+      el.scrollTo({ top: 0 });
+      return;
+    }
+    el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+  }, [storyProgress, dayKey]);
+
+  // The day counts as played once its chapter reaches the summary card (Core Rules §11).
+  useEffect(() => {
+    if (scriptWalk.done) onSealDay(currentWeek, currentDay, dayData.place);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scriptWalk.done, dayKey]);
+
+  return (
+    <div className="flex-1 flex flex-col min-h-0 bg-[#0D0714]">
+      {/* Unified Chapter & Activity Drawer (Toggled from #7 in the top header) */}
+      {showChapterPicker && (
+        <div className="p-3 bg-[#150D22] border-b border-[#3A2555] space-y-2.5 shrink-0">
+          <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold text-[#B7A9CC] uppercase tracking-[1px]">
+            <span>TODAY’S ACTIVITY & CHAPTERS</span>
+            <button
+              onClick={() => onSetShowChapterPicker && onSetShowChapterPicker(false)}
+              className="text-[#D4B876] hover:underline"
+            >
+              Close ✕
+            </button>
+          </div>
+
+          {/* 3 Scene Permutation Presets */}
+          <div className="grid grid-cols-3 gap-1.5">
+            {[
+              { label: '1. Challenge + Scroll', sub: 'W2·D2 · The Mill', w: 2, d: 2 },
+              { label: '2. Fight + Scroll', sub: "W1·D3 · Widow's Tooth", w: 1, d: 3 },
+              { label: '3. Challenge + Fight', sub: 'W2·D3 · Upriver', w: 2, d: 3 },
+            ].map((preset) => {
+              const active = currentWeek === preset.w && currentDay === preset.d;
+              return (
+                <button
+                  key={preset.label}
+                  onClick={() => resetDayInteractions(preset.w, preset.d)}
+                  className={`p-2 rounded-lg text-left transition border ${
+                    active
+                      ? 'bg-[#2E1B42] border-[#D4B876] text-[#E5C158]'
+                      : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC] hover:text-[#F4F1F8]'
+                  }`}
+                >
+                  <div className="font-['Cinzel'] font-bold text-[10.5px] truncate">
+                    {preset.label}
+                  </div>
+                  <div className="font-sans text-[10.5px] text-[#9E92B2] truncate mt-0.5">
+                    {preset.sub}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="grid grid-cols-6 gap-1">
+            {[1, 2, 3, 4, 5, 6].map((w) => (
+              <button
+                key={w}
+                onClick={() => resetDayInteractions(w, currentDay)}
+                className={`py-1.5 rounded font-['Cinzel'] font-bold text-[11.5px] border transition ${
+                  currentWeek === w
+                    ? 'bg-[#2E1B42] border-[#D4B876] text-[#D4B876]'
+                    : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
+                }`}
+              >
+                WK {w}
+              </button>
+            ))}
+          </div>
+          <div className="grid grid-cols-7 gap-1">
+            {[1, 2, 3, 4, 5, 6].map((d) => (
+              <button
+                key={d}
+                onClick={() => resetDayInteractions(currentWeek, d)}
+                className={`py-1.5 rounded font-['Cinzel'] font-bold text-[11px] border transition ${
+                  currentDay === d
+                    ? 'bg-[#2E1B42] border-[#D4B876] text-[#D4B876]'
+                    : 'bg-[#1E1232] border-[#3A2555] text-[#B7A9CC]'
+                }`}
+              >
+                D{d}
+              </button>
+            ))}
+            <button
+              onClick={() => {
+                if (onSetShowChapterPicker) onSetShowChapterPicker(false);
+                onJumpToGathering(currentWeek);
+              }}
+              className="py-1.5 rounded font-['Cinzel'] font-bold text-[10.5px] border bg-[#2A1B40] border-[#D4B876]/70 text-[#E5C158] hover:bg-[#2E1B42] transition"
+              title="Jump to Day 7 Gathering"
+            >
+              ⚔️ D7
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* =====================================================================
+          TWO-FAMILY STREAM HIERARCHY (#6):
+          - FAMILY A: NARRATION & CHAT BUBBLES (MYTHIOS / YOU — 17.5px Sans-Serif)
+          - FAMILY B: UNIFIED "SPIN-OFF" CARDS (🎯 CHALLENGE, ⚔️ FIGHT, 🧭 DECISION, 📜 SEEKER FRAGMENT)
+            All Spin-Off Cards share the exact same #1E1232 frame, #7E68B8 border, and #2E1B42 header bar!
+         ===================================================================== */}
+      <div ref={storyScrollRef} className="flex-1 min-h-0 overflow-y-auto px-3 py-2.5 space-y-2.5">
+        {renderChapterScript()}
+
 
         {/* ===================================================================
             BEATS 5, 6 & 7 — FULL INTERACTIVE "FANNING OUT" / SOLO CLOSER INSPECTION
@@ -2558,37 +2484,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
           </>
         )}
 
-        {/* OPEN-ENDED PLAYER & MYTHIOS ACTION MESSAGES (#1: 15px SMS font) */}
-        {chatHistory.map((msg, i) =>
-          msg.sender === 'YOU' ? (
-            <div key={i} className="ml-5 flex flex-col items-end">
-              <div className="w-full rounded-2xl rounded-tr-sm bg-[#4A3B24] border border-[#E5C77B] p-3 space-y-1.5 shadow-md">
-                <div className="flex items-center justify-between leading-none">
-                  <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#F3D88B] uppercase">
-                    {characterName || 'YOU'}
-                  </span>
-                </div>
-                <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                  {msg.text}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div
-              key={i}
-              className="mr-5 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3 space-y-1.5 shadow-md"
-            >
-              <div className="flex items-center justify-between leading-none">
-                <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#C4A1FF] uppercase">
-                  MYTHIOS
-                </span>
-              </div>
-              <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                {msg.text}
-              </p>
-            </div>
-          )
-        )}
       </div>
 
       {/* 6. SINGLE BOTTOM TRANSITION BAR ONCE SOLO BEAT COMPLETES (#6) */}
@@ -2630,57 +2525,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
             </button>
           </div>
         )
-      ) : (
-        <div
-          className={`px-3 pt-2 pb-[max(0.6rem,env(safe-area-inset-bottom))] bg-[#150D22] border-t border-[#3A2555]/45 space-y-1.5 shrink-0 transition ${
-            isActionCardPending ? 'opacity-40 pointer-events-none select-none' : ''
-          }`}
-        >
-          {contextChips.length > 0 && (
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
-              {contextChips.map((chip) => (
-                <button
-                  key={chip.key}
-                  disabled={isActionCardPending}
-                  onClick={() => handleSendToMythios(chip.prompt, chip.key)}
-                  className="px-2.5 py-1 rounded-full bg-[#2A1B40] hover:bg-[#2E1B42] border border-[#4A3068] text-[12.5px] font-sans text-[#E6E0F0] whitespace-nowrap transition shrink-0"
-                >
-                  {chip.label}
-                </button>
-              ))}
-            </div>
-          )}
-
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (isActionCardPending) return;
-              handleSendToMythios(chatInput);
-            }}
-            className="flex items-center gap-2"
-          >
-            <input
-              type="text"
-              disabled={isActionCardPending}
-              value={chatInput}
-              onChange={(e) => setChatInput(e.target.value)}
-              placeholder={
-                isActionCardPending
-                  ? 'Complete the action card above first...'
-                  : `Tell Mythios what you do at ${dayData.place}...`
-              }
-              className="flex-1 bg-[#0D0714] border border-[#3A2555] rounded-xl px-3 py-2 text-[15px] font-sans text-[#F4F1F8] placeholder-[#8B7A9E] focus:outline-none focus:border-[#D4B876]"
-            />
-            <button
-              type="submit"
-              disabled={isActionCardPending}
-              className="px-3.5 py-2 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] uppercase tracking-[0.8px] shrink-0"
-            >
-              ACT
-            </button>
-          </form>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 };
@@ -2771,7 +2616,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   onShareSoloClueToBoard,
   sharedFanOutClues = {},
   onShareFanOutClue,
-  appliedLoopholeIds = ['L1', 'L3'],
+  appliedLoopholeIds = [],
   relics = {},
   onGiveRelic,
   onUseRelic,
@@ -3274,6 +3119,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
         // MYTHIOS names the next friend after a sample friend's turn; the player chooses after their own.
         if (rollerId !== 'YOU') setUeNextId(eligible[0]);
         else setUeNextId(eligible.find((id) => id !== 'YOU') ?? eligible[0]);
+      } else if (next.outcome === 'lost') {
+        // Read by later chapters (W4D1 Wren's cuts, W6D1 two harder).
+        onClaimReward(`G${currentWeek}:united-effort-lost`);
       } else if (next.outcome === 'won') {
         if (onClaimReward(`G${currentWeek}:united-effort`)) {
           onEarnGold(GOLD_UNITED_EFFORT_WIN);
