@@ -31,7 +31,7 @@ import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
 import { GATHERINGS_DATA } from '../data/mythiosGatheringsAndAudit';
 import { getChapterWithContinuityFixes } from '../data/narrativeContinuityAudit';
 import { routeGarrickMessage, GarrickRouteResult } from '../data/garrickRouter';
-import { FanOutLead, HintMask, fanOutLeadsFor, hintHas } from '../data/fanOutLeads';
+import { FanOutLead, HintMask, fanOutLeadsFor, hintHas, lateLineFor } from '../data/fanOutLeads';
 import {
   getCampfireDayEntry,
   CampfireEveningTelemetry,
@@ -951,7 +951,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                           {act.attr} {score}
                         </div>
                         <div className="text-[12.5px] font-sans text-[#E6E0F0] leading-snug">
-                          {act.verb || `You succeed on ${challengeSucceedOn(weekdayDC, bonus)}+`}
+                          {act.verb ? `${act.verb} · ${challengeSucceedOn(weekdayDC, bonus)}+` : `You succeed on ${challengeSucceedOn(weekdayDC, bonus)}+`}
                         </div>
                       </button>
                     );
@@ -979,7 +979,9 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                   {fanOutRollOutcome.cleared ? 'PASSED' : 'FAILED'}
                 </span>
               </div>
-              {!fanOutRollOutcome.cleared && fanOutLead.lateLine && <NarrationBlock text={fill(fanOutLead.lateLine)} />}
+              {!fanOutRollOutcome.cleared && (
+                <NarrationBlock text={fill(fanOutLead.lateLine || lateLineFor(currentWeek, currentDay))} />
+              )}
               <div className="p-2.5 rounded-lg bg-[#130B1F] border border-[#D4B876]/50 space-y-1">
                 <div className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] uppercase">{fanOutLead.clueTitle}</div>
                 <ScriptText text={fill(fanOutLead.clueText)} className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.45]" />
