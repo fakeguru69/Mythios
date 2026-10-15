@@ -1,6 +1,6 @@
 # Plan: real multiplayer (15 Oct 2026)
 
-Fake Guru: "start planning real multiplayer: yes". This is a plan for him to decide on. Nothing is built yet.
+Fake Guru: "start planning real multiplayer: yes". **Decided 15 Oct: 1 yes, 2 yes, 3 yes, 4 later, 5 yes, 6 yes** (web app; Supabase; Google and email sign-in first, Apple at launch; the group-chat test later; Week 1 for 2–4 friends first; terms "13 and over").
 
 It builds on canon: Core Rules §1 (where the game is played) and §12a (rules for the builder), `mythios-build-notes.md` §6–§8 (the states, the smallest thing worth building, the build order), and `review-accounts-and-invites.md`.
 
