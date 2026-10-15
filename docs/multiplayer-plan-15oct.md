@@ -1,6 +1,6 @@
 # Plan: real multiplayer (15 Oct 2026)
 
-Fake Guru: "start planning real multiplayer: yes". This is a plan for him to decide on. Nothing is built yet.
+Fake Guru: "start planning real multiplayer: yes". **Decided 15 Oct: 1 yes, 2 yes, 3 yes, 4 later, 5 yes, 6 yes** (web app; Supabase; Google and email sign-in first, Apple at launch; the group-chat test later; Week 1 for 2–4 friends first; terms "13 and over").
 
 It builds on canon: Core Rules §1 (where the game is played) and §12a (rules for the builder), `mythios-build-notes.md` §6–§8 (the states, the smallest thing worth building, the build order), and `review-accounts-and-invites.md`.
 
@@ -93,3 +93,15 @@ Test 3 needs no code. It could start this week and tell us the most.
 4. Run cheap test 3 (Week 1 by hand in a group chat) now, while the build starts?
 5. Build to the "smallest thing worth building" first: Week 1, 2–4 friends?
 6. Terms: "13 and over", with no age check in the app?
+
+## Built so far
+
+- **15 Oct: the server and step 1's database.** A Supabase project "mythios" (Singapore region, free plan; the old "maxword" project was paused to make room, Fake Guru's call). The database for accounts and parties is in place (`supabase/migrations/`):
+  - every account gets one name (1 to 12 characters);
+  - a party has a name (1 to 20), a host, a locked time zone and an invite code;
+  - a friend with the code asks to join, and the host approves or removes them; at most 6; approving the sixth closes the invite;
+  - a new invite code makes the old one stop working;
+  - if the host leaves, the friend who joined first becomes host;
+  - each player sees only their own parties and the people in them.
+  Tested with pretend players: a friend cannot approve themselves, an outsider sees nothing, a wrong or old code is refused. One gap found in testing was closed (`0002_status_switch_off.sql`).
+- **Next:** the sign-in and party screens in the app. These need the container to be allowed to reach the server (see the session notes).
