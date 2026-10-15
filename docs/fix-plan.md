@@ -19,7 +19,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 | # | Decision | Why it matters | Recommendation |
 |---|---|---|---|
 | D1 | **Direction:** keep improving the 6-week demo on one phone, or start real friends on their own phones (Week 1 first, accounts, a shared clock)? | Real phones need a server, accounts and push notifications; much of Phase 4 changes shape. | Do Phases 1–3 on the demo first (they are needed either way), then decide. |
-| D2 | **"Go" for the numbers pass** (the PENDING amounts in `economy.ts`: Fan Out, riddles, cache, W6D3 bonuses) | Phase 1 needs final numbers for these. | Do it after Phase 1's rule fixes, so the simulator runs on correct rules. |
+| D2 | ✅ **Done 15 Oct** (`docs/numbers-pass-15oct.md`; all recommendations applied). **"Go" for the numbers pass** (the PENDING amounts in `economy.ts`: Fan Out, riddles, cache, W6D3 bonuses) | Phase 1 needs final numbers for these. | Do it after Phase 1's rule fixes, so the simulator runs on correct rules. |
 | D3 | **Canon W1D2 "Yours is the third stub"** breaks with 2 players | Canon and app text. | "Your stub fits like a key." |
 | D4 | **Sample friends 5 and 6** (replacing Tamsin and Rowan) | Task 7. | Decided: Priya and Theo. |
 | D5 | **The Gathering's Table Question:** keep it as a three-choice quiz, or let the story deliver the reveal as canon does? | Phase 3. | Story, as canon; keep the friends' theories at the Campfire. |

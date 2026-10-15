@@ -22,7 +22,6 @@ import {
   GOLD_LOOK_CLOSER_WIN,
   GOLD_MATCH_BASE_PER_PICK,
   GOLD_MATCH_PERFECT_PER_PICK,
-  GOLD_RIDDLE_BONUS,
   GOLD_GATHERING_BATTLE_REWARDS,
   GOLD_FRAGMENT_WORD_SOLVED,
 } from '../data/economy';
@@ -340,7 +339,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   const baseArmorDef = GEAR_TABLE[armorLevel]?.armor || 27;
   const playerAtk = baseWeaponAtk + (useCombatRelic ? 1 : 0);
   const playerArmor = baseArmorDef + (useCombatRelic ? 1 : 0);
-  const enemyDef = epMeta.wDef || 21;
+  const enemyDef = epMeta.wDef || EPISODE_NUMBERS[0].wDef;
   // Canon: who strikes first in the day's fight is set by a choice or by the day's Challenge.
   const scriptFight = chapterScript?.steps.find(
     (st): st is Extract<ScriptStep, { t: 'fight' }> => st.t === 'fight'
@@ -352,7 +351,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     const first = (choicePicks[rule.choice] || [])[0];
     return !(first !== undefined && rule.options.includes(first));
   })();
-  const enemyAtk = epMeta.wAtk || 14;
+  const enemyAtk = epMeta.wAtk || EPISODE_NUMBERS[0].wAtk;
 
 
   const resetDayInteractions = (w: number, d: number) => {

@@ -24,7 +24,7 @@ The Campfire only works if the clue each friend brings to the fire is worth talk
 
 ## The facts that change how you build
 - **Mei, Dev and Arjun are real players (Fake Guru's friends), not AI characters.** The current build has canned replies for them as placeholders. Remove the scripted speech. Garrick draws real players out and writes no line for any friend.
-- **No gold on theories.** A theory earns nothing and is not a Match pick. No gold amount is set anywhere in this package (the numbers pass is pending; Core Rules §15).
+- **No gold on theories.** A theory earns nothing and is not a Match pick. Nothing at the Campfire pays gold (numbers pass, 15 Oct 2026).
 - **Garrick is with the party all of Week 6.** Remove the "empty seat" and the Store lock (App.tsx:1320; StoryAndPartyTabs.tsx:4792, 6647). The Campfire speaker bar must always include Garrick.
 - **Garrick lines at the fire are stored text.** No AI writes replies to theories.
 
@@ -439,7 +439,7 @@ These are NEW text: pass them through the Garrick question test before shipping.
 Each day has `tone`: **wry** (default) or **quiet**. On quiet days there is no joke and no riddle (the riddle appears only if a friend taps "a riddle?"), and the opener is plain. Quiet days: **W1D4, W3D2, W4D3, W4D6, W5D4, W6D2**. Canon: he is plain and gentle, never light, when a child is in danger.
 
 ## G. Riddle rules
-One riddle per evening, optional. A friend types an answer or taps **Give up**. Accept the answer plus the variants in the data file. After three wrong tries (or Give up), show the answer. The reveal ends with the quip line. A riddle never carries a clue. **No gold amount is set** (pending the numbers pass).
+One riddle per evening, optional. A friend types an answer or taps **Give up**. Accept the answer plus the variants in the data file. After three wrong tries (or Give up), show the answer. The reveal ends with the quip line. A riddle never carries a clue. **A riddle pays no gold** (numbers pass, 15 Oct 2026).
 
 ## H. Pace
 At most **eight** Garrick messages to one friend per evening. A **Leave the fire** button is always visible and ends the evening with a closer. Target 2 to 4 minutes. The day is complete without the Campfire.

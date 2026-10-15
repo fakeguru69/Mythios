@@ -20,13 +20,15 @@ export const CLASS_META: Record<ClassName, { attribute: AttributeName; tagline: 
 };
 
 // Core Rules §12 Tables
+// Enemy DEF and ATK raised by 1 on 15 Oct 2026 (Fake Guru, numbers pass Proposal A: margin × 5 damage had made
+// fights much easier). The Gathering enemy stays one higher than the weekday enemy.
 export const EPISODE_NUMBERS = [
-  { week: 1, title: 'The List', weekdayDC: 6, gatheringDC: 8, trialDC: 10, ueDC: 6, ueAttr: 'Might' as AttributeName, gDef: 22, gAtk: 15, gReward: 380, wDef: 21, wAtk: 14, battleCondition: 'None (plain first Battle)' },
-  { week: 2, title: 'The Wind Stone', weekdayDC: 7, gatheringDC: 9, trialDC: 11, ueDC: 7, ueAttr: 'Intellect' as AttributeName, gDef: 23, gAtk: 16, gReward: 520, wDef: 22, wAtk: 15, battleCondition: 'The chant: DEF +1 while >50% enemies stand' },
-  { week: 3, title: 'The Fire Stone', weekdayDC: 7, gatheringDC: 9, trialDC: 11, ueDC: 7, ueAttr: 'Agility' as AttributeName, gDef: 24, gAtk: 17, gReward: 740, wDef: 23, wAtk: 16, battleCondition: 'Blade and torch: hit deals 2 more HP start of next round' },
-  { week: 4, title: 'The Water Stone', weekdayDC: 8, gatheringDC: 10, trialDC: 12, ueDC: 8, ueAttr: 'Craft' as AttributeName, gDef: 24, gAtk: 17, gReward: 740, wDef: 23, wAtk: 16, battleCondition: 'Knee-deep: roll 1–3 on strike loses next strike (both sides)' },
-  { week: 5, title: 'The King\'s Stone', weekdayDC: 9, gatheringDC: 11, trialDC: 13, ueDC: 9, ueAttr: 'Charm' as AttributeName, gDef: 25, gAtk: 18, gReward: 1030, wDef: 24, wAtk: 17, battleCondition: 'The hollowed: rises once at 2 HP and skips next strike' },
-  { week: 6, title: 'The Finale', weekdayDC: 9, gatheringDC: 11, trialDC: 13, ueDC: 9, ueAttr: 'Aim' as AttributeName, gDef: 25, gAtk: 18, gReward: 1030, wDef: 24, wAtk: 17, battleCondition: 'Half faithful (chant), half hollowed (rises once at 2 HP)' },
+  { week: 1, title: 'The List', weekdayDC: 6, gatheringDC: 8, trialDC: 10, ueDC: 6, ueAttr: 'Might' as AttributeName, gDef: 23, gAtk: 16, gReward: 380, wDef: 22, wAtk: 15, battleCondition: 'None (plain first Battle)' },
+  { week: 2, title: 'The Wind Stone', weekdayDC: 7, gatheringDC: 9, trialDC: 11, ueDC: 7, ueAttr: 'Intellect' as AttributeName, gDef: 24, gAtk: 17, gReward: 520, wDef: 23, wAtk: 16, battleCondition: 'The chant: DEF +1 while >50% enemies stand' },
+  { week: 3, title: 'The Fire Stone', weekdayDC: 7, gatheringDC: 9, trialDC: 11, ueDC: 7, ueAttr: 'Agility' as AttributeName, gDef: 25, gAtk: 18, gReward: 740, wDef: 24, wAtk: 17, battleCondition: 'Blade and torch: hit deals 2 more HP start of next round' },
+  { week: 4, title: 'The Water Stone', weekdayDC: 8, gatheringDC: 10, trialDC: 12, ueDC: 8, ueAttr: 'Craft' as AttributeName, gDef: 25, gAtk: 18, gReward: 740, wDef: 24, wAtk: 17, battleCondition: 'Knee-deep: roll 1–3 on strike loses next strike (both sides)' },
+  { week: 5, title: 'The King\'s Stone', weekdayDC: 9, gatheringDC: 11, trialDC: 13, ueDC: 9, ueAttr: 'Charm' as AttributeName, gDef: 26, gAtk: 19, gReward: 1030, wDef: 25, wAtk: 18, battleCondition: 'The hollowed: rises once at 2 HP and skips next strike' },
+  { week: 6, title: 'The Finale', weekdayDC: 9, gatheringDC: 11, trialDC: 13, ueDC: 9, ueAttr: 'Aim' as AttributeName, gDef: 26, gAtk: 19, gReward: 1030, wDef: 25, wAtk: 18, battleCondition: 'Half faithful (chant), half hollowed (rises once at 2 HP)' },
 ];
 
 export const GEAR_TABLE: Record<number, { weapon: number; armor: number; cost: number }> = {

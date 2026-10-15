@@ -49,22 +49,6 @@ export const GOLD_GATHERING_BATTLE_REWARDS: Record<number, number> = {
 /** Relic purchase cost in Store (150g) */
 export const GOLD_RELIC_COST = 150;
 
-// --- PENDING NUMBERS PASS (Core Rules §15 / 8 Oct) ---
-
-/** Fan Out lead: pays nothing for now (approved Fan Out and Campfire proposal, 14 Oct: the clue and the
- *  first-letter hint are the reward). Kept as the numbers pass's open question (was 150g, PENDING). */
-export const GOLD_FAN_OUT_CACHE_WIN = 0;
-
-// The Detour fight (and its 150g / 75g) was dropped on 15 Oct 2026 (Fake Guru).
-
-/** Daily Campfire riddle solve (+10g) - PENDING numbers pass */
-export const GOLD_RIDDLE_SOLVE = 10;
-
-/** Bonus riddle reward (+15g) - PENDING numbers pass */
-export const GOLD_RIDDLE_BONUS = 15;
-
-/** Hidden roadside cache (+25g) - PENDING numbers pass */
-export const GOLD_HIDDEN_CACHE_REWARD = 25;
-
-/** W6D3 stat bonus +1 (+1 Agility / +1 Charm) - PENDING numbers pass */
-export const STAT_BONUS_W6D3 = 1;
+// --- Closed in the numbers pass, 15 Oct 2026 (Fake Guru; docs/numbers-pass-15oct.md) ---
+// Fan Out leads and Campfire riddles pay no gold (the clue, the hint and the riddle are their own reward).
+// The hidden roadside cache and W6D3's +1 Agility / +1 Charm are retired (no canon source).

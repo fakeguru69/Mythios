@@ -66,7 +66,7 @@
 ## Combat chat text (added 2026-10-03, confirmed by TVMen)
 
 - In fight messages, **words and numbers are different colours**: numbers use the gold standard `#D4B876` (the existing "all numbers" rule); words use the normal chat body colour.
-- Fight lines are capitalised as in Core Rules §4 ("Fight chat format"): `You Roll 14 + Weapon 14 − DEF 22 = 6. HIT`.
+- Fight lines are capitalised as in Core Rules §4 ("Fight chat format"): `You Roll 14 + Weapon 14 − DEF 23 = 5. HIT`.
 - HP stays out of 100 (briefly 50 on 2026-10-03, reverted). The pre-fight enemy card shows no HP lines.
 
 ---
