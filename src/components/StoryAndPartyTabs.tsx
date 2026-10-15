@@ -23,6 +23,8 @@ import {
   GOLD_MATCH_PERFECT_PER_PICK,
   GOLD_FAN_OUT_CACHE_WIN,
   GOLD_DETOUR_FIGHT_WIN,
+  GOLD_RIDDLE_BONUS,
+  GOLD_GATHERING_BATTLE_REWARDS,
 } from '../data/economy';
 import { WEEKDAY_INVENTORY } from '../data/mythiosChaptersData';
 import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
@@ -81,11 +83,11 @@ interface StoryTabViewProps {
   onGainRelic: (relicType: string, count: number) => void;
   onUseRelic: (relicType: string) => void;
   onTellParty: (clueText: string) => void;
-  onSetStoreLocked: (locked: boolean) => void;
   ledgerOpened: boolean;
   onOpenLedger: () => void;
   appliedLoopholeIds: string[];
   completedDays: string[];
+  onClaimReward?: (key: string) => boolean;
   onSealDay: (week: number, day: number, summaryNote: string) => void;
   pinnedClues: PinnedPartyClue[];
   onPinClue: (clue: Omit<PinnedPartyClue, 'id'>) => void;
@@ -126,6 +128,7 @@ interface RollState {
   succeedOn: number;
   margin: number;
   cleared: boolean;
+  growth?: number;
 }
 
 // Core Rules §12a: the server rolls every die. Fall back to a local d20 only if
@@ -359,11 +362,13 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   privateTheoryPromptsByDay = {},
   onSavePrivateTheoryPrompt,
   completedDays = [],
+  onClaimReward = () => true,
 }) => {
   const [selectedAttr, setSelectedAttr] = useState<AttributeName | null>(null);
   const [privatePromptCustomText, setPrivatePromptCustomText] = useState('');
   const [useAttrRelic, setUseAttrRelic] = useState(false);
   const [rollOutcome, setRollOutcome] = useState<RollState | null>(null);
+  const [isReplayRoll, setIsReplayRoll] = useState(false);
   const [recoveryChoice, setRecoveryChoice] = useState<DecisionChoiceOption | null>(null);
   const [nextMoveChoice, setNextMoveChoice] = useState<NextMoveChoiceOption | null>(null);
 
@@ -414,6 +419,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setSelectedAttr(null);
     setUseAttrRelic(false);
     setRollOutcome(null);
+    setIsReplayRoll(false);
     setRecoveryChoice(null);
     setNextMoveChoice(null);
     setDetourFightRounds([]);
@@ -483,6 +489,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setSelectedAttr(null);
     setUseAttrRelic(false);
     setRollOutcome(null);
+    setIsReplayRoll(false);
     setRecoveryChoice(null);
     setNextMoveChoice(null);
     setDetourFightRounds([]);
@@ -539,9 +546,15 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setDetourFightRounds([]);
     setDetourFightDone(false);
 
-    if (cleared) {
+    // A replayed day pays nothing and costs nothing (one claim per day).
+    const firstRoll = onClaimReward(`${dayKey}:challenge`);
+    setIsReplayRoll(!firstRoll);
+    if (!firstRoll) {
+      // no gold, no growth
+    } else if (cleared) {
       const daysPlayedThisWeek = completedDays.filter((id) => id.startsWith(`${currentWeek}-`)).length + 1;
       const growth = calculateAttributeGrowth(attrPoints, daysPlayedThisWeek, d20, tierBonus, weekdayDC);
+      setRollOutcome((prev) => (prev ? { ...prev, growth } : prev));
       onGainAttribute(activeAttr, growth, d20 === 20);
       onEarnGold(GOLD_CHALLENGE_WIN);
       if (!dayData.hasFight) {
@@ -606,10 +619,10 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       setDetourFightRounds(updated);
       if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
         setDetourFightDone(true);
-        if (nextRound.enemyHpAfter <= 0) {
+        // Core Rules §3: growth only on a passed Daily Challenge, so the Detour gives none.
+        if (nextRound.enemyHpAfter <= 0 && onClaimReward(`${dayKey}:detour`)) {
           onEarnGold(GOLD_DETOUR_FIGHT_WIN);
         }
-        onGainAttribute(dayData.challengeAttrs?.[0] || 'Might', 2);
         onSealDay(currentWeek, currentDay, dayData.place);
       }
       setIsRollingDetourRound(false);
@@ -676,7 +689,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
         const fullFightGold =
           dayData.fightReward !== undefined ? dayData.fightReward : 300;
         const earnedGold = nextRound.enemyHpAfter <= 0 ? fullFightGold : 0;
-        if (earnedGold > 0) {
+        if (earnedGold > 0 && onClaimReward(`${dayKey}:fight`)) {
           onEarnGold(earnedGold);
         }
         onSealDay(currentWeek, currentDay, dayData.place);
@@ -920,8 +933,10 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setIsRollingFanOut(false);
 
     if (cleared) {
-      onGainAttribute(activeFanOutAttr, 1, d20 === 20);
-      onEarnGold(150);
+      // No growth from Fan Out (Core Rules §3: growth only on the Daily Challenge).
+      if (onClaimReward(`${dayKey}:fanout`)) {
+        onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
+      }
       unlockFanOutPayoff(fanOutBranch);
     } else {
       setFanOutCompleted(true);
@@ -996,7 +1011,9 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
         setFanOutFightDone(true);
         if (nextRound.enemyHpAfter <= 0) {
-          onEarnGold(150);
+          if (onClaimReward(`${dayKey}:fanout`)) {
+            onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
+          }
           unlockFanOutPayoff(fanOutBranch);
         } else {
           setFanOutCompleted(true);
@@ -1165,6 +1182,13 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
               </div>
 
               <div className="p-2.5 space-y-2">
+                {currentWeek === 1 && currentDay === 1 && !rollOutcome && (
+                  <p className="text-[13.5px] font-sans text-[#B7A9CC] leading-snug px-0.5">
+                    A Challenge. Pick the skill you trust and roll. Pass, and you earn{' '}
+                    {GOLD_CHALLENGE_WIN} gold and that skill grows. Fail, and it costs{' '}
+                    {GOLD_CHALLENGE_LOSS} gold.
+                  </p>
+                )}
                 <div className="grid grid-cols-2 gap-2">
                   <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
                     <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
@@ -1304,7 +1328,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                             color: ATTRIBUTE_META[rollOutcome.attr].color,
                           }}
                         >
-                          {rollOutcome.attr} +{rollOutcome.tierBonus}
+                          {rollOutcome.attr} {rollOutcome.attrPoints} (+{rollOutcome.tierBonus})
                         </span>
                         {rollOutcome.relicBonus > 0 && (
                           <>
@@ -1344,7 +1368,11 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                     </div>
 
                     <div className="flex items-center justify-between pt-1 border-t border-white/[0.06]">
-                      {rollOutcome.cleared ? (
+                      {isReplayRoll ? (
+                        <span className="px-2.5 py-1 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[12.5px] font-sans font-semibold text-[#B7A9CC]">
+                          Already played: no gold or growth this time.
+                        </span>
+                      ) : rollOutcome.cleared ? (
                         <span className="px-2.5 py-1 rounded-lg bg-[#2A1B40] border border-[#D4B876] text-[13px] font-sans font-bold text-[#F4F1F8]">
                           🎁 Reward:{' '}
                           <span
@@ -1352,10 +1380,10 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                               color: ATTRIBUTE_META[rollOutcome.attr].color,
                             }}
                           >
-                            +3 {rollOutcome.attr}
+                            +{rollOutcome.growth ?? 0} {rollOutcome.attr}
                           </span>{' '}
                           <span className="text-[#8B7A9E]">·</span>{' '}
-                          <span className="text-[#E5C158]">+150g</span>
+                          <span className="text-[#E5C158]">+{GOLD_CHALLENGE_WIN}g</span>
                           {dayData.hasFight && (
                             <span className="text-[#6FD39A] ml-1">
                               · +2 WEP R1
@@ -1364,7 +1392,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                         </span>
                       ) : (
                         <span className="px-2.5 py-1 rounded-lg bg-[#2A1420] border border-[#E0645C]/70 text-[12.5px] font-sans font-bold text-[#E0645C]">
-                          ⚠️ No Reward (0g) ·{' '}
+                          ⚠️ −{GOLD_CHALLENGE_LOSS}g ·{' '}
                           {dayData.hasFight
                             ? 'Caught Off-Guard (−15 HP R1)'
                             : 'Forced onto Perimeter Detour'}
@@ -1416,7 +1444,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                   </p>
                 </div>
 
-                {/* MANDATORY STORY-TRIGGERED ALERTED LOOKOUT SKIRMISH CARD (+50g Consolation Recovery on Victory) */}
+                {/* MANDATORY STORY-TRIGGERED ALERTED LOOKOUT SKIRMISH CARD (Detour fight, pay pending the numbers pass) */}
                 {!dayData.hasFight && (
                   <div className="w-full rounded-xl bg-[#180F29] border border-[#E0645C]/70 overflow-hidden shadow-lg">
                     <div className="px-3 py-2 bg-[#2A1628] border-b border-[#3A2555] flex items-center justify-between gap-2">
@@ -1835,7 +1863,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                           <span className="px-2.5 py-1 rounded-lg bg-[#2A1B40] border border-[#D4B876] text-[13px] font-sans font-bold text-[#E5C158]">
                             {(dayData.fightReward !== undefined ? dayData.fightReward : 300) > 0
                               ? `🎁 Reward: +${dayData.fightReward !== undefined ? dayData.fightReward : 300}g Earned`
-                              : '✓ Sentry Driven Off · Trail Unbarred'}
+                              : '✓ Driven Off · No fight gold today (the Challenge was the paid beat)'}
                           </span>
                         ) : (
                           <span className="px-2.5 py-1 rounded-lg bg-[#2A1420] border border-[#E0645C]/70 text-[12.5px] font-sans font-bold text-[#E0645C]">
@@ -2227,7 +2255,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                                     color: ATTRIBUTE_META[fanOutRollOutcome.attr].color,
                                   }}
                                 >
-                                  {fanOutRollOutcome.attr} +{fanOutRollOutcome.tierBonus}
+                                  {fanOutRollOutcome.attr} {fanOutRollOutcome.attrPoints} (+{fanOutRollOutcome.tierBonus})
                                 </span>
                                 <span className="text-[#8B7A9E]">−</span>
                                 <span className="text-[#E5C158]">
@@ -2254,7 +2282,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                                 }`}
                               >
                                 {fanOutRollOutcome.cleared
-                                  ? 'PASSED · +150g + 1st-Letter Hint Unlocked!'
+                                  ? `PASSED · +${GOLD_FAN_OUT_CACHE_WIN}g + 1st-Letter Hint Unlocked!`
                                   : isSoloW1D1
                                   ? 'FAILED · 0g Earned — Pressing On Toward the Inn'
                                   : 'FAILED · 0g Earned — Returning to Campfire'}
@@ -2669,6 +2697,7 @@ interface PartyTabViewProps {
   onUnlockGatheringBadge: () => void;
   pinnedClues: PinnedPartyClue[];
   completedDays: string[];
+  onClaimReward?: (key: string) => boolean;
   stats: Record<string, number>;
   characterName: string;
   characterClass?: ClassName;
@@ -2748,11 +2777,12 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   onShareSoloClueToBoard,
   sharedFanOutClues = {},
   onShareFanOutClue,
-  appliedLoopholeIds = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6'],
+  appliedLoopholeIds = ['L1', 'L2', 'L3'],
   relics = {},
   onGiveRelic,
   privateTheoryPromptsByDay = {},
   onLeaveFire,
+  onClaimReward = () => true,
 }) => {
   const [internalPartyMode, setInternalPartyMode] = useState<'CAMPFIRE' | 'GATHERING'>(
     'CAMPFIRE'
@@ -2786,6 +2816,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const [approachRolled, setApproachRolled] = useState<{
     d20: number;
     attr: AttributeName;
+    attrScore: number;
+    tierBonus: number;
+    mapBonus: number;
     bonus: number;
     dc: number;
     margin: number;
@@ -2812,7 +2845,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       contribution: number;
     }>;
   } | null>(null);
-  const [ueRallied, setUeRallied] = useState(false);
   const [lookCloserDone, setLookCloserDone] = useState(false);
 
   const [matchedQuotes, setMatchedQuotes] = useState<Record<number, boolean>>({});
@@ -2831,7 +2863,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     setIsRollingBattleRound(false);
     setBattleDone(false);
     setUeRolled(null);
-    setUeRallied(false);
     setLookCloserDone(false);
     setMatchedQuotes({});
     setWrongMatchPick({});
@@ -3130,7 +3161,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     if (formed.length === currentRiddle.answerWord.length) {
       if (formed.toUpperCase() === currentRiddle.answerWord.toUpperCase()) {
         onAnswerDailyRiddle(currentRiddle.id, 0);
-        onEarnGold(15);
+        onEarnGold(GOLD_RIDDLE_BONUS);
         setRiddleTypedIndices([]);
       } else {
         setTimeout(() => setRiddleTypedIndices([]), 350);
@@ -3271,7 +3302,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       if (enemyHp <= 0 || partyHp <= 0) {
         setBattleDone(true);
         if (enemyHp <= 0) {
-          onEarnGold(epMeta.gReward || 500);
+          if (onClaimReward(`G${currentWeek}:battle`)) {
+            onEarnGold(GOLD_GATHERING_BATTLE_REWARDS[currentWeek] ?? epMeta.gReward);
+          }
         }
       }
       setIsRollingBattleRound(false);
@@ -3308,7 +3341,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       battleRounds.length > 0 &&
       battleRounds[battleRounds.length - 1].enemyHpLeft <= 0;
     if (cleared) {
-      onEarnGold(300);
+      if (onClaimReward(`G${currentWeek}:united-effort`)) {
+        onEarnGold(GOLD_UNITED_EFFORT_WIN);
+      }
       if (bossWon) {
         onUnlockGatheringBadge();
       }
@@ -3320,28 +3355,12 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     });
   };
 
-  const handleRallyUnitedEffort = () => {
-    if (!ueRolled || ueRolled.cleared || ueRallied) return;
-    setUeRallied(true);
-    const boosted = Math.min(100, Math.max(100, ueRolled.totalProgress + 15));
-    const bossWon =
-      battleRounds.length > 0 &&
-      battleRounds[battleRounds.length - 1].enemyHpLeft <= 0;
-    onEarnGold(300);
-    if (bossWon) {
-      onUnlockGatheringBadge();
-    }
-    setUeRolled({
-      ...ueRolled,
-      totalProgress: boosted,
-      cleared: true,
-    });
-  };
-
   const handleGatheringLookCloser = () => {
     if (lookCloserDone) return;
     setLookCloserDone(true);
-    onEarnGold(75);
+    if (onClaimReward(`G${currentWeek}:look-closer`)) {
+      onEarnGold(GOLD_LOOK_CLOSER_WIN);
+    }
   };
 
   return (
@@ -3659,6 +3678,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                     setApproachRolled({
                       d20,
                       attr: chosen.attr as AttributeName,
+                      attrScore: attributes[chosen.attr as AttributeName] || 20,
+                      tierBonus: heroTierBonus,
+                      mapBonus,
                       bonus,
                       dc,
                       margin,
@@ -3681,8 +3703,14 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                           ATTRIBUTE_META[approachRolled.attr]?.color || '#D4B876',
                       }}
                     >
-                      {approachRolled.attr} +{approachRolled.bonus}
+                      {approachRolled.attr} {approachRolled.attrScore} (+{approachRolled.tierBonus})
                     </span>
+                    {approachRolled.mapBonus > 0 && (
+                      <>
+                        <span className="text-[#8B7A9E]">+</span>
+                        <span className="text-[#D4B876]">Map {approachRolled.mapBonus}</span>
+                      </>
+                    )}
                     <span className="text-[#8B7A9E]">−</span>
                     <span className="text-[#E5C158]">DC {approachRolled.dc}</span>
                     <span className="text-[#8B7A9E]">=</span>
@@ -4164,23 +4192,12 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                       >
                         <span>
                           {ueRolled.cleared
-                            ? `✓ UNITED EFFORT CLEARED (${ueRolled.totalProgress}/100)${
-                                ueRallied ? ' · RALLIED!' : ''
-                              }`
+                            ? `✓ UNITED EFFORT CLEARED (${ueRolled.totalProgress}/100)`
                             : `✕ UNITED EFFORT FELL SHORT (${ueRolled.totalProgress}/100)`}
                         </span>
                         <span>{gathering.ueTitle}</span>
                       </div>
 
-                      {!ueRolled.cleared && !ueRallied && (
-                        <button
-                          type="button"
-                          onClick={handleRallyUnitedEffort}
-                          className="w-full py-2.5 px-3 rounded-xl bg-[#6FD39A]/20 hover:bg-[#6FD39A]/30 border border-[#6FD39A] font-['Cinzel'] font-bold text-[12px] text-[#6FD39A] uppercase tracking-[0.8px] transition"
-                        >
-                          ⚡ RALLY THE TABLE (+15 SECOND PUSH TO CLEAR 100/100)
-                        </button>
-                      )}
                     </div>
                   )}
                 </div>
@@ -4233,7 +4250,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                               ✓ CHAMBER INSPECTED (+75G RECOVERED)
                             </div>
                             <p className="font-sans text-[16px] text-[#F4F1F8] leading-[1.5]">
-                              Because your party held {gathering.ueTitle.toLowerCase()}, you have time to search the inner chamber undisturbed—securing +75g in salvaged relics and setting every physical clue in order before the table question.
+                              Because your party held {gathering.ueTitle.toLowerCase()}, you have time to search the inner chamber undisturbed—securing +{GOLD_LOOK_CLOSER_WIN}g in salvaged relics and setting every physical clue in order before the table question.
                             </p>
                           </div>
                         )}
@@ -4369,7 +4386,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                                             [mIdx]: true,
                                           }));
                                           onMatchScripture();
-                                          onEarnGold(75);
+                                          if (onClaimReward(`G${currentWeek}:match:${mIdx}`)) {
+                                            onEarnGold(GOLD_MATCH_BASE_PER_PICK);
+                                          }
                                         } else {
                                           setWrongMatchPick((prev) => ({
                                             ...prev,

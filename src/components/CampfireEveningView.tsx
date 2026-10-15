@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AttributeName } from '../data/mythiosRulesData';
 import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
+import { wordLockSecondsLeft, registerWrongWordTry, clearWordTries } from '../data/wordLocks';
 import {
   CAMPFIRE_STORED_LINES,
   CampfireEveningTelemetry,
@@ -129,6 +130,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   // Step 5: Seeker Fragment word-lock state
   const [seekerSlot, setSeekerSlot] = useState<0 | 1>(0);
   const [seekerTypedIndices, setSeekerTypedIndices] = useState<number[]>([]);
+  const [wordLockNotice, setWordLockNotice] = useState<string | null>(null);
 
   // Step 6: Riddle state (Quiet-day opt-in, 3 tries, Give up, zero gold)
   const [quietRiddleRequested, setQuietRiddleRequested] = useState<boolean>(false);
@@ -370,6 +372,14 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
 
   const handleTapSeekerTile = (idx: number) => {
     if (seekerTypedIndices.includes(idx)) return;
+    const wordIndex: 1 | 2 = seekerSlot === 0 ? 1 : 2;
+    const waitSecs = wordLockSecondsLeft(activeFragment.id, wordIndex);
+    if (waitSecs > 0) {
+      setWordLockNotice(`Too many wrong tries. Try this word again in ${waitSecs} seconds.`);
+      setSeekerTypedIndices([]);
+      return;
+    }
+    setWordLockNotice(null);
     const targetWord = seekerSlot === 0 ? activeFragment.word1 : activeFragment.word2;
     const jumbleArr =
       seekerSlot === 0 ? activeFragment.jumble1 : activeFragment.jumble2;
@@ -377,13 +387,14 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     const formed = next.map((i) => jumbleArr[i]).join('');
     if (formed.length === targetWord.length) {
       if (formed.toLowerCase() === targetWord.toLowerCase()) {
-        onSolveWord(
-          activeFragment.id,
-          seekerSlot === 0 ? 1 : 2,
-          friendNames[activeSeat]
-        );
+        clearWordTries(activeFragment.id, wordIndex);
+        onSolveWord(activeFragment.id, wordIndex, friendNames[activeSeat]);
         setSeekerTypedIndices([]);
       } else {
+        const lockSecs = registerWrongWordTry(activeFragment.id, wordIndex);
+        if (lockSecs > 0) {
+          setWordLockNotice(`Five wrong tries. Try this word again in ${lockSecs} seconds.`);
+        }
         setTimeout(() => setSeekerTypedIndices([]), 320);
       }
     } else {
@@ -1311,6 +1322,9 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
 
           {!fragSolvedState[seekerSlot] && (
             <div className="space-y-2 pt-1">
+              {wordLockNotice && (
+                <p className="text-[12.5px] font-sans text-[#E0645C]">{wordLockNotice}</p>
+              )}
               <div className="flex flex-wrap items-center gap-1.5">
                 {(seekerSlot === 0
                   ? activeFragment.jumble1

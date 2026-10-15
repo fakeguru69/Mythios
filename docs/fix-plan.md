@@ -31,19 +31,19 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 ## Phase 1: rules and loopholes (code only, no story changes)
 
 1. ✅ **Done 14 Oct.** **[Fix] The Challenge roll** (Task 1). Also fixed a crash that stopped every passed Challenge from paying, growing or finishing the day. The Approach now uses its roller's own bonus; the map +2 is kept pending Fake Guru (not in canon). d20 + tier bonus against the week's DC; success on a margin of 1 or more; no automatic 20; "You succeed on X+". The same rule for [PRESS ON], Fan Out and the Gathering Approach. Remove the "Obstacle" bar.
-2. **Fights.** *(Revised 14 Oct.)* Fake Guru keeps the build's round line and its damage: "YOU: 🎲 15 + WEP 15 − DEF 19 = +11 · HIT +11 × 5 = 55. FOE HP 100 → 45". Damage is now **margin × 5** in canon (Core Rules §4). The +2 Weapon on a passed Challenge and the −15 HP on a failed one, on days with a Challenge and a fight, stay: they were approved in principle on 8 Oct (Core Rules §15 item 3; the audit wrongly called them invented). Their numbers, and the enemies' DEF and ATK (the build uses 2 below canon's DEF), go to the numbers pass. **[Decide]** Keep tapping each round, or play the round lines automatically (canon 4 Oct)?
-3. **[Fix] Pay.** Turn off patch L4 so fights on Challenge-and-fight days pay 0 (Task 2). Result cards show the real numbers (Task 3). No hard-coded gold (Task 4).
-4. **[Fix] Loopholes.**
+2. **Fights.** *(Revised 14 Oct.)* Fake Guru keeps the build's round line and its damage: "YOU: 🎲 15 + WEP 15 − DEF 19 = +11 · HIT +11 × 5 = 55. FOE HP 100 → 45". Damage is now **margin × 5** in canon (Core Rules §4). The +2 Weapon on a passed Challenge and the −15 HP on a failed one, on days with a Challenge and a fight, stay: they were approved in principle on 8 Oct (Core Rules §15 item 3; the audit wrongly called them invented). Their numbers, and the enemies' DEF and ATK (the build uses 2 below canon's DEF), go to the numbers pass. **Decided 14 Oct:** keep one tap per round with a short roll pause.
+3. ✅ **Done 14 Oct.** Result cards show the real growth and +500g / −150g; the W1D1 first-Challenge line added; every gold amount comes from `economy.ts` (Match now 50g per right pick, canon; was 75g); starting gold 0 (canon; was 1,240 / 600). **[Fix] Pay.** Turn off patch L4 so fights on Challenge-and-fight days pay 0 (Task 2). Result cards show the real numbers (Task 3). No hard-coded gold (Task 4).
+4. ✅ **Done 14 Oct.** Every reward is paid once per day and per Gathering (saved with the game); the rally button is removed; no growth from Fan Out or Detour; fragment words pay once and lock for 2 minutes after 5 wrong tries (Bag and Campfire); gear stops at Level 5. **[Fix] Loopholes.**
    - A finished day pays nothing when replayed.
    - The United Effort "rally" no longer wins for free.
    - No Attribute growth from Fan Out or Detour (canon: growth on the main Challenge only).
    - Fragment words: five wrong tries, then a 2-minute wait; each word pays once.
    - Gear can't be bought at Level 5.
-5. **[Fix] The Combat Relic is spent** when used (Task 5).
+5. ✅ **Checked 14 Oct:** correct in weekday fights (spent at the first round, +1 Weapon and +1 Armor, off when none). The Gathering Battle's relic is wrong (it "gives" any relic to Dev); fixed with the Battle in step 6. **[Fix] The Combat Relic is spent** when used (Task 5).
 6. **[Fix] United Effort to canon:** turns, bars, 10 + d20 (Task 6). Battle enemies roll as in canon.
-7. **[Fix] Continuity patches.** Turn off L5 (the "seven left" said a day early). Turn off L6 (it rewrites the W4D1 escape against canon). Check L1–L3 against the episode files.
-8. **[Fix] The word checker's first-use days** match canon ("king" W2D5, "throne" W3D5, and so on).
-9. **[Fix] Remove the Store-lock switch** (Task 8). **Hide the Audit Workbench** unless `?dev=1` (Task 9).
+7. ✅ **Done 14 Oct (with the fight-pay part of step 3).** Patches L4, L5, L6 removed; fights on Challenge-and-fight days pay 0 in the chapter data. L1–L3 add story text not in canon: waiting on Fake Guru. W1D6's fight is not in canon: waiting on Fake Guru. **[Fix] Continuity patches.** Turn off L5 (the "seven left" said a day early). Turn off L6 (it rewrites the W4D1 escape against canon). Check L1–L3 against the episode files.
+8. ✅ **Done 14 Oct.** The checker uses canon's list; no early uses found. **[Fix] The word checker's first-use days** match canon ("king" W2D5, "throne" W3D5, and so on).
+9. ✅ **Done 14 Oct.** Store lock removed (old saves still load); workbench only with `?dev=1`. **[Fix] Remove the Store-lock switch** (Task 8). **Hide the Audit Workbench** unless `?dev=1` (Task 9).
 
 ## Phase 2: build the weekday from canon (restores the story)
 

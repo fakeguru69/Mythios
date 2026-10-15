@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { GOLD_FRAGMENT_WORD_SOLVED } from './data/economy';
 import { AuditBackupRestorePayload, AuditWorkbench } from './components/AuditWorkbench';
 import { BagTabView, StoreTabView } from './components/BagAndStoreTabs';
 import { RecordTabView } from './components/RecordTabView';
@@ -45,7 +46,7 @@ interface SavedCampaignState {
   gold: number;
   weaponLevel: number;
   armorLevel: number;
-  storeLocked: boolean;
+  storeLocked?: boolean; // retired 14 Oct (the Store is never locked); old saves may still carry it
   attributes: Record<AttributeName, number>;
   relics: Record<string, number>;
   solvedWords: Record<string, { w1?: string; w2?: string }>;
@@ -58,6 +59,7 @@ interface SavedCampaignState {
   earnedBadgeIds: string[];
   pinnedClues: PinnedPartyClue[];
   partyMessages: string[];
+  claimedRewards?: string[];
 }
 
 function loadSavedCampaign(): Partial<SavedCampaignState> | null {
@@ -73,7 +75,11 @@ function loadSavedCampaign(): Partial<SavedCampaignState> | null {
 export default function App() {
   const initialSave = useMemo(() => loadSavedCampaign(), []);
 
-  const [layout, setLayout] = useState<WorkspaceLayout>('PHONE_ONLY');
+  // The Audit Workbench shows Garrick's hidden meanings, so it is only reachable with ?dev=1 (Task 9).
+  const isDevMode =
+    typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('dev') === '1';
+  const [layoutState, setLayout] = useState<WorkspaceLayout>('PHONE_ONLY');
+  const layout: WorkspaceLayout = isDevMode ? layoutState : 'PHONE_ONLY';
   // Canonical 4-tab bar: CHAT · RECORD · BAG · STORE + MINE / PARTY pill switch inside CHAT
   const [activeTab, setActiveTab] = useState<BottomTab>('CHAT');
   const [chatChannel, setChatChannel] = useState<ChatChannel>('MINE');
@@ -82,7 +88,7 @@ export default function App() {
   const [topBannerExpanded, setTopBannerExpanded] = useState<boolean>(false);
   const [bagInitialSubTab, setBagInitialSubTab] = useState<'RELICS' | 'SEEKER'>('RELICS');
 
-  // All 6 L1-L6 Narrative Continuity fixes are LOCKED & ACTIVE by default
+  // Continuity fixes L1–L3 are active by default (L4–L6 removed 14 Oct: they broke canon)
   const [appliedLoopholeIds, setAppliedLoopholeIds] = useState<string[]>(() =>
     NEW_CONTINUITY_LOOPHOLES.map((l) => l.id)
   );
@@ -109,10 +115,19 @@ export default function App() {
   const [stakeIndex, setStakeIndex] = useState<number>(initialSave?.stakeIndex ?? 0);
   const [showHeroSetupModal, setShowHeroSetupModal] = useState<boolean>(false);
 
-  const [gold, setGold] = useState<number>(initialSave?.gold ?? 1240);
+  const [gold, setGold] = useState<number>(initialSave?.gold ?? 0); // Core Rules §12: starting gold is 0
+
+  // Each reward is paid once per day and per Gathering, so replaying a day pays nothing.
+  const [claimedRewards, setClaimedRewards] = useState<string[]>(initialSave?.claimedRewards ?? []);
+  const claimedRewardsRef = useRef<Set<string>>(new Set(initialSave?.claimedRewards ?? []));
+  const handleClaimReward = (key: string): boolean => {
+    if (claimedRewardsRef.current.has(key)) return false;
+    claimedRewardsRef.current.add(key);
+    setClaimedRewards(Array.from(claimedRewardsRef.current));
+    return true;
+  };
   const [weaponLevel, setWeaponLevel] = useState<number>(initialSave?.weaponLevel ?? 2);
   const [armorLevel, setArmorLevel] = useState<number>(initialSave?.armorLevel ?? 2);
-  const [storeLocked, setStoreLocked] = useState<boolean>(initialSave?.storeLocked ?? false);
 
   const [attributes, setAttributes] = useState<Record<AttributeName, number>>(
     initialSave?.attributes ?? {
@@ -248,7 +263,6 @@ export default function App() {
         gold,
         weaponLevel,
         armorLevel,
-        storeLocked,
         attributes,
         relics,
         solvedWords,
@@ -261,6 +275,7 @@ export default function App() {
         earnedBadgeIds,
         pinnedClues,
         partyMessages,
+        claimedRewards,
       };
       window.localStorage.setItem(SAVE_STORAGE_KEY, JSON.stringify(payload));
     } catch {
@@ -278,7 +293,6 @@ export default function App() {
     gold,
     weaponLevel,
     armorLevel,
-    storeLocked,
     attributes,
     relics,
     solvedWords,
@@ -291,6 +305,7 @@ export default function App() {
     earnedBadgeIds,
     pinnedClues,
     partyMessages,
+    claimedRewards,
   ]);
 
   // Preset 1: Start Fresh Campaign at Week 1 · Day 1 (The Old Inn) using chosen Class & Second Attribute (30 / 28 / 25 curve)
@@ -314,10 +329,11 @@ export default function App() {
     setCurrentWeek(1);
     setCurrentDay(1);
     setCompletedDays([]);
-    setGold(600);
+    setGold(0); // Core Rules §12: starting gold is 0
+    claimedRewardsRef.current = new Set();
+    setClaimedRewards([]);
     setWeaponLevel(1);
     setArmorLevel(1);
-    setStoreLocked(false);
     setAttributes(baseAttrs);
     setRelics({
       Charm: primaryAttr === 'Charm' ? 1 : 0,
@@ -362,9 +378,10 @@ export default function App() {
     setCurrentDay(2);
     setCompletedDays(['1-1', '1-2', '1-3', '1-4', '1-5', '1-6']);
     setGold(1240);
+    claimedRewardsRef.current = new Set();
+    setClaimedRewards([]);
     setWeaponLevel(2);
     setArmorLevel(2);
-    setStoreLocked(false);
     setAttributes({
       Charm: 38,
       Agility: 28,
@@ -520,7 +537,7 @@ export default function App() {
     {
       text: `🔓 ${halfSolvedCount} Seeker ${
         halfSolvedCount === 1 ? 'Fragment awaits' : 'Fragments await'
-      } your second lock-word in the Seeker Chest (+25g)`,
+      } your second lock-word in the Seeker Chest (+${GOLD_FRAGMENT_WORD_SOLVED}g)`,
       actionLabel: 'SOLVE IN BAG →',
       onAction: () => {
         setBagInitialSubTab('SEEKER');
@@ -631,7 +648,9 @@ export default function App() {
   };
 
   const handleBuyGear = (track: 'weapon' | 'armor', cost: number) => {
-    if (gold < cost || storeLocked) return;
+    if (gold < cost) return;
+    // Gear tops out at Level 5 (Core Rules §4): never take gold for a step that can't happen.
+    if ((track === 'weapon' ? weaponLevel : armorLevel) >= 5) return;
     setGold((g) => g - cost);
     if (track === 'weapon') {
       setWeaponLevel((lv) => Math.min(5, lv + 1));
@@ -641,12 +660,14 @@ export default function App() {
   };
 
   const handleBuyRelic = (relicType: string, cost: number) => {
-    if (gold < cost || storeLocked) return;
+    if (gold < cost) return;
     setGold((g) => g - cost);
     setRelics((prev) => ({ ...prev, [relicType]: (prev[relicType] || 0) + 1 }));
   };
 
   const handleSolveWord = (fragId: string, wordIndex: 1 | 2, solverName: string) => {
+    // Each word pays once (Core Rules §6): ignore a word that is already filled.
+    if (solvedWords[fragId]?.[wordIndex === 1 ? 'w1' : 'w2']) return;
     setSolvedWords((prev) => {
       const curr = prev[fragId] || {};
       const updated = {
@@ -662,10 +683,10 @@ export default function App() {
         [fragId]: updated,
       };
     });
-    setGold((g) => g + 25);
+    setGold((g) => g + GOLD_FRAGMENT_WORD_SOLVED);
     setStats((s) => ({ ...s, fragmentsSolved: (s.fragmentsSolved || 0) + 1 }));
     setPartyMessages((msgs) => [
-      `🔓 [Seeker Chest · ${solverName}]: Solved Lock ${wordIndex} on Fragment ${fragId} (+25g)!`,
+      `🔓 [Seeker Chest · ${solverName}]: Solved Lock ${wordIndex} on Fragment ${fragId} (+${GOLD_FRAGMENT_WORD_SOLVED}g)!`,
       ...msgs,
     ]);
   };
@@ -725,8 +746,8 @@ export default function App() {
 
   return (
     <div className="h-[100dvh] overflow-hidden bg-[#07050B] text-[#F4F1F8] flex flex-col">
-      {/* INTERNAL AUDIT BAR: Floating corner pill on desktop; tucked inside collapsible top drawer on mobile to save vertical space (#7) */}
-      {layout === 'PHONE_ONLY' ? (
+      {/* INTERNAL AUDIT BAR (dev only): Floating corner pill on desktop; tucked inside collapsible top drawer on mobile to save vertical space (#7) */}
+      {!isDevMode ? null : layout === 'PHONE_ONLY' ? (
         <div className="hidden sm:flex sm:fixed sm:top-2.5 sm:left-2.5 z-30 items-center gap-1.5">
           <button
             onClick={() => setLayout('SPLIT')}
@@ -763,7 +784,7 @@ export default function App() {
               INTERNAL AUDIT WORKBENCH
             </span>
             <span className="px-2 py-0.5 rounded bg-[#68B88E]/15 border border-[#68B88E]/40 font-['Cinzel'] font-bold text-[10.5px] text-[#68B88E] whitespace-nowrap">
-              {verifier.totalWeekdays}/36 LANDMARKS · L1–L6 LOCKED
+              {verifier.totalWeekdays}/36 LANDMARKS · L1–L3 ACTIVE
             </span>
             <a
               href="/api/download-audit-bundle-14oct?download=1"
@@ -948,6 +969,7 @@ export default function App() {
                         S1
                       </span>
                     </div>
+                    {isDevMode && (
                     <div className="flex items-center gap-1 shrink-0">
                       <button
                         type="button"
@@ -975,6 +997,7 @@ export default function App() {
                         📋 COPY
                       </button>
                     </div>
+                    )}
                   </div>
 
                   {/* 1-Line Activity Ticker inside collapsible drawer */}
@@ -1297,6 +1320,7 @@ export default function App() {
               {/* ACTIVE TAB CONTENT */}
               {activeTab === 'CHAT' && (chatChannel === 'MINE' || !isPartyFormed) && (
                 <StoryTabView
+                  onClaimReward={handleClaimReward}
                   currentWeek={currentWeek}
                   currentDay={currentDay}
                   onSelectWeekDay={handleSelectWeekDay}
@@ -1336,7 +1360,6 @@ export default function App() {
                   onTellParty={(clueText) => {
                     setPartyMessages((prev) => [clueText, ...prev]);
                   }}
-                  onSetStoreLocked={setStoreLocked}
                   ledgerOpened={ledgerOpened}
                   onOpenLedger={() => setLedgerOpened(true)}
                   appliedLoopholeIds={appliedLoopholeIds}
@@ -1385,6 +1408,7 @@ export default function App() {
 
               {activeTab === 'CHAT' && chatChannel === 'PARTY' && isPartyFormed && (
                 <PartyTabView
+                  onClaimReward={handleClaimReward}
                   currentWeek={currentWeek}
                   currentDay={currentDay}
                   onSelectWeek={(w) => setCurrentWeek(w)}
@@ -1463,7 +1487,6 @@ export default function App() {
                   weaponLevel={weaponLevel}
                   armorLevel={armorLevel}
                   relics={relics}
-                  storeLocked={false}
                   currentWeek={currentWeek}
                   onBuyGear={handleBuyGear}
                   onBuyRelic={handleBuyRelic}

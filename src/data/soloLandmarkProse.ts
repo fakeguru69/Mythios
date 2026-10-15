@@ -2,6 +2,7 @@ import { AttributeName } from './mythiosRulesData';
 import { WEEKDAY_INVENTORY, WeekdayInventoryItem } from './mythiosChaptersData';
 import { SEEKER_FRAGMENTS } from './mythiosFragments';
 import { getPublicFanOutClue } from './campfireDaysData';
+import { GOLD_DETOUR_FIGHT_WIN } from './economy';
 
 export interface DailyRecapData {
   header: string;
@@ -222,14 +223,14 @@ export function getPostChallengeProse(
       ? `The sharp noise of your failed attempt echoes across ${dayData.place}, alerting ${
           dayData.fightEnemyName || 'the sentry'
         }! Before you can reset your stance, they lunge from cover as the fight begins.`
-      : `Worse still, the sharp commotion from ${obstacleName} carries across ${dayData.place}—and heavy boots come running! An alerted lookout hears you and lunges out of the shadows to corner you, forcing you to fight your way clear before you can salvage the trail (+150g Detour fight on victory).`;
+      : `Worse still, the sharp commotion from ${obstacleName} carries across ${dayData.place}—and heavy boots come running! An alerted lookout hears you and lunges out of the shadows to corner you, forcing you to fight your way clear before you can salvage the trail (+${GOLD_DETOUR_FIGHT_WIN}g Detour fight on victory).`;
 
     return { paragraph1, paragraph2 };
   }
 }
 
 /**
- * 4. POST-DETOUR FIGHT NARRATION (When a player fails a Challenge-only day, alerts a lookout, and wins the skirmish for +50g)
+ * 4. POST-DETOUR FIGHT NARRATION (When a player fails a Challenge-only day, alerts a lookout, and wins the skirmish; pay is GOLD_DETOUR_FIGHT_WIN, pending the numbers pass)
  */
 export function getPostDetourFightProse(dayData: WeekdayInventoryItem): {
   paragraph1: string;
@@ -239,7 +240,7 @@ export function getPostDetourFightProse(dayData: WeekdayInventoryItem): {
     ? dayData.challengeTitle.toLowerCase()
     : 'the jammed obstacle';
   const isW1D2 = dayData.week === 1 && dayData.day === 2;
-  const paragraph1 = `Breathing hard after driving off the lookout who heard you at ${obstacleName}, you recover an extra pouch from the fallen sentry’s belt (+150g Detour skirmish win) and force the rest of the way open before another guard can answer the noise.`;
+  const paragraph1 = `Breathing hard after driving off the lookout who heard you at ${obstacleName}, you recover an extra pouch from the fallen sentry’s belt (+${GOLD_DETOUR_FIGHT_WIN}g Detour skirmish win) and force the rest of the way open before another guard can answer the noise.`;
   const paragraph2 = isW1D2
     ? `Back inside ${dayData.place}, the torn stubs fit into Meira’s notebook (${dayData.summaryLearned.replace(/\[N\]/g, 'the company')}). Seeing the proof on the page, the company joins forces with Garrick—officially forming your party as you pry loose today’s carved Seeker Fragment from the hearth-stone.`
     : `Working quickly through the aftermath at ${dayData.place}, you piece together what the clean approach would have shown: ${dayData.summaryLearned.replace(/\[N\]/g, 'the company')} Right beside the mark, you pry loose today’s carved Seeker Fragment and slide it into your satchel.`;

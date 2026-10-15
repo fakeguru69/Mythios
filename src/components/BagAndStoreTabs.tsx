@@ -8,6 +8,8 @@ import {
   GEAR_TABLE,
 } from '../data/mythiosRulesData';
 import { SEEKER_FRAGMENTS, SeekerFragmentData } from '../data/mythiosFragments';
+import { wordLockSecondsLeft, registerWrongWordTry, clearWordTries } from '../data/wordLocks';
+import { GOLD_FRAGMENT_WORD_SOLVED, GOLD_RELIC_COST } from '../data/economy';
 
 const CUMULATIVE_SCRIPTURE = [
   {
@@ -111,6 +113,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
     slot: 0 | 1;
   } | null>(null);
   const [typedIndices, setTypedIndices] = useState<number[]>([]);
+  const [wordLockNotice, setWordLockNotice] = useState<string | null>(null);
   const [giftBanner, setGiftBanner] = useState<string | null>(null);
   const [activeGiftRelicKey, setActiveGiftRelicKey] = useState<string | null>(null);
   const [showScriptureDrawer, setShowScriptureDrawer] = useState(false);
@@ -147,6 +150,14 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
 
   const handleTapLetter = (frag: SeekerFragmentData, slot: 0 | 1, letterIdx: number) => {
     if (typedIndices.includes(letterIdx)) return;
+    const wordIndex: 1 | 2 = slot === 0 ? 1 : 2;
+    const waitSecs = wordLockSecondsLeft(frag.id, wordIndex);
+    if (waitSecs > 0) {
+      setWordLockNotice(`Too many wrong tries. Try this word again in ${waitSecs} seconds.`);
+      setTypedIndices([]);
+      return;
+    }
+    setWordLockNotice(null);
     const targetWord = slot === 0 ? frag.word1 : frag.word2;
     const jumbleArr = slot === 0 ? frag.jumble1 : frag.jumble2;
     const nextTyped = [...typedIndices, letterIdx];
@@ -154,10 +165,15 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
 
     if (formed.length === targetWord.length) {
       if (formed.toLowerCase() === targetWord.toLowerCase()) {
-        onSolveWord(frag.id, slot === 0 ? 1 : 2, 'Jennifer');
+        clearWordTries(frag.id, wordIndex);
+        onSolveWord(frag.id, wordIndex, 'Jennifer');
         setActiveJumbleSlot(null);
         setTypedIndices([]);
       } else {
+        const lockSecs = registerWrongWordTry(frag.id, wordIndex);
+        if (lockSecs > 0) {
+          setWordLockNotice(`Five wrong tries. Try this word again in ${lockSecs} seconds.`);
+        }
         setTimeout(() => setTypedIndices([]), 350);
       }
     } else {
@@ -697,7 +713,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
                         <div className="p-3 rounded-xl bg-[#130B1F] border border-[#D4B876]/60 space-y-2.5">
                           <div className="flex items-center justify-between">
                             <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#D4B876] uppercase">
-                              UNJUMBLE WORD {activeJumbleSlot.slot + 1} (+25G)
+                              UNJUMBLE WORD {activeJumbleSlot.slot + 1} (+{GOLD_FRAGMENT_WORD_SOLVED}G)
                             </span>
                             {typedIndices.length > 0 && (
                               <button
@@ -708,6 +724,10 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
                               </button>
                             )}
                           </div>
+
+                          {wordLockNotice && (
+                            <p className="text-[12.5px] font-sans text-[#E0645C]">{wordLockNotice}</p>
+                          )}
 
                           {/* #6: Full 4-Sided Yellow Border Boxes for Players to Fill In and Visualize */}
                           <div className="flex flex-wrap items-center gap-1.5 py-1">
@@ -811,7 +831,6 @@ interface StoreTabViewProps {
   weaponLevel: number;
   armorLevel: number;
   relics: Record<string, number>;
-  storeLocked: boolean;
   currentWeek?: number;
   onBuyGear: (type: 'weapon' | 'armor', cost: number) => void;
   onBuyRelic: (relicType: string, cost: number) => void;
@@ -823,7 +842,6 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
   weaponLevel,
   armorLevel,
   relics,
-  storeLocked,
   currentWeek = 2,
   onBuyGear,
   onBuyRelic,
@@ -894,7 +912,7 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
             <div className="mt-3 pt-2 border-t border-[#44305F]">
               {nextWeaponLvl ? (
                 <button
-                  disabled={storeLocked || gold < GEAR_TABLE[nextWeaponLvl].cost}
+                  disabled={gold < GEAR_TABLE[nextWeaponLvl].cost}
                   onClick={() => onBuyGear('weapon', GEAR_TABLE[nextWeaponLvl].cost)}
                   className="w-full py-2 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] text-[#F4F1F8] disabled:opacity-40 transition whitespace-nowrap"
                 >
@@ -929,7 +947,7 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
             <div className="mt-3 pt-2 border-t border-[#44305F]">
               {nextArmorLvl ? (
                 <button
-                  disabled={storeLocked || gold < GEAR_TABLE[nextArmorLvl].cost}
+                  disabled={gold < GEAR_TABLE[nextArmorLvl].cost}
                   onClick={() => onBuyGear('armor', GEAR_TABLE[nextArmorLvl].cost)}
                   className="w-full py-2 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] text-[#F4F1F8] disabled:opacity-40 transition whitespace-nowrap"
                 >
@@ -949,7 +967,7 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
       <div className="space-y-2">
         <div className="flex items-center justify-between px-0.5">
           <span className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876] uppercase">
-            RELICS · 150G EACH
+            RELICS · {GOLD_RELIC_COST}G EACH
           </span>
           <span className="text-[12px] font-sans text-[#B7A9CC]">Use or Gift in BAG</span>
         </div>
@@ -995,11 +1013,11 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
 
                   <div className="mt-2.5 pt-2 border-t border-[#44305F]">
                     <button
-                      disabled={storeLocked || gold < 150}
-                      onClick={() => onBuyRelic(rKey, 150)}
+                      disabled={gold < GOLD_RELIC_COST}
+                      onClick={() => onBuyRelic(rKey, GOLD_RELIC_COST)}
                       className="w-full py-1.5 rounded-lg bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] text-[#F4F1F8] disabled:opacity-40 transition whitespace-nowrap"
                     >
-                      BUY · 150G
+                      BUY · {GOLD_RELIC_COST}G
                     </button>
                   </div>
                 </div>

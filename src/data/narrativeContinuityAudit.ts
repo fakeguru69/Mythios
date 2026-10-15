@@ -38,12 +38,12 @@ export const CONTINUITY_RULES: ContinuityRuleMeta[] = [
     id: 'RULE_5_DUAL_DAY_PARITY',
     shortCode: 'RULE 5',
     title: 'Dual-Day & Reward Parity (Challenge + Fight)',
-    description: 'Verifies that every chapter with hasFight: true carries the canonical +300g weekday fight reward and a clear first-strike condition.',
+    description: 'Verifies fight pay against Core Rules §12: a weekday fight pays 300g on a fight-only day (and on the W1D1 tutorial) and nothing on a day that also has a Challenge.',
   },
 ];
 
 export interface ContinuityLoopholeRecord {
-  id: 'L1' | 'L2' | 'L3' | 'L4' | 'L5' | 'L6';
+  id: 'L1' | 'L2' | 'L3';
   ruleId: ContinuityRuleId;
   severity: 'HIGH' | 'MEDIUM';
   week: number;
@@ -101,51 +101,11 @@ export const NEW_CONTINUITY_LOOPHOLES: ContinuityLoopholeRecord[] = [
     proposedFixText:
       'W2D3 summaryLearned: "Just as the first cold river squall begins to blur the four-night-old ruts, you trace the dragging left wheel off the road onto a dry hidden path under the trees—where a stranger died a week ago with his pick jammed in a Seeker lock that opens at your touch."',
   },
-  {
-    id: 'L4',
-    ruleId: 'RULE_5_DUAL_DAY_PARITY',
-    severity: 'HIGH',
-    week: 2,
-    day: 3,
-    relatedCoord: 'W2D3, W4D2, W4D5, W6D6',
-    title: 'Four Dual Challenge+Fight Days Have fightReward: 0 Instead of Canonical +300g',
-    whyLoophole:
-      'Core Rules §4 & §12 specify that every weekday fight rewards +300g on win (+150g on loss). Four Dual Days that have both a Challenge and a Fight (W2D3 The Dog on the Chain, W4D2 The Men at the Ford, W4D5 The Man with the Boat, and W6D6 The One That Turned) had fightReward: 0 in the chapter table.',
-    beforeText:
-      'W2D3, W4D2, W4D5, W6D6: hasFight: true, fightReward: 0, and no explicit preFightChoice hint showing how the Challenge roll sets first strike.',
-    proposedFixText:
-      'Set fightReward: 300 on W2D3, W4D2, W4D5, and W6D6, and attach the Challenge-to-Fight first-strike rule note on each Dual Day Fight Card so passing the day\'s Challenge grants first strike in the fight.',
-  },
-  {
-    id: 'L5',
-    ruleId: 'RULE_3_TIMELINE_MATH',
-    severity: 'HIGH',
-    week: 5,
-    day: 6,
-    relatedCoord: 'W5D5 (8 strokes) → W5D6 → W6D1 (6 strokes)',
-    title: 'Highwall Watch-Page Countdown Skips Stroke 7 Between Week 5 · Day 5 and Week 6 · Day 1',
-    whyLoophole:
-      'On Week 5 · Day 5, the watchmen cross out one chalk stroke at dusk "leaving eight." Then on Week 5 · Day 6 / Gathering 5, only one dusk passes—yet Week 6 · Day 1 opens with "Six nights left" (skipping seven).',
-    beforeText:
-      'W5D6 summaryLearned: "The fifth is in a hidden room inside the wall itself, with one slit window facing the hall. Tonight, nobody heard you." (Does not account for the 7th stroke before W6D1 opens at 6.)',
-    proposedFixText:
-      'W5D6 summaryLearned: "As dusk falls and the watchman in the square below draws chalk through the seventh stroke, you slip unseen along the wall walk: the fifth is inside the thickness of this wall." (And at W6D1 dusk, the sixth stroke is crossed out, keeping 9 → 8 → 7 → 6 → 5 → 4 → 3 → 2 → 1 exact.)',
-  },
-  {
-    id: 'L6',
-    ruleId: 'RULE_4_CHARACTER_WATCH',
-    severity: 'MEDIUM',
-    week: 4,
-    day: 1,
-    relatedCoord: 'W2G2 Prisoner → W4D1 (Under the Kiln)',
-    title: 'Prisoner Rope-Cutting Watch Loophole in Week 4 · Day 1 (Under the Kiln)',
-    whyLoophole:
-      'At the start of Week 4 · Day 1, the robed prisoner\'s ropes are cut clean "within arm\'s reach, in the dark" while the whole party is standing in the room. Grounding the post by the passage mouth where the shuttered lantern was held while the party lifted Wren down the rope makes the geography watertight without tipping off the Episode 6 twist.',
-    beforeText:
-      'W4D1 passBranchText: "Heel, then toe, evenly spaced: his ropes were cut clean and he walked out at the pace of a man leaving a church."',
-    proposedFixText:
-      'W4D1 passBranchText: "Heel, then toe, evenly spaced: while all eyes were up on the scree lifting Wren down and Garrick held the shuttered lantern by the passage mouth, the prisoner\'s ropes at the outer post were parted clean—and he walked out at the pace of a man leaving a church."',
-  },
+  // L4, L5 and L6 were removed on 14 Oct 2026 (Fake Guru's fix plan, Phase 1):
+  // L4 paid 300g for fights on Challenge-and-fight days (canon pays 0) and promised a
+  // "strike first" rule the fight engine doesn't have; L5 said "seven left" a day early
+  // (canon: 8 at W5D5, 7 after Gathering 5, 6 at W6D1); L6 rewrote the W4D1 escape
+  // against canon (episode-4-the-water-stone.md).
 ];
 
 export function getChapterWithContinuityFixes(
@@ -189,37 +149,6 @@ export function getChapterWithContinuityFixes(
     }
   }
 
-  if (appliedLoopholeIds.includes('L4')) {
-    if (
-      (patched.week === 2 && patched.day === 3) ||
-      (patched.week === 4 && patched.day === 2) ||
-      (patched.week === 4 && patched.day === 5) ||
-      (patched.week === 6 && patched.day === 6)
-    ) {
-      patched.fightReward = 300;
-      patched.preFightChoice = {
-        optA: `CLEAR [${patched.challengeTitle}] → YOU STRIKE FIRST`,
-        optB: `FAIL [${patched.challengeTitle}] → ENEMY STRIKES FIRST`,
-        noticeHint: `Dual-Day Rule: Clearing today's ${patched.challengeAttrs?.join(' / ')} Challenge lets you strike first in this +300g weekday fight.`,
-      };
-    }
-  }
-
-  if (appliedLoopholeIds.includes('L5')) {
-    if (patched.week === 5 && patched.day === 6) {
-      patched.summaryLearned =
-        'As dusk falls and the watchman in the square below draws chalk through the seventh stroke (seven left), you cross the wall walk unseen: the fifth is in a hidden room inside the wall itself.';
-      patched.youHold = 'the map · watch-board: seven left';
-    }
-  }
-
-  if (appliedLoopholeIds.includes('L6')) {
-    if (patched.week === 4 && patched.day === 1) {
-      patched.passBranchText =
-        'Heel, then toe, evenly spaced: while all eyes were up on the scree lifting Wren down and Garrick held the shuttered lantern by the passage mouth, the prisoner\'s ropes at the outer post were parted clean—and he walked out at the pace of a man leaving a church.';
-    }
-  }
-
   return patched;
 }
 
@@ -231,7 +160,7 @@ export interface ContinuityChainRow {
   plantOrToken: string;
   cliffhangerPull: string;
   nextDayTarget: string;
-  loopholeId?: 'L1' | 'L2' | 'L3' | 'L4' | 'L5' | 'L6';
+  loopholeId?: 'L1' | 'L2' | 'L3';
   status: 'WATER-TIGHT' | 'LOOPHOLE FLAGGED' | 'FIX PREVIEW ACTIVE';
 }
 
@@ -243,18 +172,10 @@ export function buildContinuityChainMatrix(appliedLoopholeIds: string[]): Contin
       ? `W${nextItem.week}D${nextItem.day} · ${nextItem.place}`
       : 'Week 6 · Day 7 Finale (His Hall)';
 
-    let loopholeId: 'L1' | 'L2' | 'L3' | 'L4' | 'L5' | 'L6' | undefined;
+    let loopholeId: 'L1' | 'L2' | 'L3' | undefined;
     if (item.week === 2 && item.day === 2) loopholeId = 'L1';
     else if (item.week === 2 && item.day === 5) loopholeId = 'L2';
     else if (item.week === 2 && item.day === 3) loopholeId = 'L3';
-    else if (
-      (item.week === 4 && item.day === 2) ||
-      (item.week === 4 && item.day === 5) ||
-      (item.week === 6 && item.day === 6)
-    ) {
-      loopholeId = 'L4';
-    } else if (item.week === 5 && item.day === 6) loopholeId = 'L5';
-    else if (item.week === 4 && item.day === 1) loopholeId = 'L6';
 
     const status: ContinuityChainRow['status'] = !loopholeId
       ? 'WATER-TIGHT'
