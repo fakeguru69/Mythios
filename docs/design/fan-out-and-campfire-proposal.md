@@ -69,7 +69,7 @@ Replace the 8 fixed steps with **one screen around the fire**, with a few things
 - **Canon's rule restored:** each friend may fill **one** of the two words per fragment until dawn; after that, anyone may fill what's left. So a fragment is normally finished by two friends together on its own day.
 - **The Fan Out hint helps:** a friend who won their lead roll sees the first letter of word 1.
 - **The live moment:** when the second word lands, Garrick (stored line) reads the whole fragment aloud once. The party chat posts "Mei solved a word — one left" (canon party-chat line), which pulls the others back.
-- **Then the meaning question:** one stored question per fragment, for example 1-3: "*Some locks already know their key.* Whose key?" A friend may pin a one-line answer. No grading. **These meaning pins are read back at the Gathering** when that fragment is quoted back ("On Tuesday, Mei thought…"). This ties the evening to the weekly gut-punch (Point 7).
+- **Then the meaning question:** one stored question per fragment, for example 1-3: "*Some locks already know their key.* Whose key?" A friend may pin a one-line answer. No grading. **These meaning pins are read back at the Gathering** when that fragment is quoted back ("On Day 2, Mei thought…"). This ties the evening to the weekly gut-punch (Point 7).
 - New content: 36 meaning questions, one line each.
 
 ### 3. Tonight's question (the Fork)
@@ -187,7 +187,7 @@ Each day has **three leads**. Each lead is stored data:
 ### 3.4 Read-backs at the Gathering (the payoff)
 
 - **Who reads them:** MYTHIOS, the narrator. Never Garrick. He doesn't comment on theories, so he never has to lie about one.
-- **At the opening:** the week board, each friend's latest line, and where it changed, their Day 1 line ("On Monday Priya thought the list was a warning. Tonight: an invitation.").
+- **At the opening:** the week board, each friend's latest line, and where it changed, their Day 1 line ("On Day 1, Priya thought the list was a warning. Tonight: an invitation."). Days are named by number, never by weekday, since a party may start on any day (Fake Guru, 15 Oct).
 - **At each fragment quote-back:** up to 3 meaning pins beside the line (canon §M: at most 3 read aloud). They rotate across the season so every friend is read.
 - **No grading, ever.** The reveal speaks for itself.
 

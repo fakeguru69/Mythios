@@ -57,6 +57,7 @@ interface SavedCampaignState {
   characterName?: string;
   partyName?: string;
   meaningPins?: Record<string, Record<string, { name: string; text: string }>>; // fragment meaning pins (Phase 5)
+  weekBoard?: Record<number, Record<string, { name: string; entries: { day: number; text: string }[] }>>; // the case so far (Phase 5)
   partySize?: number; // 2 to 6 (Campfire v2.3 §M); saves from before 15 Oct have none and get 4
   characterClass: ClassName;
   secondAttr?: AttributeName;
@@ -131,6 +132,9 @@ export default function App() {
     initialSave?.partyName ?? 'The Iron Lantern'
   );
   const [stakeIndex, setStakeIndex] = useState<number>(initialSave?.stakeIndex ?? 0);
+  const [weekBoard, setWeekBoard] = useState<
+    Record<number, Record<string, { name: string; entries: { day: number; text: string }[] }>>
+  >(initialSave?.weekBoard ?? {});
   const [meaningPins, setMeaningPins] = useState<Record<string, Record<string, { name: string; text: string }>>>(
     initialSave?.meaningPins ?? {}
   );
@@ -249,6 +253,7 @@ export default function App() {
         partyName,
         partySize,
         meaningPins,
+        weekBoard,
         characterClass,
         secondAttr,
         stakeIndex,
@@ -281,6 +286,7 @@ export default function App() {
     partyName,
     partySize,
     meaningPins,
+    weekBoard,
     characterClass,
     secondAttr,
     stakeIndex,
@@ -1373,6 +1379,16 @@ export default function App() {
                 <PartyTabView
                   party={party}
                   meaningPins={meaningPins}
+                  weekBoard={weekBoard}
+                  onSetWeekLine={(week, friendId, name, day, text) =>
+                    // One line per friend per day: a second save on the same day replaces it; a dated copy is kept per day.
+                    setWeekBoard((prev) => {
+                      const wk = prev[week] || {};
+                      const prevEntries = wk[friendId]?.entries || [];
+                      const entries = [...prevEntries.filter((e) => e.day !== day), { day, text }].sort((a, b) => a.day - b.day);
+                      return { ...prev, [week]: { ...wk, [friendId]: { name, entries } } };
+                    })
+                  }
                   onPinMeaning={(fragId, friendId, name, text) =>
                     setMeaningPins((prev) => ({ ...prev, [fragId]: { ...(prev[fragId] || {}), [friendId]: { name, text } } }))
                   }
