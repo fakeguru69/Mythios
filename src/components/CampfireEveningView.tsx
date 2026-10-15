@@ -18,11 +18,15 @@ import {
 } from '../data/campfireDaysData';
 import { routeGarrickMessage } from '../data/garrickRouter';
 import { CHAPTER_SCRIPTS } from '../data/chapterScripts';
+import { FRAGMENT_MEANING_QUESTIONS } from '../data/fragmentMeaningQuestions';
 import { NarrationBlock, fillScriptTokens } from './ChapterScriptParts';
 
 export interface CampfireEveningViewProps {
   /** The party in play (2 to 6), the player first. */
   party: PartyFriend[];
+  /** One-line answers to a fragment's meaning question, per fragment and friend (read back at the Gathering). */
+  meaningPins: Record<string, Record<FriendId, { name: string; text: string }>>;
+  onPinMeaning: (fragId: string, friendId: FriendId, name: string, text: string) => void;
   currentWeek: number;
   currentDay: number;
   characterName: string;
@@ -74,6 +78,8 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   challengeClearedToday = true,
   bruisedScrapeToday = false,
   party,
+  meaningPins,
+  onPinMeaning,
 }) => {
   const dayKey = `${currentWeek}-${currentDay}`;
   const dayEntry = getCampfireDayEntry(currentWeek, currentDay);
@@ -110,6 +116,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     if (!partyIds.includes(activeSeat)) setActiveSeat('YOU');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partyIds.join('|')]);
+  const [meaningDraft, setMeaningDraft] = useState<string>('');
   const [isPastDawnCutoff, setIsPastDawnCutoff] = useState<boolean>(false);
   const [simBruisedScrape, setSimBruisedScrape] = useState<boolean>(bruisedScrapeToday);
   const [simMissedYesterday, setSimMissedYesterday] = useState<boolean>(false);
@@ -281,6 +288,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           1 + // Callback
           (dayEntry.riddle && (dayEntry.tone === 'wry' || quietRiddleRequested) ? 1 : 0) +
           (leftFireEarly ? 1 : 0) +
+          (fragSolvedState[0] && fragSolvedState[1] ? 1 : 0) + // reading the finished fragment
           garrickExtraMsgs
       );
   const roomGarrickCount = dayEntry.narratedNoGarrick ? 0 : baseGarrickCount - garrickExtraMsgs + garrickExtraRoom;
@@ -1017,6 +1025,55 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
               )}
             ”
           </p>
+
+          {/* When the second word lands, the whole line is read aloud once (Garrick; the narrator on W1·D1). */}
+          {fragSolvedState[0] && fragSolvedState[1] && (
+            <div className="pl-3 border-l-2 border-[#F0A552]/70 space-y-1">
+              <div className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] uppercase text-[#F0A552]">
+                {dayEntry.narratedNoGarrick ? 'Read aloud' : 'Garrick reads it aloud'}
+              </div>
+              <p className="font-['Cormorant_Garamond'] italic text-[18px] text-[#F4E8C1] leading-[1.45]">
+                “{activeFragment.fullText}”
+              </p>
+            </div>
+          )}
+
+          {/* The meaning question and one-line pins (shown only once the question is approved). */}
+          {fragSolvedState[0] && fragSolvedState[1] && FRAGMENT_MEANING_QUESTIONS[activeFragment.id] && (
+            <div className="space-y-2 p-2.5 rounded-lg bg-[#130B1F] border border-[#3A2555]">
+              <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.45]">
+                {FRAGMENT_MEANING_QUESTIONS[activeFragment.id]}
+              </p>
+              {Object.entries(meaningPins[activeFragment.id] || {}).map(([fid, pin]) => (
+                <p key={fid} className="text-[13.5px] font-sans text-[#D8CEE8]">
+                  <strong style={{ color: friendColors[fid] }}>{pin.name}:</strong> {pin.text}
+                </p>
+              ))}
+              {!isPastDawnCutoff && (
+                <form
+                  className="flex gap-2"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const text = meaningDraft.trim();
+                    if (!text) return;
+                    onPinMeaning(activeFragment.id, activeSeat, friendNames[activeSeat], text);
+                    setMeaningDraft('');
+                  }}
+                >
+                  <input
+                    id="meaning-pin"
+                    value={meaningDraft}
+                    onChange={(e) => setMeaningDraft(e.target.value.slice(0, 140))}
+                    placeholder="One line: what do you think it means?"
+                    className="flex-1 min-w-0 bg-[#0D0714] border border-[#3A2555] rounded-lg px-2.5 py-1.5 text-[14px] text-[#F4F1F8] placeholder-[#8B7A9E] focus:outline-none focus:border-[#D4B876]"
+                  />
+                  <button type="submit" className="px-3 rounded-lg border border-[#D4B876] bg-[#D4B876]/20 font-['Cinzel'] font-bold text-[11.5px] text-[#F4F1F8] uppercase">
+                    Pin
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
 
           <div className="flex items-center gap-2">
             {([0, 1] as const).map((sIdx) => {

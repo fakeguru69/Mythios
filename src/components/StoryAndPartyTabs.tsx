@@ -2142,6 +2142,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
 interface PartyTabViewProps {
   /** The party in play (2 to 6), the player first. */
   party: PartyFriend[];
+  meaningPins: Record<string, Record<string, { name: string; text: string }>>;
+  onPinMeaning: (fragId: string, friendId: string, name: string, text: string) => void;
   currentWeek: number;
   currentDay: number;
   onSelectWeek: (w: number) => void;
@@ -2190,6 +2192,8 @@ interface PartyTabViewProps {
 
 export const PartyTabView: React.FC<PartyTabViewProps> = ({
   party,
+  meaningPins,
+  onPinMeaning,
   currentWeek,
   currentDay,
   onSelectWeek,
@@ -3703,6 +3707,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       {partyMode === 'CAMPFIRE' && (
         <CampfireEveningView
           party={party}
+          meaningPins={meaningPins}
+          onPinMeaning={onPinMeaning}
           currentWeek={currentWeek}
           currentDay={currentDay}
           characterName={characterName}

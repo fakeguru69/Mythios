@@ -55,6 +55,7 @@ interface SavedCampaignState {
   completedDays: string[];
   characterName?: string;
   partyName?: string;
+  meaningPins?: Record<string, Record<string, { name: string; text: string }>>; // fragment meaning pins (Phase 5)
   partySize?: number; // 2 to 6 (Campfire v2.3 §M); saves from before 15 Oct have none and get 4
   characterClass: ClassName;
   secondAttr?: AttributeName;
@@ -129,6 +130,9 @@ export default function App() {
     initialSave?.partyName ?? 'The Iron Lantern'
   );
   const [stakeIndex, setStakeIndex] = useState<number>(initialSave?.stakeIndex ?? 0);
+  const [meaningPins, setMeaningPins] = useState<Record<string, Record<string, { name: string; text: string }>>>(
+    initialSave?.meaningPins ?? {}
+  );
   // The party in play: the player first, then the sample friends (2 to 6; workbench switch).
   const [partySize, setPartySize] = useState<number>(initialSave?.partySize ?? DEFAULT_PARTY_SIZE);
   const party = useMemo(
@@ -243,6 +247,7 @@ export default function App() {
         characterName,
         partyName,
         partySize,
+        meaningPins,
         characterClass,
         secondAttr,
         stakeIndex,
@@ -274,6 +279,7 @@ export default function App() {
     characterName,
     partyName,
     partySize,
+    meaningPins,
     characterClass,
     secondAttr,
     stakeIndex,
@@ -1365,6 +1371,10 @@ export default function App() {
               {activeTab === 'CHAT' && chatChannel === 'PARTY' && isPartyFormed && (
                 <PartyTabView
                   party={party}
+                  meaningPins={meaningPins}
+                  onPinMeaning={(fragId, friendId, name, text) =>
+                    setMeaningPins((prev) => ({ ...prev, [fragId]: { ...(prev[fragId] || {}), [friendId]: { name, text } } }))
+                  }
                   onGainAttribute={(attr, delta) => setAttributes((prev) => ({ ...prev, [attr]: prev[attr] + delta }))}
                   onClaimReward={handleClaimReward}
                   hasClaimedReward={(key) => claimedRewardsRef.current.has(key)}
