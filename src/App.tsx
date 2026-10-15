@@ -145,6 +145,14 @@ export default function App() {
     if (claimedRewardsRef.current.has(key)) return false;
     claimedRewardsRef.current.add(key);
     setClaimedRewards(Array.from(claimedRewardsRef.current));
+    // The Record's counts follow the first time each thing happens (15 Oct play-through check).
+    const bump = (k: string) => setStats((st) => ({ ...st, [k]: (st[k] ?? 0) + 1 }));
+    if (/:challenge-cleared$/.test(key) || /^G\d:approach-cleared$/.test(key)) bump('challengesCleared');
+    if (/:press-tried$/.test(key)) bump('challengesPressedOn');
+    if (/:fight-won$/.test(key)) bump('enemiesDefeated');
+    if (/^G\d:battle$/.test(key)) { bump('battlesWon'); bump('enemiesDefeated'); }
+    if (/^G\d:approach$/.test(key)) bump('timesSteppedUp');
+    if (/^G\d:done$/.test(key)) bump('gatheringsAttended');
     return true;
   };
   const [weaponLevel, setWeaponLevel] = useState<number>(initialSave?.weaponLevel ?? 1);
@@ -201,24 +209,25 @@ export default function App() {
   );
 
   const [stats, setStats] = useState<Record<string, number>>(
+    // A new game starts at zero (it used to start with the mid-season demo's sample numbers).
     initialSave?.stats ?? {
-      daysPlayed: 13,
-      bestStreak: 6,
-      gatheringsAttended: 2,
-      fragmentsSolved: 5,
-      relicsGiven: 3,
-      timesSteppedUp: 1,
-      fragmentsMatched: 2,
-      battlesWon: 2,
-      challengesCleared: 7,
-      challengesPressedOn: 2,
-      enemiesDefeated: 4,
+      daysPlayed: 0,
+      bestStreak: 0,
+      gatheringsAttended: 0,
+      fragmentsSolved: 0,
+      relicsGiven: 0,
+      timesSteppedUp: 0,
+      fragmentsMatched: 0,
+      battlesWon: 0,
+      challengesCleared: 0,
+      challengesPressedOn: 0,
+      enemiesDefeated: 0,
       perfectRolls: 1,
     }
   );
 
   const [earnedBadgeIds, setEarnedBadgeIds] = useState<string[]>(
-    initialSave?.earnedBadgeIds ?? ['first-light', 'open-hand', 'whole-table', 'perfect']
+    initialSave?.earnedBadgeIds ?? []
   );
 
   const [pinnedClues, setPinnedClues] = useState<PinnedPartyClue[]>(
@@ -337,8 +346,8 @@ export default function App() {
     setSeekerFirstLetterHints({});
     setSharedFanOutClues({});
     setStats({
-      daysPlayed: 1,
-      bestStreak: 1,
+      daysPlayed: 0,
+      bestStreak: 0,
       gatheringsAttended: 0,
       fragmentsSolved: 0,
       relicsGiven: 0,
@@ -418,6 +427,17 @@ export default function App() {
     setChatChannel('MINE');
   };
 
+  // Days Played and Best Streak come straight from the days finished, so they can never drift (15 Oct).
+  const liveStats = useMemo<Record<string, number>>(() => {
+    const played = completedDays
+      .map((k) => { const [w, d] = k.split('-').map(Number); return (w - 1) * 6 + d; })
+      .sort((a, b) => a - b);
+    let run = 0;
+    let best = 0;
+    played.forEach((n, i) => { run = i > 0 && n === played[i - 1] + 1 ? run + 1 : 1; best = Math.max(best, run); });
+    return { ...stats, daysPlayed: played.length, bestStreak: best };
+  }, [stats, completedDays]);
+
   // Live dynamic badge evaluation so RECORD reflects every unlocked achievement in real time
   const computedEarnedBadges = useMemo(() => {
     const set = new Set<string>(earnedBadgeIds);
@@ -426,20 +446,23 @@ export default function App() {
     );
     const hasAdeptAttr = Object.values(attributes).some((val) => val >= 51);
 
+    // Each badge follows its own description (Record), from what the game has recorded (15 Oct play-through check).
+    const has = (k: string) => claimedRewards.includes(k);
+    const weeks = [1, 2, 3, 4, 5, 6];
     if (completedDays.length >= 1) set.add('first-light');
-    if (hasWholeWeek || (stats.daysPlayed || 0) >= 7) set.add('whole-week');
-    if ((stats.gatheringsAttended || 0) >= 6 || completedDays.length >= 30) set.add('long-road');
+    if (weeks.some((w) => [1, 2, 3, 4, 5, 6].every((d) => completedDays.includes(`${w}-${d}`)) && has(`G${w}:done`))) set.add('whole-week');
+    if (weeks.every((w) => has(`G${w}:done`))) set.add('long-road');
     if (hasAdeptAttr) set.add('sharpened');
-    if ((stats.relicsGiven || 0) >= 1) set.add('open-hand');
-    if ((stats.relicsGiven || 0) >= 2 && (stats.battlesWon || 0) >= 1) set.add('lifeline');
-    if ((stats.gatheringsAttended || 0) >= 1) set.add('whole-table');
-    if ((stats.battlesWon || 0) >= 3) set.add('clean-night');
-    if ((stats.perfectRolls || 0) >= 1) set.add('perfect');
-    if ((stats.challengesPressedOn || 0) >= 3) set.add('never-enough');
-    if ((stats.challengesCleared || 0) >= 4) set.add('many-hands');
-    if ((stats.enemiesDefeated || 0) >= 5) set.add('down-to-thread');
+    if ((liveStats.relicsGiven || 0) >= 1) set.add('open-hand');
+    // The whole party first sits down together at the inn, at the end of Day 2.
+    if (completedDays.includes('1-2')) set.add('whole-table');
+    if ((liveStats.perfectRolls || 0) >= 1) set.add('perfect');
+    if (weeks.some((w) => claimedRewards.filter((k) => k.startsWith(`${w}-`) && k.endsWith(':press')).length >= 3)) set.add('never-enough');
+    if (claimedRewards.filter((k) => k.startsWith('cleared-attr:')).length >= 4) set.add('many-hands');
+    if (has('down-to-thread')) set.add('down-to-thread');
+    // "Lifeline" needs a friend's roll to follow, so it waits for real multiplayer.
     return Array.from(set);
-  }, [earnedBadgeIds, completedDays, stats, attributes]);
+  }, [earnedBadgeIds, completedDays, liveStats, attributes, claimedRewards]);
 
   const [tickerIndex, setTickerIndex] = useState<number>(0);
 
@@ -479,9 +502,9 @@ export default function App() {
     onAction: () => void;
   }[] = [
     {
-      text: `🔓 ${halfSolvedCount} Seeker ${
-        halfSolvedCount === 1 ? 'Fragment awaits' : 'Fragments await'
-      } your second lock-word in the Seeker Chest (+${GOLD_FRAGMENT_WORD_SOLVED}g)`,
+      text: `🔓 ${halfSolvedCount} ${
+        halfSolvedCount === 1 ? 'fragment in your Seeker Chest is' : 'fragments in your Seeker Chest are'
+      } still missing a word (+${GOLD_FRAGMENT_WORD_SOLVED}g a word)`,
       actionLabel: 'SOLVE IN BAG →',
       onAction: () => {
         setBagInitialSubTab('SEEKER');
@@ -490,7 +513,7 @@ export default function App() {
     },
     isPartyFormed
       ? {
-          text: `🔥 Garrick has the kettle on at the W${currentWeek}D${currentDay} Campfire — check tonight's board of clues & theory pins`,
+          text: `🔥 Garrick has the kettle on. Tonight's clues are on the board at the fire.`,
           actionLabel: 'CAMPFIRE →',
           onAction: () => {
             setActiveTab('CHAT');
@@ -500,8 +523,8 @@ export default function App() {
       : {
           text:
             currentWeek === 1 && currentDay === 1
-              ? '🌲 Solo on the Forest Road (W1·D1) — Find the list in your cargo box & follow it to The Hollow Wake Inn'
-              : '🏠 At The Hollow Wake Inn (W1·D2) — Complete FIT THE PAGE to form your team & unlock Party Chat',
+              ? '🌲 Day 1 · The forest road.'
+              : "🏠 Day 2 · The Hollow Wake Inn. The party's chat opens when today is done.",
           actionLabel: 'STORY →',
           onAction: () => {
             setActiveTab('CHAT');
@@ -527,8 +550,9 @@ export default function App() {
     personalStakeShort: [birthplace && `born in ${birthplace}`, grandparentName && `grandparent ${grandparentName}`].filter(Boolean).join('; '),
     recentRolls,
     relicsGiven: relicsGivenLog,
-    solvedFragmentsCount: stats.fragmentsSolved || 5,
-    garrickTopicsAsked: ['Meira notebook', 'The extra cup at the inn', 'Why none of us died'],
+    solvedFragmentsCount: stats.fragmentsSolved ?? 0,
+    // Not tracked yet: Garrick's memory gets no invented topics (15 Oct play-through check).
+    garrickTopicsAsked: [],
     last4ChatTurns: partyMessages.slice(0, 4).map((m) => ({
       speaker: m.split(':')[0] || 'Party',
       line: m.split(':').slice(1).join(':').trim() || m,
@@ -574,7 +598,7 @@ export default function App() {
     const newId = `pin-${clue.week}-${clue.day}-${Date.now()}`;
     setPinnedClues((prev) => [{ ...clue, id: newId }, ...prev]);
     setPartyMessages((msgs) => [
-      `📌 [Pinned for Campfire & Day 7 by ${clue.author}]: W${clue.week}D${clue.day} ${clue.place} — "${clue.text}"`,
+      `📌 ${clue.author} pinned a clue for the fire: “${clue.text}”`,
       ...msgs,
     ]);
   };
@@ -582,14 +606,9 @@ export default function App() {
   const handleSealDay = (week: number, day: number, summaryNote: string) => {
     const key = `${week}-${day}`;
     if (!completedDays.includes(key)) {
-      setCompletedDays((prev) => [...prev, key]);
-      setStats((s) => ({
-        ...s,
-        daysPlayed: (s.daysPlayed ?? 0) + 1,
-        bestStreak: (s.bestStreak ?? 0) + 1,
-      }));
+      setCompletedDays((prev) => (prev.includes(key) ? prev : [...prev, key]));
       setPartyMessages((msgs) => [
-        `✦ [Landmark Sealed · ${characterName}]: Completed ${summaryNote}`,
+        `✦ ${characterName} finished Day ${day}: ${summaryNote}.`,
         ...msgs,
       ]);
     }
@@ -636,9 +655,12 @@ export default function App() {
       };
     });
     setGold((g) => g + GOLD_FRAGMENT_WORD_SOLVED);
-    setStats((s) => ({ ...s, fragmentsSolved: (s.fragmentsSolved || 0) + 1 }));
+    // Fragments where you filled a missing word: one per fragment, however many of its words.
+    if (solverName === characterName && !Object.values(solvedWords[fragId] || {}).includes(solverName)) {
+      setStats((s) => ({ ...s, fragmentsSolved: (s.fragmentsSolved || 0) + 1 }));
+    }
     setPartyMessages((msgs) => [
-      `🔓 [Seeker Chest · ${solverName}]: Solved Lock ${wordIndex} on Fragment ${fragId} (+${GOLD_FRAGMENT_WORD_SOLVED}g)!`,
+      `🔓 ${solverName} found a missing word in the Week ${fragId.split('-')[0]}, Day ${fragId.split('-')[1]} fragment (+${GOLD_FRAGMENT_WORD_SOLVED}g).`,
       ...msgs,
     ]);
     return true;
@@ -650,7 +672,7 @@ export default function App() {
     setStats((s) => ({ ...s, relicsGiven: (s.relicsGiven || 0) + 1 }));
     setRelicsGivenLog((prev) => [`${characterName} -> ${friendName} (${relicType} Relic)`, ...prev.slice(0, 4)]);
     setPartyMessages((msgs) => [
-      `🤝 [Relic Patron]: ${characterName} gifted 1 ${relicType} Relic to ${friendName}!`,
+      `🤝 ${characterName} gave ${friendName} a ${relicType} Relic.`,
       ...msgs,
     ]);
   };
@@ -1385,7 +1407,7 @@ export default function App() {
                   }}
                   pinnedClues={pinnedClues}
                   completedDays={completedDays}
-                  stats={stats}
+                  stats={liveStats}
                   characterName={characterName}
                   characterClass={characterClass}
                   weaponLevel={weaponLevel}
@@ -1464,7 +1486,7 @@ export default function App() {
                   attributes={attributes}
                   weaponLevel={weaponLevel}
                   armorLevel={armorLevel}
-                  stats={stats}
+                  stats={liveStats}
                   earnedBadgeIds={computedEarnedBadges}
                 />
               )}

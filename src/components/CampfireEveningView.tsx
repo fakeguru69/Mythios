@@ -12,7 +12,6 @@ import {
   buildWhatWeDidTodayLines,
   evaluateEveningNoticings,
   getCampfireDayEntry,
-  getPublicFanOutClue,
   pickRotatedCampfireLine,
   resolveCampfireNudgeText,
 } from '../data/campfireDaysData';
@@ -20,7 +19,7 @@ import { routeGarrickMessage } from '../data/garrickRouter';
 import { CHAPTER_SCRIPTS } from '../data/chapterScripts';
 import { FRAGMENT_MEANING_QUESTIONS } from '../data/fragmentMeaningQuestions';
 import { WEEK_QUESTIONS } from '../data/weekQuestions';
-import { HintMask, hintHas } from '../data/fanOutLeads';
+import { HintMask, hintHas, fanOutLeadsFor } from '../data/fanOutLeads';
 import { NarrationBlock, ScriptInline, fillScriptTokens } from './ChapterScriptParts';
 
 export interface CampfireEveningViewProps {
@@ -40,6 +39,8 @@ export interface CampfireEveningViewProps {
   /** Returns false when the word can't be taken (already filled, or this friend's one word for today is used). */
   onSolveWord: (fragId: string, wordIndex: 1 | 2, solverName: string) => boolean;
   seekerFirstLetterHints: Record<string, HintMask>;
+  /** What each player found at the last light, by day (title and text of the lead's clue). */
+  sharedFanOutClues?: Record<string, { title: string; text: string; firstLetter: string }>;
   fanOutBranchesByDay: Record<string, Record<FriendId, 'CHALLENGE' | 'FIGHT' | 'CAMPFIRE'>>;
   onChangeFriendFanOutBranch: (
     dayKey: string,
@@ -87,6 +88,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   onPinMeaning,
   weekBoard,
   onSetWeekLine,
+  sharedFanOutClues = {},
 }) => {
   const dayKey = `${currentWeek}-${currentDay}`;
   const dayEntry = getCampfireDayEntry(currentWeek, currentDay);
@@ -101,8 +103,6 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           partySize: party.length,
         })
       : null;
-  const publicClue = getPublicFanOutClue(currentWeek, currentDay);
-  const w1d1Clue = getPublicFanOutClue(1, 1);
 
   const youDisplay = characterName || 'You';
   const partyIds: FriendId[] = party.map((f) => f.id);
@@ -198,18 +198,36 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     return () => window.clearInterval(timer);
   }, []);
 
-  // Test default: the sample friends fan out in turn (Challenge, fight, Campfire); the player's own pick is saved.
-  const sampleBranches: ('CHALLENGE' | 'FIGHT' | 'CAMPFIRE')[] = ['CHALLENGE', 'FIGHT', 'CAMPFIRE'];
+  // Test default: every sample friend fans out (the test controls can send one straight to the fire).
   const dayBranches: Record<FriendId, 'CHALLENGE' | 'FIGHT' | 'CAMPFIRE'> = {
     ...Object.fromEntries(
-      partyIds.map((fid, i) => [fid, fid === 'YOU' ? 'CHALLENGE' : sampleBranches[(i - 1) % sampleBranches.length]])
+      partyIds.map((fid) => [fid, 'CHALLENGE'])
     ),
     ...(fanOutBranchesByDay[dayKey] || {}),
   };
 
-  const clueContributors = partyIds.filter(
-    (fid) => dayBranches[fid] === 'CHALLENGE' || dayBranches[fid] === 'FIGHT'
-  );
+  // The board (approved Fan Out and Campfire proposal): one card per lead, under the names of whoever found it,
+  // and "Nobody went to …" for a lead nobody took. The player's card is what they really found at the last light.
+  // Prototype stand-in: each sample friend who fanned out takes the day's leads in turn.
+  const isW1D1 = currentWeek === 1 && currentDay === 1;
+  const dayLeads = fanOutLeadsFor(currentWeek, currentDay, []);
+  const myFind = sharedFanOutClues[dayKey];
+  const myLeadIdx = myFind ? dayLeads.findIndex((l) => l.clueTitle === myFind.title) : -1;
+  const leadFinders: FriendId[][] = dayLeads.map(() => []);
+  if (myLeadIdx >= 0) leadFinders[myLeadIdx].push('YOU');
+  const friendLeadIdx: Record<FriendId, number> = {};
+  if (!isW1D1) {
+    partyIds
+      .filter((fid) => fid !== 'YOU')
+      .forEach((fid, i) => {
+        if (dayBranches[fid] === 'CAMPFIRE' || !dayLeads.length) return;
+        const li = (i + currentDay) % dayLeads.length;
+        friendLeadIdx[fid] = li;
+        leadFinders[li].push(fid);
+      });
+  }
+  const clueContributors = partyIds.filter((fid) => leadFinders.some((f) => f.includes(fid)));
+  const dayOneFind = sharedFanOutClues['1-1'];
 
   const dayTheoryPins = theoryPinsByDay[dayKey] || {};
   const w1d1TheoryPins = theoryPinsByDay['1-1'] || {};
@@ -247,7 +265,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   const seatHasHint = (word: 1 | 2) =>
     activeSeat === 'YOU'
       ? hintHas(seekerFirstLetterHints[dayKey], word)
-      : word === 1 && (dayBranches[activeSeat] === 'CHALLENGE' || dayBranches[activeSeat] === 'FIGHT');
+      : friendLeadIdx[activeSeat] !== undefined && dayLeads[friendLeadIdx[activeSeat]]?.hintFor === word;
   const activeSeatHasFirstLetterHint = seatHasHint(1) || seatHasHint(2);
 
   // Evaluate at most 2 true Noticing lines for Step 1
@@ -353,7 +371,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
       reading: selectedReading,
       readingText,
       customLine: customTheoryNote.trim() || undefined,
-      timestamp: 'Tonight · Before 5:00am',
+      timestamp: 'Tonight',
       fromPrivatePrompt: false,
       storedAck: ack,
     };
@@ -581,32 +599,10 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             </span>
             <span>·</span>
             <span className="text-[#F4F1F8] truncate">{dayEntry.place}</span>
-            <span>·</span>
-            <span
-              className={
-                dayEntry.tone === 'quiet' ? 'text-[#B7A9CC]' : 'text-[#F0A552]'
-              }
-            >
-              {dayEntry.tone === 'quiet' ? 'Quiet Night' : 'Wry Night'}
-            </span>
-            {dayEntry.cupNight && (
-              <>
-                <span>·</span>
-                <span className="text-[#E5C158]" title="Garrick pours an extra cup tonight">
-                  Extra Cup
-                </span>
-              </>
-            )}
           </div>
           <div className="text-[11.5px] font-sans text-[#B7A9CC] flex items-center gap-2 mt-0.5">
             <span>
               Seat: <strong className="text-[#F4F1F8]">{friendNames[activeSeat]}</strong>
-            </span>
-            <span>·</span>
-            <span className="tabular-nums">
-              {dayEntry.narratedNoGarrick
-                ? 'No Garrick (W1·D1)'
-                : `Garrick ${baseGarrickCount}/8 msgs · room ${roomGarrickCount}/12`}
             </span>
             <span>·</span>
             <button
@@ -722,6 +718,9 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
               <div className="text-[10.5px] font-['Cinzel'] font-bold text-[#B7A9CC] uppercase">
                 Evening Flags & Cutoff:
               </div>
+              <div className="text-[11px] font-sans text-[#B7A9CC] tabular-nums">
+                Garrick messages: {baseGarrickCount}/8 · room {roomGarrickCount}/12
+              </div>
               <div className="flex flex-wrap gap-1">
                 <button
                   type="button"
@@ -763,10 +762,10 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           {/* Per-friend Fan Out branch selector to test Challenge === Fight clue vs Head to Campfire = none */}
           <div className="pt-1 border-t border-[#3A2555]/60 flex items-center justify-between gap-2">
             <span className="text-[11px] text-[#B7A9CC]">
-              {friendNames[activeSeat]}’s Fan Out Branch Today:
+              {friendNames[activeSeat]} at the last light:
             </span>
             <div className="flex items-center gap-1">
-              {(['CHALLENGE', 'FIGHT', 'CAMPFIRE'] as const).map((b) => {
+              {(['CHALLENGE', 'CAMPFIRE'] as const).map((b) => {
                 const activeB = dayBranches[activeSeat] === b;
                 return (
                   <button
@@ -779,7 +778,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                         : 'bg-[#0D0714] border-[#3A2555] text-[#8B7A9E]'
                     }`}
                   >
-                    {b === 'CAMPFIRE' ? 'Head to Fire (No Clue)' : `${b} (Clue)`}
+                    {b === 'CAMPFIRE' ? 'Straight to the fire' : 'Followed a lead'}
                   </button>
                 );
               })}
@@ -801,7 +800,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
             <span className="text-[#F0A552] uppercase">
               {dayEntry.narratedNoGarrick
-                ? 'ARRIVING · THE FIRE (NO GARRICK ON W1·D1)'
+                ? 'ARRIVING · THE FIRE'
                 : 'ARRIVING · GARRICK'}
             </span>
             <span className="text-[#B7A9CC]">
@@ -915,62 +914,44 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           className={`rounded-xl border p-3.5 space-y-2.5 transition bg-[#150D22] border-[#3A2555]/80`}
         >
           <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
-            <span className="text-[#D4B876] uppercase">
-              THE BOARD · TODAY'S CLUES
-            </span>
-            <span className="text-[#B7A9CC]">
-              {dayBranches[activeSeat] === 'CAMPFIRE'
-                ? 'You headed straight to camp · Learning from board'
-                : `Pinned via ${dayBranches[activeSeat]} branch`}
-            </span>
+            <span className="text-[#D4B876] uppercase">THE BOARD · TODAY'S CLUES</span>
           </div>
 
-          {/* Carried-over W1·D1 clue on W1·D2 board */}
-          {currentWeek === 1 && currentDay === 2 && (
+          {/* Day 2: what the player found on Day 1, when the party had not yet met */}
+          {currentWeek === 1 && currentDay === 2 && dayOneFind && (
             <div className="p-3 rounded-lg bg-[#130B1F] border border-[#D4B876]/50 space-y-1">
-              <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold text-[#D4B876]">
-                <span>CARRIED FROM W1·D1 (THE FOREST ROAD) · {youDisplay.toUpperCase()}</span>
-                <span>{w1d1Clue.title}</span>
+              <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-['Cinzel'] font-bold text-[#D4B876]">
+                <span>FROM DAY 1 · THE FOREST ROAD</span>
+                <span className="font-sans font-normal text-[11.5px] text-[#6FD39A]">Found by {youDisplay}</span>
               </div>
-              <p className="font-['Cormorant_Garamond'] text-[18px] text-[#F4F1F8] leading-[1.45]">
-                {w1d1Clue.text}
-              </p>
+              <div className="font-['Cinzel'] font-bold text-[12.5px] text-[#E5C158]">📌 {dayOneFind.title}</div>
+              <p className="font-['Cormorant_Garamond'] text-[18px] text-[#F4F1F8] leading-[1.45]">{dayOneFind.text}</p>
             </div>
           )}
 
-          {/* Today's Canonical Clue from campfire-days.json */}
-          {clueContributors.length > 0 ? (
-            <div className="p-3 rounded-lg bg-[#130B1F] border border-[#3A2555] space-y-1.5">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#E5C158]">
-                  📌 {publicClue.title}
-                </span>
-                <span className="text-[11.5px] font-sans text-[#6FD39A]">
-                  Found by{' '}
-                  {clueContributors.map((fid) => friendNames[fid]).join(', ')}
-                </span>
-              </div>
-              <p className="font-['Cormorant_Garamond'] font-medium text-[19px] text-[#F4F1F8] leading-[1.5]">
-                {publicClue.text}
-              </p>
-              <div className="text-[11.5px] font-sans text-[#B7A9CC] pt-1 border-t border-white/[0.06]">
-                {partyIds
-                  .filter((fid) => dayBranches[fid] === 'CAMPFIRE')
-                  .map((fid) => friendNames[fid])
-                  .join(', ') ? (
-                  <span>
-                    Head to Campfire branch (learned from board):{' '}
-                    {partyIds
-                      .filter((fid) => dayBranches[fid] === 'CAMPFIRE')
-                      .map((fid) => friendNames[fid])
-                      .join(', ')}
+          {/* Found leads first, then the ones nobody took. */}
+          {dayLeads
+            .map((lead, li) => ({ lead, li }))
+            .sort((a, b) => Number(leadFinders[b.li].length > 0) - Number(leadFinders[a.li].length > 0))
+            .map(({ lead, li }) =>
+            leadFinders[li].length > 0 ? (
+              <div key={lead.id} className="p-3 rounded-lg bg-[#130B1F] border border-[#3A2555] space-y-1.5">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#E5C158]">📌 {lead.clueTitle}</span>
+                  <span className="text-[11.5px] font-sans text-[#6FD39A]">
+                    Found by {leadFinders[li].map((fid) => friendNames[fid]).join(', ')}
                   </span>
-                ) : (
-                  <span>Every friend searched the dusk perimeter today.</span>
-                )}
+                </div>
+                <p className="font-['Cormorant_Garamond'] font-medium text-[19px] text-[#F4F1F8] leading-[1.5]">{lead.clueText}</p>
               </div>
-            </div>
-          ) : (
+            ) : !isW1D1 && lead.place ? (
+              <div key={lead.id} className="px-3 py-2 rounded-lg border border-dashed border-[#3A2555] text-[13.5px] font-sans text-[#B7A9CC]">
+                Nobody took this lead tonight: {lead.place}.
+              </div>
+            ) : null
+          )}
+
+          {clueContributors.length === 0 && (
             <div className="p-3 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[13.5px] font-sans text-[#B7A9CC]">
               Nobody followed a lead tonight.
             </div>
@@ -1201,13 +1182,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             <span className="text-[#D4B876] uppercase">
               TONIGHT'S QUESTION
             </span>
-            <span className="text-[#B7A9CC]">
-              {isPastDawnCutoff
-                ? 'Locked at 5:00am party time'
-                : canPeekOtherPins
-                ? 'Board unlocked'
-                : 'Pin-before-peek active'}
-            </span>
+            {isPastDawnCutoff && <span className="text-[#B7A9CC]">Closed at dawn</span>}
           </div>
 
           {/* Dynamic {friend:Attribute} Nudge */}
@@ -1302,8 +1277,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           {/* Pinned Theories Board (Enforces Pin-Before-Peek) */}
           <div className="pt-2 border-t border-white/[0.08] space-y-2">
             <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold text-[#B7A9CC]">
-              <span>PARTY THEORY PINS ({Object.keys(dayTheoryPins).length}/{partyIds.length})</span>
-              <span>No right/wrong marks · No gold</span>
+              <span>THE PARTY'S READINGS</span>
             </div>
 
             {/* Carried W1·D1 Theory Pin on W1·D2 */}
@@ -1315,7 +1289,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                   className="p-2.5 rounded-lg bg-[#130B1F] border border-[#D4B876]/45 text-[13px] font-sans"
                 >
                   <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold text-[#D4B876]">
-                    <span>{p1.friendName} · W1·D1 Forest Road Pin</span>
+                    <span>{p1.friendName} · Day 1 · The forest road</span>
                     <span>Reading {p1.reading}</span>
                   </div>
                   <p className="text-[#F4F1F8] mt-0.5">“{p1.readingText}”</p>
@@ -1324,11 +1298,11 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
 
             {!canPeekOtherPins ? (
               <div className="p-3 rounded-lg bg-[#130B1F] border border-dashed border-[#5E4585] text-[13px] font-sans text-[#B7A9CC]">
-                🔒 <strong>Pin-before-peek:</strong> Pin {friendNames[activeSeat]}’s reading above (or toggle the 5:00am party cutoff) to reveal what the other friends pinned tonight.
+                🔒 The others' readings show once {activeSeat === 'YOU' ? 'you have' : `${friendNames[activeSeat]} has`} pinned one above.
               </div>
             ) : Object.values(dayTheoryPins).length === 0 ? (
               <div className="p-2.5 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[13px] font-sans text-[#B7A9CC]">
-                No theories pinned for W{currentWeek}·D{currentDay} yet.
+                No readings pinned yet tonight.
               </div>
             ) : (
               <div className="space-y-1.5">
@@ -1345,7 +1319,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                         {pin.friendName.toUpperCase()} · READING {pin.reading}
                       </span>
                       <span className="text-[11px] text-[#8B7A9E]">
-                        {pin.fromPrivatePrompt ? 'Synced from Daily Thread' : pin.timestamp}
+                        {pin.timestamp}
                       </span>
                     </div>
                     <p className="text-[#F4F1F8] leading-snug">“{pin.readingText}”</p>
@@ -1511,26 +1485,26 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
               {!dayEntry.riddle
                 ? ''
                 : dayEntry.tone === 'quiet' && !quietRiddleRequested
-                ? 'Quiet evening · Hidden unless asked'
+                ? ''
                 : `${riddleTries}/${dayEntry.riddle.maxTries} tries`}
             </span>
           </div>
 
           {!dayEntry.riddle ? (
             <p className="font-sans text-[13.5px] text-[#B7A9CC]">
-              Week 1 Day 1 has no Garrick line and no riddle.
+              No riddle tonight.
             </p>
           ) : dayEntry.tone === 'quiet' && !quietRiddleRequested ? (
             <div className="flex items-center justify-between gap-2 p-2.5 rounded-lg bg-[#130B1F] border border-[#3A2555]">
               <span className="text-[13.5px] font-sans text-[#D8CEE8]">
-                Tonight is a quiet evening ({dayEntry.place}). Garrick keeps the riddle to himself unless someone asks.
+                Garrick has a riddle tonight, if anyone asks.
               </span>
               <button
                 type="button"
                 onClick={() => setQuietRiddleRequested(true)}
                 className="px-3 py-1.5 rounded-lg bg-[#2A1B40] hover:bg-[#3A2555] border border-[#D4B876] font-['Cinzel'] font-bold text-[11px] text-[#F0A552] whitespace-nowrap shrink-0"
               >
-                Ask for a riddle?
+                Ask for it
               </button>
             </div>
           ) : (
