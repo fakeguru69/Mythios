@@ -80,7 +80,7 @@ Each day has one lead leaning A, one leaning B, and one that complicates both. T
 
 | | Place | Roll | Clue title | Clue | Leans | Hint word |
 |---|---|---|---|---|---|---|
-| 1 · CANON | the foot of the round hill | Aim · look down at the foot of the hill / Intellect · go over every shape below the crown | No horses | Not one horse is tethered at the foot of the Kiln, though six rode this way. | both | 1 |
+| 1 · CANON | the foot of the round hill | Aim · look down at the foot of the hill / Intellect · go over every shape below the crown | No horses | Not one horse is tethered at the foot of the Kiln. | both | 1 |
 | 2 · NEW | the crack across its crown | Aim · watch the crown after the lamp goes in / Intellect · watch the air over the crack | Smoke from the crack | Soon after the lamp goes in, thin pale smoke starts to rise from the crack. By daylight there was only shimmering air. | A | 2 |
 | 3 · NEW | the knife-edge below the cairn | Agility · go a little way back along the edge / Might · test the stones of the face | No way down in the dark | Now the light has gone, the knife-edge below the cairn is a black line with nothing either side. The face beside it drops straight to loose scree. | B | 1 |
 
