@@ -83,11 +83,11 @@ export const CAMPFIRE_STORED_LINES = {
   cupNightStageDirection:
     'Garrick pours one extra tin cup and sets it at the empty place at the edge of the firelight without a word.',
   noticingTemplates: {
-    bruisedScrape: "{friend}, you're favouring that arm.",
-    solvedFragmentFirst: '{friend} got the stone-words first today.',
-    lentRelic: '{friend} handed over a Relic today.',
-    backAfterMissedDay: 'Back with us, {friend}. Kettle is still hot.',
-    notYetArrived: "{friend} isn't by the fire yet.",
+    bruisedScrape: "{friend}, you're favouring that arm. Sit nearer the fire.",
+    solvedFragmentFirst: '{friend} had the Fragment before the rest of us were seated.',
+    lentRelic: '{friend} gave a hand today. I saw.',
+    backAfterMissedDay: '{friend}. Good to see you.',
+    notYetArrived: "{friend} isn't here yet. There's room.",
   },
 } as const;
 

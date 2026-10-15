@@ -10,6 +10,8 @@ export interface GarrickStoryState {
   ep6RevealLanded: boolean;
   // Canon: "Malakor" is never said at the Campfire.
   atCampfire?: boolean;
+  // He gives the name only the first time he is asked (CLAUDE.md §6, Garrick).
+  malakorNameGiven?: boolean;
 }
 
 export interface GarrickRouteResult {
@@ -91,7 +93,7 @@ export function passesGarrickFilter(aiText: string): { ok: boolean; matched?: st
 }
 
 // Stored deflection bank by question type (garrick-stored-lines.md)
-export const DEFLECTION_BANK: Record<string, { line: string; meaning: string; minEp?: number }[]> = {
+export const DEFLECTION_BANK: Record<string, { line: string; meaning: string; minEp?: number; minDay?: number }[]> = {
   promise_prediction: [
     { line: 'I won\'t promise you that.', meaning: 'He refuses to make a false promise; Order training forbids lying about what is to come.' },
     { line: 'A cup of tea and a dry roof. Those you\'ve had.', meaning: 'He answers only for what has already happened, never for the ending he is steering toward.' },
@@ -128,7 +130,8 @@ export const DEFLECTION_BANK: Record<string, { line: string; meaning: string; mi
   ],
   banter_role: [
     { line: 'I keep an inn. Some nights that takes a little magic.', meaning: 'Answers "are you a wizard" without a denial.' },
-    { line: 'I\'ve a bar, a roof and a fire. Kings have had less.', meaning: 'True—and on reread, the heir of a king speaking of his own house.' },
+    // "king" is first said on W2D5 (first-use gate), so this line waits until then.
+    { line: 'I\'ve a bar, a roof and a fire. Kings have had less.', meaning: 'True—and on reread, the heir of a king speaking of his own house.', minEp: 2, minDay: 5 },
     { line: 'I\'ve a bar. It has a roof, and a fire.', meaning: 'Plain statement of fact.' },
   ],
 };
@@ -147,8 +150,16 @@ export const ABUSE_TURN_ASIDES = [
 // Rotation tracker per session
 const lastUsedByCategory: Record<string, string[]> = {};
 
-function pickRotated(category: string, items: { line: string; meaning: string; minEp?: number }[], ep: number): { line: string; meaning: string } {
-  const valid = items.filter((item) => !item.minEp || ep >= item.minEp);
+function pickRotated(
+  category: string,
+  items: { line: string; meaning: string; minEp?: number; minDay?: number }[],
+  ep: number,
+  day: number
+): { line: string; meaning: string } {
+  // A line with minEp (and optionally minDay) is used only from that week (and day) on.
+  const valid = items.filter(
+    (item) => !item.minEp || ep > item.minEp || (ep === item.minEp && day >= (item.minDay ?? 1))
+  );
   const history = lastUsedByCategory[category] || [];
   const unused = valid.filter((item) => !history.includes(item.line));
   const pool = unused.length > 0 ? unused : valid;
@@ -559,7 +570,7 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
 
   // "Do you know the king's name?" / "Who is the king?" / "Who was the king?"
   if (/\b(king's name|who is the king|who was the king|know his name)\b/i.test(q)) {
-    if (!state.atCampfire && (state.ep6RevealLanded || state.episode > 2 || (state.episode === 2 && state.day === 7))) {
+    if (!state.atCampfire && !state.malakorNameGiven && (state.ep6RevealLanded || state.episode > 2 || (state.episode === 2 && state.day === 7))) {
       return {
         question,
         route: 'SCRIPTED_ROW',
@@ -607,7 +618,7 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
 
   // 4. Check RESTRICTED CATEGORIES -> Rotated Stored Deflection Bank
   if (/\b(promise|swear|will we win|will everyone|survive|be okay|will joss|get to the king|next gathering|next week|next boss|what happens at the end|what's the twist|come back)\b/i.test(q)) {
-    const picked = pickRotated('promise_prediction', DEFLECTION_BANK.promise_prediction, state.episode);
+    const picked = pickRotated('promise_prediction', DEFLECTION_BANK.promise_prediction, state.episode, state.day);
     return {
       question,
       route: 'STORED_BANK_LINE',
@@ -619,7 +630,7 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
   }
 
   if (/\b(what did mei|did jo fail|who rolled|ask you in private|tamsin found|strongest of us|ask you about me|biggest secret|trust least|most gold|fragment right|answer dev gave)\b/i.test(q)) {
-    const picked = pickRotated('other_friends', DEFLECTION_BANK.other_friends, state.episode);
+    const picked = pickRotated('other_friends', DEFLECTION_BANK.other_friends, state.episode, state.day);
     return {
       question,
       route: 'STORED_BANK_LINE',
@@ -631,7 +642,7 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
   }
 
   if (/\b(family|father|mother|grandmother|born|grow up|growing up|taught you|pet|cat|dog|how long has the inn|why do you run an inn)\b/i.test(q)) {
-    const picked = pickRotated('himself_family', DEFLECTION_BANK.himself_family, state.episode);
+    const picked = pickRotated('himself_family', DEFLECTION_BANK.himself_family, state.episode, state.day);
     return {
       question,
       route: 'STORED_BANK_LINE',
@@ -643,7 +654,7 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
   }
 
   if (/\b(wizard|garrick for king|king garrick)\b/i.test(q)) {
-    const picked = pickRotated('banter_role', DEFLECTION_BANK.banter_role, state.episode);
+    const picked = pickRotated('banter_role', DEFLECTION_BANK.banter_role, state.episode, state.day);
     return {
       question,
       route: 'STORED_BANK_LINE',
@@ -655,7 +666,7 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
   }
 
   if (/\b(secret|hiding|know something|not telling|coincidence|worked for the order|where is her body|meira|stone|stones|shard|order|cult|malakor|king|socket|moon-blood|ledger|verse|answering|children|tamsin|corin|wren|joss|rider|strangers)\b/i.test(q)) {
-    const picked = pickRotated('secret_knowledge', DEFLECTION_BANK.secret_knowledge, state.episode);
+    const picked = pickRotated('secret_knowledge', DEFLECTION_BANK.secret_knowledge, state.episode, state.day);
     return {
       question,
       route: 'STORED_BANK_LINE',
@@ -667,7 +678,7 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
   }
 
   if (/\b(trust|honest|believe you|like us)\b/i.test(q)) {
-    const picked = pickRotated('trust', DEFLECTION_BANK.trust, state.episode);
+    const picked = pickRotated('trust', DEFLECTION_BANK.trust, state.episode, state.day);
     return {
       question,
       route: 'STORED_BANK_LINE',

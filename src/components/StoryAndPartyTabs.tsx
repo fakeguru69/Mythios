@@ -56,6 +56,7 @@ import {
   ScriptTokens,
   TapEcho,
   fillScriptTokens,
+  personalStakeLine,
   pickNoticeLine,
 } from './ChapterScriptParts';
 import {
@@ -121,6 +122,9 @@ interface StoryTabViewProps {
   onOpenLedger: () => void;
   appliedLoopholeIds: string[];
   completedDays: string[];
+  /** Session Zero answers (optional): the player's line on Meira's list (W1D2). */
+  birthplace?: string;
+  grandparentName?: string;
   onClaimReward?: (key: string) => boolean;
   /** Whether a reward key has been claimed (also marks results such as 'G3:united-effort-lost'). */
   hasClaimedReward?: (key: string) => boolean;
@@ -232,6 +236,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   onRecordSoloFanOutClue,
   onShareFanOutClue,
   completedDays = [],
+  birthplace = '',
+  grandparentName = '',
   onClaimReward = () => true,
   hasClaimedReward = () => false,
 }) => {
@@ -1012,6 +1018,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   const scriptTokens: ScriptTokens = {
     friends: party.filter((f) => f.id !== 'YOU').map((f) => f.name),
     partySize: party.length,
+    stake: personalStakeLine(birthplace, grandparentName),
   };
   const fill = (text: string) => fillScriptTokens(text, scriptTokens);
 
@@ -1941,7 +1948,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
         atHighwall: currentWeek >= 5,
         ep6RevealLanded:
           currentWeek === 6 && mode === 'GATHERING' && twistRevealed,
+        malakorNameGiven: hasClaimedReward('garrick:malakor-name'),
       });
+      if (routed.reply.startsWith('Malakor.')) onClaimReward('garrick:malakor-name');
       return routed.reply.replace(/^[“"]|[”"]$/g, '');
     }
     // The friends are real players — never write scripted lines for them

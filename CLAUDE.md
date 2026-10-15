@@ -115,9 +115,11 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 **United Effort (§5):** two bars at 100 (the thing in the way, the thing at risk; both 60 for a friend alone). Friends take turns, nobody twice until all have gone. Each turn is a normal Challenge in the night's Attribute against the weekday DC. Success: 10 + d20 to the thing in the way. Fail: 10 + d20 to the thing at risk. Ends when either reaches 0. +300g to every friend present only if the thing in the way hits 0. One Relic per roll (+4), spent either way. No growth. Stories and lines: `docs/canon/mythios-united-effort-stories.md`.
 
-**Garrick:** never promises, never predicts, never denies knowing, never invents facts about himself, no sarcasm, no fake doubt. Banned phrases include "maybe", "perhaps", "possibly", "I don't know", "I've never", "I've heard", "I wouldn't know", "I couldn't say". He keeps an inn (not "retired"). He is with the party all of Week 6. The Store is never locked. He may say "Malakor. My grandmother taught me that name." the first time he is asked, from Gathering 2 on, never before.
+**Garrick:** never promises, never predicts, never denies knowing, never invents facts about himself, no sarcasm, no fake doubt. Banned phrases include "maybe", "perhaps", "possibly", "I don't know", "I've never", "I've heard", "I wouldn't know", "I couldn't say". He keeps an inn (not "retired"). He is with the party all of Week 6. The Store is never locked. He may say "Malakor. My grandmother taught me that name." the first time he is asked, from Gathering 2 on, never before, and never at the Campfire; asked again, he gives a stored deflection (built 15 Oct).
 
 **First-use gates (never earlier):** "the Order" from W3D1 (named at Gathering 2 in story; not in Week 1–2 recaps); "four children / four names" from W2D1; "king" W2D5; "Malakor" never at the Campfire; "fifth / five" W3D3 (Meira's count); "moon-blood" W4D4; "Highwall" W5D1; "heartbeat" W4D6.
+
+These gates bind Garrick's words, the Campfire and the build's own text (leads, questions, Bag, router). The episode files' story text may use a word earlier, and it stays (Fake Guru, 15 Oct): Gathering 1's "four names", Gathering 2's "Highwall" and "the Order", fragment 1-1's "Five fell". Garrick's "Kings have had less." waits until W2D5.
 
 **Highwall tally (canon):** 8 left at Week 5 Day 5, 7 left at the end of Gathering 5, 6 left at Week 6 Day 1.
 
@@ -181,7 +183,7 @@ These are not locked forever; the design is still moving. They mean: do not do t
 - Do not invent numbers. If a number is not in §6 or `economy.ts`, ask.
 - Do not bring back anything retired (Core Rules §14): optional Bonus Challenges, keepsakes, free help, the one-roll United Effort, Signature Power, "the Six", the empty seat, the Store lock.
 - Do not show `bearsOnFork`, `qaNote`, "true meaning" or any Deception Table meaning to players.
-- Do not edit the old audit bundles in `public/`.
+- Do not edit the old audit bundles in `public/`. They hold the whole secret: the server sends them only with `?dev=1`, and the game build leaves them out (15 Oct). The Audit Workbench loads only with `?dev=1` (its own file).
 - Do not add invented lore (the old build had Oakhaven, Rowan, Kael, Captain Vance, Iron Gate; all cut).
 
 ---
@@ -191,7 +193,8 @@ These are not locked forever; the design is still moving. They mean: do not do t
 1. ~~"Go" for the numbers pass~~ Given 14 Oct: do it after the Phase 1 rule fixes (`docs/fix-plan.md`).
 2. ~~Direction~~ Decided 14 Oct: the 6-week demo on one phone.
 3. ~~Sample names~~ Decided 14 Oct: friends 5 and 6 are **Priya** and **Theo**.
-4. Before any public launch: technology for real multiplayer (backend, accounts, push), terms and privacy.
+4. Before any public launch: technology for real multiplayer (backend, accounts, push), terms and privacy. With it (agreed 15 Oct): the server rolls every die (Core Rules §12a; today the Approach, [LOOK CLOSER], United Effort and fights roll on the phone); the Match 100g "every friend right" rate; the Campfire's "Party Seat & Test Controls" panel moves behind `?dev=1` (kept for the one-phone demo).
+5. The Bag verses: canon's full passages (`docs/drafts/bag-verses-draft.md`), waiting on his OK.
 
 ## 10. Git
 

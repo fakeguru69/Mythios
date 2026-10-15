@@ -99,6 +99,8 @@ Also fixed while checking: on W1D1, the fire showed an empty "Garrick remembers"
 
 ## Needs Fake Guru's decision
 
+**Decided 15 Oct ("as per your suggestion"):** 1 canon lines, done. 2 from W2D5, done. 3 gates bind Garrick, the Campfire and the build's text, not the episode files. 4 a draft is in `docs/drafts/bag-verses-draft.md`. 5 first time only, done. 6 bundles behind `?dev=1`, out of the build, and the workbench in its own file, done. 7 kept for the demo. 8 and 9 come with the multiplayer work.
+
 1. **Garrick's "noticing" lines at the fire.** All five differ from the Campfire master (`mythios-campfire-table-v2.md` §C). Canon has the full line "…you're favouring that arm. Sit nearer the fire."; the build drops the second sentence. Side by side:
 
    | Moment | Canon | Build |

@@ -159,6 +159,8 @@
 
 > Inside is a notebook, packed to the margins in the hand you all know by now. Your names are in it. Every one of you.
 >
+> {STAKE} *(Added 15 Oct 2026, Fake Guru: each player's own line, from their Session Zero answers: "Beside yours, in the same neat hand: {birthplace}, and a second name, {grandparent}." With one answer: "Beside yours, in the same neat hand: {birthplace}." or "Beside yours, in the same neat hand, a second name: {grandparent}." With none, the line is left out.)*
+>
 > And near the back, where the binding shows, some pages are gone.
 
 **What you notice**

@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, Suspense, lazy } from 'react';
 import { GOLD_FRAGMENT_WORD_SOLVED } from './data/economy';
-import { AuditBackupRestorePayload, AuditWorkbench } from './components/AuditWorkbench';
+import type { AuditBackupRestorePayload } from './components/AuditWorkbench';
+// The workbench holds Garrick's hidden meanings: it loads only with ?dev=1, so a player's download never fetches it.
+const AuditWorkbench = lazy(() => import('./components/AuditWorkbench').then((m) => ({ default: m.AuditWorkbench })));
 import { BagTabView, StoreTabView } from './components/BagAndStoreTabs';
 import { RecordTabView } from './components/RecordTabView';
 import { PartyTabView, PinnedPartyClue, StoryTabView } from './components/StoryAndPartyTabs';
@@ -665,7 +667,7 @@ export default function App() {
   const handleDownloadAuditBundle = async () => {
     try {
       setBundleCopyStatus('Downloading 14oct.md...');
-      const res = await fetch('/api/download-audit-bundle-14oct?download=1');
+      const res = await fetch('/api/download-audit-bundle-14oct?download=1&dev=1');
       if (!res.ok) throw new Error('Failed to fetch bundle');
       const text = await res.text();
       const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
@@ -684,7 +686,7 @@ export default function App() {
       setTimeout(() => setBundleCopyStatus(null), 3500);
     } catch {
       // Fallback: navigate to direct attachment endpoint
-      window.location.assign('/api/download-audit-bundle-14oct?download=1');
+      window.location.assign('/api/download-audit-bundle-14oct?download=1&dev=1');
       setBundleCopyStatus('✓ Triggered download!');
       setTimeout(() => setBundleCopyStatus(null), 3500);
     }
@@ -692,7 +694,7 @@ export default function App() {
 
   const handleCopyAuditBundle = async () => {
     try {
-      const res = await fetch('/api/download-audit-bundle-14oct');
+      const res = await fetch('/api/download-audit-bundle-14oct?dev=1');
       const text = await res.text();
       await navigator.clipboard.writeText(text);
       setBundleCopyStatus('✓ Copied 14oct.md to clipboard!');
@@ -715,7 +717,7 @@ export default function App() {
             ⚙ INTERNAL AUDIT
           </button>
           <a
-            href="/api/download-audit-bundle-14oct?download=1"
+            href="/api/download-audit-bundle-14oct?download=1&dev=1"
             download="mythios-full-audit-bundle-14oct.md"
             onClick={(e) => {
               e.preventDefault();
@@ -745,7 +747,7 @@ export default function App() {
               {verifier.totalWeekdays}/36 LANDMARKS · L1, L3 ACTIVE
             </span>
             <a
-              href="/api/download-audit-bundle-14oct?download=1"
+              href="/api/download-audit-bundle-14oct?download=1&dev=1"
               download="mythios-full-audit-bundle-14oct.md"
               onClick={(e) => {
                 e.preventDefault();
@@ -816,6 +818,7 @@ export default function App() {
         {/* LEFT PANE: INTERNAL HANDOFF AUDIT & CONTINUITY LOOPHOLE WORKBENCH */}
         {layout !== 'PHONE_ONLY' && (
           <div className={`${layout === 'SPLIT' ? 'lg:w-[58%] border-r border-white/10' : 'w-full'} h-full min-h-0 flex flex-col overflow-hidden`}>
+            <Suspense fallback={null}>
             <AuditWorkbench
               partySize={party.length}
               partyNames={party.map((f) => f.name)}
@@ -842,6 +845,7 @@ export default function App() {
               onRestoreAuditBackup={handleRestoreAuditBackup}
               memoryDigest={memoryDigest}
             />
+            </Suspense>
           </div>
         )}
 
@@ -929,7 +933,7 @@ export default function App() {
                         ⚙ AUDIT
                       </button>
                       <a
-                        href="/api/download-audit-bundle-14oct?download=1"
+                        href="/api/download-audit-bundle-14oct?download=1&dev=1"
                         download="mythios-full-audit-bundle-14oct.md"
                         onClick={(e) => {
                           e.preventDefault();
@@ -1267,6 +1271,8 @@ export default function App() {
               {activeTab === 'CHAT' && (chatChannel === 'MINE' || !isPartyFormed) && (
                 <StoryTabView
                   party={party}
+                  birthplace={birthplace}
+                  grandparentName={grandparentName}
                   onClaimReward={handleClaimReward}
                   hasClaimedReward={(key) => claimedRewardsRef.current.has(key)}
                   currentWeek={currentWeek}
