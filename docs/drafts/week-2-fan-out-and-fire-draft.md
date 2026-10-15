@@ -1,6 +1,6 @@
 # Week 2: Fan Out leads and fire questions (DRAFT, 15 Oct 2026)
 
-**Status: DRAFT, for Fake Guru's yes.** Nothing here is in the game yet. Every NEW line needs his yes before it ships. Built on the approved Week 1 draft (`docs/drafts/week-1-fan-out-and-fire-draft.md`): same shape, same rules.
+**Status: APPROVED by Fake Guru, 15 Oct 2026 ("yes"; Claude's calls on the doubts: "ok"). In the game: `src/data/fanOutLeads.ts`, `fragmentMeaningQuestions.ts`, `weekQuestions.ts`.** Every NEW line needs his yes before it ships. Built on the approved Week 1 draft (`docs/drafts/week-1-fan-out-and-fire-draft.md`): same shape, same rules.
 
 - **CANON** = copied word for word from `docs/canon/mythios-campfire-table-v2.md` (the 36 Fan Out clues).
 - **NEW** = written for this draft, against `docs/canon/episode-2-the-wind-stone.md`.

@@ -2,12 +2,42 @@
 // approved 14 Oct, Part 2 §2). One line per fragment; never gives the answer; Week 6 questions must not lead
 // toward "royal blood". Each line needs Fake Guru's approval before it goes in; until then the fragment has
 // no question and the meaning pin stays hidden. Pins are read back by MYTHIOS at the Gathering (Part 3 §3.4).
-// Week 1 approved 15 Oct (docs/drafts/week-1-fan-out-and-fire-draft.md).
+// Weeks 1 to 6 approved 15 Oct (docs/drafts/week-N-fan-out-and-fire-draft.md).
 export const FRAGMENT_MEANING_QUESTIONS: Record<string, string> = {
   "1-1": "*\"One stayed close.\"* Close to what?",
   "1-2": "*\"They wept for him before they feared him.\"* What changed between the two?",
   "1-3": "*\"Some locks already know their key.\"* Whose key?",
   "1-4": "*\"Marked before the first cry's through.\"* Marked by whom, and for what?",
   "1-5": "*\"The power that gives is also the power that takes.\"* What has been given this week, and what has been taken?",
-  "1-6": "*\"The key that locks.\"* What is locked, and who holds the key?"
+  "1-6": "*\"The key that locks.\"* What is locked, and who holds the key?",
+  "2-1": "*\"We held his last wall.\"* Whose wall, and why was it meant to fall?",
+  "2-2": "*\"By the third, we had stopped.\"* Why stop counting?",
+  "2-3": "*\"Ours was the last light burning.\"* The last of what?",
+  "2-4": "*\"His hand was bleeding, and he told us to sleep.\"* What did he do down there?",
+  "2-5": "*\"Not one of us who would not have died for him.\"* Who was he, to the people who wrote this?",
+  "2-6": "*\"Morning came. The enemy did not.\"* Where did they go?",
+  "3-1": "*\"Then they stopped being ours.\"* Whose were they, and what took them?",
+  "3-2": "*\"Remember that, when you hear where else we stood.\"* Where else might they have stood?",
+  "3-3": "*\"He only never told us the price.\"* The price of what?",
+  "3-4": "*\"We locked with what we are.\"* What are they?",
+  "3-5": "*\"That is why kingdoms fear them.\"* Why would a kingdom fear a family?",
+  "3-6": "*\"We never dug him a grave.\"* Why not?",
+  "4-1": "*\"To hold what needed five.\"* What needed holding, and what is the last lock?",
+  "4-2": "*\"The fifth had no element at all.\"* What could it be, if it is not earth, wind, water or fire?",
+  "4-3": "*\"So does anyone born in its dark.\"* What does a child born in the dark have in common with what fell?",
+  "4-4": "*\"Moon-blood woke it once.\"* What did it wake, and when?",
+  "4-5": "*\"Pray no one ever learns it is also a door.\"* A door to what, and who would want it opened?",
+  "4-6": "*\"We never asked what that would make them.\"* What has it made them?",
+  "5-1": "*\"Then it began to take.\"* Take what, and from whom?",
+  "5-2": "*\"That is why it had to be us.\"* Had to be them, for what?",
+  "5-3": "*\"None of us gave to the fifth.\"* Why give to four and not to the fifth?",
+  "5-4": "*\"We could not bring ourselves to break them.\"* Why not?",
+  "5-5": "*\"Where we could watch it, and watch him.\"* Why keep the two so close?",
+  "5-6": "*\"Where he fell, under the dark moon, the five were joined.\"* Why there, and why that night?",
+  "6-1": "*\"We let them go.\"* Why spare anyone, on a night like that?",
+  "6-2": "*\"That is how we found the shards.\"* How could a mark help anyone find one?",
+  "6-3": "*\"None of us could bear to lift him.\"* What kept them from lifting him?",
+  "6-4": "*\"Forgive us for leaving it at all.\"* Why would leaving a way in need forgiving?",
+  "6-5": "*\"Be there when it does.\"* Be there to do what?",
+  "6-6": "*\"Finish what we could not.\"* What did the Seekers leave unfinished?"
 };
