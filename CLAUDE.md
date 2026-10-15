@@ -83,7 +83,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 - `src/data/narrativeContinuityAudit.ts`: the old continuity patches. **All retired** (L4–L6 on 14 Oct, L1 and L3 on 15 Oct; L2 became canon); the day now plays canon text, so nothing is patched.
 - `src/data/campfireDaysData.ts` + `campfire-days-v23.json`: Campfire v2.3 (correct) plus first-use checks.
 - `src/data/garrickRouter.ts`: deterministic router for Garrick questions with story-state guards. (`garrickCampfirePrompts.ts` and `garrickDailyRiddles.ts`, the old unused Campfire prompt bank and riddles, were deleted 15 Oct.) `gmMemoryEngine.ts` (memory digest; has made-up token figures), `mythiosFragments.ts`, `mythiosGatheringsAndAudit.ts`.
-- `public/*.md`: audit bundles (old snapshots, ignore). `docs/`: a few older docs. `simulators/g_final.py`: the economy simulator.
+- `public/*.md`: audit bundles (old snapshots, ignore). `docs/`: a few older docs. `simulators/numbers-pass-15oct.ts`: the season simulator (reads the game's own data and engine; `npx tsx simulators/numbers-pass-15oct.ts 2000`); its report is `docs/numbers-pass-15oct.md`. (`simulators/g_final.py`, the 5 Oct one, needs a `g_run.py` that is not in the repo.)
 
 ---
 
