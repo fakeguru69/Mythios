@@ -135,6 +135,7 @@ The Attribute's number is progress toward the next tier. Only the tier's bonus i
 - **No second chance on the same day** (decided 5 Oct 2026). The old safety net gave a second Daily Challenge after a failed one. It needed a second roll to exist, and with optional play gone there is none, so it is retired (§14). It was worth about 500g a season.
 - **Day 7:** only the friend who rolls the Approach Challenge has a Daily Challenge. Nobody else has one that day.
 - **Story Challenges fail forward.** Both branches reach the same plot. The failure branch must show a visible setback; whether the detour is pulled back is a backend matter the player never sees.
+- **A clue missed on a fail goes to the fire** *(15 Oct 2026, Fake Guru)*. Where a pass shows a detail that a fail does not, the day summary card says so on a fail ("You missed something at the ford. Someone at the fire may have seen it."), and at that evening's Campfire a friend who passed shares what they saw. Failing gives a reason to talk, not a silent loss.
 - **[NOT NOW]:** the card is set aside. It stays in the thread and can be rolled any time before the day ends, and while it is set aside the Store is open. A card still open when the day ends closes unrolled. That means the failure branch and no gold lost.
 - **A failed Challenge costs gold only.** Nothing carries into a fight.
 
@@ -855,7 +856,7 @@ These appear in older documents and logs. None is in force. The reasoning for ea
 On 8 Oct 2026 Fake Guru (formerly TV / TVMen) approved the following changes that the build's author had made. They are **approved as design**. **None has been simulated, and none overrides §12.** Until a numbers pass sets them, **§12 stays the source of every number** and the build must follow §12.
 
 1. **A failed Challenge pays no gold** (build) against §12's −150g. Decide in the numbers pass which stands; the build's 150g Challenge pay does not match §12's +500g and cannot stand with the 12,400g gear curve.
-2. **The Detour fight** after a failed Challenge on a day with no fight: a short, easier fight so a failure has a consequence. Pay not set (build used 150g win / 75g loss).
+2. ~~**The Detour fight** after a failed Challenge on a day with no fight: a short, easier fight so a failure has a consequence.~~ **Dropped 15 Oct 2026 (Fake Guru):** canon's fail already costs 150g and shows a worse scene; the extra fight broke scenes (a "lookout" inside the inn on W1D2). Missed clues are now sent to the Campfire instead (§3). Pay not set (build used 150g win / 75g loss).
 3. ~~**Ambush and first-strike numbers** (build: −15 HP on an ambush, +2 weapon on a strike, a 70 HP Fan Out enemy).~~ **Dropped 15 Oct 2026 (Fake Guru):** the days themselves say who strikes first (a choice, or the day's Challenge), as the episode files write it; the +2 / −15 counted that Challenge twice. (The Fan Out enemy goes with the Fan Out redesign.)
 4. **Fan Out** (a solo choice after the day's main beat: Challenge, Fight or Head to the Campfire). It reopens part of the optional play retired on 5 Oct, so **"one paid beat a day" no longer holds as written**. Head to the Campfire counts as a finished day; the other two are optional depth. A win gives a first-letter hint to the day's Seeker Fragment.
 5. **Riddle and Fragment gold** (build: riddles +10g/+15g, lock words +25g). §12 has only the +25g word. Pending.

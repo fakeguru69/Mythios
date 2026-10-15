@@ -54,11 +54,7 @@ export const GOLD_RELIC_COST = 150;
 /** Fan Out solo roadside cache (+150g) - PENDING numbers pass */
 export const GOLD_FAN_OUT_CACHE_WIN = 150;
 
-/** Detour fight on failed Challenge (+150g win) - PENDING numbers pass */
-export const GOLD_DETOUR_FIGHT_WIN = 150;
-
-/** Detour fight on failed Challenge (-75g loss / cost) - PENDING numbers pass */
-export const GOLD_DETOUR_FIGHT_LOSS = 75;
+// The Detour fight (and its 150g / 75g) was dropped on 15 Oct 2026 (Fake Guru).
 
 /** Daily Campfire riddle solve (+10g) - PENDING numbers pass */
 export const GOLD_RIDDLE_SOLVE = 10;

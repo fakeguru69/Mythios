@@ -123,6 +123,7 @@
 > **NOT FINISHED** · Day 1
 > You earned: `[gold]` · Aim or Intellect `[growth]`
 > You learned: nobody fought to free him. **His ropes were cut, and he walked out.** Someone stood among you in the dark with a blade and touched nobody. Wren is home.
+> *On a failure:* You missed something in the ash. Someone at the fire may have seen it.
 > You hold: a chip of black glass, from Wren
 > Fragment: 1 found, locked
 > Tomorrow: **the north road, two days to the Stillwater**

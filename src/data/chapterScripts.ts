@@ -1039,6 +1039,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "**THE FORD** · Day 6",
           "You earned: `[gold]` · Aim or Agility `[growth]`",
           "You learned: she was carried into the river and the trail ends. **The six fragments are a map**, and it ends at the mark from Meira's rubbing.",
+          "*On a failure:* You missed something at the ford. Someone at the fire may have seen it.",
           "You hold: the map",
           "Fragments: 6 of 6 · the map is whole",
           "Tomorrow: **THE GATHERING** · across the ford, together"
@@ -1214,6 +1215,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "**THE MILL ROAD** · Day 1",
           "You earned: `[gold]` · Charm or Aim `[growth]`",
           "You learned: the next name is **Corin**, the miller's boy. A cart with no lamps went up to the mill three nights ago and came back before dawn. It turned upriver.",
+          "*On a failure:* You missed something on the mill road. Someone at the fire may have seen it.",
           "Fragment: 1 found, locked",
           "Tomorrow: **the mill, at first light**"
         ]
@@ -1349,6 +1351,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
+        "text": "At the doorway, without a word, she presses a horn button into your hand, with a twist of dark thread still through it.",
+        "cond": {
+          "on": "challenge",
+          "pass": false
+        }
+      },
+      {
+        "t": "say",
         "text": "They are not taking children.\n\nThey are collecting particular ones."
       },
       {
@@ -1404,7 +1414,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The tracks hold until the riverbank turns to stone. Then they stop.\n\nThere is no ford here. There is no reason for a cart to have come this far."
+        "text": "The rain came in the night. By morning the ruts are running with water, and you follow them upriver at a pace that leaves no breath for talk.\n\nThe tracks hold until the riverbank turns to stone. Then they stop.\n\nThere is no ford here. There is no reason for a cart to have come this far."
       },
       {
         "t": "notice",
@@ -1648,6 +1658,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "You earned: `[gold]` · Agility or Charm `[growth]`",
           "You learned: **Corin is alive.** He is held in a chamber cut into the hill, in a ring of lamps, by hooded figures who are making something ready. They know you are outside.",
           "*On a pass:* there are more of them than of you, and his hands are not yet cut. There is still time.",
+          "*On a failure:* You missed something at the shaft. Someone at the fire may have seen it.",
           "Fragments: 4 found",
           "Tomorrow: **the hillside, tonight**"
         ]
@@ -1957,6 +1968,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "**THE OTHER WAY IN** · Day 6",
           "You earned: `[gold]` · Aim or Might `[growth]`",
           "You learned: **the six fragments are a map again.** It shows an older room, deeper in the same hill, with a shaft of its own. You found its mouth. Nobody is guarding it. They are digging toward that room now.",
+          "*On a failure:* You missed something on the hill. Someone at the fire may have seen it.",
           "You hold: the map · the black circle",
           "Fragments: 6 of 6 · the map is whole",
           "Tomorrow: **THE GATHERING** · into the hill by the old shaft, together"
@@ -2246,6 +2258,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "**ASHCOMBE** · Day 2",
           "You earned: `[gold]` · Charm or Intellect `[growth]`",
           "You learned: **Wren did not come home.** Two polite men in grey coats took her two weeks ago: *\"they'd only need her the once.\"* Last night she was carried past her own village in the dark, and up the black road.",
+          "*On a failure:* You missed something in Ashcombe. Someone at the fire may have seen it.",
           "You hold: a chip of black glass, from the boy at the well",
           "Fragments: 2 found",
           "Tomorrow: **the Blackglass, up the black road**"
@@ -2896,6 +2909,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "**THE CAIRN** · Day 6",
           "You earned: `[gold]` · Might or Agility `[growth]`",
           "You learned: **the Kiln.** A round black hill that breathes warm air through a crack in its crown. The map goes in through that crack, to a room beneath. A lamp has just gone in ahead of you.",
+          "*On a failure:* You missed something at the cairn. Someone at the fire may have seen it.",
           "You hold: the map · eight of Wren's chips",
           "Fragments: 6 of 6 · the map is whole",
           "Tomorrow: **THE GATHERING** · down through the Kiln's crown, together"
@@ -3075,6 +3089,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "**NOT FINISHED** · Day 1",
           "You earned: `[gold]` · Aim or Intellect `[growth]`",
           "You learned: nobody fought to free him. **His ropes were cut, and he walked out.** Someone stood among you in the dark with a blade and touched nobody. Wren is home.",
+          "*On a failure:* You missed something in the ash. Someone at the fire may have seen it.",
           "You hold: a chip of black glass, from Wren",
           "Fragment: 1 found, locked",
           "Tomorrow: **the north road, two days to the Stillwater**"
@@ -3923,6 +3938,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "**THE GREY AFTERNOON** · Day 1",
           "You earned: `[gold]` · Craft or Intellect `[growth]`",
           "You learned: the fifth is at **Highwall**, the dead capital at the end of the old kingdom's road: the way the heartbeat comes from. The story you learned about it as a child has had something cut out of it. Joss is home.",
+          "*On a failure:* You missed something at the waystone. Someone at the fire may have seen it.",
           "Fragment: 1 found, locked",
           "Tomorrow: **the old kingdom's road**"
         ]
@@ -4221,6 +4237,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "**THE HERALD'S GATE** · Day 3",
           "You earned: `[gold]` · Aim or Might `[growth]`",
           "You learned: Highwall's gate is **barred from the inside**: new timber, in brackets worn bright by centuries of bars. Somebody has always kept it shut, and is keeping it shut now. One fire is burning below the hall.",
+          "*On a failure:* You missed something on the wall. Someone at the fire may have seen it.",
           "Fragments: 3 found",
           "Tomorrow: **the dead streets**"
         ]
@@ -4507,6 +4524,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "**BELOW THE HALL** · Day 5",
           "You earned: `[gold]` · Agility or Aim `[growth]`",
           "You learned: **the Order is here**, camped facing his sealed doors, and has been for generations. It is not trying to get in. Each dusk it crosses out one stroke. **It is counting down.** `[On a pass: eight strokes are left. Their greeting is \"Keep the dark\" and the answer is \"It keeps us\".]`",
+          "*On a failure:* You missed something in the square. Someone at the fire may have seen it.",
           "Fragments: 5 found",
           "Tomorrow: **the wall again**"
         ]

@@ -23,7 +23,6 @@ import {
   GOLD_MATCH_BASE_PER_PICK,
   GOLD_MATCH_PERFECT_PER_PICK,
   GOLD_FAN_OUT_CACHE_WIN,
-  GOLD_DETOUR_FIGHT_WIN,
   GOLD_RIDDLE_BONUS,
   GOLD_GATHERING_BATTLE_REWARDS,
   GOLD_FRAGMENT_WORD_SOLVED,
@@ -39,7 +38,14 @@ import {
   getBoardCrossCheckSynthesis,
   buildBoardClueDiscussionExchange,
 } from '../data/garrickCampfirePrompts';
-import { getCampfireDayEntry } from '../data/campfireDaysData';
+import {
+  getCampfireDayEntry,
+  CampfireEveningTelemetry,
+  DayQuestionPin,
+  DayTheoryPin,
+  FriendId,
+  MessageInABottle,
+} from '../data/campfireDaysData';
 import { CampfireEveningView } from './CampfireEveningView';
 import {
   CHAPTER_SCRIPTS,
@@ -242,10 +248,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   const [rollOutcome, setRollOutcome] = useState<RollState | null>(null);
   const [isReplayRoll, setIsReplayRoll] = useState(false);
 
-  // Mandatory Detour Skirmish state when failing a Challenge on a Challenge-only day (#2)
-  const [detourFightRounds, setDetourFightRounds] = useState<FightRoundEntry[]>([]);
-  const [detourFightDone, setDetourFightDone] = useState(false);
-  const [isRollingDetourRound, setIsRollingDetourRound] = useState(false);
 
   // Full Interactive Fanning Out Solo Encounter state (#7)
   const [fanOutBranch, setFanOutBranch] = useState<FanOutBranchOption | null>(null);
@@ -293,9 +295,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setUseAttrRelic(false);
     setRollOutcome(null);
     setIsReplayRoll(false);
-    setDetourFightRounds([]);
-    setDetourFightDone(false);
-    setIsRollingDetourRound(false);
     setFanOutBranch(null);
     setFanOutSelectedAttr(null);
     setFanOutRollOutcome(null);
@@ -363,27 +362,12 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   })();
   const enemyAtk = epMeta.wAtk || 14;
 
-  // Detour Skirmish Foe Stats (60 HP Perimeter Watchman, 0g reward)
-  const detourEnemyFullHp = 60;
-  const detourEnemyDef = Math.max(15, enemyDef - 2);
-  const detourEnemyAtk = Math.max(12, enemyAtk - 1);
-  const detourEnemyRemainingHp =
-    detourFightRounds.length === 0
-      ? detourEnemyFullHp
-      : detourFightRounds[detourFightRounds.length - 1].enemyHpAfter;
-  const detourPlayerRemainingHp =
-    detourFightRounds.length === 0
-      ? 100
-      : detourFightRounds[detourFightRounds.length - 1].playerHpAfter;
 
   const resetDayInteractions = (w: number, d: number) => {
     setSelectedAttr(null);
     setUseAttrRelic(false);
     setRollOutcome(null);
     setIsReplayRoll(false);
-    setDetourFightRounds([]);
-    setDetourFightDone(false);
-    setIsRollingDetourRound(false);
     setFanOutBranch(null);
     setFanOutSelectedAttr(null);
     setFanOutRollOutcome(null);
@@ -437,8 +421,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       cleared,
     });
     setIsRollingChallenge(false);
-    setDetourFightRounds([]);
-    setDetourFightDone(false);
 
     // A replayed day pays nothing and costs nothing (one claim per day).
     const firstRoll = onClaimReward(`${dayKey}:challenge`);
@@ -453,6 +435,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       onEarnGold(GOLD_CHALLENGE_WIN);
     } else {
       onEarnGold(-GOLD_CHALLENGE_LOSS);
+      // Read at that evening's Campfire: a clue missed on a fail is shared there (Core Rules §3, 15 Oct).
+      onClaimReward(`${dayKey}:challenge-failed`);
     }
   };
 
@@ -492,69 +476,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   };
   const pressReplay = claimResults[`${dayKey}:press`] === false;
   const fightReplay = claimResults[`${dayKey}:fight`] === false;
-  const detourReplay = claimResults[`${dayKey}:detour`] === false;
 
-  // Mandatory Detour Skirmish round calculation on failed Challenge-only days (#2 — Honest d20 rolls)
-  const computeNextDetourRound = (prevRounds: FightRoundEntry[]): FightRoundEntry => {
-    const r = prevRounds.length + 1;
-    const enemyHpBefore =
-      prevRounds.length === 0
-        ? detourEnemyFullHp
-        : prevRounds[prevRounds.length - 1].enemyHpAfter;
-    const playerHpBefore =
-      prevRounds.length === 0 ? 100 : prevRounds[prevRounds.length - 1].playerHpAfter;
-
-    const d20 = Math.floor(Math.random() * 20) + 1;
-
-    const margin = d20 + baseWeaponAtk - detourEnemyDef;
-    const hit = margin > 0;
-    const dmgToEnemy = hit ? margin * 5 : 0;
-    const enemyHpAfter = Math.max(0, enemyHpBefore - dmgToEnemy);
-
-    const enemyD20 = Math.floor(Math.random() * 20) + 1;
-    const enemyMargin = enemyD20 + detourEnemyAtk - baseArmorDef;
-    const enemyHit = enemyHpAfter > 0 && enemyMargin > 0;
-    const dmgToPlayer = enemyHit ? enemyMargin * 5 : 0;
-    const playerHpAfter = Math.max(0, playerHpBefore - dmgToPlayer);
-
-    return {
-      round: r,
-      d20,
-      playerAtk: baseWeaponAtk,
-      enemyDef: detourEnemyDef,
-      margin,
-      hit,
-      dmgToEnemy,
-      enemyHpBefore,
-      enemyHpAfter,
-      enemyD20,
-      enemyAtk: detourEnemyAtk,
-      playerArmor: baseArmorDef,
-      enemyMargin,
-      enemyHit,
-      dmgToPlayer,
-      playerHpBefore,
-      playerHpAfter,
-    };
-  };
-
-  const handleRollDetourFightRound = () => {
-    if (isRollingDetourRound || detourFightDone) return;
-    setIsRollingDetourRound(true);
-    setTimeout(() => {
-      const nextRound = computeNextDetourRound(detourFightRounds);
-      const updated = [...detourFightRounds, nextRound];
-      setDetourFightRounds(updated);
-      if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
-        setDetourFightDone(true);
-        // Core Rules §3: growth only on a passed Daily Challenge, so the Detour gives none.
-        if (nextRound.enemyHpAfter <= 0 && claimReward(`${dayKey}:detour`)) {
-          onEarnGold(GOLD_DETOUR_FIGHT_WIN);
-        }
-      }
-      setIsRollingDetourRound(false);
-    }, 380);
-  };
 
   const computeNextFightRound = (prevRounds: FightRoundEntry[]): FightRoundEntry => {
     const r = prevRounds.length + 1;
@@ -646,7 +568,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   };
 
 
-  // The day's fight card and the Detour card, placed by the chapter script.
+  // The day's fight card, placed by the chapter script.
   const renderFightCard = (fightName: string) => (
             <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
               <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
@@ -871,211 +793,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
             </div>
   );
 
-  const renderDetourCard = () => (
-                  <div className="w-full rounded-xl bg-[#180F29] border border-[#E0645C]/70 overflow-hidden shadow-lg">
-                    <div className="px-3 py-2 bg-[#2A1628] border-b border-[#3A2555] flex items-center justify-between gap-2">
-                      <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
-                        ⚔️ ALERTED LOOKOUT · {(dayData.challengeTitle || dayData.place).toUpperCase()}
-                      </span>
-                      <span className="font-['Cinzel'] font-bold text-[11.5px] whitespace-nowrap shrink-0">
-                        <span className="text-[#E5C158]">WEP {baseWeaponAtk}</span>{' '}
-                        <span className="text-[#B7A9CC]">vs</span>{' '}
-                        <span className="text-[#FB923C]">DEF {detourEnemyDef}</span>
-                      </span>
-                    </div>
-
-                    <div className="p-2.5 space-y-2">
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-                          <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
-                            <span className="text-[#6FD39A] truncate">YOU</span>
-                            <span className="text-[#6FD39A] whitespace-nowrap shrink-0">
-                              {detourPlayerRemainingHp}/100 HP
-                            </span>
-                          </div>
-                          <div className="w-full h-1.5 bg-[#2A1B40] rounded-full overflow-hidden mt-1.5">
-                            <div
-                              className="h-full bg-[#6FD39A] transition-all duration-300"
-                              style={{
-                                width: `${detourPlayerRemainingHp}%`,
-                              }}
-                            />
-                          </div>
-                          <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
-                            <div className="flex items-center justify-between font-semibold text-[#E5C158]">
-                              <span>Weapon WEP</span>
-                              <span className="font-bold">{baseWeaponAtk}</span>
-                            </div>
-                            <div className="flex items-center justify-between font-semibold text-[#7AA7FF]">
-                              <span>Armour AMR</span>
-                              <span className="font-bold">{baseArmorDef}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-                          <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
-                            <span className="text-[#E0645C] truncate">LOOKOUT</span>
-                            <span className="text-[#E0645C] whitespace-nowrap shrink-0">
-                              {detourEnemyRemainingHp}/{detourEnemyFullHp} HP
-                            </span>
-                          </div>
-                          <div className="w-full h-1.5 bg-[#2A1B40] rounded-full overflow-hidden mt-1.5">
-                            <div
-                              className="h-full bg-[#E0645C] transition-all duration-300"
-                              style={{
-                                width: `${Math.round(
-                                  (detourEnemyRemainingHp / detourEnemyFullHp) * 100
-                                )}%`,
-                              }}
-                            />
-                          </div>
-                          <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
-                            <div className="flex items-center justify-between font-semibold text-[#FB923C]">
-                              <span>Defence DEF</span>
-                              <span className="font-bold">{detourEnemyDef}</span>
-                            </div>
-                            <div className="flex items-center justify-between font-semibold text-[#C084FC]">
-                              <span>Attack ATK</span>
-                              <span className="font-bold">{detourEnemyAtk}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {(detourFightRounds.length > 0 || isRollingDetourRound) && (
-                        <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-2">
-                          {detourFightRounds.map((r) => (
-                            <div
-                              key={r.round}
-                              className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 space-y-1.5 text-[12px] font-sans"
-                            >
-                              <div className="flex items-center justify-between border-b border-white/[0.06] pb-1">
-                                <span className="px-1.5 py-0.5 rounded bg-[#D4B876]/20 border border-[#D4B876]/50 font-['Cinzel'] font-bold text-[10.5px] text-[#E5C158]">
-                                  SKIRMISH R{r.round}
-                                </span>
-                                <span className="text-[11px] font-sans font-semibold text-[#B7A9CC]">
-                                  Diff × 5 Damage
-                                </span>
-                              </div>
-
-                              {/* #5: Narrower gap so equation fits on 1 line */}
-                              <div className="space-y-0.5">
-                                <div className="flex items-center gap-1 font-semibold whitespace-nowrap overflow-x-auto no-scrollbar">
-                                  <span className="text-[#6FD39A] font-bold">YOU:</span>
-                                  <span className="text-[#F4F1F8]">🎲 {r.d20}</span>
-                                  <span className="text-[#8B7A9E]">+</span>
-                                  <span className="text-[#E5C158]">WEP {r.playerAtk}</span>
-                                  <span className="text-[#8B7A9E]">−</span>
-                                  <span className="text-[#FB923C]">DEF {r.enemyDef}</span>
-                                  <span className="text-[#8B7A9E]">=</span>
-                                  <span
-                                    className={`font-bold ${
-                                      r.hit ? 'text-[#6FD39A]' : 'text-[#9A90B8]'
-                                    }`}
-                                  >
-                                    {formatMargin(r.margin)}
-                                  </span>
-                                </div>
-                                <div className="text-[12px] font-bold">
-                                  {r.hit ? (
-                                    <span className="text-[#6FD39A]">
-                                      HIT +{r.margin} × 5 = {r.dmgToEnemy}.{' '}
-                                      <span className="text-[#E0645C]">
-                                        FOE HP {r.enemyHpBefore} → {r.enemyHpAfter}
-                                      </span>
-                                    </span>
-                                  ) : (
-                                    <span className="text-[#9A90B8]">
-                                      MISSED.{' '}
-                                      <span className="text-[#E0645C]">
-                                        FOE HP {r.enemyHpBefore} → {r.enemyHpAfter}
-                                      </span>
-                                    </span>
-                                  )}
-                                </div>
-                              </div>
-
-                              <div className={`space-y-0.5 pt-1 border-t border-white/[0.04] ${r.enemyStruck ?? r.enemyHpAfter > 0 ? '' : 'hidden'}`}>
-                                <div className="flex items-center gap-1 font-semibold whitespace-nowrap overflow-x-auto no-scrollbar">
-                                  <span className="text-[#E0645C] font-bold">FOE:</span>
-                                  <span className="text-[#F4F1F8]">🎲 {r.enemyD20}</span>
-                                  <span className="text-[#8B7A9E]">+</span>
-                                  <span className="text-[#C084FC]">ATK {r.enemyAtk}</span>
-                                  <span className="text-[#8B7A9E]">−</span>
-                                  <span className="text-[#7AA7FF]">AMR {r.playerArmor}</span>
-                                  <span className="text-[#8B7A9E]">=</span>
-                                  <span
-                                    className={`font-bold ${
-                                      r.enemyHit ? 'text-[#E0645C]' : 'text-[#9A90B8]'
-                                    }`}
-                                  >
-                                    {formatMargin(r.enemyMargin)}
-                                  </span>
-                                </div>
-                                <div className="text-[12px] font-bold">
-                                  {r.enemyHit ? (
-                                    <span className="text-[#E0645C]">
-                                      HIT +{r.enemyMargin} × 5 = {r.dmgToPlayer}.{' '}
-                                      <span className="text-[#6FD39A]">
-                                        YOU HP {r.playerHpBefore} → {r.playerHpAfter}
-                                      </span>
-                                    </span>
-                                  ) : (
-                                    <span className="text-[#9A90B8]">
-                                      MISSED.{' '}
-                                      <span className="text-[#6FD39A]">
-                                        YOU HP {r.playerHpBefore} → {r.playerHpAfter}
-                                      </span>
-                                    </span>
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-
-                          {isRollingDetourRound && (
-                            <div className="p-2.5 rounded-lg bg-[#2A1B40]/70 border border-[#D4B876] flex items-center justify-center gap-2 animate-pulse">
-                              <span className="text-[15px]">🎲</span>
-                              <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[0.8px] text-[#F4E8C1] uppercase">
-                                Rolling Skirmish R{detourFightRounds.length + 1}...
-                              </span>
-                            </div>
-                          )}
-
-                          {detourFightDone && (
-                            <div className="pt-1 border-t border-white/[0.06] flex items-center justify-between">
-                              {detourEnemyRemainingHp <= 0 ? (
-                                <span className="px-2.5 py-1 rounded-lg bg-[#2A1B40] border border-[#6FD39A]/60 text-[12.5px] font-sans font-bold text-[#6FD39A]">
-                                  ✓ Lookout driven off · +{GOLD_DETOUR_FIGHT_WIN}g
-                                </span>
-                              ) : (
-                                <span className="px-2.5 py-1 rounded-lg bg-[#2A1420] border border-[#E0645C]/70 text-[12.5px] font-sans font-bold text-[#E0645C]">
-                                  ✕ Bruised Scrape · no gold
-                                </span>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      )}
-
-                      {!detourFightDone && (
-                        <button
-                          type="button"
-                          disabled={isRollingDetourRound}
-                          onClick={handleRollDetourFightRound}
-                          className="w-full py-2 px-2.5 rounded-xl bg-[#E0645C]/20 hover:bg-[#E0645C]/30 border border-[#E0645C] text-[#F4F1F8] font-['Cinzel'] font-bold text-[11.5px] tracking-[0.5px] uppercase transition whitespace-nowrap truncate disabled:opacity-50"
-                        >
-                          {isRollingDetourRound
-                            ? '🎲 ROLLING SKIRMISH...'
-                            : `⚔️ ROLL SKIRMISH R${
-                                detourFightRounds.length + 1
-                              } (D20 + ${baseWeaponAtk})`}
-                        </button>
-                      )}
-                    </div>
-                  </div>
-  );
 
 
   const hasFirstLetterHint = dayFragment ? Boolean(seekerFirstLetterHints[dayFragment.id]) : false;
@@ -1168,7 +885,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       (solvedWords[dayFragment.id]?.w2 ? 1 : 0)
     : 0;
 
-  // Seeker Fragment unlocks after passing the Challenge, winning the Detour Skirmish, or winning the main Fight
 
 
   // Fanning Out Solo Encounter handlers (#7)
@@ -1595,7 +1311,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     }
     if (pressOutcome?.cleared && !pressReplay) earned.push(`+${GOLD_PRESS_ON_WIN}g`);
     if (fightDone && enemyRemainingHp <= 0 && (dayData.fightReward ?? 0) > 0 && !fightReplay) earned.push(`+${dayData.fightReward}g`);
-    if (detourFightDone && detourEnemyRemainingHp <= 0 && !detourReplay) earned.push(`+${GOLD_DETOUR_FIGHT_WIN}g`);
     const shown = rest
       .map((l) => {
         if (/^You earned:/.test(l)) return `You earned: ${earned.length ? earned.join(' · ') : 'nothing new today'}`;
@@ -1658,17 +1373,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     let done = false;
     if (!chapterScript) return { nodes, done: true };
     const steps = chapterScript.steps;
-    // A failed Challenge on a day with no fight brings the Detour fight (Core Rules §15 item 2).
-    // It comes at the end of the chapter, before the summary card, so it never breaks a canon scene
-    // (straight after the Challenge it put a "lookout" fight inside the inn's taproom on W1D2).
-    const needsDetour = Boolean(rollOutcome && !rollOutcome.cleared && !dayData.hasFight);
-    let detourShown = false;
-    const maybeDetour = (): boolean => {
-      if (!needsDetour || detourShown) return false;
-      detourShown = true;
-      nodes.push(<React.Fragment key="detour">{renderDetourCard()}</React.Fragment>);
-      return !detourFightDone;
-    };
     for (let i = 0; i < steps.length; i++) {
       const step = steps[i];
       const key = `s${i}`;
@@ -1776,7 +1480,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
         continue;
       }
       if (step.t === 'summary') {
-        if (maybeDetour()) return { nodes, done: false };
         nodes.push(<React.Fragment key={key}>{renderSummaryCard(step)}</React.Fragment>);
         done = true;
       }
@@ -1799,7 +1502,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
 
   // Follow the story down as each new beat appears; a new day starts at the top.
   const storyScrollRef = useRef<HTMLDivElement>(null);
-  const storyProgress = `${scriptWalk.nodes.length}|${fightRounds.length}|${detourFightRounds.length}|${Boolean(rollOutcome)}|${Boolean(pressOutcome)}`;
+  const storyProgress = `${scriptWalk.nodes.length}|${fightRounds.length}|${Boolean(rollOutcome)}|${Boolean(pressOutcome)}`;
   const lastScrolledDay = useRef(dayKey);
   useEffect(() => {
     const el = storyScrollRef.current;
@@ -2547,6 +2250,7 @@ interface PartyTabViewProps {
   pinnedClues: PinnedPartyClue[];
   completedDays: string[];
   onClaimReward?: (key: string) => boolean;
+  hasClaimedReward?: (key: string) => boolean;
   stats: Record<string, number>;
   characterName: string;
   characterClass?: ClassName;
@@ -2614,6 +2318,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   privateTheoryPromptsByDay = {},
   onLeaveFire,
   onClaimReward = () => true,
+  hasClaimedReward = () => false,
 }) => {
   const [internalPartyMode, setInternalPartyMode] = useState<'CAMPFIRE' | 'GATHERING'>(
     'CAMPFIRE'
@@ -2623,6 +2328,14 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     setInternalPartyMode(m);
     if (onSetPartyMode) onSetPartyMode(m);
   };
+  // The Campfire evening's own records (it crashed before 15 Oct: none of these were passed in).
+  const [campfireFanOutBranches, setCampfireFanOutBranches] = useState<
+    Record<string, Record<FriendId, 'CHALLENGE' | 'FIGHT' | 'CAMPFIRE'>>
+  >({});
+  const [campfireTheoryPins, setCampfireTheoryPins] = useState<Record<string, Record<string, DayTheoryPin>>>({});
+  const [campfireQuestionPins, setCampfireQuestionPins] = useState<Record<string, DayQuestionPin[]>>({});
+  const [campfireBottles, setCampfireBottles] = useState<Record<string, MessageInABottle | undefined>>({});
+  const [campfireTelemetry, setCampfireTelemetry] = useState<Record<string, CampfireEveningTelemetry>>({});
   const [riddleOpen, setRiddleOpen] = useState(false);
   const [seekerOpen, setSeekerOpen] = useState(false);
   const [boardOpen, setBoardOpen] = useState(true);
@@ -2720,6 +2433,24 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const dayData = getChapterWithContinuityFixes(rawDayData, appliedLoopholeIds);
   const dayKey = `${currentWeek}-${currentDay}`;
   const fanOutDayData = getFanOutEncounterData(dayData);
+  // A clue the player missed on a failed Challenge comes back at the fire from a friend who passed
+  // (Core Rules §3, 15 Oct). The sample friend stands in for a real player who passed.
+  const missedClueShare = (() => {
+    const script = CHAPTER_SCRIPTS.find((c) => c.week === currentWeek && c.day === currentDay);
+    if (!script || !hasClaimedReward(`${dayKey}:challenge-failed`)) return null;
+    const summary = script.steps.find((st) => st.t === 'summary');
+    const promisesShare =
+      summary?.t === 'summary' && summary.lines.some((l) => /Someone at the fire may have seen it/.test(l));
+    if (!promisesShare) return null;
+    const tokens: ScriptTokens = {
+      friends: DEFAULT_PARTY_MEMBERS.filter((f) => f.id !== 'YOU').map((f) => f.name),
+      partySize: DEFAULT_PARTY_MEMBERS.length,
+    };
+    const texts = script.steps
+      .filter((st) => st.t === 'say' && st.cond?.on === 'challenge' && st.cond.pass)
+      .map((st) => fillScriptTokens((st as { text: string }).text, tokens));
+    return texts.length ? { friend: tokens.friends[0] ?? 'A friend', texts } : null;
+  })();
   const recordedFanOut = sharedFanOutClues[dayKey] || soloFanOutClues[dayKey];
   const soloClueForToday = recordedFanOut || {
     title: fanOutDayData.branchA.soloClueTitle || `${dayData.place} Perimeter Note`,
@@ -3242,27 +2973,47 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       {/* =====================================================================
           MODE 1: CAMPFIRE v2.2 (8-Step Evening Flow, Stored-Line Engine, Real Friends)
          ===================================================================== */}
+      {partyMode === 'CAMPFIRE' && missedClueShare && (
+        <div className="mx-3 mt-2.5 rounded-xl bg-[#180F29] border border-[#D4B876]/60 px-3 py-2.5 space-y-1.5 shrink-0">
+          <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#E5C158] uppercase">
+            {missedClueShare.friend} saw what you missed
+          </div>
+          {missedClueShare.texts.map((t, i) => (
+            <ScriptText
+              key={i}
+              text={t}
+              className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.42]"
+            />
+          ))}
+        </div>
+      )}
       {partyMode === 'CAMPFIRE' && (
         <CampfireEveningView
           currentWeek={currentWeek}
           currentDay={currentDay}
-          onSelectWeekDay={(w, d) => {
-            if (onSelectWeekDay) onSelectWeekDay(w, d);
-          }}
-          onJumpToGathering={() => setPartyMode('GATHERING')}
-          onLeaveFire={() => {
-            if (onLeaveFire) {
-              onLeaveFire();
-            }
-          }}
           characterName={characterName}
           attributes={attributes}
           solvedWords={solvedWords}
           onSolveWord={onSolveWord}
           seekerFirstLetterHints={seekerFirstLetterHints}
-          soloFanOutClues={soloFanOutClues}
-          sharedFanOutClues={sharedFanOutClues}
-          privateTheoryPromptsByDay={privateTheoryPromptsByDay}
+          fanOutBranchesByDay={campfireFanOutBranches}
+          onChangeFriendFanOutBranch={(dk, friendId, branch) =>
+            setCampfireFanOutBranches((prev) => ({ ...prev, [dk]: { ...(prev[dk] || {}), [friendId]: branch } }))
+          }
+          theoryPinsByDay={campfireTheoryPins}
+          onPinTheory={(dk, pin) =>
+            setCampfireTheoryPins((prev) => ({ ...prev, [dk]: { ...(prev[dk] || {}), [pin.friendId]: pin } }))
+          }
+          questionPinsByDay={campfireQuestionPins}
+          onPinQuestion={(dk, q) =>
+            setCampfireQuestionPins((prev) => ({ ...prev, [dk]: [...(prev[dk] || []), q] }))
+          }
+          bottleMessagesByDay={campfireBottles}
+          onLeaveBottleMessage={(dk, msg) => setCampfireBottles((prev) => ({ ...prev, [dk]: msg }))}
+          telemetryByDay={campfireTelemetry}
+          onUpdateTelemetry={(dk, t) => setCampfireTelemetry((prev) => ({ ...prev, [dk]: t }))}
+          onJumpToGathering={() => setPartyMode('GATHERING')}
+          challengeClearedToday={!hasClaimedReward(`${currentWeek}-${currentDay}:challenge-failed`)}
         />
       )}
 
