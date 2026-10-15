@@ -809,7 +809,7 @@ These settle cases the rules above left open. The engineering notes are in `myth
 - **No age check.** The app does not ask a player's age (TVMen, 2026-10-03).
 - **The party has a name,** chosen by the host when they make it.
 - **Joining:** the invite link asks to join; the host approves each friend. One link per party; it works until the party has six or until the end of Episode 1 Day 2. The host can make a new link, and the old one stops working.
-- **The invite page** is headed "Join the adventure in Tales of the Dark Moon", names who sent it and the party, and says what it asks: six weeks, about five minutes a day, one evening a week, free; and carries the credit line "A fake guru game. The story is told by Mythios AI."
+- **The invite page** is headed "Join the adventure in Tales of the Dark Moon", names who sent it and the party, and says what it asks: six weeks, about ten minutes a day, one evening a week, free (changed from "about five minutes" by Fake Guru, 16 Oct: the day now takes 8 to 12 minutes); and carries the credit line "A fake guru game. The story is told by Mythios AI."
 - **More than one party:** a person may be in several parties at once, with a separate character in each.
 - **Name lengths:** a player's name is 1 to 12 characters; a party's name is 1 to 20. Both fit on one line of the Record and the chat.
 - **Two names** (decided 4 Oct 2026). An account has one name. Each party a person joins has its own **character name**, which starts as the account name and can be changed, so a person may be "Jennifer" in one party and someone else in another. The character name is the one shown on the Card and in that party's chat.

@@ -26,7 +26,7 @@ This is what opens when a friend taps the link. It has to make a stranger to the
 > A story for you and your friends, told a little each day.
 >
 > - Six weeks.
-> - About five minutes a day, whenever suits you.
+> - About ten minutes a day, whenever suits you.
 > - One evening a week, together.
 >
 > Free.
