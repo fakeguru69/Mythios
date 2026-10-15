@@ -13,58 +13,8 @@ import { wordLockSecondsLeft, registerWrongWordTry, clearWordTries } from '../da
 import { GOLD_FRAGMENT_WORD_SOLVED, GOLD_RELIC_COST } from '../data/economy';
 import { HintMask, hintHas } from '../data/fanOutLeads';
 import { CHAPTER_SCRIPTS } from '../data/chapterScripts';
-import { ScriptInline, fillScriptTokens } from './ChapterScriptParts';
-
-const CUMULATIVE_SCRIPTURE = [
-  {
-    week: 1,
-    verseTitle: 'Verse of the First Oath',
-    lines: [
-      'Five fell when the dark ate the moon; four were scattered, and one stayed close.',
-      'Not every hand that tries will open it—some locks already know their key.',
-    ],
-  },
-  {
-    week: 2,
-    verseTitle: 'Verse of the Answering',
-    lines: [
-      'One wall, and one king upon it; he opened his palm with his own knife.',
-      'The power that gives is also the power that takes.',
-    ],
-  },
-  {
-    week: 3,
-    verseTitle: 'Verse of the Price',
-    lines: [
-      'They no longer felt the cold, nor the blade, nor the long fear of dying.',
-      'He never spoke a false word to his people—he only kept silent about the price.',
-    ],
-  },
-  {
-    week: 4,
-    verseTitle: 'Verse of the Four',
-    lines: [
-      'Their blood remembers what the shards remember.',
-      'Earth, wind, water, fire—the fifth heeds no element at all.',
-    ],
-  },
-  {
-    week: 5,
-    verseTitle: 'Verse of the Binding',
-    lines: [
-      'Those who had stood nearest him, when he fell, stood on.',
-      'Where he fell, under the dark moon, the five were joined.',
-    ],
-  },
-  {
-    week: 6,
-    verseTitle: 'Verse of the Name',
-    lines: [
-      'They had known him all his life as one of the marked.',
-      'What the four begin, the fifth shall end, and the throne rise whole.',
-    ],
-  },
-];
+import { NarrationBlock, ScriptInline, fillScriptTokens } from './ChapterScriptParts';
+import { BAG_VERSES } from '../data/bagVerses';
 
 interface BagTabViewProps {
   /** The party in play (2 to 6), the player first. */
@@ -83,6 +33,8 @@ interface BagTabViewProps {
   completedDays: string[];
   currentWeek: number;
   currentDay: number;
+  /** Weeks whose Gathering has been read to its end (their verses join the Bag). */
+  gatheringsDone?: number[];
   initialSubTab?: 'RELICS' | 'SEEKER' | 'ALL' | 'ITEMS' | 'SCROLLS';
   seekerFirstLetterHints?: Record<string, HintMask>;
 }
@@ -100,6 +52,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
   completedDays,
   currentWeek,
   currentDay,
+  gatheringsDone = [],
   initialSubTab,
   seekerFirstLetterHints = {},
 }) => {
@@ -126,6 +79,9 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
   const [giftBanner, setGiftBanner] = useState<string | null>(null);
   const [activeGiftRelicKey, setActiveGiftRelicKey] = useState<string | null>(null);
   const [showScriptureDrawer, setShowScriptureDrawer] = useState(false);
+  const [openVerses, setOpenVerses] = useState<Record<string, boolean>>({});
+  // Newest first; a Gathering's passages appear once it has been read to its end.
+  const heardVerses = BAG_VERSES.filter((v) => gatheringsDone.includes(v.week)).sort((a, b) => b.week - a.week);
 
   useEffect(() => {
     if (initialSubTab === 'SEEKER') {
@@ -146,7 +102,10 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
   }, [currentWeek, currentDay]);
 
   // All 6 fragments for the selected week, sorted newest first (Day 6 -> Day 1) (#16)
-  const weekFragments = SEEKER_FRAGMENTS.filter((f) => f.week === selectedSeekerWeek).sort(
+  // Each day drops one fragment: in the current week, only those up to today are in the Chest.
+  const weekFragments = SEEKER_FRAGMENTS.filter(
+    (f) => f.week === selectedSeekerWeek && (f.week < currentWeek || f.day <= currentDay)
+  ).sort(
     (a, b) => b.day - a.day
   );
 
@@ -537,30 +496,33 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
           {showScriptureDrawer && (
             <div className="rounded-2xl bg-[#1E1232] border border-[#D4B876]/60 p-3.5 space-y-2.5 shadow-lg">
               <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#D4B876] uppercase">
-                CUMULATIVE DARK MOON VERSES
+                DARK MOON VERSES
               </div>
-              {/* Each week's verse is read at that week's Gathering (Day 7), so it joins the Bag from then on. */}
-              {CUMULATIVE_SCRIPTURE.filter((v) => v.week < currentWeek || (v.week === currentWeek && currentDay >= 7)).length === 0 && (
+              {/* Canon's passages word for word, each joining the Bag once its Gathering has read it (bagVerses.ts). */}
+              {heardVerses.length === 0 && (
                 <div className="text-[13px] font-sans text-[#B7A9CC]">None yet.</div>
               )}
-              {CUMULATIVE_SCRIPTURE.filter((v) => v.week < currentWeek || (v.week === currentWeek && currentDay >= 7)).map((v) => (
-                <div
-                  key={v.week}
-                  className="p-3 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-1"
-                >
-                  <div className="font-['Cinzel'] font-bold text-[12px] text-[#D4B876]">
-                    Week {v.week} · {v.verseTitle}
-                  </div>
-                  {v.lines.map((line, lIdx) => (
-                    <p
-                      key={lIdx}
-                      className="font-['Cormorant_Garamond'] font-medium text-[19px] text-[#F4F1F8] leading-[1.5]"
+              {heardVerses.map((v) => {
+                const key = `${v.week}-${v.title}`;
+                const open = !!openVerses[key];
+                return (
+                  <div key={key} className="rounded-xl bg-[#130B1F] border border-[#3A2555]">
+                    <button
+                      type="button"
+                      onClick={() => setOpenVerses((p) => ({ ...p, [key]: !p[key] }))}
+                      className="w-full flex items-center justify-between gap-2 p-3 text-left font-['Cinzel'] font-bold text-[12px] text-[#D4B876]"
                     >
-                      “{line}”
-                    </p>
-                  ))}
-                </div>
-              ))}
+                      <span>Week {v.week} · {v.title}</span>
+                      <span className="text-[#B7A9CC]">{open ? '▲' : '▼'}</span>
+                    </button>
+                    {open && (
+                      <div className="px-3 pb-3">
+                        <NarrationBlock text={v.text} />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           )}
 
