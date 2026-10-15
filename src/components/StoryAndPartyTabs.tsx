@@ -79,6 +79,7 @@ import {
 } from '../data/gatheringEngine';
 import { UNITED_EFFORT_STORIES } from '../data/unitedEffortStories';
 import { GATHERING_SCRIPTS, GatheringCond, GatheringStep } from '../data/gatheringScripts';
+import { GARRICK_RECAP } from '../data/garrickRecap';
 
 /** A roll's net: +3, 0 or −2 (a true minus sign). */
 const formatMargin = (m: number) => (m > 0 ? `+${m}` : m === 0 ? '0' : `−${Math.abs(m)}`);
@@ -2394,6 +2395,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const [gTurn, setGTurn] = useState<Record<number, { hint: boolean; answered: boolean; text: string }>>({});
   const [gAsked, setGAsked] = useState<Record<number, number[]>>({});
   const [gAskDone, setGAskDone] = useState<Record<number, boolean>>({});
+  // Garrick's Recap: opens only from the finale's summary card (canon, Week 6 Gathering).
+  const [showRecap, setShowRecap] = useState(false);
   const [gLookCloser, setGLookCloser] = useState<{
     attr: AttributeName;
     d20: number;
@@ -3796,8 +3799,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
             .map((l) => {
               if (/^You earned:/.test(l)) return `You earned: ${earned.length ? earned.join(' · ') : 'nothing new'}`;
               if (/^The party:/.test(l)) return partyLine;
-              // The Garrick Recap is not built yet, so the card does not promise it.
-              if (/Garrick's Recap/.test(l)) return null;
               return l;
             })
             .filter((l): l is string => Boolean(l));
@@ -3810,7 +3811,28 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                 {shown.map((l, li) => (
                   <ScriptText key={li} text={gFill(l)} className="font-sans text-[14px] text-[#E6E0F0] leading-[1.42]" />
                 ))}
+                {shown.some((l) => /Garrick's Recap/.test(l)) && (
+                  <div className="pt-2">
+                    <ScriptButton label={showRecap ? "Close Garrick's Recap" : "Read Garrick's Recap"} onClick={() => setShowRecap((v) => !v)} />
+                  </div>
+                )}
               </div>
+              {showRecap && shown.some((l) => /Garrick's Recap/.test(l)) && (
+                <div className="border-t border-[#3A2555] p-3 space-y-4" data-garrick-recap>
+                  {GARRICK_RECAP.map((w) => (
+                    <div key={w.week} className="space-y-2.5">
+                      <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] uppercase text-[#D4B876]">Week {w.week}</div>
+                      {w.entries.map((e, ei) => (
+                        <div key={ei} className="pl-3 border-l-2 border-[#D4B876]/45 space-y-1">
+                          {e.when && <div className="font-sans text-[11.5px] text-[#B7A9CC]">{gFill(e.when)}</div>}
+                          <ScriptText text={gFill(e.line)} className="font-['Cormorant_Garamond',serif] text-[16px] text-[#F4E8C1] leading-[1.4]" />
+                          <ScriptText text={gFill(e.meaning)} className="font-sans text-[13.5px] text-[#E6E0F0] leading-[1.42]" />
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           );
           return { nodes, done: true, reachedTwist };
