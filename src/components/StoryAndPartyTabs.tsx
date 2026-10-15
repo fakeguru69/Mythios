@@ -334,7 +334,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   const baseArmorDef = GEAR_TABLE[armorLevel]?.armor || 27;
   const playerAtk = baseWeaponAtk + (useCombatRelic ? 1 : 0);
   const playerArmor = baseArmorDef + (useCombatRelic ? 1 : 0);
-  const enemyDef = Math.max(16, (epMeta.wDef || 21) - 2);
+  const enemyDef = epMeta.wDef || 21;
   // Canon: who strikes first in the day's fight is set by a choice or by the day's Challenge.
   const scriptFight = chapterScript?.steps.find(
     (st): st is Extract<ScriptStep, { t: 'fight' }> => st.t === 'fight'
@@ -545,6 +545,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
         if (earnedGold > 0 && claimReward(`${dayKey}:fight`)) {
           onEarnGold(earnedGold);
         }
+        // Down at 0 HP: a Bruised Scrape (Core Rules §4). The fire notices it that evening.
+        if (nextRound.playerHpAfter <= 0 && nextRound.enemyHpAfter > 0) onClaimReward(`${dayKey}:fight-lost`);
       }
       setIsRollingRound(false);
     }, 420);
@@ -1704,8 +1706,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   onUnlockGatheringBadge,
   characterName,
   characterClass = 'Trickster',
-  weaponLevel = 2,
-  armorLevel = 2,
+  weaponLevel = 1,
+  armorLevel = 1,
   attributes,
   solvedWords,
   onSolveWord,
@@ -1726,6 +1728,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   onClaimReward = () => true,
   hasClaimedReward = () => false,
   onGainAttribute,
+  completedDays = [],
 }) => {
   const [internalPartyMode, setInternalPartyMode] = useState<'CAMPFIRE' | 'GATHERING'>(
     'CAMPFIRE'
@@ -2172,7 +2175,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     setApproachRolled({ d20, attr, attrScore, tierBonus, mapBonus, bonus, dc, margin, cleared });
     if (onClaimReward(`G${currentWeek}:approach`)) {
       if (cleared) {
-        const growth = calculateAttributeGrowth(attrScore, 7, d20, tierBonus, dc);
+        // The Approach is the roller's Daily Challenge for the day: growth uses their nth day played this week.
+        const daysPlayedThisWeek = completedDays.filter((id) => id.startsWith(`${currentWeek}-`)).length + 1;
+        const growth = calculateAttributeGrowth(attrScore, daysPlayedThisWeek, d20, tierBonus, dc);
         setApproachGrowth(growth);
         onGainAttribute?.(attr, growth, d20 === 20);
         onEarnGold(GOLD_CHALLENGE_WIN);
@@ -3246,6 +3251,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
           onUpdateTelemetry={(dk, t) => setCampfireTelemetry((prev) => ({ ...prev, [dk]: t }))}
           onJumpToGathering={() => setPartyMode('GATHERING')}
           challengeClearedToday={!hasClaimedReward(`${currentWeek}-${currentDay}:challenge-failed`)}
+          bruisedScrapeToday={hasClaimedReward(`${currentWeek}-${currentDay}:fight-lost`)}
         />
       )}
 

@@ -741,7 +741,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                       : 'bg-[#0D0714] border-[#3A2555] text-[#B7A9CC]'
                   }`}
                 >
-                  {simBruisedScrape ? '✓ Bruised Arm' : 'Bruised Arm'}
+                  {simBruisedScrape ? '✓ Bruised Scrape' : 'Bruised Scrape'}
                 </button>
                 <button
                   type="button"
@@ -978,6 +978,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
         {/* -------------------------------------------------------------------
             STEP 4: THE CALLBACK
            ------------------------------------------------------------------- */}
+        {dayEntry.callback && (
         <div
           className={`rounded-xl border p-3.5 space-y-1.5 transition bg-[#150D22] border-[#3A2555]/80`}
         >
@@ -988,6 +989,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             “{dayEntry.callback}”
           </p>
         </div>
+        )}
 
         {/* -------------------------------------------------------------------
             STEP 5: THE SEEKER FRAGMENT WORD-LOCK (With 1st-Letter Hint & Zero Gold Text)

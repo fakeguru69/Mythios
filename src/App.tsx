@@ -145,8 +145,8 @@ export default function App() {
     setClaimedRewards(Array.from(claimedRewardsRef.current));
     return true;
   };
-  const [weaponLevel, setWeaponLevel] = useState<number>(initialSave?.weaponLevel ?? 2);
-  const [armorLevel, setArmorLevel] = useState<number>(initialSave?.armorLevel ?? 2);
+  const [weaponLevel, setWeaponLevel] = useState<number>(initialSave?.weaponLevel ?? 1);
+  const [armorLevel, setArmorLevel] = useState<number>(initialSave?.armorLevel ?? 1);
 
   const [attributes, setAttributes] = useState<Record<AttributeName, number>>(
     initialSave?.attributes ?? {
@@ -1290,9 +1290,7 @@ export default function App() {
                       setStats((s) => ({ ...s, perfectRolls: (s.perfectRolls ?? 0) + 1 }));
                     }
                     setRecentRolls((prev) => [
-                      `W${currentWeek}D${currentDay}: ${
-                        isNat20 ? 'NAT 20!' : delta >= 3 ? 'Cleared' : 'Hard Road'
-                      } (${attr} +${delta})`,
+                      `W${currentWeek}D${currentDay}: Passed${delta > 0 ? ` (${attr} +${delta})` : ''}`,
                       ...prev.slice(0, 4),
                     ]);
                   }}
