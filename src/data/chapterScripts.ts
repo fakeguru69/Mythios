@@ -1762,7 +1762,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "He does not say a word. He does not make a sound when he is hit. He tears himself free and is gone downhill, and what is left in your fist is a strip of his coat.\n\nSewn to it, no bigger than a thumbnail: a circle of black cloth.\n\nAt the cuff, a snapped end of dark thread, the same twist as the thread still through the horn button from the mill. *(Added 14 Oct 2026, Fake Guru: the horn button's payoff.)*"
+        "text": "He does not say a word. He does not make a sound when he is hit. He tears himself free and is gone downhill, and what is left in your fist is a strip of his coat.\n\nSewn to it, no bigger than a thumbnail: a circle of black cloth.\n\nAt the cuff, a snapped end of dark thread, the same twist as the thread still through the horn button from the mill."
       },
       {
         "t": "say",
