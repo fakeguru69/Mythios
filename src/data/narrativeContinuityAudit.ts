@@ -1,3 +1,4 @@
+import { canonDayFacts } from './canonDayFacts';
 import { WEEKDAY_INVENTORY, WeekdayInventoryItem } from './mythiosChaptersData';
 
 export type ContinuityRuleId = 'RULE_1_PLANT_PAYOFF' | 'RULE_2_CLIFFHANGER_HOOK' | 'RULE_3_TIMELINE_MATH' | 'RULE_4_CHARACTER_WATCH' | 'RULE_5_DUAL_DAY_PARITY';
@@ -108,13 +109,14 @@ export function buildContinuityChainMatrix(appliedLoopholeIds: string[]): Contin
       ? 'FIX PREVIEW ACTIVE'
       : 'LOOPHOLE FLAGGED';
 
+    const facts = canonDayFacts(patched.week, patched.day);
     return {
       week: patched.week,
       day: patched.day,
       place: patched.place,
-      question: patched.question,
-      plantOrToken: patched.youHold || patched.plantTag || '— (Investigation step)',
-      cliffhangerPull: patched.pullLine,
+      question: facts.question,
+      plantOrToken: facts.hold || '— (Investigation step)',
+      cliffhangerPull: facts.pull,
       nextDayTarget,
       loopholeId,
       status,

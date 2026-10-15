@@ -1356,17 +1356,17 @@ export function buildWhatWeDidTodayLines(params: {
 
     if (fid === 'YOU') {
       if (params.challengeClearedByYou) {
-        parts.push(`cleared the landmark roll at ${params.dayEntry.place}`);
+        parts.push(`passed today's Challenge at ${params.dayEntry.place}`);
       } else if (params.bruisedScrapeByYou) {
-        parts.push(`pressed through a bruised scrape at ${params.dayEntry.place}`);
+        parts.push(`took a Bruised Scrape at ${params.dayEntry.place}`);
       }
       if (params.relicGiftedByYouTo) {
-        parts.push(`handed a Relic to ${params.relicGiftedByYouTo}`);
+        parts.push(`gave a Relic to ${params.relicGiftedByYouTo}`);
       }
     }
 
     if (params.clueContributors.includes(fid)) {
-      parts.push(`brought back "${params.dayEntry.fanOutClue.title}" from Fan Out`);
+      parts.push('brought back a clue from the last light');
     }
 
     const solvedW1 =
@@ -1377,11 +1377,9 @@ export function buildWhatWeDidTodayLines(params: {
       params.solvedWord2By.toLowerCase() === fname.toLowerCase();
 
     if (solvedW1 && solvedW2) {
-      parts.push(`unlocked both stone-words on Fragment ${params.dayEntry.id}`);
+      parts.push("found both missing words in today's fragment");
     } else if (solvedW1 || solvedW2) {
-      parts.push(
-        `unlocked lock-word ${solvedW1 ? '1' : '2'} on Fragment ${params.dayEntry.id}`
-      );
+      parts.push("found a missing word in today's fragment");
     }
 
     if (parts.length > 0) {

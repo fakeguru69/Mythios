@@ -1621,7 +1621,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
           <div className="px-3 pt-2.5 pb-[max(0.6rem,env(safe-area-inset-bottom))] bg-[#150D22] border-t border-[#F0A552]/45 shrink-0">
             <div className="flex items-center justify-between gap-2 mb-1.5">
               <span className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] text-[#6FD39A] uppercase truncate">
-                ✓ SOLO LANDMARK COMPLETE · {dayData.place.toUpperCase()}
+                ✓ DAY {currentDay} COMPLETE · {dayData.place.toUpperCase()}
               </span>
               <span className="text-[11px] font-sans text-[#D4B876] whitespace-nowrap shrink-0">
                 Party Waiting

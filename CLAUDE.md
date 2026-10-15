@@ -78,7 +78,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 - `src/data/bagVerses.ts` (15 Oct): the Bag's Dark Moon Verses, taken from `gatheringScripts.ts` at load (the five verses plus the torn page, the Watch and the untorn page). Nothing typed; canon has no Week 1 passage.
 - `src/data/gatheringEngine.ts` + `unitedEffortStories.ts` (15 Oct): the Gathering Battle and United Effort rules, and the United Effort story lines generated from canon.
 - `src/data/garrickRecap.ts` (15 Oct): Garrick's Recap (every line he said and what it meant), generated from `garrick-deception-table.md` by `scripts/gen-garrick-recap.cjs`. Shown only from the Gathering 6 summary card. Never edit by hand.
-- `src/data/mythiosChaptersData.ts`: the build's short summary of each weekday (`WEEKDAY_INVENTORY`): Challenge Attributes, fight pay, place names. Still used for rules and the workbench; its story fields are no longer shown in the day.
+- `src/data/mythiosChaptersData.ts`: the build's short list of the weekdays (`WEEKDAY_INVENTORY`): place, Challenge Attributes, fight and [PRESS ON] flags, fight pay. Its old hand-written story fields were removed 15 Oct; `src/data/canonDayFacts.ts` reads each day's question, "You learned", "You hold" and Pull from canon's chapter scripts (used by Garrick's memory slice, the continuity table and the workbench).
 - `src/data/fanOutLeads.ts` (15 Oct): Fan Out "the last light" (approved proposal, `docs/design/fan-out-and-campfire-proposal.md`): each day's leads (all 108 approved 15 Oct, in `APPROVED_FAN_OUT_LEADS`; the late lines in `FAN_OUT_LATE_LINES`), and the per-word first-letter hint. `fragmentMeaningQuestions.ts`: the meaning question for each of the 36 fragments, asked at the fire. `weekQuestions.ts`: each week's question for the week board ("the case so far"), read back at the Gathering's opening. All approved 15 Oct. Days are named by number, never by weekday. The old `soloLandmarkProse.ts` (template Fan Out prose, the rear-guard fight) was deleted 15 Oct.
 - `src/data/narrativeContinuityAudit.ts`: the old continuity patches. **All retired** (L4–L6 on 14 Oct, L1 and L3 on 15 Oct; L2 became canon); the day now plays canon text, so nothing is patched.
 - `src/data/campfireDaysData.ts` + `campfire-days-v23.json`: Campfire v2.3 (correct) plus first-use checks.
@@ -93,7 +93,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 **Broken at the 14 Oct handover (each is a task in §7; progress is ticked in `docs/fix-plan.md`):** the Challenge roll; result-card numbers; seven hard-coded gold amounts; Combat Relic never spent; United Effort not canon; party fixed at four; `[N]` replaced with "the company"; sample friends named after story characters; continuity patches L4 and L5 wrong and on; Store-lock switch left over; Audit Workbench reachable; small text errors. *(15 Oct: all fixed, small text errors included (Task 10). The full rule check is `docs/build-check-15oct.md`; its nine open decisions wait on Fake Guru.)*
 
-**Checked 15 Oct (Task 11):** the Gathering "Phase 5 Table Question" is gone; the Gatherings play canon word for word and offer no quiz. Its old text still sits unused in `mythiosGatheringsAndAudit.ts` (removal waits on Fake Guru).
+**Checked 15 Oct (Task 11):** the Gathering "Phase 5 Table Question" is gone; the Gatherings play canon word for word and offer no quiz. Its old text was deleted in the 15 Oct tidy-up, with the old Match quotes, the unused glossary, the dead watch-page tally and the unused fight route.
 
 ---
 

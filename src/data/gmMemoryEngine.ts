@@ -1,4 +1,5 @@
 import { GarrickRouteResult, GarrickStoryState } from './garrickRouter';
+import { canonDayFacts } from './canonDayFacts';
 import { WEEKDAY_INVENTORY } from './mythiosChaptersData';
 
 /**
@@ -51,11 +52,13 @@ export function buildEpisodeSceneSlice(state: GarrickStoryState): string {
   const ch =
     WEEKDAY_INVENTORY.find((d) => d.week === state.episode && d.day === state.day) ||
     WEEKDAY_INVENTORY[0];
+  // Canon's own words for the day (its question and "You learned" line), never the build's old summaries.
+  const facts = canonDayFacts(ch.week, ch.day);
 
   return [
     `CURRENT SCENE SLICE (Week ${state.episode}, Day ${state.day} — ${ch.place}):`,
-    `- Dramatic Question: ${ch.question}`,
-    `- Scene Summary: ${ch.summaryLearned}`,
+    `- Dramatic Question: ${facts.question}`,
+    `- Scene Summary: ${facts.learned}`,
     `- Story Flags: ledgerOpened=${state.ledgerOpened}, prisonerHeld=${state.prisonerHeld}, allFourChildrenHome=${state.allFourChildrenHome}, atHighwall=${state.atHighwall}, ep6RevealLanded=${state.ep6RevealLanded}`,
   ].join('\n');
 }

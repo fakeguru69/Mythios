@@ -131,3 +131,5 @@ Also fixed while checking: on W1D1, the fire showed an empty "Garrick remembers"
 - `POST /api/resolve-fight` (server.ts) is unused.
 
 Recommendation: delete these in one clean-up pass, with Fake Guru's OK.
+
+**Done 15 Oct (Fake Guru: "yes").** All deleted. `runMythiosVerifier` now checks the build's own player text (Fan Out leads, late lines, meaning questions, week questions) for gate leaks, counts canon's real Match steps (10), and reads Garrick's absence from the Campfire data; its W1D1 check now passes. Garrick's Gemini memory slice and the workbench read canon's day facts (`canonDayFacts.ts`), not the old summaries (one of which said the hidden door "opens only for your blood", not canon).
