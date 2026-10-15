@@ -1173,7 +1173,7 @@ export default function App() {
                           type="text"
                           value={characterName}
                           onChange={(e) => setCharacterName(e.target.value)}
-                          maxLength={16}
+                          maxLength={12}
                           className="w-full px-3 py-2 rounded-xl bg-[#150D22] border border-[#3A2555] text-[14px] font-sans text-[#F4F1F8] focus:outline-none focus:border-[#D4B876]"
                         />
                       </div>
@@ -1185,7 +1185,7 @@ export default function App() {
                           type="text"
                           value={partyName}
                           onChange={(e) => setPartyName(e.target.value)}
-                          maxLength={22}
+                          maxLength={20}
                           className="w-full px-3 py-2 rounded-xl bg-[#150D22] border border-[#3A2555] text-[14px] font-sans text-[#F4F1F8] focus:outline-none focus:border-[#D4B876]"
                         />
                       </div>

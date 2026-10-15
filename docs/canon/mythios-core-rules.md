@@ -856,7 +856,7 @@ On 8 Oct 2026 Fake Guru (formerly TV / TVMen) approved the following changes tha
 
 1. **A failed Challenge pays no gold** (build) against §12's −150g. Decide in the numbers pass which stands; the build's 150g Challenge pay does not match §12's +500g and cannot stand with the 12,400g gear curve.
 2. **The Detour fight** after a failed Challenge on a day with no fight: a short, easier fight so a failure has a consequence. Pay not set (build used 150g win / 75g loss).
-3. **Ambush and first-strike numbers** (build: −15 HP on an ambush, +2 weapon on a strike, a 70 HP Fan Out enemy). Not in §4; pending.
+3. ~~**Ambush and first-strike numbers** (build: −15 HP on an ambush, +2 weapon on a strike, a 70 HP Fan Out enemy).~~ **Dropped 15 Oct 2026 (Fake Guru):** the days themselves say who strikes first (a choice, or the day's Challenge), as the episode files write it; the +2 / −15 counted that Challenge twice. (The Fan Out enemy goes with the Fan Out redesign.)
 4. **Fan Out** (a solo choice after the day's main beat: Challenge, Fight or Head to the Campfire). It reopens part of the optional play retired on 5 Oct, so **"one paid beat a day" no longer holds as written**. Head to the Campfire counts as a finished day; the other two are optional depth. A win gives a first-letter hint to the day's Seeker Fragment.
 5. **Riddle and Fragment gold** (build: riddles +10g/+15g, lock words +25g). §12 has only the +25g word. Pending.
 6. **W6D3's two small bonuses** (+1 Agility on THE WATCH, +1 Charm on THE BOARD). Pending.
