@@ -6,6 +6,7 @@ import { RecordTabView } from './components/RecordTabView';
 import { PartyTabView, PinnedPartyClue, StoryTabView } from './components/StoryAndPartyTabs';
 import { AttributeName, CLASS_META, ClassName, DEFAULT_PARTY_SIZE, MAX_PARTY_SIZE, MIN_PARTY_SIZE, buildParty } from './data/mythiosRulesData';
 import { WEEKDAY_INVENTORY } from './data/mythiosChaptersData';
+import { HintMask, hintAdd } from './data/fanOutLeads';
 import { runMythiosVerifier } from './data/mythiosGatheringsAndAudit';
 import { NEW_CONTINUITY_LOOPHOLES } from './data/narrativeContinuityAudit';
 import { PartyMemoryDigest } from './data/gmMemoryEngine';
@@ -70,7 +71,7 @@ interface SavedCampaignState {
   watchPageStrokesLeft: number;
   ledgerOpened: boolean;
   solvedRiddleIds: Record<string, number>;
-  seekerFirstLetterHints: Record<string, boolean>;
+  seekerFirstLetterHints: Record<string, HintMask>; // which fragment words have a first-letter hint (fanOutLeads.ts)
   sharedFanOutClues: Record<string, { title: string; text: string; firstLetter: string }>;
   stats: Record<string, number>;
   earnedBadgeIds: string[];
@@ -190,7 +191,7 @@ export default function App() {
     initialSave?.solvedRiddleIds ?? {}
   );
   // Seeker Fragment 1st-letter placement hints unlocked by passing the Solo Fan-Out beat in MINE
-  const [seekerFirstLetterHints, setSeekerFirstLetterHints] = useState<Record<string, boolean>>(
+  const [seekerFirstLetterHints, setSeekerFirstLetterHints] = useState<Record<string, HintMask>>(
     initialSave?.seekerFirstLetterHints ?? {
       '1-6': true,
     }
@@ -1357,8 +1358,8 @@ export default function App() {
                   }}
                   solvedWords={solvedWords}
                   seekerFirstLetterHints={seekerFirstLetterHints}
-                  onUnlockSeekerHint={(fragId) =>
-                    setSeekerFirstLetterHints((prev) => ({ ...prev, [fragId]: true }))
+                  onUnlockSeekerHint={(fragId, word) =>
+                    setSeekerFirstLetterHints((prev) => ({ ...prev, [fragId]: hintAdd(prev[fragId], word) }))
                   }
                   sharedFanOutClues={sharedFanOutClues}
                   onShareFanOutClue={(dayKey, payload) => {

@@ -19,6 +19,7 @@ import {
 import { routeGarrickMessage } from '../data/garrickRouter';
 import { CHAPTER_SCRIPTS } from '../data/chapterScripts';
 import { FRAGMENT_MEANING_QUESTIONS } from '../data/fragmentMeaningQuestions';
+import { HintMask, hintHas } from '../data/fanOutLeads';
 import { NarrationBlock, fillScriptTokens } from './ChapterScriptParts';
 
 export interface CampfireEveningViewProps {
@@ -34,7 +35,7 @@ export interface CampfireEveningViewProps {
   solvedWords: Record<string, { w1?: string; w2?: string }>;
   /** Returns false when the word can't be taken (already filled, or this friend's one word for today is used). */
   onSolveWord: (fragId: string, wordIndex: 1 | 2, solverName: string) => boolean;
-  seekerFirstLetterHints: Record<string, boolean>;
+  seekerFirstLetterHints: Record<string, HintMask>;
   fanOutBranchesByDay: Record<string, Record<FriendId, 'CHALLENGE' | 'FIGHT' | 'CAMPFIRE'>>;
   onChangeFriendFanOutBranch: (
     dayKey: string,
@@ -232,10 +233,13 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     Boolean(activeFragSolved.w1),
     Boolean(activeFragSolved.w2),
   ];
-  const activeSeatHasFirstLetterHint =
-    dayBranches[activeSeat] === 'CHALLENGE' ||
-    dayBranches[activeSeat] === 'FIGHT' ||
-    Boolean(seekerFirstLetterHints[dayKey]);
+  // A first-letter hint helps one word: the player's comes from their Fan Out lead; a sample friend who
+  // fanned out stands in with word 1.
+  const seatHasHint = (word: 1 | 2) =>
+    activeSeat === 'YOU'
+      ? hintHas(seekerFirstLetterHints[dayKey], word)
+      : word === 1 && (dayBranches[activeSeat] === 'CHALLENGE' || dayBranches[activeSeat] === 'FIGHT');
+  const activeSeatHasFirstLetterHint = seatHasHint(1) || seatHasHint(2);
 
   // Evaluate at most 2 true Noticing lines for Step 1
   const notYetArrivedNames = partyIds
@@ -994,9 +998,10 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
 
           {activeSeatHasFirstLetterHint && (
             <div className="px-2.5 py-1.5 rounded-lg bg-[#130B1F] border border-[#6FD39A]/50 text-[12.5px] font-sans text-[#6FD39A]">
-              Fan Out First-Letter Hint wired in: Word 1 starts with{' '}
-              <strong>“{activeFragment.word1[0].toUpperCase()}”</strong> · Word 2 starts with{' '}
-              <strong>“{activeFragment.word2[0].toUpperCase()}”</strong>
+              {([1, 2] as const)
+                .filter((w) => seatHasHint(w))
+                .map((w) => `Word ${w} starts with “${(w === 1 ? activeFragment.word1 : activeFragment.word2)[0].toUpperCase()}”`)
+                .join(' · ')}
             </div>
           )}
 
@@ -1008,7 +1013,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                 fragSolvedState[0]
                   ? activeFragment.word1.toUpperCase()
                   : `[${
-                      activeSeatHasFirstLetterHint
+                      seatHasHint(1)
                         ? `${activeFragment.word1[0].toUpperCase()}·`
                         : ''
                     }${activeFragment.jumble1.join('')}]`
@@ -1018,7 +1023,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                 fragSolvedState[1]
                   ? activeFragment.word2.toUpperCase()
                   : `[${
-                      activeSeatHasFirstLetterHint
+                      seatHasHint(2)
                         ? `${activeFragment.word2[0].toUpperCase()}·`
                         : ''
                     }${activeFragment.jumble2.join('')}]`
@@ -1123,7 +1128,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                   const pickedIdx = seekerTypedIndices[slotPos];
                   const filled = pickedIdx !== undefined ? arr[pickedIdx] : '';
                   const showFirstHint =
-                    !filled && slotPos === 0 && activeSeatHasFirstLetterHint;
+                    !filled && slotPos === 0 && seatHasHint((seekerSlot + 1) as 1 | 2);
                   return (
                     <button
                       key={slotPos}

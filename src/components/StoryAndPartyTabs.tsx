@@ -22,7 +22,6 @@ import {
   GOLD_LOOK_CLOSER_WIN,
   GOLD_MATCH_BASE_PER_PICK,
   GOLD_MATCH_PERFECT_PER_PICK,
-  GOLD_FAN_OUT_CACHE_WIN,
   GOLD_RIDDLE_BONUS,
   GOLD_GATHERING_BATTLE_REWARDS,
   GOLD_FRAGMENT_WORD_SOLVED,
@@ -32,7 +31,7 @@ import { SEEKER_FRAGMENTS } from '../data/mythiosFragments';
 import { GATHERINGS_DATA } from '../data/mythiosGatheringsAndAudit';
 import { getChapterWithContinuityFixes } from '../data/narrativeContinuityAudit';
 import { routeGarrickMessage, GarrickRouteResult } from '../data/garrickRouter';
-import { getFanOutEncounterData, FanOutBranchOption } from '../data/soloLandmarkProse';
+import { FanOutLead, HintMask, fanOutLeadsFor, hintHas } from '../data/fanOutLeads';
 import {
   getCampfireDayEntry,
   CampfireEveningTelemetry,
@@ -131,8 +130,8 @@ interface StoryTabViewProps {
   onJumpToCampfire: (week: number, day: number) => void;
   onOpenSeekerInBag: (week: number, day: number) => void;
   solvedWords: Record<string, { w1?: string; w2?: string }>;
-  seekerFirstLetterHints?: Record<string, boolean>;
-  onUnlockSeekerHint?: (fragId: string) => void;
+  seekerFirstLetterHints?: Record<string, HintMask>;
+  onUnlockSeekerHint?: (fragId: string, word: 1 | 2) => void;
   soloFanOutClues?: Record<string, { title: string; text: string; firstLetter: string }>;
   onRecordSoloFanOutClue?: (
     dayKey: string,
@@ -241,13 +240,10 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   const [isReplayRoll, setIsReplayRoll] = useState(false);
 
 
-  // Full Interactive Fanning Out Solo Encounter state (#7)
-  const [fanOutBranch, setFanOutBranch] = useState<FanOutBranchOption | null>(null);
-  const [fanOutSelectedAttr, setFanOutSelectedAttr] = useState<AttributeName | null>(null);
+  // Fan Out, "the last light": the lead followed (or straight to the fire), and its one roll.
+  const [fanOutLeadId, setFanOutLeadId] = useState<string | null>(null);
   const [fanOutRollOutcome, setFanOutRollOutcome] = useState<RollState | null>(null);
-  const [fanOutFightRounds, setFanOutFightRounds] = useState<FightRoundEntry[]>([]);
-  const [fanOutFightDone, setFanOutFightDone] = useState(false);
-  const [isRollingFanOutRound, setIsRollingFanOutRound] = useState(false);
+  const [isRollingFanOut, setIsRollingFanOut] = useState(false);
   const [fanOutCompleted, setFanOutCompleted] = useState(false);
 
   // The chapter script: taps made, choices picked (in order), and [PRESS ON].
@@ -287,12 +283,9 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setUseAttrRelic(false);
     setRollOutcome(null);
     setIsReplayRoll(false);
-    setFanOutBranch(null);
-    setFanOutSelectedAttr(null);
+    setFanOutLeadId(null);
     setFanOutRollOutcome(null);
-    setFanOutFightRounds([]);
-    setFanOutFightDone(false);
-    setIsRollingFanOutRound(false);
+    setIsRollingFanOut(false);
     setFanOutCompleted(false);
     setUseCombatRelic(false);
     setFightRounds([]);
@@ -360,12 +353,9 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setUseAttrRelic(false);
     setRollOutcome(null);
     setIsReplayRoll(false);
-    setFanOutBranch(null);
-    setFanOutSelectedAttr(null);
+    setFanOutLeadId(null);
     setFanOutRollOutcome(null);
-    setFanOutFightRounds([]);
-    setFanOutFightDone(false);
-    setIsRollingFanOutRound(false);
+    setIsRollingFanOut(false);
     setFanOutCompleted(false);
     setUseCombatRelic(false);
     setFightRounds([]);
@@ -787,7 +777,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
 
 
 
-  const hasFirstLetterHint = dayFragment ? Boolean(seekerFirstLetterHints[dayFragment.id]) : false;
+  const hasFirstLetterHint = (word: 1 | 2) => (dayFragment ? hintHas(seekerFirstLetterHints[dayFragment.id], word) : false);
 
   const renderArtifactFragmentQuote = () => {
     if (!dayFragment) return null;
@@ -812,7 +802,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                 key={idx}
                 className="mx-1 px-2.5 py-0.5 rounded-md bg-[#2A1B40] border border-[#D4B876]/65 font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#D4B876] not-italic inline-block"
               >
-                {hasFirstLetterHint ? (
+                {hasFirstLetterHint(1) ? (
                   <>
                     <span className="text-[#6FD39A] underline mr-1">
                       [{dayFragment.word1[0].toUpperCase()}]
@@ -838,7 +828,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                 key={idx}
                 className="mx-1 px-2.5 py-0.5 rounded-md bg-[#2A1B40] border border-[#D4B876]/65 font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#D4B876] not-italic inline-block"
               >
-                {hasFirstLetterHint ? (
+                {hasFirstLetterHint(2) ? (
                   <>
                     <span className="text-[#6FD39A] underline mr-1">
                       [{dayFragment.word2[0].toUpperCase()}]
@@ -870,7 +860,6 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       ? startPlayerHp
       : fightRounds[fightRounds.length - 1].playerHpAfter;
 
-  const fanOutEncounter = getFanOutEncounterData(dayData, party.length);
 
   const solvedFragCount = dayFragment
     ? (solvedWords[dayFragment.id]?.w1 ? 1 : 0) +
@@ -879,164 +868,137 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
 
 
 
-  // Fanning Out Solo Encounter handlers (#7)
-  // Fan Out Challenge: same rule as the weekday Challenge, against the week's DC.
-  // (No separate Fan Out DC exists in canon; pending the numbers pass, Core Rules §15.)
-  const activeFanOutAttr: AttributeName =
-    fanOutSelectedAttr ||
-    (fanOutBranch?.challengeAttrs?.[0] as AttributeName) ||
-    'Craft';
-  const activeFanOutAttrScore = attributes[activeFanOutAttr] || 20;
-  const activeFanOutTierBonus = getTierInfo(activeFanOutAttrScore).bonus;
-  const [isRollingFanOut, setIsRollingFanOut] = useState(false);
+  // Fan Out leads (fanOutLeads.ts). One quick Challenge, the day's rule against the week's DC; the clue always
+  // comes back and a pass adds the first-letter hint for the lead's word. No fight, no gold (pending the
+  // numbers pass), no growth (Core Rules §3).
+  const fanOutLeads: FanOutLead[] = fanOutLeadsFor(
+    currentWeek,
+    currentDay,
+    // Until a day's leads are approved, its one lead rolls on Craft or Intellect (as the build's Fan Out did).
+    ['Craft', 'Intellect']
+  );
+  const fanOutLead = fanOutLeads.find((l) => l.id === fanOutLeadId) || null;
 
-  const handleSelectFanOutBranch = (opt: FanOutBranchOption) => {
-    setFanOutBranch(opt);
-    setFanOutSelectedAttr(opt.challengeAttrs ? opt.challengeAttrs[0] : null);
-    setFanOutRollOutcome(null);
-    setFanOutFightRounds([]);
-    setFanOutFightDone(false);
-    if (opt.branchType === 'CAMPFIRE') {
-      setFanOutCompleted(true);
-    } else {
-      setFanOutCompleted(false);
-    }
-  };
-
-  const unlockFanOutPayoff = (opt: FanOutBranchOption) => {
-    if (dayFragment && onUnlockSeekerHint) {
-      onUnlockSeekerHint(dayFragment.id);
-    }
-    if (dayFragment && opt.soloClueTitle && opt.soloClueText) {
-      const payload = {
-        title: opt.soloClueTitle,
-        text: opt.soloClueText,
-        firstLetter: dayFragment.word1[0].toUpperCase(),
-      };
-      if (onRecordSoloFanOutClue) {
-        onRecordSoloFanOutClue(dayKey, payload);
-      }
-      if (onShareFanOutClue) {
-        onShareFanOutClue(dayKey, payload);
-      }
-    }
-    setFanOutCompleted(true);
-  };
-
-  const handleRollFanOutChallenge = async () => {
-    if (!fanOutBranch || fanOutRollOutcome || isRollingFanOut) return;
+  const handleFollowLead = async (lead: FanOutLead, attr: AttributeName) => {
+    if (fanOutRollOutcome || isRollingFanOut) return;
+    setFanOutLeadId(lead.id);
     setIsRollingFanOut(true);
-    const attrPoints = attributes[activeFanOutAttr] || 20;
+    const attrPoints = attributes[attr] || 1;
     const tierBonus = getTierInfo(attrPoints).bonus;
     const d20 = await rollChallengeD20(weekdayDC, tierBonus, 0);
     const { net: margin, success: cleared } = resolveChallengeRoll(d20, tierBonus, weekdayDC);
-    const total = d20 + tierBonus;
-
     setFanOutRollOutcome({
       d20,
-      attr: activeFanOutAttr,
+      attr,
       attrPoints,
       tierBonus,
       relicBonus: 0,
-      total,
+      total: d20 + tierBonus,
       dc: weekdayDC,
       succeedOn: challengeSucceedOn(weekdayDC, tierBonus),
       margin,
       cleared,
     });
     setIsRollingFanOut(false);
-
-    if (cleared) {
-      // No growth from Fan Out (Core Rules §3: growth only on the Daily Challenge).
-      if (onClaimReward(`${dayKey}:fanout`)) {
-        onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
-      }
-      unlockFanOutPayoff(fanOutBranch);
-    } else {
-      setFanOutCompleted(true);
+    if (dayFragment) {
+      const word = lead.hintFor;
+      if (cleared) onUnlockSeekerHint?.(dayFragment.id, word);
+      const payload = {
+        title: lead.clueTitle,
+        text: lead.clueText,
+        firstLetter: cleared ? (word === 1 ? dayFragment.word1 : dayFragment.word2)[0].toUpperCase() : '',
+      };
+      onRecordSoloFanOutClue?.(dayKey, payload);
+      onShareFanOutClue?.(dayKey, payload);
     }
+    setFanOutCompleted(true);
   };
 
-  const fanOutEnemyFullHp = fanOutBranch?.enemyHp || 70;
-  const fanOutEnemyDef = fanOutBranch?.enemyDef || 18;
-  const fanOutEnemyAtk = fanOutBranch?.enemyAtk || 13;
-  const fanOutEnemyRemainingHp =
-    fanOutFightRounds.length === 0
-      ? fanOutEnemyFullHp
-      : fanOutFightRounds[fanOutFightRounds.length - 1].enemyHpAfter;
-  const fanOutPlayerRemainingHp =
-    fanOutFightRounds.length === 0
-      ? Math.max(25, playerRemainingHp)
-      : fanOutFightRounds[fanOutFightRounds.length - 1].playerHpAfter;
-
-  const computeNextFanOutFightRound = (prevRounds: FightRoundEntry[]): FightRoundEntry => {
-    const r = prevRounds.length + 1;
-    const enemyHpBefore =
-      prevRounds.length === 0
-        ? fanOutEnemyFullHp
-        : prevRounds[prevRounds.length - 1].enemyHpAfter;
-    const playerHpBefore =
-      prevRounds.length === 0
-        ? Math.max(25, playerRemainingHp)
-        : prevRounds[prevRounds.length - 1].playerHpAfter;
-
-    const d20 = Math.floor(Math.random() * 20) + 1;
-
-    const margin = d20 + baseWeaponAtk - fanOutEnemyDef;
-    const hit = margin > 0;
-    const dmgToEnemy = hit ? margin * 5 : 0;
-    const enemyHpAfter = Math.max(0, enemyHpBefore - dmgToEnemy);
-
-    const enemyD20 = Math.floor(Math.random() * 20) + 1;
-    const enemyMargin = enemyD20 + fanOutEnemyAtk - baseArmorDef;
-    const enemyHit = enemyHpAfter > 0 && enemyMargin > 0;
-    const dmgToPlayer = enemyHit ? enemyMargin * 5 : 0;
-    const playerHpAfter = Math.max(0, playerHpBefore - dmgToPlayer);
-
-    return {
-      round: r,
-      d20,
-      playerAtk: baseWeaponAtk,
-      enemyDef: fanOutEnemyDef,
-      margin,
-      hit,
-      dmgToEnemy,
-      enemyHpBefore,
-      enemyHpAfter,
-      enemyD20,
-      enemyAtk: fanOutEnemyAtk,
-      playerArmor: baseArmorDef,
-      enemyMargin,
-      enemyHit,
-      dmgToPlayer,
-      playerHpBefore,
-      playerHpAfter,
-    };
+  const handleHeadToFire = () => {
+    setFanOutLeadId('FIRE');
+    setFanOutCompleted(true);
   };
 
-  const handleRollFanOutFightRound = () => {
-    if (!fanOutBranch || isRollingFanOutRound || fanOutFightDone) return;
-    setIsRollingFanOutRound(true);
-    setTimeout(() => {
-      const nextRound = computeNextFanOutFightRound(fanOutFightRounds);
-      const updated = [...fanOutFightRounds, nextRound];
-      setFanOutFightRounds(updated);
-      if (nextRound.enemyHpAfter <= 0 || nextRound.playerHpAfter <= 0) {
-        setFanOutFightDone(true);
-        if (nextRound.enemyHpAfter <= 0) {
-          if (onClaimReward(`${dayKey}:fanout`)) {
-            onEarnGold(GOLD_FAN_OUT_CACHE_WIN);
-          }
-          unlockFanOutPayoff(fanOutBranch);
-        } else {
-          setFanOutCompleted(true);
-        }
-      }
-      setIsRollingFanOutRound(false);
-    }, 380);
+  const renderFanOut = () => {
+    const placeLabel = (lead: FanOutLead) => lead.place || dayData.place.replace(/\s*\(.*\)$/, '');
+    return (
+      <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-fan-out>
+        <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+          <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">THE LAST LIGHT</span>
+          <span className="font-['Cinzel'] font-bold text-[11px] text-[#D4B876] whitespace-nowrap shrink-0">
+            {fanOutLeadId ? '✓ Chosen' : 'One more look, or the fire'}
+          </span>
+        </div>
+        <div className="p-2.5 space-y-2">
+          {!fanOutLeadId &&
+            fanOutLeads.map((lead) => (
+              <div key={lead.id} className="p-2.5 rounded-lg bg-[#130B1F] border border-[#3A2555] space-y-1.5">
+                <div className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8]">{placeLabel(lead)}</div>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {lead.actions.map((act) => {
+                    const score = attributes[act.attr] || 1;
+                    const bonus = getTierInfo(score).bonus;
+                    return (
+                      <button
+                        key={act.attr}
+                        type="button"
+                        data-script-step
+                        disabled={isRollingFanOut}
+                        onClick={() => handleFollowLead(lead, act.attr)}
+                        className="py-2 px-2 rounded-lg bg-[#D4B876]/15 hover:bg-[#D4B876]/25 border border-[#D4B876]/70 text-left disabled:opacity-50"
+                      >
+                        <div className="font-['Cinzel'] font-bold text-[11.5px] uppercase" style={{ color: ATTRIBUTE_META[act.attr]?.color }}>
+                          {act.attr} {score}
+                        </div>
+                        <div className="text-[12.5px] font-sans text-[#E6E0F0] leading-snug">
+                          {act.verb || `You succeed on ${challengeSucceedOn(weekdayDC, bonus)}+`}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          {!fanOutLeadId && (
+            <button
+              type="button"
+              onClick={handleHeadToFire}
+              className="w-full py-2 px-3 rounded-lg bg-[#2A2018] hover:bg-[#3A2E1C] border border-[#F0A552]/70 font-['Cinzel'] font-bold text-[11.5px] text-[#F0A552] uppercase"
+            >
+              {isSoloW1D1 ? 'Rest for the night' : 'Head straight to the fire'}
+            </button>
+          )}
+          {fanOutLead && fanOutRollOutcome && (
+            <div className="space-y-2">
+              <div className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8]">{placeLabel(fanOutLead)}</div>
+              <div className="font-sans text-[13px] text-[#D8CEE8] tabular-nums">
+                🎲 {fanOutRollOutcome.d20} + {fanOutRollOutcome.attr} {fanOutRollOutcome.attrPoints} (+{fanOutRollOutcome.tierBonus}) − DC{' '}
+                {fanOutRollOutcome.dc} = {fanOutRollOutcome.margin > 0 ? '+' : ''}
+                {fanOutRollOutcome.margin}{' '}
+                <span className={fanOutRollOutcome.cleared ? 'text-[#6FD39A]' : 'text-[#E0645C]'}>
+                  {fanOutRollOutcome.cleared ? 'PASSED' : 'FAILED'}
+                </span>
+              </div>
+              {!fanOutRollOutcome.cleared && fanOutLead.lateLine && <NarrationBlock text={fill(fanOutLead.lateLine)} />}
+              <div className="p-2.5 rounded-lg bg-[#130B1F] border border-[#D4B876]/50 space-y-1">
+                <div className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] uppercase">{fanOutLead.clueTitle}</div>
+                <ScriptText text={fill(fanOutLead.clueText)} className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.45]" />
+              </div>
+              {dayFragment && fanOutRollOutcome.cleared && (
+                <div className="text-[12.5px] font-sans text-[#6FD39A]">
+                  Word {fanOutLead.hintFor} of today's fragment starts with “
+                  {(fanOutLead.hintFor === 1 ? dayFragment.word1 : dayFragment.word2)[0].toUpperCase()}”.
+                </div>
+              )}
+              {!isSoloW1D1 && (
+                <div className="text-[12px] font-sans text-[#B7A9CC]">It goes on the board at the fire.</div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    );
   };
-
-
 
   // ---------------------------------------------------------------------------
   // The weekday chapter, played from canon (docs/canon/episode-*.md via chapterScripts.ts).
@@ -1610,479 +1572,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
         {renderChapterScript()}
 
 
-        {/* ===================================================================
-            BEATS 5, 6 & 7 — FULL INTERACTIVE "FANNING OUT" / SOLO CLOSER INSPECTION
-            - #8: Single-line MYTHIOS header
-            - #10: 2 Options to Fan Out (1 Challenge + 1 Skirmish) + 1 Skip Option
-           =================================================================== */}
-        {isArtifactUnlocked && (
-          <>
-            {/* BEAT 5: MYTHIOS 2-PARAGRAPH LEAD-IN (#8: single-line header) */}
-            <div className="mr-5 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3 space-y-1.5 shadow-md">
-              <div className="flex items-center justify-between gap-2 leading-none">
-                <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#C4A1FF] uppercase shrink-0">
-                  MYTHIOS
-                </span>
-                <span className="text-[11px] font-sans font-semibold text-[#D4B876] whitespace-nowrap truncate">
-                  {isSoloW1D1
-                    ? 'Fragment Secured · Closer Inspection'
-                    : 'Fragment Secured · Fanning Out'}
-                </span>
-              </div>
-              <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                {fanOutEncounter.leadInParagraph1}
-              </p>
-              <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                {fanOutEncounter.leadInParagraph2}
-              </p>
-            </div>
-
-            {/* ACTION CARD 4 — 🧭 SOLO BRANCH BEFORE DUSK */}
-            <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
-              <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-                <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
-                  {isSoloW1D1
-                    ? '🧭 CLOSER INSPECTION · SOLO BRANCH'
-                    : '🧭 FANNING OUT · SOLO BRANCH'}
-                </span>
-                <span className="font-['Cinzel'] font-bold text-[11px] text-[#D4B876] whitespace-nowrap shrink-0">
-                  {fanOutBranch
-                    ? '✓ Route Chosen'
-                    : isSoloW1D1
-                    ? '2 Routes + Road North'
-                    : '2 Routes + Camp'}
-                </span>
-              </div>
-              <div className="p-2.5 space-y-1.5">
-                {[fanOutEncounter.branchA, fanOutEncounter.branchB].map((opt) => {
-                  const chosen = fanOutBranch?.id === opt.id;
-                  return (
-                    <button
-                      key={opt.id}
-                      onClick={() => handleSelectFanOutBranch(opt)}
-                      className={`w-full p-2.5 rounded-xl text-left transition border ${
-                        chosen
-                          ? 'bg-[#2A1B40] border-[#D4B876] shadow-sm'
-                          : 'bg-[#130B1F] border-[#3A2555] hover:border-[#7E68B8]'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between gap-2">
-                        <span
-                          className="font-['Cinzel'] font-bold text-[12.5px] truncate"
-                          style={{ color: opt.color }}
-                        >
-                          {chosen ? '✓ ' : ''}
-                          {opt.title}
-                        </span>
-                        <span
-                          className="font-['Cinzel'] font-bold text-[11px] whitespace-nowrap shrink-0"
-                          style={{ color: opt.color }}
-                        >
-                          {chosen ? `✓ ${opt.badge}` : opt.badge}
-                        </span>
-                      </div>
-                      <p className="text-[13.5px] font-sans text-[#E6E0F0] mt-0.5 leading-snug">
-                        {opt.label}
-                      </p>
-                    </button>
-                  );
-                })}
-
-                {/* 3RD OPTION: PRESS ON TO INN (ON W1·D1) OR BACK TO CAMPFIRE (ON W1·D2+) */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (isSoloW1D1) {
-                      handleSelectFanOutBranch({
-                        id: 'BRANCH_SKIP_CAMP',
-                        branchType: 'CAMPFIRE',
-                        title: 'HEAD NORTH TOWARD THE INN',
-                        badge: 'FINISHED DAY',
-                        color: '#6FD39A',
-                        label:
-                          'Finish today\'s chapter and follow the drove road north toward The Hollow Wake Inn.',
-                        playerDeclaration: `The light is fading fast over ${dayData.place}—I have the torn list and today's Seeker Fragment, so I’ll head north toward The Hollow Wake Inn.`,
-                        arrivalParagraph1: `You strap your pack tight at ${dayData.place} and turn north up the wet drove road toward the inn.`,
-                        arrivalParagraph2: `With today's chapter complete, you look ahead toward the warm lamplight of The Hollow Wake Inn.`,
-                      });
-                    } else {
-                      handleSelectFanOutBranch({
-                        id: 'BRANCH_SKIP_CAMP',
-                        branchType: 'CAMPFIRE',
-                        title: 'HEAD TO THE CAMPFIRE',
-                        badge: 'FINISHED DAY',
-                        color: '#F0A552',
-                        label:
-                          'Finish today\'s chapter and walk straight to the campfire.',
-                        playerDeclaration: `The light is fading over ${dayData.place}—I’ll head straight to the campfire with today's Fragment.`,
-                        arrivalParagraph1: `You finish your day at ${dayData.place} and walk straight toward the woodsmoke of the campfire.`,
-                        arrivalParagraph2: `Your day is complete. You arrive at the fire as the kettle begins to boil and will catch up with tonight's clues from the board.`,
-                      });
-                    }
-                  }}
-                  className={`w-full p-2.5 rounded-xl text-left transition border ${
-                    fanOutBranch?.id === 'BRANCH_SKIP_CAMP'
-                      ? 'bg-[#1E1232] border-[#D4B876] shadow-sm'
-                      : 'bg-[#140B1C] border-[#3A2555] hover:border-[#D4B876]'
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-['Cinzel'] font-bold text-[12px] text-[#F0A552] truncate">
-                      {fanOutBranch?.id === 'BRANCH_SKIP_CAMP'
-                        ? '✓ '
-                        : isSoloW1D1
-                        ? '🏠 '
-                        : '🔥 '}
-                      {isSoloW1D1
-                        ? 'HEAD NORTH TO THE INN (FINISH DAY)'
-                        : 'HEAD TO THE CAMPFIRE (FINISH DAY)'}
-                    </span>
-                    <span className="px-1.5 py-0.5 rounded bg-[#1A102A] border border-[#6FD39A]/60 font-['Cinzel'] font-bold text-[10px] text-[#6FD39A] whitespace-nowrap shrink-0">
-                      FINISHED DAY
-                    </span>
-                  </div>
-                  <p className="text-[13px] font-sans text-[#D8CEE8] mt-0.5 leading-snug">
-                    {isSoloW1D1 ? (
-                      <>
-                        Head up the drove road toward the inn. Your day is complete without the extra search.
-                      </>
-                    ) : (
-                      <>
-                        Head straight to the fire. A finished day with no extra roll—you can read tonight’s clue from the board.
-                      </>
-                    )}
-                  </p>
-                </button>
-              </div>
-            </div>
-
-            {/* BEAT 6: PLAYER DECLARATION + 2-PARAGRAPH ARRIVAL + CHALLENGE OR FIGHT ENCOUNTER */}
-            {fanOutBranch && (
-              <>
-                <div className="ml-5 flex flex-col items-end">
-                  <div className="w-full rounded-2xl rounded-tr-sm bg-[#4A3B24] border border-[#E5C77B] p-3 space-y-1.5 shadow-md">
-                    <div className="flex items-center justify-between leading-none">
-                      <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#F3D88B] uppercase">
-                        {characterName || 'YOU'}
-                      </span>
-                    </div>
-                    <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                      {fanOutBranch.playerDeclaration}
-                    </p>
-                  </div>
-                </div>
-
-                {/* 2-Paragraph Solo Encounter Arrival */}
-                <div className="mr-5 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3 space-y-1.5 shadow-md">
-                  <div className="flex items-center justify-between gap-2 leading-none">
-                    <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#C4A1FF] uppercase shrink-0">
-                      MYTHIOS
-                    </span>
-                    <span className="text-[11px] font-sans font-semibold text-[#D4B876] whitespace-nowrap truncate">
-                      {fanOutBranch.branchType === 'CAMPFIRE'
-                        ? isSoloW1D1
-                          ? '✓ Bound for The Hollow Wake Inn'
-                          : '✓ Regrouping at Camp'
-                        : isSoloW1D1
-                        ? 'Solo Roadside Inspection'
-                        : 'Solo Fan-Out Encounter'}
-                    </span>
-                  </div>
-                  <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                    {fanOutBranch.arrivalParagraph1}
-                  </p>
-                  <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                    {fanOutBranch.arrivalParagraph2}
-                  </p>
-                </div>
-
-                {/* BRANCH A: INTERACTIVE FAN-OUT CHALLENGE ROLL CARD */}
-                {fanOutBranch.branchType === 'CHALLENGE' &&
-                  fanOutBranch.challengeAttrs && (
-                    <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
-                      <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-                        <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
-                          🎯 {isSoloW1D1 ? 'ROADSIDE CHALLENGE' : 'FAN-OUT CHALLENGE'} ·{' '}
-                          {(fanOutBranch.challengeTitle || 'LOCKED COURIER CACHE').toUpperCase()}
-                        </span>
-                        <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] whitespace-nowrap shrink-0">
-                          You succeed on {challengeSucceedOn(weekdayDC, activeFanOutTierBonus)}+
-                        </span>
-                      </div>
-
-                      <div className="p-2.5 space-y-2">
-                        <div className="space-y-1.5">
-                          {fanOutBranch.challengeAttrs.map((attr) => {
-                            const meta = ATTRIBUTE_META[attr];
-                            const score = attributes[attr] || 20;
-                            const isSelected = activeFanOutAttr === attr;
-                            return (
-                              <button
-                                key={attr}
-                                disabled={!!fanOutRollOutcome}
-                                onClick={() => setFanOutSelectedAttr(attr)}
-                                className={`w-full p-2.5 rounded-xl text-left transition border ${
-                                  isSelected
-                                    ? 'bg-[#2A1B40] border-[#D4B876] shadow-sm'
-                                    : 'bg-[#130B1F] border-[#3A2555] opacity-85 hover:opacity-100'
-                                }`}
-                              >
-                                <div className="flex items-center justify-between gap-2">
-                                  <span
-                                    className="font-['Cinzel'] font-bold text-[12.5px] truncate"
-                                    style={{ color: meta.color }}
-                                  >
-                                    {isSelected ? '✓ ' : ''}
-                                    {attr === 'Craft'
-                                      ? 'EXAMINE TOOL-MARKS & TIMBER'
-                                      : attr === 'Intellect'
-                                      ? 'RECONSTRUCT THE SCENE'
-                                      : attr === 'Agility'
-                                      ? 'SCALE THE SIGNAL OVERHANG'
-                                      : attr === 'Aim'
-                                      ? 'SIGHT THE NOTCHED BEARINGS'
-                                      : `APPROACH WITH ${attr.toUpperCase()}`}
-                                  </span>
-                                  <span
-                                    className="font-['Cinzel'] font-bold text-[12px] whitespace-nowrap shrink-0"
-                                    style={{ color: meta.color }}
-                                  >
-                                    {attr.toUpperCase()} {score}
-                                  </span>
-                                </div>
-                              </button>
-                            );
-                          })}
-                        </div>
-
-                        {!fanOutRollOutcome && (
-                          <button
-                            type="button"
-                            onClick={handleRollFanOutChallenge}
-                            disabled={isRollingFanOut}
-                            className="w-full py-2 px-3 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[12px] tracking-[0.8px] uppercase transition"
-                          >
-                            {isRollingFanOut
-                              ? '🎲 ROLLING…'
-                              : `🎲 ROLL D20 + ${activeFanOutTierBonus}`}
-                          </button>
-                        )}
-
-                        {fanOutRollOutcome && (
-                          <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-1.5">
-                            <div className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 space-y-0.5 text-[12px] font-sans">
-                              <div className="flex items-center gap-1 font-semibold whitespace-nowrap overflow-x-auto no-scrollbar">
-                                <span className="text-[#6FD39A] font-bold">YOU:</span>
-                                <span className="text-[#F4F1F8]">
-                                  🎲 {fanOutRollOutcome.d20}
-                                </span>
-                                <span className="text-[#8B7A9E]">+</span>
-                                <span
-                                  style={{
-                                    color: ATTRIBUTE_META[fanOutRollOutcome.attr].color,
-                                  }}
-                                >
-                                  {fanOutRollOutcome.attr} {fanOutRollOutcome.attrPoints} (+{fanOutRollOutcome.tierBonus})
-                                </span>
-                                <span className="text-[#8B7A9E]">−</span>
-                                <span className="text-[#E5C158]">
-                                  DC {fanOutRollOutcome.dc}
-                                </span>
-                                <span className="text-[#8B7A9E]">=</span>
-                                <span
-                                  className={`font-bold ${
-                                    fanOutRollOutcome.cleared
-                                      ? 'text-[#6FD39A]'
-                                      : 'text-[#E0645C]'
-                                  }`}
-                                >
-                                  {formatMargin(fanOutRollOutcome.margin)}
-                                </span>
-                              </div>
-                              <div
-                                className={`font-bold text-[12.5px] ${
-                                  fanOutRollOutcome.cleared
-                                    ? 'text-[#6FD39A]'
-                                    : 'text-[#E0645C]'
-                                }`}
-                              >
-                                {fanOutRollOutcome.cleared
-                                  ? `PASSED · +${GOLD_FAN_OUT_CACHE_WIN}g + 1st-Letter Hint Unlocked!`
-                                  : isSoloW1D1
-                                  ? 'FAILED · 0g Earned — Pressing On Toward the Inn'
-                                  : 'FAILED · 0g Earned — Returning to Campfire'}
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                {/* BRANCH B: INTERACTIVE FAN-OUT SKIRMISH FIGHT CARD */}
-                {fanOutBranch.branchType === 'FIGHT' && (
-                  <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
-                    <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-                      <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
-                        ⚔️ {isSoloW1D1 ? 'ROADSIDE SKIRMISH' : 'FAN-OUT SKIRMISH'} ·{' '}
-                        {(fanOutBranch.enemyName || 'REAR-GUARD SCOUT').toUpperCase()}
-                      </span>
-                      <span className="font-['Cinzel'] font-bold text-[11.5px] whitespace-nowrap shrink-0">
-                        <span className="text-[#E5C158]">WEP {baseWeaponAtk}</span>{' '}
-                        <span className="text-[#B7A9CC]">vs</span>{' '}
-                        <span className="text-[#FB923C]">DEF {fanOutEnemyDef}</span>
-                      </span>
-                    </div>
-
-                    <div className="p-2.5 space-y-2">
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-                          <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
-                            <span className="text-[#6FD39A] truncate">YOU</span>
-                            <span className="text-[#6FD39A] whitespace-nowrap shrink-0">
-                              {fanOutPlayerRemainingHp}/100 HP
-                            </span>
-                          </div>
-                        </div>
-                        <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-                          <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
-                            <span className="text-[#E0645C] truncate">SCOUT</span>
-                            <span className="text-[#E0645C] whitespace-nowrap shrink-0">
-                              {fanOutEnemyRemainingHp}/{fanOutEnemyFullHp} HP
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {(fanOutFightRounds.length > 0 || isRollingFanOutRound) && (
-                        <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-1.5">
-                          {fanOutFightRounds.map((r) => (
-                            <div
-                              key={r.round}
-                              className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 space-y-0.5 text-[12px] font-sans"
-                            >
-                              <div className="flex items-center gap-1 font-semibold whitespace-nowrap overflow-x-auto no-scrollbar">
-                                <span className="text-[#6FD39A] font-bold">
-                                  R{r.round} YOU:
-                                </span>
-                                <span className="text-[#F4F1F8]">🎲 {r.d20}</span>
-                                <span className="text-[#8B7A9E]">+</span>
-                                <span className="text-[#E5C158]">WEP {r.playerAtk}</span>
-                                <span className="text-[#8B7A9E]">−</span>
-                                <span className="text-[#FB923C]">DEF {r.enemyDef}</span>
-                                <span className="text-[#8B7A9E]">=</span>
-                                <span className="text-[#6FD39A] font-bold">
-                                  {r.hit
-                                    ? `HIT (${r.dmgToEnemy} DMG · HP ${r.enemyHpAfter})`
-                                    : 'MISSED'}
-                                </span>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-
-                      {!fanOutFightDone && (
-                        <button
-                          type="button"
-                          disabled={isRollingFanOutRound}
-                          onClick={handleRollFanOutFightRound}
-                          className="w-full py-2 px-2.5 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[11.5px] tracking-[0.5px] uppercase transition whitespace-nowrap truncate"
-                        >
-                          {isRollingFanOutRound
-                            ? '🎲 ROLLING SKIRMISH...'
-                            : `🎲 ROLL SKIRMISH R${
-                                fanOutFightRounds.length + 1
-                              } (D20 + ${baseWeaponAtk})`}
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {/* BEAT 7: 2-PARAGRAPH SOLO AFTERMATH + SEEKER 1ST-LETTER HINT PAYOFF */}
-                {fanOutCompleted && fanOutBranch.branchType !== 'CAMPFIRE' && (
-                  <div className="mr-5 rounded-2xl rounded-tl-sm bg-[#1E1232] border border-[#C4A1FF] p-3 space-y-1.5 shadow-md">
-                    <div className="flex items-center justify-between gap-2 leading-none">
-                      <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#C4A1FF] uppercase shrink-0">
-                        MYTHIOS
-                      </span>
-                      <span
-                        className={`text-[11px] font-sans font-bold whitespace-nowrap truncate ${
-                          fanOutRollOutcome?.cleared ||
-                          (fanOutFightDone && fanOutEnemyRemainingHp <= 0)
-                            ? 'text-[#6FD39A]'
-                            : 'text-[#E0645C]'
-                        }`}
-                      >
-                        {fanOutRollOutcome?.cleared ||
-                        (fanOutFightDone && fanOutEnemyRemainingHp <= 0)
-                          ? '✓ +150G · Hint & Note Unlocked'
-                          : '✕ 0G · Lead Slipped Away'}
-                      </span>
-                    </div>
-
-                    {fanOutRollOutcome?.cleared ||
-                    (fanOutFightDone && fanOutEnemyRemainingHp <= 0) ? (
-                      <>
-                        <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                          {fanOutBranch.passParagraph1}
-                        </p>
-                        <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                          {fanOutBranch.passParagraph2}
-                        </p>
-                        {dayFragment && (
-                          <div className="p-2 rounded-xl bg-[#150D22] border border-[#6FD39A]/60 space-y-0.5">
-                            <div className="font-['Cinzel'] font-bold text-[10.5px] text-[#6FD39A] uppercase">
-                              {isSoloW1D1
-                                ? '🔍 +150G · SEEKER 1ST-LETTER HINT & ROADSIDE NOTE'
-                                : '🔍 +150G · SEEKER 1ST-LETTER HINT + CAMPFIRE CLUE'}
-                            </div>
-                            <p className="font-sans text-[13px] text-[#E6E0F0] leading-snug">
-                              1st Letter of Word 1 is{' '}
-                              <span className="font-bold text-[#6FD39A]">
-                                “{dayFragment.word1[0].toUpperCase()}”
-                              </span>
-                              .{' '}
-                              {isSoloW1D1 ? (
-                                <>
-                                  Your roadside note (
-                                  <span className="text-[#E5C158] font-semibold">
-                                    {fanOutBranch.soloClueTitle}
-                                  </span>
-                                  ) is tucked into your pack for The Hollow Wake Inn!
-                                </>
-                              ) : (
-                                <>
-                                  Your solo finding (
-                                  <span className="text-[#E5C158] font-semibold">
-                                    {fanOutBranch.soloClueTitle}
-                                  </span>
-                                  ) is ready for the Campfire!
-                                </>
-                              )}
-                            </p>
-                          </div>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                          {fanOutBranch.failParagraph1}
-                        </p>
-                        <p className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]">
-                          {fanOutBranch.failParagraph2}
-                        </p>
-                      </>
-                    )}
-                  </div>
-                )}
-
-              </>
-            )}
-          </>
-        )}
-
+        {isArtifactUnlocked && renderFanOut()}
       </div>
 
       {/* 6. SINGLE BOTTOM TRANSITION BAR ONCE SOLO BEAT COMPLETES (#6) */}
@@ -2174,7 +1664,7 @@ interface PartyTabViewProps {
   gold: number;
   solvedRiddleIds: Record<string, number>;
   onAnswerDailyRiddle: (riddleId: string, chosenIdx: number) => void;
-  seekerFirstLetterHints?: Record<string, boolean>;
+  seekerFirstLetterHints?: Record<string, HintMask>;
   soloFanOutClues?: Record<string, { title: string; text: string; firstLetter: string }>;
   sharedBoardClues?: Record<string, boolean>;
   onShareSoloClueToBoard?: (dayKey: string) => void;
@@ -2350,7 +1840,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     WEEKDAY_INVENTORY[0];
   const dayData = getChapterWithContinuityFixes(rawDayData, appliedLoopholeIds);
   const dayKey = `${currentWeek}-${currentDay}`;
-  const fanOutDayData = getFanOutEncounterData(dayData, party.length);
   // A clue the player missed on a failed Challenge comes back at the fire from a friend who passed
   // (Core Rules §3, 15 Oct). The sample friend stands in for a real player who passed.
   const missedClueShare = (() => {
@@ -2369,18 +1858,6 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
       .map((st) => fillScriptTokens((st as { text: string }).text, tokens));
     return texts.length ? { friend: tokens.friends[0] ?? 'A friend', texts } : null;
   })();
-  const recordedFanOut = sharedFanOutClues[dayKey] || soloFanOutClues[dayKey];
-  const soloClueForToday = recordedFanOut || {
-    title: fanOutDayData.branchA.soloClueTitle || `${dayData.place} Perimeter Note`,
-    text:
-      fanOutDayData.branchA.soloClueText ||
-      `Uncovered a hidden courier mark at ${dayData.place}.`,
-    firstLetter: (
-      SEEKER_FRAGMENTS.find((f) => f.week === currentWeek && f.day === currentDay)?.word1[0] ||
-      'S'
-    ).toUpperCase(),
-  };
-  const isSoloClueShared = Boolean(sharedFanOutClues[dayKey] || sharedBoardClues[dayKey]);
   const isW1D1Campfire = currentWeek === 1 && currentDay === 1;
   const isGarrickAbsentAtCamp = isW1D1Campfire;
 

@@ -101,8 +101,8 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 ## Phase 5: Campfire and Fan Out polish
 
 26. **[Fix] Prompts about hidden clues:** the W3D3 "doubtful number" and the W3D6 "watcher" are shown in the day (Phase 2), or the prompt changes.
-27. **[Fix] Fan Out:** don't name the clue on the button before it's found; drop the generic "Rear-Guard Lookout" and the invented "mason's guide-letter" (or show the letter as a separate reward); W1D1's nudge doesn't address a friend you haven't met.
-28. **[Decide D7] The private theory ballot.**
+27. ✅ **Done 15 Oct (mechanics; new leads wait on approval).** Fan Out is "the last light" from the approved proposal: a lead named by its place (never the clue), one quick roll, no fight, no gold for now, the clue always comes back and a pass gives the first letter of one fragment word; or straight to the fire. The rear-guard fight, the "mason's guide-letter" and the template prose are deleted with `soloLandmarkProse.ts`. Each day has one lead (canon's Fan Out clue) until its three leads are approved. **[Fix] Fan Out:** don't name the clue on the button before it's found; drop the generic "Rear-Guard Lookout" and the invented "mason's guide-letter" (or show the letter as a separate reward); W1D1's nudge doesn't address a friend you haven't met.
+28. ✅ **Done 15 Oct.** D7 decided with the approved proposal: the private ballot is removed; the Fork is asked once, at the fire. The Campfire is one page in the approved order and ends on the day's Pull; a finished fragment is read aloud. **[Decide D7] The private theory ballot.**
 29. **[Fix] Remove dead code:** the old Campfire prompts and the unused recovery and next-move options.
 30. **[Story] Proposals for Fake Guru**, one by one, never changed without OK:
     - the 10 weak Campfire forks (Point 6)
