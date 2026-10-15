@@ -104,4 +104,11 @@ Test 3 needs no code. It could start this week and tell us the most.
   - if the host leaves, the friend who joined first becomes host;
   - each player sees only their own parties and the people in them.
   Tested with pretend players: a friend cannot approve themselves, an outsider sees nothing, a wrong or old code is refused. One gap found in testing was closed (`0002_status_switch_off.sql`).
-- **Next:** the sign-in and party screens in the app. These need the container to be allowed to reach the server (see the session notes).
+  - 15 Oct, a correction: canon says a friend who leaves, or is removed, cannot come back to that story; 0001 let a friend who left ask again. `0003_no_return_after_leaving.sql` puts canon's rule back and adds the invite page's look-up (who sent it, the party's name).
+- **15 Oct: the sign-in and party screens** (`src/online/`), opened with `?online=1` or an invite link (`?join=CODE`); the one-phone demo is unchanged.
+  - Sign in, or make an account, with an email and a password (Google comes next; Apple at launch).
+  - The invite page uses canon's heading, offer and credit line (§12a).
+  - Make a party (its name, and your name in it, which starts as your account name); ask to join; the host lets each friend in or turns them away, and can remove a friend; copy the link or make a new one; leave (with canon's warning that you cannot come back).
+  - The party list is the host, then friends in Session Zero order; until Session Zero is built, in the order they joined.
+  - Tested in a browser with three test accounts against the real server: every step above worked.
+- **Not yet:** the party chat lines for leaving and a new host ("Dev has left the road.", "Mei now leads the party.") come with the party chat (step 4). Session Zero, the party clock and [READY] come next in step 1. Friends can use it only once the app is on the web (a hosting choice for Fake Guru).

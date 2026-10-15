@@ -42,3 +42,14 @@ Party of four (the sample party). One player's view, on one phone.
 
 - **Lifeline** and the party-lead crowns need real friends, so they come with multiplayer.
 - The sample friends' finds on the board are a stand-in until friends really play.
+
+## Second run, 15 Oct (evening)
+
+The whole season was played again in one game.
+- **No page errors.** All six Gatherings were played to the end.
+- **300 roll and fight lines were checked**, with no problems.
+- **The text scan was clean.** The only hits were canon story text and the demo's test panel.
+
+**Found and fixed:** after the first Gathering, picking a weekday and opening the Party tab showed that week's Gathering instead of the day's fire. So the first run never really reached the fires of Weeks 2 to 6. Picking a weekday now opens its fire. The workbench's "jump to Gathering" had the opposite fault, and is fixed too.
+
+**Re-run after the fix:** all 35 weekday fires open on the Campfire. Their text passes the first-use word gates; the only hits are canon story text: Day 1's list of four names, fragment 1-1, and Week 2 Day 5's "You have five".
