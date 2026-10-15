@@ -51,8 +51,9 @@ export const GOLD_RELIC_COST = 150;
 
 // --- PENDING NUMBERS PASS (Core Rules §15 / 8 Oct) ---
 
-/** Fan Out solo roadside cache (+150g) - PENDING numbers pass */
-export const GOLD_FAN_OUT_CACHE_WIN = 150;
+/** Fan Out lead: pays nothing for now (approved Fan Out and Campfire proposal, 14 Oct: the clue and the
+ *  first-letter hint are the reward). Kept as the numbers pass's open question (was 150g, PENDING). */
+export const GOLD_FAN_OUT_CACHE_WIN = 0;
 
 // The Detour fight (and its 150g / 75g) was dropped on 15 Oct 2026 (Fake Guru).
 

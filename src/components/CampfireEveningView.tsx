@@ -17,10 +17,17 @@ import {
   resolveCampfireNudgeText,
 } from '../data/campfireDaysData';
 import { routeGarrickMessage } from '../data/garrickRouter';
+import { CHAPTER_SCRIPTS } from '../data/chapterScripts';
+import { FRAGMENT_MEANING_QUESTIONS } from '../data/fragmentMeaningQuestions';
+import { HintMask, hintHas } from '../data/fanOutLeads';
+import { NarrationBlock, fillScriptTokens } from './ChapterScriptParts';
 
 export interface CampfireEveningViewProps {
   /** The party in play (2 to 6), the player first. */
   party: PartyFriend[];
+  /** One-line answers to a fragment's meaning question, per fragment and friend (read back at the Gathering). */
+  meaningPins: Record<string, Record<FriendId, { name: string; text: string }>>;
+  onPinMeaning: (fragId: string, friendId: FriendId, name: string, text: string) => void;
   currentWeek: number;
   currentDay: number;
   characterName: string;
@@ -28,7 +35,7 @@ export interface CampfireEveningViewProps {
   solvedWords: Record<string, { w1?: string; w2?: string }>;
   /** Returns false when the word can't be taken (already filled, or this friend's one word for today is used). */
   onSolveWord: (fragId: string, wordIndex: 1 | 2, solverName: string) => boolean;
-  seekerFirstLetterHints: Record<string, boolean>;
+  seekerFirstLetterHints: Record<string, HintMask>;
   fanOutBranchesByDay: Record<string, Record<FriendId, 'CHALLENGE' | 'FIGHT' | 'CAMPFIRE'>>;
   onChangeFriendFanOutBranch: (
     dayKey: string,
@@ -48,17 +55,6 @@ export interface CampfireEveningViewProps {
   challengeClearedToday?: boolean;
   bruisedScrapeToday?: boolean;
 }
-
-const STEP_LABELS = [
-  { step: 1, short: '1. Opener' },
-  { step: 2, short: '2. Clues' },
-  { step: 3, short: '3. Fork' },
-  { step: 4, short: '4. Callback' },
-  { step: 5, short: '5. Fragment' },
-  { step: 6, short: '6. Riddle' },
-  { step: 7, short: '7. Today' },
-  { step: 8, short: '8. Closer' },
-] as const;
 
 export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   currentWeek,
@@ -83,9 +79,22 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   challengeClearedToday = true,
   bruisedScrapeToday = false,
   party,
+  meaningPins,
+  onPinMeaning,
 }) => {
   const dayKey = `${currentWeek}-${currentDay}`;
   const dayEntry = getCampfireDayEntry(currentWeek, currentDay);
+  // The day's Pull (canon's last line of the chapter), read again as the fire is banked: the last thing every friend reads.
+  const pullStep = CHAPTER_SCRIPTS.find((c) => c.week === currentWeek && c.day === currentDay)?.steps.find(
+    (st) => st.t === 'say' && st.pull
+  );
+  const pullText =
+    pullStep && pullStep.t === 'say'
+      ? fillScriptTokens(pullStep.text, {
+          friends: party.filter((f) => f.id !== 'YOU').map((f) => f.name),
+          partySize: party.length,
+        })
+      : null;
   const publicClue = getPublicFanOutClue(currentWeek, currentDay);
   const w1d1Clue = getPublicFanOutClue(1, 1);
 
@@ -108,12 +117,12 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     if (!partyIds.includes(activeSeat)) setActiveSeat('YOU');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [partyIds.join('|')]);
+  const [meaningDraft, setMeaningDraft] = useState<string>('');
   const [isPastDawnCutoff, setIsPastDawnCutoff] = useState<boolean>(false);
   const [simBruisedScrape, setSimBruisedScrape] = useState<boolean>(bruisedScrapeToday);
   const [simMissedYesterday, setSimMissedYesterday] = useState<boolean>(false);
 
   // 8-step Evening Flow state
-  const [activeStep, setActiveStep] = useState<number>(1);
   const [closerLine, setCloserLine] = useState<string>(() =>
     pickRotatedCampfireLine('closers', youDisplay)
   );
@@ -157,7 +166,6 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
 
   // Reset per-day flow when dayKey changes
   useEffect(() => {
-    setActiveStep(1);
     setLeftFireEarly(false);
     setCloserLine(pickRotatedCampfireLine('closers', friendNames[activeSeat]));
     setQuietRiddleRequested(false);
@@ -225,10 +233,13 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     Boolean(activeFragSolved.w1),
     Boolean(activeFragSolved.w2),
   ];
-  const activeSeatHasFirstLetterHint =
-    dayBranches[activeSeat] === 'CHALLENGE' ||
-    dayBranches[activeSeat] === 'FIGHT' ||
-    Boolean(seekerFirstLetterHints[dayKey]);
+  // A first-letter hint helps one word: the player's comes from their Fan Out lead; a sample friend who
+  // fanned out stands in with word 1.
+  const seatHasHint = (word: 1 | 2) =>
+    activeSeat === 'YOU'
+      ? hintHas(seekerFirstLetterHints[dayKey], word)
+      : word === 1 && (dayBranches[activeSeat] === 'CHALLENGE' || dayBranches[activeSeat] === 'FIGHT');
+  const activeSeatHasFirstLetterHint = seatHasHint(1) || seatHasHint(2);
 
   // Evaluate at most 2 true Noticing lines for Step 1
   const notYetArrivedNames = partyIds
@@ -280,7 +291,8 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           (activeSeatPin ? 1 : 0) +
           1 + // Callback
           (dayEntry.riddle && (dayEntry.tone === 'wry' || quietRiddleRequested) ? 1 : 0) +
-          (activeStep === 8 || leftFireEarly ? 1 : 0) +
+          (leftFireEarly ? 1 : 0) +
+          (fragSolvedState[0] && fragSolvedState[1] ? 1 : 0) + // reading the finished fragment
           garrickExtraMsgs
       );
   const roomGarrickCount = dayEntry.narratedNoGarrick ? 0 : baseGarrickCount - garrickExtraMsgs + garrickExtraRoom;
@@ -309,20 +321,9 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     const rotated = pickRotatedCampfireLine('closers', friendNames[activeSeat]);
     setCloserLine(rotated);
     setLeftFireEarly(true);
-    setActiveStep(8);
+    document.getElementById('campfire-leaving')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     const prevTaps = telemetryByDay[dayKey]?.leaveFireTaps ?? 0;
     commitTelemetry({ leaveFireTaps: prevTaps + 1 });
-  };
-
-  const handleSkipStep = () => {
-    if (activeStep < 8) {
-      const nextStep = activeStep + 1;
-      if (nextStep === 8) {
-        setCloserLine(pickRotatedCampfireLine('closers', friendNames[activeSeat]));
-      }
-      setActiveStep(nextStep);
-      commitTelemetry();
-    }
   };
 
   const handleSubmitTheoryPin = () => {
@@ -777,44 +778,6 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
       )}
 
       {/* =====================================================================
-          8-STEP EVENING FLOW NAVIGATION BAR + SKIP STEP BUTTON
-         ===================================================================== */}
-      <div className="px-3.5 py-2 bg-[#150D22]/90 border-b border-[#3A2555]/70 flex items-center justify-between gap-2 shrink-0">
-        <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
-          {STEP_LABELS.map((item) => {
-            const isCurrent = activeStep === item.step;
-            const isPast = activeStep > item.step;
-            return (
-              <button
-                key={item.step}
-                type="button"
-                onClick={() => setActiveStep(item.step)}
-                className={`px-2 py-1 rounded-md font-['Cinzel'] font-bold text-[10.5px] whitespace-nowrap transition border ${
-                  isCurrent
-                    ? 'bg-[#2E1B42] border-[#D4B876] text-[#F4F1F8]'
-                    : isPast
-                    ? 'bg-[#1E1232] border-[#3A2555] text-[#6FD39A]'
-                    : 'bg-[#130B1F] border-transparent text-[#8B7A9E] hover:text-[#D8CEE8]'
-                }`}
-              >
-                {item.short}
-              </button>
-            );
-          })}
-        </div>
-
-        {activeStep < 8 && (
-          <button
-            type="button"
-            onClick={handleSkipStep}
-            className="px-2.5 py-1 rounded-md bg-[#1E1232] hover:bg-[#2A1B40] border border-[#3A2555] font-['Cinzel'] font-bold text-[10.5px] text-[#B7A9CC] hover:text-[#F4F1F8] whitespace-nowrap shrink-0"
-          >
-            Skip Step →
-          </button>
-        )}
-      </div>
-
-      {/* =====================================================================
           MAIN SCROLLABLE EVENING SCENE BODY
          ===================================================================== */}
       <div className="flex-1 min-h-0 overflow-y-auto px-3.5 py-3.5 space-y-3.5">
@@ -822,17 +785,13 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             STEP 1: OPENER (+ CUP NIGHT STAGE DIRECTION, NOTICING, ALONE BOTTLE)
            ------------------------------------------------------------------- */}
         <div
-          className={`rounded-xl border p-3.5 space-y-2.5 transition ${
-            activeStep === 1
-              ? 'bg-[#1E1232] border-[#D4B876]'
-              : 'bg-[#150D22] border-[#3A2555]/80'
-          }`}
+          className={`rounded-xl border p-3.5 space-y-2.5 transition bg-[#150D22] border-[#3A2555]/80`}
         >
           <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
             <span className="text-[#F0A552] uppercase">
               {dayEntry.narratedNoGarrick
-                ? 'STEP 1 · NARRATED OPENER (NO GARRICK ON W1·D1)'
-                : 'STEP 1 · GARRICK OPENER'}
+                ? 'ARRIVING · THE FIRE (NO GARRICK ON W1·D1)'
+                : 'ARRIVING · GARRICK'}
             </span>
             <span className="text-[#B7A9CC]">
               {arrivedFriends.length === 1
@@ -942,15 +901,11 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             STEP 2: THE BOARD OF CLUES (Exact campfire-days.json Clues Only)
            ------------------------------------------------------------------- */}
         <div
-          className={`rounded-xl border p-3.5 space-y-2.5 transition ${
-            activeStep === 2
-              ? 'bg-[#1E1232] border-[#D4B876]'
-              : 'bg-[#150D22] border-[#3A2555]/80'
-          }`}
+          className={`rounded-xl border p-3.5 space-y-2.5 transition bg-[#150D22] border-[#3A2555]/80`}
         >
           <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
             <span className="text-[#D4B876] uppercase">
-              STEP 2 · BOARD OF FAN OUT CLUES
+              THE BOARD · TODAY'S CLUES
             </span>
             <span className="text-[#B7A9CC]">
               {dayBranches[activeSeat] === 'CAMPFIRE'
@@ -1012,18 +967,227 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
         </div>
 
         {/* -------------------------------------------------------------------
-            STEP 3: THE FORK & THEORY BOARD (Pin-Before-Peek + Question Pin + Day 6 Revisit)
+            STEP 4: THE CALLBACK
            ------------------------------------------------------------------- */}
         <div
-          className={`rounded-xl border p-3.5 space-y-3 transition ${
-            activeStep === 3
-              ? 'bg-[#1E1232] border-[#D4B876]'
-              : 'bg-[#150D22] border-[#3A2555]/80'
-          }`}
+          className={`rounded-xl border p-3.5 space-y-1.5 transition bg-[#150D22] border-[#3A2555]/80`}
+        >
+          <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
+            <span className="text-[#D4B876] uppercase">GARRICK REMEMBERS</span>
+            <span className="text-[#B7A9CC]">Earlier thread connection</span>
+          </div>
+          <p className="font-['Cormorant_Garamond'] font-medium text-[19px] text-[#F4F1F8] leading-[1.5]">
+            “{dayEntry.callback}”
+          </p>
+        </div>
+
+        {/* -------------------------------------------------------------------
+            STEP 5: THE SEEKER FRAGMENT WORD-LOCK (With 1st-Letter Hint & Zero Gold Text)
+           ------------------------------------------------------------------- */}
+        <div
+          className={`rounded-xl border p-3.5 space-y-2.5 transition bg-[#150D22] border-[#3A2555]/80`}
         >
           <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
             <span className="text-[#D4B876] uppercase">
-              STEP 3 · THE FORK & THEORY BOARD
+              THE FRAGMENT · {activeFragment.id}
+            </span>
+            <span className="text-[#6FD39A]">
+              {(fragSolvedState[0] ? 1 : 0) + (fragSolvedState[1] ? 1 : 0)}/2 Unlocked
+            </span>
+          </div>
+
+          {activeSeatHasFirstLetterHint && (
+            <div className="px-2.5 py-1.5 rounded-lg bg-[#130B1F] border border-[#6FD39A]/50 text-[12.5px] font-sans text-[#6FD39A]">
+              {([1, 2] as const)
+                .filter((w) => seatHasHint(w))
+                .map((w) => `Word ${w} starts with “${(w === 1 ? activeFragment.word1 : activeFragment.word2)[0].toUpperCase()}”`)
+                .join(' · ')}
+            </div>
+          )}
+
+          <p className="font-['Cormorant_Garamond'] font-medium text-[19px] text-[#F4F1F8] leading-[1.5]">
+            “
+            {activeFragment.displayTemplate
+              .replace(
+                '{0}',
+                fragSolvedState[0]
+                  ? activeFragment.word1.toUpperCase()
+                  : `[${
+                      seatHasHint(1)
+                        ? `${activeFragment.word1[0].toUpperCase()}·`
+                        : ''
+                    }${activeFragment.jumble1.join('')}]`
+              )
+              .replace(
+                '{1}',
+                fragSolvedState[1]
+                  ? activeFragment.word2.toUpperCase()
+                  : `[${
+                      seatHasHint(2)
+                        ? `${activeFragment.word2[0].toUpperCase()}·`
+                        : ''
+                    }${activeFragment.jumble2.join('')}]`
+              )}
+            ”
+          </p>
+
+          {/* When the second word lands, the whole line is read aloud once (Garrick; the narrator on W1·D1). */}
+          {fragSolvedState[0] && fragSolvedState[1] && (
+            <div className="pl-3 border-l-2 border-[#F0A552]/70 space-y-1">
+              <div className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] uppercase text-[#F0A552]">
+                {dayEntry.narratedNoGarrick ? 'Read aloud' : 'Garrick reads it aloud'}
+              </div>
+              <p className="font-['Cormorant_Garamond'] italic text-[18px] text-[#F4E8C1] leading-[1.45]">
+                “{activeFragment.fullText}”
+              </p>
+            </div>
+          )}
+
+          {/* The meaning question and one-line pins (shown only once the question is approved). */}
+          {fragSolvedState[0] && fragSolvedState[1] && FRAGMENT_MEANING_QUESTIONS[activeFragment.id] && (
+            <div className="space-y-2 p-2.5 rounded-lg bg-[#130B1F] border border-[#3A2555]">
+              <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.45]">
+                {FRAGMENT_MEANING_QUESTIONS[activeFragment.id]}
+              </p>
+              {Object.entries(meaningPins[activeFragment.id] || {}).map(([fid, pin]) => (
+                <p key={fid} className="text-[13.5px] font-sans text-[#D8CEE8]">
+                  <strong style={{ color: friendColors[fid] }}>{pin.name}:</strong> {pin.text}
+                </p>
+              ))}
+              {!isPastDawnCutoff && (
+                <form
+                  className="flex gap-2"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const text = meaningDraft.trim();
+                    if (!text) return;
+                    onPinMeaning(activeFragment.id, activeSeat, friendNames[activeSeat], text);
+                    setMeaningDraft('');
+                  }}
+                >
+                  <input
+                    id="meaning-pin"
+                    value={meaningDraft}
+                    onChange={(e) => setMeaningDraft(e.target.value.slice(0, 140))}
+                    placeholder="One line: what do you think it means?"
+                    className="flex-1 min-w-0 bg-[#0D0714] border border-[#3A2555] rounded-lg px-2.5 py-1.5 text-[14px] text-[#F4F1F8] placeholder-[#8B7A9E] focus:outline-none focus:border-[#D4B876]"
+                  />
+                  <button type="submit" className="px-3 rounded-lg border border-[#D4B876] bg-[#D4B876]/20 font-['Cinzel'] font-bold text-[11.5px] text-[#F4F1F8] uppercase">
+                    Pin
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
+
+          <div className="flex items-center gap-2">
+            {([0, 1] as const).map((sIdx) => {
+              const word = sIdx === 0 ? activeFragment.word1 : activeFragment.word2;
+              const jumble = sIdx === 0 ? activeFragment.jumble1 : activeFragment.jumble2;
+              const isSolved = fragSolvedState[sIdx];
+              return (
+                <button
+                  key={sIdx}
+                  type="button"
+                  onClick={() => {
+                    setSeekerSlot(sIdx);
+                    setSeekerTypedIndices([]);
+                  }}
+                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-['Cinzel'] font-bold text-[11.5px] border transition ${
+                    isSolved
+                      ? 'bg-[#6FD39A]/15 border-[#6FD39A]/50 text-[#6FD39A]'
+                      : seekerSlot === sIdx
+                      ? 'bg-[#2A1B40] border-[#D4B876] text-[#D4B876]'
+                      : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC]'
+                  }`}
+                >
+                  {isSolved
+                    ? `✓ ${word.toUpperCase()}`
+                    : `Lock ${sIdx + 1}: ${jumble.join('')}`}
+                </button>
+              );
+            })}
+          </div>
+
+          {!fragSolvedState[seekerSlot] && (
+            <div className="space-y-2 pt-1">
+              {wordLockNotice && (
+                <p className="text-[12.5px] font-sans text-[#E0645C]">{wordLockNotice}</p>
+              )}
+              <div className="flex flex-wrap items-center gap-1.5">
+                {(seekerSlot === 0
+                  ? activeFragment.jumble1
+                  : activeFragment.jumble2
+                ).map((_, slotPos) => {
+                  const arr =
+                    seekerSlot === 0
+                      ? activeFragment.jumble1
+                      : activeFragment.jumble2;
+                  const targetW =
+                    seekerSlot === 0 ? activeFragment.word1 : activeFragment.word2;
+                  const pickedIdx = seekerTypedIndices[slotPos];
+                  const filled = pickedIdx !== undefined ? arr[pickedIdx] : '';
+                  const showFirstHint =
+                    !filled && slotPos === 0 && seatHasHint((seekerSlot + 1) as 1 | 2);
+                  return (
+                    <button
+                      key={slotPos}
+                      type="button"
+                      disabled={pickedIdx === undefined}
+                      onClick={() =>
+                        setSeekerTypedIndices((prev) =>
+                          prev.filter((_, i) => i !== slotPos)
+                        )
+                      }
+                      className={`w-8 h-8 rounded-lg font-['Cinzel'] font-bold text-[13.5px] border flex items-center justify-center ${
+                        filled
+                          ? 'bg-[#3A2555] border-[#E5C158] text-[#E5C158]'
+                          : showFirstHint
+                          ? 'bg-[#6FD39A]/15 border-[#6FD39A] text-[#6FD39A]'
+                          : 'bg-[#130B1F] border-[#D4B876]/60 text-[#B7A9CC]'
+                      }`}
+                    >
+                      {filled || (showFirstHint ? targetW[0].toUpperCase() : '_')}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {(seekerSlot === 0
+                  ? activeFragment.jumble1
+                  : activeFragment.jumble2
+                ).map((letter, lIdx) => {
+                  const used = seekerTypedIndices.includes(lIdx);
+                  return (
+                    <button
+                      key={lIdx}
+                      type="button"
+                      disabled={used}
+                      onClick={() => handleTapSeekerTile(lIdx)}
+                      className={`w-8 h-8 rounded-lg font-['Cinzel'] font-bold text-[13.5px] border transition ${
+                        used
+                          ? 'bg-[#0D0714] border-[#3A2555] text-[#5A4B70]'
+                          : 'bg-[#2A1B40] border-[#D4B876] text-[#F4F1F8]'
+                      }`}
+                    >
+                      {letter}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* -------------------------------------------------------------------
+            STEP 3: THE FORK & THEORY BOARD (Pin-Before-Peek + Question Pin + Day 6 Revisit)
+           ------------------------------------------------------------------- */}
+        <div
+          className={`rounded-xl border p-3.5 space-y-3 transition bg-[#150D22] border-[#3A2555]/80`}
+        >
+          <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
+            <span className="text-[#D4B876] uppercase">
+              TONIGHT'S QUESTION
             </span>
             <span className="text-[#B7A9CC]">
               {isPastDawnCutoff
@@ -1247,188 +1411,13 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
         </div>
 
         {/* -------------------------------------------------------------------
-            STEP 4: THE CALLBACK
-           ------------------------------------------------------------------- */}
-        <div
-          className={`rounded-xl border p-3.5 space-y-1.5 transition ${
-            activeStep === 4
-              ? 'bg-[#1E1232] border-[#D4B876]'
-              : 'bg-[#150D22] border-[#3A2555]/80'
-          }`}
-        >
-          <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
-            <span className="text-[#D4B876] uppercase">STEP 4 · THE CALLBACK</span>
-            <span className="text-[#B7A9CC]">Earlier thread connection</span>
-          </div>
-          <p className="font-['Cormorant_Garamond'] font-medium text-[19px] text-[#F4F1F8] leading-[1.5]">
-            “{dayEntry.callback}”
-          </p>
-        </div>
-
-        {/* -------------------------------------------------------------------
-            STEP 5: THE SEEKER FRAGMENT WORD-LOCK (With 1st-Letter Hint & Zero Gold Text)
-           ------------------------------------------------------------------- */}
-        <div
-          className={`rounded-xl border p-3.5 space-y-2.5 transition ${
-            activeStep === 5
-              ? 'bg-[#1E1232] border-[#D4B876]'
-              : 'bg-[#150D22] border-[#3A2555]/80'
-          }`}
-        >
-          <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
-            <span className="text-[#D4B876] uppercase">
-              STEP 5 · SEEKER FRAGMENT {activeFragment.id} WORD-LOCK
-            </span>
-            <span className="text-[#6FD39A]">
-              {(fragSolvedState[0] ? 1 : 0) + (fragSolvedState[1] ? 1 : 0)}/2 Unlocked
-            </span>
-          </div>
-
-          {activeSeatHasFirstLetterHint && (
-            <div className="px-2.5 py-1.5 rounded-lg bg-[#130B1F] border border-[#6FD39A]/50 text-[12.5px] font-sans text-[#6FD39A]">
-              Fan Out First-Letter Hint wired in: Word 1 starts with{' '}
-              <strong>“{activeFragment.word1[0].toUpperCase()}”</strong> · Word 2 starts with{' '}
-              <strong>“{activeFragment.word2[0].toUpperCase()}”</strong>
-            </div>
-          )}
-
-          <p className="font-['Cormorant_Garamond'] font-medium text-[19px] text-[#F4F1F8] leading-[1.5]">
-            “
-            {activeFragment.displayTemplate
-              .replace(
-                '{0}',
-                fragSolvedState[0]
-                  ? activeFragment.word1.toUpperCase()
-                  : `[${
-                      activeSeatHasFirstLetterHint
-                        ? `${activeFragment.word1[0].toUpperCase()}·`
-                        : ''
-                    }${activeFragment.jumble1.join('')}]`
-              )
-              .replace(
-                '{1}',
-                fragSolvedState[1]
-                  ? activeFragment.word2.toUpperCase()
-                  : `[${
-                      activeSeatHasFirstLetterHint
-                        ? `${activeFragment.word2[0].toUpperCase()}·`
-                        : ''
-                    }${activeFragment.jumble2.join('')}]`
-              )}
-            ”
-          </p>
-
-          <div className="flex items-center gap-2">
-            {([0, 1] as const).map((sIdx) => {
-              const word = sIdx === 0 ? activeFragment.word1 : activeFragment.word2;
-              const jumble = sIdx === 0 ? activeFragment.jumble1 : activeFragment.jumble2;
-              const isSolved = fragSolvedState[sIdx];
-              return (
-                <button
-                  key={sIdx}
-                  type="button"
-                  onClick={() => {
-                    setSeekerSlot(sIdx);
-                    setSeekerTypedIndices([]);
-                  }}
-                  className={`flex-1 py-1.5 px-2.5 rounded-lg font-['Cinzel'] font-bold text-[11.5px] border transition ${
-                    isSolved
-                      ? 'bg-[#6FD39A]/15 border-[#6FD39A]/50 text-[#6FD39A]'
-                      : seekerSlot === sIdx
-                      ? 'bg-[#2A1B40] border-[#D4B876] text-[#D4B876]'
-                      : 'bg-[#130B1F] border-[#3A2555] text-[#B7A9CC]'
-                  }`}
-                >
-                  {isSolved
-                    ? `✓ ${word.toUpperCase()}`
-                    : `Lock ${sIdx + 1}: ${jumble.join('')}`}
-                </button>
-              );
-            })}
-          </div>
-
-          {!fragSolvedState[seekerSlot] && (
-            <div className="space-y-2 pt-1">
-              {wordLockNotice && (
-                <p className="text-[12.5px] font-sans text-[#E0645C]">{wordLockNotice}</p>
-              )}
-              <div className="flex flex-wrap items-center gap-1.5">
-                {(seekerSlot === 0
-                  ? activeFragment.jumble1
-                  : activeFragment.jumble2
-                ).map((_, slotPos) => {
-                  const arr =
-                    seekerSlot === 0
-                      ? activeFragment.jumble1
-                      : activeFragment.jumble2;
-                  const targetW =
-                    seekerSlot === 0 ? activeFragment.word1 : activeFragment.word2;
-                  const pickedIdx = seekerTypedIndices[slotPos];
-                  const filled = pickedIdx !== undefined ? arr[pickedIdx] : '';
-                  const showFirstHint =
-                    !filled && slotPos === 0 && activeSeatHasFirstLetterHint;
-                  return (
-                    <button
-                      key={slotPos}
-                      type="button"
-                      disabled={pickedIdx === undefined}
-                      onClick={() =>
-                        setSeekerTypedIndices((prev) =>
-                          prev.filter((_, i) => i !== slotPos)
-                        )
-                      }
-                      className={`w-8 h-8 rounded-lg font-['Cinzel'] font-bold text-[13.5px] border flex items-center justify-center ${
-                        filled
-                          ? 'bg-[#3A2555] border-[#E5C158] text-[#E5C158]'
-                          : showFirstHint
-                          ? 'bg-[#6FD39A]/15 border-[#6FD39A] text-[#6FD39A]'
-                          : 'bg-[#130B1F] border-[#D4B876]/60 text-[#B7A9CC]'
-                      }`}
-                    >
-                      {filled || (showFirstHint ? targetW[0].toUpperCase() : '_')}
-                    </button>
-                  );
-                })}
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {(seekerSlot === 0
-                  ? activeFragment.jumble1
-                  : activeFragment.jumble2
-                ).map((letter, lIdx) => {
-                  const used = seekerTypedIndices.includes(lIdx);
-                  return (
-                    <button
-                      key={lIdx}
-                      type="button"
-                      disabled={used}
-                      onClick={() => handleTapSeekerTile(lIdx)}
-                      className={`w-8 h-8 rounded-lg font-['Cinzel'] font-bold text-[13.5px] border transition ${
-                        used
-                          ? 'bg-[#0D0714] border-[#3A2555] text-[#5A4B70]'
-                          : 'bg-[#2A1B40] border-[#D4B876] text-[#F4F1F8]'
-                      }`}
-                    >
-                      {letter}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* -------------------------------------------------------------------
             STEP 6: THE RIDDLE (Tone-Aware, 3 Tries or Give Up, Zero Gold)
            ------------------------------------------------------------------- */}
         <div
-          className={`rounded-xl border p-3.5 space-y-2.5 transition ${
-            activeStep === 6
-              ? 'bg-[#1E1232] border-[#D4B876]'
-              : 'bg-[#150D22] border-[#3A2555]/80'
-          }`}
+          className={`rounded-xl border p-3.5 space-y-2.5 transition bg-[#150D22] border-[#3A2555]/80`}
         >
           <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
-            <span className="text-[#D4B876] uppercase">STEP 6 · EVENING RIDDLE</span>
+            <span className="text-[#D4B876] uppercase">THE RIDDLE</span>
             <span className="text-[#B7A9CC]">
               {!dayEntry.riddle
                 ? 'None on W1·D1'
@@ -1510,18 +1499,15 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           )}
         </div>
 
+        <div id="campfire-leaving" className="space-y-3.5 scroll-mt-3">
         {/* -------------------------------------------------------------------
             STEP 7: WHAT WE DID TODAY (Factual Only, Obeys Match-Label Rule)
            ------------------------------------------------------------------- */}
         <div
-          className={`rounded-xl border p-3.5 space-y-2 transition ${
-            activeStep === 7
-              ? 'bg-[#1E1232] border-[#D4B876]'
-              : 'bg-[#150D22] border-[#3A2555]/80'
-          }`}
+          className={`rounded-xl border p-3.5 space-y-2 transition bg-[#150D22] border-[#3A2555]/80`}
         >
           <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
-            <span className="text-[#D4B876] uppercase">STEP 7 · WHAT WE DID TODAY</span>
+            <span className="text-[#D4B876] uppercase">LEAVING · WHAT WE DID TODAY</span>
             <span className="text-[#B7A9CC]">Factual actions only</span>
           </div>
           {factualTodayLines.length > 0 ? (
@@ -1546,14 +1532,10 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             STEP 8: CLOSER & SEASON TRACKER TELEMETRY
            ------------------------------------------------------------------- */}
         <div
-          className={`rounded-xl border p-3.5 space-y-2 transition ${
-            activeStep === 8
-              ? 'bg-[#1E1232] border-[#D4B876]'
-              : 'bg-[#150D22] border-[#3A2555]/80'
-          }`}
+          className={`rounded-xl border p-3.5 space-y-2 transition bg-[#150D22] border-[#3A2555]/80`}
         >
           <div className="flex items-center justify-between text-[11px] font-['Cinzel'] font-bold tracking-[0.8px]">
-            <span className="text-[#F0A552] uppercase">STEP 8 · GARRICK CLOSER</span>
+            <span className="text-[#F0A552] uppercase">{dayEntry.narratedNoGarrick ? 'LEAVING' : 'LEAVING · GARRICK'}</span>
             <button
               type="button"
               onClick={() =>
@@ -1564,13 +1546,20 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
               Rotate Closer ↻
             </button>
           </div>
-          <p className="font-['Cormorant_Garamond'] font-medium text-[19.5px] text-[#F4F1F8] leading-[1.5]">
-            {dayEntry.narratedNoGarrick
-              ? 'You pull your cloak tight beside the forest road and rest for tomorrow’s walk to The Hollow Wake Inn.'
-              : `“${closerLine}”`}
-          </p>
+          {!dayEntry.narratedNoGarrick && (
+            <p className="font-['Cormorant_Garamond'] font-medium text-[19.5px] text-[#F4F1F8] leading-[1.5]">
+              {`“${closerLine}”`}
+            </p>
+          )}
+          {pullText && (
+            <div className="pt-1 space-y-1">
+              <div className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] uppercase text-[#B7A9CC]">Tomorrow</div>
+              <NarrationBlock text={pullText} pull />
+            </div>
+          )}
         </div>
 
+        </div>
         {/* -------------------------------------------------------------------
             REAL-PLAYER PARTY MESSAGES & STORED GARRICK ROUTER REPLIES
            ------------------------------------------------------------------- */}

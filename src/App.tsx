@@ -6,6 +6,7 @@ import { RecordTabView } from './components/RecordTabView';
 import { PartyTabView, PinnedPartyClue, StoryTabView } from './components/StoryAndPartyTabs';
 import { AttributeName, CLASS_META, ClassName, DEFAULT_PARTY_SIZE, MAX_PARTY_SIZE, MIN_PARTY_SIZE, buildParty } from './data/mythiosRulesData';
 import { WEEKDAY_INVENTORY } from './data/mythiosChaptersData';
+import { HintMask, hintAdd } from './data/fanOutLeads';
 import { runMythiosVerifier } from './data/mythiosGatheringsAndAudit';
 import { NEW_CONTINUITY_LOOPHOLES } from './data/narrativeContinuityAudit';
 import { PartyMemoryDigest } from './data/gmMemoryEngine';
@@ -55,6 +56,7 @@ interface SavedCampaignState {
   completedDays: string[];
   characterName?: string;
   partyName?: string;
+  meaningPins?: Record<string, Record<string, { name: string; text: string }>>; // fragment meaning pins (Phase 5)
   partySize?: number; // 2 to 6 (Campfire v2.3 §M); saves from before 15 Oct have none and get 4
   characterClass: ClassName;
   secondAttr?: AttributeName;
@@ -69,7 +71,7 @@ interface SavedCampaignState {
   watchPageStrokesLeft: number;
   ledgerOpened: boolean;
   solvedRiddleIds: Record<string, number>;
-  seekerFirstLetterHints: Record<string, boolean>;
+  seekerFirstLetterHints: Record<string, HintMask>; // which fragment words have a first-letter hint (fanOutLeads.ts)
   sharedFanOutClues: Record<string, { title: string; text: string; firstLetter: string }>;
   stats: Record<string, number>;
   earnedBadgeIds: string[];
@@ -129,6 +131,9 @@ export default function App() {
     initialSave?.partyName ?? 'The Iron Lantern'
   );
   const [stakeIndex, setStakeIndex] = useState<number>(initialSave?.stakeIndex ?? 0);
+  const [meaningPins, setMeaningPins] = useState<Record<string, Record<string, { name: string; text: string }>>>(
+    initialSave?.meaningPins ?? {}
+  );
   // The party in play: the player first, then the sample friends (2 to 6; workbench switch).
   const [partySize, setPartySize] = useState<number>(initialSave?.partySize ?? DEFAULT_PARTY_SIZE);
   const party = useMemo(
@@ -186,7 +191,7 @@ export default function App() {
     initialSave?.solvedRiddleIds ?? {}
   );
   // Seeker Fragment 1st-letter placement hints unlocked by passing the Solo Fan-Out beat in MINE
-  const [seekerFirstLetterHints, setSeekerFirstLetterHints] = useState<Record<string, boolean>>(
+  const [seekerFirstLetterHints, setSeekerFirstLetterHints] = useState<Record<string, HintMask>>(
     initialSave?.seekerFirstLetterHints ?? {
       '1-6': true,
     }
@@ -203,9 +208,6 @@ export default function App() {
       },
     }
   );
-  const [privateTheoryPromptsByDay, setPrivateTheoryPromptsByDay] = useState<
-    Record<string, { reading: 'A' | 'B' | 'NEITHER'; customLine?: string }>
-  >({});
 
   const [stats, setStats] = useState<Record<string, number>>(
     initialSave?.stats ?? {
@@ -246,6 +248,7 @@ export default function App() {
         characterName,
         partyName,
         partySize,
+        meaningPins,
         characterClass,
         secondAttr,
         stakeIndex,
@@ -277,6 +280,7 @@ export default function App() {
     characterName,
     partyName,
     partySize,
+    meaningPins,
     characterClass,
     secondAttr,
     stakeIndex,
@@ -1354,17 +1358,13 @@ export default function App() {
                   }}
                   solvedWords={solvedWords}
                   seekerFirstLetterHints={seekerFirstLetterHints}
-                  onUnlockSeekerHint={(fragId) =>
-                    setSeekerFirstLetterHints((prev) => ({ ...prev, [fragId]: true }))
+                  onUnlockSeekerHint={(fragId, word) =>
+                    setSeekerFirstLetterHints((prev) => ({ ...prev, [fragId]: hintAdd(prev[fragId], word) }))
                   }
                   sharedFanOutClues={sharedFanOutClues}
                   onShareFanOutClue={(dayKey, payload) => {
                     setSharedFanOutClues((prev) => ({ ...prev, [dayKey]: payload }));
                     setSeekerFirstLetterHints((prev) => ({ ...prev, [dayKey]: true }));
-                  }}
-                  privateTheoryPromptsByDay={privateTheoryPromptsByDay}
-                  onSavePrivateTheoryPrompt={(dayKey, payload) => {
-                    setPrivateTheoryPromptsByDay((prev) => ({ ...prev, [dayKey]: payload }));
                   }}
                 />
               )}
@@ -1372,6 +1372,10 @@ export default function App() {
               {activeTab === 'CHAT' && chatChannel === 'PARTY' && isPartyFormed && (
                 <PartyTabView
                   party={party}
+                  meaningPins={meaningPins}
+                  onPinMeaning={(fragId, friendId, name, text) =>
+                    setMeaningPins((prev) => ({ ...prev, [fragId]: { ...(prev[fragId] || {}), [friendId]: { name, text } } }))
+                  }
                   onGainAttribute={(attr, delta) => setAttributes((prev) => ({ ...prev, [attr]: prev[attr] + delta }))}
                   onClaimReward={handleClaimReward}
                   hasClaimedReward={(key) => claimedRewardsRef.current.has(key)}
@@ -1424,7 +1428,6 @@ export default function App() {
                       [relicType]: Math.max(0, (prev[relicType] || 0) - 1),
                     }));
                   }}
-                  privateTheoryPromptsByDay={privateTheoryPromptsByDay}
                   onLeaveFire={() => {
                     setChatChannel('MINE');
                   }}

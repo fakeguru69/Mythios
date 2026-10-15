@@ -11,6 +11,7 @@ import {
 import { SEEKER_FRAGMENTS, SeekerFragmentData } from '../data/mythiosFragments';
 import { wordLockSecondsLeft, registerWrongWordTry, clearWordTries } from '../data/wordLocks';
 import { GOLD_FRAGMENT_WORD_SOLVED, GOLD_RELIC_COST } from '../data/economy';
+import { HintMask, hintHas } from '../data/fanOutLeads';
 
 const CUMULATIVE_SCRIPTURE = [
   {
@@ -80,7 +81,7 @@ interface BagTabViewProps {
   currentWeek: number;
   currentDay: number;
   initialSubTab?: 'RELICS' | 'SEEKER' | 'ALL' | 'ITEMS' | 'SCROLLS';
-  seekerFirstLetterHints?: Record<string, boolean>;
+  seekerFirstLetterHints?: Record<string, HintMask>;
 }
 
 export const BagTabView: React.FC<BagTabViewProps> = ({
@@ -715,10 +716,13 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
 
                   {isOpen && (
                     <div className="p-3.5 bg-[#1E1232] space-y-3">
-                      {seekerFirstLetterHints[frag.id] && !isFragFullySolved && (
+                      {([1, 2] as const).some((w) => hintHas(seekerFirstLetterHints[frag.id], w)) && !isFragFullySolved && (
                         <div className="px-3 py-1.5 rounded-lg bg-[#6FD39A]/15 border border-[#6FD39A]/50 flex items-center justify-between gap-2 text-[12px] font-sans text-[#6FD39A]">
                           <span className="font-semibold">
-                            🔓 Fan-Out 1st-Letter Hint: Word 1 starts with “{frag.word1[0].toUpperCase()}” · Word 2 starts with “{frag.word2[0].toUpperCase()}”
+                            {([1, 2] as const)
+                              .filter((w) => hintHas(seekerFirstLetterHints[frag.id], w))
+                              .map((w) => `Word ${w} starts with “${(w === 1 ? frag.word1 : frag.word2)[0].toUpperCase()}”`)
+                              .join(' · ')}
                           </span>
                         </div>
                       )}
@@ -763,7 +767,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
                               const showHintFirstLetter =
                                 !filledLetter &&
                                 slotPos === 0 &&
-                                Boolean(seekerFirstLetterHints[frag.id]);
+                                hintHas(seekerFirstLetterHints[frag.id], (activeJumbleSlot.slot + 1) as 1 | 2);
                               return (
                                 <button
                                   key={slotPos}
