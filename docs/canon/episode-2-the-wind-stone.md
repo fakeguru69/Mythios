@@ -434,7 +434,7 @@
 >
 > *"Not one of these fragments names him. Neither does anything else I can find — every record of him scraped clean. Whoever he was, someone wanted him forgotten."*
 
-> Mei comes back off the hill, shaking her head. Jo is holding a page under the lamp with one finger on the margin.
+> Mei comes back off the hill with a shake of the head. Jo is holding a page under the lamp with one finger on the margin.
 
 > No fragment has ever given him a name. Where they speak of him at all, they say only *him*.
 

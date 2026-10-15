@@ -1230,8 +1230,13 @@ export function resolveCampfireNudgeText(
     (top, f) => (!top || (f.scores[attr] ?? 0) > (top.scores[attr] ?? 0) ? f : top),
     null
   );
+  // §M: a friend alone at the fire is addressed directly, with no name.
+  const resolvedText =
+    friendsAtFire.length === 1
+      ? nudgeTemplate.replace(/\{friend:[A-Za-z]+\},?\s*/, '').replace(/^./, (c) => c.toUpperCase())
+      : nudgeTemplate.replace(/\{friend:[A-Za-z]+\}/g, best?.name ?? 'someone');
   return {
-    resolvedText: nudgeTemplate.replace(/\{friend:[A-Za-z]+\}/g, best?.name ?? 'someone'),
+    resolvedText,
     targetFriend: best?.id ?? 'YOU',
     attribute: attr,
   };
@@ -1306,32 +1311,23 @@ export function evaluateEveningNoticings(params: {
   missedYesterdayFriend?: string | null;
   notYetArrivedFriends?: string[];
 }): string[] {
-  const lines: string[] = [];
+  // At most two per evening for any party size; the two lines name different friends (Campfire v2.3 §M).
   const tpl = CAMPFIRE_STORED_LINES.noticingTemplates;
-
-  if (params.bruisedScrapeFriend) {
-    lines.push(tpl.bruisedScrape.replace('{friend}', params.bruisedScrapeFriend));
+  const candidates: [string | null | undefined, string][] = [
+    [params.bruisedScrapeFriend, tpl.bruisedScrape],
+    [params.solvedFragmentFirstFriend, tpl.solvedFragmentFirst],
+    [params.lentRelicFriend, tpl.lentRelic],
+    [params.missedYesterdayFriend, tpl.backAfterMissedDay],
+    ...(params.notYetArrivedFriends || []).map((f): [string, string] => [f, tpl.notYetArrived]),
+  ];
+  const lines: string[] = [];
+  const named = new Set<string>();
+  for (const [friend, template] of candidates) {
+    if (!friend || named.has(friend) || lines.length >= 2) continue;
+    named.add(friend);
+    lines.push(template.replace('{friend}', friend));
   }
-  if (params.solvedFragmentFirstFriend && lines.length < 2) {
-    lines.push(tpl.solvedFragmentFirst.replace('{friend}', params.solvedFragmentFirstFriend));
-  }
-  if (params.lentRelicFriend && lines.length < 2) {
-    lines.push(tpl.lentRelic.replace('{friend}', params.lentRelicFriend));
-  }
-  if (params.missedYesterdayFriend && lines.length < 2) {
-    lines.push(tpl.backAfterMissedDay.replace('{friend}', params.missedYesterdayFriend));
-  }
-  if (
-    params.notYetArrivedFriends &&
-    params.notYetArrivedFriends.length > 0 &&
-    lines.length < 2
-  ) {
-    lines.push(
-      tpl.notYetArrived.replace('{friend}', params.notYetArrivedFriends[0])
-    );
-  }
-
-  return lines.slice(0, 2);
+  return lines;
 }
 
 /**

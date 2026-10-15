@@ -26,7 +26,8 @@ export interface CampfireEveningViewProps {
   characterName: string;
   attributes: Record<AttributeName, number>;
   solvedWords: Record<string, { w1?: string; w2?: string }>;
-  onSolveWord: (fragId: string, wordIndex: 1 | 2, solverName: string) => void;
+  /** Returns false when the word can't be taken (already filled, or this friend's one word for today is used). */
+  onSolveWord: (fragId: string, wordIndex: 1 | 2, solverName: string) => boolean;
   seekerFirstLetterHints: Record<string, boolean>;
   fanOutBranchesByDay: Record<string, Record<FriendId, 'CHALLENGE' | 'FIGHT' | 'CAMPFIRE'>>;
   onChangeFriendFanOutBranch: (
@@ -134,7 +135,10 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   // Step 6: Riddle state (Quiet-day opt-in, 3 tries, Give up, zero gold)
   const [quietRiddleRequested, setQuietRiddleRequested] = useState<boolean>(false);
   const [riddleInput, setRiddleInput] = useState<string>('');
-  const [riddleTries, setRiddleTries] = useState<number>(0);
+  // §M: one riddle for the whole fire; wrong tries are counted per friend (three each).
+  const [riddleTriesBySeat, setRiddleTriesBySeat] = useState<Record<FriendId, number>>({});
+  const riddleTries = riddleTriesBySeat[activeSeat] || 0;
+  const setRiddleTries = (n: number) => setRiddleTriesBySeat((prev) => ({ ...prev, [activeSeat]: n }));
   const [riddleSolved, setRiddleSolved] = useState<boolean>(false);
   const [riddleGivenUp, setRiddleGivenUp] = useState<boolean>(false);
   const [riddleFeedback, setRiddleFeedback] = useState<string | null>(null);
@@ -145,7 +149,10 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   const [chatFeed, setChatFeed] = useState<
     Array<{ id: string; speaker: string; color: string; text: string; meta?: string }>
   >([]);
-  const [garrickExtraMsgs, setGarrickExtraMsgs] = useState<number>(0);
+  // Garrick's replies to questions, per friend (§M: 8 per friend per evening, 12 in the shared room).
+  const [garrickExtraBySeat, setGarrickExtraBySeat] = useState<Record<FriendId, number>>({});
+  const garrickExtraMsgs = garrickExtraBySeat[activeSeat] || 0;
+  const garrickExtraRoom = Object.values(garrickExtraBySeat).reduce((a, b) => a + b, 0);
   const [elapsedSeconds, setElapsedSeconds] = useState<number>(145);
 
   // Reset per-day flow when dayKey changes
@@ -155,14 +162,14 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     setCloserLine(pickRotatedCampfireLine('closers', friendNames[activeSeat]));
     setQuietRiddleRequested(false);
     setRiddleInput('');
-    setRiddleTries(0);
+    setRiddleTriesBySeat({});
     setRiddleSolved(false);
     setRiddleGivenUp(false);
     setRiddleFeedback(null);
     setSeekerSlot(0);
     setSeekerTypedIndices([]);
     setChatFeed([]);
-    setGarrickExtraMsgs(0);
+    setGarrickExtraBySeat({});
     setElapsedSeconds(145);
   }, [dayKey]);
 
@@ -245,11 +252,16 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   const otherPinnedList = Object.values(dayTheoryPins).filter(
     (p) => p.friendId !== activeSeat
   );
+  // Campfire v2.3 §M: name at most two earlier friends (newest first); more than that, "The rest are on the board."
   const catchUpLine =
     !dayEntry.narratedNoGarrick && otherPinnedList.length > 0
-      ? CAMPFIRE_STORED_LINES.catchUpTemplate
-          .replace('{friend}', otherPinnedList[0].friendName)
-          .replace('{reading}', otherPinnedList[0].readingText)
+      ? [...otherPinnedList]
+          .reverse()
+          .slice(0, 2)
+          .map((p) =>
+            CAMPFIRE_STORED_LINES.catchUpTemplate.replace('{friend}', p.friendName).replace('{reading}', p.readingText)
+          )
+          .join(' ') + (otherPinnedList.length > 2 ? ' The rest are on the board.' : '')
       : null;
 
   // Unread Question Pin from an earlier friend read aloud by Garrick without answering
@@ -257,7 +269,8 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     (qp) => qp.authorId !== activeSeat
   );
 
-  // Count Garrick messages sent this evening (strictly capped at <= 8 per friend)
+  // Count Garrick messages this friend has seen this evening (at most 8 per friend); the room as a whole
+  // gets at most 12 (the shared posts once, plus every friend's answered questions).
   const baseGarrickCount = dayEntry.narratedNoGarrick
     ? 0
     : Math.min(
@@ -270,6 +283,8 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           (activeStep === 8 || leftFireEarly ? 1 : 0) +
           garrickExtraMsgs
       );
+  const roomGarrickCount = dayEntry.narratedNoGarrick ? 0 : baseGarrickCount - garrickExtraMsgs + garrickExtraRoom;
+  const garrickCapReached = baseGarrickCount >= 8 || roomGarrickCount >= 12;
 
   // Sync telemetry to parent Season Tracker
   const commitTelemetry = (overrides?: Partial<CampfireEveningTelemetry>) => {
@@ -389,7 +404,9 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     if (formed.length === targetWord.length) {
       if (formed.toLowerCase() === targetWord.toLowerCase()) {
         clearWordTries(activeFragment.id, wordIndex);
-        onSolveWord(activeFragment.id, wordIndex, friendNames[activeSeat]);
+        if (!onSolveWord(activeFragment.id, wordIndex, friendNames[activeSeat])) {
+          setWordLockNotice('Until today ends, each friend fills one of its two words. Leave the other for a friend.');
+        }
         setSeekerTypedIndices([]);
       } else {
         const lockSecs = registerWrongWordTry(activeFragment.id, wordIndex);
@@ -406,6 +423,10 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
   const handleSubmitRiddleGuess = (e: React.FormEvent) => {
     e.preventDefault();
     if (!dayEntry.riddle || riddleSolved || riddleGivenUp) return;
+    if (riddleTries >= dayEntry.riddle.maxTries) {
+      setRiddleFeedback(`${friendNames[activeSeat]} has spent three tries. The others can still answer.`);
+      return;
+    }
     const cleaned = riddleInput
       .trim()
       .toLowerCase()
@@ -424,9 +445,18 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
       setRiddleFeedback(null);
       commitTelemetry({ riddleTries: nextTries, riddleSolved: true });
     } else if (nextTries >= dayEntry.riddle.maxTries) {
-      setRiddleGivenUp(true);
-      setRiddleFeedback('Three tries spent — Garrick gives the answer:');
-      commitTelemetry({ riddleTries: nextTries, riddleGivenUp: true });
+      // A friend who has spent three tries is out; the answer comes once everyone at the fire is out.
+      const othersStillIn = arrivedFriends.some(
+        (fid) => fid !== activeSeat && (riddleTriesBySeat[fid] || 0) < dayEntry.riddle!.maxTries
+      );
+      if (othersStillIn) {
+        setRiddleFeedback(`${friendNames[activeSeat]} has spent three tries. The others can still answer.`);
+        commitTelemetry({ riddleTries: nextTries });
+      } else {
+        setRiddleGivenUp(true);
+        setRiddleFeedback('Three tries spent — Garrick gives the answer:');
+        commitTelemetry({ riddleTries: nextTries, riddleGivenUp: true });
+      }
     } else {
       setRiddleFeedback(
         `Not quite (${nextTries}/${dayEntry.riddle.maxTries} tries). Try another guess or tap Give up.`
@@ -491,7 +521,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
     ];
 
     if (askGarrickMode && !dayEntry.narratedNoGarrick) {
-      if (baseGarrickCount < 8) {
+      if (!garrickCapReached) {
         const routed = routeGarrickMessage(trimmed, {
           episode: currentWeek,
           day: currentDay,
@@ -510,14 +540,14 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
           text: routed.reply,
           meta: 'Stored Line',
         });
-        setGarrickExtraMsgs((c) => c + 1);
+        setGarrickExtraBySeat((prev) => ({ ...prev, [activeSeat]: (prev[activeSeat] || 0) + 1 }));
       } else {
         nextFeed.push({
           id: `garrick-cap-${Date.now() + 1}`,
           speaker: 'GARRICK · INNKEEPER',
           color: '#F0A552',
           text: pickRotatedCampfireLine('closers', senderName),
-          meta: '8-Message Cap Reached',
+          meta: baseGarrickCount >= 8 ? '8-Message Cap Reached' : 'Room Cap (12) Reached',
         });
       }
     }
@@ -564,7 +594,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             <span className="tabular-nums">
               {dayEntry.narratedNoGarrick
                 ? 'No Garrick (W1·D1)'
-                : `Garrick ${baseGarrickCount}/8 msgs`}
+                : `Garrick ${baseGarrickCount}/8 msgs · room ${roomGarrickCount}/12`}
             </span>
             <span>·</span>
             <button
@@ -950,7 +980,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                   📌 {publicClue.title}
                 </span>
                 <span className="text-[11.5px] font-sans text-[#6FD39A]">
-                  Brought back by{' '}
+                  Found by{' '}
                   {clueContributors.map((fid) => friendNames[fid]).join(', ')}
                 </span>
               </div>

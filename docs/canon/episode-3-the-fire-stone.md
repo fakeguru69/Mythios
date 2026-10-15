@@ -375,7 +375,7 @@
 > You stay on the hoof-scratches for another mile, and find a third chip, and bring it back. Mei and Jo are already at the fall of rock, with their sleeves rolled.
 
 *The doorway:*
-> Dev keeps on along the trail. He comes back with a third chip in his fist.
+> Dev keeps on along the trail, and comes back with a third chip in hand.
 
 **Challenge card**
 > **THE BURIED DOORWAY**
@@ -456,7 +456,7 @@
 *The player takes one. Friends cover the other.*
 
 *The riders' line:*
-> The hoof-scratches go the long way, round the head of the fold. You follow them in, in the open. Dev takes the goat-track that her chips mark, and comes down it with five more in his fist.
+> The hoof-scratches go the long way, round the head of the fold. You follow them in, in the open. Dev takes the goat-track that her chips mark, and comes down it with five more in hand.
 
 *Wren's line:*
 > Her chips mark something shorter: a goat-track straight down through the rocks, which nobody on a horse could take. You find five more of them on the way. She walked this part.

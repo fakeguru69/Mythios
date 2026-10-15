@@ -2264,7 +2264,8 @@ interface PartyTabViewProps {
   armorLevel?: number;
   attributes: Record<AttributeName, number>;
   solvedWords: Record<string, { w1?: string; w2?: string }>;
-  onSolveWord: (fragId: string, wordIndex: 1 | 2, solverName: string) => void;
+  /** Returns false when the word can't be taken (already filled, or this friend's one word for today is used). */
+  onSolveWord: (fragId: string, wordIndex: 1 | 2, solverName: string) => boolean;
   onMatchScripture: () => void;
   gold: number;
   solvedRiddleIds: Record<string, number>;
@@ -2588,29 +2589,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   const epMeta =
     EPISODE_NUMBERS.find((e) => e.week === currentWeek) || EPISODE_NUMBERS[0];
 
-  // Handle tapping letter tiles for Campfire Seeker Fragment
-  const handleTapSeekerLetter = (idx: number) => {
-    if (seekerTypedIndices.includes(idx)) return;
-    const targetWord = seekerSlot === 0 ? activeFragment.word1 : activeFragment.word2;
-    const jumbleArr =
-      seekerSlot === 0 ? activeFragment.jumble1 : activeFragment.jumble2;
-    const next = [...seekerTypedIndices, idx];
-    const formed = next.map((i) => jumbleArr[i]).join('');
-    if (formed.length === targetWord.length) {
-      if (formed.toLowerCase() === targetWord.toLowerCase()) {
-        onSolveWord(
-          activeFragment.id,
-          seekerSlot === 0 ? 1 : 2,
-          characterName || 'You'
-        );
-        setSeekerTypedIndices([]);
-      } else {
-        setTimeout(() => setSeekerTypedIndices([]), 350);
-      }
-    } else {
-      setSeekerTypedIndices(next);
-    }
-  };
+
 
   // The party for the Gathering, in party-list order (the host first).
   // Prototype: the sample friends use the player's gear as a stand-in, and their own test

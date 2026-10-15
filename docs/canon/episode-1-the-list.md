@@ -139,7 +139,7 @@
 
 > The taproom is warm and low and smells of woodsmoke. There are [N−1] strangers in it who are not drinking.
 >
-> Mei has a torn page flat on the table under her hand. Dev is turning one over and over. Jo has his folded small, the way you fold a thing you have read too many times.
+> Mei has a torn page flat on the table under one hand. Dev is turning one over and over. Jo's is folded small, the way you fold a thing you have read too many times.
 >
 > You put yours down beside them. The same neat hand. The same names, each with a date beside it.
 >
@@ -175,7 +175,7 @@
 > **Intellect** · match the hand, line by line, to the entries on either side · `[ROLL]`
 > **Craft** · match the torn edge to its stub, fibre to fibre · `[ROLL]`
 > REWARD: +500g
-> IF YOU FAIL: it takes you the whole evening, with three strangers watching you get it wrong
+> IF YOU FAIL: it takes you the whole evening, with strangers watching you get it wrong
 
 *On a pass:*
 > Your stub fits like a key. There are [N] stubs, and [N] of you.
@@ -521,7 +521,7 @@
 *Win or lose:*
 > The same silence. The same way of leaving: the first gap, and gone, north through the trees this time.
 >
-> Mei has a hand on Dev's arm, to stop him following into the dark.
+> Mei has a hand on Dev's arm, to stop Dev following into the dark.
 
 *If the player won, one line more:*
 > He has left his knife behind, stuck in the shutter where he was working it. A plain kitchen knife. There is nothing curved about it.

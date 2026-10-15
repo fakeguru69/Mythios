@@ -1,6 +1,8 @@
-# Party of 2 to 6: wording for Fake Guru to approve (15 Oct)
+# Party of 2 to 6: wording (approved by Fake Guru 15 Oct: List 1 "yes", List 2 "yes")
 
-Canon writes the friends as *Mei*, *Dev* and *Jo*, stand-ins for the player's real friends. The game fills them with the real names: Mei = the 1st friend, Dev = the 2nd, Jo = the 3rd. Nothing here is changed until Fake Guru says yes. The episode files stay as they are; the changes go into the game's word list (like the other canon fixes), and the episode files get the new wording too once approved.
+**Done 15 Oct.** List 1 and List 2 #3 are now in the episode files themselves. The rest of List 2 is in `src/data/smallPartyLines.ts`, applied when the party has one or two friends. Added in the same pass (same kind of fix): W1D2's "There are {N-1} strangers in it" reads "There is a stranger in it" in a party of two.
+
+Canon writes the friends as *Mei*, *Dev* and *Jo*, stand-ins for the player's real friends. The game fills them with the real names: Mei = the 1st friend, Dev = the 2nd, Jo = the 3rd. 
 
 ## List 1. Lines that give a stand-in friend "he" or "she" (7)
 
