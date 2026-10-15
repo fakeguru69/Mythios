@@ -696,6 +696,7 @@
 > **THE FORD** · Day 6
 > You earned: `[gold]` · Aim or Agility `[growth]`
 > You learned: she was carried into the river and the trail ends. **The six fragments are a map**, and it ends at the mark from Meira's rubbing.
+> *On a failure:* You missed something at the ford. Someone at the fire may have seen it.
 > You hold: the map
 > Fragments: 6 of 6 · the map is whole
 > Tomorrow: **THE GATHERING** · across the ford, together

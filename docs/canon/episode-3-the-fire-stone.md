@@ -222,6 +222,7 @@
 > **ASHCOMBE** · Day 2
 > You earned: `[gold]` · Charm or Intellect `[growth]`
 > You learned: **Wren did not come home.** Two polite men in grey coats took her two weeks ago: *"they'd only need her the once."* Last night she was carried past her own village in the dark, and up the black road.
+> *On a failure:* You missed something in Ashcombe. Someone at the fire may have seen it.
 > You hold: a chip of black glass, from the boy at the well
 > Fragments: 2 found
 > Tomorrow: **the Blackglass, up the black road**
@@ -620,6 +621,7 @@
 > **THE CAIRN** · Day 6
 > You earned: `[gold]` · Might or Agility `[growth]`
 > You learned: **the Kiln.** A round black hill that breathes warm air through a crack in its crown. The map goes in through that crack, to a room beneath. A lamp has just gone in ahead of you.
+> *On a failure:* You missed something at the cairn. Someone at the fire may have seen it.
 > You hold: the map · eight of Wren's chips
 > Fragments: 6 of 6 · the map is whole
 > Tomorrow: **THE GATHERING** · down through the Kiln's crown, together

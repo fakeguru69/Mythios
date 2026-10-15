@@ -209,3 +209,8 @@ First-use lines applied (5 Oct, 13:00): Battle, Look Closer and United Effort, i
 - 15 Oct: DECIDED (Fake Guru): W2D3 gets one line paying off Day 2's "there is weather coming" (text to be approved).
 - 15 Oct: DECIDED (Fake Guru): sentences that give the friend stand-ins a pronoun are reworded in Phase 4 (list to be approved).
 - 15 Oct: RULE (Fake Guru): canon is the starting point, not a cage; where the build or a new idea is better, show both and let him decide (`CLAUDE.md` §3).
+- 15 Oct: DECIDED (Fake Guru): the Detour fight is dropped (Core Rules §15 item 2). A fail already costs 150g and a worse scene.
+- 15 Oct: DECIDED (Fake Guru): a clue missed on a failed Challenge goes to the fire. On 10 days (W1D6, W2D1, W2D4, W2D6, W3D2, W3D6, W4D1, W5D1, W5D3, W5D5) the summary card says "You missed something at …. Someone at the fire may have seen it." and that evening's Campfire shows what a friend who passed saw (Core Rules §3).
+- 15 Oct: DECIDED (Fake Guru): W2D2's horn button is given at the doorway on a fail too ("At the doorway, without a word, she presses a horn button into your hand…"), so W2D5's cuff payoff always works.
+- 15 Oct: DECIDED (Fake Guru): W2D3 opens with the rain that W2D2's Pull promised ("The rain came in the night. By morning the ruts are running with water…").
+- 15 Oct: FOUND AND FIXED: the Campfire screen crashed every time it opened (since the 14 Oct snapshot it was given none of the records it needs).

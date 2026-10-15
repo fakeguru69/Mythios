@@ -19,7 +19,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 | # | Decision | Why it matters | Recommendation |
 |---|---|---|---|
 | D1 | **Direction:** keep improving the 6-week demo on one phone, or start real friends on their own phones (Week 1 first, accounts, a shared clock)? | Real phones need a server, accounts and push notifications; much of Phase 4 changes shape. | Do Phases 1–3 on the demo first (they are needed either way), then decide. |
-| D2 | **"Go" for the numbers pass** (the PENDING amounts in `economy.ts`: Fan Out, Detour, riddles, cache, W6D3 bonuses) | Phase 1 needs final numbers for these. | Do it after Phase 1's rule fixes, so the simulator runs on correct rules. |
+| D2 | **"Go" for the numbers pass** (the PENDING amounts in `economy.ts`: Fan Out, riddles, cache, W6D3 bonuses) | Phase 1 needs final numbers for these. | Do it after Phase 1's rule fixes, so the simulator runs on correct rules. |
 | D3 | **Canon W1D2 "Yours is the third stub"** breaks with 2 players | Canon and app text. | "Your stub fits like a key." |
 | D4 | **Sample friends 5 and 6** (replacing Tamsin and Rowan) | Task 7. | Decided: Priya and Theo. |
 | D5 | **The Gathering's Table Question:** keep it as a three-choice quiz, or let the story deliver the reveal as canon does? | Phase 3. | Story, as canon; keep the friends' theories at the Campfire. |
@@ -53,8 +53,9 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
 
 **Steps 10, 11 (weekday part) and 13 done 15 Oct; step 12 done for the day itself.** The weekday now plays canon's own text, word for word, from the six episode files: `scripts/gen-chapter-scripts.cjs` turns them into `src/data/chapterScripts.ts` (run it again whenever an episode file changes), and the Story screen plays it step by step: the scene, the "look" choices, What you notice (by highest Attribute, with the second sentence from Adept), the Challenge card with canon's verbs and its cost, the pass or fail text, [PRESS ON] (+200g, 4 harder, a miss costs nothing), who strikes first before a fight, the acts ([PULL IT OUT] and the rest), the fragment, the Pull, and the day summary card with the real gold and growth. W1D6's supper, the extra cup and the courier, and Garrick's weekday lines are back with it. Patches L1 and L3 are retired (L1 was wrong: canon plants the cart at the ford). The "Tell Mythios what you do" box and the made-up "Search around…" chips are gone. The build's recap card and template prose ("Relying on your…", "Following yesterday's lead…") no longer show in the day.
 - Also: W6D1 is two harder after a lost Gathering 5 roll-call (canon, never built before); W4D1 shows Wren walking or carried by Gathering 3's result.
+- 15 Oct (Fake Guru): Detour fight dropped; a clue missed on a fail is shared at the fire (10 days); the horn button comes on a fail too; W2D3 opens with the rain. Also fixed: the Campfire screen crashed on opening.
 - Still to do here: Fan Out's lead-in still uses template prose (Phase 5 replaces Fan Out); canon's "You can now afford" line on the summary card; the missed-days recap line (Core Rules §11).
-- Decided 15 Oct: the +2 Weapon / −15 HP are dropped (canon's "who strikes first" covers those days). W2D3 gets one weather line paying off Day 2's Pull (text to Fake Guru first). Still open: drop the Detour fight?
+- Decided 15 Oct: the +2 Weapon / −15 HP are dropped (canon's "who strikes first" covers those days). W2D3 gets one weather line paying off Day 2's Pull (text to Fake Guru first). The Detour fight is dropped; a failed Challenge that loses a clue sends you to the Campfire; the horn button comes on a fail too (all decided 15 Oct).
 
 10. **[Restore] Canon's day shape**, from the episode files:
     - scene

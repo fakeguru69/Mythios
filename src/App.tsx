@@ -1410,6 +1410,7 @@ export default function App() {
               {activeTab === 'CHAT' && chatChannel === 'PARTY' && isPartyFormed && (
                 <PartyTabView
                   onClaimReward={handleClaimReward}
+                  hasClaimedReward={(key) => claimedRewardsRef.current.has(key)}
                   currentWeek={currentWeek}
                   currentDay={currentDay}
                   onSelectWeek={(w) => setCurrentWeek(w)}

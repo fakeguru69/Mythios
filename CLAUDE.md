@@ -33,7 +33,7 @@ Rules he has set. Follow them in every reply:
 
 - **A week** = 6 weekdays (Days 1 to 6) plus a live **Gathering** on Day 7.
 - **A weekday** (played alone; was ~5 minutes, now about 8 to 12 with Fan Out, fragment and Campfire, and Fake Guru accepted the longer day on 14 Oct): a chapter, one paid beat (a **Challenge** or a **fight**), sometimes **[PRESS ON]** (an optional harder roll), the **Pull** (why tomorrow can't wait). Each day also drops a **Seeker Fragment** (a short text with two missing words, letters jumbled) into every friend's **Seeker Chest**. Six fragments make the week's map.
-- **The build's additions, approved in principle on 8 Oct:** **Fan Out** after the main beat (a choice: an extra Challenge, an extra fight, or Head to the Campfire); the **Detour fight** after a failed Challenge on a day with no fight; the **Campfire** evening (stored lines only, see `docs/canon/mythios-campfire-table-v2.md`); riddles.
+- **The build's additions, approved in principle on 8 Oct:** **Fan Out** after the main beat (a choice: an extra Challenge, an extra fight, or Head to the Campfire); ~~the Detour fight~~ (dropped 15 Oct: canon's fail already costs gold and a worse scene); the **Campfire** evening (stored lines only, see `docs/canon/mythios-campfire-table-v2.md`); riddles.
 - **The Gathering** (~20 to 30 minutes, live): Approach (group choice, one Challenge), Battle (every friend fights their own enemy at once), United Effort (one shared job, turns), Lore Reveal with **Match** (match a scripture line to a fragment) and **Ask** (questions to Garrick), Twist, Cliffhanger.
 - **Numbers:** six Attributes (Might, Craft, Intellect, Charm, Agility, Aim), five tiers, six classes (Warrior, Artificer, Sage, Trickster, Assassin, Archer), gear Level 1 to 5 on two tracks, seven Relic types, HP always 100, nobody dies.
 - **Screens:** Story (your thread), Party, Record, Bag (Relics, Scroll Box, Seeker Chest), Store.
@@ -66,7 +66,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 - `server.ts` (251 lines): Express. `POST /api/roll-challenge` (**correct canon roll**, already: d20 + bonus − DC, success when net ≥ 1, +500 / −150), `POST /api/resolve-fight`, `POST /api/garrick-ask` (router first, Gemini only for small talk, then a banned-phrase filter), audit bundle download.
 - `src/App.tsx` (1,493): app shell, save/load in localStorage (`mythios_dark_moon_save_v2`), gold, attributes, relics, party messages, layout switcher (PHONE_ONLY / SPLIT / AUDIT_ONLY), badges.
-- `src/components/StoryAndPartyTabs.tsx` (~4,700): the weekday chapter (Challenge, Fan Out, Detour fight, results) and the Gathering (Approach, Battle, United Effort, Lore, "Phase 5 Table Question"). Most fixes are here.
+- `src/components/StoryAndPartyTabs.tsx` (~4,700): the weekday chapter (the chapter script, Challenge, [PRESS ON], fights, Fan Out) and the Gathering (Approach, Battle, United Effort, Lore, "Phase 5 Table Question"). Most fixes are here.
 - `src/components/CampfireEveningView.tsx` (1,611): the Campfire evening.
 - `src/components/BagAndStoreTabs.tsx` (1,013): Bag, Seeker Chest word-lock puzzle (the best part of the build, protect it), Store, scripture verses (correctly gated by week).
 - `src/components/RecordTabView.tsx` (573): the Record.
@@ -86,7 +86,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 ## 5. Current state
 
-**Good and must be kept:** the Seeker word-lock puzzle; Campfire v2.3 data (exact); `economy.ts`; the growth formula; gold never below 0; verses gated by week; Garrick present all of Week 6 (no empty seat); Malakor's name gated to Gathering 2 or later; continuity fixes reach the player view; the Gathering boss only loses at 0 HP; Fan Out's "Head to the Campfire" shown as a finished day; the Detour fight; 0 HP = "Bruised Scrape", story goes on.
+**Good and must be kept:** the Seeker word-lock puzzle; Campfire v2.3 data (exact); `economy.ts`; the growth formula; gold never below 0; verses gated by week; Garrick present all of Week 6 (no empty seat); Malakor's name gated to Gathering 2 or later; continuity fixes reach the player view; the Gathering boss only loses at 0 HP; Fan Out's "Head to the Campfire" shown as a finished day; 0 HP = "Bruised Scrape", story goes on.
 
 **Broken at the 14 Oct handover (each is a task in §7; progress is ticked in `docs/fix-plan.md`):** the Challenge roll; result-card numbers; seven hard-coded gold amounts; Combat Relic never spent; United Effort not canon; party fixed at four; `[N]` replaced with "the company"; sample friends named after story characters; continuity patches L4 and L5 wrong and on; Store-lock switch left over; Audit Workbench reachable; small text errors. *(15 Oct: all fixed except the party of 2–6, the sample names and the small text errors, which are Phases 4 and 7.)*
 
@@ -107,7 +107,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 **Fights (§4):** 100 HP each side. Hit when d20 + Weapon − DEF ≥ 1 (enemy: d20 + ATK − Armor ≥ 1); tie misses. Damage = the hit's margin × 5 (changed 14 Oct by Fake Guru; was d20 × 2). One tap per round with a short roll pause (Fake Guru, 14 Oct). Who strikes first is set by the day as canon writes it (a choice, or the day's Challenge; otherwise the player); at a Gathering, by the Approach. No +2 Weapon / −15 HP (dropped 15 Oct). Gear: Weapon 14–18, Armor 27–31 (Level 1–5); step-up costs 950, 1,100, 1,750, 2,400 per track. Weekday enemy DEF/ATK by week: 21/14, 22/15, 23/16, 23/16, 24/17, 24/17. Gathering enemy: one higher each; reward 380, 520, 740, 740, 1,030, 1,030.
 
-**Pay (§12):** weekday fight on a day with no Challenge 300g win / 0 loss; **weekday fight on a day that also has a Challenge pays nothing**; [LOOK CLOSER] +75g; Match 50g per right pick (100g if every friend present is right); United Effort +300g each if done; fragment lock word +25g; Relic 150g. Untested (PENDING in `economy.ts`): Fan Out cache 150, Detour 150/75, riddles 10/15, hidden cache 25, W6D3 +1 bonuses.
+**Pay (§12):** weekday fight on a day with no Challenge 300g win / 0 loss; **weekday fight on a day that also has a Challenge pays nothing**; [LOOK CLOSER] +75g; Match 50g per right pick (100g if every friend present is right); United Effort +300g each if done; fragment lock word +25g; Relic 150g. Untested (PENDING in `economy.ts`): Fan Out cache 150, riddles 10/15, hidden cache 25, W6D3 +1 bonuses.
 
 **Relics (§5):** Attribute Relic +4 on one Challenge of its Attribute, used once. Combat Relic = +1 Weapon and +1 Armor for the rest of one fight, used once. Relics can be given; gold cannot.
 
@@ -140,7 +140,7 @@ Do them in this order. After each task: run `npm run lint` and `npm run build`, 
 
 **Task 4. No hard-coded gold.** Replace `onEarnGold(150)` (~885, ~960), `onEarnGold(15)` (~3092), `onEarnGold(300)` (~3270, ~3289), `onEarnGold(75)` (~3303, ~4329) with constants. Search the project for any other literal passed to `onEarnGold` or `setGold`.
 
-**Task 5. Combat Relic is spent.** `battleRelicUsed` (~2745, ~3137, ~3938): when used in the Battle, remove one Combat Relic from the Bag at once; +1 Weapon and +1 Armor for the rest of that fight; disabled when the player has none. Check the weekday fight and the Detour fight do the same.
+**Task 5. Combat Relic is spent.** `battleRelicUsed` (~2745, ~3137, ~3938): when used in the Battle, remove one Combat Relic from the Bag at once; +1 Weapon and +1 Armor for the rest of that fight; disabled when the player has none. Check the weekday fight does the same.
 
 **Task 6. United Effort to canon.** Rewrite `handleRollUnitedEffort` (~3228) per §6. Use the party list, not four fixed names. Bar names from `mythios-united-effort-stories.md` if available, otherwise "In the way" / "At risk". The fake friends in the prototype may roll automatically, one at a time, with their tier bonus from their stats.
 

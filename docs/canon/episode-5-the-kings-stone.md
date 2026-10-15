@@ -112,6 +112,7 @@
 > **THE GREY AFTERNOON** · Day 1
 > You earned: `[gold]` · Craft or Intellect `[growth]`
 > You learned: the fifth is at **Highwall**, the dead capital at the end of the old kingdom's road: the way the heartbeat comes from. The story you learned about it as a child has had something cut out of it. Joss is home.
+> *On a failure:* You missed something at the waystone. Someone at the fire may have seen it.
 > Fragment: 1 found, locked
 > Tomorrow: **the old kingdom's road**
 
@@ -304,6 +305,7 @@
 > **THE HERALD'S GATE** · Day 3
 > You earned: `[gold]` · Aim or Might `[growth]`
 > You learned: Highwall's gate is **barred from the inside**: new timber, in brackets worn bright by centuries of bars. Somebody has always kept it shut, and is keeping it shut now. One fire is burning below the hall.
+> *On a failure:* You missed something on the wall. Someone at the fire may have seen it.
 > Fragments: 3 found
 > Tomorrow: **the dead streets**
 
@@ -496,6 +498,7 @@
 > **BELOW THE HALL** · Day 5
 > You earned: `[gold]` · Agility or Aim `[growth]`
 > You learned: **the Order is here**, camped facing his sealed doors, and has been for generations. It is not trying to get in. Each dusk it crosses out one stroke. **It is counting down.** `[On a pass: eight strokes are left. Their greeting is "Keep the dark" and the answer is "It keeps us".]`
+> *On a failure:* You missed something in the square. Someone at the fire may have seen it.
 > Fragments: 5 found
 > Tomorrow: **the wall again**
 

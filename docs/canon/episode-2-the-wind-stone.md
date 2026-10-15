@@ -125,6 +125,7 @@
 > **THE MILL ROAD** · Day 1
 > You earned: `[gold]` · Charm or Aim `[growth]`
 > You learned: the next name is **Corin**, the miller's boy. A cart with no lamps went up to the mill three nights ago and came back before dawn. It turned upriver.
+> *On a failure:* You missed something on the mill road. Someone at the fire may have seen it.
 > Fragment: 1 found, locked
 > Tomorrow: **the mill, at first light**
 
@@ -196,6 +197,9 @@
 >
 > *"My boy got hold of his sleeve,"* she says. *"The man never even looked down."*
 
+*On a failure only (added 15 Oct 2026, Fake Guru: Day 5 needs the button whatever the roll):*
+> At the doorway, without a word, she presses a horn button into your hand, with a twist of dark thread still through it.
+
 > They are not taking children.
 >
 > They are collecting particular ones.
@@ -245,6 +249,8 @@
 *Heading: **Upriver.***
 *Question: where did the cart go?*
 
+> The rain came in the night. By morning the ruts are running with water, and you follow them upriver at a pace that leaves no breath for talk.
+>
 > The tracks hold until the riverbank turns to stone. Then they stop.
 >
 > There is no ford here. There is no reason for a cart to have come this far.
@@ -394,6 +400,7 @@
 > You earned: `[gold]` · Agility or Charm `[growth]`
 > You learned: **Corin is alive.** He is held in a chamber cut into the hill, in a ring of lamps, by hooded figures who are making something ready. They know you are outside.
 > *On a pass:* there are more of them than of you, and his hands are not yet cut. There is still time.
+> *On a failure:* You missed something at the shaft. Someone at the fire may have seen it.
 > Fragments: 4 found
 > Tomorrow: **the hillside, tonight**
 
@@ -580,6 +587,7 @@
 > **THE OTHER WAY IN** · Day 6
 > You earned: `[gold]` · Aim or Might `[growth]`
 > You learned: **the six fragments are a map again.** It shows an older room, deeper in the same hill, with a shaft of its own. You found its mouth. Nobody is guarding it. They are digging toward that room now.
+> *On a failure:* You missed something on the hill. Someone at the fire may have seen it.
 > You hold: the map · the black circle
 > Fragments: 6 of 6 · the map is whole
 > Tomorrow: **THE GATHERING** · into the hill by the old shaft, together
