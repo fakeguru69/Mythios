@@ -342,21 +342,12 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   const availableAttrRelics = relics[activeAttr] || 0;
   const availableBattleRelics = relics['Battle'] ?? relics['Combat'] ?? 0;
 
-  // Two-Way Fight Stats (#1, #2, #3):
-  // If the day has a Challenge + Fight, passing the Challenge grants +2 WEP First-Strike Advantage;
-  // failing the Challenge inflicts -15 HP Opening Ambush Penalty before Round 1!
-  // Only where the day's Challenge comes before its fight (not W1D1 or W4D2, where the fight is first).
-  const challengeBeforeFight = (() => {
-    const steps = chapterScript?.steps || [];
-    const c = steps.findIndex((st) => st.t === 'challenge');
-    const f = steps.findIndex((st) => st.t === 'fight');
-    return c >= 0 && f >= 0 && c < f;
-  })();
-  const challengeCombatBonus = challengeBeforeFight && rollOutcome?.cleared ? 2 : 0;
-  const challengeFailHpPenalty = challengeBeforeFight && rollOutcome && !rollOutcome.cleared ? 15 : 0;
+  // Who strikes first in the day's fight is canon's rule (set by a choice or the Challenge; see fightEnemyFirst).
+  // The build's +2 Weapon / −15 HP for Challenge-and-fight days was dropped on 15 Oct (Fake Guru): it counted the
+  // same Challenge twice on W2D3, W4D5 and W6D6.
   const baseWeaponAtk = GEAR_TABLE[weaponLevel]?.weapon || 14;
   const baseArmorDef = GEAR_TABLE[armorLevel]?.armor || 27;
-  const playerAtk = baseWeaponAtk + (useCombatRelic ? 1 : 0) + challengeCombatBonus;
+  const playerAtk = baseWeaponAtk + (useCombatRelic ? 1 : 0);
   const playerArmor = baseArmorDef + (useCombatRelic ? 1 : 0);
   const enemyDef = Math.max(16, (epMeta.wDef || 21) - 2);
   // Canon: who strikes first in the day's fight is set by a choice or by the day's Challenge.
@@ -569,7 +560,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     const r = prevRounds.length + 1;
     const enemyHpBefore =
       prevRounds.length === 0 ? 100 : prevRounds[prevRounds.length - 1].enemyHpAfter;
-    const startPlayerHp = Math.max(20, 100 - challengeFailHpPenalty);
+    const startPlayerHp = 100;
     const playerHpBefore =
       prevRounds.length === 0
         ? startPlayerHp
@@ -1164,7 +1155,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       ? 100
       : fightRounds[fightRounds.length - 1].enemyHpAfter;
   const playerMaxHp = 100;
-  const startPlayerHp = Math.max(20, 100 - challengeFailHpPenalty);
+  const startPlayerHp = 100;
   const playerRemainingHp =
     fightRounds.length === 0
       ? startPlayerHp
