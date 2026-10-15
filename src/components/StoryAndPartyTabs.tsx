@@ -2777,7 +2777,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   onShareSoloClueToBoard,
   sharedFanOutClues = {},
   onShareFanOutClue,
-  appliedLoopholeIds = ['L1', 'L2', 'L3'],
+  appliedLoopholeIds = ['L1', 'L3'],
   relics = {},
   onGiveRelic,
   privateTheoryPromptsByDay = {},

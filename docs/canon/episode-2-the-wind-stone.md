@@ -454,6 +454,8 @@
 > He does not say a word. He does not make a sound when he is hit. He tears himself free and is gone downhill, and what is left in your fist is a strip of his coat.
 >
 > Sewn to it, no bigger than a thumbnail: a circle of black cloth.
+>
+> At the cuff, a snapped end of dark thread, the same twist as the thread still through the horn button from the mill. *(Added 14 Oct 2026, Fake Guru: the horn button's payoff.)*
 
 *If the player won, one line more:*
 > You hit him hard enough to wind him, and still he made no sound. You heard his teeth come together on it.
@@ -478,7 +480,7 @@
 > **THE HILLSIDE** · Day 5
 > You earned: `[gold]`
 > You learned: they wear **a small black circle**. One of them fought you without a word, ran, and signalled the hill. Meira could not find his name anywhere: *someone wanted him forgotten.*
-> You hold: **the black circle**
+> You hold: **the black circle** · the horn button, matched to his cuff
 > Fragments: 5 found
 > Tomorrow: **the lip of the shaft**
 

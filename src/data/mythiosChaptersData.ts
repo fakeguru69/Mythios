@@ -129,13 +129,8 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     question: 'Where did they take her?',
     challengeTitle: 'READ THE WATERLINE',
     challengeAttrs: ['Aim', 'Agility'],
-    hasFight: true,
-    fightEnemyName: 'The Ferry Sentry',
-    preFightChoice: {
-      optA: 'STRIKE FROM THE REEDS',
-      optB: 'HOLD THE FORD-STONE',
-      noticeHint: 'Aim / Agility Notice: A scrape of fresh paint on the upstream rock marks where the sentry moored the boat.',
-    },
+    // No fight on W1D6 (canon: a Challenge and [PRESS ON]). "The Ferry Sentry" fight was removed
+    // 14 Oct by Fake Guru; canon's inn supper (the extra cup, the courier) returns in Phase 2.
     hasPressOn: true, pressOnTitle: 'WADE OUT',
     pressOnDetail: 'Mid-stream, on the upstream side of the ford-stone, a scrape of fresh paint on the rock at the height of a gunwale. There was a boat.',
     fightReward: 0,
@@ -180,6 +175,7 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
     failBranchText: 'She shuts the door in your face. She only speaks to Arjun at dusk after Arjun mends her latch, and never gives you the horn button.',
     pullLine: 'Upriver. The ruts are four nights old, and there is weather coming.',
     summaryLearned: 'Corin was asked for by name, and by the night he was born. The mark from the rubbing is cut into the mill\'s footing.',
+    youHold: 'a horn button from the taker\'s sleeve',
     auditFixesApplied: ['B4 (Deleted stray bonus-seed bullet)', 'B15 (Screens aligned to Week 2 · Day 2 · The Mill)', 'C7 (Sharpened failure branch)'],
   },
   {
@@ -216,11 +212,11 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
       optB: 'READ MEIRA\'S PAGES',
       noticeHint: 'Agility / Aim Notice: Something is moving on the hill shoulder above the shaft—walking the hill spots him first.',
     },
-    passBranchText: 'You wind him and tear a small black cloth circle from his coat before he flashes a shuttered lamp twice toward the shaft.',
-    failBranchText: 'He catches you by the lamp, then breaks away downhill with a strip of his coat (a small black circle) left in your fist.',
+    passBranchText: 'You wind him and tear a small black cloth circle from his coat—right beside a snapped thread at the cuff, the same dark twist as the thread through the horn button from the mill.',
+    failBranchText: 'He catches you by the lamp, then breaks away downhill with a strip of his coat (a small black circle, and a snapped dark thread at the cuff like the one through the horn button) left in your fist.',
     pullLine: 'There is no second door on this hillside, and now there is a clock.',
     summaryLearned: 'They wear a small black circle. Meira could not find the king\'s name anywhere: someone wanted him forgotten.',
-    youHold: 'the black circle',
+    youHold: 'the black circle · the horn button, matched to his cuff',
     auditFixesApplied: ['C6 (Notice before pre-fight choice)'],
   },
   {

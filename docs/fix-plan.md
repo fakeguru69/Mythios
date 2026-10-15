@@ -41,7 +41,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
    - Gear can't be bought at Level 5.
 5. ✅ **Checked 14 Oct:** correct in weekday fights (spent at the first round, +1 Weapon and +1 Armor, off when none). The Gathering Battle's relic is wrong (it "gives" any relic to Dev); fixed with the Battle in step 6. **[Fix] The Combat Relic is spent** when used (Task 5).
 6. **[Fix] United Effort to canon:** turns, bars, 10 + d20 (Task 6). Battle enemies roll as in canon.
-7. ✅ **Done 14 Oct (with the fight-pay part of step 3).** Patches L4, L5, L6 removed; fights on Challenge-and-fight days pay 0 in the chapter data. L1–L3 add story text not in canon: waiting on Fake Guru. W1D6's fight is not in canon: waiting on Fake Guru. **[Fix] Continuity patches.** Turn off L5 (the "seven left" said a day early). Turn off L6 (it rewrites the W4D1 escape against canon). Check L1–L3 against the episode files.
+7. ✅ **Done 14 Oct (with the fight-pay part of step 3).** Patches L4, L5, L6 removed; fights on Challenge-and-fight days pay 0 in the chapter data. Decided 14 Oct: W1D6's fight removed; L2 made canon; L1 and L3 stay until Phase 2. **[Fix] Continuity patches.** Turn off L5 (the "seven left" said a day early). Turn off L6 (it rewrites the W4D1 escape against canon). Check L1–L3 against the episode files.
 8. ✅ **Done 14 Oct.** The checker uses canon's list; no early uses found. **[Fix] The word checker's first-use days** match canon ("king" W2D5, "throne" W3D5, and so on).
 9. ✅ **Done 14 Oct.** Store lock removed (old saves still load); workbench only with `?dev=1`. **[Fix] Remove the Store-lock switch** (Task 8). **Hide the Audit Workbench** unless `?dev=1` (Task 9).
 
@@ -58,7 +58,7 @@ Prepared 14 Oct 2026 from the ten audits in `docs/audits/` and the task list in 
     - [PULL IT OUT] for the fragment
     - **the Pull**
     - **the day summary card** (You earned · You learned · You hold · Fragment · Tomorrow)
-11. **[Restore] Lost plants:** the dates beside your names and the extra cup (W1D2); the vent box (G3); the second boat (W4D6); Garrick's weekday lines (W1D6, W3D2, W4D1, W5D4, and the rest).
+11. **[Restore] Lost plants** (decided 14 Oct: also restore W1D6's inn supper, the extra cup and the courier, now the Ferry Sentry fight is gone; then remove patches L1 and L3, which stand in for canon text):  the dates beside your names and the extra cup (W1D2); the vent box (G3); the second boat (W4D6); Garrick's weekday lines (W1D6, W3D2, W4D1, W5D4, and the rest).
 12. **[Fix] Remove the template frame:** "Following yesterday's lead…", "One urgent question…", "Relying on your…", rules text in the story, summaries in brackets, "heavy boots come running", the capital "The" mid-sentence, and day labels inside place names. Store descriptive places without "The".
 13. **[Fix] Remove the "Tell Mythios what you do" box** (canon cut free play).
 14. **[Fix] Names follow canon's style guide:** plain text in sentences; gold only for what you hold; italic serif for written pages.

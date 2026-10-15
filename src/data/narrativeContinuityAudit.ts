@@ -43,7 +43,7 @@ export const CONTINUITY_RULES: ContinuityRuleMeta[] = [
 ];
 
 export interface ContinuityLoopholeRecord {
-  id: 'L1' | 'L2' | 'L3';
+  id: 'L1' | 'L3';
   ruleId: ContinuityRuleId;
   severity: 'HIGH' | 'MEDIUM';
   week: number;
@@ -71,21 +71,7 @@ export const NEW_CONTINUITY_LOOPHOLES: ContinuityLoopholeRecord[] = [
     proposedFixText:
       'W2D2 [PRESS ON: THE RUTS]: "The left wheel pulls—cutting a deeper groove on the near side. You saw that same lopsided rut in the bracken below the Widow\'s Tooth, and where the cart backed down the high bank above the ford. One cart, working both roads." (And plant the matching high-bank wheel mark on W1D6.)',
   },
-  {
-    id: 'L2',
-    ruleId: 'RULE_1_PLANT_PAYOFF',
-    severity: 'MEDIUM',
-    week: 2,
-    day: 2,
-    relatedCoord: 'W2D2 → W2D5',
-    title: 'Orphaned Physical Clue ("a horn button from the taker\'s sleeve") in Week 2 · Day 2',
-    whyLoophole:
-      'Passing THE MILLER\'S WIFE on Week 2 · Day 2 rewards a specific physical token ("she presses a horn button torn from the taker\'s sleeve into your hand"), but youHold is left empty on W2D2 and the button is never matched against any Order member later in Week 2.',
-    beforeText:
-      'W2D2 youHold: undefined. W2D5 passBranchText: "You wind him and tear a small black cloth circle from his coat before he flashes a shuttered lamp twice toward the shaft."',
-    proposedFixText:
-      'W2D2 youHold: "a horn button from the taker\'s sleeve". W2D5 passBranchText: "You wind him and tear a small black cloth circle from his coat—right beside a snapped thread at the cuff where a horn button was wrenched off at the mill."',
-  },
+  // L2 (the horn button's cuff) became canon on 14 Oct (Fake Guru) and now lives in the chapter data.
   {
     id: 'L3',
     ruleId: 'RULE_2_CLIFFHANGER_HOOK',
@@ -131,17 +117,6 @@ export function getChapterWithContinuityFixes(
     }
   }
 
-  if (appliedLoopholeIds.includes('L2')) {
-    if (patched.week === 2 && patched.day === 2) {
-      patched.youHold = 'a horn button from the taker\'s sleeve';
-    }
-    if (patched.week === 2 && patched.day === 5) {
-      patched.passBranchText =
-        'You wind him and tear a small black cloth circle from his coat—right beside a snapped thread at the cuff where a horn button was wrenched off at the mill.';
-      patched.youHold = 'the black circle · matched horn button cuff';
-    }
-  }
-
   if (appliedLoopholeIds.includes('L3')) {
     if (patched.week === 2 && patched.day === 3) {
       patched.summaryLearned =
@@ -160,7 +135,7 @@ export interface ContinuityChainRow {
   plantOrToken: string;
   cliffhangerPull: string;
   nextDayTarget: string;
-  loopholeId?: 'L1' | 'L2' | 'L3';
+  loopholeId?: 'L1' | 'L3';
   status: 'WATER-TIGHT' | 'LOOPHOLE FLAGGED' | 'FIX PREVIEW ACTIVE';
 }
 
@@ -172,9 +147,8 @@ export function buildContinuityChainMatrix(appliedLoopholeIds: string[]): Contin
       ? `W${nextItem.week}D${nextItem.day} · ${nextItem.place}`
       : 'Week 6 · Day 7 Finale (His Hall)';
 
-    let loopholeId: 'L1' | 'L2' | 'L3' | undefined;
+    let loopholeId: 'L1' | 'L3' | undefined;
     if (item.week === 2 && item.day === 2) loopholeId = 'L1';
-    else if (item.week === 2 && item.day === 5) loopholeId = 'L2';
     else if (item.week === 2 && item.day === 3) loopholeId = 'L3';
 
     const status: ContinuityChainRow['status'] = !loopholeId

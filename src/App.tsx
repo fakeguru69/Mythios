@@ -88,7 +88,7 @@ export default function App() {
   const [topBannerExpanded, setTopBannerExpanded] = useState<boolean>(false);
   const [bagInitialSubTab, setBagInitialSubTab] = useState<'RELICS' | 'SEEKER'>('RELICS');
 
-  // Continuity fixes L1–L3 are active by default (L4–L6 removed 14 Oct: they broke canon)
+  // Continuity fixes L1 and L3 are active by default (L2 became canon; L4–L6 removed 14 Oct)
   const [appliedLoopholeIds, setAppliedLoopholeIds] = useState<string[]>(() =>
     NEW_CONTINUITY_LOOPHOLES.map((l) => l.id)
   );
@@ -784,7 +784,7 @@ export default function App() {
               INTERNAL AUDIT WORKBENCH
             </span>
             <span className="px-2 py-0.5 rounded bg-[#68B88E]/15 border border-[#68B88E]/40 font-['Cinzel'] font-bold text-[10.5px] text-[#68B88E] whitespace-nowrap">
-              {verifier.totalWeekdays}/36 LANDMARKS · L1–L3 ACTIVE
+              {verifier.totalWeekdays}/36 LANDMARKS · L1, L3 ACTIVE
             </span>
             <a
               href="/api/download-audit-bundle-14oct?download=1"
