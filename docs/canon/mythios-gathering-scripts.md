@@ -1278,11 +1278,15 @@ Where he can, he answers a narrower, true question and points at the page. He ne
 
 > Seven strokes left on the tally. Seven nights.
 >
+> The fifth lies in your cut palms and stays cold. Garrick has bound every one of them in his white linen. He does not tell you it will be all right.
+>
 > You look out at the hall. The doors are shut, as they've been for centuries, sealed in a way no hand you know of can open — and somewhere inside, slow and heavy, you can hear it again. The heartbeat from the north. It isn't far away any more.
 >
 > Overhead, the moon hangs at the half — seven nights from full, seven nights from swallowed whole.
 >
-> Then, across the square below the hall, a new lantern comes out of the dark. A watchman — a fresh one, come up to take the watch — stops at the board propped beside the Order's fire, takes up the chalk, and strikes tonight's stroke, late. Seven on the board now, the same as the page.
+> Garrick looks at the moon a long moment. *"We're early."*
+>
+> Then, across the square below the hall, a new lantern comes out of the dark. A watchman — a fresh one — takes up the chalk and draws it through tonight's stroke, late. Seven left.
 >
 > He turns, lantern raised, and looks straight down the hill at the wall. At the slit window you're standing behind.
 

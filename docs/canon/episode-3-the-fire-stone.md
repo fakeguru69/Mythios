@@ -23,7 +23,7 @@
 | 1 | The hill, then the mill | Fight | Her name, and "going home first" |
 | 2 | Ashcombe | Challenge | "They'd only need her the once" |
 | 3 | The Blackglass | Challenge · [PRESS ON] | Three marks, three children, and riders who did not stop |
-| 4 | The black ridges | Challenge · [PRESS ON] | She is leaving a trail they cannot see |
+| 4 | The black ridges | Challenge | She is leaving a trail they cannot see |
 | 5 | The shepherd's hut | Fight | For the first time, they ran |
 | 6 | The cairn | Challenge | A hill that breathes, and a lamp that goes in |
 
@@ -395,6 +395,10 @@
 >
 > Whoever wrote your fragments slept here, walking this same country, a long time ago.
 >
+> In a crack in the nearest niche is a single die, carved from bone, its spots worn almost smooth by somebody's fingers.
+>
+> Whoever slept here had long nights too. *(Moved 15 Oct 2026, Fake Guru: Phase 6, the die is on the main path; the day's [PRESS ON] is dropped.)*
+>
 > Between the niches, at chest height, is a housing.
 
 `[LAY YOUR HAND ON IT]`
@@ -402,16 +406,6 @@
 > Its face slides back. The ridge has been warm all day. What is inside is colder than the rock round it.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
-
-**PRESS ON** *(offered on a pass)*
-> **THE CRACK IN THE NICHE** · something is wedged in it; work it loose without snapping it
-> 4 harder · `[ROLL]` `[LEAVE IT]`
-> REWARD: +200g, and one more detail
-
-*On a passed press:*
-> A single die, carved from bone, its spots worn almost smooth by somebody's fingers.
->
-> Whoever slept here had long nights too.
 
 > Nobody has been in here for a very long time. And the riders passed a hundred yards away, and never knew.
 
@@ -426,16 +420,16 @@
 **Day summary card**
 > **THE BLACK RIDGES** · Day 4
 > You earned: `[gold]` · Craft or Might `[growth]`
-> You learned: **Wren is alive.** She is dropping her glass chips for whoever comes after, and the men who have her have not noticed. And the people who wrote your fragments once slept in a room the riders rode straight past.
+> You learned: **Wren is alive.** She is dropping her glass chips for whoever comes after, and the men who have her have not noticed. And the people who wrote your fragments once slept in a room the riders rode straight past. They had long nights too.
 > You hold: three of Wren's chips
 > Fragments: 4 found
 > Tomorrow: **the shepherd's hut, at first light**
 
 
 **Designer's notes**
-- **Played beats:** an act, a notice line, a Choice, the Challenge, an act, an optional press. One roll, or two if pressed.
+- **Played beats:** an act, a notice line, a Choice, the Challenge, an act. One roll. *(The press was dropped 15 Oct 2026; its die is now on the main path.)*
 - **The party:** Mei and Jo clear the fall, or Dev holds the trail, whichever the player did not choose.
-- **Changed from the current script:** the player picks up the chips; the choice between trail and doorway is new; the bone die (the old optional extra) is the press detail.
+- **Changed from the current script:** the player picks up the chips; the choice between trail and doorway is new; the bone die (the old optional extra) was the press detail, and since 15 Oct 2026 (Fake Guru, Phase 6) is on the main path.
 - **The chips are counted from today** because Gathering 3 has the party give Wren back eight: three today, five tomorrow.
 - **Garrick:** no lines. One existing action (the extra cup).
 - **Fragment text (unchanged):** "What we hid, we locked with what we are."

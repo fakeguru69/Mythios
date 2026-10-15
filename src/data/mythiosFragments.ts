@@ -167,8 +167,9 @@ export const SEEKER_FRAGMENTS: SeekerFragmentData[] = [
   {
     id: '4-1', week: 4, day: 1, placeLabel: 'The last black rock',
     fullText: 'We did not trust four locks to hold what needed five.',
-    displayTemplate: 'We did not trust {0} locks to hold what needed {1}.',
-    word1: 'four', jumble1: ['O', 'R', 'F', 'U'],
+    // Lock words changed 15 Oct 2026 (Fake Guru, Phase 6): four·five gave each other away.
+    displayTemplate: 'We did not {0} four locks to hold what needed {1}.',
+    word1: 'trust', jumble1: ['T', 'S', 'U', 'R', 'T'],
     word2: 'five', jumble2: ['I', 'F', 'V', 'E'],
     closureInfo: 'Week 4 Gathering (Layer F false hope)',
   },
@@ -191,9 +192,10 @@ export const SEEKER_FRAGMENTS: SeekerFragmentData[] = [
   {
     id: '4-4', week: 4, day: 4, placeLabel: 'The market cross',
     fullText: 'Moon-blood woke it once. Moon-blood will wake it again, if it is ever let near.',
-    displayTemplate: 'Moon-blood {0} it once. Moon-blood will {1} it again, if it is ever let near.',
+    // Lock words changed 15 Oct 2026 (Fake Guru, Phase 6): woke·wake gave each other away.
+    displayTemplate: 'Moon-blood {0} it once. Moon-blood will wake it again, if it is ever let {1}.',
     word1: 'woke', jumble1: ['K', 'W', 'E', 'O'],
-    word2: 'wake', jumble2: ['E', 'W', 'A', 'K'],
+    word2: 'near', jumble2: ['R', 'A', 'E', 'N'],
     closureInfo: 'Week 6 Finale (Thread 1 misdirection anchor)',
   },
   {
@@ -207,9 +209,10 @@ export const SEEKER_FRAGMENTS: SeekerFragmentData[] = [
   {
     id: '4-6', week: 4, day: 6, placeLabel: 'The tower stair',
     fullText: 'We made our children the only key. We never asked what that would make them.',
-    displayTemplate: 'We made our {0} the only {1}. We never asked what that would make them.',
+    // Lock words changed 15 Oct 2026 (Fake Guru, Phase 6): "key" was three letters and easy.
+    displayTemplate: 'We made our {0} the only key. We never {1} what that would make them.',
     word1: 'children', jumble1: ['H', 'L', 'C', 'D', 'I', 'R', 'E', 'N'],
-    word2: 'key', jumble2: ['E', 'Y', 'K'],
+    word2: 'asked', jumble2: ['D', 'E', 'K', 'S', 'A'],
     closureInfo: 'Week 4 Gathering & Week 6 ("You were the key.")',
   },
 

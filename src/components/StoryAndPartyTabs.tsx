@@ -793,17 +793,28 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     const w1Done = Boolean(sEntry.w1);
     const w2Done = Boolean(sEntry.w2);
     const parts = dayFragment.displayTemplate.split(/(\{0\}|\{1\})/g);
+    // A solved word that opens a sentence takes its capital (2-6 "Morning", 3-5 "Bloodlines", 5-3 "None").
+    const asWritten = (word: string, idx: number) =>
+      idx === 0 || /^\s*$/.test(parts[idx - 1]) && idx === 1 || /[.!?]\s*$/.test(parts[idx - 1]) ? word.charAt(0).toUpperCase() + word.slice(1) : word;
     return (
       <p className="font-['Cormorant_Garamond'] font-medium text-[20px] text-[#F4F1F8] leading-[1.55]">
         “
         {parts.map((part, idx) => {
+          // Two locks side by side (5-2) get a faint dot between them while both are locked, so they read as two.
+          if (!part.trim() && parts[idx - 1] === '{0}' && parts[idx + 1] === '{1}' && !w1Done && !w2Done) {
+            return (
+              <span key={idx} className="mx-1 text-[#8B7A9E] not-italic" aria-hidden="true">
+                ·
+              </span>
+            );
+          }
           if (part === '{0}') {
             return w1Done ? (
               <span
                 key={idx}
                 className="font-['Cormorant_Garamond'] font-bold text-[20px] text-[#6FD39A] underline decoration-[#6FD39A]/50 underline-offset-4 px-1"
               >
-                {dayFragment.word1}
+                {asWritten(dayFragment.word1, idx)}
               </span>
             ) : (
               <span
@@ -829,7 +840,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                 key={idx}
                 className="font-['Cormorant_Garamond'] font-bold text-[20px] text-[#6FD39A] underline decoration-[#6FD39A]/50 underline-offset-4 px-1"
               >
-                {dayFragment.word2}
+                {asWritten(dayFragment.word2, idx)}
               </span>
             ) : (
               <span

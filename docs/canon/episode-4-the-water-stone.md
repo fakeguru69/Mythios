@@ -259,11 +259,23 @@
 >
 > *"They asked for him by name,"* she says, *"and they knew the night he was born."*
 >
-> After that she only stands, and lets you look.
+> You have heard those words before: at the mill, and in Ashcombe.
+>
+> After that she only stands, with her hand on the doorpost. *(Changed 15 Oct 2026, Fake Guru: Phase 6, the day leads with the count; the doorpost is no longer a choice.)*
 
-`[THE SHELF]` `[THE WINDOW]` `[THE DOORPOST]`
+> Notches, cut with a kitchen knife, fresh and pale in the old wood. One for every night.
+>
+> Eight.
 
-*The player looks at one first. All three are seen.*
+> Eight nights. He was taken before you had even found Wren.
+>
+> They needed Wren *only the once*, and kept her two weeks. They have kept Joss eight nights already.
+>
+> They are waiting for something.
+
+`[THE SHELF]` `[THE WINDOW]`
+
+*Both are seen. The player looks at one first.*
 
 *The shelf:*
 > A row of little boats, each no longer than a finger, each better than the one before. The newest has its hull and no mast. The knife is lying beside it.
@@ -273,11 +285,6 @@
 >
 > On the shingle, later, the fisherman tells you why. In Reedham a lamp is lit in every window on a dark-moon night; it always has been. Joss came into the world with the whole village lit up round him. She has not let that one go out since he went.
 
-*The doorpost:*
-> Notches, cut with a kitchen knife, fresh and pale in the old wood. One for every night.
->
-> Eight.
-
 **What you notice**
 > **Might** · Her skiff has been hauled up above the storm line. *She did that alone.*
 > **Agility** · She crosses the room without once passing in front of the window. *She will not put herself between that lamp and the lake.*
@@ -285,12 +292,6 @@
 > **Charm** · There are two stools at the table, and she has sat on neither. *She has not sat down since you came in.*
 > **Craft** · The skiff has a sprung plank, stuffed with rag. *It will float. It will not stay dry.*
 > **Aim** · From her door you can see down the lane, over the shingle, to the tower in the water. *And from the tower, this window.*
-
-> Eight nights. He was taken before you had even found Wren.
->
-> They needed Wren *only the once*, and kept her two weeks. They have kept Joss eight nights already.
->
-> They are waiting for something.
 
 > She takes you down to the shingle herself, and puts the skiff's rope into your hand.
 
@@ -429,7 +430,7 @@
 - **Played beats:** a notice line, the Challenge, an optional press, an act. One roll, or two if pressed.
 - **The party:** Dev finds the last prints on a failure.
 - **Changed from the current script:** a failure no longer costs a cut shin (carried costs are retired); Meira's page is read by the player, not by "whoever is carrying the satchel".
-- **One change from the ladder, and from the current script:** both quoted the fragment's line in full from Meira's copy. Its two lock words are *woke* and *wake*, so quoting it would open the lock for nothing. The line is now not quoted. The player learns the word and that the fragment is a warning; solving the fragment says what the warning is.
+- **One change from the ladder, and from the current script:** both quoted the fragment's line in full from Meira's copy. Its two lock words are *woke* and *near* (were *woke* and *wake* until 15 Oct 2026), so quoting it would open the lock for nothing. The line is now not quoted. The player learns the word and that the fragment is a warning; solving the fragment says what the warning is.
 - **The press detail** (he turned to look at her lamp) is new.
 - **Meira's note** is the approved text, word for word.
 - **Garrick:** no lines.

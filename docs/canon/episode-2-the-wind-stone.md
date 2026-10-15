@@ -106,6 +106,8 @@
 > *No lamps. Moving like they'd done it before.*
 >
 > The boy at Fenmark said that, in nearly those words, a week ago and a whole county away.
+>
+> The same people. *(Added 15 Oct 2026, Fake Guru: Phase 6, the question ladder's twist said aloud.)*
 
 > You are too late to stop it. But you know which way it turned.
 
@@ -124,7 +126,7 @@
 **Day summary card**
 > **THE MILL ROAD** · Day 1
 > You earned: `[gold]` · Charm or Aim `[growth]`
-> You learned: the next name is **Corin**, the miller's boy. A cart with no lamps went up to the mill three nights ago and came back before dawn. It turned upriver.
+> You learned: the next name is **Corin**, the miller's boy. A cart with no lamps went up to the mill three nights ago and came back before dawn. It turned upriver. The same people who took Tamsin.
 > *On a failure:* You missed something on the mill road. Someone at the fire may have seen it.
 > Fragment: 1 found, locked
 > Tomorrow: **the mill, at first light**

@@ -47,12 +47,6 @@
 >
 > Twice, they walk on.
 
-`[PLANT]` *(the Order does not know where you are)*
-
-> It is a long wall, and from the square every slit in it looks the same. In all its centuries here the Order has never known this room was there. It still does not.
->
-> You have a safe room in the enemy's city.
-
 **What you notice**
 > **Might** · The hidden door is one slab, a hand thick, hung so that a child could swing it. *It was made to be shut in a hurry, and held.*
 > **Agility** · The boots on the walk came at the same pace both times. *They are searching by rote. They do not expect to find anything.*
@@ -109,6 +103,12 @@
 > You are keeping the enemy's count now.
 
 > Garrick watches the stroke go on. *"I kept a tally behind my bar for years,"* he says. *"Most of it was who owed me."*
+
+`[PLANT]` *(the Order does not know where you are)* *(Moved 15 Oct 2026, Fake Guru: the answer now comes at dusk, so the day's Challenge is played not knowing; Phase 6.)*
+
+> It is a long wall, and from the square every slit in it looks the same. In all its centuries here the Order has never known this room was there. It still does not.
+>
+> You have a safe room in the enemy's city.
 
 `[PLANT]` *(the clock: one stroke a day)*
 
@@ -290,6 +290,8 @@
 > The stone is warm.
 >
 > Not sun-warm. There has been no sun for days. Something on the other side of this wall is warm, and has been for a very long time.
+>
+> Then the heartbeat comes, and you feel it in the stone under your hand before you hear it. *(Added 15 Oct 2026, Fake Guru: Phase 6, Day 3's dread.)*
 
 > Low in the wall, near the ground, is a housing. It turns a quarter-turn, with a scrape you are sure the whole square heard.
 >
@@ -306,7 +308,7 @@
 **Day summary card**
 > **FOUR NIGHTS** · Day 3
 > You earned: `[gold]` · Agility or Charm `[growth]`
-> You learned: **the hall's wall is warm.** Something behind it has been warm for a very long time. There is no way in at the front, and twice as many watchmen as before.
+> You learned: **the hall's wall is warm, and the heartbeat comes through it.** Something behind it has been warm for a very long time. There is no way in at the front, and twice as many watchmen as before.
 > You hold: the fifth · the watch-page: **four left**
 > Fragments: 3 found
 > Tomorrow: **the hill behind the hall**

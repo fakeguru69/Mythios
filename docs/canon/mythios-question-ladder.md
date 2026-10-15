@@ -324,7 +324,7 @@ Every Garrick line quoted below already exists in the approved scripts. **This l
 
 **Day 3. Reedham**
 - **Question:** What happened to Joss?
-- **Player does:** His grandmother lets the party in and says almost nothing. The player reads the room, choosing what to look at: a shelf of little boats with the newest left unfinished, the lamp she has kept burning in the window by day, the doorpost. Challenge (Craft or Might) to get her leaking skiff out to the drowned tower.
+- **Player does:** His grandmother lets the party in and says almost nothing. Her hand is on the doorpost: eight notches, and the count comes first ("They are waiting for something"). Then the player looks at the shelf of little boats with the newest left unfinished, and the lamp she has kept burning in the window by day. *(Changed 15 Oct 2026, Fake Guru: Phase 6.)* Challenge (Craft or Might) to get her leaking skiff out to the drowned tower.
 - **Answer:** She has cut a notch in the doorpost for every night he has been gone. There are eight. He was taken before the party had even found Wren. A fisherman explains the lamp: in Reedham every window is lit on a dark-moon night, and Joss was born with the whole village lit up around him.
 - **Twist:** Eight nights. They needed Wren "only the once", and held her two weeks. They have held Joss more than a week. They are waiting for something.
 - **Pull:** Fresh boat-marks on the shingle. Someone has been rowing out to the drowned village by night. → Old Reedham, the streets in the shallows.

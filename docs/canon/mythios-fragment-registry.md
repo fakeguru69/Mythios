@@ -160,12 +160,12 @@ All six support the finale — and all six are deliberately oblique. None may le
 | 3 · 4 | What we **hid**, we **locked** with what we are. | D H I · O C E L D K |
 | 3 · 5 | **Bloodlines** outlast kingdoms. That is why kingdoms **fear** them. | L L S I D E B O N O · R F A E |
 | 3 · 6 | We never dug him a **grave**. When we are gone, our **blood** will have to hold him. | R E V G A · O L B O D |
-| 4 · 1 | We did not trust **four** locks to hold what needed **five**. | O R F U · I F V E |
+| 4 · 1 | We did not **trust** four locks to hold what needed **five**. | T S U R T · I F V E |
 | 4 · 2 | Earth, wind, water, fire — four we could name. The **fifth** had no **element** at all, and we feared it more than the other four together. | T H F F I · L E E N T M E |
 | 4 · 3 | What fell when the moon broke still **remembers** the moon. So does anyone **born** in its dark. | E E E R M R B M S · O B R N |
-| 4 · 4 | Moon-blood **woke** it once. Moon-blood will **wake** it again, if it is ever let near. | K W E O · E W A K |
+| 4 · 4 | Moon-blood **woke** it once. Moon-blood will wake it again, if it is ever let **near**. | K W E O · R A E N |
 | 4 · 5 | We have built a **lock**. Pray no one ever learns it is also a **door**. | K C O L · R O D O |
-| 4 · 6 | We made our **children** the only **key**. We never asked what that would make them. | H L C D I R E N · E Y K |
+| 4 · 6 | We made our **children** the only key. We never **asked** what that would make them. | H L C D I R E N · D E K S A |
 | 5 · 1 | He **gave** us the war. Then it began to **take**. | V A G E · K T E A |
 | 5 · 2 | We had **fought** **beside** every one of them. That is why it had to be us. | O T H F U G · S D B E E I |
 | 5 · 3 | Four of us gave to the four. **None** of us gave to the **fifth**. | E O N N · I F F H T |
@@ -179,8 +179,10 @@ All six support the finale — and all six are deliberately oblique. None may le
 | 6 · 5 | The **dark** moon comes back. It always comes back. Be **there** when it does. | R K A D · E H R T E |
 | 6 · 6 | If you are reading this, you are **ours** — and if he ever stirs, **finish** what we could not. | R U S O · S F I H N I |
 
-**Notes for review.** Two words are only three letters long (*hid*, *key*) because their fragments have no longer word that matters as much. A few words recur across the season because the lore turns on them: *fifth* (three times), *locks*, *moon*, *marked*, *blood* and *ours* (twice each). The jumbles are a first set; the app can reshuffle them freely as long as the letters match.
+**Notes for review.** One word is only three letters long (*hid*) because its fragment has no longer word that matters as much. A few words recur across the season because the lore turns on them: *fifth* (three times), *locks*, *moon*, *marked*, *blood* and *ours* (twice each). The jumbles are a first set; the app can reshuffle them freely as long as the letters match.
 
 *5 Oct 2026:* 6 · 5's second lock word changed from *always* to *there*. Garrick's approved line on that day ("It always comes back") said the old word aloud. Decided 5 Oct (TVMen: use your judgement and decide).
 
 *5 Oct 2026, lock words and the day's text (decided):* a day never quotes its own fragment's line in full (Week 4 Day 4, Week 5 Days 2 and 6, all of Week 6 were changed for this). A lock word appearing in ordinary narration is accepted. One exception is kept on purpose: 1 · 5, where the charcoal woman says the refrain aloud. See `review-merged-read-through.md`.
+
+*15 Oct 2026 (Fake Guru, Phase 6, `docs/drafts/phase6-lock-words-draft.md`):* three pairs changed because one word gave the other away or was too short: 4 · 1 *four · five* → *trust · five*; 4 · 4 *woke · wake* → *woke · near*; 4 · 6 *children · key* → *children · asked*. The fragment texts are unchanged; only the blanks moved. The other flagged pairs (1 · 5, 1 · 6, 3 · 4, 5 · 1, 5 · 2, 6 · 5) stay as chosen.

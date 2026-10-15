@@ -232,7 +232,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 **3-4 · The black ridges**
 - Opener: "She's leaving chips on the trail. Clever girl."
 - Fork: A "The chips are for us." / B "The chips are for herself."
-- Fan Out clue (leans both; press-on): A single die, carved from bone, its spots worn almost smooth by somebody's fingers. Whoever slept here had long nights too.
+- Fan Out clue (leans both; Fan Out lead 3-4-3): Turn the chips over. One has a single short scratch on its back, one has two, and one has three. *(15 Oct 2026, Fake Guru: the die moved onto W3D4's main path, so the fire's clue is the approved Fan Out lead 3-4-3.)*
 - Callback: "Tamsin wasn't asleep; she was counting. Wren is dropping her chips, one by one, on their trail."
 - Riddle: *What follows you all day and vanishes at dark?* A: your shadow. Garrick: "Long ones on a ridge at dusk."
 - Nudge: `{friend:Agility}`, you followed Wren's chips up the ridges. Left for us, or for herself?
@@ -548,8 +548,8 @@ At the well a boy holds his chip out low and quick, then shoves it back into his
 **3-3 · Read the scratches** (existing [PRESS ON]; leans both)
 Six horses. One of them is carrying double, and the second rider weighs almost nothing.
 
-**3-4 · The crack in the niche** (existing [PRESS ON]; leans both)
-A single die, carved from bone, its spots worn almost smooth by somebody's fingers. Whoever slept here had long nights too.
+**3-4 · Scratched on the back** (Fan Out lead 3-4-3; leans both)
+Turn the chips over. One has a single short scratch on its back, one has two, and one has three. *(15 Oct 2026, Fake Guru: the die moved onto W3D4's main path, so the fire's clue is the approved Fan Out lead 3-4-3.)*
 
 **3-5 · Cut twice** (new; leans A)
 Each stroke of the name has been cut twice, the second pass deeper than the first.
@@ -1097,8 +1097,8 @@ From the crack's mouth you can see the whole street climbing toward you. Every h
    },
    "nudge": "{friend:Agility}, you followed Wren's chips up the ridges. Left for us, or for herself?",
    "fanOutClue": {
-    "title": "The crack in the niche",
-    "text": "A single die, carved from bone, its spots worn almost smooth by somebody's fingers. Whoever slept here had long nights too.",
+    "title": "Scratched on the back",
+    "text": "Turn the chips over. One has a single short scratch on its back, one has two, and one has three.",
     "source": "press-on",
     "bearsOnFork": "both",
     "qaNote": "Existing [PRESS ON] detail."
