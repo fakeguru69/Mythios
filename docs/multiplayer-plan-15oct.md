@@ -1,6 +1,6 @@
 # Plan: real multiplayer (15 Oct 2026)
 
-Fake Guru: "start planning real multiplayer: yes". **Decided 15 Oct: 1 yes, 2 yes, 3 yes, 4 later, 5 yes, 6 yes** (web app; Supabase; Google and email sign-in first, Apple at launch; the group-chat test later; Week 1 for 2–4 friends first; terms "13 and over").
+Fake Guru: "start planning real multiplayer: yes". **Decided 15 Oct: 1 yes, 2 yes, 3 yes, 4 later, 5 yes, 6 yes** (web app; Supabase; Google and email sign-in (Apple dropped 16 Oct); the group-chat test later; Week 1 for 2–4 friends first; terms "13 and over").
 
 It builds on canon: Core Rules §1 (where the game is played) and §12a (rules for the builder), `mythios-build-notes.md` §6–§8 (the states, the smallest thing worth building, the build order), and `review-accounts-and-invites.md`.
 
@@ -32,7 +32,7 @@ Real multiplayer means four things change:
 This follows the build order in `mythios-build-notes.md` §7. The first goal is canon's **"smallest thing worth building"**: Week 1 only, two to four friends, on their own phones.
 
 1. **Accounts and the party.**
-   - Sign-in by Google, Apple, or email and password.
+   - Sign-in by Google, or email and password (Apple removed 16 Oct: it needs a paid Apple Developer account).
    - The host makes and names the party; the invite link asks to join; the host approves each friend.
    - Session Zero runs once per friend.
    - The party clock: time zone locked, a day opens at 5:00am.
@@ -130,7 +130,7 @@ Test 3 needs no code. It could start this week and tell us the most.
 - **16 Oct (Fake Guru's requests):**
   - **The host picks the start day**, for example next Monday (`0009`). Day 1 opens at 5:00am that day on the party's clock, and the day can be changed until then. The waiting room shows the day; on the last night it shows canon's "Day 1 opens at 5:00am. Sleep, if you can."
   - **Install to the home screen:** an icon, a manifest and a service worker (`pwa/`), and a guide with steps for iPhone and Android (`InstallGuide.tsx`). Notifications are added to the guide when push is built (step 6).
-  - **Google and Apple sign-in buttons** show by themselves once each is switched on in the Supabase dashboard. Those players are asked canon's "What should your friends call you?" once (`0010`). Email and password sign-in stays.
+  - **A Google sign-in button** shows by itself once it is switched on in the Supabase dashboard (Apple was removed the same day: it costs US$99 a year). Those players are asked canon's "What should your friends call you?" once (`0010`). Email and password sign-in stays.
 - **16 Oct: Mythios, series, seasons and characters (Fake Guru).**
   - The app is Mythios; Tales of the Dark Moon is one series; a party plays one season of a series (migration `0011`: `series`, `seasons`, `characters`).
   - The first screen opens with a Mythios intro (draft wording), then the series shelf.

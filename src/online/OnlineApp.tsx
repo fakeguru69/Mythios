@@ -117,7 +117,7 @@ function InviteCard({ info, onJoin }: { info: InviteCardInfo | null | undefined;
   );
 }
 
-// Screen 2 and 3: sign in (review §1). Google and Apple come later; email and a password today.
+// Screen 2 and 3: sign in (review §1): Google (once switched on in Supabase), or email and a password. No Apple (Fake Guru, 16 Oct).
 function SignIn() {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<'in' | 'up'>('up');
@@ -127,12 +127,12 @@ function SignIn() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
-  const [providers, setProviders] = useState({ google: false, apple: false });
+  const [providers, setProviders] = useState({ google: false });
   useEffect(() => {
     enabledSignIns().then(setProviders);
   }, []);
-  // Google and Apple (review-accounts-and-invites.md §1 Screen 2). The page comes back here, invite link and all.
-  const oauth = async (provider: 'google' | 'apple') => {
+  // Google (review-accounts-and-invites.md §1 Screen 2). The page comes back here, invite link and all.
+  const oauth = async (provider: 'google') => {
     setError(null);
     const { error: e } = await supabase.auth.signInWithOAuth({ provider, options: { redirectTo: window.location.href } });
     if (e) setError(plainError(e.message));
@@ -175,11 +175,6 @@ function SignIn() {
       {!open && providers.google && (
         <button className={goldButton} onClick={() => oauth('google')}>
           CONTINUE WITH GOOGLE
-        </button>
-      )}
-      {!open && providers.apple && (
-        <button className={goldButton} onClick={() => oauth('apple')}>
-          CONTINUE WITH APPLE
         </button>
       )}
       {!open ? (
@@ -765,7 +760,7 @@ function Home({ session }: { session: Session }) {
     load();
   }, [load]);
 
-  // Google and Apple sign-ins are asked the name question once (review §1 Screen 3).
+  // Google sign-ins are asked the name question once (review §1 Screen 3).
   if (!nameChosen) {
     return (
       <div className={card}>

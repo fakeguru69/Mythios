@@ -805,7 +805,7 @@ These settle cases the rules above left open. The engineering notes are in `myth
 - The server checks each try and never sends the answer to the phone. After five wrong tries at one word, that friend waits two minutes.
 
 **People and accounts** *(TVMen, 2026-10-03)*
-- **Sign-in:** with a Google account, an Apple account, or an email address and a password.
+- **Sign-in:** with a Google account, or an email address and a password. *(Apple removed by Fake Guru, 16 Oct 2026: it needs a paid Apple Developer account.)*
 - **No age check.** The app does not ask a player's age (TVMen, 2026-10-03).
 - **The party has a name,** chosen by the host when they make it.
 - **Joining:** the invite link asks to join; the host approves each friend. One link per party; it works until the party has six or until the end of Episode 1 Day 2. The host can make a new link, and the old one stops working.

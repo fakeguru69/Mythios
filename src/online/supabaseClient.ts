@@ -11,15 +11,15 @@ const SUPABASE_PUBLISHABLE_KEY =
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
-// Which sign-ins the server has switched on (Google, Apple). A button shows only once its sign-in is set up
+// Whether the server has Google sign-in switched on. A button shows only once its sign-in is set up
 // in the Supabase dashboard, so nothing half-ready reaches a player.
-export const enabledSignIns = async (): Promise<{ google: boolean; apple: boolean }> => {
+export const enabledSignIns = async (): Promise<{ google: boolean }> => {
   try {
     const res = await fetch(`${SUPABASE_URL}/auth/v1/settings`, { headers: { apikey: SUPABASE_PUBLISHABLE_KEY } });
     const data = await res.json();
-    return { google: !!data?.external?.google, apple: !!data?.external?.apple };
+    return { google: !!data?.external?.google };
   } catch {
-    return { google: false, apple: false };
+    return { google: false };
   }
 };
 
