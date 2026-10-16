@@ -116,6 +116,14 @@ http
       const url = new URL(req.url, 'http://x');
       const body = raw ? JSON.parse(raw) : {};
       const send = (code, text) => { res.writeHead(code, headers); res.end(text); };
+      // Server functions (Edge Functions) run separately: tests/online/local-garrick.ts.
+      if (url.pathname.startsWith('/functions/v1/')) {
+        const fwd = http.request({ host: 'localhost', port: Number(process.env.LOCAL_FUNCTIONS_PORT || 54322), path: url.pathname.replace('/functions/v1', ''),
+          method: req.method, headers: req.headers }, (r) => { res.writeHead(r.statusCode, { ...headers, ...r.headers }); r.pipe(res); });
+        fwd.on('error', (e) => send(502, JSON.stringify({ message: e.message })));
+        fwd.end(raw);
+        return;
+      }
       try {
         if (url.pathname === '/auth/v1/settings') return send(200, JSON.stringify({ external: { email: true, google: false } }));
         if (url.pathname === '/auth/v1/token') {
