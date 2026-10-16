@@ -5,6 +5,7 @@
 **What it is.** Canon (Core Rules §1) says Garrick "may add a line or two a day" in the party chat, but gives no list. Fake Guru (16 Oct): one line a day, posted when the day opens at 5:00am. The server (`garrick_morning`, migration `0043`, applied) posts it once for the whole party, stamped 5:00am, when the first friend opens the app or the chat that day.
 
 **How the lines were written.**
+- Likeable and well written (Fake Guru, 16 Oct): a small kindness and a little of the world in each, never a curt order. (The first draft read as orders and was rewritten.)
 - Small talk only: food, boots, the weather, the road, the night's watch. Nothing about the plot, the Stones, Meira or himself.
 - Every line is true where it stands, with no promise or prediction ("you'll", "it will"), and none of the banned phrases. All pass the chat filter.
 - No word before its first-use day (no "king", "five", "Highwall", "heartbeat" and so on).
@@ -15,32 +16,32 @@
 
 | # | Day | Place | Line |
 |---|---|---|---|
-| 1 | W1 D3 | The Widow's Tooth | Bread's in the bag by the door. Take some for the road. |
-| 2 | W1 D4 | Fenmark | Eat standing up if you must, but eat. |
-| 3 | W1 D5 | The old charcoal camp | Cold morning. Keep your hands in your sleeves till the sun's up. |
-| 4 | W1 D6 | The Low Ford | Fill every flask before we set off. It's a long road north. |
-| 5 | W2 D2 | The mill | Porridge first. Then the mill. |
-| 6 | W2 D3 | Upriver | Wet night. Wring out your socks before your boots go on. |
-| 7 | W2 D4 | The shaft in the hillside | Stay close today. The path is narrow, and it climbs. |
-| 8 | W2 D5 | The hillside by night | Keep the fire small this morning. Smoke carries on a hillside. |
-| 9 | W2 D6 | The lip of the shaft | Sleep in turns today. One of us awake at all times. |
-| 10 | W3 D2 | Ashcombe | A long day west. Eat now, and again at noon. |
-| 11 | W3 D3 | The Blackglass | Half a day up the black road. Take water, and plenty of it. |
-| 12 | W3 D4 | The black ridges | Tie a cloth over your mouth today. The ash gets into everything. |
-| 13 | W3 D5 | The shepherd's hut | Up before the light, all of you. Quietly. |
-| 14 | W3 D6 | The cairn | A steep climb today. Keep a steady pace and save your breath. |
-| 15 | W4 D2 | The north road | Long road today. Eat while it's hot. |
-| 16 | W4 D3 | Reedham | Any cuts from yesterday, show me before we go. Better cleaned now than later. |
-| 17 | W4 D4 | Old Reedham | Lake air gets into your bones. Keep your cloak on. |
-| 18 | W4 D5 | The reed island | Thick morning. Stay within arm's reach of each other. |
-| 19 | W4 D6 | The tower at night | Rest today while you can. Tonight is for rowing. |
-| 20 | W5 D2 | The old kingdom's road | Two days on foot. Bind your feet before the blisters start. |
-| 21 | W5 D3 | The herald's gate | Last of the good bread this morning. Share it out fair. |
-| 22 | W5 D4 | The dead streets | Quiet place, this. Keep your voices down and your boots soft. |
-| 23 | W5 D5 | Below the hall | Eat something hot while we have a fire. |
-| 24 | W5 D6 | The wall again | Back to the wall this morning. Stay together. |
-| 25 | W6 D2 | The barracks under the wall (Five nights) | Whispers only this morning. Sound carries in these walls. |
-| 26 | W6 D3 | The great square (Four nights) | Sleep through the day if you can. The work is after dark. |
-| 27 | W6 D4 | The hill behind the hall (Three nights) | Grey morning. Eat slowly and keep warm. |
-| 28 | W6 D5 | The moon-tower (Two nights) | Up, all of you. Shake the cold out of your legs. |
-| 29 | W6 D6 | The crack in the hill (One night) | Eat well this morning. All of it. |
+| 1 | W1 D3 | The Widow's Tooth | I've wrapped the heel of yesterday's loaf and a wedge of cheese for each of you. Two hours to the rock, and nobody walks well on an empty stomach. |
+| 2 | W1 D4 | Fenmark | The dew's heavy on the bracken this morning. Tuck your trousers into your boots, or walk wet to the knee. |
+| 3 | W1 D5 | The old charcoal camp | Frost on the cart ruts this morning, thin as paper. There's tea in the pot, and it's still hot. |
+| 4 | W1 D6 | The Low Ford | Long road north today. I've filled the flasks and wrapped bread for the walking. |
+| 5 | W2 D2 | The mill | An hour to the mill. Eat your porridge while it steams. Cold porridge is a sad thing on a grey morning. |
+| 6 | W2 D3 | Upriver | Rain's been at it half the night. I've hung your socks by the fire. Warm, if not quite dry. |
+| 7 | W2 D4 | The shaft in the hillside | The path climbs steeply from here, and the rocks are slick from the rain. Walk where I walk, and keep a hand free. |
+| 8 | W2 D5 | The hillside by night | Small fire this morning, and close to the rock. Smoke carries a long way on a hillside, and we have neighbours. |
+| 9 | W2 D6 | The lip of the shaft | First watch gets the warm cup. I've kept the kettle going all night for it. |
+| 10 | W3 D2 | Ashcombe | A long day west, to the edge of the burned country. There's honey for the oats this morning. Take a second spoon. |
+| 11 | W3 D3 | The Blackglass | The ground here keeps its warmth all night, like a banked hearth. Fill your flasks at the hot spring. The black road is a dry one. |
+| 12 | W3 D4 | The black ridges | Ash in the air this morning, fine as flour. A cloth over your mouth makes the walking easier. |
+| 13 | W3 D5 | The shepherd's hut | Up before the light, quiet as you can. I've wrapped bread for the walk, so nobody has to stop and eat. |
+| 14 | W3 D6 | The cairn | The highest ridge is a long climb. Short steps and steady breath. I walk at the back today. |
+| 15 | W4 D2 | The north road | Hot oats before the north road, with honey in them. Nobody slept well. Eat anyway. |
+| 16 | W4 D3 | Reedham | Show me any cuts from the ford before we set off. A clean cut is a quick one to mend. |
+| 17 | W4 D4 | Old Reedham | Mist on the Stillwater this morning, lying flat as a sheet. Keep your cloak close. Lake air gets into the bones. |
+| 18 | W4 D5 | The reed island | Fog so thick this morning I can barely see my own hand. On the water, keep within arm's reach of each other. |
+| 19 | W4 D6 | The tower at night | Sleep while the sun's up if you can. I've checked the oars and the oarlocks. Tonight is for rowing. |
+| 20 | W5 D2 | The old kingdom's road | Two days of road ahead, and old paving is hard on the feet. Bind them now, before the blisters start, not after. |
+| 21 | W5 D3 | The herald's gate | Last of the good bread this morning, and a little cheese. I've cut it into fair shares. |
+| 22 | W5 D4 | The dead streets | This city is so quiet you can hear the dust settle. Soft boots and low voices today. |
+| 23 | W5 D5 | Below the hall | There's broth left from last night's fire, small as it was. Drink it while it's warm. |
+| 24 | W5 D6 | The wall again | Back to the wall this morning, the long way round. Stay together. This city has too many corners. |
+| 25 | W6 D2 | The barracks under the wall (Five nights) | Whispers only this morning. Sound carries in these walls, and I'd like our hiding place to stay ours. |
+| 26 | W6 D3 | The great square (Four nights) | Sleep through the day if you can. I'm on watch. The work is after dark. |
+| 27 | W6 D4 | The hill behind the hall (Three nights) | Grey morning, the colour of old ash. Eat slowly, and keep your hands warm under your arms. |
+| 28 | W6 D5 | The moon-tower (Two nights) | Up, all of you. Stretch the cold out of your legs first. Stiff legs make poor climbers. |
+| 29 | W6 D6 | The crack in the hill (One night) | I've cooked everything left in the packs. Eat it all. There's nothing to save it for. |
