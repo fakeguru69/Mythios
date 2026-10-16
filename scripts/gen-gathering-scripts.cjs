@@ -57,6 +57,8 @@ function labelCond(text, week) {
   if (/^Alone:?$/.test(t)) return { on: 'alone' };
   if (/^If Dev was hauled out/.test(t) || /^If he said it himself/.test(t)) return { on: 'ue', won: true };
   if (/^If Dev fell/.test(t)) return { on: 'ue', won: false };
+  // Gathering 5: the older hand's frame line is shown only when the Verse is read from the page (roll-call lost).
+  if (/^If it is read from the page/.test(t)) return { on: 'ue', won: false };
   if (/^If most give/.test(t) || /^Tear the page/.test(t)) return { on: 'pick', option: 0 };
   if (/^If most hold back/.test(t) || /^Break the ring/.test(t)) return { on: 'pick', option: 1 };
   if (/^Then, alone on the screen/.test(t)) return { alone: true };

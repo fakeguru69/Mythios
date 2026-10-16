@@ -323,7 +323,7 @@
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> Back on the shingle, beside the place her skiff was lying, there are keel-marks that are not hers. Fresh ones, pressed deep into the wet stones, and the tide of the lake has not yet smoothed them.
+> Back on the shingle, beside the place her skiff was lying, there are keel-marks that are not hers. Fresh ones, pressed deep into the wet stones, and the lapping of the lake has not yet smoothed them.
 >
 > Up the lane, the lamp burns on in her window, small and steady in the afternoon.
 >

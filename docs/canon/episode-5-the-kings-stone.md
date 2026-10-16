@@ -36,11 +36,11 @@
 
 > A third beat. Then a fourth. You feel each one in your teeth and the soles of your feet more than you hear it: slow as a sleeper's heart, from somewhere far to the north.
 >
-> The dawn never finishes. The morning stays grey and thin, as if the sun had been pushed a long way off, and along the whole shore of the Stillwater the birds have stopped singing.
+> The dawn never finishes. The morning stays grey and thin, as if the sun had been pushed a long way off, and along the whole shore of the Stillwater the birds have stopped singing. Under that light the lake has gone the colour of old pewter.
 
 > You row Joss home. He sits in the bow with his bandaged hand in his lap, and the little boat in the other.
 >
-> His grandmother is already down on the shingle, in the strange light, with her hands over her mouth. She gets him out of the boat by herself.
+> His grandmother is already down on the shingle, in the strange light, with her hands over her mouth. Garrick holds the bow steady against the stones. She gets him out of the boat by herself.
 >
 > She does not put him down. She carries him up the shingle the way she must have carried him when he was two, with his feet knocking against her knees, and he lets her.
 >
@@ -58,16 +58,16 @@
 >
 > And the thing they were used for is waking up.
 
-> The torn page is still in your hand: *what the four begin, the fifth shall end—*
+> You have had the torn page out so often since the undercroft that its fold has gone soft. Its last line has not changed: *what the four begin, the fifth shall end—*
 >
 > Meira never found a fifth place. Every record she had said four.
 
-> At the head of the north road out of Reedham stands a waystone older than the village, its carving worn to nothing.
+> In the afternoon you walk up through the village to where the north road leaves it. At its head stands a waystone older than Reedham, grey with lichen, its carving worn to nothing.
 
 **Challenge card**
 > **THE WAYSTONE**
 > It said something once.
-> **Craft** · charcoal and a sheet from Meira's notebook: take a rubbing, as you did on the forest road · `[ROLL]`
+> **Craft** · charcoal and a sheet from Meira's notebook: take a rubbing, like the one you found on the forest road · `[ROLL]`
 > **Intellect** · read the old hand by the shapes it left, with the light held low across the stone · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: the stone keeps its word
@@ -82,7 +82,7 @@
 > Under it there was a second line. It did not wear away. Somebody cut it out, stroke by stroke, with a patient knife.
 
 *On a failure:*
-> Nothing comes up that you can read. The stone keeps its word, and you will have to be told it. Only this: under the worn part there was a second line, and it did not wear away. Somebody cut it out, stroke by stroke, with a patient knife.
+> Nothing comes up that you can read. The stone keeps its word, and you will have to hear it from someone else. Only this much is plain: under the worn part there was a second line, and it did not wear away. Somebody cut it out, stroke by stroke, with a patient knife.
 
 `[ASK GARRICK WHERE A FIFTH WOULD BE]`
 
@@ -102,9 +102,13 @@
 
 `[TAKE IT]`
 
+> The frost crackles under your fingers, and the cold goes straight through to the bones of your hand.
+>
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> At dusk the heartbeat comes again. It is louder than it was at dawn.
+> You stay that night in Reedham. Up the lane, the lamp burns on in her window.
+>
+> At dusk the heartbeat comes again, up through the floorboards and into the legs of your chair. It is louder than it was at dawn.
 >
 > **What is left in a city where nothing grows and nobody goes? The old kingdom's road: two days north.**
 
@@ -124,6 +128,7 @@
 - **On a failure** the word is not read; Garrick's line still gives the place. The cut line is found either way, because the twist needs it.
 - **Garrick:** one existing line. If asked how he knows, his existing answer is unchanged.
 - **Fragment text (unchanged):** "He gave us the war. Then it began to take."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the Challenge card's Craft line is now "take a rubbing, like the one you found on the forest road" (on Week 1 Day 1 the party found Meira's rubbing; it never took one). The failure line is now "you will have to hear it from someone else. Only this much is plain:". New: the lake the colour of old pewter; the torn page's fold gone soft from reading since the undercroft; the walk up to the waystone in the afternoon, "grey with lichen"; the fragment's cold after `[TAKE IT]`; the night in Reedham with the lamp still burning, and the heartbeat felt through the chair. Garrick has no new line: he holds the bow steady while the grandmother lifts Joss out (she still lifts him by herself).
 
 ---
 
@@ -132,7 +137,9 @@
 *Heading: **The old kingdom's road.***
 *Question: what is the heartbeat doing to the country?*
 
-> The road was built to carry armies. It still runs straight as a spear across the empty country, but grass has grown up through its stones, and nobody has mended it in longer than anyone can say.
+> You leave Reedham in the grey morning, and by noon the lake is gone behind you.
+>
+> The road was built to carry armies. It still runs straight as a spear across the empty country, but grass has grown up through its stones, and nobody has mended it in longer than anyone can say. Larks should be up over country like this. None are.
 >
 > Every mile has its stone, and every stone a number, one less than the last.
 
@@ -152,7 +159,7 @@
 
 > Every mound is the same length. A man's length.
 >
-> They are graves. Hundreds, dug in straight rows, the way soldiers bury soldiers: the ones who fell in the war, before the last wall.
+> They are graves. Hundreds, dug in straight rows, the way soldiers bury soldiers: the ones who fell in the war, before the last night on the wall.
 >
 > Among them, one is new. The turf was cut this week and laid back badly, by people with no time to do better.
 
@@ -164,10 +171,12 @@
 > **Craft** · At the end of the rows stands one block that is no grave. *It is cut like the waystone at Reedham.*
 > **Aim** · The rows run dead straight, and they all point one way. *North. At the city.*
 
-> At the rows' end, the block's top lifts off like a lid.
+> At the far end of the rows stands one squared block of stone that is no grave. Its top is a separate slab, fitted like a lid.
 
 `[LIFT IT]`
 
+> It comes up with a long grate of stone on stone. The air inside is colder than the evening, and smells of old earth.
+>
 > **A locked Seeker Fragment has been added to your Chest.**
 
 > The light is going. The family will stay where you stay.
@@ -201,9 +210,11 @@
 *If the player won, one line more:*
 > The one you beat is the last to go. It looks back at you from the edge of the dark and wags its tail, once, as if asking what it has done.
 
-> In the morning the family goes south. The child on the tailboard watches you all the way to the bend.
+> In the morning the family goes south. Before the cart moves off, Garrick puts a heel of bread from his own pack into the child's hand.
+>
+> The child on the tailboard watches you all the way to the bend.
 
-> **It is nearer every dusk, and it is coming from inside the city. Highwall, by noon.**
+> **The heartbeat is nearer every dusk, and it is coming from inside the city. Highwall, by noon.**
 
 **Day summary card**
 > **THE OLD KINGDOM'S ROAD** · Day 2
@@ -221,6 +232,7 @@
 - **The fragment is not quoted.** The current script explained it at length; its two lock words carry the meaning, so the player gets it by solving it.
 - **Garrick:** no lines.
 - **Fragment text (unchanged):** "We had fought beside every one of them. That is why it had to be us."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the Pull now begins "The heartbeat is nearer every dusk" ("It" came after the family and the child). The graves are of those who fell "before the last night on the wall" ("the last wall" read like a place name). The squared block is now shown to everyone, not only in the Craft notice, and its lid lifts after `[LIFT IT]`, not before it, with its grate and its cold. New: leaving Reedham in the grey morning, the lake gone behind you by noon, and no larks. Garrick has no new line: a heel of bread from his own pack for the child, in the morning.
 
 ---
 
@@ -231,13 +243,13 @@
 
 > Highwall comes up out of the grey noon all at once: a wall so long that it bends out of sight in both directions, and behind it, rising in terraces, a city of pale stone.
 >
-> It is not ruined. The walls are whole. The towers are whole. But nothing grows between the stones, not moss, not the smallest green thing, and there are no birds.
+> It is not ruined. The walls are whole. The towers are whole. But nothing grows between the stones, not moss, not the smallest green thing, and there are no birds. The air has no smell at all: no smoke, no dung, no green.
 >
 > On its hill at the very top stands a great hall. Its doors are shut.
 
-> The road runs straight to a gate. *Their herald rode up to the gate and named the hour of the city's ending — dawn.*
+> The road runs straight to a gate. You know the words. You heard them read under the mill hill. *Their herald rode up to the gate and named the hour of the city's ending — dawn.*
 >
-> This is the wall they held that night.
+> This is the wall the Seekers held that night.
 >
 > The gate is shut.
 
@@ -251,7 +263,7 @@
 
 **Challenge card**
 > **THE WALL**
-> The gate will not open. The wall is another matter.
+> The gate will not open. The wall can still be climbed.
 > **Aim** · read the broken stair from its foot, and set your feet only where it will hold · `[ROLL]`
 > **Might** · force the rusted door of the gate-tower · `[ROLL]`
 > REWARD: +500g
@@ -291,14 +303,16 @@
 
 `[PRESS YOUR PALM FLAT TO IT]`
 
-> Its stone face swings inward.
+> Its stone face swings inward. The cold that comes out to meet your hand is the cold of high places, of wind on a wall in winter.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
 > You are standing where they stood. The trail for the fifth begins on their own stretch of wall.
 
-> And from here you can see what that grey thread is. Smoke. One fire, below the hall.
+> Far up the hill, above the terraces, a thin grey thread stands in the grey air. From here you can see what it is. Smoke. One fire, below the hall.
 
+> You spend the night up on the wall-walk, in the lee of the parapet, with the barred gate beneath you and that one thread of smoke going up into the dark.
+>
 > **Who bars a dead city from the inside, year after year? Down into the streets, following the wall.**
 
 **Day summary card**
@@ -318,6 +332,7 @@
 - **The scripture line** is the Order's own, read under the mill hill.
 - **Garrick:** no lines. One existing action (the flask).
 - **Fragment text (unchanged):** "Four of us gave to the four. None of us gave to the fifth."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: "This is the wall they held that night" is now "the wall the Seekers held" (the scripture line's "Their" is the Grey Host's), and the scripture line is introduced as heard "under the mill hill" (its words are unchanged); the Challenge card's second line is now "The wall can still be climbed." (it echoed the [PLANT]'s "another matter"). The thread of smoke is shown to everyone before it is named (canon's "that grey thread" assumed the Aim notice). New: the air with no smell at all; the fragment's cold, wind on a wall in winter; the night on the wall-walk. Garrick has no new line; the flask is unchanged.
 
 ---
 
@@ -326,6 +341,8 @@
 *Heading: **The dead streets.***
 *Question: who else is in this city?*
 
+> In the morning you go down off the wall into the city.
+>
 > Your footsteps are the loudest thing in Highwall. Doors stand open on bare rooms. Wells are dry. The streets inside the wall are whole, and empty, and they climb.
 >
 > Then, at a crossroads, you come round a corner into a street full of soldiers.
@@ -380,7 +397,7 @@
 
 `[FIND THE PATTERN]`
 
-> The stone turns on a hidden pin.
+> The stone turns on a hidden pin. Inside, the cold has kept as well as the carving.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
@@ -403,7 +420,7 @@
 *Nothing:*
 > Neither does he.
 
-> For a long time he is quiet. Then, looking at the cup:
+> The cup stands full by the shutter. Through the gap in it, nothing moves up the hill. Then, looking at the cup:
 >
 > *"My family's waited a long time for something. I'd like to live to see it."*
 
@@ -426,6 +443,7 @@
 - **The press detail** (they all stopped on the same step) is new.
 - **Garrick:** three existing lines. The first two are answers to a button; the third he says whatever is asked, as the script requires. His other scripted answers (is the cup for Meira; what has his family waited for) are unchanged, for a typed question.
 - **Fragment text (unchanged):** "When he fell, the soldiers who had been nearest him stopped where they were, mid-stride. We could not bring ourselves to break them. We left them standing."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. On the `[SAY NOTHING]` branch, "Neither does he." was followed by "For a long time he is quiet.", which said the same thing twice; the shared line is now the full cup by the shutter and nothing moving up the hill, then "Then, looking at the cup:". New: the morning going down off the wall into the city; the fragment's cold. Every Garrick line is word for word, "The page under the Kiln told you." included (Fake Guru: keep canon).
 
 ---
 
@@ -434,6 +452,8 @@
 *Heading: **Below the hall.***
 *Question: who keeps a fire below the hall?*
 
+> By afternoon the streets have climbed as high as they go, and for the first time in Highwall you smell woodsmoke.
+>
 > The last terrace ends in a square, and the hall fills the sky above it: a great pale building on the city's highest ground, its doors taller than houses, and shut. The heartbeat comes from behind them.
 >
 > And in the shell of a house across the square, a fire is burning.
@@ -484,7 +504,7 @@
 
 `[REACH DOWN TO IT]`
 
-> It opens like a hand.
+> It opens like a hand. The basin has been dry for centuries, and still what lies inside is as cold as well water.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 >
@@ -492,6 +512,8 @@
 
 > Somewhere close, then. Somewhere with a view of those doors.
 
+> You stay in the rubble until full dark, and keep your watches there by turns, with the Order's fire showing red through the gaps all night.
+>
 > **Counting down to what? You hold five pieces, and the trail began on the wall. The wall again.**
 
 **Day summary card**
@@ -512,6 +534,7 @@
 - **The fragment's visible words** are quoted; its two lock words (*kept*, *fifth*) are not.
 - **Garrick:** no lines.
 - **Fragment text (unchanged):** "We kept the fifth where we could watch it, and watch him."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. New: the arrival in the afternoon and the first smell of woodsmoke; the fragment's cold, a dry basin as cold as well water; the night kept in the rubble by turns, with the Order's fire red through the gaps. The count is unchanged: nine before this evening's stroke, eight after it (the Week 5 Day 5 recap says "leaving eight", Fake Guru: yes).
 
 ---
 
@@ -524,13 +547,15 @@
 
 > The herald's gate. The broken stair. Above it, the wall-walk, bare to the sky, and in plain sight of the square for forty paces.
 >
-> You have been heard once this season. Not again.
+> You were heard once already, under the tower at Reedham. Not again.
+>
+> You wait out the afternoon in the gate-tower's shadow, and choose who will watch the square.
 
 `[POST MEI]` `[POST DEV]` `[POST JO]`
 
 *The player chooses who keeps watch.*
 
-> Mei goes to the corner of the gate-tower, where Mei can see the square and you can see Mei's hand.
+> Mei crouches at the corner of the gate-tower, with the whole square in view, and one hand raised where you can see it.
 
 **What you notice**
 > **Might** · The parapet on the city side is waist-high and a yard thick. *The wall under you is thicker than any wall needs to be.*
@@ -557,12 +582,14 @@
 > IF YOU FAIL: a lantern lifts, and you finish the crossing on your belly
 
 *On a pass:*
-> Her hand drops. You cross. Nothing in the square so much as turns.
+> The hand drops. You cross, forty paces of open stone, and nothing in the square so much as turns.
 
 *On a failure:*
 > Halfway, a lantern lifts in the square. You lie flat on cold stone until it goes down again, and cross the rest on your belly, a hand's width at a time.
 
-> In the straight crack in the walkway, just where somebody keeping watch would stand, colder than the stone it lies in:
+> Whoever else is with you comes over the same way, one at a time, on the dropped hand. Mei comes last of all, at a watchman's unhurried walk.
+
+> In a crack across the walkway, just where somebody keeping watch would stand, colder than the stone it lies in:
 
 `[TAKE IT]`
 
@@ -613,6 +640,7 @@
 - **The watchmen's lines** are heard by everyone today, pass or fail, as in the current script.
 - **Garrick:** no lines.
 - **Fragment text (unchanged):** "Where he fell, under the dark moon, the five were joined."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the lookout crosses too ("Whoever else is with you comes over the same way, one at a time, on the dropped hand. Mei comes last of all, at a watchman's unhurried walk."), since the map passes through every friend's hands; "Whoever else" holds for two to six. "Her hand drops." is now "The hand drops." (the lookout may be a man). "You have been heard once this season" is now "You were heard once already, under the tower at Reedham." ("season" is a game word). The lookout line names the friend once. "In the straight crack" is now "In a crack across the walkway" (canon assumed the Craft notice). New: the afternoon waited out in the gate-tower's shadow, so the crossing comes at dusk.
 
 ---
 
@@ -631,13 +659,13 @@
 
 ### Arrival
 
-> Night in Highwall. No lamp burns anywhere in the dead city but the Order's fire up the hill, and there's no sound at all but your own breath.
+> Night in Highwall. No lamp burns anywhere in the dead city but one: the Order's fire, high on the hill below his hall. There is no sound at all but your own breath.
 >
 > Across the city, on its hill, stands his hall. Doors shut. Sealed with something older than locks.
 >
 > The map ends a stone's throw from the herald's gate: a room hidden in the thickness of the old wall, one slit of a window facing the hall. The Order has kept its own watch on those same doors for centuries, from just up the hill, and never known the room was there.
 >
-> Tonight the Order's watchmen see lamplight moving at the foot of the wall. They do not see the room. They never have.
+> At the foot of the wall you light your lamps to find the Seekers' door. Up on the hill, the Order's watchmen see the light moving. They do not see the room. They never have.
 
 ### The Approach
 
@@ -645,7 +673,7 @@
 > `[THE GATE-TOWER DOOR]` they can come at you only one at a time, and you have nowhere to go.
 > `[THE STREET]` under the herald's gate. Room for you, and room for them.
 
-> You have as long to decide as it takes them to come down a hill. Either way you meet them well short of the hidden room. Nobody leads them to that.
+> You have as long to decide as it takes them to come down a hill. Wherever you stand, you meet them well short of the hidden room. Nobody leads them to that.
 
 **Challenge card** *(one volunteer; the Attribute follows the vote)*
 > **MAKE YOUR GROUND**
@@ -656,14 +684,14 @@
 > IF YOU FAIL: they are on you before you are set, and **they strike first**
 
 *On a pass:*
-> When they reach you, you are standing exactly where you meant to be.
+> When they reach you, you are standing exactly where you meant to be, and they have to come to you.
 
 *On a failure:*
-> You take the fight where it finds you.
+> The first of them is round the corner before you are set. You take the fight where it finds you, with your back to whatever stone is nearest.
 
 ### The Battle
 
-> The Order's watchmen come down the hill fighting, and they aren't alone. Something comes with them up the street — men in armour so old it has gone green and black, moving with a terrible steadiness. You cut one, and it doesn't bleed. You cut it again, and it doesn't stop. It keeps walking into your blade like it has somewhere to be.
+> The Order's watchmen come down the hill fighting, and they are not alone. Something comes with them out of a side street: men in armour so old it has gone green and black, moving with a terrible steadiness. You cut one, and it does not bleed. You cut it again, and it does not stop. It keeps walking into your blade as if it had somewhere to be.
 
 **Fight card** *(in each friend's own thread)*
 > **THE HOLLOWED**
@@ -671,11 +699,11 @@
 > *You strike first.* / *It strikes first.*
 > *The fight begins in 10 seconds.*
 
-> When it's over, the armoured dead lie still at last, and the watchmen lie beside them — all but one.
+> When it is over, the armoured dead lie still at last, and the watchmen lie beside them, all but one.
 >
-> He's sitting against the foot of the wall where he fell, one hand pressed to his side, a crumpled page in the other. He isn't looking at you. He's looking up the hill, at the hall, and his lips are moving.
+> He is sitting against the foot of the wall where he fell, one hand pressed to his side, a crumpled page in the other. He is not looking at you. He is looking up the hill, at the hall, and his lips are moving.
 >
-> Kneel close enough and you can hear it. He's praying — the words of a page he must have said every night of his life.
+> Kneel close enough and you can hear it. He is praying: the words of a page worn soft with saying.
 
 ### The United Effort
 
@@ -704,12 +732,12 @@
 **The Roll-Call reaches 0**
 > There is time, now.
 >
-> Kneel close enough and you can hear it. He's praying — the words of a page he must have said every night of his life.
+> You kneel beside him in the street. His eyes have not left the hall, and his lips have not stopped moving. Now it is quiet enough to hear the words.
 
 *He says the Verse through to its end, in his own voice, as written.*
 
 **Their Trust reaches 0**
-> There is no time. The page comes gently out of his fist, and you are inside the wall before the first lantern reaches the gate.
+> There is no time. His eyes are still on the hall, but they no longer see it. The page comes gently out of his fist, and you are inside the wall before the first lantern reaches the gate.
 
 *The Verse is read from the page, in the hidden room. There is no time to Look Closer. And the hill is awake a day early: **Week 6 Day 1's Challenge is two harder.***
 
@@ -732,16 +760,18 @@
 > *Those who had stood nearest him, when he fell, stood on. They keep his watch to this day.*
 >
 > *The fifth they did not scatter with the others. They kept it near him, under their own eyes. Of the fifth, the old words say only this:*
->
-> > **[Set apart, in the older hand]**
+
+*If it is read from the page, one line more:*
+> *Here the hand changes. One line is set apart, in the older hand:*
+
 > > **"The fifth drinks deep of moon-blood, and of no other."**
 >
 > *Until the throne rise whole.*
 
 *If he said it himself:*
-> On *Until the throne rise whole*, his voice stops, and doesn't start again.
+> On *Until the throne rise whole*, his voice stops, and does not start again.
 
-> His page is the prayer, word for word — and one line on it is set apart in the older hand: *The fifth drinks deep of moon-blood, and of no other.* Folded behind it is a second, shorter page. It can wait.
+> His page is the prayer, word for word, and one line on it is set apart in the older hand: *The fifth drinks deep of moon-blood, and of no other.* Folded behind it is a second, shorter page. It can wait.
 
 ### Notice
 
@@ -772,7 +802,7 @@
 
 > It opens under Mei's hand. Inside, in a plain stone niche facing the window, lies the fifth. Nobody searched for it. The trail brought you straight to it, the way it was always meant to.
 >
-> It isn't the shape on the rubbing. It's smaller, and colder, and it doesn't feel like earth or wind or water or fire — it feels like holding a piece of the night between the stars. It's the first Stone any of you has ever actually held.
+> It is not the shape on the rubbing. It is smaller, and colder, and it does not feel like earth or wind or water or fire. It feels like holding a piece of the night between the stars. It is the first Stone any of you has ever held in your own hands.
 
 **Match** *(a MATCH card in the party chat shows the week's six fragments as rows with [PICK]; picks are private; when all have picked or after sixty seconds the right row lights up with the initials of those who matched it; a wrong pick is never shown; everyone who was right is named, in no order)*
 > **WHICH OF YOUR FRAGMENTS IS THIS?**
@@ -801,6 +831,8 @@
 > Meira's margin, from the drowned market cross: *"'Moon-blood' — the old songs' word for the marked."*
 
 > Garrick says nothing. He's watching the Stone.
+>
+> A knife goes round the room, hilt first.
 
 `[OPEN YOUR PALM]` *(each friend)*
 
@@ -808,7 +840,7 @@
 >
 > Not a flicker. Not a warmth. The Stone lies in your hands as cold and dark as it was when you found it, and your blood runs off it like rain off glass.
 >
-> Garrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved this season. Nobody remarks on it. There's nothing strange about a man having linen to spare.
+> Garrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved. Nobody remarks on it. There's nothing strange about a man having linen to spare.
 
 `[PLANT]` *(the same linen, on your own hands now; pays off in the finale)*
 
@@ -833,7 +865,7 @@
 
 ### The Watch
 
-> The second page from the watchman's fist is shorter, and older, and it's the one that makes the room go cold:
+> The second page from the watchman's fist is shorter, and older, and it is the one that makes the room go cold.
 
 > *From the Third Book of the Order of the Dark Moon — The Watch.*
 >
@@ -844,9 +876,9 @@
 > *Count the nights.*
 >
 > *Until the throne rise whole.*
->
-> *(Beneath it, in a living hand, a watch-tally — a stroke crossed out for every night, down to the last few left. Seven.)*
 
+> Beneath it, in a living hand, is a watch-tally: a stroke crossed out for every night, down to the last few left. Seven.
+>
 > The page goes with you.
 
 ### The Cliffhanger
@@ -855,15 +887,15 @@
 >
 > The fifth lies in your cut palms and stays cold. Garrick has bound every one of them in his white linen. He does not tell you it will be all right.
 >
-> You look out at the hall. The doors are shut, as they've been for centuries, sealed in a way no hand you know of can open — and somewhere inside, slow and heavy, you can hear it again. The heartbeat from the north. It isn't far away any more.
+> You look out through the slit at the hall. The doors are shut, as they have been for centuries, sealed in a way no hand you know of can open. And somewhere inside, slow and heavy, you can hear it again: the heartbeat that first came to you from the north. It is not far away any more.
 >
-> Overhead, the moon hangs at the half — seven nights from full, seven nights from swallowed whole.
+> Above the hall, framed in the slit, the moon hangs at the half: seven nights from full, seven nights from swallowed whole.
 >
 > Garrick looks at the moon a long moment. *"We're early."*
 >
-> Then, across the square below the hall, a new lantern comes out of the dark. A watchman — a fresh one — takes up the chalk and draws it through tonight's stroke, late. Seven left.
+> Then, across the square below the hall, a new lantern comes out of the dark. A watchman, a fresh one, takes up the chalk and draws it through tonight's stroke, late. Now the board and the page agree: seven left.
 >
-> He turns, lantern raised, and looks straight down the hill at the wall. At the slit window you're standing behind.
+> He turns, lantern raised, and looks straight down the hill at the wall. At the slit window you are standing behind.
 
 **Night summary card** *(each friend's own)*
 > **THE WALL AT HIGHWALL** · Gathering 5
@@ -884,6 +916,7 @@
 - **Cut:** "One of you opens his fist"; "Whoever carries Meira's notes says it first…"; "He fell in there… So will we."
 - **Garrick:** two spoken lines: the approved one, and *"We're early."* at the cliffhanger (added 15 Oct 2026, Fake Guru: Phase 6, Grok's Week 5 ending as changed, `docs/drafts/phase6-week5-ending-draft.md`). The cliffhanger also gains the cold fifth in bound palms and "Seven left." His answers if asked ("Meira thought so." · "The page says 'whose.' It doesn't say who." · "I'm not of your blood.") are unchanged and stay available to a typed question.
 - **The hollowed** getting up once is a placeholder condition until the simulation has looked at it.
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the Roll-Call ending no longer prints the Battle's sentence a second time ("You kneel beside him in the street. His eyes have not left the hall, and his lips have not stopped moving. Now it is quiet enough to hear the words."), the Battle's close ends "the words of a page worn soft with saying", and "every night of his life" is kept once, in the United Effort (the same fix in `mythios-united-effort-stories.md` Part 6); on the Trust branch the watchman dies before the page leaves his fist ("His eyes are still on the hall, but they no longer see it."), so the Charm notice holds; the older hand loses its stage bracket: read from the page, a narrated italic line frames it (*Here the hand changes. One line is set apart, in the older hand:*, shown only when the roll-call was lost, as Week 4's torn page does), and said aloud it has no frame; the watch-tally is narration after the page, not a bracket inside it (the Watch itself is word for word); "this season" leaves the linen [PLANT]; the cliffhanger's moon is seen "framed in the slit", and the tally line is "Now the board and the page agree: seven left." (eight at Week 5 Day 5, seven here, six at Week 6 Day 1). Also: the arrival puts the Order's fire "high on the hill below his hall" and the party lights its own lamps to find the Seekers' door; "Either way" is "Wherever you stand"; the Approach's pass and failure lines gain a beat each; the dead come "out of a side street", as the Agility notice says; the knife goes round the room hilt first; "actually" is gone from the hidden room; the narration loses its dashes and contractions. The fight card's rule stays a build note on the card. The Verse, the Watch, both Matches, the United Effort scene, the notices and every Garrick line are word for word.
 
 **Answers kept from the earlier script, for a question a friend types that the buttons and boards do not cover** *(every line unchanged)*
 

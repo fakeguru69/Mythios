@@ -1892,7 +1892,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Night in Highwall. No lamp burns anywhere in the dead city but the Order's fire up the hill, and there's no sound at all but your own breath.\n\nAcross the city, on its hill, stands his hall. Doors shut. Sealed with something older than locks.\n\nThe map ends a stone's throw from the herald's gate: a room hidden in the thickness of the old wall, one slit of a window facing the hall. The Order has kept its own watch on those same doors for centuries, from just up the hill, and never known the room was there.\n\nTonight the Order's watchmen see lamplight moving at the foot of the wall. They do not see the room. They never have.",
+        "text": "Night in Highwall. No lamp burns anywhere in the dead city but one: the Order's fire, high on the hill below his hall. There is no sound at all but your own breath.\n\nAcross the city, on its hill, stands his hall. Doors shut. Sealed with something older than locks.\n\nThe map ends a stone's throw from the herald's gate: a room hidden in the thickness of the old wall, one slit of a window facing the hall. The Order has kept its own watch on those same doors for centuries, from just up the hill, and never known the room was there.\n\nAt the foot of the wall you light your lamps to find the Seekers' door. Up on the hill, the Order's watchmen see the light moving. They do not see the room. They never have.",
         "section": "Arrival"
       },
       {
@@ -1918,7 +1918,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You have as long to decide as it takes them to come down a hill. Either way you meet them well short of the hidden room. Nobody leads them to that.",
+        "text": "You have as long to decide as it takes them to come down a hill. Wherever you stand, you meet them well short of the hidden room. Nobody leads them to that.",
         "section": "The Approach"
       },
       {
@@ -1942,7 +1942,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "When they reach you, you are standing exactly where you meant to be.",
+        "text": "When they reach you, you are standing exactly where you meant to be, and they have to come to you.",
         "cond": {
           "on": "approach",
           "pass": true
@@ -1951,7 +1951,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You take the fight where it finds you.",
+        "text": "The first of them is round the corner before you are set. You take the fight where it finds you, with your back to whatever stone is nearest.",
         "cond": {
           "on": "approach",
           "pass": false
@@ -1965,7 +1965,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The Order's watchmen come down the hill fighting, and they aren't alone. Something comes with them up the street — men in armour so old it has gone green and black, moving with a terrible steadiness. You cut one, and it doesn't bleed. You cut it again, and it doesn't stop. It keeps walking into your blade like it has somewhere to be.",
+        "text": "The Order's watchmen come down the hill fighting, and they are not alone. Something comes with them out of a side street: men in armour so old it has gone green and black, moving with a terrible steadiness. You cut one, and it does not bleed. You cut it again, and it does not stop. It keeps walking into your blade as if it had somewhere to be.",
         "section": "The Battle"
       },
       {
@@ -1980,7 +1980,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "When it's over, the armoured dead lie still at last, and the watchmen lie beside them — all but one.\n\nHe's sitting against the foot of the wall where he fell, one hand pressed to his side, a crumpled page in the other. He isn't looking at you. He's looking up the hill, at the hall, and his lips are moving.\n\nKneel close enough and you can hear it. He's praying — the words of a page he must have said every night of his life.",
+        "text": "When it is over, the armoured dead lie still at last, and the watchmen lie beside them, all but one.\n\nHe is sitting against the foot of the wall where he fell, one hand pressed to his side, a crumpled page in the other. He is not looking at you. He is looking up the hill, at the hall, and his lips are moving.\n\nKneel close enough and you can hear it. He is praying: the words of a page worn soft with saying.",
         "section": "The Battle"
       },
       {
@@ -2009,7 +2009,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "There is time, now.\n\nKneel close enough and you can hear it. He's praying — the words of a page he must have said every night of his life.",
+        "text": "There is time, now.\n\nYou kneel beside him in the street. His eyes have not left the hall, and his lips have not stopped moving. Now it is quiet enough to hear the words.",
         "cond": {
           "on": "ue",
           "won": true
@@ -2023,7 +2023,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "There is no time. The page comes gently out of his fist, and you are inside the wall before the first lantern reaches the gate.",
+        "text": "There is no time. His eyes are still on the hall, but they no longer see it. The page comes gently out of his fist, and you are inside the wall before the first lantern reaches the gate.",
         "cond": {
           "on": "ue",
           "won": false
@@ -2037,12 +2037,26 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "*From the Third Book of the Order of the Dark Moon — The Verse of the Binding.*\n\n*Hear how they laid him down.*\n\n*They came to his doors in the night — his own, who had held his wall — and his doors were opened to them, because they were his own. They did not come with swords alone. They had found a way in old writings, older than his house, and whole where his house's pages were not; they had gone out into the far places of the world and gathered the shards, and they carried them in their hands.*\n\n*He rose to meet them. He spoke each of their names. Not one of them answered him.*\n\n*Then there was light, and a blow — not the blow of a blade, but of his own gift, turned back upon him the way a river is turned back into its bed. And the king who would not kneel to the end of the world went down upon his knees, and then upon the floor; and his hand opened at his side, as a sleeper's hand opens.*\n\n*They had not tried to kill him. They laid on him a sleep: the Undying Sleep, which holds him still.*\n\n*Those who had stood nearest him, when he fell, stood on. They keep his watch to this day.*\n\n*The fifth they did not scatter with the others. They kept it near him, under their own eyes. Of the fifth, the old words say only this:*\n\n**[Set apart, in the older hand]**\n**\"The fifth drinks deep of moon-blood, and of no other.\"**\n\n*Until the throne rise whole.*",
+        "text": "*From the Third Book of the Order of the Dark Moon — The Verse of the Binding.*\n\n*Hear how they laid him down.*\n\n*They came to his doors in the night — his own, who had held his wall — and his doors were opened to them, because they were his own. They did not come with swords alone. They had found a way in old writings, older than his house, and whole where his house's pages were not; they had gone out into the far places of the world and gathered the shards, and they carried them in their hands.*\n\n*He rose to meet them. He spoke each of their names. Not one of them answered him.*\n\n*Then there was light, and a blow — not the blow of a blade, but of his own gift, turned back upon him the way a river is turned back into its bed. And the king who would not kneel to the end of the world went down upon his knees, and then upon the floor; and his hand opened at his side, as a sleeper's hand opens.*\n\n*They had not tried to kill him. They laid on him a sleep: the Undying Sleep, which holds him still.*\n\n*Those who had stood nearest him, when he fell, stood on. They keep his watch to this day.*\n\n*The fifth they did not scatter with the others. They kept it near him, under their own eyes. Of the fifth, the old words say only this:*",
         "section": "The Verse of the Binding"
       },
       {
         "t": "say",
-        "text": "On *Until the throne rise whole*, his voice stops, and doesn't start again.",
+        "text": "*Here the hand changes. One line is set apart, in the older hand:*",
+        "cond": {
+          "on": "ue",
+          "won": false
+        },
+        "section": "The Verse of the Binding"
+      },
+      {
+        "t": "say",
+        "text": "**\"The fifth drinks deep of moon-blood, and of no other.\"**\n\n*Until the throne rise whole.*",
+        "section": "The Verse of the Binding"
+      },
+      {
+        "t": "say",
+        "text": "On *Until the throne rise whole*, his voice stops, and does not start again.",
         "cond": {
           "on": "ue",
           "won": true
@@ -2051,7 +2065,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "His page is the prayer, word for word — and one line on it is set apart in the older hand: *The fifth drinks deep of moon-blood, and of no other.* Folded behind it is a second, shorter page. It can wait.",
+        "text": "His page is the prayer, word for word, and one line on it is set apart in the older hand: *The fifth drinks deep of moon-blood, and of no other.* Folded behind it is a second, shorter page. It can wait.",
         "section": "The Verse of the Binding"
       },
       {
@@ -2106,7 +2120,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It opens under {F1}'s hand. Inside, in a plain stone niche facing the window, lies the fifth. Nobody searched for it. The trail brought you straight to it, the way it was always meant to.\n\nIt isn't the shape on the rubbing. It's smaller, and colder, and it doesn't feel like earth or wind or water or fire — it feels like holding a piece of the night between the stars. It's the first Stone any of you has ever actually held.",
+        "text": "It opens under {F1}'s hand. Inside, in a plain stone niche facing the window, lies the fifth. Nobody searched for it. The trail brought you straight to it, the way it was always meant to.\n\nIt is not the shape on the rubbing. It is smaller, and colder, and it does not feel like earth or wind or water or fire. It feels like holding a piece of the night between the stars. It is the first Stone any of you has ever held in your own hands.",
         "section": "The hidden room"
       },
       {
@@ -2156,7 +2170,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Garrick says nothing. He's watching the Stone.",
+        "text": "Garrick says nothing. He's watching the Stone.\n\nA knife goes round the room, hilt first.",
         "section": "The attempt"
       },
       {
@@ -2166,7 +2180,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Nothing.\n\nNot a flicker. Not a warmth. The Stone lies in your hands as cold and dark as it was when you found it, and your blood runs off it like rain off glass.\n\nGarrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved this season. Nobody remarks on it. There's nothing strange about a man having linen to spare.",
+        "text": "Nothing.\n\nNot a flicker. Not a warmth. The Stone lies in your hands as cold and dark as it was when you found it, and your blood runs off it like rain off glass.\n\nGarrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved. Nobody remarks on it. There's nothing strange about a man having linen to spare.",
         "section": "The attempt"
       },
       {
@@ -2193,7 +2207,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The second page from the watchman's fist is shorter, and older, and it's the one that makes the room go cold:",
+        "text": "The second page from the watchman's fist is shorter, and older, and it is the one that makes the room go cold.",
         "section": "The Watch"
       },
       {
@@ -2203,7 +2217,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The page goes with you.",
+        "text": "Beneath it, in a living hand, is a watch-tally: a stroke crossed out for every night, down to the last few left. Seven.\n\nThe page goes with you.",
         "section": "The Watch"
       },
       {
@@ -2213,7 +2227,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Seven strokes left on the tally. Seven nights.\n\nThe fifth lies in your cut palms and stays cold. Garrick has bound every one of them in his white linen. He does not tell you it will be all right.\n\nYou look out at the hall. The doors are shut, as they've been for centuries, sealed in a way no hand you know of can open — and somewhere inside, slow and heavy, you can hear it again. The heartbeat from the north. It isn't far away any more.\n\nOverhead, the moon hangs at the half — seven nights from full, seven nights from swallowed whole.\n\nGarrick looks at the moon a long moment. *\"We're early.\"*\n\nThen, across the square below the hall, a new lantern comes out of the dark. A watchman — a fresh one — takes up the chalk and draws it through tonight's stroke, late. Seven left.\n\nHe turns, lantern raised, and looks straight down the hill at the wall. At the slit window you're standing behind.",
+        "text": "Seven strokes left on the tally. Seven nights.\n\nThe fifth lies in your cut palms and stays cold. Garrick has bound every one of them in his white linen. He does not tell you it will be all right.\n\nYou look out through the slit at the hall. The doors are shut, as they have been for centuries, sealed in a way no hand you know of can open. And somewhere inside, slow and heavy, you can hear it again: the heartbeat that first came to you from the north. It is not far away any more.\n\nAbove the hall, framed in the slit, the moon hangs at the half: seven nights from full, seven nights from swallowed whole.\n\nGarrick looks at the moon a long moment. *\"We're early.\"*\n\nThen, across the square below the hall, a new lantern comes out of the dark. A watchman, a fresh one, takes up the chalk and draws it through tonight's stroke, late. Now the board and the page agree: seven left.\n\nHe turns, lantern raised, and looks straight down the hill at the wall. At the slit window you are standing behind.",
         "section": "The Cliffhanger"
       },
       {
