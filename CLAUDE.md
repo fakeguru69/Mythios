@@ -196,9 +196,65 @@ These are not locked forever; the design is still moving. They mean: do not do t
 2. ~~Direction~~ Decided 14 Oct: the 6-week demo on one phone.
 3. ~~Sample names~~ Decided 14 Oct: friends 5 and 6 are **Priya** and **Theo**.
 4. Before any public launch: technology for real multiplayer (backend, accounts, push), terms and privacy. With it (agreed 15 Oct): the server rolls every die (Core Rules §12a; today the Approach, [LOOK CLOSER], United Effort and fights roll on the phone); the Match 100g "every friend right" rate; the Campfire's "Party Seat & Test Controls" panel moves behind `?dev=1` (kept for the one-phone demo). Also with multiplayer (15 Oct play-through check): the Record's party-lead crowns and the "Lifeline" badge (both need real friends' numbers), and the board's real friends' finds (today sample friends take the day's leads in turn).
-5. **The public website (16 Oct):** Fake Guru sets up Vercel (sign up with GitHub, import the repo, deploy), sends the address, sets Supabase's Site URL and Redirect URLs to it, and turns off "Confirm email" (Supabase's free email reaches only his own Supabase team). Before a public launch: a proper email sender, and delete the three test accounts (`@mythios.test`).
+5. ~~The public website~~ Done 16 Oct: https://mythios.vercel.app, Site URL and Redirect URLs set, Gmail sender set (emails arrive). Still open: **Google sign-in setup** (steps in the 16 Oct chat: Google Cloud OAuth client; redirect `https://toqeuurdsyeifhpecagr.supabase.co/auth/v1/callback`). Before a public launch: delete the three test accounts (`@mythios.test`).
 6. **To brainstorm later (16 Oct):** `docs/brainstorm-16oct.md` (the sign-in experience, customising a character, how the game is taught, Week 1 Day 1 world-building, the prose style).
 
 ## 10. Git
 
 Work on the session's `claude/...` branch and push after every task; never push straight to `main`. Fake Guru also edits through Google AI Studio, which pushes to `main`: fetch `main` before starting, and avoid working in the same files at the same time.
+
+## 11. Handover: where things stand (16 Oct, end of session)
+
+For a new session: read this, then `docs/multiplayer-plan-15oct.md` (the plan and what is built) and the bottom of `docs/canon/mythios-master-tracker.md` (the newest decisions).
+
+**What is live**
+- The website is **https://mythios.vercel.app**. Vercel builds `main`, and every pull request gets its own preview.
+  - It is built with `VITE_ONLINE_ONLY=1`: only the online screens.
+  - **Never put the one-phone demo on a public site.** It carries the whole season's text, the secret included. Before every PR, run the online-only build and search its files for "Malakor", "descendant", "bearsOnFork" and "trueMeaning": there must be none.
+- The server is **Supabase**, project "mythios", id `toqeuurdsyeifhpecagr` (Singapore, free plan). Use the Supabase tools (MCP).
+- **Sign-in:**
+  - email and password, with a **Gmail sender** set up on 16 Oct (emails arrive; Confirm email can stay on);
+  - **Google** shows by itself once Fake Guru sets it up (not yet);
+  - **no Apple** (it costs US$99 a year).
+
+**Built online** (Week 1 for 2 to 6 friends first; all tested in a browser against the server)
+- The Mythios intro, then the series shelf (Mythios is the app; Tales of the Dark Moon is a series with seasons).
+- One character per series.
+- Parties, the invite link, the host letting friends in, turning them away and removing them, leaving with a new host.
+- Session Zero, the party clock, [READY], and the start day the host picks.
+- The party chat, which opens on Day 2. Its notices and reporting.
+- The install guide.
+- Forgot password.
+- **The days:** the server hands out each chapter on its day and rolls every die (the Challenge, [PRESS ON], fights). It keeps gold, Attributes and gear, and posts the result line.
+- **The Seeker Chest.**
+
+**Next, in order** (Fake Guru picks; my suggestion first)
+1. The Store, and Relics.
+2. The Campfire.
+3. The Gathering. It is canon's riskiest part.
+4. Garrick in the chat.
+5. Notifications (push).
+6. Also open:
+   - a late joiner plays Day 1 first;
+   - the Record and Bag;
+   - the Day 6 map line;
+   - the Fan Out first-letter hint.
+
+**How the server is changed**
+- Every change is a new file in `supabase/migrations/` (numbered), applied with the Supabase tool `apply_migration`. Never edit one that is applied.
+- Write changes that **add**: new functions and `create or replace`, column grants, restrictive policies.
+  - A drop or a delete waits for a human approval that may never reach Fake Guru, and then times out.
+  - When a function's shape must change, make a new one, and close the old one with `revoke execute`.
+- **Players never write to tables directly.** They can update only their names; everything else goes through `security definer` functions with `set search_path = ''`, which check who is asking.
+- The chapters and fragments are generated from canon:
+  - `scripts/gen-chapters-sql.ts <week>` and `scripts/gen-fragments-sql.ts`;
+  - after any change to the episode files, regenerate `chapterScripts.ts`, then these, then load them.
+  - Small data goes through `apply_migration`. Large data went through a one-time loader function locked with a secret key, switched off right after.
+
+**Testing**
+- See `tests/README.md`. It covers the browser tests for the online screens and the demo, the three test accounts, and how to move a test party's clock.
+- Test accounts: `host@`, `mei@` and `dev@mythios.test`. Ask Fake Guru for the password.
+
+**Fake Guru's tools**
+- He works in this session's chat, with the mode menu set to **Auto**.
+- `.claude/settings.json` lets new sessions use the Supabase tools without asking.
