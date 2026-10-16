@@ -223,7 +223,7 @@ For a new session: read this, then `docs/multiplayer-plan-15oct.md` (the plan an
 - One character per series.
 - Parties, the invite link, the host letting friends in, turning them away and removing them, leaving with a new host.
 - Session Zero, the party clock, [READY], and the start day the host picks.
-- The party chat, which opens on Day 2. Its notices and reporting.
+- The party chat, which opens for a friend once they have read Week 1 Day 2's chapter, where the party meets Garrick (from Day 3, for everyone; migration `0044`). Its notices and reporting.
 - The install guide.
 - Forgot password.
 - **The days:** the server hands out each chapter on its day and rolls every die (the Challenge, [PRESS ON], fights). It keeps gold, Attributes and gear, and posts the result line.
