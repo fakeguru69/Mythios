@@ -76,9 +76,14 @@ interface Today {
     finished_at: string | null;
   };
   daysPlayed: number;
+  // The road so far (16 Oct): yesterday's recap for everyone, and each missed day's (Core Rules "Recap").
+  recaps?: { week: number; day: number; recap: string }[];
+  missed?: number;
   claims?: string[]; // what earlier Gatherings carry into the weekdays ("G5:united-effort-lost")
 }
 
+// An enemy's card title ("A MAN ON THE ROAD") inside a sentence: "A man on the road".
+const sentenceCase = (t: string) => (t === t.toUpperCase() ? t.charAt(0) + t.slice(1).toLowerCase() : t);
 const signed = (n: number) => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
 
 export default function OnlineDay({
@@ -176,6 +181,7 @@ export default function OnlineDay({
         <p className={note}>
           Week {week} · Day {day}
         </p>
+        <RoadSoFar recaps={today.recaps} missed={today.missed} fill={fill} />
         <DaySevenLine partyId={partyId} timeZone={timeZone} />
         <ScriptButton label="THE GATHERING" onClick={onOpenGathering} />
       </div>
@@ -370,7 +376,7 @@ export default function OnlineDay({
                                 setArmed(armed === o.attr ? null : o.attr);
                               }}
                             >
-                              {armed === o.attr ? 'USED' : 'USE'}
+                              {armed === o.attr ? 'TAKE BACK' : 'USE'}
                             </button>
                           </div>
                         )}
@@ -399,6 +405,16 @@ export default function OnlineDay({
                     ? `PASSED · +500g${challenge.growth ? ` · ${challenge.attr} ${challenge.score} → ${challenge.score + challenge.growth}` : ''}`
                     : `FAILED · −150g · ${fill(step.fail)}`}
                 </p>
+                {/* The first passed Challenge (Core Rules §7 first-time lines): only daily Challenges grow a skill, so it is the
+                    first when every skill but this one's growth is still at its start (14, 12 and four 10s: 66 in all). */}
+                {challenge.pass &&
+                  !!challenge.growth &&
+                  Object.values(progress.attrs).reduce((a, b) => a + b, 0) - challenge.growth === 66 && (
+                    <p className="font-sans italic text-[13.5px] text-[#B7A9CC]">
+                      {challenge.attr} {challenge.score} → {challenge.score + challenge.growth}. At 26 a skill becomes Apprentice: +2 on
+                      every roll with it. The more days you play, the further you grow.
+                    </p>
+                  )}
               </div>
             )}
           </div>
@@ -437,7 +453,7 @@ export default function OnlineDay({
                       className={`${quietButton} ${pressArmed ? 'border-[#D4B876] text-[#E5C158]' : ''}`}
                       onClick={() => setPressArmed(!pressArmed)}
                     >
-                      {pressArmed ? 'USED' : 'USE'}
+                      {pressArmed ? 'TAKE BACK' : 'USE'}
                     </button>
                   </div>
                 )}
@@ -504,19 +520,38 @@ export default function OnlineDay({
           {bar('You', php, '#6FD39A')}
           {bar(fill(step.name), ehp, '#F08A8A')}
           <div className="space-y-1">
-            {rounds.map((r) => {
-              const mineLine = r.playerStruck
-                ? `You: 🎲 ${r.d20} + WEP ${r.playerAtk} − DEF ${r.enemyDef} = ${signed(r.margin)} · ${r.hit ? `hit, ${r.margin * 5} damage` : 'miss'}`
-                : null;
-              const theirLine = r.enemyStruck
-                ? `Enemy: 🎲 ${r.enemyD20} + ATK ${r.enemyAtk} − ARM ${r.playerArmor} = ${signed(r.enemyMargin)} · ${
-                    r.enemyHit ? `hit, ${r.enemyMargin * 5} damage` : 'miss'
-                  }`
-                : null;
+            {rounds.map((r, ri) => {
+              // Canon's round message (Core Rules §4): the roll, then on a hit the damage and the target's HP before and after.
+              const prev = rounds[ri - 1];
+              const n = (v: number) => (v < 0 ? `−${Math.abs(v)}` : `${v}`);
+              const name = sentenceCase(fill(step.name));
+              let enemyHp = prev?.enemyHpAfter ?? 100;
+              let playerHp = prev?.playerHpAfter ?? 100;
+              const myStrike = () => {
+                if (!r.playerStruck) return [];
+                const out = [`You Roll ${r.d20} + Weapon ${r.playerAtk} − DEF ${r.enemyDef} = ${n(r.margin)}. ${r.hit ? 'HIT' : 'MISS'}`];
+                if (r.hit) {
+                  const after = Math.max(0, enemyHp - r.margin * 5);
+                  out.push(`Damage = ${r.margin} × 5 = ${r.margin * 5}. ${name} HP ${enemyHp} → ${after}`);
+                  enemyHp = after;
+                }
+                return out;
+              };
+              const theirs = () => {
+                if (!r.enemyStruck) return [];
+                const out = [`Enemy Rolls ${r.enemyD20} + ATK ${r.enemyAtk} − Armor ${r.playerArmor} = ${n(r.enemyMargin)}. ${r.enemyHit ? 'HIT' : 'MISS'}`];
+                if (r.enemyHit) {
+                  const after = Math.max(0, playerHp - r.enemyMargin * 5);
+                  out.push(`Damage = ${r.enemyMargin} × 5 = ${r.enemyMargin * 5}. Your HP ${playerHp} → ${after}`);
+                  playerHp = after;
+                }
+                return out;
+              };
+              const lines = r.enemyFirst ? [...theirs(), ...myStrike()] : [...myStrike(), ...theirs()];
               return (
                 <div key={r.round} className="font-mono text-[12px] text-[#D9D1E6]">
                   <div className="text-[#8B7A9E]">Round {r.round}{r.relic ? ' · Combat Relic: +1 Weapon, +1 Armor' : ''}</div>
-                  {(r.enemyFirst ? [theirLine, mineLine] : [mineLine, theirLine]).filter(Boolean).map((l, li) => (
+                  {lines.map((l, li) => (
                     <div key={li}>{l}</div>
                   ))}
                 </div>
@@ -554,9 +589,19 @@ export default function OnlineDay({
                 ))}
             </>
           ) : (
-            <p className={`font-['Cinzel'] font-bold text-[13px] ${fightWon ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
-              {fightWon ? `WON${fight?.gold ? ` · +${fight.gold}g` : ''}` : 'BRUISED SCRAPE'}
-            </p>
+            <div className="space-y-1">
+              <p className={`font-['Cinzel'] font-bold text-[13px] ${fightWon ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
+                {fightWon ? `VICTORY. ${sentenceCase(fill(step.name))} defeated in ${rounds.length} round${rounds.length === 1 ? '' : 's'}.` : 'DEFEATED.'}
+                <br />
+                {`REWARD: ${fightWon && fight?.gold ? `+${fight.gold}g` : 'none'}`}
+              </p>
+              {/* After the first fight (Core Rules §7 first-time lines): everyone's first fight is Week 1 Day 1's. */}
+              {week === 1 && day === 1 && (
+                <p className="font-sans italic text-[13.5px] text-[#B7A9CC]">
+                  Gold buys better weapons and armor in the Store. Every fight starts fresh: your wounds never follow you.
+                </p>
+              )}
+            </div>
           )}
         </div>
       );
@@ -607,6 +652,7 @@ export default function OnlineDay({
       header={header}
       title={`Week ${week} · Day ${day}`}
       heading={chapter.script.heading}
+      roadSoFar={<RoadSoFar recaps={today.recaps} missed={today.missed} fill={fill} />}
       nodes={nodes}
       error={error}
       reachedSummary={reachedSummary}
@@ -628,6 +674,7 @@ function DayBody({
   header,
   title,
   heading: chapterHeading,
+  roadSoFar,
   nodes,
   error,
   reachedSummary,
@@ -640,6 +687,7 @@ function DayBody({
   header: React.ReactNode;
   title: string;
   heading: string;
+  roadSoFar: React.ReactNode;
   nodes: React.ReactNode[];
   error: string | null;
   reachedSummary: boolean;
@@ -655,6 +703,7 @@ function DayBody({
   return (
     <div className="space-y-3">
       {header}
+      {roadSoFar}
       <div>
         <p className={note}>{title}</p>
         <h2 className={`${heading} text-[19px]`}>{chapterHeading}</h2>
@@ -689,4 +738,40 @@ function DaySevenLine({ partyId, timeZone }: { partyId: string; timeZone: string
     });
   }, [partyId, timeZone]);
   return <p className="text-[15px] italic text-[#B7A9CC]">{line ?? 'Tonight: the Gathering.'}</p>;
+}
+
+// The road so far: the story up to yesterday, in the storybook voice, before today's chapter. A friend who missed days
+// gets each missed day's recap, then canon's line (Core Rules §12a "After missed days"). The text comes from the server.
+const DAY_COUNT_WORDS = ['no days', 'a day', 'two days', 'three days', 'four days', 'five days', 'six days'];
+function RoadSoFar({
+  recaps,
+  missed,
+  fill,
+}: {
+  recaps?: { week: number; day: number; recap: string }[];
+  missed?: number;
+  fill: (text: string) => string;
+}) {
+  if (!recaps || recaps.length === 0) return null;
+  const several = recaps.length > 1;
+  return (
+    <div className="rounded-xl border border-[#3A2555] bg-[#130B1F] px-3.5 py-3 space-y-2.5">
+      <p className="font-['Cinzel'] font-bold text-[12px] tracking-wide text-[#D4B876]">THE ROAD SO FAR</p>
+      {recaps.map((r) => (
+        <div key={`${r.week}-${r.day}`} className="space-y-1">
+          {several && (
+            <p className="font-sans text-[11.5px] text-[#8B7A9E]">
+              {r.day === 7 ? `Week ${r.week} · The Gathering` : `Week ${r.week} · Day ${r.day}`}
+            </p>
+          )}
+          <NarrationBlock text={fill(r.recap)} />
+        </div>
+      ))}
+      {!!missed && missed > 0 && (
+        <p className="font-sans italic text-[13.5px] text-[#B7A9CC] px-1">
+          You missed {missed < DAY_COUNT_WORDS.length ? DAY_COUNT_WORDS[missed] : `${missed} days`}. The story went on. Today is still yours.
+        </p>
+      )}
+    </div>
+  );
 }

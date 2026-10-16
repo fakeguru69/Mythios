@@ -708,14 +708,20 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
     };
   }
 
-  const safeSmallTalkPool = [
-    'The kettle\'s on. Sit a minute and rest your boots.',
-    'My knees have opinions about this road. None of them good.',
-    'I\'ve kept an inn a long time. A warm fire and dry socks fix half of what ails a traveller.',
-    'You\'ve not eaten. Sit.',
-    'It\'s terrible. Drink it anyway.',
+  // Three of these lines are also said in the story: each waits until the day after the story has used it (Fake Guru,
+  // 16 Oct), so the chat never says it first. "My knees…" is Week 3 Day 3's chapter, "You've not eaten. Sit." is
+  // Week 1 Day 3's Campfire opener, "It's terrible…" is Week 4 Day 2's chapter.
+  const safeSmallTalkPool: { line: string; after?: [number, number] }[] = [
+    { line: 'The kettle\'s on. Sit a minute and rest your boots.' },
+    { line: 'My knees have opinions about this road. None of them good.', after: [3, 3] },
+    { line: 'I\'ve kept an inn a long time. A warm fire and dry socks fix half of what ails a traveller.' },
+    { line: 'You\'ve not eaten. Sit.', after: [1, 3] },
+    { line: 'It\'s terrible. Drink it anyway.', after: [4, 2] },
   ];
-  const fallbackLine = safeSmallTalkPool[Math.abs(question.length) % safeSmallTalkPool.length];
+  const openPool = safeSmallTalkPool
+    .filter(({ after }) => !after || state.episode > after[0] || (state.episode === after[0] && state.day > after[1]))
+    .map(({ line }) => line);
+  const fallbackLine = openPool[Math.abs(question.length) % openPool.length];
 
   return {
     question,

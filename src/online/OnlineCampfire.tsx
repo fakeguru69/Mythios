@@ -282,7 +282,7 @@ export default function OnlineCampfire({
     .map((m) => {
       const parts: string[] = [];
       if (m.passed) parts.push(`passed today's Challenge at ${fire.place}`);
-      else if (m.scraped) parts.push(`took a Bruised Scrape at ${fire.place}`);
+      else if (m.scraped) parts.push(`was defeated at ${fire.place}`);
       if (m.gaveTo) parts.push(`gave a Relic to ${[...new Set(m.gaveTo.split(', '))].join(', ')}`);
       if (m.lead) parts.push('brought back a clue from the last light');
       if (m.words >= 2) parts.push("found both missing words in today's fragment");

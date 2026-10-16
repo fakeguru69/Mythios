@@ -385,6 +385,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [inStore, setInStore] = useState(false);
   const [atFire, setAtFire] = useState(false);
   const [inGathering, setInGathering] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -404,6 +405,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         .eq('series_id', (p as PartyRow).series_id)
         .maybeSingle();
       character = (c as SeriesCharacter | null) ?? null;
+      // The chat opens for a friend once they have read Day 2's chapter, where the party meets Garrick (the server decides).
+      const { data: open } = await supabase.rpc('party_chat_open', { p_party: partyId });
+      setChatOpen(open === true);
     } else {
       // Before being let in, a friend cannot read the party itself: only its name and its host's.
       const { data: sum } = await supabase.rpc('my_party_summary', { p_party: partyId });
@@ -489,7 +493,6 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
     party.day1_opens_at && new Date(party.day1_opens_at).getTime() - Date.now() > 86400000
       ? `Day 1 opens at 5:00am ${dayOneOpening(party.day1_opens_at, party.time_zone)}.`
       : SZ_DOOR;
-  const chatOpen = !!party.day1_opens_at && Date.now() >= new Date(party.day1_opens_at).getTime() + 86400000;
 
   // The Seeker Chest (from the party page, or from the day's fragment; back goes where you came from).
   if (inChest) return <OnlineChest partyId={party.id} onClose={() => setInChest(false)} />;

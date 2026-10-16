@@ -62,7 +62,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Evening finds you where the map said you would be: an old mine cut into the far riverbank, its mouth half drowned by the river.\n\nThere is torchlight just inside. There should not be.\n\nGarrick knows a way in. He has known it since he was a boy, he says.",
+        "text": "Evening finds you where the map said you would be: an old mine cut into the far riverbank, its mouth half drowned by the river.\n\nThere is torchlight just inside. There should not be.\n\nWhile you watch, it moves from one side of the mouth to the other, unhurried, and stops.\n\nGarrick knows a way in. He has known it since he was a boy, he says.",
         "section": "Arrival"
       },
       {
@@ -88,7 +88,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Either way the last stretch is the same: a gallery floored with timbers nobody has trusted in fifty years.",
+        "text": "Either way the last stretch is the same: a gallery floored with timbers nobody has trusted in fifty years. Far beneath them, in the dark, is the river.",
         "section": "The Approach"
       },
       {
@@ -135,7 +135,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "{N} of them, between you and a small shape on the floor at the back of the gallery.",
+        "text": "{N} of them, between you and a small shape on the floor at the back of the gallery. Not one of them says a word.",
         "section": "The Battle"
       },
       {
@@ -155,7 +155,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It is over.\n\nShe is at the back of the gallery with her wrists tied, and she is humming. A counting song, very quietly, the way you hum to keep from crying. She does not stop when the ropes come off. She hums it all the way out into the air.\n\nYou have been saying her name for three days. Now you can see her. Tamsin is about nine.\n\nThere is a small cut across her palm. It has been bound in clean white linen. Somebody took the time.",
+        "text": "It is over.\n\nA dropped torch rolls a little way on the boards and stops. Then there is no sound in the mine but the river.\n\nShe is at the back of the gallery with her wrists tied, and she is humming. A counting song, very quietly, the way you hum to keep from crying.\n\nWhoever reaches her first kneels slowly, so as not to loom over her. The knots are small and hard. Whoever tied them has tied a great many. They take a long time, and all that time she does not look away from your hands.\n\nShe does not stop when the ropes come off. She hums it all the way out into the air.\n\nOutside, after the mine, the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.\n\nYou have been saying her name for three days. Now you can see her. Tamsin is about nine.\n\nThere is a small cut across her palm. It has been bound in clean white linen. Somebody took the time.",
         "section": "The Battle"
       },
       {
@@ -172,7 +172,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "Charm": "She has stopped humming only once: when the lamp swung toward the end of the tunnel, and what lies there.",
           "Craft": "Half the pit-props are new timber. Somebody has been keeping this place standing.",
           "Aim": "Through the mine mouth, on the far bank: a horse, tied, saddled.",
-          "floor": "From down here you can see daylight between the gallery's floorboards, and it is not daylight: it is the river, a long way below."
+          "floor": "From down here you can see light between the gallery's floorboards, and it is not torchlight: it is the river, a long way below, catching the torches."
         },
         "section": "Notice"
       },
@@ -205,12 +205,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The way on is back across the gallery. {RISK} is three steps ahead of you when the floor gives.\n\nThere is no warning. A timber that has waited fifty years goes all at once, and {RISK} drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below {RISK}'s boots there is nothing but the sound of the river, a long way down in the dark.\n\nNobody can walk out there. The boards that are holding {RISK} will not hold a second pair of feet.\n\nA rope is no use. {RISK}'s two arms are all that is holding {RISK} up, and neither can let go to catch one.\n\nOne of you can go out flat, on your belly, with the rest standing on the stone at the gallery's edge and holding your ankles, and haul. An arm has one haul like that in it. Then the next of you.\n\n**This is a United Effort. One job, and you take it in turns.**",
+        "text": "The way on is back across the gallery. {RISK} is three steps ahead of you when the floor gives.\n\nThere is no warning. A timber that has waited fifty years goes all at once. {RISK} drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below {RISK}'s boots there is nothing but the sound of the river, a long way down in the dark.\n\nNobody can walk out there. The boards that are holding {RISK} will not hold a second pair of feet.\n\nA rope is no use. {RISK}'s two arms are all that is holding {RISK} up, and neither can let go to catch one.\n\nOne of you can go out flat, on your belly, with the rest standing on the stone at the gallery's edge and holding your ankles, and haul. An arm has one haul like that in it. Then the next of you.\n\n**This is a United Effort. One job, and you take it in turns.**",
         "section": "The United Effort"
       },
       {
         "t": "say",
-        "text": "It is you. You are jammed to the chest over the dark, and nobody is coming. You get an elbow onto sounder wood, a hand's breadth at a time.",
+        "text": "It is you. You are jammed to the chest over the dark, and nobody is coming. Splinters bite your palms. The river's cold breath comes up past your legs. You get an elbow onto sounder wood, a hand's breadth at a time.",
         "cond": {
           "on": "alone"
         },
@@ -227,7 +227,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You go round by the wall after that, one at a time, where the stone carries the boards.\n\nBehind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door. Cold air breathes round its edges from a room beyond. It takes all of you, and it goes up in one heave. The room beyond has not been walked in: the dust lies as it fell.",
+        "text": "{RISK} comes up out of the hole all at once, and you all go down together on the stone, gasping. You go round by the wall after that, one at a time, where the stone carries the boards.\n\nBehind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door. Cold air breathes round its edges from a room beyond. It takes all of you, and it goes up in one heave. The room beyond has not been walked in: the dust lies as it fell.",
         "cond": {
           "on": "ue",
           "won": true
@@ -241,7 +241,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You find {RISK} where the river brings out what the mine drops: at the drowned mouth, grey, coughing, wrapped round a pit-prop, alive.\n\nIt is an hour before all of you are together again, and another before the hole is bridged with what timber is left.\n\nBehind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door, with a room beyond. It takes all of you to lift it, and nobody is careful. You go in tired, wet and all at once, and the floor is a mess of your own bootprints before anyone thinks to look at it.\n\nWhatever the dust in there could have told you, it will not tell you now.",
+        "text": "The last board goes, and {RISK} goes with it. The dark takes the sound.\n\nYou find {RISK} where the river brings out what the mine drops: at the drowned mouth, grey, coughing, wrapped round a pit-prop, alive.\n\nIt is an hour before all of you are together again, and another before the hole is bridged with what timber is left.\n\nBehind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door, with a room beyond. It takes all of you to lift it, and nobody is careful. You go in tired, wet and all at once, and the floor is a mess of your own bootprints before anyone thinks to look at it.\n\nWhatever the dust in there could have told you, it will not tell you now.",
         "cond": {
           "on": "ue",
           "won": false
@@ -255,7 +255,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The map ended at a mark. Here is the mark.\n\nIt is cut into the chamber wall at the height of your chest: the shape from Meira's rubbing, the shape at the end of the map. The burned scrap, held up to it, fits, as you knew it would.\n\nBut the mark is not a carving. It is a hole. Something sat in it, something made to that shape, and it is gone.",
+        "text": "The room is small, square, and cut by hands a very long time ago. It is dry: the first dry air since the river. Your torches burn straight up in it. Nothing drips. The river, which has been in your ears all night, cannot be heard in here at all.\n\nThe map ended at a mark. Here is the mark.\n\nIt is cut into the chamber wall at the height of your chest: the shape from Meira's rubbing, the shape at the end of the map. The burned scrap, held up to it, fits, as you knew it would.\n\nBut the mark is not a carving. It is a hole. Something sat in it, something made to that shape, and it is gone.",
         "section": "The discovery"
       },
       {
@@ -278,7 +278,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Under the empty place, scratched into the stone itself: **four names.**\n\nNone of them is yours. The first is Tamsin's.",
+        "text": "Under the empty place, scratched into the stone itself: **four names.**\n\nNone of them is yours. The first is Tamsin's.\n\nThe scratches are rough and uneven, made with a knife point and no care. Somebody bends close with a torch and reads them through once, in silence. Nobody reads them aloud.",
         "section": "The discovery"
       },
       {
@@ -300,13 +300,19 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "section": "The turn"
       },
       {
+        "t": "say",
+        "text": "Then why were your names on that list?\n\nThe wall does not say.",
+        "alone": true,
+        "section": "The turn"
+      },
+      {
         "t": "section",
         "title": "The Cliffhanger",
         "section": "The Cliffhanger"
       },
       {
         "t": "say",
-        "text": "In the lamplight, Garrick counts the names twice, silent.\n\n*\"Three more,\"* he says finally.\n\nAnd from the mine mouth, far behind you: hooves. One horse, already at a full gallop, going away.\n\nBy the time anyone reaches the mine mouth there is nothing to see but the dark, and the sound of it fading.",
+        "text": "The chamber is very still.\n\nIn the lamplight, Garrick counts the names twice, silent.\n\n*\"Three more,\"* he says finally.\n\nAnd from the mine mouth, far behind you: hooves. One horse, already at a full gallop, going away.\n\nBy the time anyone reaches the mine mouth there is nothing to see but the dark, and the sound of it fading.",
         "section": "The Cliffhanger"
       },
       {

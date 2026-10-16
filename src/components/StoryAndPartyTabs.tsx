@@ -75,6 +75,7 @@ import { UNITED_EFFORT_STORIES } from '../data/unitedEffortStories';
 import { GATHERING_SCRIPTS, GatheringCond, GatheringStep } from '../data/gatheringScripts';
 import { GARRICK_RECAP } from '../data/garrickRecap';
 import { WEEK_QUESTIONS } from '../data/weekQuestions';
+import { recapBefore } from '../data/dayRecaps';
 
 /** A roll's net: +3, 0 or −2 (a true minus sign). */
 const formatMargin = (m: number) => (m > 0 ? `+${m}` : m === 0 ? '0' : `−${Math.abs(m)}`);
@@ -1469,8 +1470,16 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     return { nodes, done };
   })();
 
+  // The road so far: yesterday's recap opens the day (Fake Guru, 16 Oct: for everyone).
+  const roadSoFar = recapBefore(currentWeek, currentDay);
   const renderChapterScript = () => (
     <>
+      {roadSoFar && (
+        <div className="rounded-xl border border-[#3A2555] bg-[#130B1F] px-3.5 py-3 space-y-2.5">
+          <div className="font-['Cinzel'] font-bold text-[12px] tracking-wide text-[#D4B876]">THE ROAD SO FAR</div>
+          <NarrationBlock text={fill(roadSoFar.recap)} />
+        </div>
+      )}
       {chapterScript && (
         <div className="font-['Cinzel'] font-bold text-[13px] tracking-[1px] text-[#D4B876] uppercase pt-1">
           {fill(chapterScript.heading)}

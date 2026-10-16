@@ -35,9 +35,13 @@
 
 *(Warrior's opening shown. The other five classes keep their approved openings and their approved locks; everything from the fight onward is the same for all.)*
 
-> The wagon axle snaps on the old forest road, and something is already moving in the treeline.
+> The old forest road has not been mended in a generation. Roots have shouldered up through it and the ruts are full of last year's leaves. Overhead the trees lean so close that the afternoon comes down through them green and thin, like light through bottle glass. It smells of wet bark. Nothing sings.
 >
-> A man steps out with a blade drawn. He does not ask for your purse. He does not say anything at all.
+> Your wagon has been complaining about the road for miles. Then the axle gives with a crack that goes off through the trees, and the whole cart lurches down onto one corner and is still.
+>
+> In the quiet afterwards, something moves in the treeline.
+>
+> A man steps out onto the road with his blade already drawn. He does not ask for your purse. He does not say anything at all.
 
 **Fight card**
 > **A MAN ON THE ROAD**
@@ -49,24 +53,24 @@
 *The fight plays out one beat at a time. MYTHIOS explains each line the first time it appears: the roll, the hit, the damage.*
 
 *If the player wins:*
-> He breaks off. One look at you, and he is gone into the trees before you can lay a hand on him.
+> Steel rings on steel, and the wood swallows the sound. Then, between one blow and the next, he breaks off. One look at you, level and unhurried, and he is gone into the trees before you can lay a hand on him. For a few strides you can hear him in the bracken. Then you cannot.
 
 *If the player loses:*
-> You are on your back in the road. He could finish it. He looks down at you for a long moment, and then he is gone into the trees.
+> You are on your back in the road, with leaf-mould in your mouth and the green roof turning slowly overhead. He could finish it. He looks down at you for a long moment, and then he is gone into the trees.
 
-> The road is very quiet.
+> The road is very quiet. Somewhere off among the trunks, a single bird starts up again.
 
 `[LOOK WHERE HE STOOD]` `[LOOK AT WHAT HE WAS AT]`
 
 *Both are seen; the choice is which comes first.*
 
 *Where he stood:*
-> A scrap of parchment in the leaf-mould, half burned. It is not writing and it is not a drawing. Somebody laid it over something hard and raised, and rubbed charcoal across it until the shape came through.
+> A scrap of parchment in the leaf-mould, half burned. Its scorched edge flakes at your touch and still smells faintly of smoke. It is not writing and it is not a drawing. Somebody laid it over something hard and raised, and rubbed charcoal across it until the shape came through.
 >
-> You do not know the shape.
+> You turn it to the light and back again. You do not know the shape.
 
 *What he was at:*
-> Your cargo box. The lock is jammed, and the scratches round it are fresh. They are not yours.
+> Your cargo box, slewed half off the tilted wagon bed. The lock is jammed. The scratches round it are fresh, bright in the dull old metal. They are not yours.
 >
 > He was at this before you ever saw him.
 
@@ -89,12 +93,12 @@
 *MYTHIOS explains the card the first time: the two ways, the bonus, the result line.*
 
 *On a pass:*
-> It gives at the first try.
+> The lock fights you for a moment. Then something inside it gives with a small, dull click. The lid comes up in your hands while there is still light enough to see by.
 
 *On a failure:*
-> It gives in the end. Your knuckles are bleeding and the trees have gone from green to black.
+> It does not want to give, and it takes its time about it. It takes some of your skin as well. When the lid comes up at last your knuckles are bleeding and the trees have gone from green to black.
 
-> You go through the box twice. Everything you own is here. Nothing has been taken.
+> You go through the box twice, by what light is left. Everything you own is here, folded the way you folded it. Nothing has been taken.
 >
 > Something has been put in.
 >
@@ -102,16 +106,18 @@
 >
 > **The Hollow Wake Inn, on the drove road.**
 
-> Where your road meets the drove road an old boundary stone stands half-buried in the verge, weathered past reading. Something in a crack at its foot catches the last of the light.
+> You leave the wagon where it lies and walk the last of the dusk down to the crossroads. Where your road meets the drove road an old boundary stone stands half-buried in the verge, weathered past reading. Moss furs its north side. Something in a crack at its foot catches the last of the light.
 
 `[PULL IT OUT]`
 
-> Thin, dense, and cold in a way nothing should be at this time of year. It is not paper. It has not aged the way paper would.
+> Thin, dense, and cold in a way nothing should be at this time of year. It lies across your palm like a sliver of winter that has forgotten to melt. It is not paper. It has not aged the way paper would.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 >
 > *MYTHIOS explains the Seeker Chest: two words are missing; fill one today.*
 
+> You sit a while on the stone with the list in one hand and the cold thing in the other. The dark comes down through the trees, and somewhere an owl tries its voice.
+>
 > A man broke into your box to leave you a list with your name on it.
 >
 > **One day north: the Hollow Wake Inn. Somebody wants you there.**
@@ -129,6 +135,7 @@
 - **Played beats:** the fight, a Choice, a notice line, the Challenge, an act. Two paid beats, because this day teaches both.
 - **Changed from the current script:** the rubbing is found by the player; the game now says outright that nothing was taken and something was left (new fact 1); the notice lines let a sharp player suspect the attack was staged without the game saying so. *One thing for TV to weigh:* the Might, Agility and Aim lines hint at a staged ambush on Day 1. They are true, and the party "knows" it by Week 4. **Closed 5 Oct after Audit F: they stay as written.** Two reviewers praised them as a hint that does not tell; one thought them too early.
 - **Fragment text (unchanged):** "Five fell. Five were turned against him. Four were scattered after. One stayed close."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged.
 
 ---
 
@@ -137,19 +144,25 @@
 *Heading: **The Hollow Wake Inn.***
 *Question: who are the others on the list, and who wrote it?*
 
-> The taproom is warm and low and smells of woodsmoke. There are [N−1] strangers in it who are not drinking.
+> A day on the drove road, between hedges nobody has cut in years. At the end of it, low under its own dark thatch, stands the Hollow Wake Inn. One window is lit. The sign over the door has been painted so many times that whatever it showed has gone soft at the edges, like a face on an old coin.
+>
+> The taproom is warm and low and smells of woodsmoke. Underneath the smoke is the smell of ale soaked a long time into old boards. There are [N−1] strangers in it who are not drinking.
 >
 > Mei has a torn page flat on the table under one hand. Dev is turning one over and over. Jo's is folded small, the way you fold a thing you have read too many times.
 >
 > You put yours down beside them. The same neat hand. The same names, each with a date beside it.
 >
-> Nobody has to explain.
+> Mei moves along the bench to make room. The fire settles in the grate. Nobody has to explain.
 
-> The innkeeper sets down the cups. He sets down one more than there are of you, at the empty end of the table, and goes back behind his bar.
+> The innkeeper sets down the cups. He sets down one more than there are of you, at the empty end of the table, and goes back behind his bar. He has a cloth over one shoulder. He moves the way a man moves in a room he has crossed ten thousand times, with no hurry in him at all.
 
 `[ASK HIM ABOUT THE LIST]`
 
-> He looks at the pages for a while. Then he reaches under the bar and brings out a satchel, worn soft at the corners.
+> You begin to ask. Before you are halfway through he gives you his name, plainly, the way he might give you the price of a room.
+>
+> *"Garrick."*
+>
+> He comes round the end of the bar and looks at the pages for a while, not touching them. Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.
 >
 > *"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen."*
 >
@@ -157,7 +170,7 @@
 >
 > *"Left this. Hasn't been back in three weeks."*
 
-> Inside is a notebook, packed to the margins in the hand you all know by now. Your names are in it. Every one of you.
+> Inside is a notebook, packed to the margins in the hand you all know by now. It smells of dust and lamp smoke. The pages have gone soft with handling. Your names are in it. Every one of you.
 >
 > {STAKE} *(Added 15 Oct 2026, Fake Guru: each player's own line, from their Session Zero answers: "Beside yours, in the same neat hand: {birthplace}, and a second name, {grandparent}." With one answer: "Beside yours, in the same neat hand: {birthplace}." or "Beside yours, in the same neat hand, a second name: {grandparent}." With none, the line is left out.)*
 >
@@ -180,10 +193,10 @@
 > IF YOU FAIL: it takes you the whole evening, with strangers watching you get it wrong
 
 *On a pass:*
-> Your stub fits like a key. There are [N] stubs, and [N] of you.
+> You bring the candle close and try your page against the stubs, one after another. Then one of them takes it, every rag and fibre of the tear meeting its fellow. Your stub fits like a key. There are [N] stubs, and [N] of you.
 
 *On a failure:*
-> You try it against every stub but the right one. Mei, in the end, reaches over and turns your page the other way up. It fits. There are [N] stubs, and [N] of you.
+> You try it against every stub but the right one. The candle burns down. The strangers watch you get it wrong. Mei, in the end, reaches over and turns your page the other way up. It fits. There are [N] stubs, and [N] of you.
 
 **PRESS ON** *(offered on a pass)*
 > **READ THE STUBS** · what is left on the torn edges themselves
@@ -191,13 +204,15 @@
 > REWARD: +200g, and one more detail
 
 *On a passed press:*
+> Tilt them to the candle and you see it.
+>
 > Each stub has a faint straight line scored down it. She did not rip these out. She cut them against a rule, one at a time, with care.
 >
 > She meant to send them.
 
 > So the list is hers. She wrote your names in a book, and cut them out, and then she stopped coming here. And each of you was set upon on the road, within the same few days, and came away holding a page.
 
-> On the facing leaf, one line will not be read at all. It is in some private shorthand, tight as wire.
+> On the facing leaf, one line will not give itself up to any of you. It is in some private shorthand, tight as wire. The longer you look at it, the less it says.
 
 `[ASK HIM ABOUT THE LINE NOBODY CAN READ]`
 
@@ -209,25 +224,25 @@
 >
 > *"She'd sit right there. I doubt she thought I was listening."*
 
-> With the place put to it, the rest of the page can be read, and it names none of you.
+> Once you know the place, the rest of the page gives way. It names none of you.
 >
 > It is about a child. Taken, and held somewhere near that rock. No date. Only the place, and the plain sense, in every line of it, that whatever was happening there was not over.
 
 `[ASK HIM TO TAKE YOU THERE]`
 
-> He sets down the glass.
+> He sets down the glass. In the quiet room it is the loudest thing there is.
 >
 > *"I've a business to run."*
 
 `[TELL HIM NOBODY ELSE CAN READ HER]`
 
-> A long pause. He looks at the satchel, and the pages, and each of you in turn.
+> A long pause. A log shifts in the grate and throws up a few sparks. He looks at the satchel, and the pages, and each of you in turn.
 >
 > *"...As far as the Widow's Tooth. That's all I'm agreeing to."*
 
 > You pay before you go up. Dev puts down more than the cups were worth and nobody counts it. The innkeeper sweeps the coins into his apron without a word.
 >
-> The extra cup is still at the empty end of the table. Nobody has touched it.
+> The fire has burned down to a red murmur. The extra cup is still at the empty end of the table. Nobody has touched it.
 
 > By the door, an old verse is carved into the beam, so old the wood has grown round the letters. Under it somebody has worked a small hollow into the timber.
 
@@ -237,13 +252,13 @@
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> Upstairs, by a candle, you turn the notebook's last pages. Two lines in her hand, written years apart, in different inks:
+> Upstairs, by a candle, you turn the notebook's last pages. The old house ticks and settles round you. Two lines in her hand, written years apart, in different inks:
 >
 > *"Scattered on purpose, each piece safe alone. Only together do they mean anything."*
 >
 > *"The old tellings of the Seekers speak of stones. The oldest records don't call them stones at all. They call them shards."*
 >
-> You do not know what she meant.
+> You do not know what she meant. Somewhere below you, a door is barred for the night.
 
 > **First light. Two hours north. A child was held at that rock, and whatever it is has not finished.**
 
@@ -263,6 +278,7 @@
 - **Garrick:** six existing lines, in their existing order.
 - **The two Meira notes** are plants the season needs, so they are in the chapter for everyone, not behind the press.
 - **Fragment text (unchanged):** "They wept for him before they feared him."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. The innkeeper now gives his name, *"Garrick."*, at `[ASK HIM ABOUT THE LIST]` (approved 16 Oct; this settles the naming question in the note above).
 
 ---
 
@@ -271,25 +287,25 @@
 *Heading: **The Widow's Tooth.***
 *Question: is the child still at the rock?*
 
-> Two hours north the road runs straight at a rock taller than a house, split down the middle as if something struck it once, long ago.
+> Two hours north the road runs straight at a rock taller than a house, split down the middle as if something struck it once, long ago. You see it a long way off, black against a white sky. It does not get any friendlier as you come.
 >
-> It is the first time the [N] of you have walked anywhere together. The innkeeper has already complained about the road, his boots and the weather, in that order, and seems to be enjoying himself.
+> It is the first time the [N] of you have walked anywhere together. Garrick agreed to come as far as the Widow's Tooth and not a step further. In the two hours it takes to get there he has complained about the road, his boots and the weather, in that order, and seems to be enjoying himself.
 >
-> Somebody must have asked him how he knew this place from a line of scribble, because he answers it to the air.
+> Somewhere along the way the question is put to him: how did he know this place from one line of scribble? He answers it to the air.
 >
 > *"People tell a man with a cloth in his hand everything,"* Garrick says. *"They forget he's got ears."*
 
-> There is nobody at the rock.
+> There is nobody at the rock. Close to, it is dark with old rain and furred with grey lichen. The wind makes a low, hollow note in the split.
 >
 > There are tracks at its foot: several people, not long ago, and a cart. And low on the stone, half worn away, something has been cut into it.
 
 `[GO TO THE MARKING]` `[FOLLOW THE CART-RUTS]`
 
 *The marking (Mei and Dev take the ruts):*
-> You crouch at the stone. That is where you are, with your back to the bracken, when the bracken moves.
+> You crouch at the stone and put your fingers to the cut lines. They are cold, and gritty under your touch. That is where you are, with your back to the bracken, when the bracken moves.
 
 *The ruts (Mei and Dev take the marking):*
-> The ruts turn off the road toward a line of trees, and smoke beyond them. You are looking that way, so you see him first: a man lying flat in the bracken, watching the rock.
+> The ruts turn off the road toward a line of trees, and a thread of smoke beyond them. You are looking that way, so you see him first: a man lying flat in the bracken, watching the rock.
 
 **What you notice**
 > **Might** · The ruts are deep going in and shallow coming out. *The cart left lighter than it came. Or it left something here.*
@@ -309,7 +325,7 @@
 *Win or lose:*
 > He does not say a word. Not when he is hit, and not when he hits. The moment there is a gap he takes it, and he is away through the trees toward the smoke, faster than any of you.
 >
-> Jo goes twenty yards after him and stops.
+> Jo goes twenty yards after him and stops. Jo stands there a moment longer, listening, then turns back.
 
 *If the player won, one line more:*
 > You had him by the collar for a moment, close enough to smell him. Woodsmoke, and lamp oil.
@@ -320,13 +336,15 @@
 >
 > It fits. Every raised line sits under its line of charcoal, and there is charcoal still, ground into the edges of the stone. She laid her paper here and rubbed. This rock is what the scrap is a picture of.
 >
+> For a moment nobody says anything. The wind goes on sounding its one low note in the split.
+>
 > Meira stood where you are standing. And the man who came at you on the forest road was carrying her work.
 
 > Under the overhang, on a dry shelf out of the wind, something small is lying on its side.
 
 `[PICK IT UP]`
 
-> A carved horse, no longer than your thumb. It is grey with a winter or two of weather.
+> A carved horse, no longer than your thumb. It is grey with a winter or two of weather. Its edges have gone soft, the way wood does when it has been held a great deal and then not held at all.
 >
 > It is a child's. It has been here a long time.
 
@@ -338,7 +356,7 @@
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> Garrick has not gone back to his inn. He is standing in the road with his pack on, looking at the smoke.
+> The morning is getting on, and this is the Widow's Tooth. Garrick has not gone back to his inn. He is standing in the road with his pack on, looking at the smoke.
 >
 > **The ruts go that way. So did the man. He will be there before you, and every door will be shut when you come.**
 
@@ -357,6 +375,7 @@
 - **Changed from the current script:** the lookout and his fight (new fact 2); the carved horse (new fact 21); the roll on the tracks is gone. The friend's spoken line ("These things sat hidden how long, and we just found them") is cut, since the game cannot speak for a real friend.
 - **Garrick:** one existing line. He was to turn back here ("As far as the Widow's Tooth"); he does not, and says nothing about it. His line about staying comes at the start of Week 2, as scripted.
 - **Fragment text (unchanged):** "Not every hand that tries will open it. Some locks already know their key."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged.
 
 ---
 
@@ -365,13 +384,13 @@
 *Heading: **Fenmark, where the cart went.***
 *Question: what happened in this village, and why will nobody say?*
 
-> Fenmark goes quiet the moment you come down the lane. Doors do not quite shut. Nobody is standing in one, either.
+> Fenmark sits low at the edge of the fen: reed thatch and peat smoke, along a single lane of cobbles with mud between. It goes quiet the moment you come down the lane. Doors do not quite shut. Nobody is standing in one, either.
 >
-> The lookout from the rock came through here ahead of you. You can tell by the gate at the far end of the street, left swinging.
+> The lookout from the rock came through here ahead of you. You can tell by the gate at the far end of the street, left swinging. It knocks softly on its post in the wind.
 >
 > Mei takes the left side of the lane, Dev the right. You take the well.
 
-> Behind the well, on an upturned bucket: a bowl of barley, half eaten. You hold your hand over it. It is still warm.
+> Behind the well, on an upturned bucket: a bowl of barley, half eaten, the spoon still standing in it. You hold your hand over it. It is still warm.
 >
 > Whoever was eating it left in a hurry, and not long ago.
 
@@ -394,12 +413,12 @@
 > IF YOU FAIL: you search the wrong end of the village first, in full view
 
 *On a pass:*
-> The prints are small and quick, and they double back twice. You do not follow them. You walk round the grain store the other way and sit down on the step.
+> The prints are small and quick, and they double back twice. You do not follow them. You walk round the grain store the other way, sit down on the step in the thin sun, and wait.
 >
-> After a while a boy of about fourteen edges out of the gap behind it. He has seen you see him. He does not run.
+> After a while a boy of about fourteen edges out of the gap behind it, all elbows and held breath. He has seen you see him. He does not run.
 
 *On a failure:*
-> You try three doors on the wrong side of the street, and three faces watch you do it. By the time you think of the grain store the boy has bolted from behind it, straight into Jo, who was coming the other way.
+> You try three doors on the wrong side of the street, and three faces watch you do it through the cracks. By the time you think of the grain store the boy has bolted from behind it, straight into Jo, who was coming the other way.
 >
 > He is shaking. Jo lets go of his sleeve and steps back.
 
@@ -409,7 +428,7 @@
 
 *Each reply opens him a different way; all three arrive at the same account.*
 
-> It comes out low and fast.
+> For a while he says nothing at all. He looks once down the empty lane. Then it comes out low and fast.
 >
 > *"Three nights ago. They came in the dark with no torches. They did not knock anything over. They did not say anything they did not have to. Like they'd done it before."*
 >
@@ -421,7 +440,7 @@
 
 > While he talks he hums, without noticing, a rhyme with no tune to speak of. His grandmother's, he says. She sang it here, at the well.
 >
-> You look at the well. Its stone lip is older than every house in the street, and worn into it, just where a hand would rest, is a hollow.
+> You look at the well. Its stone lip is older than every house in the street, green-black and sweating with damp. Worn into it, just where a hand would rest, is a hollow.
 
 `[REACH IN]`
 
@@ -441,13 +460,13 @@
 
 `[STAND WHERE YOU ARE]` `[STEP BACK, HANDS OPEN]` `[PUT YOURSELF IN FRONT OF THE BOY]`
 
-> Nobody draws. Nobody needs to. It is a very clear message.
+> Nobody draws. Nobody needs to. The message is plain enough.
 >
 > The elder says the things an elder says: that Fenmark has no quarrel with travellers, that the road out is the same as the road in.
 >
 > But you are watching his hands, and his hands are not angry. They are afraid. He is not hiding what happened here. He is terrified of what happens to this village if it is known that somebody talked.
 >
-> He steps in close, as if to see you off. His voice drops until only you can hear it.
+> He steps in close, as if to see you off. His voice drops until only you can hear it. His breath smells of peat smoke and no sleep.
 >
 > *"Please. There's a woman two hours east who's seen that same curved blade before. Ask her. Don't say I sent you."*
 >
@@ -459,12 +478,14 @@
 >
 > *"A man ran through at first light. He did not stop for anyone. He took the east path."*
 
+> It is long past noon when Fenmark lets you go, and the light is already thinning over the fen. Behind you, one by one, the shutters close.
+>
 > **East. Two hours. He has half a day on you, and he is heading for the only other person alive who has seen that knife.**
 
 **Day summary card**
 > **FENMARK** · Day 4
-> You earned: **+500g** · **Charm 14 → 26** · *Apprentice reached: +2 on every Charm roll*
-> You can now afford: an Attribute Relic · *450g more for Weapon Lv. 2*
+> You earned: `[gold]` · Agility or Charm `[growth]`
+> You can now afford: `[what your gold now buys]`
 > You learned: her name is **Tamsin**. Nine years old. Taken three nights ago by quiet men; one carries a curved, black-handled knife.
 > Fragments: 4 found
 > Tomorrow: **the old charcoal camp, two hours east**
@@ -478,6 +499,7 @@
 - **Changed from the current script:** the second roll is a Talk; Tamsin is named here; the boy gives the pull its clock; the fragment is found by the player's own hand. Two small new details: Tamsin is nine and was counting as she was carried out (she hums a counting song at the rescue); a dog still barking where the lookout ran through.
 - **Garrick:** present, no lines. The elder's line is the existing one, word for word.
 - **Fragment text (unchanged):** "Born when the dark has eaten the moon, marked before the first cry's through."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Two additions decided by Fake Guru: the leaving time before the Pull ("It is long past noon when Fenmark lets you go"), which makes the party reach the camp after dark, as Day 5 has it; and the summary card's worked example figures are now placeholders like the other days' cards (the game already fills "You earned" and hides "You can now afford").
 
 ---
 
@@ -486,9 +508,9 @@
 *Heading: **East, to the charcoal camp.***
 *Question: who has seen the curved knife, and what happened that time?*
 
-> The camp is an old one: burning-pits long cold, a trade that left years ago. But the path in is worn too clean for that to be all of it.
+> The camp is an old one: burning-pits long cold, a trade that left years ago. The earth is black to a spade's depth. When the wind stirs it, the whole clearing smells of a fire that went out before you were born. But the path in is worn too clean for that to be all of it.
 >
-> At the edge of the clearing is a shed. You get there after dark. Nobody answers.
+> You reach it after dark. At the edge of the clearing stands a shed, with no light in it. You knock. Nobody answers.
 
 `[LOOK AT THE STEP]` `[LOOK AT THE FIRE]` `[LOOK AT THE PATH]`
 
@@ -496,7 +518,7 @@
 > Swept this morning. Somebody lives here, and is proud enough to sweep.
 
 *The fire:*
-> Cold on top. Warm underneath, when you push a hand in. Banked, not dead. Somebody means to come back to it.
+> Cold on top. Warm underneath, when you push a hand into the ash. Banked, not dead. Somebody means to come back to it.
 
 *The path:*
 > Two sets of prints on it, both fresh. A woman's, going out. And over them a man's, coming in, at a run.
@@ -511,7 +533,7 @@
 > **Craft** · The shutters bar from the inside and the outside both. *She built this to be watched from.*
 > **Aim** · There is a gap in the trees that frames the whole clearing. *You are being looked at through it now.*
 
-> Something moves behind the shed.
+> Something moves behind the shed. You hear a blade being worked into wood, and then a breath, held too late.
 
 **Fight card**
 > **THE RUNNER FROM FENMARK**
@@ -523,14 +545,14 @@
 *Win or lose:*
 > The same silence. The same way of leaving: the first gap, and gone, north through the trees this time.
 >
-> Mei has a hand on Dev's arm, to stop Dev following into the dark.
+> Mei has a hand on Dev's arm, to stop Dev following into the dark. Dev does not shake it off.
 
 *If the player won, one line more:*
 > He has left his knife behind, stuck in the shutter where he was working it. A plain kitchen knife. There is nothing curved about it.
 
 > A twig goes.
 >
-> She is at the edge of your firelight, and she has been there for some time. A woman with a woodcutter's axe held low and ready, and her eyes going from face to face.
+> She is at the edge of the trees, where the starlight gives out, and she has been there for some time. A woman with a woodcutter's axe held low and ready, and her eyes going from face to face.
 >
 > *"Which of you carries the curved knife?"*
 
@@ -544,11 +566,11 @@
 
 > She takes the little horse in both hands. She has to sit.
 >
-> Garrick builds the fire up without being asked, and puts a cup into her hands. She holds it as if it were the first warm thing she has touched in a month.
+> Garrick builds the fire up without being asked. He coaxes the banked coals until they catch, and the clearing jumps into orange light. Then he puts a cup into her hands. She holds it as if it were the first warm thing she has touched in a month.
 >
 > *"That's my sister's boy's,"* she says. *"I carved it."*
 
-> It comes out fast and low.
+> For a while there is only the fire. Then it comes, all of it, two winters' worth.
 >
 > *"Curved. Black-handled. I know it. Same man took him two winters back. Same time of year. Same stretch of country. Nobody ever found him."*
 >
@@ -566,15 +588,15 @@
 >
 > And it is the same time of year.
 
-> She says a thing twice while she talks, hardly hearing herself: *"The power that gives is also the power that takes."* She cannot say where she first heard it. Her eyes go, when she says it, to the old dead tree behind the shed, hollow at the foot.
+> The fire ticks and settles. She says a thing twice while she talks, hardly hearing herself: *"The power that gives is also the power that takes."* She cannot say where she first heard it. Her eyes go, when she says it, to the old dead tree behind the shed, hollow at the foot.
 
 `[REACH INTO THE HOLLOW]`
 
-> Wrapped in something long since rotted to threads. Still cold.
+> Wrapped in something long since rotted to threads. They give way under your fingers with a dry whisper, and what is inside is still cold.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> At first light she walks you to the edge of the camp, and stands on the old charcoal road, and points.
+> Nobody sleeps much. At first light she walks you to the edge of the camp, and stands on the old charcoal road, grey with frost and ash, and points.
 >
 > **North. The same man, the same country, the same season. If it comes round like a calendar, the time is now.**
 
@@ -592,6 +614,7 @@
 - **Changed from the current script:** the wait is replaced by a search; the runner's fight (new fact 26) pays off Day 4's pull; the axe is answered with a Talk, not a roll; the horse is recognised (new fact 21); the party works out that Meira's note is the earlier child (new fact 4); "north" is inside the chapter.
 - **The woman's lines:** her three approved lines are kept word for word. Two short new lines are hers: *"That's my sister's boy's. I carved it."* and *"Where was it?"* She is not Garrick; they are new all the same, and flagged here.
 - **Fragment text (unchanged):** "The power that gives is also the power that takes."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged.
 
 ---
 
@@ -600,13 +623,13 @@
 *Heading: **North, to the ford.***
 *Question: where did they take her?*
 
-> By midday the old charcoal road comes down to a river. It is shallow enough to wade. A worn stone stands at the edge to show the safe line across.
+> By midday the old charcoal road comes down to a river. It is shallow enough to wade, but brown and fast and full of the hills' rain. It talks to itself over the stones. A worn stone stands at the edge to show the safe line across.
 >
 > The near bank is churned to mud. A cart went over: its ruts come out on the far side and go on.
 >
 > One set of prints does not. Small ones. They come down to the water's edge and stop.
 >
-> The river is rising. The edge of the mud is going as you watch.
+> The river is rising. The edge of the mud is going as you watch, crumb by crumb.
 
 **What you notice**
 > **Might** · The cart sat low coming down the bank. *It rides high on the far side.*
@@ -640,6 +663,8 @@
 > REWARD: +200g, and one more detail
 
 *On a passed press:*
+> The cold takes you at the knees, then at the waist. The current leans its whole weight on you.
+>
 > Mid-stream, on the upstream side of the ford-stone, a scrape of fresh paint on the rock at the height of a gunwale.
 >
 > There was a boat.
@@ -662,7 +687,7 @@
 
 `[LAY THEM OUT]`
 
-> You set them side by side on a flat rock.
+> You set them side by side on a flat rock, still warm from the noon sun. The river is loud beside you.
 >
 > They move.
 >
@@ -672,27 +697,27 @@
 >
 > It runs across the ford and on. And the place it ends is marked with a shape.
 >
-> Mei puts the burned rubbing down beside it.
+> Mei puts the burned rubbing down beside it, and squares its edge to the map's with one finger.
 >
 > The same shape.
 
-> The trail you have lost and the map you are holding point the same way.
+> For a long moment nobody touches either of them. The trail you have lost and the map you are holding point the same way.
 
-> That night you stop at a roadside inn. Garrick orders for the table. When the cups come he pours one more than there are of you, and sets it at the empty place.
+> That night you stop at a roadside inn, a smoky, crowded place of drovers and dogs. A ham hangs in the chimney. Garrick orders for the table. When the cups come he pours one more than there are of you, and sets it at the empty place.
 
 `[ASK WHO IT IS FOR]`
 
 > *"Family habit. We always pour one for whoever can't be with us."*
 
-> Over supper the way has to be got by heart, and there is only one way to do that.
+> Over supper the way has to be got by heart, and there is only one way to do that. There is one map, and there are [N] of you.
 
 `[READ IT OUT]` `[LET DEV READ IT]`
 
-> It is read out, twice, slowly, so that everybody has it.
+> It is read out, twice, slowly, so that everybody has it. The room is loud enough that you all lean in close to hear.
 >
 > Across the room a courier who came in for a bed settles his bill without taking one. He is gone within the hour.
 
-> **Cross at first light. You will be there by morning. Whatever is at the place the map marks, the season for it is now.**
+> **Cross at first light. You will be there by nightfall. Whatever is at the place the map marks, the season for it is now.**
 
 **Day summary card**
 > **THE FORD** · Day 6
@@ -712,6 +737,7 @@
 - **Garrick:** one existing line, behind a button, as the script already allows ("if anyone asks").
 - **Length:** this is the longest day of the week. If the timed play runs over, the inn supper is the place to trim.
 - **Fragment text (unchanged):** "The key that locks is also the key that unlocks."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. The Pull now says "You will be there by nightfall" (was "by morning"), decided by Fake Guru so it fits the Gathering's evening arrival.
 
 ---
 
@@ -727,6 +753,8 @@
 >
 > There is torchlight just inside. There should not be.
 >
+> While you watch, it moves from one side of the mouth to the other, unhurried, and stops.
+>
 > Garrick knows a way in. He has known it since he was a boy, he says.
 
 ### The Approach
@@ -737,7 +765,7 @@
 
 *Every friend taps one. The majority decides, in thirty seconds.*
 
-> Either way the last stretch is the same: a gallery floored with timbers nobody has trusted in fifty years.
+> Either way the last stretch is the same: a gallery floored with timbers nobody has trusted in fifty years. Far beneath them, in the dark, is the river.
 
 **Challenge card** *(one volunteer; the Attribute follows the vote)*
 > **THE ROTTEN GALLERY**
@@ -755,7 +783,7 @@
 
 ### The Battle
 
-> [N] of them, between you and a small shape on the floor at the back of the gallery.
+> [N] of them, between you and a small shape on the floor at the back of the gallery. Not one of them says a word.
 
 > **This is a Battle. All of you fight at once, and it ends when the last enemy falls.** *(first Gathering only; one line, in the party chat)*
 
@@ -768,7 +796,15 @@
 
 > It is over.
 >
-> She is at the back of the gallery with her wrists tied, and she is humming. A counting song, very quietly, the way you hum to keep from crying. She does not stop when the ropes come off. She hums it all the way out into the air.
+> A dropped torch rolls a little way on the boards and stops. Then there is no sound in the mine but the river.
+>
+> She is at the back of the gallery with her wrists tied, and she is humming. A counting song, very quietly, the way you hum to keep from crying.
+>
+> Whoever reaches her first kneels slowly, so as not to loom over her. The knots are small and hard. Whoever tied them has tied a great many. They take a long time, and all that time she does not look away from your hands.
+>
+> She does not stop when the ropes come off. She hums it all the way out into the air.
+>
+> Outside, after the mine, the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.
 >
 > You have been saying her name for three days. Now you can see her. Tamsin is about nine.
 >
@@ -784,7 +820,7 @@
 > **Charm** · She has stopped humming only once: when the lamp swung toward the end of the tunnel, and what lies there.
 > **Craft** · Half the pit-props are new timber. Somebody has been keeping this place standing.
 > **Aim** · Through the mine mouth, on the far bank: a horse, tied, saddled.
-> **From the floor** · From down here you can see daylight between the gallery's floorboards, and it is not daylight: it is the river, a long way below.
+> **From the floor** · From down here you can see light between the gallery's floorboards, and it is not torchlight: it is the river, a long way below, catching the torches.
 
 > Look closer, if you like. It is a roll, and a miss costs nothing. *(first time only)*
 
@@ -805,7 +841,7 @@
 
 > The way on is back across the gallery. Dev is three steps ahead of you when the floor gives.
 >
-> There is no warning. A timber that has waited fifty years goes all at once, and Dev drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below Dev's boots there is nothing but the sound of the river, a long way down in the dark.
+> There is no warning. A timber that has waited fifty years goes all at once. Dev drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below Dev's boots there is nothing but the sound of the river, a long way down in the dark.
 >
 > Nobody can walk out there. The boards that are holding Dev will not hold a second pair of feet.
 >
@@ -818,7 +854,7 @@
 *Dev is the friend who fell in the Battle; if nobody fell, the friend who finished it with the least HP.*
 
 *Alone:*
-> It is you. You are jammed to the chest over the dark, and nobody is coming. You get an elbow onto sounder wood, a hand's breadth at a time.
+> It is you. You are jammed to the chest over the dark, and nobody is coming. Splinters bite your palms. The river's cold breath comes up past your legs. You get an elbow onto sounder wood, a hand's breadth at a time.
 
 **The two things:** The Drop 100 · Dev HP 100
 
@@ -827,11 +863,13 @@
 **How it ends**
 
 **The Drop reaches 0**
-> You go round by the wall after that, one at a time, where the stone carries the boards.
+> Dev comes up out of the hole all at once, and you all go down together on the stone, gasping. You go round by the wall after that, one at a time, where the stone carries the boards.
 >
 > Behind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door. Cold air breathes round its edges from a room beyond. It takes all of you, and it goes up in one heave. The room beyond has not been walked in: the dust lies as it fell.
 
 **Dev's HP reaches 0**
+> The last board goes, and Dev goes with it. The dark takes the sound.
+>
 > You find Dev where the river brings out what the mine drops: at the drowned mouth, grey, coughing, wrapped round a pit-prop, alive.
 >
 > It is an hour before all of you are together again, and another before the hole is bridged with what timber is left.
@@ -842,6 +880,8 @@
 
 ### The discovery
 
+> The room is small, square, and cut by hands a very long time ago. It is dry: the first dry air since the river. Your torches burn straight up in it. Nothing drips. The river, which has been in your ears all night, cannot be heard in here at all.
+>
 > The map ended at a mark. Here is the mark.
 >
 > It is cut into the chamber wall at the height of your chest: the shape from Meira's rubbing, the shape at the end of the map. The burned scrap, held up to it, fits, as you knew it would.
@@ -859,6 +899,8 @@
 > Under the empty place, scratched into the stone itself: **four names.**
 >
 > None of them is yours. The first is Tamsin's.
+>
+> The scratches are rough and uneven, made with a knife point and no care. Somebody bends close with a torch and reads them through once, in silence. Nobody reads them aloud.
 
 ### The turn
 
@@ -877,8 +919,16 @@
 
 > **This was never about you.**
 
+*Then, alone on the screen:*
+
+> Then why were your names on that list?
+>
+> The wall does not say.
+
 ### The Cliffhanger
 
+> The chamber is very still.
+>
 > In the lamplight, Garrick counts the names twice, silent.
 >
 > *"Three more,"* he says finally.
@@ -904,6 +954,7 @@
 - **Garrick:** one line, existing. The "known it since he was a boy" sentence is the existing reported speech.
 - **A friend who fell** still gets a notice line: the "from the floor" one, which is true and worth telling the others. What they lose is `[LOOK CLOSER]`. That is the whole cost of losing: a different view, and one roll fewer.
 - **The wait at the table question** is ninety seconds with one nudge at sixty (it was two minutes). This is the first live night and one easy question; dead air costs more here than it buys. Boards keep two minutes.
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. One new beat after "This was never about you.", alone on the screen after a pause: "Then why were your names on that list? / The wall does not say." Gathering 2 answers it. The "From the floor" notice line now says the light between the boards is the river catching the torches.
 
 **Layer(s):** Layer A (scale of the crime)'s rung, delivered as physical, undeniable proof — the same rung as Day 2's verbal claim, now upgraded from told to shown. Layer C (the party's own nature) reinforced (the physical fit, felt). Layer E (antagonist identity) advances silently, underneath the Cliffhanger.
 
