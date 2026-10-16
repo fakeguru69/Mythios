@@ -23,7 +23,7 @@ const isVerseStep = (text: string) => {
 
 // Documents the party holds after their Gathering: each is one step, known by its opening.
 const DOCUMENTS: { title: string; section: string; opens: string }[] = [
-  { title: 'The torn page', section: 'The torn page', opens: "*[The Order's own hand]*" },
+  { title: 'The torn page', section: 'The torn page', opens: '*From the Second Book of the Order of the Dark Moon. Even in the old telling' },
   { title: 'The Watch', section: 'The Watch', opens: '*From the Third Book of the Order of the Dark Moon — The Watch.*' },
   { title: 'The untorn page', section: 'The second twist', opens: '**[The older hand, untorn]**' },
 ];
