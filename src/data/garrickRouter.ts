@@ -150,6 +150,12 @@ export const ABUSE_TURN_ASIDES = [
 // Rotation tracker per session
 const lastUsedByCategory: Record<string, string[]> = {};
 
+/** The online server's chat is many sessions: it hands the router this party's recent lines by question type first. */
+export function primeGarrickRotation(history: Record<string, string[]>): void {
+  for (const k of Object.keys(lastUsedByCategory)) delete lastUsedByCategory[k];
+  Object.assign(lastUsedByCategory, history);
+}
+
 function pickRotated(
   category: string,
   items: { line: string; meaning: string; minEp?: number; minDay?: number }[],

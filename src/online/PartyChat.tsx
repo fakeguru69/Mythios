@@ -1,6 +1,8 @@
 // The party chat (Core Rules §1, §12a): the friends' own talk and the party's notices, live.
 // It opens only when the party assembles and Garrick joins, on Day 2 (Fake Guru, 16 Oct); the server enforces it.
 // Press and hold a friend's message to report it (review-accounts-and-invites.md §5).
+// Garrick replies when spoken to: a message that names him goes through the server function "garrick", which posts it
+// and his answer (stored lines first; the AI only for small talk). His lines carry speaker 'garrick' and no author.
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase, plainError, type MemberRow } from './supabaseClient';
 import { card, ErrorLine, heading, input, note, quietButton } from './ui';
@@ -9,6 +11,7 @@ interface Message {
   id: number;
   author_id: string | null;
   kind: 'chat' | 'notice';
+  speaker?: 'garrick' | null;
   body: string;
   created_at: string;
 }
@@ -25,11 +28,22 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
   const endRef = useRef<HTMLDivElement | null>(null);
 
   const nameOf = (id: string | null) => members.find((m) => m.user_id === id)?.character_name ?? '…';
+  // Canon's line on first opening the party chat (Core Rules §7), shown once on this phone.
+  const helloKey = `mythios_chat_hello_${partyId}_${userId}`;
+  const [hello] = useState(() => {
+    try {
+      const seen = window.localStorage.getItem(helloKey);
+      window.localStorage.setItem(helloKey, '1');
+      return !seen;
+    } catch {
+      return false;
+    }
+  });
 
   const load = useCallback(async () => {
     const { data } = await supabase
       .from('party_messages')
-      .select('id,author_id,kind,body,created_at')
+      .select('id,author_id,kind,speaker,body,created_at')
       .eq('party_id', partyId)
       .order('created_at', { ascending: true })
       .limit(200);
@@ -58,6 +72,23 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
     const body = text.trim();
     if (!body) return;
     setError(null);
+    if (/\bgarrick\b/i.test(body)) {
+      // Spoken to Garrick: the server posts the message, then his reply.
+      const { error: e } = await supabase.functions.invoke('garrick', { body: { party: partyId, text: body } });
+      if (e) {
+        let message = e.message;
+        try {
+          message = (await (e as { context?: Response }).context?.json())?.message ?? message;
+        } catch {
+          /* keep the first message */
+        }
+        setError(plainError(message));
+      } else {
+        setText('');
+        load();
+      }
+      return;
+    }
     const { error: e } = await supabase.rpc('post_message', { p_party: partyId, p_body: body });
     if (e) setError(plainError(e.message));
     else {
@@ -67,7 +98,7 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
   };
 
   const startHold = (m: Message) => {
-    if (m.kind !== 'chat' || m.author_id === userId) return;
+    if (m.kind !== 'chat' || m.author_id === userId || m.speaker === 'garrick') return;
     holdTimer.current = window.setTimeout(() => {
       setReporting(m);
       setReportNote('');
@@ -84,8 +115,14 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
     <div className={card}>
       <h3 className={`${heading} text-[15px]`}>Party chat</h3>
       <div className="max-h-[360px] overflow-y-auto space-y-1.5 pr-1">
+        {hello && <p className={`${note} italic text-center`}>Everyone is here now, and so is Garrick. Ask him anything.</p>}
         {messages.map((m) =>
-          m.kind === 'notice' ? (
+          m.speaker === 'garrick' ? (
+            <div key={m.id} className="rounded-lg px-3 py-1.5 text-[15px] bg-[#2A2013] border border-[#D4B876]/40 mr-8">
+              <span className="text-[12px] text-[#D4B876] font-semibold font-['Cinzel']">Garrick</span>
+              <div className="whitespace-pre-wrap break-words">{m.body}</div>
+            </div>
+          ) : m.kind === 'notice' ? (
             <p key={m.id} className={`${note} italic text-center`}>
               {m.body}
             </p>
@@ -97,7 +134,7 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
               onPointerUp={endHold}
               onPointerLeave={endHold}
               onContextMenu={(e) => {
-                if (m.author_id !== userId) {
+                if (m.author_id !== userId && m.speaker !== 'garrick') {
                   e.preventDefault();
                   setReporting(m);
                   setReportNote('');

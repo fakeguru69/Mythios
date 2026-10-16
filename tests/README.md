@@ -86,3 +86,5 @@ node tests/online/gathering.cjs local "Gathering Test"
 ```
 
 The live chat (websocket) is not served locally; the chat still loads each time it opens.
+
+Garrick's server function runs locally too: `npx tsx tests/online/local-garrick.ts &` (port 54322; the stand-in forwards `/functions/v1/garrick` to it). Set `GEMINI_API_KEY` to try the AI small talk; without it he answers from stored lines.

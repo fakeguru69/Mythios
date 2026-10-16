@@ -145,6 +145,8 @@ export const plainError = (message: string | undefined): string => {
   if (m.includes('no gathering tonight')) return 'There is no Gathering tonight.';
   if (m.includes('an answer is 1 to 140')) return 'An answer is 1 to 140 characters.';
   if (m.includes('not yet')) return 'Not yet.';
+  if (m.includes('the party chat is not open yet')) return 'The party chat opens on Day 2.';
+  if (m.includes('a message is 1 to 500')) return 'A message is 1 to 500 characters.';
   if (m.includes('failed to fetch') || m.includes('network')) return 'No connection to the server. Try again.';
   return 'Something went wrong. Try again.';
 };
