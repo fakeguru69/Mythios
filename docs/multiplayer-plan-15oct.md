@@ -127,4 +127,8 @@ Test 3 needs no code. It could start this week and tell us the most.
   - Press and hold a friend's message, then [REPORT], "Tell us what's wrong." and [SEND]. Reports go to the makers only.
   - Tested with two test accounts against the server.
   - Not yet: Garrick in the chat, the first-time line "Everyone is here now, and so is Garrick. Ask him anything." (it waits for Garrick), the day result lines and fragment news (they come with the days).
+- **16 Oct (Fake Guru's requests):**
+  - **The host picks the start day**, for example next Monday (`0009`). Day 1 opens at 5:00am that day on the party's clock, and the day can be changed until then. The waiting room shows the day; on the last night it shows canon's "Day 1 opens at 5:00am. Sleep, if you can."
+  - **Install to the home screen:** an icon, a manifest and a service worker (`pwa/`), and a guide with steps for iPhone and Android (`InstallGuide.tsx`). Notifications are added to the guide when push is built (step 6).
+  - **Google and Apple sign-in buttons** show by themselves once each is switched on in the Supabase dashboard. Those players are asked canon's "What should your friends call you?" once (`0010`). Email and password sign-in stays.
 - **Earlier note on chat lines:** the party chat lines for leaving and a new host ("Dev has left the road.", "Mei now leads the party.") come with the party chat (step 4). Session Zero, the party clock and [READY] come next in step 1. Friends can use it only once the app is on the web (a hosting choice for Fake Guru).

@@ -11,6 +11,18 @@ const SUPABASE_PUBLISHABLE_KEY =
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
+// Which sign-ins the server has switched on (Google, Apple). A button shows only once its sign-in is set up
+// in the Supabase dashboard, so nothing half-ready reaches a player.
+export const enabledSignIns = async (): Promise<{ google: boolean; apple: boolean }> => {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/auth/v1/settings`, { headers: { apikey: SUPABASE_PUBLISHABLE_KEY } });
+    const data = await res.json();
+    return { google: !!data?.external?.google, apple: !!data?.external?.apple };
+  } catch {
+    return { google: false, apple: false };
+  }
+};
+
 // Name lengths (Core Rules §12a): a player's name is 1 to 12 characters; a party's name is 1 to 20.
 export const MAX_PLAYER_NAME = 12;
 export const MAX_PARTY_NAME = 20;

@@ -7,6 +7,7 @@ import {
   supabase,
   plainError,
   allTimeZones,
+  enabledSignIns,
   homeTimeZone,
   timeZoneLabel,
   dayOneWord,
@@ -121,6 +122,16 @@ function SignIn() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
+  const [providers, setProviders] = useState({ google: false, apple: false });
+  useEffect(() => {
+    enabledSignIns().then(setProviders);
+  }, []);
+  // Google and Apple (review-accounts-and-invites.md §1 Screen 2). The page comes back here, invite link and all.
+  const oauth = async (provider: 'google' | 'apple') => {
+    setError(null);
+    const { error: e } = await supabase.auth.signInWithOAuth({ provider, options: { redirectTo: window.location.href } });
+    if (e) setError(plainError(e.message));
+  };
 
   const submit = async () => {
     setBusy(true);
@@ -156,6 +167,16 @@ function SignIn() {
   return (
     <div className={card}>
       <h2 className={`${heading} text-[17px]`}>First, so the story knows you.</h2>
+      {!open && providers.google && (
+        <button className={goldButton} onClick={() => oauth('google')}>
+          CONTINUE WITH GOOGLE
+        </button>
+      )}
+      {!open && providers.apple && (
+        <button className={goldButton} onClick={() => oauth('apple')}>
+          CONTINUE WITH APPLE
+        </button>
+      )}
       {!open ? (
         <button className={goldButton} onClick={() => setOpen(true)}>
           USE EMAIL AND A PASSWORD
@@ -686,6 +707,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
 function Home({ session }: { session: Session }) {
   const userId = session.user.id;
   const [accountName, setAccountName] = useState('');
+  const [nameChosen, setNameChosen] = useState(true);
   const [rows, setRows] = useState<(MemberRow & { parties: { name: string } | null })[]>([]);
   const [view, setView] = useState<'list' | 'start' | 'invite'>('list');
   const [openParty, setOpenParty] = useState<string | null>(null);
@@ -696,7 +718,7 @@ function Home({ session }: { session: Session }) {
 
   const load = useCallback(async () => {
     const [{ data: prof }, { data: mine }] = await Promise.all([
-      supabase.from('profiles').select('display_name').eq('id', userId).maybeSingle(),
+      supabase.from('profiles').select('display_name,name_chosen').eq('id', userId).maybeSingle(),
       supabase
         .from('party_members')
         .select(`${MEMBER_COLUMNS},parties(name)`)
@@ -704,6 +726,7 @@ function Home({ session }: { session: Session }) {
         .in('status', ['approved', 'pending', 'turned_away']),
     ]);
     setAccountName(prof?.display_name ?? '');
+    setNameChosen(prof?.name_chosen ?? true);
     const list = (mine as unknown as (MemberRow & { parties: { name: string } | null })[]) ?? [];
     // A party not yet joined cannot be read; its name comes from my_party_summary.
     for (const r of list) {
@@ -718,6 +741,27 @@ function Home({ session }: { session: Session }) {
   useEffect(() => {
     load();
   }, [load]);
+
+  // Google and Apple sign-ins are asked the name question once (review §1 Screen 3).
+  if (!nameChosen) {
+    return (
+      <div className={card}>
+        <label className="block text-[15px] font-semibold">What should your friends call you?</label>
+        <p className={`${note} italic`}>This is the name they will see. It can be changed later.</p>
+        <input className={input} maxLength={MAX_PLAYER_NAME} value={accountName} onChange={(e) => setAccountName(e.target.value)} />
+        <button
+          className={goldButton}
+          disabled={!accountName.trim()}
+          onClick={async () => {
+            await supabase.from('profiles').update({ display_name: accountName.trim(), name_chosen: true }).eq('id', userId);
+            load();
+          }}
+        >
+          GO ON
+        </button>
+      </div>
+    );
+  }
 
   if (openParty) {
     return (
