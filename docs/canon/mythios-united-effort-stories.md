@@ -515,12 +515,12 @@ Damage = 10 + Roll 6. His Breath 100 → 84
 **The Roll-Call reaches 0**
 > There is time, now.
 >
-> Kneel close enough and you can hear it. He's praying — the words of a page he must have said every night of his life.
+> You kneel beside him in the street. His eyes have not left the hall, and his lips have not stopped moving. Now it is quiet enough to hear the words.
 
 *He says the Verse through to its end, in his own voice, as written.*
 
 **Their Trust reaches 0**
-> There is no time. The page comes gently out of his fist, and you are inside the wall before the first lantern reaches the gate.
+> There is no time. His eyes are still on the hall, but they no longer see it. The page comes gently out of his fist, and you are inside the wall before the first lantern reaches the gate.
 
 *The Verse is read from the page, in the hidden room. There is no time to Look Closer. And the hill is awake a day early: **Week 6 Day 1's Challenge is two harder.***
 

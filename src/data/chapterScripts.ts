@@ -3385,7 +3385,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Back on the shingle, beside the place her skiff was lying, there are keel-marks that are not hers. Fresh ones, pressed deep into the wet stones, and the tide of the lake has not yet smoothed them.\n\nUp the lane, the lamp burns on in her window, small and steady in the afternoon.\n\n**Someone has been rowing out to the drowned village by night. Old Reedham, at the shallow end, tomorrow.**",
+        "text": "Back on the shingle, beside the place her skiff was lying, there are keel-marks that are not hers. Fresh ones, pressed deep into the wet stones, and the lapping of the lake has not yet smoothed them.\n\nUp the lane, the lamp burns on in her window, small and steady in the afternoon.\n\n**Someone has been rowing out to the drowned village by night. Old Reedham, at the shallow end, tomorrow.**",
         "pull": true
       },
       {
@@ -3815,11 +3815,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "A third beat. Then a fourth. You feel each one in your teeth and the soles of your feet more than you hear it: slow as a sleeper's heart, from somewhere far to the north.\n\nThe dawn never finishes. The morning stays grey and thin, as if the sun had been pushed a long way off, and along the whole shore of the Stillwater the birds have stopped singing."
+        "text": "A third beat. Then a fourth. You feel each one in your teeth and the soles of your feet more than you hear it: slow as a sleeper's heart, from somewhere far to the north.\n\nThe dawn never finishes. The morning stays grey and thin, as if the sun had been pushed a long way off, and along the whole shore of the Stillwater the birds have stopped singing. Under that light the lake has gone the colour of old pewter."
       },
       {
         "t": "say",
-        "text": "You row Joss home. He sits in the bow with his bandaged hand in his lap, and the little boat in the other.\n\nHis grandmother is already down on the shingle, in the strange light, with her hands over her mouth. She gets him out of the boat by herself.\n\nShe does not put him down. She carries him up the shingle the way she must have carried him when he was two, with his feet knocking against her knees, and he lets her.\n\nAt the top of the lane he twists round in her arms and holds the little boat up over her shoulder, high, so that all of you can see he still has it."
+        "text": "You row Joss home. He sits in the bow with his bandaged hand in his lap, and the little boat in the other.\n\nHis grandmother is already down on the shingle, in the strange light, with her hands over her mouth. Garrick holds the bow steady against the stones. She gets him out of the boat by herself.\n\nShe does not put him down. She carries him up the shingle the way she must have carried him when he was two, with his feet knocking against her knees, and he lets her.\n\nAt the top of the lane he twists round in her arms and holds the little boat up over her shoulder, high, so that all of you can see he still has it."
       },
       {
         "t": "notice",
@@ -3856,11 +3856,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The torn page is still in your hand: *what the four begin, the fifth shall end—*\n\nMeira never found a fifth place. Every record she had said four."
+        "text": "You have had the torn page out so often since the undercroft that its fold has gone soft. Its last line has not changed: *what the four begin, the fifth shall end—*\n\nMeira never found a fifth place. Every record she had said four."
       },
       {
         "t": "say",
-        "text": "At the head of the north road out of Reedham stands a waystone older than the village, its carving worn to nothing."
+        "text": "In the afternoon you walk up through the village to where the north road leaves it. At its head stands a waystone older than Reedham, grey with lichen, its carving worn to nothing."
       },
       {
         "t": "challenge",
@@ -3869,7 +3869,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "options": [
           {
             "attr": "Craft",
-            "verb": "charcoal and a sheet from Meira's notebook: take a rubbing, as you did on the forest road"
+            "verb": "charcoal and a sheet from Meira's notebook: take a rubbing, like the one you found on the forest road"
           },
           {
             "attr": "Intellect",
@@ -3889,7 +3889,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Nothing comes up that you can read. The stone keeps its word, and you will have to be told it. Only this: under the worn part there was a second line, and it did not wear away. Somebody cut it out, stroke by stroke, with a patient knife.",
+        "text": "Nothing comes up that you can read. The stone keeps its word, and you will have to hear it from someone else. Only this much is plain: under the worn part there was a second line, and it did not wear away. Somebody cut it out, stroke by stroke, with a patient knife.",
         "cond": {
           "on": "challenge",
           "pass": false
@@ -3917,12 +3917,12 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "**A locked Seeker Fragment has been added to your Chest.**",
+        "text": "The frost crackles under your fingers, and the cold goes straight through to the bones of your hand.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
       },
       {
         "t": "say",
-        "text": "At dusk the heartbeat comes again. It is louder than it was at dawn.\n\n**What is left in a city where nothing grows and nobody goes? The old kingdom's road: two days north.**",
+        "text": "You stay that night in Reedham. Up the lane, the lamp burns on in her window.\n\nAt dusk the heartbeat comes again, up through the floorboards and into the legs of your chair. It is louder than it was at dawn.\n\n**What is left in a city where nothing grows and nobody goes? The old kingdom's road: two days north.**",
         "pull": true
       },
       {
@@ -3947,7 +3947,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The road was built to carry armies. It still runs straight as a spear across the empty country, but grass has grown up through its stones, and nobody has mended it in longer than anyone can say.\n\nEvery mile has its stone, and every stone a number, one less than the last."
+        "text": "You leave Reedham in the grey morning, and by noon the lake is gone behind you.\n\nThe road was built to carry armies. It still runs straight as a spear across the empty country, but grass has grown up through its stones, and nobody has mended it in longer than anyone can say. Larks should be up over country like this. None are.\n\nEvery mile has its stone, and every stone a number, one less than the last."
       },
       {
         "t": "say",
@@ -3971,7 +3971,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Every mound is the same length. A man's length.\n\nThey are graves. Hundreds, dug in straight rows, the way soldiers bury soldiers: the ones who fell in the war, before the last wall.\n\nAmong them, one is new. The turf was cut this week and laid back badly, by people with no time to do better."
+        "text": "Every mound is the same length. A man's length.\n\nThey are graves. Hundreds, dug in straight rows, the way soldiers bury soldiers: the ones who fell in the war, before the last night on the wall.\n\nAmong them, one is new. The turf was cut this week and laid back badly, by people with no time to do better."
       },
       {
         "t": "notice",
@@ -4004,7 +4004,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "At the rows' end, the block's top lifts off like a lid."
+        "text": "At the far end of the rows stands one squared block of stone that is no grave. Its top is a separate slab, fitted like a lid."
       },
       {
         "t": "act",
@@ -4012,7 +4012,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "**A locked Seeker Fragment has been added to your Chest.**",
+        "text": "It comes up with a long grate of stone on stone. The air inside is colder than the evening, and smells of old earth.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
       },
       {
@@ -4076,11 +4076,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "In the morning the family goes south. The child on the tailboard watches you all the way to the bend."
+        "text": "In the morning the family goes south. Before the cart moves off, Garrick puts a heel of bread from his own pack into the child's hand.\n\nThe child on the tailboard watches you all the way to the bend."
       },
       {
         "t": "say",
-        "text": "**It is nearer every dusk, and it is coming from inside the city. Highwall, by noon.**",
+        "text": "**The heartbeat is nearer every dusk, and it is coming from inside the city. Highwall, by noon.**",
         "pull": true
       },
       {
@@ -4104,11 +4104,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "Highwall comes up out of the grey noon all at once: a wall so long that it bends out of sight in both directions, and behind it, rising in terraces, a city of pale stone.\n\nIt is not ruined. The walls are whole. The towers are whole. But nothing grows between the stones, not moss, not the smallest green thing, and there are no birds.\n\nOn its hill at the very top stands a great hall. Its doors are shut."
+        "text": "Highwall comes up out of the grey noon all at once: a wall so long that it bends out of sight in both directions, and behind it, rising in terraces, a city of pale stone.\n\nIt is not ruined. The walls are whole. The towers are whole. But nothing grows between the stones, not moss, not the smallest green thing, and there are no birds. The air has no smell at all: no smoke, no dung, no green.\n\nOn its hill at the very top stands a great hall. Its doors are shut."
       },
       {
         "t": "say",
-        "text": "The road runs straight to a gate. *Their herald rode up to the gate and named the hour of the city's ending — dawn.*\n\nThis is the wall they held that night.\n\nThe gate is shut."
+        "text": "The road runs straight to a gate. You know the words. You heard them read under the mill hill. *Their herald rode up to the gate and named the hour of the city's ending — dawn.*\n\nThis is the wall the Seekers held that night.\n\nThe gate is shut."
       },
       {
         "t": "notice",
@@ -4142,7 +4142,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "challenge",
         "title": "THE WALL",
-        "desc": "The gate will not open. The wall is another matter.",
+        "desc": "The gate will not open. The wall can still be climbed.",
         "options": [
           {
             "attr": "Aim",
@@ -4208,7 +4208,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Its stone face swings inward.\n\n**A locked Seeker Fragment has been added to your Chest.**",
+        "text": "Its stone face swings inward. The cold that comes out to meet your hand is the cold of high places, of wind on a wall in winter.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
       },
       {
@@ -4217,11 +4217,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "And from here you can see what that grey thread is. Smoke. One fire, below the hall."
+        "text": "Far up the hill, above the terraces, a thin grey thread stands in the grey air. From here you can see what it is. Smoke. One fire, below the hall."
       },
       {
         "t": "say",
-        "text": "**Who bars a dead city from the inside, year after year? Down into the streets, following the wall.**",
+        "text": "You spend the night up on the wall-walk, in the lee of the parapet, with the barred gate beneath you and that one thread of smoke going up into the dark.\n\n**Who bars a dead city from the inside, year after year? Down into the streets, following the wall.**",
         "pull": true
       },
       {
@@ -4246,7 +4246,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "Your footsteps are the loudest thing in Highwall. Doors stand open on bare rooms. Wells are dry. The streets inside the wall are whole, and empty, and they climb.\n\nThen, at a crossroads, you come round a corner into a street full of soldiers.\n\nThey stand where they are, mid-stride, in armour so old that it has gone green and black. A dozen of them, strung out up the street, as if a company had been marching to his hall on the night he fell, and simply stopped.\n\nTheir faces are hidden behind their helms. None of them moves."
+        "text": "In the morning you go down off the wall into the city.\n\nYour footsteps are the loudest thing in Highwall. Doors stand open on bare rooms. Wells are dry. The streets inside the wall are whole, and empty, and they climb.\n\nThen, at a crossroads, you come round a corner into a street full of soldiers.\n\nThey stand where they are, mid-stride, in armour so old that it has gone green and black. A dozen of them, strung out up the street, as if a company had been marching to his hall on the night he fell, and simply stopped.\n\nTheir faces are hidden behind their helms. None of them moves."
       },
       {
         "t": "notice",
@@ -4342,7 +4342,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The stone turns on a hidden pin.\n\n**A locked Seeker Fragment has been added to your Chest.**",
+        "text": "The stone turns on a hidden pin. Inside, the cold has kept as well as the carving.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
       },
       {
@@ -4385,7 +4385,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "For a long time he is quiet. Then, looking at the cup:\n\n*\"My family's waited a long time for something. I'd like to live to see it.\"*"
+        "text": "The cup stands full by the shutter. Through the gap in it, nothing moves up the hill. Then, looking at the cup:\n\n*\"My family's waited a long time for something. I'd like to live to see it.\"*"
       },
       {
         "t": "say",
@@ -4413,7 +4413,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The last terrace ends in a square, and the hall fills the sky above it: a great pale building on the city's highest ground, its doors taller than houses, and shut. The heartbeat comes from behind them.\n\nAnd in the shell of a house across the square, a fire is burning."
+        "text": "By afternoon the streets have climbed as high as they go, and for the first time in Highwall you smell woodsmoke.\n\nThe last terrace ends in a square, and the hall fills the sky above it: a great pale building on the city's highest ground, its doors taller than houses, and shut. The heartbeat comes from behind them.\n\nAnd in the shell of a house across the square, a fire is burning."
       },
       {
         "t": "challenge",
@@ -4499,7 +4499,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "It opens like a hand.\n\n**A locked Seeker Fragment has been added to your Chest.**\n\nPart of it can be read as it is: *…where we could watch it, and watch him.*",
+        "text": "It opens like a hand. The basin has been dry for centuries, and still what lies inside is as cold as well water.\n\n**A locked Seeker Fragment has been added to your Chest.**\n\nPart of it can be read as it is: *…where we could watch it, and watch him.*",
         "fragment": true
       },
       {
@@ -4508,7 +4508,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "**Counting down to what? You hold five pieces, and the trail began on the wall. The wall again.**",
+        "text": "You stay in the rubble until full dark, and keep your watches there by turns, with the Order's fire showing red through the gaps all night.\n\n**Counting down to what? You hold five pieces, and the trail began on the wall. The wall again.**",
         "pull": true
       },
       {
@@ -4537,7 +4537,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The herald's gate. The broken stair. Above it, the wall-walk, bare to the sky, and in plain sight of the square for forty paces.\n\nYou have been heard once this season. Not again."
+        "text": "The herald's gate. The broken stair. Above it, the wall-walk, bare to the sky, and in plain sight of the square for forty paces.\n\nYou were heard once already, under the tower at Reedham. Not again.\n\nYou wait out the afternoon in the gate-tower's shadow, and choose who will watch the square."
       },
       {
         "t": "choice",
@@ -4552,7 +4552,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "{F1} goes to the corner of the gate-tower, where {F1} can see the square and you can see {F1}'s hand."
+        "text": "{F1} crouches at the corner of the gate-tower, with the whole square in view, and one hand raised where you can see it."
       },
       {
         "t": "notice",
@@ -4606,7 +4606,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Her hand drops. You cross. Nothing in the square so much as turns.",
+        "text": "The hand drops. You cross, forty paces of open stone, and nothing in the square so much as turns.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -4622,7 +4622,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "In the straight crack in the walkway, just where somebody keeping watch would stand, colder than the stone it lies in:"
+        "text": "Whoever else is with you comes over the same way, one at a time, on the dropped hand. {F1} comes last of all, at a watchman's unhurried walk."
+      },
+      {
+        "t": "say",
+        "text": "In a crack across the walkway, just where somebody keeping watch would stand, colder than the stone it lies in:"
       },
       {
         "t": "act",
