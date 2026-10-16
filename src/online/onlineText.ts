@@ -2,6 +2,32 @@
 // docs/canon/review-accounts-and-invites.md (the screens) and mythios-core-rules.md §7 (Session Zero), §12a.
 // Change the wording in canon first, then here.
 
+// MYTHIOS, the app (Fake Guru, 16 Oct): a teller of serialised stories. A series is one world, told over seasons;
+// you play one character per series, under a name you choose.
+// DRAFT, waiting on Fake Guru: the intro below is the builder's wording, not canon yet.
+export const MYTHIOS_INTRO = {
+  opener: 'At the edge of every map there is a fire, and beside it someone telling a story that has not finished yet.',
+  name: 'Mythios is that teller.',
+  lines: [
+    'Its stories are too long for one night, so it tells them a little each day: a chapter every morning, read wherever you are, and one evening a week when your whole company sits down together.',
+    'Each series is a world of its own, told over seasons. You walk it as someone of your own making, under a name you choose, beside the friends you bring.',
+    'The teller remembers everything. What you do today is still there next week.',
+  ],
+  call: 'Choose a story. Gather your friends. Begin.',
+};
+
+// The series on the shelf. Each has seasons; a party plays one season.
+export const SERIES: { id: string; title: string; premise: string; seasons: number[]; facts: string }[] = [
+  {
+    id: 'dark-moon',
+    title: 'Tales of the Dark Moon',
+    premise: 'In the hill villages, children are going missing, and nobody is looking for them.',
+    seasons: [1],
+    facts: 'Six weeks · two to six friends',
+  },
+];
+export const seriesTitle = (id: string | null | undefined) => SERIES.find((x) => x.id === id)?.title ?? 'Mythios';
+
 export const PREMISE_LINE = 'In the hill villages, children are going missing, and nobody is looking for them.';
 export const TAGLINE = 'A story for you and your friends, told a little each day.';
 // The invite's three lines (review §1 Screen 1). "About ten minutes a day" (Fake Guru, 16 Oct; was "five":
@@ -19,6 +45,9 @@ export const SZ_CHOOSE = 'Choose the one who will walk this road.';
 export const SZ_SECOND = 'Nobody is only one thing. What else are you good at?';
 export const SZ_QUESTIONS = ['Where were you born?', "What was a grandparent's name?"];
 export const SZ_QUESTIONS_NOTE = 'You can skip these. They only make the story a little more yours.';
+// The character's name in this series (Fake Guru, 16 Oct). Builder's wording, waiting on Fake Guru.
+export const SZ_NAME = 'What is your name in this story?';
+export const SZ_NAME_NOTE = 'Your friends will know you by it in every season of this series.';
 export const SZ_DOOR = 'Day 1 opens at 5:00am. Sleep, if you can.';
 
 export type ClassName = 'Warrior' | 'Artificer' | 'Sage' | 'Trickster' | 'Assassin' | 'Archer';

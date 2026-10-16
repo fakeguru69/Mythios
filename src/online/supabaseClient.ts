@@ -39,6 +39,8 @@ export interface PartyRow {
   time_zone: string;
   season_started_at: string | null;
   day1_opens_at: string | null;
+  series_id: string;
+  season_number: number;
 }
 
 export interface MemberRow {
@@ -53,7 +55,7 @@ export interface MemberRow {
   ready: boolean;
 }
 
-export const PARTY_COLUMNS = 'id,name,host_id,invite_code,invite_open,time_zone,season_started_at,day1_opens_at';
+export const PARTY_COLUMNS = 'id,name,host_id,invite_code,invite_open,time_zone,season_started_at,day1_opens_at,series_id,season_number';
 export const MEMBER_COLUMNS = 'party_id,user_id,character_name,status,joined_at,session_zero_done_at,class,second_attr,ready';
 
 // What the invite page may show before joining (server function invite_details).

@@ -15,7 +15,7 @@ export function Shell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[#130B1F] text-[#F4F1F8] font-sans">
       <div className="max-w-[440px] mx-auto px-4 py-6 space-y-4">
-        <h1 className={`${heading} text-[22px] text-center`}>Tales of the Dark Moon</h1>
+        <h1 className={`${heading} text-[24px] text-center tracking-[3px]`}>MYTHIOS</h1>
         {children}
       </div>
     </div>
