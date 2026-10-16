@@ -77,6 +77,7 @@ export default function OnlineDay({
   birthplace,
   grandparent,
   onClose,
+  onOpenChest,
 }: {
   partyId: string;
   friends: string[];
@@ -85,6 +86,7 @@ export default function OnlineDay({
   birthplace: string | null;
   grandparent: string | null;
   onClose: () => void;
+  onOpenChest: () => void;
 }) {
   const [today, setToday] = useState<Today | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -193,6 +195,14 @@ export default function OnlineDay({
     if (step.t === 'say') {
       if (!condMet(step.cond)) continue;
       nodes.push(<NarrationBlock key={key} text={fill(step.text)} pull={step.pull} />);
+      // The day's fragment is in the Chest from the day's opening (Core Rules §6).
+      if (step.fragment) {
+        nodes.push(
+          <button key={`${key}-chest`} className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={onOpenChest}>
+            🕯️ OPEN THE SEEKER CHEST
+          </button>
+        );
+      }
       continue;
     }
     if (step.t === 'act') {

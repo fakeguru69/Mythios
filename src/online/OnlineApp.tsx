@@ -32,6 +32,7 @@ import SessionZero, { type SeriesCharacter } from './SessionZero';
 import PartyChat from './PartyChat';
 import InstallGuide from './InstallGuide';
 import OnlineDay from './OnlineDay';
+import OnlineChest from './OnlineChest';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
 const startQuery = new URLSearchParams(window.location.search);
@@ -377,6 +378,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [editingName, setEditingName] = useState<string | null>(null);
   const [myCharacter, setMyCharacter] = useState<SeriesCharacter | null>(null);
   const [playingDay, setPlayingDay] = useState(false);
+  const [inChest, setInChest] = useState(false);
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -483,6 +485,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       : SZ_DOOR;
   const chatOpen = !!party.day1_opens_at && Date.now() >= new Date(party.day1_opens_at).getTime() + 86400000;
 
+  // The Seeker Chest (from the party page, or from the day's fragment; back goes where you came from).
+  if (inChest) return <OnlineChest partyId={party.id} onClose={() => setInChest(false)} />;
+
   // Today's chapter, from the server (the days online).
   if (playingDay) {
     return (
@@ -497,6 +502,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           setPlayingDay(false);
           load();
         }}
+        onOpenChest={() => setInChest(true)}
       />
     );
   }
@@ -637,6 +643,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           <h3 className={`${heading} text-[15px]`}>Today</h3>
           <button className={goldButton} onClick={() => setPlayingDay(true)}>
             OPEN TODAY'S CHAPTER
+          </button>
+          <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInChest(true)}>
+            🕯️ SEEKER CHEST
           </button>
         </div>
       )}

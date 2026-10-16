@@ -145,5 +145,12 @@ Test 3 needs no code. It could start this week and tell us the most.
   - The screen (`src/online/OnlineDay.tsx`) plays canon's steps with the demo's display pieces: narration, choices, the notice line, the Challenge card, [PRESS ON], fight rounds, the summary card, and the first-Challenge and first-fight lines.
   - Tested in a browser. Day 1: won the fight +300g, Challenge passed +500g, Might 10 → 22. Day 2: Intellect 10 → 19, [PRESS ON] tie failed at DC 10, gold 1,300; the chat opened with both result lines.
   - Fixed while testing: [BEGIN] could show before a returning character had loaded, and Session Zero then ended on an empty screen.
-  - **Not yet online:** the Seeker Chest and fragment words, the Campfire, the Store, Relics, the Record and Bag, the Gathering (Day 7 shows "Tonight: the Gathering."), a late joiner's Day 1, Garrick, and notifications.
+- **16 Oct: the Seeker Chest online** (Fake Guru: "seeker chest"; migrations `0019`–`0020`; `src/online/OnlineChest.tsx`).
+  - The same word-lock as the demo's Chest, but the phone never holds an unsolved word: the server checks each try.
+  - A word pays 25g and shows its solver's name. A friend fills one word per fragment until that fragment's day ends; after that, either.
+  - Five wrong tries bring a two-minute wait. Each word found posts "Mei found a missing word in the Week 1, Day 2 fragment." in the party chat.
+  - After Day 6, unsolved words complete themselves, with no gold and no name.
+  - The Chest opens from the party page and from the day's fragment.
+  - Tested with two players. Not yet: the week's map line (Day 6) and the Fan Out first-letter hint (Fan Out is not online yet).
+  - **Not yet online:** the Campfire, the Store, Relics, the Record and Bag, the Gathering (Day 7 shows "Tonight: the Gathering."), a late joiner's Day 1, Garrick, and notifications.
 - **Earlier note on chat lines:** the party chat lines for leaving and a new host ("Dev has left the road.", "Mei now leads the party.") come with the party chat (step 4). Session Zero, the party clock and [READY] come next in step 1. Friends can use it only once the app is on the web (a hosting choice for Fake Guru).
