@@ -152,6 +152,8 @@ async function startServer() {
     appType: 'spa',
   });
 
+  // The install files (icon, manifest, service worker) live in pwa/; the build copies them to the site root.
+  app.use(express.static(path.join(process.cwd(), 'pwa')));
   app.use(vite.middlewares);
 
   app.listen(PORT, '0.0.0.0', () => {

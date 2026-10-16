@@ -384,23 +384,27 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       supabase.from('party_members').select(MEMBER_COLUMNS).eq('party_id', partyId),
     ]);
     const rows = (m as MemberRow[] | null) ?? [];
-    setParty((p as PartyRow | null) ?? null);
-    setMembers(rows);
+    // Everything is fetched first and shown together, so [BEGIN] never shows before the character has loaded.
+    let character: SeriesCharacter | null = null;
+    let host = '';
     if (p) {
-      setHostName(rows.find((r) => r.user_id === (p as PartyRow).host_id)?.character_name ?? '');
+      host = rows.find((r) => r.user_id === (p as PartyRow).host_id)?.character_name ?? '';
       const { data: c } = await supabase
         .from('characters')
         .select('name,class,second_attr,birthplace,grandparent_name')
         .eq('user_id', userId)
         .eq('series_id', (p as PartyRow).series_id)
         .maybeSingle();
-      setMyCharacter((c as SeriesCharacter | null) ?? null);
-    }
-    else {
+      character = (c as SeriesCharacter | null) ?? null;
+    } else {
       // Before being let in, a friend cannot read the party itself: only its name and its host's.
       const { data: sum } = await supabase.rpc('my_party_summary', { p_party: partyId });
-      setHostName((sum as { host_name: string }[] | null)?.[0]?.host_name ?? '');
+      host = (sum as { host_name: string }[] | null)?.[0]?.host_name ?? '';
     }
+    setMyCharacter(character);
+    setHostName(host);
+    setParty((p as PartyRow | null) ?? null);
+    setMembers(rows);
     setLoaded(true);
   }, [partyId, userId]);
 
@@ -500,6 +504,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   if (doingSessionZero) {
     return (
       <SessionZero
+        key={myCharacter?.class ? 'kept' : 'new'}
         partyId={party.id}
         userId={userId}
         seriesId={party.series_id}

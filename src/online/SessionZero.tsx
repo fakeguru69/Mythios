@@ -225,5 +225,13 @@ export default function SessionZero({
     );
   }
 
-  return null;
+  // Never an empty screen: anything missing goes back to choosing.
+  return (
+    <div className={card}>
+      <p className="text-[15px]">{SZ_CHOOSE}</p>
+      <button className={goldButton} onClick={() => setStep(2)}>
+        GO ON
+      </button>
+    </div>
+  );
 }
