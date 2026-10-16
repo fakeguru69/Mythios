@@ -21,6 +21,7 @@ import {
 } from './supabaseClient';
 import { CREDIT_LINE, INVITE_BULLETS, PREMISE_LINE, SZ_DOOR, TAGLINE } from './onlineText';
 import SessionZero from './SessionZero';
+import PartyChat from './PartyChat';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
 const startQuery = new URLSearchParams(window.location.search);
@@ -371,6 +372,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const readyCount = approved.filter((r) => r.ready).length;
   const choosing = approved.filter((r) => !r.ready).map((r) => r.character_name);
   const setOff = !!party.day1_opens_at && Date.now() >= new Date(party.day1_opens_at).getTime() + 2 * 86400000;
+  // "Day 1 opens at 5:00am. Sleep, if you can." shows only until Day 1 opens.
+  const beforeDayOne = !party.day1_opens_at || Date.now() < new Date(party.day1_opens_at).getTime();
+  const chatOpen = !!party.day1_opens_at && Date.now() >= new Date(party.day1_opens_at).getTime() + 86400000;
 
   if (doingSessionZero) {
     return (
@@ -481,10 +485,13 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         <p className={note}>{party.name}</p>
         {partyList}
         {!isHost && (
-          <p className="text-[15px] pt-1">{started ? SZ_DOOR : `The road opens when ${host} says so.`}</p>
+          <p className="text-[15px] pt-1">{!started ? `The road opens when ${host} says so.` : beforeDayOne ? SZ_DOOR : ''}</p>
         )}
-        {isHost && started && <p className="text-[15px] pt-1">{SZ_DOOR}</p>}
+        {isHost && started && beforeDayOne && <p className="text-[15px] pt-1">{SZ_DOOR}</p>}
       </div>
+
+      {/* The party chat opens when the party assembles on Day 2 (Fake Guru, 16 Oct); the server enforces it. */}
+      {chatOpen && <PartyChat partyId={party.id} userId={userId} members={members} />}
 
       {isHost && !me.session_zero_done_at && (
         <div className={card}>

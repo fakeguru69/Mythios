@@ -4,9 +4,9 @@
 
 export const PREMISE_LINE = 'In the hill villages, children are going missing, and nobody is looking for them.';
 export const TAGLINE = 'A story for you and your friends, told a little each day.';
-// The invite's three lines (review §1 Screen 1). "About five minutes a day" is canon; the day now takes longer
-// (accepted 14 Oct), and the wording is waiting on Fake Guru.
-export const INVITE_BULLETS = ['Six weeks.', 'About five minutes a day, whenever suits you.', 'One evening a week, together.'];
+// The invite's three lines (review §1 Screen 1). "About ten minutes a day" (Fake Guru, 16 Oct; was "five":
+// the day now takes 8 to 12 minutes).
+export const INVITE_BULLETS = ['Six weeks.', 'About ten minutes a day, whenever suits you.', 'One evening a week, together.'];
 export const CREDIT_LINE = 'A fake guru game. The story is told by Mythios AI.';
 
 // Session Zero (Core Rules §7).

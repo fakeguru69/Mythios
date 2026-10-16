@@ -120,4 +120,11 @@ Test 3 needs no code. It could start this week and tell us the most.
   - The server keeps the rules (`0004`–`0006`): turned away is not the same as removed; the invite closes at the end of Day 2; Day 1 opens at the next 5:00am on the party's clock; players can change only their names directly.
   - Tested in a browser with three test accounts against the server: every step worked.
 - **The public website** (Vercel, `vercel.json`) builds only the online screens (`VITE_ONLINE_ONLY=1`). The one-phone demo carries the whole season's text, the secret included, so it is never put on the public site.
-- **Not yet:** the party chat lines for leaving and a new host ("Dev has left the road.", "Mei now leads the party.") come with the party chat (step 4). Session Zero, the party clock and [READY] come next in step 1. Friends can use it only once the app is on the web (a hosting choice for Fake Guru).
+- **16 Oct: the party chat** (`src/online/PartyChat.tsx`, migrations `0007`–`0008`).
+  - It opens only when the party assembles and Garrick joins, on Day 2 (Fake Guru, 16 Oct). For now, that is when Day 2 opens on the party's clock; once the days are played online, it opens when the friend has finished Day 2's chapter. The server enforces it.
+  - Friends' messages arrive live.
+  - The server writes canon's notices: "Dev has left the road.", "Mei now leads the party.", "Dev is now Devan.".
+  - Press and hold a friend's message, then [REPORT], "Tell us what's wrong." and [SEND]. Reports go to the makers only.
+  - Tested with two test accounts against the server.
+  - Not yet: Garrick in the chat, the first-time line "Everyone is here now, and so is Garrick. Ask him anything." (it waits for Garrick), the day result lines and fragment news (they come with the days).
+- **Earlier note on chat lines:** the party chat lines for leaving and a new host ("Dev has left the road.", "Mei now leads the party.") come with the party chat (step 4). Session Zero, the party clock and [READY] come next in step 1. Friends can use it only once the app is on the web (a hosting choice for Fake Guru).

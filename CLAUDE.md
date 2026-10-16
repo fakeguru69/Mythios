@@ -196,6 +196,8 @@ These are not locked forever; the design is still moving. They mean: do not do t
 2. ~~Direction~~ Decided 14 Oct: the 6-week demo on one phone.
 3. ~~Sample names~~ Decided 14 Oct: friends 5 and 6 are **Priya** and **Theo**.
 4. Before any public launch: technology for real multiplayer (backend, accounts, push), terms and privacy. With it (agreed 15 Oct): the server rolls every die (Core Rules §12a; today the Approach, [LOOK CLOSER], United Effort and fights roll on the phone); the Match 100g "every friend right" rate; the Campfire's "Party Seat & Test Controls" panel moves behind `?dev=1` (kept for the one-phone demo). Also with multiplayer (15 Oct play-through check): the Record's party-lead crowns and the "Lifeline" badge (both need real friends' numbers), and the board's real friends' finds (today sample friends take the day's leads in turn).
+5. **The public website (16 Oct):** Fake Guru sets up Vercel (sign up with GitHub, import the repo, deploy), sends the address, sets Supabase's Site URL and Redirect URLs to it, and turns off "Confirm email" (Supabase's free email reaches only his own Supabase team). Before a public launch: a proper email sender, and delete the three test accounts (`@mythios.test`).
+6. **To brainstorm later (16 Oct):** `docs/brainstorm-16oct.md` (the sign-in experience, customising a character, how the game is taught, Week 1 Day 1 world-building, the prose style).
 
 ## 10. Git
 
