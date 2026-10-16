@@ -1,6 +1,6 @@
 # Garrick's morning lines: proposal (16 Oct 2026)
 
-**For Fake Guru to approve.** Nothing here is on the server yet. Once approved: set `GARRICK_MORNING_APPROVED = true` in `src/data/garrickMorningLines.ts`, run `npx tsx scripts/gen-garrick-morning-sql.ts`, apply the output as a new migration.
+**Approved by Fake Guru, 16 Oct ("go with your suggestion"), and loaded on the server (migration `0049`).**
 
 **What it is.** Canon (Core Rules §1) says Garrick "may add a line or two a day" in the party chat, but gives no list. Fake Guru (16 Oct): one line a day, posted when the day opens at 5:00am. The server (`garrick_morning`, migration `0043`, applied) posts it once for the whole party, stamped 5:00am, when the first friend opens the app or the chat that day.
 

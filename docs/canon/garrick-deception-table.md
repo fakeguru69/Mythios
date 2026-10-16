@@ -148,7 +148,7 @@ A true deflection is always available instead. Default template, usable against 
 - *"I've a bar. It has a roof, and a fire."*
 - *"My knees have opinions about this road. None of them good."*
 - *"One of you snores like a drowned mule. I won't say who."*
-- *"That went about as well as it looked."* (after a bad Challenge)
+- *"That went about as well as it looked."* (after being driven back, whatever the roll)
 - *"You've not eaten. Sit."* (noticing)
 - *"Same as last night?"* (pouring, remembering what a player drinks)
 - *"It's terrible. Drink it anyway."* (handing over his flask)
@@ -183,8 +183,8 @@ Light on purpose: one or two moments per episode. The rest of his warmth is impr
 | Ep1 D5 | Builds the fire up and puts a cup in the charcoal woman's hands | An action; kindness. |
 | Ep1 D6 | The extra cup; *"Family habit. We always pour one for whoever can't be with us."* if asked | True (the king). `[PLANT]` |
 | Ep2 D1 | *"Worst guests I've ever had. Good tippers, though."* (when a player points out he only agreed to come as far as the Widow's Tooth) | An exaggerated feeling plus a true fact (the Ep1 coin). It deflects the question with a joke. |
-| Ep2 D2, D6 | The extra cup, in a barn and on a cold hillside | — |
-| Ep2 D5 | *"That went about as well as it looked."* (after being driven back); that night his share of the thin supper ends up on someone else's plate | True understatement; a quiet kindness. |
+| Ep2 D1, D6 | The extra cup, in a barn and on a cold hillside | Days corrected 16 Oct to match the episode file: the barn is Day 1. |
+| Ep2 D4 | *"That went about as well as it looked."* (after being driven back); that night his share of the thin supper ends up on someone else's plate | True understatement; a quiet kindness. |
 | Ep2 Gathering | *"Garrick."* (his name, when Corin asks) | True. |
 | Ep3 D3 | *"My knees have opinions about this glass. None of them good."* | An exaggerated feeling. |
 | Ep3 D3–4 | A boot split on the Blackglass is mended by morning; *"Needed doing."* if thanked | True. On reread, he kept his tools in working order. |
