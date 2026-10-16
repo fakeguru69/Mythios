@@ -152,5 +152,22 @@ Test 3 needs no code. It could start this week and tell us the most.
   - After Day 6, unsolved words complete themselves, with no gold and no name.
   - The Chest opens from the party page and from the day's fragment.
   - Tested with two players. Not yet: the week's map line (Day 6) and the Fan Out first-letter hint (Fan Out is not online yet).
-  - **Not yet online:** the Campfire, the Store, Relics, the Record and Bag, the Gathering (Day 7 shows "Tonight: the Gathering."), a late joiner's Day 1, Garrick, and notifications.
+  - **Not yet online:** the Record and Bag, the Gathering (Day 7 shows "Tonight: the Gathering."), a late joiner's Day 1, Garrick, and notifications.
+- **16 Oct: the Store and Relics online** (Fake Guru: "Proceed" on the suggested next build; migrations `0021`–`0023`; `src/online/OnlineStore.tsx`).
+  - Gear (950 / 1,100 / 1,750 / 2,400 per step, per track) and Relics (150g, seven types), bought on the server with one confirmation and no undo. Gear reads canon's way: "Sword-Cane — Lv. 2 · Weapon 15".
+  - Canon's first-time line, shown once on first opening the Store.
+  - Relics can be given to a friend (never gold). The friend sees "TestHost gave you an Aim Relic." in their Store (the push comes with notifications).
+  - On the card: "Aim Relic · you hold 2 / With +4, you succeed on 3+", [USE] arms it, a second tap takes it back; it is spent only when the roll is made, and growth is judged before it. The same on [PRESS ON]. In a fight, a Combat Relic: +1 Weapon and +1 Armor from the next round, once per fight.
+  - The Store is closed while your card or fight is open (counted from when you open that day's chapter). [NOT NOW] sets the card aside and opens the Store; a fight not yet begun can be set aside too, except the first fight (§12a).
+  - Tested in a browser and on the server: buying, the closed Store, [NOT NOW], a roll with a Relic (6 + 0 + 4 − DC 7 = +3, Aim 17 → 29), giving, the Combat Relic from Round 2, refusals (no Relic, a second Combat Relic, the old rolls).
+  - Not yet: the Relic Box in the Bag (the Bag is not online), the help-call (it comes with the Gathering), the Record's "Relics Given" and "Times Stepped Up" (they come with the Record; the gifts are already kept), and the day finishing itself at 5:00am.
+- **16 Oct: the Campfire online** (Fake Guru: "3 Campfire"; migrations `0024`–`0031`; `src/online/OnlineCampfire.tsx`). Canon Campfire v2.3 and the approved Fan Out and Campfire design.
+  - The data (opener, fork, callback, riddle, nudge, tone, cup nights, the approved leads, meaning and week questions, the Pull) is generated from the game's own files by `scripts/gen-campfire-sql.ts` and kept on the server; a phone gets only today's. Riddle answers stay on the server until solved or given up; the QA-only "leans" never leave it.
+  - After the day: the last light. One lead, rolled on the server (the week's DC, no gold, no growth); the clue always comes back; a pass gives the first letter of one fragment word. Or straight to the fire.
+  - The fire, one screen: Garrick's stored lines, at most eight (the opener, the catch-up naming at most two friends, "You're first. Pull up a log.", up to two "he notices" lines, the nudge to the friend at the fire with the highest Attribute, the pin acknowledgement, the finished fragment read aloud, the riddle's reply, the callback, the bottle prompt, Day 6's two week pins); the cup on cup nights (an action, no line); the board; today's fragment with the Chest button, the hint, and the meaning pin once both words are found; tonight's question (A, B, Neither, your own line; pin before peek; names, never a count); the case so far (dated week lines); the riddle (shared, three tries each, asked for on quiet nights); an open question; a message in a bottle; "At the fire now".
+  - Leaving: a closer, what we did today (only real actions), the Pull, and a bottle for whoever comes next.
+  - Week 1 Day 1 is narrated: no Garrick, no friends; the pin becomes the friend's first week line.
+  - "TestHost pinned a theory." goes to the party chat on the first pin of the day.
+  - Tested with two players in a browser.
+  - Not yet: the fragment's word-lock inside the fire (it opens the Chest), the Chest showing the Fan Out hint, the nudge's rotation between evenings, reading the board after dawn, the Gathering's read-backs of pins, and the demo's "Ask Garrick" at the fire (Garrick in the chat comes later).
 - **Earlier note on chat lines:** the party chat lines for leaving and a new host ("Dev has left the road.", "Mei now leads the party.") come with the party chat (step 4). Session Zero, the party clock and [READY] come next in step 1. Friends can use it only once the app is on the web (a hosting choice for Fake Guru).

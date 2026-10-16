@@ -1217,7 +1217,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
         </div>
         <div className="p-2.5 space-y-2">
           <p className="font-sans text-[14px] text-[#E6E0F0] leading-[1.4]">
-            {fill(step.detail)}. {step.harder} harder, on {attr}.
+            {fill(step.detail.charAt(0).toUpperCase() + step.detail.slice(1))}. {step.harder} harder, on {attr}.
           </p>
           <div className="text-[12.5px] font-sans font-semibold text-[#E5C158]">
             REWARD: +{GOLD_PRESS_ON_WIN}g, and one more detail · a miss costs nothing
@@ -2557,7 +2557,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                               className="w-full py-2 px-2.5 rounded-xl font-['Cinzel'] font-bold text-[11.5px] border bg-[#130B1F] border-[#E0645C]/70 text-[#F4F1F8] hover:bg-[#2A1B40] disabled:opacity-50 disabled:cursor-not-allowed transition"
                             >
                               {combatRelicsHeld > 0
-                                ? `♦ GIVE A COMBAT RELIC TO ${partyName(id).toUpperCase()} (+1 WEP, +1 AMR · ${combatRelicsHeld} IN BAG)`
+                                ? `♦ GIVE A COMBAT RELIC TO ${partyName(id).toUpperCase()} (+1 WEP, +1 ARM · ${combatRelicsHeld} IN BAG)`
                                 : `NO COMBAT RELIC TO GIVE ${partyName(id).toUpperCase()}`}
                             </button>
                           ))}

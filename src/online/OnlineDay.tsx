@@ -26,6 +26,7 @@ interface Roll {
   net: number;
   pass: boolean;
   growth?: number;
+  relic?: number;
 }
 interface Round {
   round: number;
@@ -44,24 +45,33 @@ interface Round {
   enemyStruck: boolean;
   playerHpAfter: number;
   enemyHpAfter: number;
+  relic?: boolean;
 }
 interface Fight {
   rounds: Round[];
   done: boolean;
   won?: boolean;
   gold?: number;
+  relicFrom?: number;
 }
 interface Today {
   week: number;
   day: number;
   chapter: { script: ChapterScript; meta: { dc: number; wDef: number; wAtk: number; fightReward: number } } | null;
-  progress: { gold: number; attrs: Record<AttributeName, number>; weapon_level: number; armor_level: number };
+  progress: {
+    gold: number;
+    attrs: Record<AttributeName, number>;
+    weapon_level: number;
+    armor_level: number;
+    relics: Record<string, number>;
+  };
   mine: {
     picks: Record<string, number[]>;
     acts: number;
     challenge: Roll | null;
     press: (Roll & { left?: undefined }) | { left: true } | null;
     fight: Fight | null;
+    aside: boolean;
     finished_at: string | null;
   };
   daysPlayed: number;
@@ -78,6 +88,8 @@ export default function OnlineDay({
   grandparent,
   onClose,
   onOpenChest,
+  onOpenStore,
+  onOpenFire,
 }: {
   partyId: string;
   friends: string[];
@@ -87,11 +99,16 @@ export default function OnlineDay({
   grandparent: string | null;
   onClose: () => void;
   onOpenChest: () => void;
+  onOpenStore: () => void;
+  onOpenFire: () => void;
 }) {
   const [today, setToday] = useState<Today | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [chosenAttr, setChosenAttr] = useState<AttributeName | null>(null);
+  // [USE] arms an Attribute Relic on the card; a second tap takes it back. It is spent only when the roll is made (§12a).
+  const [armed, setArmed] = useState<AttributeName | null>(null);
+  const [pressArmed, setPressArmed] = useState(false);
   const finishing = useRef(false);
   const endRef = useRef<HTMLDivElement | null>(null);
 
@@ -183,7 +200,18 @@ export default function OnlineDay({
     return true;
   };
 
-  const rollLine = (r: Roll) => `🎲 ${r.d20} + ${r.attr} ${r.score} (+${r.bonus}) − DC ${r.dc} = ${signed(r.net)}`;
+  const rollLine = (r: Roll) =>
+    `🎲 ${r.d20} + ${r.attr} ${r.score} (+${r.bonus})${r.relic ? ` + Relic (+${r.relic})` : ''} − DC ${r.dc} = ${signed(r.net)}`;
+  const held = (k: string) => progress.relics?.[k] ?? 0;
+  // While a card or a fight not yet begun is set aside with [NOT NOW], the Store is open (Core Rules §3).
+  const asideNote = (
+    <div className="space-y-1.5">
+      <p className="font-sans italic text-[13.5px] text-[#B7A9CC]">Set aside. It waits here until you take it up, and the Store is open.</p>
+      <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={onOpenStore}>
+        THE STORE
+      </button>
+    </div>
+  );
 
   const nodes: React.ReactNode[] = [];
   let actIndex = 0;
@@ -283,7 +311,7 @@ export default function OnlineDay({
             <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">🎯 {fill(step.title)}</span>
             {!challenge && (
               <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] whitespace-nowrap">
-                You succeed on {challengeSucceedOn(dc, bonus)}+
+                You succeed on {challengeSucceedOn(dc, bonus + (armed === attr ? 4 : 0))}+
               </span>
             )}
           </div>
@@ -300,22 +328,55 @@ export default function OnlineDay({
                   {options.map((o) => {
                     const s = progress.attrs[o.attr] ?? 10;
                     return (
-                      <button
-                        key={o.attr}
-                        onClick={() => setChosenAttr(o.attr)}
-                        className={`w-full text-left rounded-lg border px-3 py-2 ${
-                          attr === o.attr ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555] bg-[#130B1F]'
-                        }`}
-                      >
-                        <span className="font-semibold text-[14px]">
-                          {o.attr} {s} (+{getTierInfo(s).bonus})
-                        </span>
-                        <span className="text-[13.5px] text-[#B7A9CC]"> · {fill(o.verb)}</span>
-                      </button>
+                      <div key={o.attr} className="space-y-1">
+                        <button
+                          onClick={() => setChosenAttr(o.attr)}
+                          className={`w-full text-left rounded-lg border px-3 py-2 ${
+                            attr === o.attr ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555] bg-[#130B1F]'
+                          }`}
+                        >
+                          <span className="font-semibold text-[14px]">
+                            {o.attr} {s} (+{getTierInfo(s).bonus})
+                          </span>
+                          <span className="text-[13.5px] text-[#B7A9CC]"> · {fill(o.verb)}</span>
+                        </button>
+                        {/* The Relic choice shows only when the player holds a matching Relic (Core Rules §3). */}
+                        {held(o.attr) > 0 && (
+                          <div className="flex items-center justify-between gap-2 rounded-lg border border-[#3A2555] px-3 py-1.5">
+                            <span className="text-[13px] text-[#D9D1E6]">
+                              {o.attr} Relic · you hold {held(o.attr)}
+                              <br />
+                              <span className="text-[#B7A9CC]">
+                                With +4, you succeed on {challengeSucceedOn(dc, getTierInfo(s).bonus + 4)}+ (used once, on {/^[AEIOU]/.test(o.attr) ? 'an' : 'a'} {o.attr} roll)
+                              </span>
+                            </span>
+                            <button
+                              className={`${quietButton} ${armed === o.attr ? 'border-[#D4B876] text-[#E5C158]' : ''}`}
+                              onClick={() => {
+                                setChosenAttr(o.attr);
+                                setArmed(armed === o.attr ? null : o.attr);
+                              }}
+                            >
+                              {armed === o.attr ? 'USED' : 'USE'}
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     );
                   })}
                 </div>
-                <ScriptButton label={`🎲 ROLL ${attr.toUpperCase()}`} disabled={busy} onClick={() => call('roll_challenge', { p_attr: attr })} />
+                <ScriptButton
+                  label={`🎲 ROLL ${attr.toUpperCase()}${armed === attr ? ' + RELIC' : ''}`}
+                  disabled={busy}
+                  onClick={() => call('roll_card', { p_attr: attr, p_relic: armed === attr })}
+                />
+                {mine.aside ? (
+                  asideNote
+                ) : (
+                  <button className={`w-full ${quietButton} py-2`} disabled={busy} onClick={() => call('set_aside', {})}>
+                    NOT NOW
+                  </button>
+                )}
               </>
             ) : (
               <div className="space-y-1">
@@ -344,19 +405,40 @@ export default function OnlineDay({
             <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">[PRESS ON] · {fill(step.title)}</span>
             {!press && (
               <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] whitespace-nowrap">
-                You succeed on {challengeSucceedOn(pressDc, bonus)}+
+                You succeed on {challengeSucceedOn(pressDc, bonus + (pressArmed ? 4 : 0))}+
               </span>
             )}
           </div>
           <div className="p-2.5 space-y-2">
-            <ScriptText text={fill(`${step.detail}. ${step.reward}.`)} className="font-sans text-[14px] text-[#E6E0F0] leading-[1.4]" />
+            <ScriptText text={fill(`${step.detail.charAt(0).toUpperCase()}${step.detail.slice(1)}. ${step.reward}.`)} className="font-sans text-[14px] text-[#E6E0F0] leading-[1.4]" />
             {!press ? (
-              <div className="flex gap-2">
-                <ScriptButton label={`🎲 ROLL ${challenge.attr.toUpperCase()}`} disabled={busy} onClick={() => call('roll_press', {})} />
-                <button className={quietButton} disabled={busy} onClick={() => call('roll_press', { p_leave: true })}>
-                  LEAVE IT
-                </button>
-              </div>
+              <>
+                {held(challenge.attr) > 0 && (
+                  <div className="flex items-center justify-between gap-2 rounded-lg border border-[#3A2555] px-3 py-1.5">
+                    <span className="text-[13px] text-[#D9D1E6]">
+                      {challenge.attr} Relic · you hold {held(challenge.attr)}
+                      <br />
+                      <span className="text-[#B7A9CC]">With +4, you succeed on {challengeSucceedOn(pressDc, bonus + 4)}+ (used once)</span>
+                    </span>
+                    <button
+                      className={`${quietButton} ${pressArmed ? 'border-[#D4B876] text-[#E5C158]' : ''}`}
+                      onClick={() => setPressArmed(!pressArmed)}
+                    >
+                      {pressArmed ? 'USED' : 'USE'}
+                    </button>
+                  </div>
+                )}
+                <div className="flex gap-2">
+                  <ScriptButton
+                    label={`🎲 ROLL ${challenge.attr.toUpperCase()}${pressArmed ? ' + RELIC' : ''}`}
+                    disabled={busy}
+                    onClick={() => call('roll_press_card', { p_leave: false, p_relic: pressArmed })}
+                  />
+                  <button className={quietButton} disabled={busy} onClick={() => call('roll_press_card', { p_leave: true, p_relic: false })}>
+                    LEAVE IT
+                  </button>
+                </div>
+              </>
             ) : 'left' in press && press.left ? (
               <TapEcho label="LEAVE IT" />
             ) : (
@@ -420,7 +502,7 @@ export default function OnlineDay({
                 : null;
               return (
                 <div key={r.round} className="font-mono text-[12px] text-[#D9D1E6]">
-                  <div className="text-[#8B7A9E]">Round {r.round}</div>
+                  <div className="text-[#8B7A9E]">Round {r.round}{r.relic ? ' · Combat Relic: +1 Weapon, +1 Armor' : ''}</div>
                   {(r.enemyFirst ? [theirLine, mineLine] : [mineLine, theirLine]).filter(Boolean).map((l, li) => (
                     <div key={li}>{l}</div>
                   ))}
@@ -429,7 +511,35 @@ export default function OnlineDay({
             })}
           </div>
           {!fightDone ? (
-            <ScriptButton label={`🎲 ROUND ${rounds.length + 1}`} disabled={busy} onClick={() => call('fight_round', {})} />
+            <>
+              {/* A Combat Relic: +1 Weapon and +1 Armor for the rest of the fight, from the next round; once per fight (§5, §12a). */}
+              {fight?.relicFrom === undefined && held('Combat') > 0 && (
+                <div className="flex items-center justify-between gap-2 rounded-lg border border-[#3A2555] px-3 py-1.5">
+                  <span className="text-[13px] text-[#D9D1E6]">
+                    Combat Relic · you hold {held('Combat')}
+                    <br />
+                    <span className="text-[#B7A9CC]">+1 Weapon and +1 Armor for the rest of this fight, from the next round</span>
+                  </span>
+                  <button className={quietButton} disabled={busy} onClick={() => call('use_combat_relic', {})}>
+                    USE
+                  </button>
+                </div>
+              )}
+              {fight?.relicFrom !== undefined && rounds.length < fight.relicFrom && (
+                <p className="text-[13px] text-[#B7A9CC]">Combat Relic used: +1 Weapon and +1 Armor from Round {fight.relicFrom}.</p>
+              )}
+              <ScriptButton label={`🎲 ROUND ${rounds.length + 1}`} disabled={busy} onClick={() => call('fight_round', {})} />
+              {/* [NOT NOW] before the first round, except the first fight (Core Rules §12a). */}
+              {rounds.length === 0 &&
+                !(week === 1 && day === 1) &&
+                (mine.aside ? (
+                  asideNote
+                ) : (
+                  <button className={`w-full ${quietButton} py-2`} disabled={busy} onClick={() => call('set_aside', {})}>
+                    NOT NOW
+                  </button>
+                ))}
+            </>
           ) : (
             <p className={`font-['Cinzel'] font-bold text-[13px] ${fightWon ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
               {fightWon ? `WON${fight?.gold ? ` · +${fight.gold}g` : ''}` : 'BRUISED SCRAPE'}
@@ -495,6 +605,7 @@ export default function OnlineDay({
         await call('finish_day', {});
       }}
       onClose={onClose}
+      onOpenFire={onOpenFire}
       endRef={endRef}
     />
   );
@@ -510,6 +621,7 @@ function DayBody({
   finished,
   onFinish,
   onClose,
+  onOpenFire,
   endRef,
 }: {
   header: React.ReactNode;
@@ -521,6 +633,7 @@ function DayBody({
   finished: boolean;
   onFinish: () => void;
   onClose: () => void;
+  onOpenFire: () => void;
   endRef: React.RefObject<HTMLDivElement | null>;
 }) {
   useEffect(() => {
@@ -535,6 +648,15 @@ function DayBody({
       </div>
       <div className="space-y-3">{nodes}</div>
       <ErrorLine text={error} />
+      {/* After the day: the last light, then the fire (the Campfire opens once the day is done, v2.3 §D). */}
+      {reachedSummary && finished && (
+        <button
+          className="w-full py-2.5 rounded-lg bg-[#2A2018] border border-[#F0A552]/70 font-['Cinzel'] font-bold text-[13px] text-[#F0A552]"
+          onClick={onOpenFire}
+        >
+          🔥 THE LAST LIGHT
+        </button>
+      )}
       {reachedSummary && (
         <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={onClose}>
           BACK TO THE PARTY
