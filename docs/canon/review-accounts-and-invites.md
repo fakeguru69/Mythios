@@ -2,7 +2,7 @@
 
 **Status: APPROVED by TVMen and WRITTEN into Core Rules §12a, 2026-10-03.** Changes at approval: there is no age check at all; the host names the party; the invite is headed "Join the adventure in Tales of the Dark Moon"; a person may be in several parties; a name can be changed at any time.
 
-This covers everything a person sees before the story starts, and what happens when someone leaves. It follows the decisions already made (Core Rules §12a): sign-in by Google, Apple, or email and password; the host approves each friend; the host can remove a friend; the game is free.
+This covers everything a person sees before the story starts, and what happens when someone leaves. It follows the decisions already made (Core Rules §12a): sign-in by Google, or email and password (Apple removed 16 Oct 2026); the host approves each friend; the host can remove a friend; the game is free.
 
 Two rules shaped every screen:
 
@@ -40,7 +40,7 @@ This is what opens when a friend taps the link. It has to make a stranger to the
 > **First, so the story knows you.**
 >
 > [CONTINUE WITH GOOGLE]
-> [CONTINUE WITH APPLE]
+> ~~[CONTINUE WITH APPLE]~~ *(removed by Fake Guru, 16 Oct 2026: Apple sign-in needs a paid Apple Developer account)*
 > [USE EMAIL AND A PASSWORD]
 
 ### Screen 3 — One question

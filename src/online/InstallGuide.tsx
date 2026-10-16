@@ -38,7 +38,7 @@ export default function InstallGuide({ always = false }: { always?: boolean }) {
 
   return (
     <div className={card}>
-      <h3 className={`${heading} text-[15px]`}>Put Dark Moon on your home screen</h3>
+      <h3 className={`${heading} text-[15px]`}>Put Mythios on your home screen</h3>
       <p className="text-[14px]">It opens like an app, one tap a day.</p>
       {installEvent && isAndroid() && (
         <button className={goldButton} onClick={() => installEvent.prompt().catch(() => undefined)}>
@@ -69,7 +69,7 @@ export default function InstallGuide({ always = false }: { always?: boolean }) {
                 Scroll down and tap <b>Add to Home Screen</b>, then <b>Add</b>.
               </li>
               <li>
-                Open <b>Dark Moon</b> from your home screen and sign in once.
+                Open <b>Mythios</b> from your home screen and sign in once.
               </li>
             </ol>
           ) : (
@@ -82,7 +82,7 @@ export default function InstallGuide({ always = false }: { always?: boolean }) {
                 Tap <b>Install app</b> or <b>Add to Home screen</b>, then <b>Install</b>.
               </li>
               <li>
-                Open <b>Dark Moon</b> from your home screen and sign in once.
+                Open <b>Mythios</b> from your home screen and sign in once.
               </li>
             </ol>
           )}

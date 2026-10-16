@@ -805,14 +805,15 @@ These settle cases the rules above left open. The engineering notes are in `myth
 - The server checks each try and never sends the answer to the phone. After five wrong tries at one word, that friend waits two minutes.
 
 **People and accounts** *(TVMen, 2026-10-03)*
-- **Sign-in:** with a Google account, an Apple account, or an email address and a password.
+- **Sign-in:** with a Google account, or an email address and a password. *(Apple removed by Fake Guru, 16 Oct 2026: it needs a paid Apple Developer account.)*
 - **No age check.** The app does not ask a player's age (TVMen, 2026-10-03).
 - **The party has a name,** chosen by the host when they make it.
 - **Joining:** the invite link asks to join; the host approves each friend. One link per party; it works until the party has six or until the end of Episode 1 Day 2. The host can make a new link, and the old one stops working.
 - **The invite page** is headed "Join the adventure in Tales of the Dark Moon", names who sent it and the party, and says what it asks: six weeks, about ten minutes a day, one evening a week, free (changed from "about five minutes" by Fake Guru, 16 Oct: the day now takes 8 to 12 minutes); and carries the credit line "A fake guru game. The story is told by Mythios AI."
-- **More than one party:** a person may be in several parties at once, with a separate character in each.
+- **Mythios, series and seasons** (Fake Guru, 16 Oct 2026). The app is **Mythios**. "Tales of the Dark Moon" is one **series** of many, and a series is told in **seasons**; a party plays one season of one series.
+- **More than one party:** a person may be in several parties at once. *(Changed 16 Oct 2026: they play the same character in every party of the same series; see "Two names".)*
 - **Name lengths:** a player's name is 1 to 12 characters; a party's name is 1 to 20. Both fit on one line of the Record and the chat.
-- **Two names** (decided 4 Oct 2026). An account has one name. Each party a person joins has its own **character name**, which starts as the account name and can be changed, so a person may be "Jennifer" in one party and someone else in another. The character name is the one shown on the Card and in that party's chat.
+- **Two names** (decided 4 Oct 2026; changed by Fake Guru 16 Oct 2026). An account has one name. In each **series** a person plays one **character**, with its own **character name**, so a person may be "Jennifer" in Tales of the Dark Moon and someone else in another series. The character (its name, class, second strength and Session Zero answers) is made in their first Session Zero of that series and kept for every party and season of it. The character name is the one shown on the Card and in the party's chat; changing it changes it in every party of that series. *(Was: a separate character name for each party.)*
 - **A player's name** can be changed at any time; the party chat shows the change once ("Dev is now Devan.").
 - **Leaving:** a friend who leaves, or is removed, cannot come back to that story. The party chat says "Dev has left the road." and the story does not remark on it.
 - **Reporting:** press and hold a message in the party chat, then [REPORT]. The report comes to the makers; the person reported is not told.

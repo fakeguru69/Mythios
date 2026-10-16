@@ -1,7 +1,7 @@
 {
-  "name": "Tales of the Dark Moon",
-  "short_name": "Dark Moon",
-  "description": "A story for you and your friends, told a little each day.",
+  "name": "Mythios",
+  "short_name": "Mythios",
+  "description": "Stories for you and your friends, told a little each day.",
   "start_url": "/?online=1",
   "scope": "/",
   "display": "standalone",

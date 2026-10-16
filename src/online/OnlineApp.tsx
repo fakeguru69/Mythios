@@ -1,5 +1,7 @@
-// Multiplayer step 1: sign-in, parties, the invite, the host letting friends in, Session Zero, the party clock and
-// starting the story (Core Rules §7, §11, §12a). Every screen's words are from review-accounts-and-invites.md.
+// MYTHIOS online: the Mythios intro, sign-in, the series shelf, your characters (one per series), parties, the invite,
+// the host letting friends in, Session Zero, the party clock and starting the story (Core Rules §7, §11, §12a).
+// A series (Tales of the Dark Moon) has seasons; a party plays one season (Fake Guru, 16 Oct).
+// The screens' words are from review-accounts-and-invites.md, except the Mythios intro (a draft, in onlineText.ts).
 // Opened with ?online=1, or by an invite link (?join=CODE). The one-phone demo is unchanged.
 import { useCallback, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
@@ -23,8 +25,10 @@ import {
   type MemberRow,
   type InviteDetails,
 } from './supabaseClient';
-import { CREDIT_LINE, INVITE_BULLETS, PREMISE_LINE, SZ_DOOR, TAGLINE } from './onlineText';
-import SessionZero from './SessionZero';
+
+type InviteCardInfo = InviteDetails & { series_id: string; series_title: string; season_number: number };
+import { CREDIT_LINE, INVITE_BULLETS, MYTHIOS_INTRO, SERIES, SZ_DOOR, TAGLINE, seriesTitle } from './onlineText';
+import SessionZero, { type SeriesCharacter } from './SessionZero';
 import PartyChat from './PartyChat';
 import InstallGuide from './InstallGuide';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
@@ -46,16 +50,16 @@ const partyOrder = (party: PartyRow) => (a: MemberRow, b: MemberRow) => {
 };
 
 function useInvite(code: string | null) {
-  const [info, setInfo] = useState<InviteDetails | null | undefined>(undefined);
+  const [info, setInfo] = useState<InviteCardInfo | null | undefined>(undefined);
   useEffect(() => {
     if (!code) return;
-    supabase.rpc('invite_details', { p_invite_code: code }).then(({ data }) => setInfo((data as InviteDetails[] | null)?.[0] ?? null));
+    supabase.rpc('invite_card', { p_invite_code: code }).then(({ data }) => setInfo((data as InviteCardInfo[] | null)?.[0] ?? null));
   }, [code]);
   return info;
 }
 
 // Screen 1: the invite (review §1), and what it says when the party can no longer be joined (§3).
-function InviteCard({ info, onJoin }: { info: InviteDetails | null | undefined; onJoin?: () => void }) {
+function InviteCard({ info, onJoin }: { info: InviteCardInfo | null | undefined; onJoin?: () => void }) {
   if (info === undefined) return <p className="text-center text-[#B7A9CC]">…</p>;
   if (!info) {
     return (
@@ -89,11 +93,12 @@ function InviteCard({ info, onJoin }: { info: InviteDetails | null | undefined; 
   }
   return (
     <div className={card}>
-      <h2 className={`${heading} text-[18px]`}>Join the adventure in Tales of the Dark Moon</h2>
+      <h2 className={`${heading} text-[18px]`}>Join the adventure in {info.series_title}</h2>
+      <p className={note}>Season {info.season_number}</p>
       <p className="text-[15px]">
         {info.host_name} has invited you to join <span className="font-semibold text-[#E5C158]">{info.party_name}</span>.
       </p>
-      <p className="text-[15px]">{PREMISE_LINE}</p>
+      <p className="text-[15px]">{SERIES.find((x) => x.id === info.series_id)?.premise}</p>
       <p className="text-[15px]">{TAGLINE}</p>
       <ul className="list-disc pl-5 text-[15px] space-y-0.5">
         {INVITE_BULLETS.map((b) => (
@@ -112,7 +117,7 @@ function InviteCard({ info, onJoin }: { info: InviteDetails | null | undefined; 
   );
 }
 
-// Screen 2 and 3: sign in (review §1). Google and Apple come later; email and a password today.
+// Screen 2 and 3: sign in (review §1): Google (once switched on in Supabase), or email and a password. No Apple (Fake Guru, 16 Oct).
 function SignIn() {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<'in' | 'up'>('up');
@@ -122,12 +127,12 @@ function SignIn() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
-  const [providers, setProviders] = useState({ google: false, apple: false });
+  const [providers, setProviders] = useState({ google: false });
   useEffect(() => {
     enabledSignIns().then(setProviders);
   }, []);
-  // Google and Apple (review-accounts-and-invites.md §1 Screen 2). The page comes back here, invite link and all.
-  const oauth = async (provider: 'google' | 'apple') => {
+  // Google (review-accounts-and-invites.md §1 Screen 2). The page comes back here, invite link and all.
+  const oauth = async (provider: 'google') => {
     setError(null);
     const { error: e } = await supabase.auth.signInWithOAuth({ provider, options: { redirectTo: window.location.href } });
     if (e) setError(plainError(e.message));
@@ -170,11 +175,6 @@ function SignIn() {
       {!open && providers.google && (
         <button className={goldButton} onClick={() => oauth('google')}>
           CONTINUE WITH GOOGLE
-        </button>
-      )}
-      {!open && providers.apple && (
-        <button className={goldButton} onClick={() => oauth('apple')}>
-          CONTINUE WITH APPLE
         </button>
       )}
       {!open ? (
@@ -220,7 +220,7 @@ function SignIn() {
 }
 
 // Screen 2 of the host's path: start a party (review §2).
-function StartParty({ accountName, onMade, onBack }: { accountName: string; onMade: (id: string) => void; onBack: () => void }) {
+function StartParty({ seriesId, onMade, onBack }: { seriesId: string; onMade: (id: string) => void; onBack: () => void }) {
   const [partyName, setPartyName] = useState('');
   const [tz, setTz] = useState(homeTimeZone());
   const [changing, setChanging] = useState(false);
@@ -229,13 +229,14 @@ function StartParty({ accountName, onMade, onBack }: { accountName: string; onMa
   const make = async () => {
     setBusy(true);
     setError(null);
-    const { data, error: e } = await supabase.rpc('make_party', { p_name: partyName.trim(), p_character_name: accountName, p_time_zone: tz });
+    const { data, error: e } = await supabase.rpc('make_series_party', { p_series: seriesId, p_name: partyName.trim(), p_time_zone: tz });
     setBusy(false);
     if (e) setError(plainError(e.message));
     else onMade(data as string);
   };
   return (
     <div className={card}>
+      <p className={note}>{seriesTitle(seriesId)} · Season 1</p>
       <h2 className={`${heading} text-[18px]`}>Who walks with you?</h2>
       <p className="text-[15px]">You need at least one friend, and no more than five.</p>
       <label className="block text-[14px] font-semibold">Name your party:</label>
@@ -331,6 +332,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [changingClock, setChangingClock] = useState(false);
   const [startDate, setStartDate] = useState('');
   const [editingName, setEditingName] = useState<string | null>(null);
+  const [myCharacter, setMyCharacter] = useState<SeriesCharacter | null>(null);
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -340,14 +342,23 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
     const rows = (m as MemberRow[] | null) ?? [];
     setParty((p as PartyRow | null) ?? null);
     setMembers(rows);
-    if (p) setHostName(rows.find((r) => r.user_id === (p as PartyRow).host_id)?.character_name ?? '');
+    if (p) {
+      setHostName(rows.find((r) => r.user_id === (p as PartyRow).host_id)?.character_name ?? '');
+      const { data: c } = await supabase
+        .from('characters')
+        .select('name,class,second_attr,birthplace,grandparent_name')
+        .eq('user_id', userId)
+        .eq('series_id', (p as PartyRow).series_id)
+        .maybeSingle();
+      setMyCharacter((c as SeriesCharacter | null) ?? null);
+    }
     else {
       // Before being let in, a friend cannot read the party itself: only its name and its host's.
       const { data: sum } = await supabase.rpc('my_party_summary', { p_party: partyId });
       setHostName((sum as { host_name: string }[] | null)?.[0]?.host_name ?? '');
     }
     setLoaded(true);
-  }, [partyId]);
+  }, [partyId, userId]);
 
   useEffect(() => {
     load();
@@ -367,7 +378,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
 
   const back = (
     <button className={quietButton} onClick={onBack}>
-      ← Your parties
+      ← Your stories
     </button>
   );
   const host = hostName || 'The host';
@@ -429,6 +440,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       <SessionZero
         partyId={party.id}
         userId={userId}
+        seriesId={party.series_id}
+        startName={me.character_name}
+        character={myCharacter}
         members={members}
         onDone={async () => {
           setDoingSessionZero(false);
@@ -540,7 +554,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
             <h3 className={`${heading} text-[15px]`}>The party</h3>
           </>
         )}
-        <p className={note}>{party.name}</p>
+        <p className={note}>
+          {party.name} · {seriesTitle(party.series_id)} · Season {party.season_number}
+        </p>
         {partyList}
         {!isHost && (
           <p className="text-[15px] pt-1">{!started ? `The road opens when ${host} says so.` : beforeDayOne ? doorLine : ''}</p>
@@ -669,7 +685,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         {editingName === null ? (
           <div className="flex items-center justify-between gap-2">
             <span className="text-[14px]">
-              <span className="font-semibold">Your name in this party:</span> {me.character_name}
+              <span className="font-semibold">Your name in {seriesTitle(party.series_id)}:</span> {me.character_name}
             </span>
             <button className={quietButton} onClick={() => setEditingName(me.character_name)}>
               CHANGE
@@ -682,11 +698,8 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
               className={quietButton}
               disabled={!editingName.trim()}
               onClick={async () => {
-                const { error: e } = await supabase
-                  .from('party_members')
-                  .update({ character_name: editingName.trim() })
-                  .eq('party_id', party.id)
-                  .eq('user_id', userId);
+                // One character per series: the new name shows in every party of this series (Fake Guru, 16 Oct).
+                const { error: e } = await supabase.rpc('rename_character', { p_series: party.series_id, p_name: editingName.trim() });
                 if (e) setError(plainError(e.message));
                 setEditingName(null);
                 await load();
@@ -708,8 +721,11 @@ function Home({ session }: { session: Session }) {
   const userId = session.user.id;
   const [accountName, setAccountName] = useState('');
   const [nameChosen, setNameChosen] = useState(true);
-  const [rows, setRows] = useState<(MemberRow & { parties: { name: string } | null })[]>([]);
+  const [rows, setRows] = useState<(MemberRow & { parties: { name: string; series_id: string; season_number: number } | null })[]>([]);
+  const [characters, setCharacters] = useState<{ series_id: string; name: string; class: string | null }[]>([]);
   const [view, setView] = useState<'list' | 'start' | 'invite'>('list');
+  const [startSeries, setStartSeries] = useState('dark-moon');
+  const [renaming, setRenaming] = useState<{ series: string; name: string } | null>(null);
   const [openParty, setOpenParty] = useState<string | null>(null);
   const [joinCode, setJoinCode] = useState<string | null>(startQuery.get('join'));
   const [joinError, setJoinError] = useState<string | null>(null);
@@ -717,23 +733,25 @@ function Home({ session }: { session: Session }) {
   const info = useInvite(joinCode);
 
   const load = useCallback(async () => {
-    const [{ data: prof }, { data: mine }] = await Promise.all([
+    const [{ data: prof }, { data: mine }, { data: chars }] = await Promise.all([
       supabase.from('profiles').select('display_name,name_chosen').eq('id', userId).maybeSingle(),
       supabase
         .from('party_members')
-        .select(`${MEMBER_COLUMNS},parties(name)`)
+        .select(`${MEMBER_COLUMNS},parties(name,series_id,season_number)`)
         .eq('user_id', userId)
         .in('status', ['approved', 'pending', 'turned_away']),
+      supabase.from('characters').select('series_id,name,class').eq('user_id', userId),
     ]);
+    setCharacters((chars as { series_id: string; name: string; class: string | null }[] | null) ?? []);
     setAccountName(prof?.display_name ?? '');
     setNameChosen(prof?.name_chosen ?? true);
-    const list = (mine as unknown as (MemberRow & { parties: { name: string } | null })[]) ?? [];
+    const list = (mine as unknown as (MemberRow & { parties: { name: string; series_id: string; season_number: number } | null })[]) ?? [];
     // A party not yet joined cannot be read; its name comes from my_party_summary.
     for (const r of list) {
       if (r.parties) continue;
       const { data: sum } = await supabase.rpc('my_party_summary', { p_party: r.party_id });
       const name = (sum as { party_name: string }[] | null)?.[0]?.party_name;
-      if (name) r.parties = { name };
+      if (name) r.parties = { name, series_id: 'dark-moon', season_number: 1 };
     }
     setRows(list);
   }, [userId]);
@@ -742,7 +760,7 @@ function Home({ session }: { session: Session }) {
     load();
   }, [load]);
 
-  // Google and Apple sign-ins are asked the name question once (review §1 Screen 3).
+  // Google sign-ins are asked the name question once (review §1 Screen 3).
   if (!nameChosen) {
     return (
       <div className={card}>
@@ -808,30 +826,92 @@ function Home({ session }: { session: Session }) {
     );
   }
 
-  if (view === 'start') return <StartParty accountName={accountName} onMade={(id) => { setView('list'); setOpenParty(id); }} onBack={() => setView('list')} />;
+  if (view === 'start') return <StartParty seriesId={startSeries} onMade={(id) => { setView('list'); setOpenParty(id); }} onBack={() => setView('list')} />;
   if (view === 'invite') return <HaveInvite onCode={(c) => { setView('list'); setJoinCode(c); }} onBack={() => setView('list')} />;
 
   return (
     <div className="space-y-4">
-      {rows.length === 0 && <p className="text-center text-[15px]">{TAGLINE}</p>}
       {rows.length > 0 && (
         <div className={card}>
-          <h2 className={`${heading} text-[16px]`}>Your parties</h2>
+          <h2 className={`${heading} text-[16px]`}>Your stories</h2>
           {rows.map((r) => (
             <button
               key={r.party_id}
-              className="w-full flex items-center justify-between rounded-lg border border-[#3A2555] hover:border-[#D4B876] px-3 py-2 text-left"
+              className="w-full flex items-center justify-between gap-2 rounded-lg border border-[#3A2555] hover:border-[#D4B876] px-3 py-2 text-left"
               onClick={() => setOpenParty(r.party_id)}
             >
-              <span className="text-[15px]">{r.parties?.name ?? '…'}</span>
+              <span>
+                <span className="block text-[15px]">{r.parties?.name ?? '…'}</span>
+                <span className={note}>
+                  {seriesTitle(r.parties?.series_id)} · Season {r.parties?.season_number ?? 1}
+                </span>
+              </span>
               <span className={note}>{r.character_name}</span>
             </button>
           ))}
         </div>
       )}
-      <button className={goldButton} onClick={() => setView('start')} disabled={!accountName}>
-        START A PARTY
-      </button>
+
+      {/* The shelf: every series, its premise and seasons (Fake Guru, 16 Oct). */}
+      {SERIES.map((series) => {
+        const mineHere = characters.find((c) => c.series_id === series.id);
+        return (
+          <div key={series.id} className={`${card} border-[#D4B876]/50`}>
+            <p className={`${note} tracking-[1px] uppercase`}>A Mythios series</p>
+            <h2 className={`${heading} text-[20px]`}>{series.title}</h2>
+            <p className="text-[15px] italic leading-relaxed">{series.premise}</p>
+            <p className={note}>
+              {series.seasons.map((n) => `Season ${n}`).join(' · ')} · {series.facts}
+            </p>
+            {mineHere && (
+              <div className="rounded-lg bg-[#130B1F] px-3 py-2">
+                {renaming?.series === series.id ? (
+                  <div className="flex gap-2">
+                    <input
+                      className={input}
+                      maxLength={MAX_PLAYER_NAME}
+                      value={renaming.name}
+                      onChange={(e) => setRenaming({ series: series.id, name: e.target.value })}
+                    />
+                    <button
+                      className={quietButton}
+                      disabled={!renaming.name.trim()}
+                      onClick={async () => {
+                        await supabase.rpc('rename_character', { p_series: series.id, p_name: renaming.name.trim() });
+                        setRenaming(null);
+                        load();
+                      }}
+                    >
+                      SAVE
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[14px]">
+                      <span className="text-[#B7A9CC]">You play </span>
+                      <span className="font-semibold">{mineHere.name}</span>
+                      {mineHere.class && <span className="text-[#B7A9CC]">, {mineHere.class}</span>}
+                    </span>
+                    <button className={quietButton} onClick={() => setRenaming({ series: series.id, name: mineHere.name })}>
+                      CHANGE
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+            <button
+              className={goldButton}
+              disabled={!accountName}
+              onClick={() => {
+                setStartSeries(series.id);
+                setView('start');
+              }}
+            >
+              START A PARTY
+            </button>
+          </div>
+        );
+      })}
       <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={() => setView('invite')}>
         I HAVE AN INVITE
       </button>
@@ -842,7 +922,7 @@ function Home({ session }: { session: Session }) {
         {editingName === null ? (
           <div className="flex items-center justify-between gap-2">
             <span className="text-[14px]">
-              <span className="font-semibold">Your name:</span> {accountName || '…'}
+              <span className="font-semibold">Your Mythios name:</span> {accountName || '…'}
             </span>
             <button className={quietButton} onClick={() => setEditingName(accountName)}>
               CHANGE
@@ -890,10 +970,29 @@ export default function OnlineApp() {
   else if (session) body = <Home session={session} />;
   else if (joinCode && !wantsSignIn) body = <InviteCard info={info} onJoin={() => setWantsSignIn(true)} />;
   else if (!joinCode && !wantsSignIn) {
-    // Home, for someone with no party (review §2 Screen 1).
+    // The first screen: the Mythios intro, then the shelf (Fake Guru, 16 Oct; review §2 Screen 1's buttons).
     body = (
-      <div className="space-y-4">
-        <p className="text-center text-[15px]">{TAGLINE}</p>
+      <div className="space-y-5">
+        <div className="space-y-3 pt-2">
+          <p className="font-['Cormorant_Garamond'] text-[21px] leading-snug italic text-[#F4F1F8]">{MYTHIOS_INTRO.opener}</p>
+          <p className={`${heading} text-[17px]`}>{MYTHIOS_INTRO.name}</p>
+          {MYTHIOS_INTRO.lines.map((line) => (
+            <p key={line} className="text-[15px] leading-relaxed text-[#D9D1E6]">
+              {line}
+            </p>
+          ))}
+        </div>
+        {SERIES.map((series) => (
+          <div key={series.id} className={`${card} border-[#D4B876]/50`}>
+            <p className={`${note} tracking-[1px] uppercase`}>A Mythios series</p>
+            <h2 className={`${heading} text-[20px]`}>{series.title}</h2>
+            <p className="text-[15px] italic leading-relaxed">{series.premise}</p>
+            <p className={note}>
+              {series.seasons.map((n) => `Season ${n}`).join(' · ')} · {series.facts}
+            </p>
+          </div>
+        ))}
+        <p className="text-center text-[15px] text-[#E5C158]">{MYTHIOS_INTRO.call}</p>
         <button className={goldButton} onClick={() => setWantsSignIn(true)}>
           START A PARTY
         </button>

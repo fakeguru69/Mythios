@@ -1,10 +1,13 @@
-// Session Zero, once per friend per party (Core Rules §7). The choices are saved by the server when [READY] is tapped.
+// Session Zero (Core Rules §7). A player has one character per series (Fake Guru, 16 Oct): the first time, they name it
+// and choose; in a later party of the same series, their character is shown and kept. Saved when [READY] is tapped.
 import { useState } from 'react';
-import { supabase, plainError, type MemberRow } from './supabaseClient';
+import { supabase, plainError, MAX_PLAYER_NAME, type MemberRow } from './supabaseClient';
 import {
   ATTRIBUTES,
   CLASSES,
   SZ_CHOOSE,
+  SZ_NAME,
+  SZ_NAME_NOTE,
   SZ_PREMISE,
   SZ_QUESTIONS,
   SZ_QUESTIONS_NOTE,
@@ -15,6 +18,7 @@ import {
   START_SECOND_ATTR,
   START_WEAPON,
   type AttributeName,
+  seriesTitle,
 } from './onlineText';
 import { card, ErrorLine, goldButton, heading, input, note, quietButton } from './ui';
 
@@ -23,22 +27,38 @@ const optionButton = (selected: boolean) =>
     selected ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555] bg-[#130B1F] hover:border-[#7E68B8]'
   }`;
 
+export interface SeriesCharacter {
+  name: string;
+  class: string | null;
+  second_attr: string | null;
+  birthplace: string | null;
+  grandparent_name: string | null;
+}
+
 export default function SessionZero({
   partyId,
   userId,
+  seriesId,
+  startName,
+  character,
   members,
   onDone,
 }: {
   partyId: string;
   userId: string;
+  seriesId: string;
+  startName: string;
+  character: SeriesCharacter | null;
   members: MemberRow[];
   onDone: () => void;
 }) {
+  const kept = !!character?.class; // a character already made in this series
   const [step, setStep] = useState(1);
-  const [className, setClassName] = useState<string | null>(null);
-  const [second, setSecond] = useState<AttributeName | null>(null);
-  const [birthplace, setBirthplace] = useState('');
-  const [grandparent, setGrandparent] = useState('');
+  const [name, setName] = useState(character?.name ?? startName);
+  const [className, setClassName] = useState<string | null>(character?.class ?? null);
+  const [second, setSecond] = useState<AttributeName | null>((character?.second_attr as AttributeName | null) ?? null);
+  const [birthplace, setBirthplace] = useState(character?.birthplace ?? '');
+  const [grandparent, setGrandparent] = useState(character?.grandparent_name ?? '');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -66,14 +86,40 @@ export default function SessionZero({
   if (step === 1) {
     return (
       <div className={card}>
-        <h2 className={`${heading} text-[18px]`}>Tales of the Dark Moon.</h2>
+        <h2 className={`${heading} text-[18px]`}>{seriesTitle(seriesId)}.</h2>
         {SZ_PREMISE.map((line) => (
           <p key={line} className="text-[15px] leading-relaxed">
             {line}
           </p>
         ))}
-        <button className={goldButton} onClick={() => setStep(2)}>
+        <button className={goldButton} onClick={() => setStep(kept ? 5 : 15)}>
           BEGIN
+        </button>
+      </div>
+    );
+  }
+
+  // The character's name in this series (shown once, the first time).
+  if (step === 15) {
+    return (
+      <div className={card}>
+        <label className="block text-[15px]">{SZ_NAME}</label>
+        <input className={input} maxLength={MAX_PLAYER_NAME} value={name} onChange={(e) => setName(e.target.value)} />
+        <p className={`${note} italic`}>{SZ_NAME_NOTE}</p>
+        <ErrorLine text={error} />
+        <button
+          className={goldButton}
+          disabled={!name.trim() || busy}
+          onClick={async () => {
+            setBusy(true);
+            setError(null);
+            const { error: e } = await supabase.rpc('rename_character', { p_series: seriesId, p_name: name.trim() });
+            setBusy(false);
+            if (e) setError(plainError(e.message));
+            else setStep(2);
+          }}
+        >
+          GO ON
         </button>
       </div>
     );
@@ -153,6 +199,7 @@ export default function SessionZero({
       <div className={card}>
         <div className="rounded-xl border border-[#D4B876]/60 bg-[#130B1F] p-4 space-y-1.5 font-mono text-[14px]">
           <div className={`${heading} text-[12px] tracking-[1px]`}>YOUR CHARACTER</div>
+          <div className="text-[16px] font-sans font-semibold text-[#F4F1F8]">{name}</div>
           <div className={`${heading} text-[18px]`}>{chosen.name}</div>
           <div className="pt-1">
             {chosen.attribute} {START_CLASS_ATTR} · {second} {START_SECOND_ATTR}
@@ -167,7 +214,7 @@ export default function SessionZero({
         </div>
         <ErrorLine text={error} />
         <div className="flex gap-2">
-          <button className={quietButton} onClick={() => setStep(4)}>
+          <button className={quietButton} onClick={() => setStep(kept ? 1 : 4)}>
             Back
           </button>
           <button className={goldButton} disabled={busy} onClick={ready}>
