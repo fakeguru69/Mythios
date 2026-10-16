@@ -224,10 +224,12 @@ function buildGathering(week, lines) {
         const from = fromIdx >= 0 ? bLines[fromIdx] : '';
         const frag = (from.match(/\*"(.+?)"\*/) || [])[1] || '';
         const source = from.replace(/\*".*?"\*/, '').replace(/:\s*$/, '').trim();
-        push({ t: 'match', question, quote, source: tokens(source, week, section), fragment: frag });
+        // Gathering 5's second Match: "only if the roll-call was answered and the watchman said the Verse himself".
+        const matchCond = /only if the roll-call was answered/.test(bold[2]) ? { cond: { on: 'ue', won: true } } : {};
+        push({ t: 'match', question, quote, source: tokens(source, week, section), fragment: frag, ...matchCond });
         // Anything after the fragment in that passage is the story's comment on it.
         const after = bLines.slice(fromIdx + 1).join('\n').trim();
-        if (after) push({ t: 'say', text: quoteText(after.split('\n'), week, section) });
+        if (after) push({ t: 'say', text: quoteText(after.split('\n'), week, section), ...matchCond });
         continue;
       }
       if (/^(Night|Season) summary card$/.test(name)) {

@@ -35,6 +35,7 @@ import OnlineDay from './OnlineDay';
 import OnlineChest from './OnlineChest';
 import OnlineStore from './OnlineStore';
 import OnlineCampfire from './OnlineCampfire';
+import OnlineGathering, { GatheringCard } from './OnlineGathering';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
 const startQuery = new URLSearchParams(window.location.search);
@@ -383,6 +384,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [inChest, setInChest] = useState(false);
   const [inStore, setInStore] = useState(false);
   const [atFire, setAtFire] = useState(false);
+  const [inGathering, setInGathering] = useState(false);
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -504,6 +506,20 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
     );
   }
 
+  // The Gathering on Day 7, live with the whole party (from the party page, or Day 7's Tonight line).
+  if (inGathering) {
+    return (
+      <OnlineGathering
+        partyId={party.id}
+        onClose={() => {
+          setInGathering(false);
+          setPlayingDay(false);
+          load();
+        }}
+      />
+    );
+  }
+
   // The last light and the Campfire (after the day's chapter; from the party page or the day's end).
   if (atFire) {
     return (
@@ -536,6 +552,8 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         onOpenChest={() => setInChest(true)}
         onOpenStore={() => setInStore(true)}
         onOpenFire={() => setAtFire(true)}
+        onOpenGathering={() => setInGathering(true)}
+        timeZone={party.time_zone}
       />
     );
   }
@@ -687,6 +705,11 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
             THE STORE
           </button>
         </div>
+      )}
+
+      {/* This week's Gathering: its time (the host can change it until the lobby opens), and on Day 7 the way in. */}
+      {started && !beforeDayOne && me.session_zero_done_at && (
+        <GatheringCard partyId={party.id} isHost={isHost} timeZone={party.time_zone} onOpen={() => setInGathering(true)} />
       )}
 
       {/* The party chat opens when the party assembles on Day 2 (Fake Guru, 16 Oct); the server enforces it. */}
