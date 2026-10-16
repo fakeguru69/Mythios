@@ -229,6 +229,7 @@ Light on purpose: one or two moments per episode. The rest of his warmth is impr
 
 | What he said | What it meant |
 |---|---|
+| *"Garrick."* *(Week 1 Day 2, given before the question is finished; added 16 Oct, Fake Guru: his name on Day 2)* | True: it is his name. He gives his own and asks for none of theirs. He has no need to: they are on the list he has been waiting for. |
 | *"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen. Left this. Hasn't been back in three weeks."* *(aligned 2026-09-28 to the Ep1 script, and again 2026-10-03 after Audit C: the wine clause was missing here; the older wording "She left her papers here. Never came back for them" isn't in it)* | True. Said only when asked directly. He never claims she trusted him, and never explains why he kept them. |
 | *(He does not say this. The party works it out from her notes themselves.)* | He arranged the taking, and lets them discover the urgency on their own — the strongest possible version, since he never has to introduce the mission at all. |
 | *(Only if asked — not in the Ep1 script.)* *"You [N] were on her list. That means something."* | True. It means she identified the only people who could find the Stones — which is why he needs them. |

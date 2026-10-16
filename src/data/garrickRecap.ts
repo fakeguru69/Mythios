@@ -13,6 +13,11 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
     "entries": [
       {
         "when": "",
+        "line": "*\"Garrick.\"*",
+        "meaning": "True: it is his name. He gives his own and asks for none of theirs. He has no need to: they are on the list he has been waiting for."
+      },
+      {
+        "when": "",
         "line": "*\"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen. Left this. Hasn't been back in three weeks.\"*",
         "meaning": "True. He never claims she trusted him, and never explains why he kept them."
       },
