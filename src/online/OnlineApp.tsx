@@ -7,9 +7,13 @@ import {
   supabase,
   plainError,
   allTimeZones,
+  enabledSignIns,
   homeTimeZone,
   timeZoneLabel,
   dayOneWord,
+  earliestStartDate,
+  dayOneOpening,
+  dateOpening,
   MAX_PLAYER_NAME,
   MAX_PARTY_NAME,
   MAX_PARTY_SIZE,
@@ -22,6 +26,7 @@ import {
 import { CREDIT_LINE, INVITE_BULLETS, PREMISE_LINE, SZ_DOOR, TAGLINE } from './onlineText';
 import SessionZero from './SessionZero';
 import PartyChat from './PartyChat';
+import InstallGuide from './InstallGuide';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
 const startQuery = new URLSearchParams(window.location.search);
@@ -117,6 +122,16 @@ function SignIn() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
+  const [providers, setProviders] = useState({ google: false, apple: false });
+  useEffect(() => {
+    enabledSignIns().then(setProviders);
+  }, []);
+  // Google and Apple (review-accounts-and-invites.md §1 Screen 2). The page comes back here, invite link and all.
+  const oauth = async (provider: 'google' | 'apple') => {
+    setError(null);
+    const { error: e } = await supabase.auth.signInWithOAuth({ provider, options: { redirectTo: window.location.href } });
+    if (e) setError(plainError(e.message));
+  };
 
   const submit = async () => {
     setBusy(true);
@@ -152,6 +167,16 @@ function SignIn() {
   return (
     <div className={card}>
       <h2 className={`${heading} text-[17px]`}>First, so the story knows you.</h2>
+      {!open && providers.google && (
+        <button className={goldButton} onClick={() => oauth('google')}>
+          CONTINUE WITH GOOGLE
+        </button>
+      )}
+      {!open && providers.apple && (
+        <button className={goldButton} onClick={() => oauth('apple')}>
+          CONTINUE WITH APPLE
+        </button>
+      )}
       {!open ? (
         <button className={goldButton} onClick={() => setOpen(true)}>
           USE EMAIL AND A PASSWORD
@@ -260,10 +285,27 @@ function HaveInvite({ onCode, onBack }: { onCode: (code: string) => void; onBack
   );
 }
 
-function Confirm({ title, body, yes, no, onYes, onNo }: { title: string; body: string; yes: string; no: string; onYes: () => void; onNo: () => void }) {
+function Confirm({
+  title,
+  body,
+  yes,
+  no,
+  onYes,
+  onNo,
+  children,
+}: {
+  title: string;
+  body: string;
+  yes: string;
+  no: string;
+  onYes: () => void;
+  onNo: () => void;
+  children?: React.ReactNode;
+}) {
   return (
     <div className={`${card} border-[#D4B876]/70`}>
       <h3 className={`${heading} text-[16px]`}>{title}</h3>
+      {children}
       <p className="text-[15px]">{body}</p>
       <div className="flex gap-2">
         <button className="flex-1 rounded-lg bg-[#D4B876] px-3 py-2 font-[Cinzel] font-bold text-[12px] text-[#130B1F]" onClick={onYes}>
@@ -287,6 +329,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [doingSessionZero, setDoingSessionZero] = useState(false);
   const [confirm, setConfirm] = useState<null | { kind: 'leave' } | { kind: 'remove'; user: string; name: string } | { kind: 'start' }>(null);
   const [changingClock, setChangingClock] = useState(false);
+  const [startDate, setStartDate] = useState('');
   const [editingName, setEditingName] = useState<string | null>(null);
 
   const load = useCallback(async () => {
@@ -374,6 +417,11 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const setOff = !!party.day1_opens_at && Date.now() >= new Date(party.day1_opens_at).getTime() + 2 * 86400000;
   // "Day 1 opens at 5:00am. Sleep, if you can." shows only until Day 1 opens.
   const beforeDayOne = !party.day1_opens_at || Date.now() < new Date(party.day1_opens_at).getTime();
+  // Canon's line on the last night; further ahead, the day it starts.
+  const doorLine =
+    party.day1_opens_at && new Date(party.day1_opens_at).getTime() - Date.now() > 86400000
+      ? `Day 1 opens at 5:00am ${dayOneOpening(party.day1_opens_at, party.time_zone)}.`
+      : SZ_DOOR;
   const chatOpen = !!party.day1_opens_at && Date.now() >= new Date(party.day1_opens_at).getTime() + 86400000;
 
   if (doingSessionZero) {
@@ -456,20 +504,30 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       )}
       {confirm?.kind === 'start' && (
         <Confirm
-          title={`Start the story for ${readyCount} of you?`}
-          body={`Day 1 opens at 5:00am ${dayOneWord(party.time_zone)}.${
+          title={started ? 'Change the day the story starts?' : `Start the story for ${readyCount} of you?`}
+          body={`Day 1 opens at 5:00am ${dateOpening(startDate || earliestStartDate(party.time_zone), party.time_zone)}.${
             choosing.length
               ? ` ${nameList(choosing)} ${choosing.length === 1 ? "hasn't" : "haven't"} finished choosing. They can still join until the end of Day 2.`
               : ''
           }`}
-          yes="START"
+          yes={started ? 'SAVE' : 'START'}
           no="NOT YET"
           onYes={async () => {
-            await act('start_season', { p_party: party.id });
-            setConfirm(null);
+            // The host picks the day (Fake Guru, 16 Oct); Day 1 opens at 5:00am that day on the party's clock.
+            const ok = await act('schedule_season', { p_party: party.id, p_start: startDate || earliestStartDate(party.time_zone) });
+            if (ok) setConfirm(null);
           }}
           onNo={() => setConfirm(null)}
-        />
+        >
+          <label className="block text-[14px] font-semibold">The day the story starts:</label>
+          <input
+            type="date"
+            className={input}
+            min={earliestStartDate(party.time_zone)}
+            value={startDate || earliestStartDate(party.time_zone)}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </Confirm>
       )}
 
       {/* Screen 6 (a friend) or Screen 4 (the host): the waiting room. */}
@@ -485,9 +543,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         <p className={note}>{party.name}</p>
         {partyList}
         {!isHost && (
-          <p className="text-[15px] pt-1">{!started ? `The road opens when ${host} says so.` : beforeDayOne ? SZ_DOOR : ''}</p>
+          <p className="text-[15px] pt-1">{!started ? `The road opens when ${host} says so.` : beforeDayOne ? doorLine : ''}</p>
         )}
-        {isHost && started && beforeDayOne && <p className="text-[15px] pt-1">{SZ_DOOR}</p>}
+        {isHost && started && beforeDayOne && <p className="text-[15px] pt-1">{doorLine}</p>}
       </div>
 
       {/* The party chat opens when the party assembles on Day 2 (Fake Guru, 16 Oct); the server enforces it. */}
@@ -594,8 +652,13 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
               <button className={goldButton} disabled={readyCount < 2} onClick={() => setConfirm({ kind: 'start' })}>
                 START THE STORY
               </button>
-              <p className={`${note} italic`}>Needs two of you ready. Day 1 opens at the next 5:00am.</p>
+              <p className={`${note} italic`}>Needs two of you ready. Day 1 opens at 5:00am on the day you choose.</p>
             </>
+          )}
+          {started && beforeDayOne && (
+            <button className={quietButton} onClick={() => setConfirm({ kind: 'start' })}>
+              CHANGE THE DAY
+            </button>
           )}
         </div>
       )}
@@ -644,6 +707,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
 function Home({ session }: { session: Session }) {
   const userId = session.user.id;
   const [accountName, setAccountName] = useState('');
+  const [nameChosen, setNameChosen] = useState(true);
   const [rows, setRows] = useState<(MemberRow & { parties: { name: string } | null })[]>([]);
   const [view, setView] = useState<'list' | 'start' | 'invite'>('list');
   const [openParty, setOpenParty] = useState<string | null>(null);
@@ -654,7 +718,7 @@ function Home({ session }: { session: Session }) {
 
   const load = useCallback(async () => {
     const [{ data: prof }, { data: mine }] = await Promise.all([
-      supabase.from('profiles').select('display_name').eq('id', userId).maybeSingle(),
+      supabase.from('profiles').select('display_name,name_chosen').eq('id', userId).maybeSingle(),
       supabase
         .from('party_members')
         .select(`${MEMBER_COLUMNS},parties(name)`)
@@ -662,6 +726,7 @@ function Home({ session }: { session: Session }) {
         .in('status', ['approved', 'pending', 'turned_away']),
     ]);
     setAccountName(prof?.display_name ?? '');
+    setNameChosen(prof?.name_chosen ?? true);
     const list = (mine as unknown as (MemberRow & { parties: { name: string } | null })[]) ?? [];
     // A party not yet joined cannot be read; its name comes from my_party_summary.
     for (const r of list) {
@@ -676,6 +741,27 @@ function Home({ session }: { session: Session }) {
   useEffect(() => {
     load();
   }, [load]);
+
+  // Google and Apple sign-ins are asked the name question once (review §1 Screen 3).
+  if (!nameChosen) {
+    return (
+      <div className={card}>
+        <label className="block text-[15px] font-semibold">What should your friends call you?</label>
+        <p className={`${note} italic`}>This is the name they will see. It can be changed later.</p>
+        <input className={input} maxLength={MAX_PLAYER_NAME} value={accountName} onChange={(e) => setAccountName(e.target.value)} />
+        <button
+          className={goldButton}
+          disabled={!accountName.trim()}
+          onClick={async () => {
+            await supabase.from('profiles').update({ display_name: accountName.trim(), name_chosen: true }).eq('id', userId);
+            load();
+          }}
+        >
+          GO ON
+        </button>
+      </div>
+    );
+  }
 
   if (openParty) {
     return (
@@ -749,6 +835,8 @@ function Home({ session }: { session: Session }) {
       <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={() => setView('invite')}>
         I HAVE AN INVITE
       </button>
+
+      <InstallGuide />
 
       <div className={`${card} mt-6`}>
         {editingName === null ? (
