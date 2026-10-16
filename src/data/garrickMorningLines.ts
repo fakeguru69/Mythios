@@ -8,7 +8,7 @@
 // None on Week 1 Days 1 and 2 (the chat opens on Day 2, when the party first meets him) and none on a Day 1 from Week 2
 // on (each picks up in the middle of the Gathering's last scene). Loaded onto the server by scripts/gen-garrick-morning-sql.ts.
 
-export const GARRICK_MORNING_APPROVED = false; // set true once Fake Guru approves the lines below
+export const GARRICK_MORNING_APPROVED = true; // approved by Fake Guru, 16 Oct ("go with your suggestion")
 
 export const GARRICK_MORNING_LINES: { week: number; day: number; line: string }[] = [
   { week: 1, day: 3, line:
