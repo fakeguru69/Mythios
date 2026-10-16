@@ -34,6 +34,7 @@ import InstallGuide from './InstallGuide';
 import OnlineDay from './OnlineDay';
 import OnlineChest from './OnlineChest';
 import OnlineStore from './OnlineStore';
+import OnlineCampfire from './OnlineCampfire';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
 const startQuery = new URLSearchParams(window.location.search);
@@ -381,6 +382,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [playingDay, setPlayingDay] = useState(false);
   const [inChest, setInChest] = useState(false);
   const [inStore, setInStore] = useState(false);
+  const [atFire, setAtFire] = useState(false);
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -502,6 +504,21 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
     );
   }
 
+  // The last light and the Campfire (after the day's chapter; from the party page or the day's end).
+  if (atFire) {
+    return (
+      <OnlineCampfire
+        partyId={party.id}
+        onClose={() => {
+          setAtFire(false);
+          setPlayingDay(false);
+          load();
+        }}
+        onOpenChest={() => setInChest(true)}
+      />
+    );
+  }
+
   // Today's chapter, from the server (the days online).
   if (playingDay) {
     return (
@@ -518,6 +535,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         }}
         onOpenChest={() => setInChest(true)}
         onOpenStore={() => setInStore(true)}
+        onOpenFire={() => setAtFire(true)}
       />
     );
   }
@@ -661,6 +679,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           </button>
           <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInChest(true)}>
             🕯️ SEEKER CHEST
+          </button>
+          <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setAtFire(true)}>
+            🔥 THE CAMPFIRE
           </button>
           <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInStore(true)}>
             THE STORE

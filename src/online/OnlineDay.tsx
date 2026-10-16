@@ -89,6 +89,7 @@ export default function OnlineDay({
   onClose,
   onOpenChest,
   onOpenStore,
+  onOpenFire,
 }: {
   partyId: string;
   friends: string[];
@@ -99,6 +100,7 @@ export default function OnlineDay({
   onClose: () => void;
   onOpenChest: () => void;
   onOpenStore: () => void;
+  onOpenFire: () => void;
 }) {
   const [today, setToday] = useState<Today | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -603,6 +605,7 @@ export default function OnlineDay({
         await call('finish_day', {});
       }}
       onClose={onClose}
+      onOpenFire={onOpenFire}
       endRef={endRef}
     />
   );
@@ -618,6 +621,7 @@ function DayBody({
   finished,
   onFinish,
   onClose,
+  onOpenFire,
   endRef,
 }: {
   header: React.ReactNode;
@@ -629,6 +633,7 @@ function DayBody({
   finished: boolean;
   onFinish: () => void;
   onClose: () => void;
+  onOpenFire: () => void;
   endRef: React.RefObject<HTMLDivElement | null>;
 }) {
   useEffect(() => {
@@ -643,6 +648,15 @@ function DayBody({
       </div>
       <div className="space-y-3">{nodes}</div>
       <ErrorLine text={error} />
+      {/* After the day: the last light, then the fire (the Campfire opens once the day is done, v2.3 §D). */}
+      {reachedSummary && finished && (
+        <button
+          className="w-full py-2.5 rounded-lg bg-[#2A2018] border border-[#F0A552]/70 font-['Cinzel'] font-bold text-[13px] text-[#F0A552]"
+          onClick={onOpenFire}
+        >
+          🔥 THE LAST LIGHT
+        </button>
+      )}
       {reachedSummary && (
         <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={onClose}>
           BACK TO THE PARTY

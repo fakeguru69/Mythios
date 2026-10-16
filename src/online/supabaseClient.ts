@@ -128,6 +128,10 @@ export const plainError = (message: string | undefined): string => {
   if (m.includes('too late to change')) return 'Your choices are set now that Day 1 has opened.';
   if (m.includes('character_name') || m.includes('display_name')) return `A name is 1 to ${MAX_PLAYER_NAME} characters.`;
   if (m.includes('parties_name') || m.includes('name_check')) return `A party's name is 1 to ${MAX_PARTY_NAME} characters.`;
+  if (m.includes('finish your day first')) return 'The fire opens once your own day is done.';
+  if (m.includes('no fire tonight')) return 'Tonight is the Gathering.';
+  if (m.includes('no tries left')) return 'No tries left on this riddle.';
+  if (m.includes('already chosen')) return 'You have already chosen tonight.';
   if (m.includes('the store is closed')) return 'The Store is closed while your card or fight is open.';
   if (m.includes('not enough gold')) return 'Not enough gold for that.';
   if (m.includes('already at level 5')) return 'That is already Level 5.';
