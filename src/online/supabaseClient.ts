@@ -138,6 +138,13 @@ export const plainError = (message: string | undefined): string => {
   if (m.includes('no relic of that kind')) return "You don't hold a Relic of that kind.";
   if (m.includes('a relic is already helping')) return 'A Combat Relic is already helping in this fight.';
   if (m.includes('not a friend in this party')) return 'That friend is not in this party.';
+  if (m.includes('only the host can start it yet')) return 'Only the host can start it until it has been open 10 minutes.';
+  if (m.includes('between 8:00am and 11:00pm')) return 'Pick a time between 8:00am and 11:00pm.';
+  if (m.includes('the lobby is already open')) return 'The Gathering is already open; its time is set.';
+  if (m.includes('that time has passed')) return 'That time has already passed.';
+  if (m.includes('no gathering tonight')) return 'There is no Gathering tonight.';
+  if (m.includes('an answer is 1 to 140')) return 'An answer is 1 to 140 characters.';
+  if (m.includes('not yet')) return 'Not yet.';
   if (m.includes('failed to fetch') || m.includes('network')) return 'No connection to the server. Try again.';
   return 'Something went wrong. Try again.';
 };

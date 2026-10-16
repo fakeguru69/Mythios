@@ -37,6 +37,8 @@ Playwright scripts that drive the real app in a browser. The online tests also t
   It needs a day whose card has not been rolled, and about 500g.
 - `node tests/online/campfire.cjs <run> "<party name>"`: host and Mei each play today's chapter, follow different leads, and sit at the fire. Covers the board, pin before peek, the catch-up line, the bottle, the open question, the week line, the riddle (tries counted per friend), and leaving. Needs a weekday neither has finished.
 
+- `node tests/online/gathering.cjs <run> "<party name>"`: host and Mei each open the Gathering and tap whatever the night offers them (the host answers the table's question) until both reach the summary card. Covers the lobby, the vote, the Approach, the Battle, Notice and [LOOK CLOSER], the United Effort, Match, the table question, Ask and the summary. The party must be on Day 7. Takes about ten minutes (the Battle plays one round every 10 seconds).
+
 To move a test party's clock, run this on the server (Supabase SQL):
 
 ```sql
@@ -55,3 +57,32 @@ update public.parties set day1_opens_at = day1_opens_at - interval '1 day' where
   - Garrick's banned phrases;
   - the secret.
 - `python3 -I tests/demo/numcheck.py` checks every roll and fight line against the rules.
+
+## A local copy of the server (no password needed)
+Every migration in `supabase/migrations/` can run on a local Postgres, and `tests/online/local-server.cjs` stands in for Supabase's web side (sign-in with any password, the server functions, simple table reads). The online screens then run in a browser against it, and nothing touches the real server.
+
+```sh
+# Postgres 16, run as the postgres user, in a folder it owns:
+mkdir -p /var/tmp/pgm && chown postgres /var/tmp/pgm
+su postgres -s /bin/bash -c "/usr/lib/postgresql/16/bin/initdb -D /var/tmp/pgm/data -U postgres && /usr/lib/postgresql/16/bin/pg_ctl -D /var/tmp/pgm/data -o '-p 5544 -k /var/tmp/pgm' -l /var/tmp/pgm/log start"
+export PGHOST=/var/tmp/pgm PGPORT=5544
+psql -U postgres -c "create database m"
+export PGDATABASE=m
+# Supabase's own pieces the migrations expect:
+psql -U postgres <<'SQL'
+create role anon; create role authenticated; create role service_role;
+create schema auth;
+create table auth.users (id uuid primary key default gen_random_uuid(), email text, raw_user_meta_data jsonb default '{}');
+create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.uid', true), '')::uuid $$;
+create publication supabase_realtime;
+grant usage on schema public, auth to anon, authenticated;
+SQL
+for f in supabase/migrations/00*.sql; do psql -U postgres -v ON_ERROR_STOP=1 -q -f $f || break; done
+# A test party on Week 2 Day 7, the stand-in, and the app pointed at it:
+node tests/online/gathering.cjs setup-local "Gathering Test"
+node tests/online/local-server.cjs &
+VITE_SUPABASE_URL=http://localhost:54321 npm run dev &
+node tests/online/gathering.cjs local "Gathering Test"
+```
+
+The live chat (websocket) is not served locally; the chat still loads each time it opens.

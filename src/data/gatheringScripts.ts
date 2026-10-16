@@ -2082,6 +2082,10 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "quote": "*\"They kept it near him, under their own eyes.\"*",
         "source": "From the broken fountain below the hall",
         "fragment": "We kept the fifth where we could watch it, and watch him.",
+        "cond": {
+          "on": "ue",
+          "won": true
+        },
         "section": "The hidden room"
       },
       {

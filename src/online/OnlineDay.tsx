@@ -15,6 +15,7 @@ import {
 } from '../components/ChapterScriptParts';
 import { challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
 import { CLASSES } from './onlineText';
+import { tonightLine } from './OnlineGathering';
 import { ErrorLine, heading, note, quietButton } from './ui';
 
 interface Roll {
@@ -75,6 +76,7 @@ interface Today {
     finished_at: string | null;
   };
   daysPlayed: number;
+  claims?: string[]; // what earlier Gatherings carry into the weekdays ("G5:united-effort-lost")
 }
 
 const signed = (n: number) => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
@@ -90,6 +92,8 @@ export default function OnlineDay({
   onOpenChest,
   onOpenStore,
   onOpenFire,
+  onOpenGathering,
+  timeZone,
 }: {
   partyId: string;
   friends: string[];
@@ -101,6 +105,8 @@ export default function OnlineDay({
   onOpenChest: () => void;
   onOpenStore: () => void;
   onOpenFire: () => void;
+  onOpenGathering: () => void;
+  timeZone: string;
 }) {
   const [today, setToday] = useState<Today | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -170,13 +176,17 @@ export default function OnlineDay({
         <p className={note}>
           Week {week} · Day {day}
         </p>
-        <p className={`${heading} text-[17px]`}>Tonight: the Gathering.</p>
+        <DaySevenLine partyId={partyId} timeZone={timeZone} />
+        <ScriptButton label="THE GATHERING" onClick={onOpenGathering} />
       </div>
     );
   }
 
   const steps = chapter.script.steps;
-  const dc = chapter.meta.dc;
+  // A Gathering's result can make a weekday's Challenge harder (Week 6 Day 1: two harder after a lost roll-call).
+  const harderIf = steps.find((st): st is Extract<ScriptStep, { t: 'challenge' }> => st.t === 'challenge')?.harderIf;
+  const harder = harderIf && (today.claims ?? []).includes(harderIf.key) === harderIf.has ? harderIf.by : 0;
+  const dc = chapter.meta.dc + harder;
   const challenge = mine.challenge;
   const press = mine.press;
   const fight = mine.fight;
@@ -188,7 +198,7 @@ export default function OnlineDay({
     if (c.on === 'challenge') return Boolean(challenge) && challenge!.pass === c.pass;
     if (c.on === 'press') return Boolean(press && !('left' in press && press.left) && (press as Roll).pass);
     if (c.on === 'fight') return fightDone && fightWon === c.won;
-    if (c.on === 'claim') return c.has === false; // Gathering results come online later; none yet.
+    if (c.on === 'claim') return (today.claims ?? []).includes(c.key) === c.has;
     return false;
   };
   const strikeFirst = (rule: StrikeFirstRule): boolean => {
@@ -322,6 +332,9 @@ export default function OnlineDay({
               </p>
             )}
             <ScriptText text={fill(step.desc)} className="font-sans text-[14px] text-[#E6E0F0] leading-[1.4]" />
+            {harder > 0 && step.harderIf && (
+              <ScriptText text={fill(step.harderIf.line)} className="font-sans text-[13.5px] text-[#E0645C] leading-[1.4]" />
+            )}
             {!challenge ? (
               <>
                 <div className="space-y-1.5">
@@ -665,4 +678,15 @@ function DayBody({
       <div ref={endRef} />
     </div>
   );
+}
+
+// Day 7's "Tonight" line with the Gathering's time (Core Rules §11 "Day 7 before the Gathering").
+function DaySevenLine({ partyId, timeZone }: { partyId: string; timeZone: string }) {
+  const [line, setLine] = useState<string | null>(null);
+  useEffect(() => {
+    supabase.rpc('gathering_info', { p_party: partyId }).then(({ data }) => {
+      if (data?.tonight) setLine(tonightLine(data.tonight, data.opensAt, timeZone));
+    });
+  }, [partyId, timeZone]);
+  return <p className="text-[15px] italic text-[#B7A9CC]">{line ?? 'Tonight: the Gathering.'}</p>;
 }
