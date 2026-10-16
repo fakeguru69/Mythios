@@ -4,7 +4,7 @@
 
 // MYTHIOS, the app (Fake Guru, 16 Oct): a teller of serialised stories. A series is one world, told over seasons;
 // you play one character per series, under a name you choose.
-// DRAFT, waiting on Fake Guru: the intro below is the builder's wording, not canon yet.
+// The intro below: approved by Fake Guru, 16 Oct.
 export const MYTHIOS_INTRO = {
   opener: 'At the edge of every map there is a fire, and beside it someone telling a story that has not finished yet.',
   name: 'Mythios is that teller.',
@@ -45,7 +45,7 @@ export const SZ_CHOOSE = 'Choose the one who will walk this road.';
 export const SZ_SECOND = 'Nobody is only one thing. What else are you good at?';
 export const SZ_QUESTIONS = ['Where were you born?', "What was a grandparent's name?"];
 export const SZ_QUESTIONS_NOTE = 'You can skip these. They only make the story a little more yours.';
-// The character's name in this series (Fake Guru, 16 Oct). Builder's wording, waiting on Fake Guru.
+// The character's name in this series (Fake Guru, 16 Oct; wording approved 16 Oct).
 export const SZ_NAME = 'What is your name in this story?';
 export const SZ_NAME_NOTE = 'Your friends will know you by it in every season of this series.';
 export const SZ_DOOR = 'Day 1 opens at 5:00am. Sleep, if you can.';

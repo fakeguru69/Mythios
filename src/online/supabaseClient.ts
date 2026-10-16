@@ -111,7 +111,9 @@ export const plainError = (message: string | undefined): string => {
   if (m.includes('email not confirmed')) return 'Open the link in your email first, then sign in.';
   if (m.includes('user already registered')) return 'That email already has an account. Sign in instead.';
   if (m.includes('password should be at least')) return 'The password needs at least 6 characters.';
+  if (m.includes('email rate limit')) return 'Too many emails just now. Try again in an hour.';
   if (m.includes('rate limit')) return 'Too many tries. Wait a minute and try again.';
+  if (m.includes('not authorized') || m.includes('address_not_authorized')) return "We couldn't send an email to that address.";
   if (m.includes('this invite no longer works')) return 'This invite no longer works. Ask for a new link.';
   if (m.includes('this party is full')) return 'This party is full. Six is as many as the road will hold.';
   if (m.includes('this party has set off')) return 'This party has set off.';

@@ -1,7 +1,7 @@
 // MYTHIOS online: the Mythios intro, sign-in, the series shelf, your characters (one per series), parties, the invite,
 // the host letting friends in, Session Zero, the party clock and starting the story (Core Rules §7, §11, §12a).
 // A series (Tales of the Dark Moon) has seasons; a party plays one season (Fake Guru, 16 Oct).
-// The screens' words are from review-accounts-and-invites.md, except the Mythios intro (a draft, in onlineText.ts).
+// The screens' words are from review-accounts-and-invites.md and the Mythios intro (approved 16 Oct, in onlineText.ts).
 // Opened with ?online=1, or by an invite link (?join=CODE). The one-phone demo is unchanged.
 import { useCallback, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
@@ -127,6 +127,7 @@ function SignIn() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
+  const [forgot, setForgot] = useState<'no' | 'asking' | 'sent'>('no');
   const [providers, setProviders] = useState({ google: false });
   useEffect(() => {
     enabledSignIns().then(setProviders);
@@ -166,6 +167,42 @@ function SignIn() {
     return (
       <div className={card}>
         <p className="text-[15px]">We sent a link to {email.trim()}. Open it to finish.</p>
+      </div>
+    );
+  }
+  // Forgot your password: a link by email, then a new password (NewPassword below).
+  if (forgot !== 'no') {
+    return (
+      <div className={card}>
+        <h2 className={`${heading} text-[17px]`}>Forgot your password?</h2>
+        {forgot === 'sent' ? (
+          <p className="text-[15px]">We sent a link to {email.trim()}. Open it to choose a new password.</p>
+        ) : (
+          <>
+            <p className="text-[15px]">We'll email you a link to choose a new one.</p>
+            <input className={input} type="email" placeholder="Email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <ErrorLine text={error} />
+            <button
+              className={goldButton}
+              disabled={busy || !email.trim()}
+              onClick={async () => {
+                setBusy(true);
+                setError(null);
+                const { error: e } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+                  redirectTo: `${window.location.origin}/?online=1`,
+                });
+                setBusy(false);
+                if (e) setError(plainError(e.message));
+                else setForgot('sent');
+              }}
+            >
+              SEND THE LINK
+            </button>
+          </>
+        )}
+        <button className={quietButton} onClick={() => setForgot('no')}>
+          Back
+        </button>
       </div>
     );
   }
@@ -213,6 +250,11 @@ function SignIn() {
           >
             {mode === 'in' ? 'New here? Make an account' : 'Have an account? Sign in'}
           </button>
+          {mode === 'in' && (
+            <button className="w-full text-[13px] text-[#B7A9CC] underline" onClick={() => setForgot('asking')}>
+              Forgot your password?
+            </button>
+          )}
         </>
       )}
     </div>
@@ -953,20 +995,60 @@ function Home({ session }: { session: Session }) {
   );
 }
 
+// After opening the email link: choose a new password.
+function NewPassword({ onDone }: { onDone: () => void }) {
+  const [password, setPassword] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  return (
+    <div className={card}>
+      <h2 className={`${heading} text-[17px]`}>Choose a new password</h2>
+      <input
+        className={input}
+        type="password"
+        placeholder="New password"
+        autoComplete="new-password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <ErrorLine text={error} />
+      <button
+        className={goldButton}
+        disabled={busy || password.length < 6}
+        onClick={async () => {
+          setBusy(true);
+          setError(null);
+          const { error: e } = await supabase.auth.updateUser({ password });
+          setBusy(false);
+          if (e) setError(plainError(e.message));
+          else onDone();
+        }}
+      >
+        SAVE
+      </button>
+    </div>
+  );
+}
+
 export default function OnlineApp() {
   const [session, setSession] = useState<Session | null | undefined>(undefined);
   const joinCode = startQuery.get('join');
   const info = useInvite(joinCode);
   const [wantsSignIn, setWantsSignIn] = useState(false);
+  const [recovering, setRecovering] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
-    const { data } = supabase.auth.onAuthStateChange((_event, s) => setSession(s));
+    const { data } = supabase.auth.onAuthStateChange((event, s) => {
+      if (event === 'PASSWORD_RECOVERY') setRecovering(true);
+      setSession(s);
+    });
     return () => data.subscription.unsubscribe();
   }, []);
 
   let body;
   if (session === undefined) body = <p className="text-center text-[#B7A9CC]">…</p>;
+  else if (session && recovering) body = <NewPassword onDone={() => setRecovering(false)} />;
   else if (session) body = <Home session={session} />;
   else if (joinCode && !wantsSignIn) body = <InviteCard info={info} onJoin={() => setWantsSignIn(true)} />;
   else if (!joinCode && !wantsSignIn) {
