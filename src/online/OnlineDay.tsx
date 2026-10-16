@@ -76,6 +76,9 @@ interface Today {
     finished_at: string | null;
   };
   daysPlayed: number;
+  // The road so far (16 Oct): yesterday's recap for everyone, and each missed day's (Core Rules "Recap").
+  recaps?: { week: number; day: number; recap: string }[];
+  missed?: number;
   claims?: string[]; // what earlier Gatherings carry into the weekdays ("G5:united-effort-lost")
 }
 
@@ -178,6 +181,7 @@ export default function OnlineDay({
         <p className={note}>
           Week {week} · Day {day}
         </p>
+        <RoadSoFar recaps={today.recaps} missed={today.missed} fill={fill} />
         <DaySevenLine partyId={partyId} timeZone={timeZone} />
         <ScriptButton label="THE GATHERING" onClick={onOpenGathering} />
       </div>
@@ -648,6 +652,7 @@ export default function OnlineDay({
       header={header}
       title={`Week ${week} · Day ${day}`}
       heading={chapter.script.heading}
+      roadSoFar={<RoadSoFar recaps={today.recaps} missed={today.missed} fill={fill} />}
       nodes={nodes}
       error={error}
       reachedSummary={reachedSummary}
@@ -669,6 +674,7 @@ function DayBody({
   header,
   title,
   heading: chapterHeading,
+  roadSoFar,
   nodes,
   error,
   reachedSummary,
@@ -681,6 +687,7 @@ function DayBody({
   header: React.ReactNode;
   title: string;
   heading: string;
+  roadSoFar: React.ReactNode;
   nodes: React.ReactNode[];
   error: string | null;
   reachedSummary: boolean;
@@ -696,6 +703,7 @@ function DayBody({
   return (
     <div className="space-y-3">
       {header}
+      {roadSoFar}
       <div>
         <p className={note}>{title}</p>
         <h2 className={`${heading} text-[19px]`}>{chapterHeading}</h2>
@@ -730,4 +738,40 @@ function DaySevenLine({ partyId, timeZone }: { partyId: string; timeZone: string
     });
   }, [partyId, timeZone]);
   return <p className="text-[15px] italic text-[#B7A9CC]">{line ?? 'Tonight: the Gathering.'}</p>;
+}
+
+// The road so far: the story up to yesterday, in the storybook voice, before today's chapter. A friend who missed days
+// gets each missed day's recap, then canon's line (Core Rules §12a "After missed days"). The text comes from the server.
+const DAY_COUNT_WORDS = ['no days', 'a day', 'two days', 'three days', 'four days', 'five days', 'six days'];
+function RoadSoFar({
+  recaps,
+  missed,
+  fill,
+}: {
+  recaps?: { week: number; day: number; recap: string }[];
+  missed?: number;
+  fill: (text: string) => string;
+}) {
+  if (!recaps || recaps.length === 0) return null;
+  const several = recaps.length > 1;
+  return (
+    <div className="rounded-xl border border-[#3A2555] bg-[#130B1F] px-3.5 py-3 space-y-2.5">
+      <p className="font-['Cinzel'] font-bold text-[12px] tracking-wide text-[#D4B876]">THE ROAD SO FAR</p>
+      {recaps.map((r) => (
+        <div key={`${r.week}-${r.day}`} className="space-y-1">
+          {several && (
+            <p className="font-sans text-[11.5px] text-[#8B7A9E]">
+              {r.day === 7 ? `Week ${r.week} · The Gathering` : `Week ${r.week} · Day ${r.day}`}
+            </p>
+          )}
+          <NarrationBlock text={fill(r.recap)} />
+        </div>
+      ))}
+      {!!missed && missed > 0 && (
+        <p className="font-sans italic text-[13.5px] text-[#B7A9CC] px-1">
+          You missed {missed < DAY_COUNT_WORDS.length ? DAY_COUNT_WORDS[missed] : `${missed} days`}. The story went on. Today is still yours.
+        </p>
+      )}
+    </div>
+  );
 }
