@@ -1,0 +1,65 @@
+# Audit: Garrick at the Campfire (likeability and prose)
+
+Sources read: `src/data/campfire-days-v23.json` (the build's copy is `src/data/campfireDaysData.ts`, which also holds the stored fire lines), `docs/canon/mythios-campfire-table-v2.md` (§B–M), the voice section of `docs/canon/garrick-deception-table.md`, and each day's canon facts (question, "You learned", Pull) from the chapter scripts.
+
+The bar: warm, dry and likeable. Aim for the middle (designer's refined guidance): not a rushed one-liner, not lengthy. Most proposals are two or three sentences with some texture and no padding; a quiet, grim moment stays short. Every line must be literally true, with no promise or prediction, no denied knowledge, no invented facts about Garrick, and every word gate kept. Most of the 36 evenings are already good. The weak spots are:
+- some very short riddle quips that read as curt;
+- some openers that are only a list of facts;
+- quiet days that carry a joke;
+- a few small rule breaks, listed at the end.
+
+Lines with a double meaning keep the part that carries it. The Why column says when that applies. Day 1-1 is narrated (no Garrick) and is not counted.
+
+| Day | Field | Current | Verdict | Proposed | Why |
+|---|---|---|---|---|---|
+| 1-3 | opener | You've not eaten. Sit. | improve | You've not eaten, any of you. Sit, and hold this while it's hot. That rock has stood in the bracken a long time; it can spare you for one supper. | Keeps the chat-bank noticing line and adds the care behind it and a dry smile. It also gives the first fire he attends some texture. All of it is true. |
+| 1-4 | opener | A village that won't talk is still talking. Mostly with its shutters. | improve | Every door on the lane was shut before we reached it, and nobody came to a window. A village that won't talk is still telling you something. Come in close to the fire. | Quiet day (§F: plain, no joke; a child is in danger). This drops the quip and keeps the observation. The shut doors are canon (1-3 Pull). |
+| 1-4 | riddle.quip | Fenmark's had plenty of practice. | improve | Fenmark's keeping a great deal of it tonight. Every house on the lane. | The old line jabs at a frightened village on a quiet day. The new one is gentle and true. |
+| 1-5 | opener | Two winters between two children. Some people count in winters. It's a way of keeping still. | improve | Two winters between two children, and the same knife both times. Some people count in winters. It takes a patient sort. | "A way of keeping still" is unclear. "A patient sort" keeps the reread (the Order counts and waits) and reads cleanly. The knife is today's fact. |
+| 1-5 | riddle.quip | Which is why I tend this one myself. | improve | So keep your cups well away from this one. It's done good work tonight. | The old "which is why" does not follow from the riddle. The new line is warm and ties to his canon action that day (he builds the fire up). |
+| 2-1 | opener | Beds are in the barn tonight. Pick a corner and take it. | improve | Beds are in the barn tonight, on an old man's kindness and his cider. Pick a corner and take it. | Too bare. This adds the canon scene (the barn and the old man's cider) and a warmer tone. Nothing invented. |
+| 2-2 | nudge | {friend:Craft}, how was the mark cut, and with what tool? | improve | {friend:Craft}, you know a tool by its marks. How was that shape cut into the mill's footing, and with what? | It read like a form question. The new one speaks to the friend and adds a light compliment, which is true because the friend is the party's highest in Craft. It also stops 3-5 from echoing it. |
+| 2-3 | opener | A stranger dead at a lock, and a lock that opened for you. Rooms like that have opinions. | improve | A dead stranger at a lock, and every one of you back at the fire. Sit; you've earned the warm side. | Tonight's callback and quip already say "opened for you", so the opener said it a third time. It also called a hillside path a "room". The new line is warm and true. |
+| 2-3 | riddle.quip | Not like that lock. It opened for you. | improve | The lock upriver had one key, and today it was you. Hold on to that one; it's a better puzzle than mine. | "It opened for you." repeats the episode's "You learned" line word for word. The new line is true twice: warm now, and a chill on reread (the party is the key the Order needs). |
+| 2-6 | opener | Digging toward an older room. You have to respect the effort. | improve | You can hear them from up here, picking at the hill. Digging toward an older room. You have to respect the effort. | Adds the scene (they heard the digging, per the nudge). The last two sentences stay word for word to keep the reread. |
+| 3-3 | opener | Mind your hands on that glass, all of you. | improve | Mind your hands on that glass, all of you. It splits to an edge finer than any knife, and it doesn't care whose fingers find it. | Was only an instruction. The new line adds true texture (black glass is obsidian) and plain care. |
+| 3-2 | riddle.quip | Sharp little thing. Sharper than a polite man. | improve | Small and sharp, and easy to lose in the dark. Keep it close. | Quiet day (Wren taken). "Sharper than a polite man" is a cryptic jab. The new line is gentle and says nothing it shouldn't. |
+| 3-5 | opener | That was an empty hut. Come nearer the fire. | improve | That was an empty hut, and not empty long. Come nearer the fire. Nobody's deciding anything until you've some warmth back in you. | Thin. "Not empty long" is canon (she was there within the hour). The rest is his caring, a little bossy in a warm way. |
+| 3-5 | nudge | {friend:Craft}, what tool cuts letters like that into wood? | improve | {friend:Craft}, someone cut words over that bed long ago, slow and deep. What sort of hand takes that much care, and with what? | It repeated the 2-2 tool question, and "letters like that" was unclear (her name in the doorframe, or the old line over the bed?). |
+| 3-6 | opener | Fire's built up. Sit by it before you decide anything. | improve | Fire's built up, and the warm side's for whoever's shivering hardest. Sit by it before you decide anything. That hill isn't going anywhere. | Uses his canon action at Ep3 D6 (the warm side to whoever is shivering) and adds a dry smile. "Isn't going anywhere" is in the present tense, not a prediction. |
+| 4-1 | opener | Count yourselves. I will, too. | improve | Count yourselves, slowly, every face at this fire. I'm counting too. | "I will" is a promise word (rule break). "I'm counting too" keeps the double meaning: he counts the party after a stranger stood among them in the dark. |
+| 4-3 | riddle.quip | Hang it by the fire. | improve | Hang it by the fire. There's room on the stones for everyone's things. | Curt. The new line is quiet and kind, as a quiet day needs. |
+| 4-5 | riddle.quip | Yours is on loan. I'd return it. | improve | Theirs floats nicely with the right people in it. Tie it up tight tonight. | The party took the Order's boat, so "on loan" is false: a joke that says the opposite (rule break). The new line is dry and true. |
+| 5-1 | opener | North, then. That's a long road for tired boots. | improve | North, then: two days on the old kingdom's road. That's a long way for tired boots, so take yours off while you can and set them where the fire can reach them. | Adds the canon distance and the noticing care he is known for. |
+| 5-1 | riddle.quip | North, and mind your boots. | improve | Ours runs two days north and doesn't stop for anyone. Pack something warm. | It repeated the opener ("north", "boots") on the same evening. |
+| 5-2 | riddle.quip | Not this lot. | improve | Up here it bends to the beat as well as the wind. Even the grass keeps time in the north. | "Not this lot" is unclear and seems to claim the grass breaks, which is untrue. The new line matches the canon fact that the ground moves with the beat. |
+| 5-3 | riddle.quip | The city has plenty. | improve | Highwall has plenty to spare. Keep your lamp close, and low. | Curt. The new line adds care. The name is allowed from W5D1. |
+| 5-5 | opener | One chalk stroke each dusk. Somebody's counting. | improve | One stroke crossed off each dusk, neat as a shopkeeper's tally. Somebody's counting, and they've been at it a long while. | Fuller and true (generations of counting). It quietly sets up his own Ep6 line about keeping a tally behind his bar. |
+| 5-5 | riddle.quip | Fires and candles, same trade. | improve | Shorter every night, like the count on that board below the hall. Somebody down there keeps a very tidy tally. | The old line is flat and vaguely claims a trade. The new one ties the riddle to the day. |
+| 5-6 | opener | A slit window, a hidden room, a night nobody heard you. | improve | A slit window, a hidden room, and a whole night with nobody hearing you. Quietly done, all of you. | It was a list of facts. Now it praises them warmly, and the praise is true. |
+| 5-6 | nudge | {friend:Aim}, what can you see through one slit? | improve | {friend:Aim}, you've the sharpest eyes here. What does one slit in a wall let you see, and what does it keep from you? | Warmer. "Sharpest eyes" is true: the nudge goes to the highest Aim at the fire. |
+| 6-1 | opener | Quiet's good in a hole in a wall. I'll take it. | improve | Quiet's a fine thing in a hole in a wall. They walked past this room twice and never knew it was here. Sit, and enjoy it. | Drops "I'll". Adds canon texture (the Order passed the room twice). |
+| 6-3 | opener | The hall's warm from within. More faithful arriving. What's missing is a door. | improve | The hall's warm right through the stone, and the faithful keep coming in off the road. What's missing is a door. | Clipped fragments made into a scene. "What's missing is a door" stays word for word: it is true only as written, because a door does exist (the household stair) but the party has none. |
+| 6-3 | riddle.quip | Bring one. | improve | Bring one. It's a long night on bare stone. | Too curt. True, and caring. |
+| 6-4 | opener | That hill was steeper than it looked. Sit. | improve | That hill was steeper than it looked, every step of it. Sit, and give your legs a rest; they've earned it. | Two clipped bits. This keeps the dry understatement and adds warmth. |
+| 6-5 | opener | Two nights. Eat while there's something to eat. | improve | Two nights. Eat while it's hot, and take the second bowl if it's offered. Nobody does their best thinking hungry. | The old line hints at running out of food, which may not be true and reads grim. The new one is caring and true. |
+| 6-5 | riddle.quip | Get some. | improve | Get some, all of you. The fire only needs one of us awake. | Too curt. True and warm, with no "I'll". |
+| 6-6 | riddle.quip | Tell one. | improve | Tell one, then. It's a night for it. | Too curt. The cup night's warmth needs room. |
+| 6-6 | nudge | {friend:Intellect}, not one of the dead turned its head. What do they know that we don't? | improve | {friend:Intellect}, not one of the dead turned its head toward us. Where are they all looking, and why there? | "That we don't" has him claim not to know something he does: fake doubt (rule break). |
+| stored | closers | Sleep. I'll mind the fire. | improve | Sleep. I'm minding the fire. | "I'll" is a promise (rule break). Present tense is true. |
+| stored | noticing (lentRelic) | {friend} gave a hand today. I saw. | improve | {friend} gave a hand today. I noticed, and I'm glad of it. | "I saw." alone reads cold, even watchful. "Glad" is true: he wants the party strong. |
+
+**Checked:** 158 lines. That is 35 Garrick evenings × 4 fields (opener, callback, riddle quip, nudge) = 140, plus 18 stored fire lines (5 pin acknowledgements, 4 closers, first arrival, bottle, catch-up, Day 6 pin line, 5 noticing lines). Improved: 36. Kept: 122. The 35 callbacks are deliberately plain recaps, and all of them were kept.
+
+## Lines that break a rule as written
+
+1. **4-1 opener**, "Count yourselves. I will, too.": a promise word ("I will").
+2. **Stored closer**, "Sleep. I'll mind the fire.": a promise ("I'll").
+3. **6-1 opener**, "…I'll take it.": "I'll" (an idiom, but it fails the banned-word check).
+4. **6-6 nudge**, "What do they know that we don't?": fake doubt / denying knowledge.
+5. **4-5 quip**, "Yours is on loan.": a false fact said as a joke (the boat was taken, not lent), which is close to sarcasm.
+6. **2-3 quip**, "It opened for you.": reuses the episode file's own line (W2D3 "You learned"). It is also said three times that evening (opener, callback, quip).
+7. **Quiet-day tone (§F)**: the 1-4 opener ("Mostly with its shutters") and quip, and the 3-2 quip, are jokes on quiet days. Borderline: the 5-4 quip's "Mostly." could be kept as gentle.
+8. **Borderline, kept:**
+   - 3-1 quip "Ashcombe's hens have views." gives hens a feeling, about a village the party has not reached yet. It is harmless, and his family is from these hills.
+   - Stored "You're first. Pull up a log." does not fit the wall room in Weeks 5 and 6. Consider a second greeting for those weeks: "You're first. Find a dry bit of floor."
