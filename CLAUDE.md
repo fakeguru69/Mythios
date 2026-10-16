@@ -24,7 +24,7 @@ Rules he has set. Follow them in every reply:
 8. **"Use your judgement and decide" means decide.** Apply it and report what you chose and why.
 9. **Never claim something is done unless you verified it in the code.** The previous builder's commit said "Implement 14 Oct fix prompt" when 6 of 10 fixes were not touched. Do not repeat that. A commit message must say exactly what was done.
 10. Never reassure a player before a risk in game text ("you can't lose"). No out-of-game talk inside the game.
-11. **All text must be well written** (Fake Guru, 16 Oct): story, prose, scripture, lore, Garrick's lines, notices. Good description and world-building, a pleasure to read, and still clear enough that players can follow the story. **Garrick is likeable**: warm, dry and kind (canon: "likable, not haha humourous"), never curt or bossy.
+11. **All text must be well written** (Fake Guru, 16 Oct): story, prose, scripture, lore, Garrick's lines, notices. Good description and world-building, a pleasure to read, and still clear enough that players can follow the story. **Don't rush it into one- or two-liners**: give a moment its texture. **Garrick is likeable**: warm, dry and kind (canon: "likable, not haha humourous"), never curt or bossy.
 
 ---
 
