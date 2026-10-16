@@ -32,15 +32,17 @@
 *Heading: **Three more names.***
 *Question: three more names on the wall. Which child is next, and can we get there first?*
 
-> The hoofbeats are long gone. Garrick's count is still hanging in the dark.
+> The mine is quiet again. The hoofbeats are long gone, and only the river is left, loud in the drowned mouth below. Garrick's count is still hanging in the dark.
 >
 > *Three more.*
 
 `[ASK HIM WHAT HE KNOWS]`
 
-> He doesn't look up. *"I can tell you where the next name on that wall lives. That's where I'd start."*
+> He is wiping the soot from a lamp glass with the corner of his cloth, and he doesn't look up.
+>
+> *"I can tell you where the next name on that wall lives. That's where I'd start."*
 
-> At first light a carter bound for Fenmark is found to take Tamsin home. She is still humming.
+> At first light you find a carter bound for Fenmark who will take Tamsin home. She is still humming.
 >
 > She will not get up onto the wagon. She stands in the road with her bandaged hand held against her chest, looking from one of you to the next. She settles on you.
 
@@ -52,7 +54,7 @@
 >
 > *"One of them said, 'The mill boy next.' And the other one said to hush."*
 >
-> Then she lets the carter lift her up. She does not look back, and she does not stop humming.
+> Then she lets the carter lift her up. She does not look back, and she does not stop humming. You can hear the counting song a long way down the road, thinner and thinner, until the wheels have it.
 
 > The second name scratched on that wall is **Corin**.
 >
@@ -63,8 +65,10 @@
 `[POINT THAT OUT]`
 
 > He settles the strap on his shoulder. *"Worst guests I've ever had. Good tippers, though."*
+>
+> Then he sets off down the road ahead of you, as if it had been his idea.
 
-> Two days down the mill road, through country that gets emptier the further you go.
+> Two days down the mill road, through country that gets emptier the further you go. First the farms thin out, then the fences. By the second afternoon there is only sheep-bitten grass, and a wind off the hills that never quite drops.
 >
 > At evening you come to the last farmhouse before the mill. An old man is splitting wood in the yard. He does not stop when he sees you coming. He only shifts his grip on the axe.
 
@@ -85,10 +89,10 @@
 > IF YOU FAIL: he tells you to be on your way, and means it
 
 *On a pass:*
-> He sets the axe down, and waves you to the bench by his door.
+> He looks at you a long while over the axe. Then he sets it down, blade into the block, and waves you to the bench by his door. The wood of it is worn pale by years of sitting.
 
 *On a failure:*
-> He tells you to be on your way, and means it. It is Garrick who gets him talking in the end, with a plain word about the weather and the price of flour: the one subject no farmer can resist. By then the light has gone, and the old man says what he must and not a word over.
+> He tells you to be on your way, and means it. It is Garrick who gets him talking in the end. He leans on the gate and offers a plain word about the weather, then the price of flour: the one subject no farmer can resist. By then the light has gone, and the old man says what he must and not a word over.
 
 > It comes out a piece at a time.
 >
@@ -117,9 +121,11 @@
 
 > Behind it: something thin, and colder than the iron nails beside it.
 >
+> The old man watches you take it out. He does not ask what it is.
+>
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> He lets you sleep in his barn. Garrick pours the old man's cider into one more cup than there are of you, and sets it on an upturned crate at the empty place.
+> He lets you sleep in his barn. It smells of hay and old apples, and the wind finds every gap in the boards. Garrick pours the old man's cider into one more cup than there are of you, and sets it on an upturned crate at the empty place.
 
 > **The mill is an hour on. At first light: what did the family see?**
 
@@ -139,6 +145,7 @@
 - **New lines, flagged:** Tamsin's two (*"I wasn't asleep. I was counting."* and *"One of them said, 'The mill boy next.' And the other one said to hush."*). The farmer's account was narration in the old script; it is now in his own mouth, with his one approved line (*"I've lived on this road sixty years…"*) unchanged.
 - **Garrick:** two existing lines, each behind a button, and two existing actions (the farmer and the flour; the extra cup).
 - **Fragment text (unchanged):** "We held his last wall the night it was meant to fall. Not one of us expected to see morning."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged.
 
 ---
 
@@ -147,9 +154,11 @@
 *Heading: **The mill.***
 *Question: what happened at the mill?*
 
+> The mill sits an hour on, in a fold of the valley where the stream has been made to work. You hear it before you see it: the slow knock and splash of the wheel.
+>
 > The wheel is turning. That is almost worse than if it were not.
 >
-> There are three things here that might tell you something before anybody does.
+> Nobody comes out to meet you. Three things in the yard might speak before anybody does.
 
 `[THE LATCH]` `[THE LANE]` `[THE WHEEL'S FOOTING]`
 
@@ -166,7 +175,7 @@
 
 > Mei is still crouched in the lane. Dev has the rubbing held flat against the footing, and is not moving.
 
-> A woman is standing in the mill door. She has been there for some time.
+> A woman is standing in the mill door. She has been watching you since you came into the yard. There is flour worked deep into the creases of her hands: old flour, from before.
 
 **What you notice**
 > **Might** · The grain sacks are stacked two high where they were three. *Nobody here has had the heart to lift.*
@@ -184,13 +193,15 @@
 > REWARD: +500g
 > IF YOU FAIL: she stops talking, and it costs you the morning
 
+> When she speaks at last, it is to the yard, not to you.
+>
 > *"My boy. Four nights gone. Big man, quiet, didn't even bother hiding his face — like he didn't care who saw."*
 
 *On a pass:*
 > She tells you the rest at once, as if it had been waiting behind her teeth.
 
 *On a failure:*
-> And there she stops. It takes the rest of the morning to earn it back: Jo mends the latch, and nobody asks her anything at all. The sun is high before she says it, from the doorway, and she does not ask you in.
+> And there she stops. It takes the rest of the morning to earn it back. Jo mends the latch, and nobody asks her anything at all. The sun is high before she says it, from the doorway, and she does not ask you in.
 
 > *"He asked for my boy by name. And he knew the night he was born — knew it better than I did."*
 
@@ -202,6 +213,8 @@
 *On a failure only (added 15 Oct 2026, Fake Guru: Day 5 needs the button whatever the roll):*
 > At the doorway, without a word, she presses a horn button into your hand, with a twist of dark thread still through it.
 
+> Behind her the wheel goes round, and round, grinding nothing.
+>
 > They are not taking children.
 >
 > They are collecting particular ones.
@@ -224,6 +237,10 @@
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
+> Garrick has said nothing all morning. On the way out he stops by the grain sacks, lifts one back up onto the stack where it used to be, and follows you down the lane.
+>
+> Upriver, the sky over the hills has thickened and come down low. The wind is getting up in the willows.
+
 > **Upriver. The ruts are four nights old, and there is weather coming.**
 
 **Day summary card**
@@ -243,6 +260,7 @@
 - **The press detail** ties this cart to Week 1's (the pulling wheel is in Week 1 Day 6). It is extra.
 - **The twist is shown, not named:** the game never says "birth night" means anything. That is the Gathering's.
 - **Fragment text (unchanged):** "Their campfires filled the plain from our wall to the hills. The first night we tried to count them. By the third, we had stopped."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. One new passage before the Pull: Garrick lifts a grain sack back onto the stack (an action, no line), and the weather is shown coming in.
 
 ---
 
@@ -252,6 +270,8 @@
 *Question: where did the cart go?*
 
 > The rain came in the night. By morning the ruts are running with water, and you follow them upriver at a pace that leaves no breath for talk.
+>
+> The river has risen in the dark. It runs fat and loud beside you, and the rain still comes in fits off the hills, cold on the back of the neck.
 >
 > The tracks hold until the riverbank turns to stone. Then they stop.
 >
@@ -274,16 +294,16 @@
 > IF YOU FAIL: you find the path by walking up it, in plain view and making a great deal of noise
 
 *On a pass:*
-> You find it from above. You come down onto the path through the bracken, quietly, with the whole length of it laid out below you.
+> You find it from above. You come down onto the path through the wet bracken, quietly, with the whole length of it laid out below you.
 
 *On a failure:*
-> It costs the afternoon. You come out onto the path scratched and filthy and cursing, at the bottom of it, and go up it the way the cart did.
+> It costs the afternoon. You come out onto the path at the bottom of it, scratched and filthy and cursing, and go up it the way the cart did.
 
 > Where the path narrows between two rocks, there is a dog.
 >
 > It is the size of a calf. Its chain is long enough to reach both walls. The staple the chain hangs from is bright new iron, as new as the ruts.
 >
-> It does not bark. It has been taught not to.
+> It does not bark. It has been taught not to. It only stands up, and watches you come.
 
 **Fight card**
 > **THE DOG ON THE CHAIN**
@@ -292,24 +312,28 @@
 > `[FIGHT]`
 
 *If the player wins:*
-> It backs away to the end of its chain and lies down with its sides heaving, and lets you by.
+> Its breath smokes in the wet air. It backs away to the end of its chain and lies down with its sides heaving, and lets you by. Its eyes follow you all the way past.
 
 *If the player loses:*
 > It has you down, and it does not let go until Mei and Jo drag you through by the collar. Then it walks back to the middle of the path, and lies down across it again.
+>
+> Your sleeve is in rags. Your arm will remember its teeth for days.
 
 > Beyond the dog, a man is lying on the path.
 >
 > Not the boy. A stranger, dead a week. Whoever keeps this path has been stepping over him.
 >
-> He has a crude lockpick in one hand. It is still jammed into a small stone housing, built into the hillside itself.
+> Garrick crouches beside him and turns the dead man's collar up over his face. It is the first kindness anybody has done him in a week.
+>
+> The dead man has a crude lockpick in one hand. It is still jammed into a small stone housing, built into the hillside itself.
 
-> It is the same work. The same carving as the housings your own fragments came out of, sealed the same way.
+> It is old work, far older than the path, as old as the places your fragments have lain. And it is sealed.
 >
 > It would not open for him.
 
 `[SET YOUR HAND TO IT]`
 
-> It gives at once, as if it had been waiting.
+> It gives at once, as if it had been waiting. The air inside is dry and still, and has not moved in a long time. What lies in it is cold.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
@@ -322,7 +346,7 @@
 **Day summary card**
 > **UPRIVER** · Day 3
 > You earned: `[gold]` · Craft or Agility `[growth]`
-> You learned: the cart went onto **a hidden path into the hillside**, kept clear and guarded. A stranger died here trying to open a lock like the ones your fragments come from. **It opened for you.**
+> You learned: the cart went onto **a hidden path into the hillside**, kept clear and guarded. A stranger died here trying to open an old stone lock, as old as the places your fragments lay. **It opened for you.**
 > Fragments: 3 found
 > Tomorrow: **further up, to wherever the path ends**
 
@@ -335,6 +359,7 @@
 - **The dog is not killed.** Win or lose, it ends lying down.
 - **Garrick:** present, no lines.
 - **Fragment text (unchanged):** "We watched the kingdoms go out like lamps — the ones that fought first, the ones that knelt after. By the end, ours was the last light burning."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the stone lock is no longer "the same carving as the housings your own fragments came out of" (no earlier fragment came from a carved housing); it is "old work, far older than the path, as old as the places your fragments have lain", and the summary card says the same.
 
 ---
 
@@ -343,6 +368,8 @@
 *Heading: **The end of the path.***
 *Question: what is at the end of the hidden path?*
 
+> The path climbs for an hour through bracken and scree. Up here the wind has an edge to it, and it brings you lamp-smoke before it brings you anything else.
+>
 > The path ends at a hole in the hill.
 >
 > It is a shaft, squared off with timber, with a ladder going down into lamplight. There are voices at the bottom.
@@ -364,7 +391,7 @@
 > IF YOU FAIL: you are seen from the top, and you see almost nothing
 
 *On a pass:*
-> You are halfway down before anyone looks up, and for the length of three breaths you see all of it.
+> You are halfway down before anyone looks up, and for the length of three breaths you see all of it. The air coming up past you is warm, and smells of tallow and wet stone.
 >
 > A chamber cut into the hill. A ring of lamps set on the floor. Hooded figures, more of them than there are of you, moving round the ring without hurry, setting things in their places.
 >
@@ -386,8 +413,10 @@
 > They know you are here now.
 
 > Garrick is the last to reach you. He sits down in the roots, breathing hard. *"That went about as well as it looked."*
+>
+> Somebody laughs, once, before they can stop it. It is the first laugh anyone has had in days.
 
-> You are all down in the roots at the shaft's mouth. It is your hand that finds it.
+> You are all flat among the roots at the shaft's mouth, getting your breath back, when your hand finds something in the dark.
 
 `[CLOSE YOUR FINGERS ON IT]`
 
@@ -414,6 +443,7 @@
 - **Garrick:** one existing line.
 - **This day's fragment** is now the one found in the roots at the shaft's mouth. (In the old script that place held the next day's.)
 - **Fragment text (unchanged):** "The moon went out, and he went down alone into the oldest rooms of the house. When he came back up, his hand was bleeding, and he told us to sleep."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged.
 
 ---
 
@@ -422,6 +452,8 @@
 *Heading: **The hillside, after dark.***
 *Question: who are these people, and what are they making ready?*
 
+> Dark comes up out of the valley and over the hill. Far below, at the foot of the shaft, their lamp burns on.
+>
 > There is a night to get through, and two ways to spend it.
 
 `[WALK THE HILL]` `[READ MEIRA'S PAGES]`
@@ -440,7 +472,7 @@
 
 > No fragment has ever given him a name. Where they speak of him at all, they say only *him*.
 
-> Supper is whatever is left. Garrick's share ends up on somebody else's plate. He does not say where it went.
+> Supper is whatever is left: hard bread, and the end of the farmer's cheese. Garrick's share ends up on somebody else's plate. He does not say where it went.
 
 **What you notice**
 > **Might** · In one place the ground rings hollow when you stamp. *Not a door. A roof.*
@@ -479,7 +511,7 @@
 
 `[REACH IN]`
 
-> Cold, under the dew.
+> Cold, under the dew. The lip of the hollow is worn smooth, by hands, over a very long time.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
@@ -503,6 +535,7 @@
 - **Garrick:** no lines. One existing action (his supper).
 - **This day's fragment** has a new place: where the scout stood to signal.
 - **Fragment text (unchanged):** "That morning he came down off the wall and walked among us. There was not one of us who would not have died for him."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged.
 
 ---
 
@@ -511,9 +544,9 @@
 *Heading: **The lip of the shaft.***
 *Question: is there another way in, and how long is left?*
 
-> Two lamps burn at the foot of the shaft, and the ladder has not come back.
+> Your second night on the hill. Two lamps burn at the foot of the shaft, and the ladder has not come back.
 >
-> It is your watch.
+> It is your watch. You lie on your belly at the lip, with the cold coming up out of the ground into your elbows.
 
 **What you notice**
 > **Might** · Under your palm the ground is trembling, very slightly. *It is not the river.*
@@ -532,10 +565,10 @@
 > IF YOU FAIL: you know only that there are many, and that they are busy
 
 *On a pass:*
-> You have them. So many at the lamps. So many beyond. One who does not move at all, and is small.
+> Shape by shape, you place them as they cross the light. You have them: a knot of them at the lamps, a steady file beyond, all going the same way. And one who does not move at all, and is small.
 
 *On a failure:*
-> There are many. They are busy. That is all the hill will tell you.
+> You watch until your eyes ache from the lamplight and the shapes run together. There are many. They are busy. That is all the hill will tell you.
 
 **PRESS ON** *(offered on a pass)*
 > **EAR TO THE ROCK** · listen below the room you can place
@@ -543,6 +576,8 @@
 > REWARD: +200g, and one more detail
 
 *On a passed press:*
+> You lay your ear to the cold rock and wait for the chant to come round again. Above, it is muffled and close. Below it there is something else: a silence with room in it.
+>
 > Under the room with the lamps there is another hollow. It is bigger. And there is nobody in it at all.
 
 > Somewhere in the long hours it turns up: not hidden, this time. Lying among the roots at the lip of the shaft, as if it had been dropped there yesterday.
@@ -559,11 +594,13 @@
 >
 > A map, old and exact. It points into this same hill. Not to the chamber that drove you back, but deeper: to an older room, reached by a shaft of its own, cut long before any of those hooded figures was born.
 
-> The others are spread along the hillside on watch. They have to have it too.
+> The others are strung out along the hillside on watch, too far apart to pass a map between. They have to have it too.
 
 `[READ IT OUT]` `[LET JO READ IT]`
 
 > It is said aloud, twice, across the dark, so that everybody has it.
+>
+> The night is very still. Sound carries.
 
 `[PLANT]` *(said aloud, in the open: the Order's watchers are closer than anyone knows)*
 
@@ -581,7 +618,7 @@
 >
 > And then, far down in the rock: picks.
 
-> Even here, Garrick pours one more cup than there are of you, and sets it on a flat stone at the empty place.
+> Even here, Garrick pours one more cup than there are of you, and sets it on a flat stone at the empty place. There is not much left in the flask. He pours it anyway.
 
 > **They are digging toward the old room. Be in it first.**
 
@@ -603,6 +640,7 @@
 - **The plant** is kept: the way is spoken in the open, and that is how the Order comes to be digging.
 - **Garrick:** no lines. One existing action (the extra cup).
 - **Fragment text (unchanged):** "Morning came. The enemy did not."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the day now opens "Your second night on the hill.", which the Gathering's "two nights ago" needs.
 
 ---
 
@@ -622,9 +660,11 @@
 
 ### Arrival
 
-> The map was right. Deeper in the hill than the working chamber where they drove you back, down a shaft of its own and a stair cut so long ago its edges have worn soft as soap, there's a second room — older than the one above it, older than the mill, older than anyone's memory of this valley.
+> The map was right. Deeper in the hill than the working chamber where they drove you back, down a shaft of its own, there is a stair. It was cut so long ago that its edges have worn soft as soap. The air on it is cold, and has not been breathed in a long time.
 >
-> You hear the chanting before you see the light. Low, even, patient — the same few words, over and over, too muffled to make out. Not the sound of people in a hurry. The sound of people who have done this many times before.
+> At its foot is a second room, older than the one above it, older than the mill, older than anyone's memory of this valley.
+>
+> You hear the chanting before you see the light. Low, even, patient: the same few words, over and over, too muffled to make out. It is not the sound of people in a hurry. It is the sound of people who have done this many times before.
 
 ### The Approach
 
@@ -632,7 +672,7 @@
 > `[NOW, UNDER THE CHANT]` the chanting swallows the scrape of your boots.
 > `[WAIT, AND COUNT]` hold at the stair's turn until you can set every voice in its place.
 
-> Either way there is still the stair, worn soft as soap, with no rail and a long drop on the open side.
+> Either way there is still the stair, with no rail and a long drop on the open side.
 
 **Challenge card** *(one volunteer; the Attribute follows the vote)*
 > **THE SOFT STAIR**
@@ -652,9 +692,9 @@
 
 > You come off the last step into lamplight.
 >
-> [N] robed figures stand in a ring around a stone table, lamps at their feet, their shadows thrown huge and wavering up the walls. On the table lies the miller's boy — awake, wrists bound, his eyes finding yours over the shoulder of the one holding the knife.
+> [N] robed figures stand in a ring around a stone table, lamps at their feet, their shadows thrown huge and wavering up the walls. On the table lies the miller's boy. He is awake, with his wrists bound, and his eyes find yours over the shoulder of the one holding the knife.
 >
-> Nobody shouts. The robed figures simply turn, all at once, as if they'd been expecting you. The chant doesn't even break.
+> Nobody shouts. The robed figures simply turn, all at once, as if they had been expecting you. The chant does not even break.
 
 **Fight card** *(in each friend's own thread)*
 > **THE ROBED**
@@ -662,7 +702,7 @@
 > *You strike first.* / *He strikes first.*
 > *The fight begins in 10 seconds.*
 
-> It's close and ugly — lamps kicked over, shadows lurching across the ceiling. And the strangest part is the chanting. The ones still standing keep the words going as they fight, and some keep them going as they fall, as if the words matter more than their lives.
+> It is close and ugly: lamps kicked over, shadows lurching across the ceiling. And the strangest part is the chanting. The ones still standing keep the words going as they fight, and some keep them going as they fall, as if the words matter more than their lives.
 >
 > When the last of them goes down, the room goes enormously quiet.
 >
@@ -707,13 +747,15 @@
 
 ### The black circle
 
-> Beside the table, dropped in the fight and half trodden underfoot, lies a small book bound in black cloth, one corner scorched where it fell against a lamp.
+> Somebody lifts the book out from under the fallen lamp and beats the sparks out of its corner. It is small, bound in black cloth, and still warm from the flame. The cloth is worn shiny in one place, where a thumb has held it a great many times.
 
 > This belongs to *them*: their scripture, the kind of thing a man carries against his chest. On its first page, under a black circle painted like a moon with no light in it, is a title: *The First Book of the Order of the Dark Moon.*
 >
-> The scrap of cloth torn from the scout's coat, two nights ago on the hillside, lies beside it. The same circle.
+> The scrap of cloth torn from the scout's coat, two nights ago on the hillside, is laid down beside it. The same circle.
 >
-> The kidnappers have a name. And the Order's scripture is about to tell you who they pray to.
+> For a moment nobody says anything. The spilled lamps tick as they cool.
+>
+> The kidnappers have a name. And somewhere in these pages is the one they pray to.
 
 ### The United Effort
 
@@ -737,6 +779,8 @@
 
 **The Tunnel reaches 0**
 > The room is yours.
+>
+> Somebody sets the spilled lamps upright again, one by one, and the dark draws back to the walls. Corin sits with his back against the stone table, watching the fall.
 >
 > The scorched corner of the book has fused a dozen leaves into one brittle black wafer. There is time, now, to get them apart whole.
 
@@ -787,7 +831,8 @@
 
 > *His house had kept a thing since before his house had a name. No one living could say what it was. It was old; it was not to be sold, or lost, or given away; that was all the keeping had ever passed down. That, and a few pages in a hand no one could read whole — of which, that night, by the light of a single candle, he could read one line:*
 >
-> > **[Set apart on the page, in an older hand — words older than the Order's own name, and nothing like the plain, careful hand the Seekers left in every fragment]**
+> *Here the page changes. One line is set apart, in an older hand: words older than the Order's own name, and nothing like the plain, careful hand the Seekers left in every fragment.*
+>
 > > **"Blood beneath the dark moon — and it answers."**
 >
 > *So the king went down alone into the oldest room of his house, with the moon gone out above him and the enemy's fires waiting for morning. He set the thing on the stone before him. He opened his palm with his own knife. He had nothing left to lose, and he said so aloud, and he gave it his blood.*
@@ -811,7 +856,7 @@
 >
 > *And the world he saved took back his name. It scraped it from its stones and burned it from its books, and taught its children the story of that war with him cut out of it.*
 
-> You know this war. Every child in the land does. *The Grey Host broke at Highwall of a fever in its camp, and Highwall was spared by luck.* That is how you were taught it.
+> You know this war. Every child in the land does. You learned it on a bench with a slate on your knees, the way everyone did. *The Grey Host broke at Highwall of a fever in its camp, and Highwall was spared by luck.* That is how you were taught it.
 >
 > A fever. Luck. No king anywhere in it.
 >
@@ -827,15 +872,15 @@
 >
 > *Until the throne rise whole.*
 
-> *Until the throne rise whole.* It's what they were chanting over Corin, while the knife was out.
+> *Until the throne rise whole.* Those were the words under the chant, too muffled to make out from the stair. It is what they were saying over Corin, while the knife was out.
 
 ### The ledger
 
-*If the room was lost, Corin has already held the ledger out on the hillside (above), and this section opens at "It's a ledger."*
+*If the room was lost, Corin has already held the ledger out on the hillside (above), and this section opens at "It is a ledger."*
 
-> It's Corin who shows you. Still shaking, he points past the table to a niche in the wall, where a lamp still burns beside another book — nothing like the Order's scripture. This one is bound in plain oiled leather, the kind a merchant keeps his accounts in.
+> It is Corin who shows you. Still shaking, he points past the table to a niche in the wall, where a lamp still burns beside another book. It is nothing like the Order's scripture. This one is bound in plain oiled leather, the kind a merchant keeps his accounts in.
 >
-> It's a ledger.
+> It is a ledger.
 >
 > Page after page of children's names. Beside each name, a place. Beside each place, a date, and the miles to the next. The newest pages are in one small, careful hand. The oldest are in other hands, faded almost to nothing. And beside many of the old names, a single word, written the same way every time: *given.*
 
@@ -870,11 +915,21 @@
 
 > Every one of them is a night the moon went dark.
 
+*Then, as its own message:*
+
+> Meira's page lies open beside the ledger. Your names, in her neat hand, and beside each one the night you were born.
+>
+> A week ago, in a dry room under the river, you asked why your names were on her list.
+
 *Then, alone on the screen:*
 
 > **You're marked too. Every one of you.**
 
 `[PLANT]` *(the party is marked; Gathering 5's attempt depends on it)*
+
+*Then, after a pause:*
+
+> Nobody says anything for a long moment. Somebody turns a hand over in the lamplight and looks at the open palm.
 
 ### Ask
 
@@ -891,7 +946,7 @@
 
 ### The Cliffhanger
 
-> Garrick reads the ledger over someone's shoulder, and for the first time since you've known him he goes quiet in a different way — slower, more careful, like a man choosing his words.
+> Garrick reads the ledger over someone's shoulder, and for the first time since you have known him he goes quiet in a different way: slower, more careful, like a man choosing his words.
 >
 > *"This hand's been keeping books like this for years,"* he says at last. *"This isn't new, and it isn't finished. Two places. Two children."*
 >
@@ -901,7 +956,7 @@
 
 > He hands it straight over. *"Here. Read every page."*
 
-> Corin is still watching the place where the ledger went. When he speaks, it's barely a whisper.
+> Corin is still watching the place where the ledger went. When he speaks, it is barely a whisper.
 >
 > *"There was a girl down here with me. They took her away, not long before you came."* He swallows. *"She said they told her she was going somewhere warm."*
 
@@ -921,6 +976,7 @@
 - **How the table can answer the question:** the well's sliver says what *marked* means, the miller's wife says the Order asked for a birth night, and Meira wrote the party's birth nights down. The answer is on the screen.
 - **Cut:** every "one of you says"; five of the six quote-backs (two became Matches); "They weren't taken to be sold…"; "The names scratched under that first socket were never a list of victims…" (the summary card now carries it).
 - **Garrick:** every line is the approved text. Three are unprompted, as before; the rest are answers on the board.
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: two new moments at the turn. After "Every one of them is a night the moon went dark.", Meira's page with your birth nights, and the question you asked a week ago, as its own message before "You're marked too. Every one of you."; after it, a pause and a hand turned over in the lamplight to look at the open palm. The Verse's bracketed older-hand note is now a narrated italic line; the scripture itself is word for word.
 
 **Answers kept from the earlier script, for a question a friend types that the buttons and boards do not cover** *(every line unchanged)*
 

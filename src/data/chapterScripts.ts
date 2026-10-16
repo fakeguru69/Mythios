@@ -1056,7 +1056,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The hoofbeats are long gone. Garrick's count is still hanging in the dark.\n\n*Three more.*"
+        "text": "The mine is quiet again. The hoofbeats are long gone, and only the river is left, loud in the drowned mouth below. Garrick's count is still hanging in the dark.\n\n*Three more.*"
       },
       {
         "t": "act",
@@ -1064,11 +1064,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "He doesn't look up. *\"I can tell you where the next name on that wall lives. That's where I'd start.\"*"
+        "text": "He is wiping the soot from a lamp glass with the corner of his cloth, and he doesn't look up.\n\n*\"I can tell you where the next name on that wall lives. That's where I'd start.\"*"
       },
       {
         "t": "say",
-        "text": "At first light a carter bound for Fenmark is found to take Tamsin home. She is still humming.\n\nShe will not get up onto the wagon. She stands in the road with her bandaged hand held against her chest, looking from one of you to the next. She settles on you."
+        "text": "At first light you find a carter bound for Fenmark who will take Tamsin home. She is still humming.\n\nShe will not get up onto the wagon. She stands in the road with her bandaged hand held against her chest, looking from one of you to the next. She settles on you."
       },
       {
         "t": "choice",
@@ -1083,7 +1083,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "*\"I wasn't asleep,\"* she says. *\"I was counting.\"*\n\n*\"One of them said, 'The mill boy next.' And the other one said to hush.\"*\n\nThen she lets the carter lift her up. She does not look back, and she does not stop humming."
+        "text": "*\"I wasn't asleep,\"* she says. *\"I was counting.\"*\n\n*\"One of them said, 'The mill boy next.' And the other one said to hush.\"*\n\nThen she lets the carter lift her up. She does not look back, and she does not stop humming. You can hear the counting song a long way down the road, thinner and thinner, until the wheels have it."
       },
       {
         "t": "say",
@@ -1099,11 +1099,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "He settles the strap on his shoulder. *\"Worst guests I've ever had. Good tippers, though.\"*"
+        "text": "He settles the strap on his shoulder. *\"Worst guests I've ever had. Good tippers, though.\"*\n\nThen he sets off down the road ahead of you, as if it had been his idea."
       },
       {
         "t": "say",
-        "text": "Two days down the mill road, through country that gets emptier the further you go.\n\nAt evening you come to the last farmhouse before the mill. An old man is splitting wood in the yard. He does not stop when he sees you coming. He only shifts his grip on the axe."
+        "text": "Two days down the mill road, through country that gets emptier the further you go. First the farms thin out, then the fences. By the second afternoon there is only sheep-bitten grass, and a wind off the hills that never quite drops.\n\nAt evening you come to the last farmhouse before the mill. An old man is splitting wood in the yard. He does not stop when he sees you coming. He only shifts his grip on the axe."
       },
       {
         "t": "notice",
@@ -1153,7 +1153,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "He sets the axe down, and waves you to the bench by his door.",
+        "text": "He looks at you a long while over the axe. Then he sets it down, blade into the block, and waves you to the bench by his door. The wood of it is worn pale by years of sitting.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -1161,7 +1161,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "He tells you to be on your way, and means it. It is Garrick who gets him talking in the end, with a plain word about the weather and the price of flour: the one subject no farmer can resist. By then the light has gone, and the old man says what he must and not a word over.",
+        "text": "He tells you to be on your way, and means it. It is Garrick who gets him talking in the end. He leans on the gate and offers a plain word about the weather, then the price of flour: the one subject no farmer can resist. By then the light has gone, and the old man says what he must and not a word over.",
         "cond": {
           "on": "challenge",
           "pass": false
@@ -1197,12 +1197,12 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Behind it: something thin, and colder than the iron nails beside it.\n\n**A locked Seeker Fragment has been added to your Chest.**",
+        "text": "Behind it: something thin, and colder than the iron nails beside it.\n\nThe old man watches you take it out. He does not ask what it is.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
       },
       {
         "t": "say",
-        "text": "He lets you sleep in his barn. Garrick pours the old man's cider into one more cup than there are of you, and sets it on an upturned crate at the empty place."
+        "text": "He lets you sleep in his barn. It smells of hay and old apples, and the wind finds every gap in the boards. Garrick pours the old man's cider into one more cup than there are of you, and sets it on an upturned crate at the empty place."
       },
       {
         "t": "say",
@@ -1231,7 +1231,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The wheel is turning. That is almost worse than if it were not.\n\nThere are three things here that might tell you something before anybody does."
+        "text": "The mill sits an hour on, in a fold of the valley where the stream has been made to work. You hear it before you see it: the slow knock and splash of the wheel.\n\nThe wheel is turning. That is almost worse than if it were not.\n\nNobody comes out to meet you. Three things in the yard might speak before anybody does."
       },
       {
         "t": "choice",
@@ -1269,7 +1269,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "A woman is standing in the mill door. She has been there for some time."
+        "text": "A woman is standing in the mill door. She has been watching you since you came into the yard. There is flour worked deep into the creases of her hands: old flour, from before."
       },
       {
         "t": "notice",
@@ -1319,7 +1319,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "*\"My boy. Four nights gone. Big man, quiet, didn't even bother hiding his face — like he didn't care who saw.\"*"
+        "text": "When she speaks at last, it is to the yard, not to you.\n\n*\"My boy. Four nights gone. Big man, quiet, didn't even bother hiding his face — like he didn't care who saw.\"*"
       },
       {
         "t": "say",
@@ -1331,7 +1331,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "And there she stops. It takes the rest of the morning to earn it back: {F3} mends the latch, and nobody asks her anything at all. The sun is high before she says it, from the doorway, and she does not ask you in.",
+        "text": "And there she stops. It takes the rest of the morning to earn it back. {F3} mends the latch, and nobody asks her anything at all. The sun is high before she says it, from the doorway, and she does not ask you in.",
         "cond": {
           "on": "challenge",
           "pass": false
@@ -1359,7 +1359,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "They are not taking children.\n\nThey are collecting particular ones."
+        "text": "Behind her the wheel goes round, and round, grinding nothing.\n\nThey are not taking children.\n\nThey are collecting particular ones."
       },
       {
         "t": "press",
@@ -1390,6 +1390,10 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
+        "text": "Garrick has said nothing all morning. On the way out he stops by the grain sacks, lifts one back up onto the stack where it used to be, and follows you down the lane.\n\nUpriver, the sky over the hills has thickened and come down low. The wind is getting up in the willows."
+      },
+      {
+        "t": "say",
         "text": "**Upriver. The ruts are four nights old, and there is weather coming.**",
         "pull": true
       },
@@ -1414,7 +1418,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The rain came in the night. By morning the ruts are running with water, and you follow them upriver at a pace that leaves no breath for talk.\n\nThe tracks hold until the riverbank turns to stone. Then they stop.\n\nThere is no ford here. There is no reason for a cart to have come this far."
+        "text": "The rain came in the night. By morning the ruts are running with water, and you follow them upriver at a pace that leaves no breath for talk.\n\nThe river has risen in the dark. It runs fat and loud beside you, and the rain still comes in fits off the hills, cold on the back of the neck.\n\nThe tracks hold until the riverbank turns to stone. Then they stop.\n\nThere is no ford here. There is no reason for a cart to have come this far."
       },
       {
         "t": "notice",
@@ -1464,7 +1468,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You find it from above. You come down onto the path through the bracken, quietly, with the whole length of it laid out below you.",
+        "text": "You find it from above. You come down onto the path through the wet bracken, quietly, with the whole length of it laid out below you.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -1472,7 +1476,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "It costs the afternoon. You come out onto the path scratched and filthy and cursing, at the bottom of it, and go up it the way the cart did.",
+        "text": "It costs the afternoon. You come out onto the path at the bottom of it, scratched and filthy and cursing, and go up it the way the cart did.",
         "cond": {
           "on": "challenge",
           "pass": false
@@ -1480,7 +1484,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Where the path narrows between two rocks, there is a dog.\n\nIt is the size of a calf. Its chain is long enough to reach both walls. The staple the chain hangs from is bright new iron, as new as the ruts.\n\nIt does not bark. It has been taught not to."
+        "text": "Where the path narrows between two rocks, there is a dog.\n\nIt is the size of a calf. Its chain is long enough to reach both walls. The staple the chain hangs from is bright new iron, as new as the ruts.\n\nIt does not bark. It has been taught not to. It only stands up, and watches you come."
       },
       {
         "t": "fight",
@@ -1496,7 +1500,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "It backs away to the end of its chain and lies down with its sides heaving, and lets you by.",
+        "text": "Its breath smokes in the wet air. It backs away to the end of its chain and lies down with its sides heaving, and lets you by. Its eyes follow you all the way past.",
         "cond": {
           "on": "fight",
           "won": true
@@ -1504,7 +1508,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "It has you down, and it does not let go until {F1} and {F3} drag you through by the collar. Then it walks back to the middle of the path, and lies down across it again.",
+        "text": "It has you down, and it does not let go until {F1} and {F3} drag you through by the collar. Then it walks back to the middle of the path, and lies down across it again.\n\nYour sleeve is in rags. Your arm will remember its teeth for days.",
         "cond": {
           "on": "fight",
           "won": false
@@ -1512,11 +1516,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Beyond the dog, a man is lying on the path.\n\nNot the boy. A stranger, dead a week. Whoever keeps this path has been stepping over him.\n\nHe has a crude lockpick in one hand. It is still jammed into a small stone housing, built into the hillside itself."
+        "text": "Beyond the dog, a man is lying on the path.\n\nNot the boy. A stranger, dead a week. Whoever keeps this path has been stepping over him.\n\nGarrick crouches beside him and turns the dead man's collar up over his face. It is the first kindness anybody has done him in a week.\n\nThe dead man has a crude lockpick in one hand. It is still jammed into a small stone housing, built into the hillside itself."
       },
       {
         "t": "say",
-        "text": "It is the same work. The same carving as the housings your own fragments came out of, sealed the same way.\n\nIt would not open for him."
+        "text": "It is old work, far older than the path, as old as the places your fragments have lain. And it is sealed.\n\nIt would not open for him."
       },
       {
         "t": "act",
@@ -1524,7 +1528,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "It gives at once, as if it had been waiting.\n\n**A locked Seeker Fragment has been added to your Chest.**",
+        "text": "It gives at once, as if it had been waiting. The air inside is dry and still, and has not moved in a long time. What lies in it is cold.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
       },
       {
@@ -1541,7 +1545,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "lines": [
           "**UPRIVER** · Day 3",
           "You earned: `[gold]` · Craft or Agility `[growth]`",
-          "You learned: the cart went onto **a hidden path into the hillside**, kept clear and guarded. A stranger died here trying to open a lock like the ones your fragments come from. **It opened for you.**",
+          "You learned: the cart went onto **a hidden path into the hillside**, kept clear and guarded. A stranger died here trying to open an old stone lock, as old as the places your fragments lay. **It opened for you.**",
           "Fragments: 3 found",
           "Tomorrow: **further up, to wherever the path ends**"
         ]
@@ -1557,7 +1561,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The path ends at a hole in the hill.\n\nIt is a shaft, squared off with timber, with a ladder going down into lamplight. There are voices at the bottom."
+        "text": "The path climbs for an hour through bracken and scree. Up here the wind has an edge to it, and it brings you lamp-smoke before it brings you anything else.\n\nThe path ends at a hole in the hill.\n\nIt is a shaft, squared off with timber, with a ladder going down into lamplight. There are voices at the bottom."
       },
       {
         "t": "notice",
@@ -1607,7 +1611,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You are halfway down before anyone looks up, and for the length of three breaths you see all of it.\n\nA chamber cut into the hill. A ring of lamps set on the floor. Hooded figures, more of them than there are of you, moving round the ring without hurry, setting things in their places.\n\nAnd in the middle, on his back on the stone, a boy. His wrists are tied. His hands lie open, palms up, and there is not a mark on them.",
+        "text": "You are halfway down before anyone looks up, and for the length of three breaths you see all of it. The air coming up past you is warm, and smells of tallow and wet stone.\n\nA chamber cut into the hill. A ring of lamps set on the floor. Hooded figures, more of them than there are of you, moving round the ring without hurry, setting things in their places.\n\nAnd in the middle, on his back on the stone, a boy. His wrists are tied. His hands lie open, palms up, and there is not a mark on them.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -1631,11 +1635,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Garrick is the last to reach you. He sits down in the roots, breathing hard. *\"That went about as well as it looked.\"*"
+        "text": "Garrick is the last to reach you. He sits down in the roots, breathing hard. *\"That went about as well as it looked.\"*\n\nSomebody laughs, once, before they can stop it. It is the first laugh anyone has had in days."
       },
       {
         "t": "say",
-        "text": "You are all down in the roots at the shaft's mouth. It is your hand that finds it."
+        "text": "You are all flat among the roots at the shaft's mouth, getting your breath back, when your hand finds something in the dark."
       },
       {
         "t": "act",
@@ -1674,7 +1678,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "There is a night to get through, and two ways to spend it."
+        "text": "Dark comes up out of the valley and over the hill. Far below, at the foot of the shaft, their lamp burns on.\n\nThere is a night to get through, and two ways to spend it."
       },
       {
         "t": "choice",
@@ -1709,7 +1713,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Supper is whatever is left. Garrick's share ends up on somebody else's plate. He does not say where it went."
+        "text": "Supper is whatever is left: hard bread, and the end of the farmer's cheese. Garrick's share ends up on somebody else's plate. He does not say where it went."
       },
       {
         "t": "notice",
@@ -1790,7 +1794,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Cold, under the dew.\n\n**A locked Seeker Fragment has been added to your Chest.**",
+        "text": "Cold, under the dew. The lip of the hollow is worn smooth, by hands, over a very long time.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
       },
       {
@@ -1820,7 +1824,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "Two lamps burn at the foot of the shaft, and the ladder has not come back.\n\nIt is your watch."
+        "text": "Your second night on the hill. Two lamps burn at the foot of the shaft, and the ladder has not come back.\n\nIt is your watch. You lie on your belly at the lip, with the cold coming up out of the ground into your elbows."
       },
       {
         "t": "notice",
@@ -1870,7 +1874,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You have them. So many at the lamps. So many beyond. One who does not move at all, and is small.",
+        "text": "Shape by shape, you place them as they cross the light. You have them: a knot of them at the lamps, a steady file beyond, all going the same way. And one who does not move at all, and is small.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -1878,7 +1882,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "There are many. They are busy. That is all the hill will tell you.",
+        "text": "You watch until your eyes ache from the lamplight and the shapes run together. There are many. They are busy. That is all the hill will tell you.",
         "cond": {
           "on": "challenge",
           "pass": false
@@ -1893,7 +1897,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Under the room with the lamps there is another hollow. It is bigger. And there is nobody in it at all.",
+        "text": "You lay your ear to the cold rock and wait for the chant to come round again. Above, it is muffled and close. Below it there is something else: a silence with room in it.\n\nUnder the room with the lamps there is another hollow. It is bigger. And there is nobody in it at all.",
         "cond": {
           "on": "press"
         }
@@ -1921,7 +1925,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The others are spread along the hillside on watch. They have to have it too."
+        "text": "The others are strung out along the hillside on watch, too far apart to pass a map between. They have to have it too."
       },
       {
         "t": "choice",
@@ -1935,7 +1939,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "It is said aloud, twice, across the dark, so that everybody has it."
+        "text": "It is said aloud, twice, across the dark, so that everybody has it.\n\nThe night is very still. Sound carries."
       },
       {
         "t": "say",
@@ -1955,7 +1959,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Even here, Garrick pours one more cup than there are of you, and sets it on a flat stone at the empty place."
+        "text": "Even here, Garrick pours one more cup than there are of you, and sets it on a flat stone at the empty place. There is not much left in the flask. He pours it anyway."
       },
       {
         "t": "say",

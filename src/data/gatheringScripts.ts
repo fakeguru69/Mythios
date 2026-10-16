@@ -343,7 +343,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The map was right. Deeper in the hill than the working chamber where they drove you back, down a shaft of its own and a stair cut so long ago its edges have worn soft as soap, there's a second room — older than the one above it, older than the mill, older than anyone's memory of this valley.\n\nYou hear the chanting before you see the light. Low, even, patient — the same few words, over and over, too muffled to make out. Not the sound of people in a hurry. The sound of people who have done this many times before.",
+        "text": "The map was right. Deeper in the hill than the working chamber where they drove you back, down a shaft of its own, there is a stair. It was cut so long ago that its edges have worn soft as soap. The air on it is cold, and has not been breathed in a long time.\n\nAt its foot is a second room, older than the one above it, older than the mill, older than anyone's memory of this valley.\n\nYou hear the chanting before you see the light. Low, even, patient: the same few words, over and over, too muffled to make out. It is not the sound of people in a hurry. It is the sound of people who have done this many times before.",
         "section": "Arrival"
       },
       {
@@ -369,7 +369,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Either way there is still the stair, worn soft as soap, with no rail and a long drop on the open side.",
+        "text": "Either way there is still the stair, with no rail and a long drop on the open side.",
         "section": "The Approach"
       },
       {
@@ -416,7 +416,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You come off the last step into lamplight.\n\n{N} robed figures stand in a ring around a stone table, lamps at their feet, their shadows thrown huge and wavering up the walls. On the table lies the miller's boy — awake, wrists bound, his eyes finding yours over the shoulder of the one holding the knife.\n\nNobody shouts. The robed figures simply turn, all at once, as if they'd been expecting you. The chant doesn't even break.",
+        "text": "You come off the last step into lamplight.\n\n{N} robed figures stand in a ring around a stone table, lamps at their feet, their shadows thrown huge and wavering up the walls. On the table lies the miller's boy. He is awake, with his wrists bound, and his eyes find yours over the shoulder of the one holding the knife.\n\nNobody shouts. The robed figures simply turn, all at once, as if they had been expecting you. The chant does not even break.",
         "section": "The Battle"
       },
       {
@@ -431,7 +431,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It's close and ugly — lamps kicked over, shadows lurching across the ceiling. And the strangest part is the chanting. The ones still standing keep the words going as they fight, and some keep them going as they fall, as if the words matter more than their lives.\n\nWhen the last of them goes down, the room goes enormously quiet.\n\nThe boy is alive. There's a cut across his palm, clean and shallow, already bound in white linen — someone took the time to bind it. Whatever they needed from him, they'd already taken. The wound is small. The relief in the room is real. It looks, to everyone standing in it, like a win.",
+        "text": "It is close and ugly: lamps kicked over, shadows lurching across the ceiling. And the strangest part is the chanting. The ones still standing keep the words going as they fight, and some keep them going as they fall, as if the words matter more than their lives.\n\nWhen the last of them goes down, the room goes enormously quiet.\n\nThe boy is alive. There's a cut across his palm, clean and shallow, already bound in white linen — someone took the time to bind it. Whatever they needed from him, they'd already taken. The wound is small. The relief in the room is real. It looks, to everyone standing in it, like a win.",
         "section": "The Battle"
       },
       {
@@ -506,12 +506,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Beside the table, dropped in the fight and half trodden underfoot, lies a small book bound in black cloth, one corner scorched where it fell against a lamp.",
+        "text": "Somebody lifts the book out from under the fallen lamp and beats the sparks out of its corner. It is small, bound in black cloth, and still warm from the flame. The cloth is worn shiny in one place, where a thumb has held it a great many times.",
         "section": "The black circle"
       },
       {
         "t": "say",
-        "text": "This belongs to *them*: their scripture, the kind of thing a man carries against his chest. On its first page, under a black circle painted like a moon with no light in it, is a title: *The First Book of the Order of the Dark Moon.*\n\nThe scrap of cloth torn from the scout's coat, two nights ago on the hillside, lies beside it. The same circle.\n\nThe kidnappers have a name. And the Order's scripture is about to tell you who they pray to.",
+        "text": "This belongs to *them*: their scripture, the kind of thing a man carries against his chest. On its first page, under a black circle painted like a moon with no light in it, is a title: *The First Book of the Order of the Dark Moon.*\n\nThe scrap of cloth torn from the scout's coat, two nights ago on the hillside, is laid down beside it. The same circle.\n\nFor a moment nobody says anything. The spilled lamps tick as they cool.\n\nThe kidnappers have a name. And somewhere in these pages is the one they pray to.",
         "section": "The black circle"
       },
       {
@@ -535,7 +535,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The room is yours.\n\nThe scorched corner of the book has fused a dozen leaves into one brittle black wafer. There is time, now, to get them apart whole.",
+        "text": "The room is yours.\n\nSomebody sets the spilled lamps upright again, one by one, and the dark draws back to the walls. Corin sits with his back against the stone table, watching the fall.\n\nThe scorched corner of the book has fused a dozen leaves into one brittle black wafer. There is time, now, to get them apart whole.",
         "cond": {
           "on": "ue",
           "won": true
@@ -591,7 +591,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "*His house had kept a thing since before his house had a name. No one living could say what it was. It was old; it was not to be sold, or lost, or given away; that was all the keeping had ever passed down. That, and a few pages in a hand no one could read whole — of which, that night, by the light of a single candle, he could read one line:*\n\n**[Set apart on the page, in an older hand — words older than the Order's own name, and nothing like the plain, careful hand the Seekers left in every fragment]**\n**\"Blood beneath the dark moon — and it answers.\"**\n\n*So the king went down alone into the oldest room of his house, with the moon gone out above him and the enemy's fires waiting for morning. He set the thing on the stone before him. He opened his palm with his own knife. He had nothing left to lose, and he said so aloud, and he gave it his blood.*\n\n*It answered.*\n\n*And what answered him went out of that room, over the wall, and into the dark where the enemy's camp lay waiting for dawn.*",
+        "text": "*His house had kept a thing since before his house had a name. No one living could say what it was. It was old; it was not to be sold, or lost, or given away; that was all the keeping had ever passed down. That, and a few pages in a hand no one could read whole — of which, that night, by the light of a single candle, he could read one line:*\n\n*Here the page changes. One line is set apart, in an older hand: words older than the Order's own name, and nothing like the plain, careful hand the Seekers left in every fragment.*\n\n**\"Blood beneath the dark moon — and it answers.\"**\n\n*So the king went down alone into the oldest room of his house, with the moon gone out above him and the enemy's fires waiting for morning. He set the thing on the stone before him. He opened his palm with his own knife. He had nothing left to lose, and he said so aloud, and he gave it his blood.*\n\n*It answered.*\n\n*And what answered him went out of that room, over the wall, and into the dark where the enemy's camp lay waiting for dawn.*",
         "section": "The Verse of the Answering"
       },
       {
@@ -614,7 +614,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You know this war. Every child in the land does. *The Grey Host broke at Highwall of a fever in its camp, and Highwall was spared by luck.* That is how you were taught it.\n\nA fever. Luck. No king anywhere in it.\n\nAnd in Meira's notes, two nights ago, pressed hard into the paper: *\"Not one of these fragments names him. Neither does anything else I can find — every record of him scraped clean. Whoever he was, someone wanted him forgotten.\"*\n\nThe Order says no one who stood on that wall left a telling. Your first fragment begins: *\"We held his last wall the night it was meant to fall.\"*\n\nSomebody did leave one. They hid it in a beam, behind a loose board.",
+        "text": "You know this war. Every child in the land does. You learned it on a bench with a slate on your knees, the way everyone did. *The Grey Host broke at Highwall of a fever in its camp, and Highwall was spared by luck.* That is how you were taught it.\n\nA fever. Luck. No king anywhere in it.\n\nAnd in Meira's notes, two nights ago, pressed hard into the paper: *\"Not one of these fragments names him. Neither does anything else I can find — every record of him scraped clean. Whoever he was, someone wanted him forgotten.\"*\n\nThe Order says no one who stood on that wall left a telling. Your first fragment begins: *\"We held his last wall the night it was meant to fall.\"*\n\nSomebody did leave one. They hid it in a beam, behind a loose board.",
         "section": "The Verse of the Answering"
       },
       {
@@ -629,7 +629,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "*Until the throne rise whole.* It's what they were chanting over Corin, while the knife was out.",
+        "text": "*Until the throne rise whole.* Those were the words under the chant, too muffled to make out from the stair. It is what they were saying over Corin, while the knife was out.",
         "section": "The Verse of the Answering"
       },
       {
@@ -639,7 +639,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It's Corin who shows you. Still shaking, he points past the table to a niche in the wall, where a lamp still burns beside another book — nothing like the Order's scripture. This one is bound in plain oiled leather, the kind a merchant keeps his accounts in.\n\nIt's a ledger.\n\nPage after page of children's names. Beside each name, a place. Beside each place, a date, and the miles to the next. The newest pages are in one small, careful hand. The oldest are in other hands, faded almost to nothing. And beside many of the old names, a single word, written the same way every time: *given.*",
+        "text": "It is Corin who shows you. Still shaking, he points past the table to a niche in the wall, where a lamp still burns beside another book. It is nothing like the Order's scripture. This one is bound in plain oiled leather, the kind a merchant keeps his accounts in.\n\nIt is a ledger.\n\nPage after page of children's names. Beside each name, a place. Beside each place, a date, and the miles to the next. The newest pages are in one small, careful hand. The oldest are in other hands, faded almost to nothing. And beside many of the old names, a single word, written the same way every time: *given.*",
         "section": "The ledger"
       },
       {
@@ -682,8 +682,18 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
+        "text": "Meira's page lies open beside the ledger. Your names, in her neat hand, and beside each one the night you were born.\n\nA week ago, in a dry room under the river, you asked why your names were on her list.",
+        "section": "The turn"
+      },
+      {
+        "t": "say",
         "text": "**You're marked too. Every one of you.**",
         "alone": true,
+        "section": "The turn"
+      },
+      {
+        "t": "say",
+        "text": "Nobody says anything for a long moment. Somebody turns a hand over in the lamplight and looks at the open palm.",
         "section": "The turn"
       },
       {
@@ -745,7 +755,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Garrick reads the ledger over someone's shoulder, and for the first time since you've known him he goes quiet in a different way — slower, more careful, like a man choosing his words.\n\n*\"This hand's been keeping books like this for years,\"* he says at last. *\"This isn't new, and it isn't finished. Two places. Two children.\"*\n\nHe closes the ledger and tucks it inside his coat, the same easy way he keeps everything else.",
+        "text": "Garrick reads the ledger over someone's shoulder, and for the first time since you have known him he goes quiet in a different way: slower, more careful, like a man choosing his words.\n\n*\"This hand's been keeping books like this for years,\"* he says at last. *\"This isn't new, and it isn't finished. Two places. Two children.\"*\n\nHe closes the ledger and tucks it inside his coat, the same easy way he keeps everything else.",
         "section": "The Cliffhanger"
       },
       {
@@ -760,7 +770,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Corin is still watching the place where the ledger went. When he speaks, it's barely a whisper.\n\n*\"There was a girl down here with me. They took her away, not long before you came.\"* He swallows. *\"She said they told her she was going somewhere warm.\"*",
+        "text": "Corin is still watching the place where the ledger went. When he speaks, it is barely a whisper.\n\n*\"There was a girl down here with me. They took her away, not long before you came.\"* He swallows. *\"She said they told her she was going somewhere warm.\"*",
         "section": "The Cliffhanger"
       },
       {

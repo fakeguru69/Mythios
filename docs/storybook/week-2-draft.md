@@ -317,7 +317,7 @@
 >
 > Garrick crouches beside him and turns the dead man's collar up over his face. It is the first kindness anybody has done him in a week.
 >
-> He has a crude lockpick in one hand. It is still jammed into a small stone housing, built into the hillside itself.
+> The dead man has a crude lockpick in one hand. It is still jammed into a small stone housing, built into the hillside itself.
 
 > It is old work, far older than the path, as old as the places your fragments have lain. And it is sealed.
 >
