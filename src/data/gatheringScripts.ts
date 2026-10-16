@@ -801,7 +801,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The burned country, all week. Tonight the trail ends under it: down through the crack in the Kiln's black crown, where the air coming up is warm as breath.\n\nDown there, a girl is crying. Quietly. The way children cry when they have learned it does not help.",
+        "text": "The burned country, all week. Tonight the trail ends under it.\n\nYou come to the Kiln in the dark, by the map. Close to, it is bigger than it looked from the cairn: a round black hill with nothing growing on it, warm through your boots all the way up. The lamp that went in before you is nowhere to be seen.\n\nAt the crown the crack opens under your feet, wide enough for a man to climb down. The air coming up out of it is warm as breath, and smells of hot stone.\n\nDown there, a girl is crying. Quietly. The way children cry when they have learned it does not help.",
         "section": "Arrival"
       },
       {
@@ -851,7 +851,25 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You drop through into the warm dark. Below you a lamp swings, and for one heartbeat you see him: a robed figure hauling himself away up a vent in the rock, the hot air streaming past him, a small box clutched to his chest.\n\nThen the lamp swings back, and he is gone, up into the black.",
+        "text": "It holds. Hand under hand, one after another, you go down without a sound.",
+        "cond": {
+          "on": "approach",
+          "pass": true
+        },
+        "section": "The Approach"
+      },
+      {
+        "t": "say",
+        "text": "Halfway, it gives. The last of the drop is a long slide in a rattle of black glass, loud enough to wake the hill.",
+        "cond": {
+          "on": "approach",
+          "pass": false
+        },
+        "section": "The Approach"
+      },
+      {
+        "t": "say",
+        "text": "You drop through into the warm dark. Below you a lamp swings, and for one moment you see him: a robed figure hauling himself away up a vent in the rock, the hot air streaming past him, a small box clutched to his chest.\n\nThen the lamp swings back, and he is gone, up into the black.",
         "section": "The Approach"
       },
       {
@@ -861,7 +879,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "They are waiting for you. {N} of them, a blade in one hand and a torch in the other. They do not break when the first of them falls.",
+        "text": "They are waiting for you. {N} of them, robed, a blade in one hand and a torch in the other, between you and a stone table in the middle of the floor. The heat down here lies on you like a hand. Nobody speaks. They do not break when the first of them falls.",
         "section": "The Battle"
       },
       {
@@ -881,7 +899,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "He lets himself be bound. There is no fight left in it, and no roll.",
+        "text": "He lets himself be bound. He holds his wrists out for the rope, side by side, and does not look at them while it is tied.",
         "section": "The Battle"
       },
       {
@@ -905,7 +923,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The girl is alive. Wren. She is nine or ten, and too frightened yet to say much. Her palm is cut and bound in the same white linen.",
+        "text": "The girl is alive. Wren. She is nine or ten, and too frightened yet to say much. Her palm is cut and bound in the same white linen.\n\nSomebody took the time, again.",
         "cond": {
           "on": "ue",
           "won": true
@@ -928,7 +946,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Her other fist is shut so tight the knuckles are white. When she opens it at last there is a chip of black glass inside, polished smooth by her thumb.",
+        "text": "Her other fist is shut so tight the knuckles are white. For a long while she will not open it, for anyone.\n\nWhen she does, at last, there is a chip of black glass inside, polished smooth by her thumb.\n\nYou think of her mother in Ashcombe, almost smiling: *She never lost it.*",
         "section": "The United Effort"
       },
       {
@@ -938,12 +956,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "{F3} puts the eight from the ridges into her other hand, one by one.",
+        "text": "{F3} puts the eight from the ridges into her other hand, one by one. She looks at them, and then at {F3}, and closes her hand over them.",
         "section": "The United Effort"
       },
       {
         "t": "say",
-        "text": "Garrick takes off his coat, puts it round her, and says nothing at all.",
+        "text": "Garrick takes off his coat, puts it round her, and says nothing at all. It comes down past her knees.",
         "section": "The United Effort"
       },
       {
@@ -1003,7 +1021,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It springs open under {F1}'s hand, by itself, the way every locked thing has all season.\n\nThere is nothing in it. There never was.\n\nThe captive goes very still. He is staring at the hand that opened it.\n\n*\"Seeker blood,\"* he says, so quietly it is almost a prayer.",
+        "text": "It springs open under {F1}'s hand, by itself, the way every sealed thing of theirs has opened for you.\n\nThere is nothing in it. There never was.\n\nThe captive goes very still. He is staring at the hand that opened it.\n\n*\"Seeker blood,\"* he says, so quietly it is almost a prayer.",
         "section": "The case"
       },
       {
@@ -1085,6 +1103,17 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       {
         "t": "say",
         "text": "*If so small a seam as a silence let them in, what would a lie do? It would throw the door wide. Therefore the faithful shall not lie. Speak true, always. Keep your counsel where you must. Hide inside the truth.*\n\n*So the faithful remember him, and give the marked blood in his name, and wait.*\n\n*Until the throne rise whole.*",
+        "section": "The Verse of the Fall"
+      },
+      {
+        "t": "say",
+        "text": "*Therefore the faithful shall not lie.*",
+        "alone": true,
+        "section": "The Verse of the Fall"
+      },
+      {
+        "t": "say",
+        "text": "Nobody reads it a second time. Nobody needs to. One by one, every eye in the chamber goes to the man on his knees.\n\nIt is his book. It is his rule. Everything he has said to you tonight, he has said under it.",
         "section": "The Verse of the Fall"
       },
       {
@@ -1276,6 +1305,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       {
         "t": "say",
         "text": "*Rise.*",
+        "alone": true,
         "section": "The turn"
       },
       {
