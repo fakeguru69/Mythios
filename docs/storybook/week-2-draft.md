@@ -590,7 +590,7 @@
 >
 > A map, old and exact. It points into this same hill. Not to the chamber that drove you back, but deeper: to an older room, reached by a shaft of its own, cut long before any of those hooded figures was born.
 
-> The others are strung out along the hillside on watch, too far apart to pass a map between. They have to have it too.
+> Jo has crawled up beside you at the lip to look. Whoever else is on watch along the hillside is too far off to pass a map to, and they have to have it too.
 
 `[READ IT OUT]` `[LET JO READ IT]`
 

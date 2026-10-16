@@ -1925,7 +1925,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The others are strung out along the hillside on watch, too far apart to pass a map between. They have to have it too."
+        "text": "{F3} has crawled up beside you at the lip to look. Whoever else is on watch along the hillside is too far off to pass a map to, and they have to have it too."
       },
       {
         "t": "choice",
@@ -2874,7 +2874,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The others are still coming up the last of the slope below you, too far down to see what you hold."
+        "text": "{F1} came up the last of the ridge at your side. Whoever is still on the slope below is too far down to see what you hold."
       },
       {
         "t": "choice",
