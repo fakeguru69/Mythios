@@ -29,6 +29,12 @@ Playwright scripts that drive the real app in a browser. The online tests also t
   - solver names.
 
   It expects the party to be on Week 1 Day 2.
+- `node tests/online/store-and-relics.cjs <run> "<party name>"`: covers
+  - the Store's first-time line, buying Relics, giving one to a friend;
+  - the Store closed at the card, and open after [NOT NOW];
+  - rolling the card with an Attribute Relic.
+
+  It needs a day whose card has not been rolled, and about 500g.
 
 To move a test party's clock, run this on the server (Supabase SQL):
 

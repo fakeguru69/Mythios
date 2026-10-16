@@ -334,7 +334,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
                       className="font-['Cinzel'] font-bold text-[13.5px] mt-2 truncate"
                       style={{ color: attrColor }}
                     >
-                      {rKey.toUpperCase()} RELIC
+                      {rKey === 'Battle' ? 'COMBAT' : rKey.toUpperCase()} RELIC
                     </div>
                     <div className="text-[12px] font-sans text-[#B7A9CC] mt-0.5 leading-snug">
                       {isAttr
@@ -369,7 +369,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
             <div className="p-3.5 rounded-2xl bg-[#1E1232] border-2 border-[#D4B876] space-y-2.5 shadow-xl">
               <div className="flex items-center justify-between">
                 <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#D4B876] uppercase">
-                  SEND 1 {activeGiftRelicKey.toUpperCase()} RELIC TO:
+                  SEND 1 {activeGiftRelicKey === 'Battle' ? 'COMBAT' : activeGiftRelicKey.toUpperCase()} RELIC TO:
                 </span>
                 <button
                   onClick={() => setActiveGiftRelicKey(null)}
@@ -895,7 +895,7 @@ export const StoreTabView: React.FC<StoreTabViewProps> = ({
                       className="font-['Cinzel'] font-bold text-[13.5px] mt-2 truncate"
                       style={{ color: attrColor }}
                     >
-                      {rKey.toUpperCase()} RELIC
+                      {rKey === 'Battle' ? 'COMBAT' : rKey.toUpperCase()} RELIC
                     </div>
                     <div className="text-[12px] font-sans text-[#B7A9CC] mt-0.5 leading-snug">
                       {isAttr

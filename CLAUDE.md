@@ -83,7 +83,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 - `src/data/narrativeContinuityAudit.ts`: the old continuity patches. **All retired** (L4–L6 on 14 Oct, L1 and L3 on 15 Oct; L2 became canon); the day now plays canon text, so nothing is patched.
 - `src/data/campfireDaysData.ts` + `campfire-days-v23.json`: Campfire v2.3 (correct) plus first-use checks.
 - `src/data/garrickRouter.ts`: deterministic router for Garrick questions with story-state guards. (`garrickCampfirePrompts.ts` and `garrickDailyRiddles.ts`, the old unused Campfire prompt bank and riddles, were deleted 15 Oct.) `gmMemoryEngine.ts` (memory digest; has made-up token figures), `mythiosFragments.ts`, `mythiosGatheringsAndAudit.ts`.
-- `src/online/` (15–16 Oct): multiplayer step 1: the sign-in, party and waiting-room screens (`OnlineApp.tsx`), Session Zero (`SessionZero.tsx`), every player-facing line from canon (`onlineText.ts`; wording from `docs/canon/review-accounts-and-invites.md` and Core Rules §7), the shared look (`ui.tsx`) and the server connection (`supabaseClient.ts`; Supabase project "mythios", Singapore). Opened with `?online=1` or an invite link `?join=CODE` (`main.tsx`); otherwise the one-phone demo runs. The public website (Vercel, `vercel.json`) is built with `VITE_ONLINE_ONLY=1` and holds only the online screens: **never put the demo on a public site** (it carries the whole secret). Supabase tool permissions: `.claude/settings.json`; write migrations that add, never delete. The database and its access rules are in `supabase/migrations/` (apply new ones to the project, never edit applied ones). The days online (16 Oct): `OnlineDay.tsx` plays the day the server hands out (`today()`; chapters in the `chapters` table, loaded from `chapterScripts.ts` by `scripts/gen-chapters-sql.ts`; rerun it and load again after any change to the episode files); the server rolls every die (`roll_challenge`, `roll_press`, `fight_round`). The Seeker Chest online (`OnlineChest.tsx`; `seeker_chest`, `solve_word`; fragments loaded from `mythiosFragments.ts` by `scripts/gen-fragments-sql.ts`). Plan and progress: `docs/multiplayer-plan-15oct.md`.
+- `src/online/` (15–16 Oct): multiplayer step 1: the sign-in, party and waiting-room screens (`OnlineApp.tsx`), Session Zero (`SessionZero.tsx`), every player-facing line from canon (`onlineText.ts`; wording from `docs/canon/review-accounts-and-invites.md` and Core Rules §7), the shared look (`ui.tsx`) and the server connection (`supabaseClient.ts`; Supabase project "mythios", Singapore). Opened with `?online=1` or an invite link `?join=CODE` (`main.tsx`); otherwise the one-phone demo runs. The public website (Vercel, `vercel.json`) is built with `VITE_ONLINE_ONLY=1` and holds only the online screens: **never put the demo on a public site** (it carries the whole secret). Supabase tool permissions: `.claude/settings.json`; write migrations that add, never delete. The database and its access rules are in `supabase/migrations/` (apply new ones to the project, never edit applied ones). The days online (16 Oct): `OnlineDay.tsx` plays the day the server hands out (`today()`; chapters in the `chapters` table, loaded from `chapterScripts.ts` by `scripts/gen-chapters-sql.ts`; rerun it and load again after any change to the episode files); the server rolls every die (`roll_challenge`, `roll_press`, `fight_round`). The Seeker Chest online (`OnlineChest.tsx`; `seeker_chest`, `solve_word`; fragments loaded from `mythiosFragments.ts` by `scripts/gen-fragments-sql.ts`). The Store and Relics online (16 Oct; `OnlineStore.tsx`; migrations `0021`–`0023`: `store_state`, `buy_gear`, `buy_relic`, `give_relic`, `set_aside` for [NOT NOW], `roll_card` and `roll_press_card` (the rolls with an Attribute Relic; the old `roll_challenge` and `roll_press` are closed), `use_combat_relic`). Plan and progress: `docs/multiplayer-plan-15oct.md`.
 - `public/*.md`: audit bundles (old snapshots, ignore). `docs/`: a few older docs. `simulators/numbers-pass-15oct.ts`: the season simulator (reads the game's own data and engine; `npx tsx simulators/numbers-pass-15oct.ts 2000`); its report is `docs/numbers-pass-15oct.md`. (`simulators/g_final.py`, the 5 Oct one, needs a `g_run.py` that is not in the repo.)
 
 ---
@@ -227,13 +227,14 @@ For a new session: read this, then `docs/multiplayer-plan-15oct.md` (the plan an
 - Forgot password.
 - **The days:** the server hands out each chapter on its day and rolls every die (the Challenge, [PRESS ON], fights). It keeps gold, Attributes and gear, and posts the result line.
 - **The Seeker Chest.**
+- **The Store and Relics** (16 Oct): gear and Relics bought on the server; Relics given to friends; an Attribute Relic on the card or [PRESS ON], a Combat Relic in a fight; [NOT NOW] on the card (and on a fight not yet begun, except the first fight). The Store is closed while your card or fight is open. The Relic Box sits in the Store until the Bag comes online.
 
 **Next, in order** (Fake Guru picks; my suggestion first)
-1. The Store, and Relics.
-2. The Campfire.
-3. The Gathering. It is canon's riskiest part.
-4. Garrick in the chat.
-5. Notifications (push).
+1. The Campfire.
+2. The Gathering. It is canon's riskiest part.
+3. Garrick in the chat.
+4. Notifications (push).
+5. A day left open at 5:00am finishing by itself (an unrolled card takes the failure branch, a fight is rolled out; Core Rules §12a). Not built online yet.
 6. Also open:
    - a late joiner plays Day 1 first;
    - the Record and Bag;

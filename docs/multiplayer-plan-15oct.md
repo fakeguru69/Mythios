@@ -152,5 +152,13 @@ Test 3 needs no code. It could start this week and tell us the most.
   - After Day 6, unsolved words complete themselves, with no gold and no name.
   - The Chest opens from the party page and from the day's fragment.
   - Tested with two players. Not yet: the week's map line (Day 6) and the Fan Out first-letter hint (Fan Out is not online yet).
-  - **Not yet online:** the Campfire, the Store, Relics, the Record and Bag, the Gathering (Day 7 shows "Tonight: the Gathering."), a late joiner's Day 1, Garrick, and notifications.
+  - **Not yet online:** the Campfire, the Record and Bag, the Gathering (Day 7 shows "Tonight: the Gathering."), a late joiner's Day 1, Garrick, and notifications.
+- **16 Oct: the Store and Relics online** (Fake Guru: "Proceed" on the suggested next build; migrations `0021`–`0023`; `src/online/OnlineStore.tsx`).
+  - Gear (950 / 1,100 / 1,750 / 2,400 per step, per track) and Relics (150g, seven types), bought on the server with one confirmation and no undo. Gear reads canon's way: "Sword-Cane — Lv. 2 · Weapon 15".
+  - Canon's first-time line, shown once on first opening the Store.
+  - Relics can be given to a friend (never gold). The friend sees "TestHost gave you an Aim Relic." in their Store (the push comes with notifications).
+  - On the card: "Aim Relic · you hold 2 / With +4, you succeed on 3+", [USE] arms it, a second tap takes it back; it is spent only when the roll is made, and growth is judged before it. The same on [PRESS ON]. In a fight, a Combat Relic: +1 Weapon and +1 Armor from the next round, once per fight.
+  - The Store is closed while your card or fight is open (counted from when you open that day's chapter). [NOT NOW] sets the card aside and opens the Store; a fight not yet begun can be set aside too, except the first fight (§12a).
+  - Tested in a browser and on the server: buying, the closed Store, [NOT NOW], a roll with a Relic (6 + 0 + 4 − DC 7 = +3, Aim 17 → 29), giving, the Combat Relic from Round 2, refusals (no Relic, a second Combat Relic, the old rolls).
+  - Not yet: the Relic Box in the Bag (the Bag is not online), the help-call (it comes with the Gathering), the Record's "Relics Given" and "Times Stepped Up" (they come with the Record; the gifts are already kept), and the day finishing itself at 5:00am.
 - **Earlier note on chat lines:** the party chat lines for leaving and a new host ("Dev has left the road.", "Mei now leads the party.") come with the party chat (step 4). Session Zero, the party clock and [READY] come next in step 1. Friends can use it only once the app is on the web (a hosting choice for Fake Guru).

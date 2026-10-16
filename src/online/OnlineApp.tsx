@@ -33,6 +33,7 @@ import PartyChat from './PartyChat';
 import InstallGuide from './InstallGuide';
 import OnlineDay from './OnlineDay';
 import OnlineChest from './OnlineChest';
+import OnlineStore from './OnlineStore';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
 const startQuery = new URLSearchParams(window.location.search);
@@ -379,6 +380,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [myCharacter, setMyCharacter] = useState<SeriesCharacter | null>(null);
   const [playingDay, setPlayingDay] = useState(false);
   const [inChest, setInChest] = useState(false);
+  const [inStore, setInStore] = useState(false);
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -488,6 +490,18 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   // The Seeker Chest (from the party page, or from the day's fragment; back goes where you came from).
   if (inChest) return <OnlineChest partyId={party.id} onClose={() => setInChest(false)} />;
 
+  // The Store and your Relics (from the party page, or from a card set aside; back goes where you came from).
+  if (inStore) {
+    return (
+      <OnlineStore
+        partyId={party.id}
+        myClass={me.class}
+        friends={approved.filter((r) => r.user_id !== userId && r.session_zero_done_at).map((r) => ({ id: r.user_id, name: r.character_name }))}
+        onClose={() => setInStore(false)}
+      />
+    );
+  }
+
   // Today's chapter, from the server (the days online).
   if (playingDay) {
     return (
@@ -503,6 +517,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           load();
         }}
         onOpenChest={() => setInChest(true)}
+        onOpenStore={() => setInStore(true)}
       />
     );
   }
@@ -646,6 +661,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           </button>
           <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInChest(true)}>
             🕯️ SEEKER CHEST
+          </button>
+          <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInStore(true)}>
+            THE STORE
           </button>
         </div>
       )}
