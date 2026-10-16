@@ -29,7 +29,7 @@ Rules he has set. Follow them in every reply:
 
 ## 2. The game in one page
 
-**Tales of the Dark Moon** (engine name **Mythios**) is a story game played in a chat app by a fixed party of **2 to 6 real friends** over **6 weeks**. An AI storyteller called **MYTHIOS** tells it, from stored text.
+**Tales of the Dark Moon** is the first series of **Mythios** (the app; decided 16 Oct: Mythios holds many series, each told in seasons, and you play one character per series under your own name). It is a story game played in a chat app by a fixed party of **2 to 6 real friends** over **6 weeks**. An AI storyteller called **MYTHIOS** tells it, from stored text.
 
 - **A week** = 6 weekdays (Days 1 to 6) plus a live **Gathering** on Day 7.
 - **A weekday** (played alone; was ~5 minutes, now about 8 to 12 with Fan Out, fragment and Campfire, and Fake Guru accepted the longer day on 14 Oct): a chapter, one paid beat (a **Challenge** or a **fight**), sometimes **[PRESS ON]** (an optional harder roll), the **Pull** (why tomorrow can't wait). Each day also drops a **Seeker Fragment** (a short text with two missing words, letters jumbled) into every friend's **Seeker Chest**. Six fragments make the week's map.

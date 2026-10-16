@@ -131,4 +131,10 @@ Test 3 needs no code. It could start this week and tell us the most.
   - **The host picks the start day**, for example next Monday (`0009`). Day 1 opens at 5:00am that day on the party's clock, and the day can be changed until then. The waiting room shows the day; on the last night it shows canon's "Day 1 opens at 5:00am. Sleep, if you can."
   - **Install to the home screen:** an icon, a manifest and a service worker (`pwa/`), and a guide with steps for iPhone and Android (`InstallGuide.tsx`). Notifications are added to the guide when push is built (step 6).
   - **Google and Apple sign-in buttons** show by themselves once each is switched on in the Supabase dashboard. Those players are asked canon's "What should your friends call you?" once (`0010`). Email and password sign-in stays.
+- **16 Oct: Mythios, series, seasons and characters (Fake Guru).**
+  - The app is Mythios; Tales of the Dark Moon is one series; a party plays one season of a series (migration `0011`: `series`, `seasons`, `characters`).
+  - The first screen opens with a Mythios intro (draft wording), then the series shelf.
+  - Home shows your stories, each series with your character in it, and START A PARTY per series.
+  - Session Zero asks your character's name the first time in a series; a character you already have there is shown and kept.
+  - Tested: a kept character (host), a new one (Dev named "Devan", Archer), the invite naming the series and season.
 - **Earlier note on chat lines:** the party chat lines for leaving and a new host ("Dev has left the road.", "Mei now leads the party.") come with the party chat (step 4). Session Zero, the party clock and [READY] come next in step 1. Friends can use it only once the app is on the web (a hosting choice for Fake Guru).
