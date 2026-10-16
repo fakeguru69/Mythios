@@ -1358,7 +1358,7 @@ export function buildWhatWeDidTodayLines(params: {
       if (params.challengeClearedByYou) {
         parts.push(`passed today's Challenge at ${params.dayEntry.place}`);
       } else if (params.bruisedScrapeByYou) {
-        parts.push(`took a Bruised Scrape at ${params.dayEntry.place}`);
+        parts.push(`was defeated at ${params.dayEntry.place}`);
       }
       if (params.relicGiftedByYouTo) {
         parts.push(`gave a Relic to ${params.relicGiftedByYouTo}`);

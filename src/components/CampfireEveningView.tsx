@@ -742,7 +742,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
                       : 'bg-[#0D0714] border-[#3A2555] text-[#B7A9CC]'
                   }`}
                 >
-                  {simBruisedScrape ? '✓ Bruised Scrape' : 'Bruised Scrape'}
+                  {simBruisedScrape ? '✓ Lost today\'s fight' : 'Lost today\'s fight'}
                 </button>
                 <button
                   type="button"

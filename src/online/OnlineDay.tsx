@@ -587,7 +587,7 @@ export default function OnlineDay({
           ) : (
             <div className="space-y-1">
               <p className={`font-['Cinzel'] font-bold text-[13px] ${fightWon ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
-                {fightWon ? `VICTORY. ${sentenceCase(fill(step.name))} defeated in ${rounds.length} round${rounds.length === 1 ? '' : 's'}.` : 'BRUISED SCRAPE'}
+                {fightWon ? `VICTORY. ${sentenceCase(fill(step.name))} defeated in ${rounds.length} round${rounds.length === 1 ? '' : 's'}.` : 'DEFEATED.'}
                 <br />
                 {`REWARD: ${fightWon && fight?.gold ? `+${fight.gold}g` : 'none'}`}
               </p>

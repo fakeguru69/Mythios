@@ -91,7 +91,7 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 ## 5. Current state
 
-**Good and must be kept:** the Seeker word-lock puzzle; Campfire v2.3 data (exact); `economy.ts`; the growth formula; gold never below 0; verses gated to each Gathering (read to its end); Garrick present all of Week 6 (no empty seat); Malakor's name gated to Gathering 2 or later; continuity fixes reach the player view; the Gathering boss only loses at 0 HP; Fan Out's "Head to the Campfire" shown as a finished day; 0 HP = "Bruised Scrape", story goes on.
+**Good and must be kept:** the Seeker word-lock puzzle; Campfire v2.3 data (exact); `economy.ts`; the growth formula; gold never below 0; verses gated to each Gathering (read to its end); Garrick present all of Week 6 (no empty seat); Malakor's name gated to Gathering 2 or later; continuity fixes reach the player view; the Gathering boss only loses at 0 HP; Fan Out's "Head to the Campfire" shown as a finished day; 0 HP = "DEFEATED." (canon §4 card; Fake Guru chose it over the build's "Bruised Scrape" on 16 Oct), story goes on.
 
 **Broken at the 14 Oct handover (each is a task in §7; progress is ticked in `docs/fix-plan.md`):** the Challenge roll; result-card numbers; seven hard-coded gold amounts; Combat Relic never spent; United Effort not canon; party fixed at four; `[N]` replaced with "the company"; sample friends named after story characters; continuity patches L4 and L5 wrong and on; Store-lock switch left over; Audit Workbench reachable; small text errors. *(15 Oct: all fixed, small text errors included (Task 10). The full rule check is `docs/build-check-15oct.md`; its nine open decisions wait on Fake Guru.)*
 

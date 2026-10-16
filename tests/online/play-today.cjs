@@ -35,7 +35,7 @@ const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.j
   const t = await body();
   log('taps', taps.length, '| summary:', /You earned:/.test(t), '| gold:', (t.match(/◎ ([\d,]+)g/) || [])[1]);
   log('rolls:', (t.match(/🎲 \d+ \+ \w+ \d+ \(\+\d\) − DC \d+ = [+−]\d+/g) || []).join(' | '));
-  log('fight:', (t.match(/(WON[^\n]*|BRUISED SCRAPE)/) || [])[0] ?? 'none');
+  log('fight:', (t.match(/(VICTORY[^\n]*|DEFEATED\.)/) || [])[0] ?? 'none');
   log('earned:', (t.match(/You earned: [^\n]*/) || [])[0]);
   if (/BACK TO THE PARTY/.test(t)) { await click('BACK TO THE PARTY'); await p.waitForTimeout(2500); fs.writeFileSync(`${S}/party.txt`, await body()); }
   await b.close();
