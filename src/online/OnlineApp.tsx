@@ -31,6 +31,7 @@ import { CREDIT_LINE, INVITE_BULLETS, MYTHIOS_INTRO, SERIES, SZ_DOOR, TAGLINE, s
 import SessionZero, { type SeriesCharacter } from './SessionZero';
 import PartyChat from './PartyChat';
 import InstallGuide from './InstallGuide';
+import OnlineDay from './OnlineDay';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
 const startQuery = new URLSearchParams(window.location.search);
@@ -375,6 +376,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [startDate, setStartDate] = useState('');
   const [editingName, setEditingName] = useState<string | null>(null);
   const [myCharacter, setMyCharacter] = useState<SeriesCharacter | null>(null);
+  const [playingDay, setPlayingDay] = useState(false);
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -476,6 +478,24 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       ? `Day 1 opens at 5:00am ${dayOneOpening(party.day1_opens_at, party.time_zone)}.`
       : SZ_DOOR;
   const chatOpen = !!party.day1_opens_at && Date.now() >= new Date(party.day1_opens_at).getTime() + 86400000;
+
+  // Today's chapter, from the server (the days online).
+  if (playingDay) {
+    return (
+      <OnlineDay
+        partyId={party.id}
+        friends={approved.filter((r) => r.user_id !== userId).map((r) => r.character_name)}
+        partySize={approved.length}
+        myClass={me.class}
+        birthplace={me.birthplace ?? null}
+        grandparent={me.grandparent_name ?? null}
+        onClose={() => {
+          setPlayingDay(false);
+          load();
+        }}
+      />
+    );
+  }
 
   if (doingSessionZero) {
     return (
@@ -605,6 +625,16 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         )}
         {isHost && started && beforeDayOne && <p className="text-[15px] pt-1">{doorLine}</p>}
       </div>
+
+      {/* Once Day 1 has opened: today's chapter. */}
+      {started && !beforeDayOne && me.session_zero_done_at && (
+        <div className={`${card} border-[#D4B876]/60`}>
+          <h3 className={`${heading} text-[15px]`}>Today</h3>
+          <button className={goldButton} onClick={() => setPlayingDay(true)}>
+            OPEN TODAY'S CHAPTER
+          </button>
+        </div>
+      )}
 
       {/* The party chat opens when the party assembles on Day 2 (Fake Guru, 16 Oct); the server enforces it. */}
       {chatOpen && <PartyChat partyId={party.id} userId={userId} members={members} />}
