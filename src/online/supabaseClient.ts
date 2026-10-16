@@ -113,3 +113,35 @@ export const plainError = (message: string | undefined): string => {
   if (m.includes('failed to fetch') || m.includes('network')) return 'No connection to the server. Try again.';
   return 'Something went wrong. Try again.';
 };
+
+// The party's calendar date (YYYY-MM-DD) on its own clock, `addDays` from today.
+export const partyDate = (tz: string, addDays = 0): string => {
+  const d = new Date(Date.now() + addDays * 86400000);
+  try {
+    return new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+  } catch {
+    return d.toISOString().slice(0, 10);
+  }
+};
+// The first day the story can start: today if it is before 5:00am on the party's clock, otherwise tomorrow.
+export const earliestStartDate = (tz: string): string => partyDate(tz, dayOneWord(tz) === 'today' ? 0 : 1);
+// "today", "tomorrow" or "on Monday 20 October", for when Day 1 opens.
+export const dayOneOpening = (day1Iso: string, tz: string): string => {
+  const fmt = (d: Date) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+  const day1 = new Date(day1Iso);
+  try {
+    const label = fmt(day1);
+    if (label === partyDate(tz, 0)) return 'today';
+    if (label === partyDate(tz, 1)) return 'tomorrow';
+    return `on ${new Intl.DateTimeFormat('en-GB', { timeZone: tz, weekday: 'long', day: 'numeric', month: 'long' }).format(day1)}`;
+  } catch {
+    return 'soon';
+  }
+};
+// The same, for a chosen date (YYYY-MM-DD) before it is saved.
+export const dateOpening = (date: string, tz: string): string => {
+  if (date === partyDate(tz, 0)) return 'today';
+  if (date === partyDate(tz, 1)) return 'tomorrow';
+  const [y, m, d] = date.split('-').map(Number);
+  return `on ${new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(Date.UTC(y, m - 1, d, 12)))}`;
+};
