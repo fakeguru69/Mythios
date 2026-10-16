@@ -36,7 +36,7 @@
 
 > *Somewhere warm.*
 >
-> The words are still hanging in the lamplight. Corin is watching you, to see what you will do with them.
+> The words are still hanging in the lamplight. Corin is watching you, to see what you will do with them. He holds his bandaged hand in his lap, palm up, the way somebody told him to keep it.
 
 `[KNEEL DOWN TO HIM]`
 
@@ -52,7 +52,7 @@
 
 > The ledger is opened to its newest page, and held flat under the lamp. Four names. Beside the third, in that same small, careful hand: *Wren — Ashcombe.*
 >
-> In Meira's satchel the same name turns up in her own neat hand, on her list of children she was worried for. Beside it is a knot of her shorthand. Garrick tilts the page to the light.
+> In Meira's satchel the same name turns up in her own neat hand, on her list of children she was worried for. Beside it is a knot of her shorthand. Garrick tilts the page to the light and reads the knot off without a pause.
 >
 > *"Ashcombe's a shepherds' village on the edge of the burned country,"* he says. *"A long day west. And above it she's marked a place. The Blackglass."*
 
@@ -62,7 +62,9 @@
 >
 > *"One road at a time. The girl's is the one with tracks on it."*
 
-> You are at the mouth of the old shaft, in the grey before dawn, when something comes up out of the hill behind you.
+> The night wears down. By the grey before dawn you are all out at the mouth of the old shaft, with Corin half asleep against somebody's shoulder and the hillside wet and colourless round you.
+>
+> Then something comes up out of the hill behind you.
 >
 > One of them. Alone, hood back, with a blade.
 
@@ -74,6 +76,8 @@
 
 *Win or lose:*
 > He does not say a word. He breaks away over the shoulder of the hill and is gone, the way the others have gone: the first gap, and no sound.
+>
+> For a few breaths you can hear him on the scree below, quick and sure-footed in the half-light. Then there is only the wind in the wet grass.
 
 *If the player won, one line more:*
 > He leaves the hill with a limp he did not bring to it.
@@ -96,13 +100,15 @@
 
 > On the walk down, riding on Dev's shoulders, Corin says your names over to himself, one by one, the way you would tie a knot to keep it.
 
+> You hear the mill before you see it: the slow knock of the wheel, still going round over nothing.
+>
 > By mid-morning you have carried him down the valley to the mill. His mother sees him from the yard before you are halfway across the field, and the sound she makes is one none of you will forget.
 >
 > She does not thank you. She cannot yet. She holds him, with the white linen on his palm pressed between them, and looks at each of you over his head, one after another, as if she is learning your faces by heart.
 >
 > Corin tells her your names. He has not forgotten one.
 
-> Where the west road leaves the valley, a wayside shrine stands older than the road: a stub of carved stone with the carving worn off.
+> Where the west road leaves the valley, a wayside shrine stands older than the road: a stub of carved stone with the carving worn off. Somebody has left a sprig of heather at its foot, long since gone brown.
 
 `[FEEL BEHIND IT]`
 
@@ -130,6 +136,7 @@
 - **Corin:** his three lines are the approved ones, word for word.
 - **Garrick:** two existing lines; the second is behind an optional button, as the script's GM note already allowed.
 - **Fragment text (unchanged):** "First they stopped bleeding when cut. Then they stopped sleeping. Then they stopped being ours."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. The night wears down to the grey before dawn at the shaft mouth, so the move out of the lamplit room is shown; Garrick reads Meira's shorthand without a pause (an action, no line).
 
 ---
 
@@ -138,7 +145,9 @@
 *Heading: **Ashcombe.***
 *Question: did Wren come home?*
 
-> Ashcombe sits where the green hills give out and the black ones begin: low stone houses, roofs weighted with slabs against the wind. The ground is warm underfoot, like a hearthstone the morning after. The springs run hot.
+> On the second morning the west road climbs, and the grass along it grows thin and brown. Somewhere on the way the wind begins to smell of old smoke, though nothing is burning anywhere you can see.
+>
+> Ashcombe sits where the green hills give out and the black ones begin: low stone houses, roofs weighted with slabs against the wind. The ground is warm underfoot, like a hearthstone the morning after. The springs run hot, and steam lifts off the trough by the first house.
 >
 > Every door in the village shuts as you come up the street. Strangers took a child from here two weeks ago. You are strangers.
 >
@@ -161,10 +170,14 @@
 > IF YOU FAIL: the door stays shut, and you lose the day's light waiting
 
 *On a pass:*
-> The door opens. She stands back to let you in.
+> A bolt draws back. The door opens a hand's width and stays there while she looks at you, one face at a time.
+>
+> Then it opens the rest of the way, and she stands back to let you in. The house smells of peat, and of bread that nobody has eaten.
 
 *On a failure:*
-> The door stays shut. But at dusk she comes out to your fire herself, with a shawl over her head, because nobody else in the world is looking for her daughter. You never see past her door.
+> The door stays shut. The light goes off the street, and the shutters stay closed all down it.
+>
+> But at dusk she comes out to your fire herself, with a shawl over her head, because nobody else in the world is looking for her daughter. You never see past her door.
 
 `[WHO TOOK HER?]` `[WHY HER?]` `[WHAT DID THEY SAY?]`
 
@@ -196,9 +209,9 @@
 >
 > There is dust on the sill. There is none on the chips.
 
-> At the well, a boy is selling polished chips of black glass off a board. He has been watching you the whole time, and when the grown-ups have gone in he holds one out, and does not ask for the coin.
+> At the well, a boy is selling polished chips of black glass off a board. He has been watching you the whole time. When the grown-ups have gone in he holds one out, and does not ask for the coin.
 >
-> He was up after dark last night, where he should not have been. He saw a cart come through the village without lamps. It did not stop. At the foot of the black road it was left standing empty, and whoever was in it went on up, on horses, toward the Blackglass.
+> Then, in a whisper, with one eye on the doors, he tells you what he saw. He was up after dark last night, where he should not have been. A cart came through the village without lamps. It did not stop. At the foot of the black road it was left standing empty, and whoever was in it went on up, on horses, toward the Blackglass.
 >
 > Nobody has told her mother.
 
@@ -215,6 +228,8 @@
 > The only cold thing in Ashcombe. Cold enough to ache the fingers.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
+
+> Above the last roof the black road goes up into the hills. As the evening comes on, the warm ground under the village ticks softly, cooling.
 
 > **What does anyone need a child for, once? The Blackglass: half a day up the black road, the place Meira marked.**
 
@@ -235,6 +250,7 @@
 - **The mother:** every line is the approved text, word for word.
 - **Garrick:** his two existing lines, said without being asked, as the script requires.
 - **Fragment text (unchanged):** "We held his wall for him. Remember that, when you hear where else we stood."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the day opens "On the second morning", so the arrival fits "a long day west" and the boy's "last night". The boy at the well now tells what he saw himself, in a whisper (still no spoken lines). One new passage before the Pull: the warm ground ticking as it cools.
 
 ---
 
@@ -243,6 +259,8 @@
 *Heading: **The Blackglass.***
 *Question: why the Blackglass? What is up there?*
 
+> Half a day up the black road, where the shepherds take the left fork, the hill opens out and you see it.
+>
 > The Blackglass is a whole shoulder of hillside where the rock once ran like wax, and cooled: smooth, black, faintly rippled, as if a wave of stone had frozen halfway down the slope.
 >
 > Nothing grows on it. The wind slides off it without a sound. The shepherds do not walk their flocks across it, and do not say why.
@@ -266,18 +284,22 @@
 > IF YOU FAIL: you go down hard, and slide
 
 *On a pass:*
-> You reach the far side clean.
+> You reach the far side clean, without once putting a hand to the glass. All the way over, a dark shape walks upside down beneath your boots: your own, in the black.
 
 *On a failure:*
-> You go down hard, and slide twenty feet before a ripple in the glass catches you. Bruised, shaken, and there all the same.
+> You go down hard, and slide twenty feet before a ripple in the glass catches you. For a moment you lie still, with your cheek on the warm glass and your heart going. Bruised, shaken, and there all the same.
 
-> Either way, the far edge takes its toll. Where the glass has cracked its edges are as sharp as knives, and you come off it with one boot split open along the sole.
+> At the far edge the glass takes its toll. Where it has cracked, its edges are as sharp as knives, and you come off it with one boot split open along the sole.
 >
-> Garrick crosses last, the slow way, testing every step. *"My knees have opinions about this glass. None of them good."*
+> Garrick crosses last, the slow way, testing every step with the toe of his boot before he trusts it.
+>
+> *"My knees have opinions about this glass. None of them good."*
+>
+> He lowers himself onto the first rock he comes to, and rubs them.
 
 > Worn into the glass is a shape you know.
 >
-> Beside it, set into the rock as if the glass had cooled around it, is a housing carved with the same care as all the others.
+> Beside it, set into the rock as if the glass had cooled around it, is a housing of carved stone: old work, cut with the same care as the lock the dead man could not open, on the path upriver.
 
 `[SET YOUR HAND TO IT]`
 
@@ -293,7 +315,7 @@
 
 `[WRITE IT IN HER NOTEBOOK]`
 
-> It goes into Meira's notes, under her last entry, in your own hand.
+> It goes into Meira's notes, under her last entry, in your own hand. Your letters look clumsy under hers.
 
 > Hoof-scratches cross the glass a few yards from the mark, and run on, deeper into the burned country.
 >
@@ -305,8 +327,12 @@
 > REWARD: +200g, and one more detail
 
 *On a passed press:*
+> Where the horses came off the glass the scratches bunch and deepen, and you can count them.
+>
 > Six horses. One of them is carrying double, and the second rider weighs almost nothing.
 
+> You camp in the lee of the glass, where the ground is warm enough to sleep on.
+>
 > That evening, on Meira's plain page about the Blackglass, there is a line you all know, copied out in her hand: the first fragment any of you ever opened, *"Five fell…"* And squeezed into the margin beside it:
 >
 > *"Five, the fragment says. Every other record I can find says four. I cannot find a fifth anywhere, and I have looked. A poet's count, perhaps — a number that sounded better than the truth."*
@@ -318,6 +344,8 @@
 `[THANK HIM]`
 
 > *"Needed doing."*
+>
+> He tucks the bobbin away inside his coat, and that is the end of it.
 
 > **They rode straight past the one thing Meira marked. So what are they riding to? On, into the black ridges.**
 
@@ -337,6 +365,7 @@
 - **Garrick:** two existing lines; the second behind a button, as the script already allows ("if anyone thanks him").
 - **Meira's footnote** is unchanged, and is still the evening.
 - **Fragment text (unchanged):** "He never lied to us. He only never told us the price."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the housing is no longer "carved with the same care as all the others" (only one carved housing had been opened by then); it is "a housing of carved stone: old work, cut with the same care as the lock the dead man could not open, on the path upriver". "Either way, the far edge takes its toll" is now "At the far edge the glass takes its toll". Garrick has no new line: he sits on a rock and rubs his knees after his line, and tucks the bobbin away after "Needed doing."
 
 ---
 
@@ -347,12 +376,16 @@
 
 > The burned country is ridge after ridge of black rock, under a sky that looks paler for it. The soil between the ridges is ash-grey, and crunches like old snow. Dead trees stand bone-white, still upright after nobody knows how long.
 >
+> No bird sings out here. By noon your own footsteps are the loudest thing for miles.
+>
 > You are walking point when you stop, and crouch.
 >
 > In one of the hoof-scratches lies a chip of black glass, worn smooth by a thumb.
 
 `[PICK IT UP]`
 
+> You turn it over in your palm. It is no bigger than a fingernail: the kind of thing a child carries for luck.
+>
 > Fifty paces on, there is another.
 >
 > She is dropping them.
@@ -363,7 +396,7 @@
 > **Intellect** · She has a pocketful, and a long way to go. *She is spacing them. She is counting.*
 > **Charm** · The men who have her have not noticed a child's hand opening and closing. *She has made herself very easy to overlook.*
 > **Craft** · That ridge ahead has a corner on it. *Rock does not weather square.*
-> **Aim** · A hundred yards off the riders' line there is a shadow that is too straight.
+> **Aim** · A hundred yards off the riders' line there is a shadow that is too straight. *Nothing out here is straight unless somebody made it so.*
 
 > It is a doorway, cut into the side of a ridge: squared, deliberate, half buried under a fall of rock. The riders went by a hundred yards away, and never turned their heads.
 
@@ -375,7 +408,7 @@
 > You stay on the hoof-scratches for another mile, and find a third chip, and bring it back. Mei and Jo are already at the fall of rock, with their sleeves rolled.
 
 *The doorway:*
-> Dev keeps on along the trail, and comes back with a third chip in hand.
+> You go to the fall of rock with the others and stand looking at it. Dev keeps on along the trail, and comes back within the hour with a third chip in hand.
 
 **Challenge card**
 > **THE BURIED DOORWAY**
@@ -386,24 +419,26 @@
 > IF YOU FAIL: half the fall comes down
 
 *On a pass:*
-> The way opens cleanly.
+> Stone by stone the fall comes away, and what is left above it holds. A thin trickle of grit runs down, and stops. The way opens cleanly.
 
 *On a failure:*
 > Half the fall comes down with a roar and a choking cloud of black dust. When it clears, the doorway is open, and you are all the same colour.
 
-> Inside is a room cut from the ridge. Old soot blackens its ceiling, from fires that went out centuries ago. Cut into the walls at sleeping height, facing each other across the floor, is a row of niches, each just long enough for a person to lie in.
+> Inside is a room cut from the ridge. Old soot blackens its ceiling, from fires that went out centuries ago. Cut into the walls at sleeping height, facing each other across the floor, is a row of niches, each just long enough for a person to lie in. The air in here is cool, and smells of nothing at all.
+>
+> For a moment nobody goes any further in.
 >
 > Whoever wrote your fragments slept here, walking this same country, a long time ago.
 >
 > In a crack in the nearest niche is a single die, carved from bone, its spots worn almost smooth by somebody's fingers.
 >
-> Whoever slept here had long nights too. *(Moved 15 Oct 2026, Fake Guru: Phase 6, the die is on the main path; the day's [PRESS ON] is dropped.)*
+> They had long nights here too. *(Moved 15 Oct 2026, Fake Guru: Phase 6, the die is on the main path; the day's [PRESS ON] is dropped.)*
 >
 > Between the niches, at chest height, is a housing.
 
 `[LAY YOUR HAND ON IT]`
 
-> Its face slides back. The ridge has been warm all day. What is inside is colder than the rock round it.
+> Its face slides back with a low grate of stone. The ridge has been warm under your hand all day. The cold that comes out of the housing is older than the soot on the ceiling.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
@@ -433,6 +468,7 @@
 - **The chips are counted from today** because Gathering 3 has the party give Wren back eight: three today, five tomorrow.
 - **Garrick:** no lines. One existing action (the extra cup).
 - **Fragment text (unchanged):** "What we hid, we locked with what we are."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the Aim notice line gains its second sentence, "Nothing out here is straight unless somebody made it so." "Whoever slept here had long nights too." is now "They had long nights here too.", matching the summary card.
 
 ---
 
@@ -441,6 +477,8 @@
 *Heading: **The shepherd's hut.***
 *Question: is she in the hut?*
 
+> First light finds you on the last ridge above it. You can hear the spring before you see it: the first running water since Ashcombe.
+>
 > In a fold of the ridges a spring runs out of the black rock, and round it the world remembers how to be green: grass, a stand of trees, and a low stone hut with a sod roof.
 >
 > There are two ways down to it.
@@ -455,7 +493,9 @@
 *Wren's line:*
 > Her chips mark something shorter: a goat-track straight down through the rocks, which nobody on a horse could take. You find five more of them on the way. She walked this part.
 
-> A grey coat stands up on the ridge above the hut. He was left behind to watch. He comes down.
+> On the ridge above the hut a grey coat stands up from among the rocks, where he was left behind to watch.
+>
+> He comes down to meet you, and he takes his time about it.
 
 **Fight card**
 > **THE GREY COAT ON THE RIDGE**
@@ -465,12 +505,14 @@
 > `[FIGHT]`
 
 *Win or lose:*
-> He goes back up the way he came, onto the bare black rock, and the rock takes no prints.
+> He goes back up the way he came, without a word, onto the bare black rock, and the rock takes no prints. By the time you reach the top of the rise there is nothing on the ridge but the wind.
 
 *If the player won, one line more:*
 > He goes without his hat. It is a good hat. Inside the band somebody has stitched two letters, very small, the way a mother would.
 
 > The hut is empty.
+>
+> The door stands open. A thread of smoke is still going up from the roof-hole into the morning.
 
 `[LOW ON THE DOORFRAME]` `[THE BEAM OVER THE PALLET]` `[THE FIRE]`
 
@@ -478,6 +520,8 @@
 
 *The doorframe:*
 > Scratched fresh into the wood, at a child's height, with something small and sharp: **WREN.**
+>
+> The letters are small and pressed hard, and each one has been gone over twice. You run your thumb down them. The wood is still pale in the cuts.
 
 `[PLANT]` *(she was held here)*
 
@@ -537,6 +581,7 @@
 - **Garrick:** one existing line. His answer if asked whether he told anyone where the party was going (*"No."*) is unchanged and stays available.
 - **The second blanket, thrown down,** is a small new detail: it is what "left at a run" looks like.
 - **Fragment text (unchanged):** "Bloodlines outlast kingdoms. That is why kingdoms fear them."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. The grey coat's entrance is one line and a beat ("He comes down to meet you, and he takes his time about it."); Wren's name in the doorframe gets room.
 
 ---
 
@@ -545,6 +590,8 @@
 *Heading: **The cairn.***
 *Question: where have they taken her?*
 
+> All afternoon the cairn has been in sight: a dark knuckle of piled stones far off on the skyline, that never seems to come any nearer. Every ridge you cross shows you another between you and it. The shadows are long now, and reaching.
+>
 > The cairn stands on the highest ridge in the burned country, and the light is going.
 
 **What you notice**
@@ -553,7 +600,7 @@
 > **Intellect** · The Blackglass, the buried room and the hut lie in a line. *A line points somewhere.*
 > **Charm** · Nobody has said her name all day. *There are eight of her chips among you.*
 > **Craft** · One hill out there is too round. *The others were worn down. That one was melted.*
-> **Aim** · Over one hill, and only one, the air is moving like the air over a forge.
+> **Aim** · Over one hill, and only one, the air is moving like the air over a forge. *Something under that hill is still hot.*
 
 **Challenge card**
 > **THE CLIMB**
@@ -569,6 +616,8 @@
 > And one hill unlike all the others. Round, and black, with a crack across its crown, where the air above it shimmers as if the hill were breathing.
 
 *On a failure:*
+> The last of the ridge you climb by feel, with the wind pulling at your coat and the rock still warm under your hands.
+>
 > It is full dark when you reach the cairn. There is nothing to see from it but black on black, and the stars.
 
 > The last fragment is at the cairn's foot: not hidden, only wedged between the lowest stones, where a careless boot would miss it.
@@ -581,7 +630,7 @@
 
 `[LAY THEM OUT]`
 
-> They settle, as they have twice before. A map, old and exact, with a ridgeline drawn along its top.
+> They settle, as they have twice before. The wind worries at their edges, and they do not lift. A map, old and exact, with a ridgeline drawn along its top.
 
 `[TURN IT TO THE SKYLINE]`
 
@@ -595,9 +644,11 @@
 
 > In through the crack. Down a way cut long ago. To a room beneath the hill.
 
+> The others are still coming up the last of the slope below you, too far down to see what you hold.
+
 `[READ IT OUT]` `[LET MEI READ IT]`
 
-> It is said aloud, twice, for the ones on the slope below.
+> It is said aloud, twice, for the ones on the slope below. The wind takes every word of it down the ridge.
 
 `[PLANT]` *(said aloud, in the open)*
 
@@ -627,6 +678,7 @@
 - **Changed from the current script:** today there is no play at all. Now the climb is rolled, and what it buys is seeing the Kiln by eye before the map confirms it. On a failure the party has only the map.
 - **Garrick:** one existing line, said once the map has shown the hill, so that it works by daylight or in the dark; and one existing action (the fire).
 - **Fragment text (unchanged):** "We never dug him a grave. When we are gone, our blood will have to hold him."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the Aim notice line gains its second sentence, "Something under that hill is still hot." New: the day opens with the cairn in sight all afternoon; one new passage before the choice of who reads, "The others are still coming up the last of the slope below you, too far down to see what you hold.", which gives the reason it is said aloud.
 
 ---
 
@@ -646,7 +698,11 @@
 
 ### Arrival
 
-> The burned country, all week. Tonight the trail ends under it: down through the crack in the Kiln's black crown, where the air coming up is warm as breath.
+> The burned country, all week. Tonight the trail ends under it.
+>
+> You come to the Kiln in the dark, by the map. Close to, it is bigger than it looked from the cairn: a round black hill with nothing growing on it, warm through your boots all the way up. The lamp that went in before you is nowhere to be seen.
+>
+> At the crown the crack opens under your feet, wide enough for a man to climb down. The air coming up out of it is warm as breath, and smells of hot stone.
 >
 > Down there, a girl is crying. Quietly. The way children cry when they have learned it does not help.
 
@@ -666,7 +722,13 @@
 > REWARD: +500g · **and the party strikes first**
 > IF YOU FAIL: it gives halfway, the last of the drop is a slide in a rattle of black glass, and **they strike first**
 
-> You drop through into the warm dark. Below you a lamp swings, and for one heartbeat you see him: a robed figure hauling himself away up a vent in the rock, the hot air streaming past him, a small box clutched to his chest.
+*On a pass:*
+> It holds. Hand under hand, one after another, you go down without a sound.
+
+*On a failure:*
+> Halfway, it gives. The last of the drop is a long slide in a rattle of black glass, loud enough to wake the hill.
+
+> You drop through into the warm dark. Below you a lamp swings, and for one moment you see him: a robed figure hauling himself away up a vent in the rock, the hot air streaming past him, a small box clutched to his chest.
 >
 > Then the lamp swings back, and he is gone, up into the black.
 
@@ -674,9 +736,9 @@
 
 ### The Battle
 
-> They are waiting for you. [N] of them, a blade in one hand and a torch in the other. They do not break when the first of them falls.
+> They are waiting for you. [N] of them, robed, a blade in one hand and a torch in the other, between you and a stone table in the middle of the floor. The heat down here lies on you like a hand. Nobody speaks. They do not break when the first of them falls.
 
-**Fight card**
+**Fight card** *(in each friend's own thread)*
 > **THE FAITHFUL**
 > **Blade and torch:** when one of them lands a hit, the burn does a little more on the round after. *(Rule: when an enemy hits a friend, that friend loses 2 more HP at the start of the next round. It does not stack.)*
 > *You strike first.* / *He strikes first.*
@@ -684,7 +746,7 @@
 
 > The last one standing does not run. He looks at the blood on the floor, then at you. He sets his blade down on the stone at his feet, very carefully, the way you would put down something borrowed.
 
-> He lets himself be bound. There is no fight left in it, and no roll.
+> He lets himself be bound. He holds his wrists out for the rope, side by side, and does not look at them while it is tied.
 
 ### The United Effort
 
@@ -706,21 +768,27 @@
 
 **The Climb reaches 0**
 > The girl is alive. Wren. She is nine or ten, and too frightened yet to say much. Her palm is cut and bound in the same white linen.
+>
+> Somebody took the time, again.
 
 **Wren's Hold reaches 0**
 > When the glass has stopped she is at the foot of it, sitting up, cut in a dozen places, with her fist still shut.
 >
 > The girl is alive. Wren. She is nine or ten, and too frightened yet to say much. Under the new cuts, her palm is cut and bound in the same white linen.
 
-> Her other fist is shut so tight the knuckles are white. When she opens it at last there is a chip of black glass inside, polished smooth by her thumb.
+> Her other fist is shut so tight the knuckles are white. For a long while she will not open it, for anyone.
 >
+> When she does, at last, there is a chip of black glass inside, polished smooth by her thumb.
+>
+> You think of her mother in Ashcombe, almost smiling: *She never lost it.*
+
 `[GIVE HER BACK THE EIGHT]` *(any friend; the first to tap)*
 
-> Jo puts the eight from the ridges into her other hand, one by one.
+> Jo puts the eight from the ridges into her other hand, one by one. She looks at them, and then at Jo, and closes her hand over them.
 
 *If nobody taps within a minute, the line is left out and the night goes on.*
->
-> Garrick takes off his coat, puts it round her, and says nothing at all.
+
+> Garrick takes off his coat, puts it round her, and says nothing at all. It comes down past her knees.
 
 > Behind the stone table: the same hollow, cut to the same shape. Empty. Its rim has been swept clean. The rubbing, laid against it, fits.
 
@@ -753,7 +821,7 @@
 
 `[OPEN IT]` *(the first friend to tap)*
 
-> It springs open under Mei's hand, by itself, the way every locked thing has all season.
+> It springs open under Mei's hand, by itself, the way every sealed thing of theirs has opened for you.
 >
 > There is nothing in it. There never was.
 >
@@ -821,6 +889,16 @@
 >
 > *Until the throne rise whole.*
 
+*Then, alone on the screen:*
+
+> *Therefore the faithful shall not lie.*
+
+*Then, as its own message:*
+
+> Nobody reads it a second time. Nobody needs to. One by one, every eye in the chamber goes to the man on his knees.
+>
+> It is his book. It is his rule. Everything he has said to you tonight, he has said under it.
+
 ### Ask
 
 > He has listened to all of it on his knees, with the calm of a man at a service.
@@ -872,6 +950,8 @@
 
 > The words cut into the beam over her bed, in the shepherd's hut: *Until the throne rise whole.*
 
+*Then, alone on the screen:*
+
 > *Rise.*
 
 `[PLANT]` *(the prayer is literal: they mean him to rise)*
@@ -888,6 +968,11 @@
 >
 > *"We're not finished with you."*
 
+*If nobody taps the last question within two minutes:*
+> Nobody asks the thing that has been in the room since he said *Seeker blood.* He answers it anyway.
+>
+> *"We're not finished with you."*
+
 > Garrick steps up to your shoulder, closer than he has stood all night, and says nothing at all.
 >
 > And every lamp in the chamber goes out at once.
@@ -895,9 +980,6 @@
 > Black. Wren's hand finds somebody's sleeve and holds on. Nobody moves. Nobody hears a thing.
 >
 > By the time a lamp is lit again, fumbling, the place where he knelt is empty. His ropes lie on the stone, cut clean. One set of footprints leads away through the ash, into the dark.
-
-*If nobody taps the last question within two minutes:*
-> Nobody asks the thing that has been in the room since he said *Seeker blood.* He answers it anyway.
 
 **Night summary card**
 > **UNDER THE KILN** · Gathering 3
@@ -916,6 +998,7 @@
 - **New small detail for TV:** a friend may give Wren back her eight chips. It is a button, so the act is a real friend's own, and no line is spoken.
 - **Garrick:** no lines tonight, as in the approved script. He gives his coat and stands at the party's shoulder.
 - **Blade and torch** is a placeholder condition until the simulation has looked at it.
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: three new moments. After the Verse's last piece, *Therefore the faithful shall not lie.* alone on the screen, then, as its own message, every eye going to the man on his knees ("It is his book. It is his rule. Everything he has said to you tonight, he has said under it."); Garrick is not in the beat. *Rise.* is now shown alone on the screen, as Gathering 2's *given.* is. The "nobody taps the last question" branch now carries his line, *"We're not finished with you."*, and sits straight after the tapped branch. Also: the Approach gains its pass and failure lines; "for one heartbeat" is now "for one moment" ("heartbeat" is kept fresh for Week 4 Day 6); "There is no fight left in it, and no roll" (game talk) is now shown, his wrists held out for the rope; "the way every locked thing has all season" is now "the way every sealed thing of theirs has opened for you"; the Climb ending gains "Somebody took the time, again."; Wren's fist opens slowly and the player remembers her mother's *She never lost it.* (a memory, not a claim that it is the birth-chip). The Verse, both Matches, the Ask board and every card are word for word.
 
 **Answers kept from the earlier script, for a question a friend types that the buttons and boards do not cover** *(every line unchanged)*
 
