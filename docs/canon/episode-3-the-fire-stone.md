@@ -644,7 +644,7 @@
 
 > In through the crack. Down a way cut long ago. To a room beneath the hill.
 
-> The others are still coming up the last of the slope below you, too far down to see what you hold.
+> Mei came up the last of the ridge at your side. Whoever is still on the slope below is too far down to see what you hold.
 
 `[READ IT OUT]` `[LET MEI READ IT]`
 

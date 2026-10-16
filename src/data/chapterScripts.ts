@@ -1925,7 +1925,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The others are strung out along the hillside on watch, too far apart to pass a map between. They have to have it too."
+        "text": "{F3} has crawled up beside you at the lip to look. Whoever else is on watch along the hillside is too far off to pass a map to, and they have to have it too."
       },
       {
         "t": "choice",
@@ -2874,7 +2874,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The others are still coming up the last of the slope below you, too far down to see what you hold."
+        "text": "{F1} came up the last of the ridge at your side. Whoever is still on the slope below is too far down to see what you hold."
       },
       {
         "t": "choice",
@@ -2926,7 +2926,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "*We're not finished with you.*\n\nThen the dark. Now one lamp is lit again, in a shaking hand, and the place where he knelt is empty.\n\nHis ropes lie on the stone. One set of footprints leads away through the ash. Nobody saw a thing. Nobody heard a blade."
+        "text": "*We're not finished with you.*\n\nThen the dark. Now one lamp is lit again, in a shaking hand, and the place where he knelt is empty. The wick smokes. The air still smells of hot stone, and of every lamp in the chamber dying at once.\n\nHis ropes lie on the stone. One set of footprints leads away through the ash. Nobody saw a thing. Nobody heard a blade."
       },
       {
         "t": "notice",
@@ -2953,7 +2953,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           },
           "Aim": {
             "first": "The ash is smooth right across the floor, but for your own prints and one line of his.",
-            "second": "For the moment."
+            "second": "It will not stay that way for long."
           }
         }
       },
@@ -2970,7 +2970,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "{F2} takes Wren up toward the air. Everyone else stands exactly where they are."
+            "text": "{F2} takes Wren up toward the air. Everyone else stands exactly where they are, and nobody moves a foot."
           },
           {
             "options": [
@@ -3025,7 +3025,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Too many of your own boots have been across it. All the ash will give you is which way he went: a passage none of you had noticed.",
+        "text": "Too many of your own boots have been across it, in the fight and in the dark. All the ash will give you is which way he went: a passage none of you had noticed.",
         "cond": {
           "on": "challenge",
           "pass": false
@@ -3048,14 +3048,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "They end where the ash gives out and the rock turns to bare black glass. Beyond it the passage splits three ways into the dark.\n\nNo prints come in. Whoever cut him loose came over the glass, and was waiting there before the lamps went out.",
+        "text": "You follow them with the lamp held low until the ash thins to a grey breath on the floor, and the rock turns to bare black glass. There they end. Beyond, the passage splits three ways into the dark.\n\nNo prints come in. Whoever cut him loose came over the glass, and was waiting there before the lamps went out.",
         "cond": {
           "on": "press"
         }
       },
       {
         "t": "say",
-        "text": "You bring Wren up out of the Kiln into a grey dawn. Straight back across the ridges it is one long day's walk; the trail she left you wandered far more."
+        "text": "You bring Wren up out of the Kiln into a grey dawn. She is still in Garrick's coat, the hem down past her knees, and he walks the whole day in his shirtsleeves and does not mention the cold.\n\nStraight back across the ridges, Ashcombe is one long day's walk. The trail of glass she left you wandered for days."
       },
       {
         "t": "say",
@@ -3072,11 +3072,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Her mother is standing in the road outside Ashcombe, as if she has stood there every hour since you left. She does not run. She walks, very fast, and then she is on her knees in the ash with her daughter held so tight that neither of them can speak.\n\nBefore you go, Wren digs in her pocket. It rattles. She presses one chip of black glass into your palm, and does not let go of your hand until you have closed it."
+        "text": "The light is going when the first roofs of Ashcombe come up out of the hills, their slabs dark against the sky.\n\nHer mother is standing in the road outside the village, as if she has stood there every hour since you left. She does not run. She walks, very fast, and then she is on her knees in the dust of the road with her daughter held so tight that neither of them can speak.\n\nAfter a long while she lifts Garrick's coat from the girl's shoulders, folds it, and hands it back to him without a word.\n\nBefore her mother takes her indoors, Wren digs in her pocket. It rattles. She presses one chip of black glass into your palm, and does not let go of your hand until you have closed it."
       },
       {
         "t": "say",
-        "text": "Three children home. One left.\n\nThe ledger's last name, in that same small, careful hand: *Joss — Reedham.* On Meira's list, in her plain writing: *Lives with his grandmother. Carves little boats.* And under that, a line of her shorthand.\n\n*\"Reedham's a fishing village on the Stillwater, two days north,\"* Garrick says. *\"The old village is under the lake. She's marked the tower that still stands out of the water.\"*"
+        "text": "Three children home. One left.\n\nThat night, by the fire at the edge of the village, the ledger is opened to its newest page. The last name, in that same small, careful hand: *Joss — Reedham.* On Meira's list, in her plain writing: *Lives with his grandmother. Carves little boats.* And under that, a line of her shorthand.\n\n*\"Reedham's a fishing village on the Stillwater, two days north,\"* Garrick says. *\"The old village is under the lake. She's marked the tower that still stands out of the water.\"*"
       },
       {
         "t": "say",
@@ -3106,7 +3106,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The north road runs long and empty through cold, open country: heather, wind, and now and then a shepherd's hut with its smoke going sideways.\n\nAt a ford, three men step out of the alders. They have counted your packs, and they have counted you wrong."
+        "text": "The north road runs long and empty through cold, open country: heather, wind, and now and then a shepherd's hut with its smoke going sideways. By midday the warm ground of the burned country is a day behind you, and the wind has an edge to it.\n\nAt a ford, three men step out of the alders. They have counted your packs, and they have counted you wrong."
       },
       {
         "t": "fight",
@@ -3144,7 +3144,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Beyond the ford the road forks. {F1} and {F3} walk the left. You take the right."
+        "text": "Beyond the ford the road forks. {F1} and {F3} take the lake road, the one to Reedham. You take the other."
       },
       {
         "t": "act",
@@ -3152,7 +3152,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The lake road, the one to Reedham, has nothing on it but sheep.\n\nThe other has four horses and two thin wheels, a day old, going fast."
+        "text": "{F1} and {F3} come back to the fork with nothing to tell but sheep.\n\nYour road has four horses and two thin wheels, a day old, going fast."
       },
       {
         "t": "notice",
@@ -3206,7 +3206,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "He gets to the point.",
+        "text": "It takes less time than he would like. Somewhere between the weather and the price of hay, he gets to the point.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -3234,11 +3234,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "A small box.\n\nYou have seen one. Two nights ago, under the Kiln, held against a man's chest as he went up the vent."
+        "text": "It sits cold and heavy in your hand, heavier than a coin that size should be.\n\nA small box.\n\nYou have seen one. Two nights ago, under the Kiln, held against a man's chest as he went up the vent."
       },
       {
         "t": "say",
-        "text": "That night you camp in the lee of a dry-stone wall. Garrick passes his flask round. *\"It's terrible. Drink it anyway.\"*\n\nThen he pours one more cup than there are people, and sets it down at the empty place by the fire."
+        "text": "That night you camp in the lee of a dry-stone wall, with the wind going over the top of it all night like a river. Garrick passes his flask round. *\"It's terrible. Drink it anyway.\"*\n\nWhen it comes back to him he takes the last swallow himself, and makes a face at it.\n\nThen he pours one more cup than there are people, and sets it down at the empty place by the fire."
       },
       {
         "t": "say",
@@ -3267,15 +3267,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "Reedham sits on the shore of the Stillwater, a long grey lake so calm that it holds the sky like a mirror. Boats are drawn up on the shingle. Nets hang drying.\n\nAnd out on the water, a stone's throw from the shallows, a bell tower rises straight up out of the lake: roof gone, bell gone, its windows full of sky.\n\n*\"That's the old village,\"* a fisherman says, when he sees you staring. *\"Old Reedham. The valley flooded in my great-grandfather's time and we moved uphill. Dry year like this, you can walk some of its streets at the shallow end. Nobody does.\"*"
+        "text": "Reedham sits on the shore of the Stillwater, a long grey lake so calm that it holds the sky like a mirror. Boats are drawn up on the shingle. Nets hang drying, and the whole shore smells of tar and cold water and yesterday's catch.\n\nAnd out on the water, a stone's throw from the shallows, a bell tower rises straight up out of the lake: roof gone, bell gone, its windows full of sky.\n\n*\"That's the old village,\"* a fisherman says, when he sees you staring. *\"Old Reedham. The valley flooded in my great-grandfather's time and we moved uphill. Dry year like this, you can walk some of its streets at the shallow end. Nobody does.\"*"
       },
       {
         "t": "say",
-        "text": "Joss's grandmother keeps the house at the top of the lane. She lets you in, and says one thing.\n\n*\"They asked for him by name,\"* she says, *\"and they knew the night he was born.\"*\n\nYou have heard those words before: at the mill, and in Ashcombe.\n\nAfter that she only stands, with her hand on the doorpost."
-      },
-      {
-        "t": "say",
-        "text": "Notches, cut with a kitchen knife, fresh and pale in the old wood. One for every night.\n\nEight."
+        "text": "Joss's grandmother keeps the house at the top of the lane. She lets you in, and says one thing.\n\n*\"They asked for him by name,\"* she says, *\"and they knew the night he was born.\"*\n\nYou have heard those words before: at the mill, and in Ashcombe.\n\nAfter that she only stands, with her hand on the doorpost. Under her fingers are notches, cut with a kitchen knife, fresh and pale in the old wood. One for every night.\n\nEight."
       },
       {
         "t": "say",
@@ -3294,7 +3290,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "A row of little boats, each no longer than a finger, each better than the one before. The newest has its hull and no mast. The knife is lying beside it."
+            "text": "A row of little boats, each no longer than a finger, each better than the one before. The newest has its hull and no mast. The knife is lying beside it, where he put it down."
           },
           {
             "options": [
@@ -3335,7 +3331,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "She takes you down to the shingle herself, and puts the skiff's rope into your hand."
+        "text": "She takes you down to the shingle herself, and puts the skiff's rope into your hand. The tower Meira marked stands out in the water, waiting."
       },
       {
         "t": "challenge",
@@ -3356,7 +3352,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You reach the tower in good order.",
+        "text": "The patch holds, near enough, and the strokes come long and even. You bring her in under the tower with the bilge still shallow and the wind rising at your back.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -3364,7 +3360,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You arrive soaked and bailing. But you arrive.",
+        "text": "The rag works loose a quarter of the way out, and the lake comes in round your boots faster than it can be thrown back. You arrive soaked and bailing. But you arrive.",
         "cond": {
           "on": "challenge",
           "pass": false
@@ -3372,7 +3368,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Halfway out, Garrick is bailing with a tin cup. He does not look up. *\"I didn't leave a warm bar to drown in a lake. I'd like that noted.\"*"
+        "text": "All the way out, Garrick has been bailing with a tin cup. He does not look up. *\"I didn't leave a warm bar to drown in a lake. I'd like that noted.\"*"
       },
       {
         "t": "say",
@@ -3389,7 +3385,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Back on the shingle, beside the place her skiff was lying, there are keel-marks that are not hers. Fresh ones.\n\n**Someone has been rowing out to the drowned village by night. Old Reedham, at the shallow end, tomorrow.**",
+        "text": "Back on the shingle, beside the place her skiff was lying, there are keel-marks that are not hers. Fresh ones, pressed deep into the wet stones, and the tide of the lake has not yet smoothed them.\n\nUp the lane, the lamp burns on in her window, small and steady in the afternoon.\n\n**Someone has been rowing out to the drowned village by night. Old Reedham, at the shallow end, tomorrow.**",
         "pull": true
       },
       {
@@ -3409,12 +3405,12 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "week": 4,
     "day": 4,
     "title": "Old Reedham",
-    "heading": "The drowned streets",
+    "heading": "Old Reedham",
     "question": "who has been out in the drowned streets?",
     "steps": [
       {
         "t": "say",
-        "text": "At the shallow end the Stillwater has drawn back far enough to leave Old Reedham's upper streets standing in the open: cobbles slick with weed, doorways full of silt, walls water-marked green to the height of your chest.\n\nFurther out, the same streets slope down, and simply go on under the water."
+        "text": "You walk the shore to the shallow end in the morning, and the old village comes up to meet you.\n\nThe Stillwater has drawn back far enough to leave Old Reedham's upper streets standing in the open: cobbles slick with weed, doorways full of silt, walls water-marked green to the height of your chest. Everything smells of mud and old rope. A gull stands on a chimney that has no house under it.\n\nFurther out, the same streets slope down, and simply go on under the water."
       },
       {
         "t": "notice",
@@ -3447,7 +3443,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "In the mud of the lowest lane there are footprints, a few days old. Grown men's boots.\n\nAnd between them, smaller ones."
+        "text": "It takes the whole day to work down through the streets, house by silted house. By the time you reach the lowest lane the light is going.\n\nIn the mud of the lowest lane there are footprints, a few days old. Grown men's boots.\n\nAnd between them, smaller ones."
       },
       {
         "t": "challenge",
@@ -3468,7 +3464,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You follow them to the edge of the deep water, where they stop.",
+        "text": "Stone by stone, with the lamp held low and the weed sliding under your boots, you follow them down the lane to the edge of the deep water, where they stop.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -3510,12 +3506,12 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The stone lid slides back under your fingers.\n\n**A locked Seeker Fragment has been added to your Chest.**",
+        "text": "The stone lid slides back under your fingers. The silt round it is warm from the day. What lies inside is as cold as the deep water past the last roofs.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
       },
       {
         "t": "say",
-        "text": "That evening you have Meira's notes open on your knee, and you find the page.\n\nShe had this line already. Every word of it, copied years ago from some other record, in her plain hand. And beside it, a note:\n\n*\"'Moon-blood' — the old songs' word for the marked.\"*"
+        "text": "When you come back up out of the streets, wet and tired, Garrick has a fire going on the shingle, and something in a pot on it.\n\nThat evening you have Meira's notes open on your knee, and you find the page.\n\nShe had this line already. Every word of it, copied years ago from some other record, in her plain hand. And beside it, a note:\n\n*\"'Moon-blood' — the old songs' word for the marked.\"*"
       },
       {
         "t": "say",
@@ -3547,7 +3543,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "Fog comes down on the Stillwater in the morning, thick and white. You row into it, and the shore is gone behind you in a dozen strokes."
+        "text": "Fog comes down on the Stillwater in the morning, thick and white. You row into it in her skiff, and the shore is gone behind you in a dozen strokes. After that there is only the creak of the oars, the drip off the blades, and the grey shadow of the tower somewhere off to one side."
       },
       {
         "t": "challenge",
@@ -3568,7 +3564,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You come in behind the island, where the reeds are thickest, and nothing on it has heard you.",
+        "text": "The reeds close round the bow with a dry hiss. You come in behind the island, where they are thickest, and nothing on it has heard you.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -3600,7 +3596,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "He does not go for the boat. He goes into the reeds, and then into the water, and the fog closes over the place.\n\nThe boat is yours. Her skiff goes on a line behind it."
+        "text": "He does not go for the boat. He goes into the reeds, and then into the water, and the fog closes over the place.\n\nFor a while you can hear him swimming, slow and steady, somewhere out in the white. Then you cannot.\n\nThe boat is yours. Her skiff goes on a line behind it."
       },
       {
         "t": "say",
@@ -3630,7 +3626,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "second": "He knows this island with his eyes shut."
           },
           "Intellect": {
-            "first": "The stern boards are wet, and it has not rained.",
+            "first": "The stern boards are wet through, not just beaded with fog.",
             "second": "This boat was out on the lake last night."
           },
           "Charm": {
@@ -3661,12 +3657,12 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The moment they touch the lid, it opens.\n\n**A locked Seeker Fragment has been added to your Chest.**",
+        "text": "The moment they touch the lid, it opens. The cold that comes out of it is the cold of the lake bed, under all that mud and dark.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
       },
       {
         "t": "say",
-        "text": "The fog lifts toward evening. The island has one rise, no higher than a man, and from the top of it there is one clear line across the water.\n\nThe drowned tower.\n\nAnd on the black lake between, moving away from you, low on the water: a lamp."
+        "text": "The fog lifts toward evening, and the dark comes down behind it. The island has one rise, no higher than a man, and from the top of it there is one clear line across the water.\n\nThe drowned tower.\n\nAnd on the black lake between, moving away from you, low on the water: a lamp."
       },
       {
         "t": "say",
@@ -3695,7 +3691,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The lamp is out long before you reach the tower. There is nobody in it.\n\nThe last fragment is on the stair, not hidden at all: wedged in the angle of a step where the water once reached, as if it had waited out the flood."
+        "text": "You row out after the lamp in their own boat, with her skiff on its line behind, keeping the oars as quiet as you can make them. The lake is black, and so is the sky. The water talks softly against the hull.\n\nThe lamp is out long before you reach the tower. When you climb in onto its stair, there is nobody in it.\n\nThe last fragment is on the stair, not hidden at all: wedged in the angle of a step where the water once reached, as if it had waited out the flood."
       },
       {
         "t": "act",
@@ -3737,7 +3733,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Nobody suggests waiting for morning.\n\nYou lay the six out on the bell-chamber floor, by one lamp. The wind comes through the empty windows in gusts. Below, the lake slaps at the stones."
+        "text": "Nobody suggests waiting for morning.\n\nYou climb to the bell chamber and kneel on its floor with the six, by one lamp. The wind comes through the empty windows in gusts. Below, the lake slaps at the stones."
       },
       {
         "t": "act",
@@ -3766,7 +3762,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The flame holds. {F1} calls the way out as it comes, and then once more, slower, so that everyone has it.",
+        "text": "The flame leans and shivers, and holds. {F1} calls the way out as it comes, and then once more, slower, so that everyone has it.",
         "cond": {
           "on": "challenge",
           "pass": true

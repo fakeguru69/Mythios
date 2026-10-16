@@ -1356,7 +1356,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Oars, in the dark, pulling away toward the drowned village. You are already in the boat you took from them, and already rowing.",
+        "text": "Oars, in the dark, pulling away toward the drowned village. You are already in the boat you took from them, and already rowing. The water is so black that the blades vanish into it at every stroke.",
         "section": "Arrival and the Approach"
       },
       {
@@ -1396,7 +1396,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You never lose them; the knock of their oars stays just ahead the whole way.",
+        "text": "You never lose them. The knock of their oars stays just ahead of you the whole way.",
         "cond": {
           "on": "approach",
           "pass": true
@@ -1405,7 +1405,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You lose the sound twice, and sit in the dark with your own breath until it comes again.",
+        "text": "Twice the knock of their oars is swallowed by the dark. Twice you sit on the black water with nothing but your own breath, until it comes again.",
         "cond": {
           "on": "approach",
           "pass": false
@@ -1414,7 +1414,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You row blind, after the sound of oars you can't see. Nobody speaks. The lake is black, the sky is black, and the only thing to steer by is that faint, steady knock of wood on water somewhere ahead — until the drowned church comes up out of the dark beside you, and the oars stop.\n\nIts flooded stair leads down into an undercroft beneath Old Reedham, where the drowned streets run on under the Stillwater and the chamber doors stand knee-deep in black, still water.\n\nYou go in with the cold climbing your legs and your lamps held high, and for the first time all season, you're close enough to hear it happening: a child's cry cut short, and the slap of feet running away through water.",
+        "text": "Nobody speaks. The lake is black, the sky is black, and the only thing to steer by is that faint, steady knock of wood on water somewhere ahead. Then the drowned church comes up out of the dark beside you, and the oars stop.\n\nIt stands at the edge of the deep water, its roof long gone. Its flooded stair leads down under the streets into an undercroft, where the lake has come in through the old stone and stands knee-deep, black and still, at every chamber door.\n\nYou go in with the cold climbing your legs and your lamps held high, and for the first time since Meira's list found you, you are close enough to hear it happening: a child's cry cut short, and the slap of feet running away through water.",
         "section": "Arrival and the Approach"
       },
       {
@@ -1424,7 +1424,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "{N} of them, between you and a stone table, and the black water round everyone's knees.",
+        "text": "They are waiting in the water. {N} of them, robed, about a stone table, with the lamplight shaking on the black water at their knees. The cold has your legs to the bone already. They come at you through it, slow and certain.",
         "section": "The Battle"
       },
       {
@@ -1434,7 +1434,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "You strike first.",
           "He strikes first."
         ],
-        "desc": "**Knee-deep:** a bad swing costs you your footing. Roll a 1, 2 or 3 on a strike and you lose your next one. So does he.",
+        "desc": "**Knee-deep:** a bad swing in water this deep costs you your footing, and your next stroke. It costs him the same.",
         "section": "The Battle"
       },
       {
@@ -1444,7 +1444,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The boy on the table is alive. Joss. The cut on his palm is still bleeding through its linen. In his good hand he holds a little wooden boat, no longer than a finger, and he doesn't let go of it even while you lift him down.\n\nA chain runs from his ankle to a ring in the drowned floor. The lock on it is older than he is, and mostly rust. It breaks under the flat of a blade.\n\nBehind him, the socket.\n\nEmpty — and this time the dust at its rim hasn't settled. It's still falling, a faint grey haze drifting down through the lamplight.",
+        "text": "The boy on the table is alive. Joss. The cut on his palm is still bleeding through its linen. In his good hand he holds a little wooden boat, no longer than a finger, and he does not let go of it even while you lift him down.\n\nA chain runs from his ankle to a ring in the drowned floor. The lock on it is older than he is, and mostly rust. It breaks under the flat of a blade.\n\nBehind him, the socket.\n\nEmpty — and this time the dust at its rim hasn't settled. It's still falling, a faint grey haze drifting down through the lamplight.",
         "section": "The Battle"
       },
       {
@@ -1491,7 +1491,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "For a moment nothing moves.\n\nThen every one of you has a hand on the bars, and the gate comes up out of its groove with a groan, and he is dragged clear by the collar, coughing black water.\n\nHe does not thank you.\n\nTied at his belt, sealed in a waxed pouch: pages. More of the Order's scripture — from a book you haven't seen before.",
+        "text": "For a moment nothing moves.\n\nThen every one of you has a hand on the bars, and the gate comes up out of its groove with a groan, and he is dragged clear by the collar, coughing black water.\n\nHe does not thank you.\n\nTied at his belt, sealed in a waxed pouch: pages. More of the Order's scripture, from a book you have not seen before.",
         "cond": {
           "on": "ue",
           "won": true
@@ -1505,7 +1505,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You get the pin out in the end. It takes all of you, and it takes too long.\n\nWhen the gate comes up, he comes with it like a sack.\n\nHe is breathing. That is all. Whatever he could have told you, he will not tell it tonight.\n\nTied at his belt, sealed in a waxed pouch: pages. More of the Order's scripture — from a book you haven't seen before.",
+        "text": "You get the pin out in the end. It takes all of you, and it takes too long.\n\nWhen the gate comes up, he comes with it like a sack.\n\nHe is breathing. That is all. Whatever he could have told you, he will not tell it tonight.\n\nTied at his belt, sealed in a waxed pouch: pages. More of the Order's scripture, from a book you have not seen before.",
         "cond": {
           "on": "ue",
           "won": false
@@ -1520,7 +1520,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       {
         "t": "notice",
         "lines": {
-          "Might": "Under the Kiln they stood until the last of them fell. Tonight they ran the moment they could.",
+          "Might": "Under the Kiln they stood their ground to the last man. Tonight they ran the moment they could.",
           "Agility": "The water in the far doorway is still rocking. Whoever went out, went out as you came in.",
           "Intellect": "The linen on his hand is soaked through. This cut is not an hour old.",
           "Charm": "Joss has not let go of the little boat. He is listening to the oars, and he knows the sound.",
@@ -1762,7 +1762,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Garrick has read the page over your shoulder. His voice is low and steady. *\"It's the Stones that wake him. Malakor.\"*\n\nA name scraped off every stone in the world — and he says it like a man who has always known it.",
+        "text": "Garrick has read the page over your shoulder. His voice is low and steady. *\"It's the Stones that wake him. Malakor.\"*\n\nA name scraped off every stone in the world, and he says it like a man who has always known it.",
         "section": "Garrick"
       },
       {
@@ -1807,7 +1807,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "There's one more thing in the pouch, under the pages: a pen. Plain brass, the nib stained with the same brown ink as every page of Meira's notes. Scratched small into the barrel, in her neat hand, are her initials.\n\nNobody says anything for a while.\n\nHer satchel is opened, the way you'd open the door of an empty room. Her hand is on every page. Every trail you've followed this season, she walked first — and somewhere on a road, someone took this pen out of her hand, and she didn't come back for it.\n\nThe pen goes into the satchel, with the rest of her.",
+        "text": "There is one more thing in the pouch, under the pages: a pen. Plain brass, the nib stained with the same brown ink as every page of Meira's notes. Scratched small into the barrel, in her neat hand, are her initials.\n\nNobody says anything for a while.\n\nHer satchel is opened, the way you would open the door of an empty room. Her hand is on every page. Every trail you have followed since the forest road, she walked first. And somewhere on a road, someone took this pen out of her hand, and she did not come back for it.\n\nThe pen goes into the satchel, with the rest of her.",
         "section": "The pen"
       },
       {
@@ -1817,12 +1817,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Under where the pen lay, one last page — burned black along one edge, the rest of it torn clean through. The top lines are in the Order's hand. The rest is set apart, in the older hand you first saw in the Order's scripture under the mill hill — the hand the Order itself calls older than its name.",
+        "text": "Under where the pen lay, one last page, burned black along one edge, the rest of it torn clean through. The top lines are in the Order's hand. The rest is set apart, in the older hand you first saw in the Order's scripture under the mill hill: the hand the Order itself calls older than its name.",
         "section": "The torn page"
       },
       {
         "t": "say",
-        "text": "*[The Order's own hand]* From the Second Book of the Order of the Dark Moon. Even in the old telling, before we had our name, it was known—\n\n**[Set apart, in the older hand]**\n**\"Four were given to the wind, the water, the fire, and the earth, and drink deep whichever marked blood finds them first. The fifth heeds no element at all, but blood alone, and remembers whose. What the four begin, the fifth shall end—\"**",
+        "text": "*From the Second Book of the Order of the Dark Moon. Even in the old telling, before we had our name, it was known—*\n\n*Here the hand changes. The rest is set apart, in the older hand:*\n\n**\"Four were given to the wind, the water, the fire, and the earth, and drink deep whichever marked blood finds them first. The fifth heeds no element at all, but blood alone, and remembers whose. What the four begin, the fifth shall end—\"**\n\nThe page is torn there, its edge burned black. Whatever came next is gone.",
         "section": "The torn page"
       },
       {
@@ -1861,7 +1861,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You come up out of the undercroft into the open boat, Joss wrapped in someone's coat in the bow. It's been a long night, and it's nearly over: in the east, over the far shore of the Stillwater, the sky has begun to pale.\n\nThen it stops.\n\nThe light doesn't grow. It goes grey and flat and hangs there, thin, as though something vast has leaned across the sun before it could rise. Along the shore, the birds that should be starting up stay silent, row by row.\n\n*Until the sky itself remembers the night he answered.*\n\nAnd from somewhere far to the north, so deep you feel it in your teeth more than hear it, comes a single sound. Slow. Enormous. Like a heartbeat.\n\nThen another.",
+        "text": "You come up out of the undercroft into the open boat, Joss wrapped in someone's coat in the bow, the little boat still in his fist. It has been a long night, and it is nearly over: in the east, over the far shore of the Stillwater, the sky has begun to pale.\n\nThen it stops.\n\nThe light does not grow. It goes grey and flat and hangs there, thin, as though something vast has leaned across the sun before it could rise. Along the shore, the birds that should be starting up stay silent, row by row.\n\n*Until the sky itself remembers the night he answered.*\n\nAnd from somewhere far to the north, so deep you feel it in your teeth more than hear it, comes a single sound. Slow. Enormous. Like a heartbeat.\n\nThen another.",
         "section": "The Cliffhanger"
       },
       {

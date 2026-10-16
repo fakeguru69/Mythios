@@ -36,7 +36,7 @@
 
 > *We're not finished with you.*
 >
-> Then the dark. Now one lamp is lit again, in a shaking hand, and the place where he knelt is empty.
+> Then the dark. Now one lamp is lit again, in a shaking hand, and the place where he knelt is empty. The wick smokes. The air still smells of hot stone, and of every lamp in the chamber dying at once.
 >
 > His ropes lie on the stone. One set of footprints leads away through the ash. Nobody saw a thing. Nobody heard a blade.
 
@@ -46,14 +46,14 @@
 > **Intellect** · Every lamp went at once, yours among them. *That takes more than one pair of hands.*
 > **Charm** · Wren has not let go of the sleeve she found in the dark. *She did not cry out. She has learned not to.*
 > **Craft** · The ropes lie where he knelt, still in their knots. *Nobody untied anything. Nobody wasted a moment.*
-> **Aim** · The ash is smooth right across the floor, but for your own prints and one line of his. *For the moment.*
+> **Aim** · The ash is smooth right across the floor, but for your own prints and one line of his. *It will not stay that way for long.*
 
 `[READ THE ASH]` `[TAKE WREN UP FIRST]`
 
 *The player chooses. Friends take the other.*
 
 *The ash:*
-> Dev takes Wren up toward the air. Everyone else stands exactly where they are.
+> Dev takes Wren up toward the air. Everyone else stands exactly where they are, and nobody moves a foot.
 
 *Wren first:*
 > You take her up to where the air is cooler, and come back down. Mei has kept every boot off the ash for you.
@@ -75,7 +75,7 @@
 > He walked out of this room, at the pace of a man leaving a church, through a passage none of you had noticed.
 
 *On a failure:*
-> Too many of your own boots have been across it. All the ash will give you is which way he went: a passage none of you had noticed.
+> Too many of your own boots have been across it, in the fight and in the dark. All the ash will give you is which way he went: a passage none of you had noticed.
 
 > The ropes were cut clean.
 >
@@ -91,11 +91,13 @@
 > REWARD: +200g, and one more detail
 
 *On a passed press:*
-> They end where the ash gives out and the rock turns to bare black glass. Beyond it the passage splits three ways into the dark.
+> You follow them with the lamp held low until the ash thins to a grey breath on the floor, and the rock turns to bare black glass. There they end. Beyond, the passage splits three ways into the dark.
 >
 > No prints come in. Whoever cut him loose came over the glass, and was waiting there before the lamps went out.
 
-> You bring Wren up out of the Kiln into a grey dawn. Straight back across the ridges it is one long day's walk; the trail she left you wandered far more.
+> You bring Wren up out of the Kiln into a grey dawn. She is still in Garrick's coat, the hem down past her knees, and he walks the whole day in his shirtsleeves and does not mention the cold.
+>
+> Straight back across the ridges, Ashcombe is one long day's walk. The trail of glass she left you wandered for days.
 
 > Where the burned country gives out, at the last black rock before the grass begins, there is a crack at head height that only someone looking back would see.
 
@@ -105,13 +107,17 @@
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> Her mother is standing in the road outside Ashcombe, as if she has stood there every hour since you left. She does not run. She walks, very fast, and then she is on her knees in the ash with her daughter held so tight that neither of them can speak.
+> The light is going when the first roofs of Ashcombe come up out of the hills, their slabs dark against the sky.
 >
-> Before you go, Wren digs in her pocket. It rattles. She presses one chip of black glass into your palm, and does not let go of your hand until you have closed it.
+> Her mother is standing in the road outside the village, as if she has stood there every hour since you left. She does not run. She walks, very fast, and then she is on her knees in the dust of the road with her daughter held so tight that neither of them can speak.
+>
+> After a long while she lifts Garrick's coat from the girl's shoulders, folds it, and hands it back to him without a word.
+>
+> Before her mother takes her indoors, Wren digs in her pocket. It rattles. She presses one chip of black glass into your palm, and does not let go of your hand until you have closed it.
 
 > Three children home. One left.
 >
-> The ledger's last name, in that same small, careful hand: *Joss — Reedham.* On Meira's list, in her plain writing: *Lives with his grandmother. Carves little boats.* And under that, a line of her shorthand.
+> That night, by the fire at the edge of the village, the ledger is opened to its newest page. The last name, in that same small, careful hand: *Joss — Reedham.* On Meira's list, in her plain writing: *Lives with his grandmother. Carves little boats.* And under that, a line of her shorthand.
 >
 > *"Reedham's a fishing village on the Stillwater, two days north,"* Garrick says. *"The old village is under the lake. She's marked the tower that still stands out of the water."*
 
@@ -137,6 +143,7 @@
 - **The press detail:** the glass and the three ways are from the script's own note. "No prints come in" is the one new observation.
 - **Garrick:** two existing lines.
 - **Fragment text (unchanged):** "We did not trust four locks to hold what needed five."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the Aim notice line's second sentence "For the moment." is now "It will not stay that way for long."; Wren's mother kneels "in the dust of the road", not "in the ash" (the party is past the burned country by then). New: the smoking wick after the dark; the walk back names Ashcombe and "the trail of glass"; the arrival as the light goes, and the ledger read that night by the fire; Garrick has no new line: Wren wears his coat up into the dawn, he walks the day in his shirtsleeves, and her mother folds it and hands it back to him.
 
 ---
 
@@ -145,7 +152,7 @@
 *Heading: **The north road.***
 *Question: who rode north ahead of you, and what are they carrying?*
 
-> The north road runs long and empty through cold, open country: heather, wind, and now and then a shepherd's hut with its smoke going sideways.
+> The north road runs long and empty through cold, open country: heather, wind, and now and then a shepherd's hut with its smoke going sideways. By midday the warm ground of the burned country is a day behind you, and the wind has an edge to it.
 >
 > At a ford, three men step out of the alders. They have counted your packs, and they have counted you wrong.
 
@@ -170,13 +177,13 @@
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> Beyond the ford the road forks. Mei and Jo walk the left. You take the right.
+> Beyond the ford the road forks. Mei and Jo take the lake road, the one to Reedham. You take the other.
 
 `[READ THE GROUND]`
 
-> The lake road, the one to Reedham, has nothing on it but sheep.
+> Mei and Jo come back to the fork with nothing to tell but sheep.
 >
-> The other has four horses and two thin wheels, a day old, going fast.
+> Your road has four horses and two thin wheels, a day old, going fast.
 
 **What you notice**
 > **Might** · The ruts are shallow, even in the soft ground by the water. *Whatever is in that cart weighs almost nothing.*
@@ -197,7 +204,7 @@
 > IF YOU FAIL: a long hour, and the best of the light
 
 *On a pass:*
-> He gets to the point.
+> It takes less time than he would like. Somewhere between the weather and the price of hay, he gets to the point.
 
 *On a failure:*
 > It takes a long hour of his opinions on the weather, the road and his brother-in-law. But he gets there.
@@ -212,13 +219,17 @@
 
 `[TAKE THE COIN]`
 
+> It sits cold and heavy in your hand, heavier than a coin that size should be.
+>
 > A small box.
 >
 > You have seen one. Two nights ago, under the Kiln, held against a man's chest as he went up the vent.
 
 `[PLANT]` *(the box, a second time)*
 
-> That night you camp in the lee of a dry-stone wall. Garrick passes his flask round. *"It's terrible. Drink it anyway."*
+> That night you camp in the lee of a dry-stone wall, with the wind going over the top of it all night like a river. Garrick passes his flask round. *"It's terrible. Drink it anyway."*
+>
+> When it comes back to him he takes the last swallow himself, and makes a face at it.
 >
 > Then he pours one more cup than there are people, and sets it down at the empty place by the fire.
 
@@ -241,6 +252,7 @@
 - **The carter:** every line is the approved text, word for word.
 - **Garrick:** one existing line and one existing action (the cup). His answers about the box and the cup, if asked, are unchanged.
 - **Fragment text (unchanged):** "Earth, wind, water, fire — four we could name. The fifth had no element at all, and we feared it more than the other four together."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. The fork is now plain: Mei and Jo take the lake road and come back with nothing but sheep, and the player's road has the riders' tracks (the facts are unchanged). New: the warm ground a day behind; the carter's pass line ("Somewhere between the weather and the price of hay"); a beat for the coin after `[TAKE THE COIN]`; the wind over the wall "like a river". Garrick has no new line: he takes the last swallow of his flask himself, and makes a face at it.
 
 ---
 
@@ -249,7 +261,7 @@
 *Heading: **Reedham.***
 *Question: what happened to Joss?*
 
-> Reedham sits on the shore of the Stillwater, a long grey lake so calm that it holds the sky like a mirror. Boats are drawn up on the shingle. Nets hang drying.
+> Reedham sits on the shore of the Stillwater, a long grey lake so calm that it holds the sky like a mirror. Boats are drawn up on the shingle. Nets hang drying, and the whole shore smells of tar and cold water and yesterday's catch.
 >
 > And out on the water, a stone's throw from the shallows, a bell tower rises straight up out of the lake: roof gone, bell gone, its windows full of sky.
 >
@@ -261,9 +273,7 @@
 >
 > You have heard those words before: at the mill, and in Ashcombe.
 >
-> After that she only stands, with her hand on the doorpost. *(Changed 15 Oct 2026, Fake Guru: Phase 6, the day leads with the count; the doorpost is no longer a choice.)*
-
-> Notches, cut with a kitchen knife, fresh and pale in the old wood. One for every night.
+> After that she only stands, with her hand on the doorpost. Under her fingers are notches, cut with a kitchen knife, fresh and pale in the old wood. One for every night. *(Changed 15 Oct 2026, Fake Guru: Phase 6, the day leads with the count; the doorpost is no longer a choice.)*
 >
 > Eight.
 
@@ -278,7 +288,7 @@
 *Both are seen. The player looks at one first.*
 
 *The shelf:*
-> A row of little boats, each no longer than a finger, each better than the one before. The newest has its hull and no mast. The knife is lying beside it.
+> A row of little boats, each no longer than a finger, each better than the one before. The newest has its hull and no mast. The knife is lying beside it, where he put it down.
 
 *The window:*
 > A lamp is burning in it, at noon.
@@ -293,7 +303,7 @@
 > **Craft** · The skiff has a sprung plank, stuffed with rag. *It will float. It will not stay dry.*
 > **Aim** · From her door you can see down the lane, over the shingle, to the tower in the water. *And from the tower, this window.*
 
-> She takes you down to the shingle herself, and puts the skiff's rope into your hand.
+> She takes you down to the shingle herself, and puts the skiff's rope into your hand. The tower Meira marked stands out in the water, waiting.
 
 **Challenge card**
 > **HER SKIFF**
@@ -304,12 +314,12 @@
 > IF YOU FAIL: you get there soaked, and bailing
 
 *On a pass:*
-> You reach the tower in good order.
+> The patch holds, near enough, and the strokes come long and even. You bring her in under the tower with the bilge still shallow and the wind rising at your back.
 
 *On a failure:*
-> You arrive soaked and bailing. But you arrive.
+> The rag works loose a quarter of the way out, and the lake comes in round your boots faster than it can be thrown back. You arrive soaked and bailing. But you arrive.
 
-> Halfway out, Garrick is bailing with a tin cup. He does not look up. *"I didn't leave a warm bar to drown in a lake. I'd like that noted."*
+> All the way out, Garrick has been bailing with a tin cup. He does not look up. *"I didn't leave a warm bar to drown in a lake. I'd like that noted."*
 
 > The tower stands on stones far older than the rest of it. Worn into that rock, just above the waterline, is a shape you know: the mark from the Widow's Tooth, the mill, the Blackglass.
 >
@@ -321,7 +331,9 @@
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> Back on the shingle, beside the place her skiff was lying, there are keel-marks that are not hers. Fresh ones.
+> Back on the shingle, beside the place her skiff was lying, there are keel-marks that are not hers. Fresh ones, pressed deep into the wet stones, and the tide of the lake has not yet smoothed them.
+>
+> Up the lane, the lamp burns on in her window, small and steady in the afternoon.
 >
 > **Someone has been rowing out to the drowned village by night. Old Reedham, at the shallow end, tomorrow.**
 
@@ -342,15 +354,18 @@
 - **The fisherman:** his lines are the approved text, word for word.
 - **Garrick:** one existing line.
 - **Fragment text (unchanged):** "What fell when the moon broke still remembers the moon. So does anyone born in its dark."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. The doorpost and the notches are one beat ("Under her fingers are notches"); the skiff's errand is said plainly ("The tower Meira marked stands out in the water, waiting."); the pass and failure lines show the patch and the leak. Garrick's line is word for word, but "Halfway out, Garrick is bailing" is now "All the way out, Garrick has been bailing", which follows the arrival on both branches. New: the shore's smell; the knife "where he put it down"; the fresh keel-marks and the lamp burning on in her window before the Pull.
 
 ---
 
 ## Day 4. Old Reedham
 
-*Heading: **The drowned streets.***
+*Heading: **Old Reedham.***
 *Question: who has been out in the drowned streets?*
 
-> At the shallow end the Stillwater has drawn back far enough to leave Old Reedham's upper streets standing in the open: cobbles slick with weed, doorways full of silt, walls water-marked green to the height of your chest.
+> You walk the shore to the shallow end in the morning, and the old village comes up to meet you.
+>
+> The Stillwater has drawn back far enough to leave Old Reedham's upper streets standing in the open: cobbles slick with weed, doorways full of silt, walls water-marked green to the height of your chest. Everything smells of mud and old rope. A gull stands on a chimney that has no house under it.
 >
 > Further out, the same streets slope down, and simply go on under the water.
 
@@ -362,6 +377,8 @@
 > **Craft** · The market cross still stands square in its silt. *Its lowest course is older stone than the rest, and better cut.*
 > **Aim** · Out past the last roofs the reed island lies low on the water. *It is the only thing on this lake a boat could hide behind.*
 
+> It takes the whole day to work down through the streets, house by silted house. By the time you reach the lowest lane the light is going.
+>
 > In the mud of the lowest lane there are footprints, a few days old. Grown men's boots.
 >
 > And between them, smaller ones.
@@ -377,7 +394,7 @@
 > IF YOU FAIL: you go into the water, and the lamp goes with you
 
 *On a pass:*
-> You follow them to the edge of the deep water, where they stop.
+> Stone by stone, with the lamp held low and the weed sliding under your boots, you follow them down the lane to the edge of the deep water, where they stop.
 
 *On a failure:*
 > You lose them twice. Then a drowned cobble turns under your foot, and you are in to the waist, with the lamp gone out in your fist. Dev finds the last of them by feel: at the edge of the deep water, where they stop.
@@ -398,10 +415,12 @@
 
 `[SCRAPE THE SILT AWAY]`
 
-> The stone lid slides back under your fingers.
+> The stone lid slides back under your fingers. The silt round it is warm from the day. What lies inside is as cold as the deep water past the last roofs.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
+> When you come back up out of the streets, wet and tired, Garrick has a fire going on the shingle, and something in a pot on it.
+>
 > That evening you have Meira's notes open on your knee, and you find the page.
 >
 > She had this line already. Every word of it, copied years ago from some other record, in her plain hand. And beside it, a note:
@@ -435,6 +454,7 @@
 - **Meira's note** is the approved text, word for word.
 - **Garrick:** no lines.
 - **Fragment text (unchanged):** "Moon-blood woke it once. Moon-blood will wake it again, if it is ever let near."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the heading is now "Old Reedham.", the same name as the summary card ("The drowned streets" stays in the day's question). New: the walk along the shore in the morning, the smell of mud and old rope, a gull on a chimney with no house under it; one line moves the day to dusk before the lowest lane, so the card's "the light going" fits; the pass line's stone-by-stone work; the fragment's cold. Garrick has no new line: a fire on the shingle with a pot on it when the party comes up wet. The fragment's line is still not quoted.
 
 ---
 
@@ -443,7 +463,7 @@
 *Heading: **The reed island.***
 *Question: where did the boat take him, and what has it been doing since?*
 
-> Fog comes down on the Stillwater in the morning, thick and white. You row into it, and the shore is gone behind you in a dozen strokes.
+> Fog comes down on the Stillwater in the morning, thick and white. You row into it in her skiff, and the shore is gone behind you in a dozen strokes. After that there is only the creak of the oars, the drip off the blades, and the grey shadow of the tower somewhere off to one side.
 
 **Challenge card**
 > **THE FOG**
@@ -454,7 +474,7 @@
 > IF YOU FAIL: you row in a circle, and **he strikes first**
 
 *On a pass:*
-> You come in behind the island, where the reeds are thickest, and nothing on it has heard you.
+> The reeds close round the bow with a dry hiss. You come in behind the island, where they are thickest, and nothing on it has heard you.
 
 *On a failure:*
 > You row in a slow circle for an hour. When the reeds loom up out of the white, you are on the open side, and somebody on the island has been listening to your oars for some time.
@@ -474,6 +494,8 @@
 *Win or lose:*
 > He does not go for the boat. He goes into the reeds, and then into the water, and the fog closes over the place.
 >
+> For a while you can hear him swimming, slow and steady, somewhere out in the white. Then you cannot.
+>
 > The boat is yours. Her skiff goes on a line behind it.
 
 *If the player won, one line more:*
@@ -492,7 +514,7 @@
 **What you notice**
 > **Might** · Two pairs of oars, for a boat this size. *It is rowed hard, by four, and often.*
 > **Agility** · He went into the reeds without a splash. *He knows this island with his eyes shut.*
-> **Intellect** · The stern boards are wet, and it has not rained. *This boat was out on the lake last night.*
+> **Intellect** · The stern boards are wet through, not just beaded with fog. *This boat was out on the lake last night.*
 > **Charm** · The little hull was not dropped. It was thrown. *He was angry with it. He is still himself.*
 > **Craft** · The lamp bracket is set low, under the gunwale. *A light carried there cannot be seen from the shore.*
 > **Aim** · The black circle is no bigger than a coin. *You would have to be this close to know whose boat it was.*
@@ -503,11 +525,11 @@
 
 `[WORK YOUR FINGERS IN]`
 
-> The moment they touch the lid, it opens.
+> The moment they touch the lid, it opens. The cold that comes out of it is the cold of the lake bed, under all that mud and dark.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> The fog lifts toward evening. The island has one rise, no higher than a man, and from the top of it there is one clear line across the water.
+> The fog lifts toward evening, and the dark comes down behind it. The island has one rise, no higher than a man, and from the top of it there is one clear line across the water.
 >
 > The drowned tower.
 >
@@ -531,6 +553,7 @@
 - **The boat is used tomorrow night:** Gathering 4 opens "in the boat you took from them", and its floor notice line is a curl of whittled wood.
 - **Garrick:** no lines.
 - **Fragment text (unchanged):** "We have built a lock. Pray no one ever learns it is also a door."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the Intellect notice line's first sentence is now "The stern boards are wet through, not just beaded with fog." (on a foggy morning everything is wet); the search line "Stern boards still wet." is unchanged. New: the fog is heard (the creak of the oars, the drip off the blades, the tower's grey shadow), and "in her skiff" says which boat you are in; the reeds closing round the bow on a pass; the man heard swimming away into the white; the fragment's cold; the dark coming down as the fog lifts, so the lake is black when the lamp is seen.
 
 ---
 
@@ -539,7 +562,9 @@
 *Heading: **The tower at night.***
 *Question: where is he held?*
 
-> The lamp is out long before you reach the tower. There is nobody in it.
+> You row out after the lamp in their own boat, with her skiff on its line behind, keeping the oars as quiet as you can make them. The lake is black, and so is the sky. The water talks softly against the hull.
+>
+> The lamp is out long before you reach the tower. When you climb in onto its stair, there is nobody in it.
 >
 > The last fragment is on the stair, not hidden at all: wedged in the angle of a step where the water once reached, as if it had waited out the flood.
 
@@ -559,7 +584,7 @@
 
 > Nobody suggests waiting for morning.
 >
-> You lay the six out on the bell-chamber floor, by one lamp. The wind comes through the empty windows in gusts. Below, the lake slaps at the stones.
+> You climb to the bell chamber and kneel on its floor with the six, by one lamp. The wind comes through the empty windows in gusts. Below, the lake slaps at the stones.
 
 `[LAY THEM OUT]`
 
@@ -576,7 +601,7 @@
 > IF YOU FAIL: it goes out halfway, and the way has to be called again
 
 *On a pass:*
-> The flame holds. Mei calls the way out as it comes, and then once more, slower, so that everyone has it.
+> The flame leans and shivers, and holds. Mei calls the way out as it comes, and then once more, slower, so that everyone has it.
 
 *On a failure:*
 > It goes out halfway through. It is lit again, and the way is called again from the start, slower, and louder, over the wind.
@@ -611,6 +636,7 @@
 - **Why reading aloud is the danger this week:** a failure makes the party say it twice, louder. Either way it is heard.
 - **Garrick:** no lines.
 - **Fragment text (unchanged):** "We made our children the only key. We never asked what that would make them."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. The day opens on yesterday's Pull: you row out after the lamp in their own boat, with her skiff behind, and "When you climb in onto its stair" says where you stand. "You lay the six out" (written before the `[LAY THEM OUT]` button) is now "You climb to the bell chamber and kneel on its floor with the six". The flame "leans and shivers, and holds". The map is read aloud because the lamp gives light for one pair of eyes; nothing to change there.
 
 ---
 
@@ -623,15 +649,13 @@
 **What this Gathering has to land:** the children's blood alone was never going to wake him. Each blooding woke a Stone — a piece of the moon — and once all four have drunk, the king begins to wake. The Seekers hid the Stones behind trails only their descendants could walk, and the Order followed the party down every one of them. It was never about the children. It's the Stones, and the party found every one of them for the cult. Meira is dead: the Order had her pen. Then: a fifth Stone exists, and a torn page says the fifth "shall end—".
 **The twist on Episode 3:** in Episode 3 the party learned the Order bleeds children to wake him. It was only half the truth: the blood wakes the Stones, and the Stones wake him. The party hasn't been stopping the waking. They've been doing it for them. *(Reframed 2026-09-28 — TVMen's split: "awakening exists" lands in Ep3, "it needs the Stones" lands here.)*
 
-**The Approach.**
-
 **Gathering 4. The drowned undercroft** *(rewritten 4 Oct 2026 and approved by TVMen: the Gathering plan, the approved pattern, and the United Effort as a shared job. The United Effort's full line tables are in `mythios-united-effort-stories.md`. Mei, Jo and Dev stand in for the real friends, who are named only for what they really did.)*
 
 *Tonight's message, that morning: "Tonight: the Gathering. After the oars, in the boat you took from them. Tonight calls on Craft."*
 
 ### Arrival and the Approach
 
-> Oars, in the dark, pulling away toward the drowned village. You are already in the boat you took from them, and already rowing.
+> Oars, in the dark, pulling away toward the drowned village. You are already in the boat you took from them, and already rowing. The water is so black that the blades vanish into it at every stroke.
 
 > **HOW DO YOU FOLLOW?**
 > `[OPEN WATER]` quick, and nothing in it to steer by but the sound.
@@ -646,30 +670,30 @@
 > IF YOU FAIL: you lose the sound twice, and **they strike first**
 
 *On a pass:*
-> You never lose them; the knock of their oars stays just ahead the whole way.
+> You never lose them. The knock of their oars stays just ahead of you the whole way.
 
 *On a failure:*
-> You lose the sound twice, and sit in the dark with your own breath until it comes again.
+> Twice the knock of their oars is swallowed by the dark. Twice you sit on the black water with nothing but your own breath, until it comes again.
 
-> You row blind, after the sound of oars you can't see. Nobody speaks. The lake is black, the sky is black, and the only thing to steer by is that faint, steady knock of wood on water somewhere ahead — until the drowned church comes up out of the dark beside you, and the oars stop.
+> Nobody speaks. The lake is black, the sky is black, and the only thing to steer by is that faint, steady knock of wood on water somewhere ahead. Then the drowned church comes up out of the dark beside you, and the oars stop.
 >
-> Its flooded stair leads down into an undercroft beneath Old Reedham, where the drowned streets run on under the Stillwater and the chamber doors stand knee-deep in black, still water.
+> It stands at the edge of the deep water, its roof long gone. Its flooded stair leads down under the streets into an undercroft, where the lake has come in through the old stone and stands knee-deep, black and still, at every chamber door.
 >
-> You go in with the cold climbing your legs and your lamps held high, and for the first time all season, you're close enough to hear it happening: a child's cry cut short, and the slap of feet running away through water.
+> You go in with the cold climbing your legs and your lamps held high, and for the first time since Meira's list found you, you are close enough to hear it happening: a child's cry cut short, and the slap of feet running away through water.
 
 ### The Battle
 
-> [N] of them, between you and a stone table, and the black water round everyone's knees.
+> They are waiting in the water. [N] of them, robed, about a stone table, with the lamplight shaking on the black water at their knees. The cold has your legs to the bone already. They come at you through it, slow and certain.
 
 **Fight card** *(in each friend's own thread)*
 > **THE FAITHFUL**
-> **Knee-deep:** a bad swing costs you your footing. Roll a 1, 2 or 3 on a strike and you lose your next one. So does he. *(Rule as written; no change.)*
+> **Knee-deep:** a bad swing in water this deep costs you your footing, and your next stroke. It costs him the same. *(Rule: a strike roll of 1, 2 or 3 loses that fighter's next strike. It applies to the enemy too. As written; no change.)*
 > *You strike first.* / *He strikes first.*
 > *The fight begins in 10 seconds.*
 
 > Those still on their feet do not stand, as they stood under the Kiln. They break for the far door and the lake beyond it.
 
-> The boy on the table is alive. Joss. The cut on his palm is still bleeding through its linen. In his good hand he holds a little wooden boat, no longer than a finger, and he doesn't let go of it even while you lift him down.
+> The boy on the table is alive. Joss. The cut on his palm is still bleeding through its linen. In his good hand he holds a little wooden boat, no longer than a finger, and he does not let go of it even while you lift him down.
 >
 > A chain runs from his ankle to a ring in the drowned floor. The lock on it is older than he is, and mostly rust. It breaks under the flat of a blade.
 >
@@ -721,7 +745,7 @@
 >
 > He does not thank you.
 >
-> Tied at his belt, sealed in a waxed pouch: pages. More of the Order's scripture — from a book you haven't seen before.
+> Tied at his belt, sealed in a waxed pouch: pages. More of the Order's scripture, from a book you have not seen before.
 
 *He is the captive, and he answers all night.*
 
@@ -732,7 +756,7 @@
 >
 > He is breathing. That is all. Whatever he could have told you, he will not tell it tonight.
 >
-> Tied at his belt, sealed in a waxed pouch: pages. More of the Order's scripture — from a book you haven't seen before.
+> Tied at his belt, sealed in a waxed pouch: pages. More of the Order's scripture, from a book you have not seen before.
 
 *There is no board tonight. The pen is still found in the pouch, and the pen says enough.*
 
@@ -740,7 +764,7 @@
 
 *In your own thread.*
 
-> **Might** · Under the Kiln they stood until the last of them fell. Tonight they ran the moment they could.
+> **Might** · Under the Kiln they stood their ground to the last man. Tonight they ran the moment they could.
 > **Agility** · The water in the far doorway is still rocking. Whoever went out, went out as you came in.
 > **Intellect** · The linen on his hand is soaked through. This cut is not an hour old.
 > **Charm** · Joss has not let go of the little boat. He is listening to the oars, and he knows the sound.
@@ -859,7 +883,7 @@
 
 > Garrick has read the page over your shoulder. His voice is low and steady. *"It's the Stones that wake him. Malakor."*
 >
-> A name scraped off every stone in the world — and he says it like a man who has always known it.
+> A name scraped off every stone in the world, and he says it like a man who has always known it.
 
 `[HOW DO YOU KNOW THAT NAME?]` *(any friend)*
 
@@ -881,24 +905,25 @@
 
 ### The pen
 
-> There's one more thing in the pouch, under the pages: a pen. Plain brass, the nib stained with the same brown ink as every page of Meira's notes. Scratched small into the barrel, in her neat hand, are her initials.
+> There is one more thing in the pouch, under the pages: a pen. Plain brass, the nib stained with the same brown ink as every page of Meira's notes. Scratched small into the barrel, in her neat hand, are her initials.
 >
 > Nobody says anything for a while.
 >
-> Her satchel is opened, the way you'd open the door of an empty room. Her hand is on every page. Every trail you've followed this season, she walked first — and somewhere on a road, someone took this pen out of her hand, and she didn't come back for it.
+> Her satchel is opened, the way you would open the door of an empty room. Her hand is on every page. Every trail you have followed since the forest road, she walked first. And somewhere on a road, someone took this pen out of her hand, and she did not come back for it.
 >
 > The pen goes into the satchel, with the rest of her.
 
 ### The torn page
 
-> Under where the pen lay, one last page — burned black along one edge, the rest of it torn clean through. The top lines are in the Order's hand. The rest is set apart, in the older hand you first saw in the Order's scripture under the mill hill — the hand the Order itself calls older than its name.
+> Under where the pen lay, one last page, burned black along one edge, the rest of it torn clean through. The top lines are in the Order's hand. The rest is set apart, in the older hand you first saw in the Order's scripture under the mill hill: the hand the Order itself calls older than its name.
 
-> *[The Order's own hand]* From the Second Book of the Order of the Dark Moon. Even in the old telling, before we had our name, it was known—
+> *From the Second Book of the Order of the Dark Moon. Even in the old telling, before we had our name, it was known—*
 >
-> > **[Set apart, in the older hand]**
+> *Here the hand changes. The rest is set apart, in the older hand:*
+>
 > > **"Four were given to the wind, the water, the fire, and the earth, and drink deep whichever marked blood finds them first. The fifth heeds no element at all, but blood alone, and remembers whose. What the four begin, the fifth shall end—"**
 >
-> *(The page is torn here, the edge burned black. Whatever came next is gone.)*
+> The page is torn there, its edge burned black. Whatever came next is gone.
 
 **Match**
 > **WHICH OF YOUR FRAGMENTS IS THIS?**
@@ -923,11 +948,11 @@
 
 ### The Cliffhanger
 
-> You come up out of the undercroft into the open boat, Joss wrapped in someone's coat in the bow. It's been a long night, and it's nearly over: in the east, over the far shore of the Stillwater, the sky has begun to pale.
+> You come up out of the undercroft into the open boat, Joss wrapped in someone's coat in the bow, the little boat still in his fist. It has been a long night, and it is nearly over: in the east, over the far shore of the Stillwater, the sky has begun to pale.
 >
 > Then it stops.
 >
-> The light doesn't grow. It goes grey and flat and hangs there, thin, as though something vast has leaned across the sun before it could rise. Along the shore, the birds that should be starting up stay silent, row by row.
+> The light does not grow. It goes grey and flat and hangs there, thin, as though something vast has leaned across the sun before it could rise. Along the shore, the birds that should be starting up stay silent, row by row.
 >
 > *Until the sky itself remembers the night he answered.*
 >
@@ -953,6 +978,7 @@
 - **Cut:** the narrator's explanation of the betrayal; "It was only ever about us"; the ledger-holder's speech; the three extra quote-backs (the tower-stair fragment, the week's first, and the season's first are left in the players' Chests); "the room finishes it"; "it sounds like hope"; the friend's question about why the Order would keep the line (Garrick's existing answer stays for anyone who types it).
 - **Garrick:** every line is the approved text. His answers if asked how the Order knew, whether he told anyone, and why he did not speak of a fifth before are unchanged and stay available to a typed question.
 - **Knee-deep** is a placeholder condition until the simulation has looked at it.
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the Knee-deep fight card is in story words ("a bad swing in water this deep costs you your footing, and your next stroke. It costs him the same.") and the rule is a build note on the card, as Gathering 3's Blade and torch is; the rule itself does not change (Core Rules §12 table, `gatheringEngine.ts`, the server's Week 4 condition). The Might notice line is now "Under the Kiln they stood their ground to the last man." (the old line said the last of them fell; at Gathering 3 he set his blade down and was bound). The torn page loses its stage brackets, as Week 2's page did: the Order's lines are plain italic, the change of hand is a narrated italic line (*Here the hand changes. The rest is set apart, in the older hand:*), and the tear is narration; the quoted sentence is word for word. The undercroft: the church stands at the edge of the deep water, roofless, and the lake has come in through the old stone and stands knee-deep (a room under drowned streets would be full). Also: the stray "The Approach." heading above the title is gone; the Approach gains a failure line of its own and the arrival no longer repeats it ("You row blind…" is cut, "Nobody speaks." begins it); the Battle opens with them waiting in the water; "for the first time all season" is now "for the first time since Meira's list found you", and at the pen "this season" is "since the forest road"; the narration loses its dashes and contractions; the Cliffhanger keeps the little boat in Joss's fist. The Verse, both Matches, the Ask board, the United Effort and every Garrick line are word for word.
 
 **Answers kept from the earlier script, for a question a friend types that the buttons and boards do not cover** *(every line unchanged)*
 
