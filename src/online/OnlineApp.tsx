@@ -31,6 +31,7 @@ import { CREDIT_LINE, INVITE_BULLETS, MYTHIOS_INTRO, SERIES, SZ_DOOR, TAGLINE, s
 import SessionZero, { type SeriesCharacter } from './SessionZero';
 import PartyChat from './PartyChat';
 import InstallGuide from './InstallGuide';
+import OnlineDay from './OnlineDay';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
 const startQuery = new URLSearchParams(window.location.search);
@@ -375,6 +376,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [startDate, setStartDate] = useState('');
   const [editingName, setEditingName] = useState<string | null>(null);
   const [myCharacter, setMyCharacter] = useState<SeriesCharacter | null>(null);
+  const [playingDay, setPlayingDay] = useState(false);
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -382,23 +384,27 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       supabase.from('party_members').select(MEMBER_COLUMNS).eq('party_id', partyId),
     ]);
     const rows = (m as MemberRow[] | null) ?? [];
-    setParty((p as PartyRow | null) ?? null);
-    setMembers(rows);
+    // Everything is fetched first and shown together, so [BEGIN] never shows before the character has loaded.
+    let character: SeriesCharacter | null = null;
+    let host = '';
     if (p) {
-      setHostName(rows.find((r) => r.user_id === (p as PartyRow).host_id)?.character_name ?? '');
+      host = rows.find((r) => r.user_id === (p as PartyRow).host_id)?.character_name ?? '';
       const { data: c } = await supabase
         .from('characters')
         .select('name,class,second_attr,birthplace,grandparent_name')
         .eq('user_id', userId)
         .eq('series_id', (p as PartyRow).series_id)
         .maybeSingle();
-      setMyCharacter((c as SeriesCharacter | null) ?? null);
-    }
-    else {
+      character = (c as SeriesCharacter | null) ?? null;
+    } else {
       // Before being let in, a friend cannot read the party itself: only its name and its host's.
       const { data: sum } = await supabase.rpc('my_party_summary', { p_party: partyId });
-      setHostName((sum as { host_name: string }[] | null)?.[0]?.host_name ?? '');
+      host = (sum as { host_name: string }[] | null)?.[0]?.host_name ?? '';
     }
+    setMyCharacter(character);
+    setHostName(host);
+    setParty((p as PartyRow | null) ?? null);
+    setMembers(rows);
     setLoaded(true);
   }, [partyId, userId]);
 
@@ -477,9 +483,28 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       : SZ_DOOR;
   const chatOpen = !!party.day1_opens_at && Date.now() >= new Date(party.day1_opens_at).getTime() + 86400000;
 
+  // Today's chapter, from the server (the days online).
+  if (playingDay) {
+    return (
+      <OnlineDay
+        partyId={party.id}
+        friends={approved.filter((r) => r.user_id !== userId).map((r) => r.character_name)}
+        partySize={approved.length}
+        myClass={me.class}
+        birthplace={me.birthplace ?? null}
+        grandparent={me.grandparent_name ?? null}
+        onClose={() => {
+          setPlayingDay(false);
+          load();
+        }}
+      />
+    );
+  }
+
   if (doingSessionZero) {
     return (
       <SessionZero
+        key={myCharacter?.class ? 'kept' : 'new'}
         partyId={party.id}
         userId={userId}
         seriesId={party.series_id}
@@ -605,6 +630,16 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         )}
         {isHost && started && beforeDayOne && <p className="text-[15px] pt-1">{doorLine}</p>}
       </div>
+
+      {/* Once Day 1 has opened: today's chapter. */}
+      {started && !beforeDayOne && me.session_zero_done_at && (
+        <div className={`${card} border-[#D4B876]/60`}>
+          <h3 className={`${heading} text-[15px]`}>Today</h3>
+          <button className={goldButton} onClick={() => setPlayingDay(true)}>
+            OPEN TODAY'S CHAPTER
+          </button>
+        </div>
+      )}
 
       {/* The party chat opens when the party assembles on Day 2 (Fake Guru, 16 Oct); the server enforces it. */}
       {chatOpen && <PartyChat partyId={party.id} userId={userId} members={members} />}
