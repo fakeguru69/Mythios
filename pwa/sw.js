@@ -1,5 +1,34 @@
-// The game's service worker. Today it only lets phones install the game to the home screen;
-// "Your chapter is ready" notifications (push) come in a later step.
+// The game's service worker: it lets phones install the game to the home screen, and shows the game's notifications
+// (migration 0069: the 8:00am line, the Day 4 poll, the Gathering's time and its reminder). Tapping one opens the game.
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim()));
 self.addEventListener('fetch', () => {});
+
+self.addEventListener('push', (event) => {
+  let data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch {
+    data = { body: event.data ? event.data.text() : '' };
+  }
+  event.waitUntil(
+    self.registration.showNotification(data.title || 'Tales of the Dark Moon', {
+      body: data.body || '',
+      tag: data.tag || 'mythios',
+      icon: '/icon-192.png',
+      badge: '/icon-192.png',
+      data: { url: '/' },
+    })
+  );
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+      const open = list.find((c) => new URL(c.url).origin === self.location.origin);
+      if (open) return open.focus();
+      return self.clients.openWindow((event.notification.data && event.notification.data.url) || '/');
+    })
+  );
+});

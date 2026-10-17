@@ -16,7 +16,7 @@ import {
 import { challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
 import { CLASSES } from './onlineText';
 import { tonightLine } from './OnlineGathering';
-import { ErrorLine, heading, note, quietButton } from './ui';
+import { ErrorLine, goldButton, heading, note, quietButton } from './ui';
 import AskGarrick from './AskGarrick';
 
 interface Roll {
@@ -122,6 +122,8 @@ export default function OnlineDay({
   const [armed, setArmed] = useState<AttributeName | null>(null);
   const [pressArmed, setPressArmed] = useState(false);
   const finishing = useRef(false);
+  // A late joiner's Day 1 (Core Rules §12a, migration 0072): once it is read to its end, the current day waits for a tap.
+  const [nextDay, setNextDay] = useState<{ week: number; day: number } | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
 
   const load = useCallback(async () => {
@@ -647,6 +649,23 @@ export default function OnlineDay({
       break;
     }
   }
+  if (nextDay) {
+    nodes.push(
+      <div key="next-day" className="space-y-2" data-next-day>
+        <p className="font-sans italic text-[14px] text-[#B7A9CC] px-1">The others are already a day further down the road.</p>
+        <button
+          className={goldButton}
+          onClick={() => {
+            setNextDay(null);
+            finishing.current = false;
+            load();
+          }}
+        >
+          {`ON TO WEEK ${nextDay.week}, DAY ${nextDay.day}`}
+        </button>
+      </div>
+    );
+  }
 
   return (
     <DayBody
@@ -662,7 +681,16 @@ export default function OnlineDay({
         // The day counts as played once read to its last line (Core Rules §12a).
         if (finishing.current) return;
         finishing.current = true;
-        await call('finish_day', {});
+        const { error: e } = await supabase.rpc('finish_day', { p_party: partyId });
+        if (e) {
+          setError(plainError(e.message));
+          finishing.current = false;
+          return;
+        }
+        // A late joiner's Day 1 leads on to the party's day; anyone else stays on this one.
+        const { data: d } = await supabase.rpc('my_today_day', { p_party: partyId });
+        if (d && (d.week !== week || d.day !== day)) setNextDay(d as { week: number; day: number });
+        else await load();
       }}
       onClose={onClose}
       onOpenFire={onOpenFire}

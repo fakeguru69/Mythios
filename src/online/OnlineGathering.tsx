@@ -30,6 +30,11 @@ interface View {
   n: number | null;
   log: Entry[];
   progress: { gold: number; attrs: Record<string, number>; relics: Record<string, number>; weapon: number; armor: number } | null;
+  /** Opened only after it ended, never having been in it (0072): its recap instead of the night. */
+  missed?: boolean;
+  recap?: string;
+  /** Came in after it started (0072): one "what you missed" line. */
+  lateLine?: string | null;
 }
 
 const ATTRS: AttributeName[] = ['Might', 'Craft', 'Intellect', 'Charm', 'Agility', 'Aim'];
@@ -83,7 +88,7 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
     };
   }, [poll]);
 
-  const logLength = view?.log.length ?? 0;
+  const logLength = view?.log?.length ?? 0;
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [logLength]);
@@ -123,6 +128,20 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
       <div className="space-y-4">
         {header}
         <p className={note}>There is no Gathering tonight.</p>
+      </div>
+    );
+  }
+  // Opened only after it ended (Core Rules §11 "Missing the whole Gathering": the friend gets the recap).
+  if (view.missed) {
+    return (
+      <div className="space-y-4" data-gathering-missed>
+        {header}
+        <p className={note}>Week {view.week} · The Gathering</p>
+        <div className={card}>
+          <h2 className={`${heading} text-[18px]`}>You missed tonight's Gathering.</h2>
+          <p className="text-[14px] text-[#B7A9CC]">The night went on without you. This is what happened.</p>
+          <NarrationBlock text={view.recap ?? ''} />
+        </div>
       </div>
     );
   }
@@ -198,6 +217,14 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
       <div key="tonight" className="rounded-xl bg-[#130B1F] border border-[#3A2555] px-3 py-2 text-[13.5px] text-[#B7A9CC] italic">
         {tonightLine(view.tonight, view.opensAt, view.timeZone)}
       </div>
+    );
+  }
+  // "What you missed" (Core Rules §11): one line for a friend who came in after the start.
+  if (view.lateLine) {
+    nodes.push(
+      <p key="late" className="font-sans italic text-[13.5px] text-[#B7A9CC] px-1" data-late-line>
+        {view.lateLine}
+      </p>
     );
   }
 
@@ -763,6 +790,54 @@ export function GatheringCard({ partyId, isHost, timeZone, onOpen }: { partyId: 
         )
       )}
       {isHost && editing && <p className={note}>Between 8:00am and 11:00pm. Everyone is told in the party chat.</p>}
+      {!info.startedAt && <GatheringPoll partyId={partyId} isHost={isHost} />}
+      <ErrorLine text={error} />
+    </div>
+  );
+}
+
+// "19:00" as the chat writes it: "7:00pm".
+const slotWord = (hhmm: string) => {
+  const [h, m] = hhmm.split(':').map(Number);
+  return `${((h + 11) % 12) + 1}:${String(m).padStart(2, '0')}${h < 12 ? 'am' : 'pm'}`;
+};
+
+// The Day 4 poll (Core Rules §11 "The Gathering's hour"; migration 0069): on Days 4 and 5 each friend taps every Day 7
+// time they can make. The host pins one; at the end of Day 5, if not, the app takes the time most of you can make.
+function GatheringPoll({ partyId, isHost }: { partyId: string; isHost: boolean }) {
+  const [poll, setPoll] = useState<{ week: number; slots: { time: string; names: string[]; mine: boolean }[] } | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    supabase.rpc('gathering_poll', { p_party: partyId }).then(({ data }) => setPoll(data ?? null));
+  }, [partyId]);
+  if (!poll) return null;
+  return (
+    <div className="space-y-2 pt-1" data-gathering-poll>
+      <p className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876]">WHEN CAN YOU ALL MEET ON DAY 7?</p>
+      <p className={note}>
+        Tap every time you can make. {isHost ? 'You pick the time' : 'The host picks the time'}; if nobody has by the end of Day 5, it goes to the time most of you can make.
+      </p>
+      <div className="space-y-1.5">
+        {poll.slots.map((s) => (
+          <button
+            key={s.time}
+            disabled={busy}
+            className={`w-full text-left rounded-lg border px-3 py-2 ${s.mine ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555] bg-[#130B1F]'}`}
+            onClick={async () => {
+              setBusy(true);
+              setError(null);
+              const { data, error: e } = await supabase.rpc('gathering_vote', { p_party: partyId, p_slot: s.time, p_on: !s.mine });
+              setBusy(false);
+              if (e) setError(plainError(e.message));
+              else setPoll(data ?? null);
+            }}
+          >
+            <span className="font-semibold text-[14px]">{s.mine ? '✓ ' : ''}{slotWord(s.time)}</span>
+            {s.names.length > 0 && <span className="text-[13px] text-[#B7A9CC]"> · {s.names.join(', ')}</span>}
+          </button>
+        ))}
+      </div>
       <ErrorLine text={error} />
     </div>
   );
