@@ -15,16 +15,33 @@ So the right question is not "is it more game than story?" The question is **whe
 
 ## 2. The criteria (what good gameplay means for us)
 
-1. **Decisions that matter.** A choice should change something the player can feel: now, later, or in what their friends learn.
-2. **Real stakes.** Uncertainty that costs or gains something the player cares about: knowledge, safety, standing with friends. Gold alone is not enough, because gear barely matters (weekday fights are won 95 to 99% of the time).
-3. **The mystery is the game.** Players can form theories, test them against clues, and be shown right or wrong. Paying attention should pay off.
-4. **Friends need each other.** Each friend should hold something the others don't, and reasons to talk, give and plan. The best spark is uneven information: a clue only you saw.
-5. **Rhythm.** Reading and doing take turns, with room to breathe at the big moments. A day fits a commute, and no two days feel the same.
-6. **The rules tell the story.** A mechanic should be the fiction, not machinery between scenes. The Seeker maps are the model: solving them helps the enemy.
-7. **Clear feedback.** You always know what happened, why, and what it cost.
-8. **Growth.** You feel your character get stronger, and different from your friends'.
-9. **The week builds to the Gathering.** What you did on the weekdays should change how the Gathering goes or what it means.
-10. **Easy to come back to.** A missed day costs a little, never everything, and the Pull makes tomorrow matter.
+The full rubric, with what each criterion means here, the questions to ask, signs it works or fails, and where to look, is in `docs/playthrough/gameplay-audit-prompt.md`. In short:
+
+**A. Agency: what the player decides**
+1. **Decisions that matter.** A choice changes the scene, what you learn, what it costs, or what friends see: the *how*, since every branch reaches the same plot.
+2. **Real stakes.** Uncertain moments risk something you care about (a clue, position, the Gathering), not only gold. Gear barely matters, since weekday fights are won 95 to 99% of the time.
+
+**B. The mystery: what the player thinks**
+3. **The mystery is the game.** Form theories, test them, be shown right or wrong; attention pays.
+4. **Puzzles that feel good.** Fragments, maps and riddles: neither trivial nor obscure, and each solve tells you about the world.
+
+**C. Together: what the friends do for each other**
+5. **Friends need each other.** Each holds something the others don't (a detail, a Relic, a theory), with reasons to share, give and plan.
+6. **Asynchronous play works.** The first and the last friend at the fire both feel part of the same evening.
+
+**D. Pace and shape: how it flows**
+7. **Rhythm between reading and doing.** Long reads where the story earns them, quick beats for tension, room to breathe at big turns.
+8. **Variety without confusion.** Days and weeks feel different, and the rules stay easy to follow.
+9. **The week builds to the Gathering, and the season to the finale.** Weekdays change how the Gathering plays, not only what it means.
+
+**E. Fiction and feel: how the rules sit in the story**
+10. **The rules tell the story.** A mechanic is the fiction, not machinery. The Seeker maps are the model.
+11. **Clear feedback.** You always know what happened, why, and what it cost.
+12. **Growth that feels like your character.** Stronger, and more yours; a Warrior's day feels different from a Sage's.
+
+**F. Habit: why you come back**
+13. **A reason to come back tomorrow.** Each day ends on a pull, never a chore.
+14. **Easy to come back to after a missed day.** A missed day costs a little, never everything.
 
 ## 3. What the numbers show
 

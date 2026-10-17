@@ -89,25 +89,116 @@ Within these limits, be bold. Propose changes to mechanics, rewards, pacing, the
 7. **Does the week build to the Gathering?** Do the weekdays change how the Gathering plays, or only what it means?
 8. **Would I come back every day for six weeks?** What brings me back, and what might make me drift away?
 
-## Criteria: use these, then challenge them
+## The criteria: what makes good gameplay in this story game
 
-Here is my working list of what good gameplay means for this game. Use it, but **add, remove or reword anything you think is wrong or missing, and say why**:
+Score the game against each criterion below. Each one says:
+- what it means here;
+- the questions to ask;
+- what it looks like when it works and when it fails;
+- where to look.
 
-1. Decisions that matter, now, later, or in what friends learn.
-2. Real stakes, beyond gold.
-3. The mystery is the game: form theories, test them, be shown right or wrong; attention pays.
-4. Friends need each other: uneven information, giving, planning.
-5. Rhythm: reading and doing take turns; room to breathe at big moments; variety from day to day.
-6. The rules tell the story: mechanics that are the fiction, not machinery.
-7. Clear feedback on what happened and why.
-8. Growth that feels like your character.
-9. The week builds to the Gathering.
-10. Easy to come back to after a missed day.
+Use them all, and **add, remove or reword any you think is wrong or missing, and say why**.
+
+### A. Agency: what the player decides
+
+**1. Decisions that matter.**
+- *Means:* a choice changes something the player can feel: the scene, what they learn, what it costs, or what their friends see. Because every branch reaches the same plot, the change lives in the *how*, not the *where*.
+- *Ask:* does the player weigh options, or is one plainly best? Would they choose differently on a second play, or in another friend's shoes? Does anything they chose come back later?
+- *Works:* "I took the hill, so I saw the riders; Mei took the river and found the boat. Now we compare."
+- *Fails:* a button that only says "go on"; options that all lead to the same text; a choice whose effect the player never sees.
+- *Look at:* choices (pick / each / auto / flavour), the Challenge's Attribute options, [PRESS ON], the last light, votes, Gathering 6's picks.
+
+**2. Real stakes.**
+- *Means:* the uncertain moments put something the player cares about at risk: a clue, a person, position, standing with friends, how the Gathering goes. Gold matters only if what it buys matters.
+- *Ask:* what does a fail cost here, and does the player feel it? Does a result last past the moment, into the next day or the Gathering? Is a 95% win still exciting?
+- *Works:* a failed roll means a scene told differently, a clue missed that a friend must supply, a harder Gathering.
+- *Fails:* fail and pass reading almost the same; losses forgotten tomorrow; fights won almost every time with nothing riding on them.
+- *Look at:* Challenge fail lines, fights and what follows them, the United Effort's two outcomes, what carries into later days.
+
+### B. The mystery: what the player thinks
+
+**3. The mystery is the game.**
+- *Means:* players form theories, test them against clues, and are shown right or wrong. Attention pays.
+- *Ask:* is there a clear question to work on each day and each week? Are clues fair and findable? Does being right do anything? Can a sharp party suspect the twist before it lands?
+- *Works:* players argue a theory at the fire, and the Gathering proves one of them right. Rereading shows the clues were there.
+- *Fails:* theories pinned and never paid back; answers simply told; clues hidden behind one optional roll.
+- *Look at:* the day's question, Notice lines, the Seeker Fragments and maps, Campfire pins, Match, Ask, the week board, the hindsight file.
+
+**4. Puzzles that feel good.**
+- *Means:* the word-lock fragments, maps and riddles are satisfying to crack, neither trivial nor obscure, and solving them feeds the story.
+- *Ask:* is the difficulty right? Is the "aha" earned? Does the puzzle tell you something about the world, or is it just a lock?
+- *Look at:* the Seeker Fragments, the last light's hints, the riddles, Match.
+
+### C. Together: what the friends do for each other
+
+**5. Friends need each other.**
+- *Means:* each friend holds something the others don't (a detail, a Relic, a skill, a theory) and has reasons to share, give, plan and talk. Playing alone at different times must still feel like playing together.
+- *Ask:* what does one friend know or have that another needs? What would two friends say to each other after the day? At the Gathering, does every friend have a part, or do some watch?
+- *Works:* "I noticed the knot. Did anyone else?"; a Relic given before a hard roll; a vote argued.
+- *Fails:* everyone sees the same text and fills the same forms alone; the "social" part is a log of who did what.
+- *Look at:* Notice lines, the Campfire board and pins, giving Relics, the party chat lines, the Battle's help-calls, the United Effort's turns, votes, the question to the table.
+
+**6. Asynchronous play works.**
+- *Means:* friends who play at 7am and 11pm both feel part of the same evening. Being first or last at the fire is still good.
+- *Ask:* what does the first friend at the fire see, and the last? Does anything make you look forward to friends' answers?
+- *Look at:* the Campfire's read-backs, the message in a bottle, the board, catch-up lines.
+
+### D. Pace and shape: how it flows
+
+**7. Rhythm between reading and doing.**
+- *Means:* story and play take turns. Long reading comes where the story earns it; quick beats come where tension does; big moments get room to breathe.
+- *Ask:* use `gameplay-rhythm.md`. Where are the long reads, and do they earn it? Where do taps come thick and empty? Is there a quiet beat at each big turn?
+- *Works:* a short tense run of rolls, then a held moment of story.
+- *Fails:* 400 words with no break; four "go on" taps in a row; a reveal rushed by a button.
+- *Look at:* the strips in `gameplay-rhythm.md`, the Gathering reading time, held "alone" moments.
+
+**8. Variety without confusion.**
+- *Means:* days and weeks feel different (new places, new kinds of challenge, new twists to the mechanics) while the rules stay easy to follow.
+- *Ask:* which beats repeat in the same shape (the same fight ending, the same fragment find, the same evening)? When does it start to feel like routine? Do the Gatherings' conditions and stories change the play, or only the words?
+- *Look at:* fights across the season, fragment finds, Campfire nights, each Gathering's Battle condition and United Effort.
+
+**9. The week builds to the Gathering, and the season to the finale.**
+- *Means:* weekdays prepare the Gathering, and the Gathering pays them off and opens the next week. The finale pays off six weeks of play, not just six weeks of story.
+- *Ask:* does what we did on the weekdays change how the Gathering plays (the map bonus, knowledge for Match and Ask, Relics saved)? Does the finale use what we built?
+- *Look at:* the map +2, Match, Ask, what carries between weeks (a lost United Effort), Gathering 6.
+
+### E. Fiction and feel: how the rules sit in the story
+
+**10. The rules tell the story.**
+- *Means:* a mechanic *is* the fiction, not machinery between scenes. The Seeker maps are the model: solving them is how the enemy finds the Stones.
+- *Ask:* does each mechanic make sense inside the world? Would the player feel the story through it with the words removed? Where does the machinery show?
+- *Look at:* every mechanic; read the hindsight file for the maps and the twist.
+
+**11. Clear feedback.**
+- *Means:* after every roll, tap and choice, the player knows what happened, why, and what it cost or won.
+- *Ask:* are the odds shown before a roll? Is the cost of a fail clear? Is it clear what a choice changed?
+- *Look at:* the Challenge card, the result lines, fight rounds, the United Effort bars, the summary cards.
+
+**12. Growth that feels like your character.**
+- *Means:* your character gets stronger and more *yours*: your class, your best Attribute, your gear, your Relics. Friends' characters feel different from each other.
+- *Ask:* does growth change what you can do or how you play? Does a Warrior's day feel different from a Sage's?
+- *Look at:* Attribute growth and tiers, classes, Notice lines by Attribute, gear, Relics.
+
+### F. Habit: why you come back
+
+**13. A reason to come back tomorrow.**
+- *Means:* each day ends with a pull to the next (the story's hook, a friend's answer you want to read, a puzzle half done) and never with a chore.
+- *Ask:* what makes me open the app tomorrow? What makes a day feel like homework? Is 8 to 12 minutes right?
+- *Look at:* the Pull, the recap, the Campfire's next-day hooks, notifications, the fragment puzzle.
+
+**14. Easy to come back to after a missed day.**
+- *Means:* missing a day costs a little and never cuts you off from your friends or the story.
+- *Ask:* what does a friend who missed two days see? Can they still help at the Gathering?
+- *Look at:* the recaps, "You missed…" lines, a day that closes itself, a late friend at the Gathering.
+
+### How to score
+
+For every criterion, give a score out of 10, one line of why, and the one change that would raise it most.
 
 ## How to work: four stages, pausing after each
 
 **Stage 1 (Weeks 1 and 2, with `gameplay-rhythm.md`).** First, describe the **core loop** in your own words: the day, the week, the season, and what the player does and feels at each step. Then go through Weeks 1 and 2. For each day and each Gathering, give:
-- a **Play score out of 10**, with why;
+- a **Play score out of 10**, with why, naming the criteria (by number) that the day meets or misses;
 - the strongest and weakest moment of play, each quoted briefly;
 - every button, roll or form that does not earn its place, with a concrete fix and a size (**Big**, **Medium** or **Small**).
 
@@ -118,6 +209,7 @@ Stop and ask: "Shall I go on to Stage 2?" Ask for the next file.
 **Stage 3 (Weeks 5 and 6).** The same, with special care on the finale: does it pay off six weeks of play, and does every friend matter in it? Stop and ask for `after-the-finale.md`.
 
 **Stage 4 (the whole season, with the secret).**
+- Score every criterion for the whole season (the table for the report).
 - Judge each mechanic across the season against the criteria:
   - the Challenge, fights, [PRESS ON], choices, Notice lines;
   - the Seeker Fragments and maps, the last light, the Campfire (each of its parts);
@@ -133,7 +225,7 @@ If you can create files, give it to me as a file. If not, put the whole report i
 In this order:
 
 1. **The verdict in five lines:** is the gameplay good, is the balance of story and game right, and the single most important change.
-2. **Your criteria:** the final list, with what you changed from mine and why.
+2. **The criteria, scored:** a table with each criterion (mine, plus any you added), its score out of 10, one line of why, and the change that would raise it most. Then say what you changed in my list, and why.
 3. **The core loop:** what works and what is missing, at the level of the day, the week and the season.
 4. **Each mechanic:** a table with its score out of 10, what it does well, what it does badly, and keep / change / cut. For each change, the concrete proposal.
 5. **Pacing:** story against play, using the rhythm numbers. Where the story needs more room and where less, and where play should move inside the scene.
