@@ -1985,7 +1985,7 @@ Clue found, "Bowls never filled":
 
 *⚙ Pick one: Agility (the fountain's shadow, then the open ground, fast), or Charm (keep everyone calm and still while the lantern goes by). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: the lantern swings your way, and you lose an hour flat against the stone, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 6-2:challenge-failed, the card is 1 harder, and says: **One harder.** The roof that came down yesterday was heard across the city, and tonight the square's watch is doubled.*
+*⚙ If 6-2:challenge-failed, the card is 1 harder, and says: **One harder.** The ceiling that came down yesterday was heard across the city, and tonight the square's watch is doubled.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2570,7 +2570,7 @@ Clue found, "Cut in a hurry":
 
 *⚙ Pick one: Agility (through a gap in the ranks, at their pace), or Might (go in where the ranks are thinnest, and take the knocks). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g · **and you strike first**, and the Attribute grows. Fail: one of them sees you, and **it strikes first**, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 6-5:challenge-failed, the card is 1 harder, and says: **One harder.** Someone saw your lamp in the tower last night, and tonight more eyes are on the street.*
+*⚙ If 6-5:challenge-failed, the card is 1 harder, and says: **One harder.** Your lamp burned half the night in the tower, and the square took note. Tonight more eyes are on the street.*
 
 *⚙ If you passed the Challenge:*
 
