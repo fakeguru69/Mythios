@@ -226,12 +226,13 @@ for each night, the question and where it is answered; the three leads as a set 
 ---
 
 ## 14. Decisions for Fake Guru
-1. The two mysteries: the case played openly; the man at the fire never mentioned, paid off after the finale. Yes / change.
-1a. ~~The four layers~~ **Yes, 17 Oct (Fake Guru: "1. Yes").** Today (the table), tonight's puzzle (solved by a click), tonight's question (called at dawn), the long threads (the casebook).
-2. The four jobs of a piece (Reveal, Tilt, Turn, Link), and cutting what does none. Yes / change.
-3. Clicks: pairs of pieces that, laid together, show something new. Yes / no.
-4. The night: one open question, pin in secret, the party's call at dawn, read back when the story answers. Yes / change.
-5. The casebook and the notebook, and the reckoning after the finale. Yes / no.
-6. Garrick lines with a second meaning at the fire, for the Deception Table. Yes / no.
-7. Phase 1 first (mechanics on today's content), with Week 1's content as the sample alongside. Yes / change.
-8. A clickable mock-up of the fire once 1 to 7 are decided (Fake Guru, 17 Oct: "probably need a mockup after redesign").
+**All decided 17 Oct: Fake Guru, "yes" to 1 to 7.**
+1. The two mysteries: the case played openly; the man at the fire never mentioned, paid off after the finale. **Yes.**
+1a. The four layers: today (the table), tonight's puzzle (solved by a click), tonight's question (called at dawn), the long threads (the casebook). **Yes** ("1. Yes").
+2. The four jobs of a piece (Reveal, Tilt, Turn, Link), and cutting what does none. **Yes.**
+3. Clicks: pairs of pieces that, laid together, show something new. **Yes.** No gold for a click (no number was set; canon pays nothing for theories); Fake Guru can set one.
+4. The night: one open question, pin in secret, the party's call at dawn, read back when the story answers. **Yes.**
+5. The casebook and the notebook, and the reckoning after the finale. **Yes.**
+6. Garrick lines with a second meaning at the fire, for the Deception Table. **Yes;** each line still goes through the Garrick check and Fake Guru's approval.
+7. Phase 1 first (mechanics on today's content), with Week 1's content as the sample alongside. **Yes.**
+8. A clickable mock-up of the fire, now that 1 to 7 are decided (Fake Guru: "probably need a mockup after redesign"): made 17 Oct as a private design canvas (https://claude.ai/artifact/GryTWp2mw1KRhSFXxpYxUD): the fire at the mill to try, the call read back at Gathering 2, and the Bag's casebook and notebook, using the Week 2 Day 2 example above. Phase 1 starts once Fake Guru has tried it.
