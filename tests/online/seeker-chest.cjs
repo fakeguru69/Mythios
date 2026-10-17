@@ -34,18 +34,20 @@ const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.j
   log('chest shows today first + first line:', /W1·D2[\s\S]*W1·D1/.test(await body(host)), /A Seeker Fragment\. Two of its words are missing/.test(await body(host)));
   await spell(host, 'PETW', 'wept');
   log('today word 1 solved by host:', /“wept”: found by you/.test(await body(host)));
-  await spell(host, 'ADEEFR', 'feared');
-  log('second word today refused:', /each friend fills one of its two words/.test(await body(host)));
-  // Yesterday's fragment: open its card, then both words are allowed.
-  await host.getByRole('button', { name: /W1·D1/ }).click(); await host.waitForTimeout(600);
-  await spell(host, 'CRETSDTAE', 'scattered'); await spell(host, 'LSECO', 'close');
-  log('yesterday both solved:', /“scattered”: found by you · “close”: found by you/.test(await body(host)));
-  await host.screenshot({ path: `${S}/02-solved.png`, fullPage: true });
-  // Mei: five wrong tries on today's open word, then a wait.
+  // Mei: five wrong tries on today's other word, then a wait.
   const mei = await open('mei');
   for (let k = 0; k < 5; k++) await spell(mei, 'ADEEFR', 'adeefr');
   log('five wrong then wait:', /Five wrong tries\. Try this word again in \d+ seconds\./.test(await body(mei)));
   await mei.screenshot({ path: `${S}/03-wait.png`, fullPage: true });
   log('mei sees host as solver:', /“wept”: found by TestHost/.test(await body(mei)));
+  // A friend may find both words of today's fragment (Fake Guru, 17 Oct).
+  const host2 = await open('host');
+  await spell(host2, 'ADEEFR', 'feared');
+  log('second word today allowed:', /“wept”: found by you · “feared”: found by you/.test(await body(host2)));
+  // Yesterday's fragment: both words too.
+  await host2.getByRole('button', { name: /W1·D1/ }).click(); await host.waitForTimeout(600);
+  await spell(host2, 'CRETSDTAE', 'scattered'); await spell(host2, 'LSECO', 'close');
+  log('yesterday both solved:', /“scattered”: found by you · “close”: found by you/.test(await body(host2)));
+  await host2.screenshot({ path: `${S}/02-solved.png`, fullPage: true });
   await b.close();
 })().catch((e) => { log('FAILED', e.message.split('\n')[0]); process.exit(1); });

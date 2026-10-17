@@ -209,7 +209,7 @@ These numbers get logged per night, so the first real party shows what works.
 - **Party of two, or alone:** fewer pieces and fewer clicks, but the loop holds; a friend alone still lays, pins and gets the read-back.
 - **Hoarding:** allowed; Garrick's quiet-friend line invites; the last-light piece goes down by itself.
 - **First-use gates and Garrick's rules:** every new line is checked against both before approval.
-- **The fragment race** (Fake Guru's "C") is untouched.
+- **The fragment race** (Fake Guru's "C") is untouched, and since 17 Oct any friend may find both words, so the fragment opens at the fire sooner.
 - **Workload:** this is a content rebuild of 36 nights. That is why Week 1 goes first as a sample, then the rest week by week, as the storybook pass did.
 
 ---
@@ -227,10 +227,11 @@ for each night, the question and where it is answered; the three leads as a set 
 
 ## 14. Decisions for Fake Guru
 1. The two mysteries: the case played openly; the man at the fire never mentioned, paid off after the finale. Yes / change.
-1a. The four layers: today (the table), tonight's puzzle (solved by a click), tonight's question (called at dawn), the long threads (the casebook). Yes / change.
+1a. ~~The four layers~~ **Yes, 17 Oct (Fake Guru: "1. Yes").** Today (the table), tonight's puzzle (solved by a click), tonight's question (called at dawn), the long threads (the casebook).
 2. The four jobs of a piece (Reveal, Tilt, Turn, Link), and cutting what does none. Yes / change.
 3. Clicks: pairs of pieces that, laid together, show something new. Yes / no.
 4. The night: one open question, pin in secret, the party's call at dawn, read back when the story answers. Yes / change.
 5. The casebook and the notebook, and the reckoning after the finale. Yes / no.
 6. Garrick lines with a second meaning at the fire, for the Deception Table. Yes / no.
 7. Phase 1 first (mechanics on today's content), with Week 1's content as the sample alongside. Yes / change.
+8. A clickable mock-up of the fire once 1 to 7 are decided (Fake Guru, 17 Oct: "probably need a mockup after redesign").
