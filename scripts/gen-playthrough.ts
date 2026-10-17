@@ -1,5 +1,5 @@
 // Writes the whole season as a player meets it, in playing order, for outside reviewers (Fake Guru, 17 Oct):
-// docs/playthrough/season-playthrough.md (Week 1 Day 1 to Week 6 Day 7: the morning chat line, the road so far, the
+// docs/playthrough/season-part-1-weeks-1-2.md, -2-weeks-3-4.md and -3-weeks-5-6.md (Week 1 Day 1 to Week 6 Day 7: the morning chat line, the road so far, the
 // Seeker fragment, the chapter in your own thread with every Challenge, fight and branch, the last light, the Campfire,
 // and each Gathering) and docs/playthrough/after-the-finale.md (the secret and Garrick's Recap, for after Week 6 only).
 // Built from the game's own data, never typed; rerun after any change: npx tsx scripts/gen-playthrough.ts
@@ -291,12 +291,6 @@ function gathering(week: number) {
 
 // ---- The season ----
 w(
-  '# Tales of the Dark Moon: the season as a player plays it',
-  'Week 1 Day 1 to Week 6 Day 7, in playing order. Generated from the game\'s own data by `scripts/gen-playthrough.ts` (' +
-    new Date().toISOString().slice(0, 10) +
-    '). **Do not publish: it holds the whole season.**',
-  '**How to read it.** Quoted text (`>`) is exactly what the player reads. Lines in *⚙ italics* describe the gameplay: what the screen offers, the rule, the numbers. ' +
-    'Where the story branches, every branch is given, each labelled. The party is a sample of four: you, Mei, Dev and Arjun (the game fills in the real friends\' names and the party\'s size).',
   '## How the game plays (the rules in brief)',
   '- **The app and the party.** *Tales of the Dark Moon* is a story game in a chat app for a fixed party of 2 to 6 real friends, over 6 weeks. A storyteller called MYTHIOS tells it from stored text. Each friend plays one character, under their own name, with one of six classes (Warrior, Artificer, Sage, Trickster, Assassin, Archer).',
   '- **A week** is six weekdays (Days 1 to 6), each played alone in about 8 to 12 minutes, then a live Gathering on Day 7, played together. A day opens at 5:00am party time.',
@@ -311,8 +305,9 @@ w(
   '- **The Gathering:** the Approach (a group vote, one friend rolls), the Battle (everyone fights their own enemy at once), Notice and [LOOK CLOSER], the United Effort (one shared job, turns), the Lore Reveal with Match and Ask, the Twist, the Cliffhanger.',
   '- **Each new day opens with "the road so far":** a short recap of yesterday (and of any day a friend missed).'
 );
+const RULES = out.splice(0);
 
-for (let week = 1; week <= 6; week++) {
+function playWeek(week: number) {
   const ep = EPISODE_NUMBERS.find((e) => e.week === week)!;
   w(`# Week ${week}: ${ep.title}`);
   w(gameplay(`This week: weekday DC ${ep.weekdayDC}; weekday enemy DEF ${ep.wDef}, ATK ${ep.wAtk}; the Gathering calls on ${ep.ueAttr}. The week's question at the fire: "${WEEK_QUESTIONS[week]}"`));
@@ -337,10 +332,24 @@ for (let week = 1; week <= 6; week++) {
     campfire(week, day);
   }
 }
-w('# The end of the season', gameplay('Each friend gets a season summary, ending: "Your Seeker\'s story continues." Garrick\'s Recap unlocks: every line he said, and what it meant (see after-the-finale.md).'));
 
+const PARTS: [number, number][] = [[1, 2], [3, 4], [5, 6]];
 fs.mkdirSync('docs/playthrough', { recursive: true });
-fs.writeFileSync('docs/playthrough/season-playthrough.md', out.join('\n').replace(/\n{3,}/g, '\n\n'));
+for (const [i, [from, to]] of PARTS.entries()) {
+  out.length = 0;
+  w(
+    `# Tales of the Dark Moon: the season as a player plays it, part ${i + 1} of 3 (Weeks ${from} and ${to})`,
+    `Weeks ${from} and ${to}, Day 1 to Day 7, in playing order. Generated from the game's own data by \`scripts/gen-playthrough.ts\` (` +
+      new Date().toISOString().slice(0, 10) +
+      '). **Do not publish: it holds the season\'s story.**',
+    '**How to read it.** Quoted text (`>`) is exactly what the player reads. Lines in *⚙ italics* describe the gameplay: what the screen offers, the rule, the numbers. ' +
+      'Where the story branches, every branch is given, each labelled. The party is a sample of four: you, Mei, Dev and Arjun (the game fills in the real friends\' names and the party\'s size).'
+  );
+  out.push(...RULES);
+  for (let week = from; week <= to; week++) playWeek(week);
+  if (to === 6) w('# The end of the season', gameplay('Each friend gets a season summary, ending: "Your Seeker\'s story continues." Garrick\'s Recap unlocks: every line he said, and what it meant (see after-the-finale.md).'));
+  fs.writeFileSync(`docs/playthrough/season-part-${i + 1}-weeks-${from}-${to}.md`, out.join('\n').replace(/\n{3,}/g, '\n\n'));
+}
 
 // ---- After the finale: the secret and Garrick's Recap ----
 const after: string[] = [
@@ -359,4 +368,4 @@ for (const wk of GARRICK_RECAP) {
   after.push('');
 }
 fs.writeFileSync('docs/playthrough/after-the-finale.md', after.join('\n'));
-console.log('wrote docs/playthrough/season-playthrough.md and after-the-finale.md');
+console.log('wrote docs/playthrough/season-part-1..3 and after-the-finale.md');
