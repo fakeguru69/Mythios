@@ -1,6 +1,7 @@
 -- The story audit's six fixes (17 Oct, Fake Guru: "Audit the new storyline"): three harder-card lines made to match
 -- the story before them (W2D1, W6D3, W6D6), one made less vague (W3D2), two loss lines tidied (W4D2, W4D5).
--- NOT YET APPLIED LIVE: the apply came back cancelled; waiting on Fake Guru. Checked on the local copy.
+-- Applied live 17 Oct (Fake Guru: "go with your suggestion") through execute_sql in an equivalent form, one row at a time,
+-- as apply_migration came back cancelled; each row md5-checked against the local copy.
 update public.chapters set script = jsonb_set(script, '{steps,12,harderIf,line}', $p$"**Two harder.** Two days on, the mine still shows on every one of you: the scrapes, the stiff way you walk, the look of people who lost something in the dark. You are exactly the kind of trouble he wants no part of."$p$::jsonb) where series_id = 'dark-moon' and season_number = 1 and week = 2 and day = 1;
 update public.chapters set script = jsonb_set(script, '{steps,2,harderIf,line}', $p$"**Two harder.** Since the night under the hill, somebody has been down this street ahead of you with a fresh warning, and nobody in Ashcombe is quick to open a door."$p$::jsonb) where series_id = 'dark-moon' and season_number = 1 and week = 3 and day = 2;
 update public.chapters set script = jsonb_set(script, '{steps,4,text}', $p$"Quick as it was, one of them has had you face down in the ford for the worst of it. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon."$p$::jsonb) where series_id = 'dark-moon' and season_number = 1 and week = 4 and day = 2;

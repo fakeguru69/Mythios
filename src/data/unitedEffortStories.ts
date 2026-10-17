@@ -7,6 +7,9 @@ export interface UnitedEffortStory {
   fail: Record<0 | 1 | 2 | 3, string[]>;
   /** Said once each, after the second, fourth and sixth turns. */
   between: string[];
+  /** Gathering 1 only: on the turn of the friend in the drop (bands 1 to 3), in order, never twice. */
+  selfSuccess?: string[];
+  selfFail?: string[];
 }
 
 export const UNITED_EFFORT_STORIES: Record<number, UnitedEffortStory> = {
@@ -49,6 +52,17 @@ export const UNITED_EFFORT_STORIES: Record<number, UnitedEffortStory> = {
       "Somewhere behind you, out in the air, a counting song is still going.",
       "Below Dev's boots, the river goes on saying the same thing.",
       "For a while now there has been no sound but breathing, and wood."
+    ],
+    "selfSuccess": [
+      "Dev gets an elbow onto sounder wood, then the other, and comes up a hand's breadth unaided.",
+      "Somewhere down in the dark, Dev finds a crossbeam with one boot, and pushes. The boards groan. Dev rises with them.",
+      "Inch by inch, Dev works a knee up over the timber's edge, and this time keeps it there.",
+      "Dev hauls on a beam until the knuckles go white, and the hole gives up another hand's breadth."
+    ],
+    "selfFail": [
+      "Dev reaches for a better hold, and the board meant to give it snaps off clean and goes spinning down into the dark.",
+      "Dev tries to lever up on one arm, and the arm will not take it. The boards close in again, tighter than before.",
+      "A heave that should have worked costs Dev the skin from wrist to elbow, and gains nothing at all."
     ]
   },
   "2": {
