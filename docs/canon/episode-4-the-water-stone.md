@@ -169,6 +169,9 @@
 *If the player won, one line more:*
 > The one you put down first looks up at you out of the water and says he is sorry. He seems to mean it.
 
+*If the player loses, one line more:*
+> Not before one of them has had you face down in the ford, though. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon.
+
 > Low in the stone of the old ford, where the water runs over it, sits a carved housing.
 
 `[CLOSE YOUR HAND ON IT]`
@@ -501,6 +504,9 @@
 *If the player won, one line more:*
 > One of his oars is still in your hands. He let go of it sooner than be taken.
 
+*If the player loses, one line more:*
+> While it lasted he had the better of you. Your forearm aches where the oar came down across it, and the fog has found its way into your wet sleeves.
+
 `[SEARCH IT]`
 
 > Two pairs of oar-places, worn bright. A lamp bracket. Stern boards still wet.
@@ -798,16 +804,16 @@
 | `[WHO LEADS YOU?]` | *"One whose face I've never seen."* |
 | `[IS HE HERE?]` | *"I don't know. I've never seen his face."* |
 | `[DO YOU KNOW THIS MAN?]` *(of Garrick)* | *"No."* |
-| `[THE OTHERS YOU TOOK, BEFORE]` | *"Most went home."* Pressed on the charcoal woman's nephew: *"Him we lost."* *"Not by our choosing."* |
+| `[THE OTHERS YOU TOOK, BEFORE]` | *"Most went home."* When you name the charcoal woman's nephew, he is quiet for a long moment. *"Him we lost."* And then, lower: *"Not by our choosing."* |
 | **Added when the pen is found** | |
 | `[WHOSE IS THIS?]` | *"The scholar's."* |
 | `[IS SHE DEAD?]` | *"Yes."* |
-| `[DID YOUR PEOPLE KILL HER?]` | *"Yes."* Asked why: silence. |
+| `[DID YOUR PEOPLE KILL HER?]` | *"Yes."* When you ask him why, he looks down at the water and says nothing more. |
 | `[DID YOU KILL HER?]` | *"No."* |
 | `[WHERE DID YOU GET IT?]` | *"With her pages."* |
 | **Added when the torn page is read** | |
 | `[HOW DOES THE PAGE END?]` | *"I have never seen it whole."* |
-| `[WILL THE FIFTH STOP HIM?]` | Silence. |
+| `[WILL THE FIFTH STOP HIM?]` | He opens his mouth, and closes it again, and says nothing. |
 | `[WHO GAVE YOU THIS PAGE?]` | *"It was given me to carry."* |
 
 `[PLANT]` *(Since Gathering 3 the party knows his kind can't lie. His silence at the socket is an answer they can't read yet.)*

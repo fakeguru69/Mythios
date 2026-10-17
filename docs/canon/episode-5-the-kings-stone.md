@@ -69,6 +69,7 @@
 > It said something once.
 > **Craft** · charcoal and a sheet from Meira's notebook: take a rubbing, like the one you found on the forest road · `[ROLL]`
 > **Intellect** · read the old hand by the shapes it left, with the light held low across the stone · `[ROLL]`
+> *If the United Effort was lost at Gathering 4:* **Two harder.** Your hands still ache from the water-gate's pin, and the cold off the lake gets into them.
 > REWARD: +500g
 > IF YOU FAIL: the stone keeps its word
 
@@ -209,6 +210,9 @@
 
 *If the player won, one line more:*
 > The one you beat is the last to go. It looks back at you from the edge of the dark and wags its tail, once, as if asking what it has done.
+
+*If the player loses, one line more:*
+> There is a row of tooth-marks through your sleeve, and the skin beneath is bruised but not broken. The child under the cart watches you rub at it, and says nothing.
 
 > In the morning the family goes south. Before the cart moves off, Garrick puts a heel of bread from his own pack into the child's hand.
 >

@@ -88,6 +88,8 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Pick one: Craft (charcoal and a sheet from Meira's notebook: take a rubbing, like the one you found on the forest road), or Intellect (read the old hand by the shapes it left, with the light held low across the stone). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: the stone keeps its word, and −150g. An Attribute Relic adds +4.*
 
+*⚙ If the party lost Gathering 4's United Effort, the card is 2 harder, and says: **Two harder.** Your hands still ache from the water-gate's pin, and the cold off the lake gets into them.*
+
 *⚙ If you passed the Challenge:*
 
 > One word comes up, in the old hand, letter by letter.
@@ -336,6 +338,10 @@ Clue found, "Every window lit":
 *⚙ If you won the fight:*
 
 > The one you beat is the last to go. It looks back at you from the edge of the dark and wags its tail, once, as if asking what it has done.
+
+*⚙ If you lost the fight:*
+
+> There is a row of tooth-marks through your sleeve, and the skin beneath is bruised but not broken. The child under the cart watches you rub at it, and says nothing.
 
 *⚙ Either way, every player reads this:*
 
@@ -1979,6 +1985,8 @@ Clue found, "Bowls never filled":
 
 *⚙ Pick one: Agility (the fountain's shadow, then the open ground, fast), or Charm (keep everyone calm and still while the lantern goes by). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: the lantern swings your way, and you lose an hour flat against the stone, and −150g. An Attribute Relic adds +4.*
 
+*⚙ If 6-2:challenge-failed, the card is 1 harder, and says: **One harder.** The roof that came down yesterday was heard across the city, and tonight the square's watch is doubled.*
+
 *⚙ If you passed the Challenge:*
 
 > You are across, and in the lee of the hall's great wall, unseen.
@@ -2182,6 +2190,10 @@ Clue found, "Warm low down":
 
 > Yours was the blow that did it. The helm rolls as far as your foot and stops there, facing the hall.
 
+*⚙ If you lost the fight:*
+
+> It had you against the rock more than once before the end. Your shoulder is stiff, and your ears are still ringing with the iron of it.
+
 *⚙ Either way, every player reads this:*
 
 > You go in sideways, one at a time, with the lamp held out ahead. The rock presses cold against your back and your chest. Deep inside, where the last of the grey daylight gives out, a housing is set into the stone.
@@ -2356,6 +2368,8 @@ Clue found, "Louder here":
 > Thousands of moons. One of them is not like the others.
 
 *⚙ Pick one: Craft (find it by the cut of the chisel), or Might (climb the watchers' ledges to the highest rows, and read them from there). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: hours of faded marks by lamplight, in a tower the whole city can see, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 6-3:challenge-failed, the card is 1 harder, and says: **One harder.** The two men the watchman called up have not gone back to their beds. They walk the streets below the tower now.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2553,9 +2567,10 @@ Clue found, "Cut in a hurry":
 **CHALLENGE: THE STREET**
 
 > There is no way round. There is only across.
-> The hardest yet.
 
 *⚙ Pick one: Agility (through a gap in the ranks, at their pace), or Might (go in where the ranks are thinnest, and take the knocks). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g · **and you strike first**, and the Attribute grows. Fail: one of them sees you, and **it strikes first**, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 6-5:challenge-failed, the card is 1 harder, and says: **One harder.** Someone saw your lamp in the tower last night, and tonight more eyes are on the street.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2592,6 +2607,10 @@ Clue found, "Cut in a hurry":
 *⚙ If you won the fight:*
 
 > You are still on your feet, and it is not. For the length of a breath, not one of the others turns to look.
+
+*⚙ If you lost the fight:*
+
+> It is down, but so are you, on one knee in the dust, and the cold of its grip is still round your wrist like a cuff.
 
 *⚙ Either way, every player reads this:*
 

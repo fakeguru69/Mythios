@@ -929,8 +929,8 @@
 
 | Question | His answer |
 |---|---|
-| `[DO YOU KNOW HIS NAME?]` | *"Malakor."* Asked how: *"My grandmother taught me that name."* |
-| `[HAVE YOU HEARD OF THIS ORDER?]` | *"I know the name."* Asked how: *"My family's been in these hills longer than the roads have."* |
+| `[DO YOU KNOW HIS NAME?]` | *"Malakor."* And when you ask him how he knows it: *"My grandmother taught me that name."* |
+| `[HAVE YOU HEARD OF THIS ORDER?]` | *"I know the name."* And when you ask him how: *"My family's been in these hills longer than the roads have."* |
 | `[DO YOU KNOW WHAT THE THING WAS?]` | *"I know what that page says."* |
 | `[WHY DON'T THEY TAKE US? WE'RE MARKED TOO]` | *"Look at the ledger. Every name in it is a child's."* |
 

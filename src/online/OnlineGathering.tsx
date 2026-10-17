@@ -860,9 +860,10 @@ function UnitedEffortCard({ e, busy, go, wait, held, shell, cardHead, rollLine }
   );
 }
 
-// The party page's line for this week's Gathering: when it is, the host's time pin, and the way in on Day 7.
+// The party page's line for this week's Gathering: when it is, the Attribute it calls on (from Day 5), the host's time pin,
+// and the way in on Day 7.
 export function GatheringCard({ partyId, isHost, timeZone, onOpen }: { partyId: string; isHost: boolean; timeZone: string; onOpen: () => void }) {
-  const [info, setInfo] = useState<{ week: number; day: number; opensAt: string; startedAt: string | null; endedAt: string | null; open: boolean; tonight: string | null } | null>(null);
+  const [info, setInfo] = useState<{ week: number; day: number; opensAt: string; startedAt: string | null; endedAt: string | null; open: boolean; tonight: string | null; callsOn: string | null } | null>(null);
   const [editing, setEditing] = useState(false);
   const [time, setTime] = useState('20:00');
   const [error, setError] = useState<string | null>(null);
@@ -882,6 +883,12 @@ export function GatheringCard({ partyId, isHost, timeZone, onOpen }: { partyId: 
         <p className="text-[14px] italic text-[#B7A9CC]">{tonightLine(info.tonight, info.opensAt, timeZone)}</p>
       ) : (
         <p className="text-[14px]">Day 7 at {clockTime(info.opensAt, timeZone)}.</p>
+      )}
+      {/* From Day 5 (gameplay verdict C3): the night's Attribute, so friends can give a matching Relic in time. */}
+      {!info.open && info.callsOn && (
+        <p className="text-[14px]" data-calls-on>
+          The night will call on <span className="font-semibold text-[#E5C158]">{info.callsOn}</span>. A {info.callsOn} Relic adds +4 to one roll of it.
+        </p>
       )}
       {info.open && (
         <button className={goldButton} onClick={onOpen}>

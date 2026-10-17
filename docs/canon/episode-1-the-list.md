@@ -330,6 +330,9 @@
 *If the player won, one line more:*
 > You had him by the collar for a moment, close enough to smell him. Woodsmoke, and lamp oil.
 
+*If the player loses, one line more:*
+> You are still sitting in the crushed bracken when Jo gets back, with the wind knocked clean out of you and a bruise coming up along your ribs that you will feel for days.
+
 > You go back to the rock.
 >
 > Somebody takes the burned scrap from the forest road out of a pocket, and holds it against the marking.
@@ -404,6 +407,12 @@
 
 `[LOOK FOR FOOTPRINTS]` `[KNOCK NEXT DOOR]`
 
+*Look for footprints:*
+> You crouch by the bucket. The mud there has been trodden by every boot in Fenmark, but over the top of it all runs a line of small prints, quick and light, too short in the stride for any grown man. They go off between the sheds behind the lane, and there you lose them.
+
+*Knock next door:*
+> The door beside the well opens the width of a hand before your knuckles have finished on it. An eye, a grey braid, a thin hand on the latch. She does not speak, and she does not shut it. Her gaze goes once, quickly, down the lane and back to you.
+
 **Challenge card**
 > **FIND WHO LEFT IT**
 > Somebody in this village watched something, and is hiding from you. Find them before the whole street knows you are looking.
@@ -427,6 +436,15 @@
 `[SHOW HIM THE LIST]` `[ASK WHO WAS TAKEN]` `[SAY NOTHING. WAIT.]`
 
 *Each reply opens him a different way; all three arrive at the same account.*
+
+*Show him the list:*
+> You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go.
+
+*Ask who was taken:*
+> You ask him straight out who they took. His chin comes up at that. For three days Fenmark has told him only to keep quiet, and nobody has asked him anything at all.
+
+*Say nothing:*
+> You say nothing. You lean on the cold lip of the well and let the quiet be, as if you had the whole afternoon to spend on it. The boy watches you do it. He had braced himself for questions.
 
 > For a while he says nothing at all. He looks once down the empty lane. Then it comes out low and fast.
 >
@@ -459,6 +477,15 @@
 > The boy is behind Jo. One of the men looks at him, and he looks at the ground.
 
 `[STAND WHERE YOU ARE]` `[STEP BACK, HANDS OPEN]` `[PUT YOURSELF IN FRONT OF THE BOY]`
+
+*Stand where you are:*
+> You stay exactly where you are, your feet set on the wet cobbles. The two younger men had expected you to give ground. They glance at the elder, and do not quite know what to do with their hands.
+
+*Step back, hands open:*
+> You take one slow step back and let them see your empty hands. The nearer of the two young men lets out a breath, and some of the stiffness goes out of the street.
+
+*Put yourself in front of the boy:*
+> You step across, between the men and the boy. It is a small movement, and every eye in the lane follows it. The elder's face changes. For a moment he looks less like a man guarding his village than a man ashamed of it.
 
 > Nobody draws. Nobody needs to. The message is plain enough.
 >
@@ -549,6 +576,9 @@
 
 *If the player won, one line more:*
 > He has left his knife behind, stuck in the shutter where he was working it. A plain kitchen knife. There is nothing curved about it.
+
+*If the player loses, one line more:*
+> Your shoulder is against the shed wall where he threw you, and the boards are rough and cold through your shirt. It is a while before your hands stop shaking.
 
 > A twig goes.
 >
@@ -713,6 +743,12 @@
 
 `[READ IT OUT]` `[LET DEV READ IT]`
 
+*Read it out:*
+> You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark.
+
+*Let Dev read it:*
+> You turn the map round and slide it across to Dev, who reads it the way some people read a letter from home: slowly, frowning a little, as if the words might change if they were hurried.
+
 > It is read out, twice, slowly, so that everybody has it. The room is loud enough that you all lean in close to hear.
 >
 > Across the room a courier who came in for a bed settles his bill without taking one. He is gone within the hour.
@@ -848,6 +884,8 @@
 > A rope is no use. Dev's two arms are all that is holding Dev up, and neither can let go to catch one.
 >
 > One of you can go out flat, on your belly, with the rest standing on the stone at the gallery's edge and holding your ankles, and haul. An arm has one haul like that in it. Then the next of you.
+>
+> And Dev, jammed in the boards, can do more than hang there. Every elbow got onto sounder wood, every hand's breadth won from below, counts as much as a haul from above.
 >
 > **This is a United Effort. One job, and you take it in turns.** *(first time only; not said to a friend alone)*
 

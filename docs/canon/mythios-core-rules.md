@@ -323,7 +323,7 @@ Inside a Gathering Battle a loss reads `DEFEATED. You are down for this Battle. 
 - One fragment arrives each weekday. **It is in every friend's Seeker Chest from the moment the day opens,** whether or not they have read the beat.
 - **The fragment is its own puzzle.** It shows its own text with two words missing and their letters jumbled. The words are listed in `mythios-fragment-registry.md`.
 - Each missing word is its own lock, worth **25g,** and shows the solver's name once filled.
-- **Until the fragment's own day ends, a player may fill only one of its two words.** After that, anyone may fill what is left, and it still pays 25g a word. If two friends send the same word at the same moment, the first to arrive gets it.
+- **Until the fragment's own day ends, a player may fill only one of its two words.** After that, anyone may fill what is left, and it still pays 25g a word. If two friends send the same word at the same moment, the first to arrive gets it. *(Kept 17 Oct 2026, Fake Guru: "C". Each friend solving their own Chest was built and turned back the same day.)*
 - A friend who finds a fragment already open can still unjumble its words for fun, for no gold and no credit.
 - **Solving happens inside the Seeker Chest:** tap the letters in order, or type the word. A wrong try costs nothing.
 - When a fragment opens, its words are open for the whole party, and a line goes to the party chat.
@@ -514,6 +514,7 @@ If more are due than the limit allows, this is the order of importance, with the
 | 3 | The day opens (or 8:00am, if later) | "Day 3: The Mill. Your chapter is ready, and you've found another Seeker Fragment." |
 | 4 | A friend gives you a Relic | "TV gave you a Charm Relic." |
 | 5 | Day 4 | "When can you make the Gathering? Vote in the party chat." |
+| 5a | Day 5 (the day's own morning line) | "Week 1, Day 5 is open. The Gathering on Day 7 will call on Might." |
 | 6 | End of Day 5 | "The Gathering is set: Day 7, 8:00pm." |
 | 7 | End of Day 6 | "The map is complete." |
 | 8 | Evening, once a day | "Today: TV and Mei reached the mill. One word of the fragment is still open." |
@@ -563,6 +564,9 @@ Every simulated number in §12 is a prediction. Log these, per player:
 - At the end of Day 5 the host picks the time and pins it. If the host does not, the app decides: the slot most friends can make, or last week's time if nobody voted.
 - The host can still change it until the lobby opens; everyone is told of the change. The Gathering stays on Day 7.
 - Everyone gets a reminder an hour before.
+
+**From Day 5: what the night will call on** (17 Oct 2026, gameplay verdict C3)
+- From Day 5 the party page names the Attribute the Gathering will call on ("The night will call on Might."), and Day 5's morning notification ends with it ("The Gathering on Day 7 will call on Might."). Friends then have two days to give a matching Relic to whoever will roll it.
 
 **Day 7 before the Gathering**
 - When the day opens, each thread gets a short "Tonight" message: where the party stands, when the Gathering starts, and which Attribute tonight's United Effort will call on. For example: *"Tonight: the Gathering, 8:00pm. The map points under the hill. Tonight calls on Intellect."* MYTHIOS writes it from Day 6's Pull.
@@ -874,7 +878,7 @@ On 8 Oct 2026 Fake Guru (formerly TV / TVMen) approved the following changes tha
 1. **Closed 15 Oct 2026 (numbers pass, Fake Guru): a failed Challenge costs 150g, as §12 says.** Was: **A failed Challenge pays no gold** (build) against §12's −150g. Decide in the numbers pass which stands; the build's 150g Challenge pay does not match §12's +500g and cannot stand with the 12,400g gear curve.
 2. ~~**The Detour fight** after a failed Challenge on a day with no fight: a short, easier fight so a failure has a consequence.~~ **Dropped 15 Oct 2026 (Fake Guru):** canon's fail already costs 150g and shows a worse scene; the extra fight broke scenes (a "lookout" inside the inn on W1D2). Missed clues are now sent to the Campfire instead (§3). Pay not set (build used 150g win / 75g loss).
 3. ~~**Ambush and first-strike numbers** (build: −15 HP on an ambush, +2 weapon on a strike, a 70 HP Fan Out enemy).~~ **Dropped 15 Oct 2026 (Fake Guru):** the days themselves say who strikes first (a choice, or the day's Challenge), as the episode files write it; the +2 / −15 counted that Challenge twice. (The Fan Out enemy goes with the Fan Out redesign.)
-4. *(Gold closed 15 Oct 2026, numbers pass: a Fan Out lead pays no gold; the clue and the hint are the reward.)* **Fan Out** (a solo choice after the day's main beat: Challenge, Fight or Head to the Campfire). It reopens part of the optional play retired on 5 Oct, so **"one paid beat a day" no longer holds as written**. Head to the Campfire counts as a finished day; the other two are optional depth. A win gives a first-letter hint to the day's Seeker Fragment.
+4. *(Gold closed 15 Oct 2026, numbers pass: a Fan Out lead pays no gold; the clue and the hint are the reward.)* **Fan Out** (a solo choice after the day's main beat: Challenge, Fight or Head to the Campfire). It reopens part of the optional play retired on 5 Oct, so **"one paid beat a day" no longer holds as written**. Head to the Campfire counts as a finished day; the other two are optional depth. A win gives a first-letter hint to the day's Seeker Fragment, and (17 Oct 2026, gameplay verdict C4) shows one more lead's clue on the way back: one nobody has taken yet, or the next one if all are taken. It goes on the board as "Seen on the way back by …".
 5. **Riddle and Fragment gold.** Closed 15 Oct 2026 (numbers pass, Fake Guru): riddles pay no gold; a lock word pays 25g. The hidden roadside cache (+25g) is retired.
 6. ~~**W6D3's two small bonuses** (+1 Agility on THE WATCH, +1 Charm on THE BOARD).~~ **Retired 15 Oct 2026** (numbers pass, Fake Guru): no canon source, and never in play.
 7. **The map bonus** (build): +2 to the Gathering's Approach roll when the party has solved all six of that week's fragment words. Kept 14 Oct 2026 (Fake Guru, on Claude's suggestion: it gives the fragment puzzle a real reward). Closed 15 Oct 2026 (numbers pass, Fake Guru): +2 stands.

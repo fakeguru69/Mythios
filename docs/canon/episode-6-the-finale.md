@@ -274,6 +274,7 @@
 > Sixty paces to the hall's wall, past the fire.
 > **Agility** · the fountain's shadow, then the open ground, fast · `[ROLL]`
 > **Charm** · keep everyone calm and still while the lantern goes by · `[ROLL]`
+> *If you failed the Challenge on Day 2:* **One harder.** The roof that came down yesterday was heard across the city, and tonight the square's watch is doubled.
 > REWARD: +500g
 > IF YOU FAIL: the lantern swings your way, and you lose an hour flat against the stone
 
@@ -384,6 +385,9 @@
 *If the player won, one line more:*
 > Yours was the blow that did it. The helm rolls as far as your foot and stops there, facing the hall.
 
+*If the player loses, one line more:*
+> It had you against the rock more than once before the end. Your shoulder is stiff, and your ears are still ringing with the iron of it.
+
 > You go in sideways, one at a time, with the lamp held out ahead. The rock presses cold against your back and your chest. Deep inside, where the last of the grey daylight gives out, a housing is set into the stone.
 
 `[LIFT THE LID]`
@@ -467,6 +471,7 @@
 > Thousands of moons. One of them is not like the others.
 > **Craft** · find it by the cut of the chisel · `[ROLL]`
 > **Might** · climb the watchers' ledges to the highest rows, and read them from there · `[ROLL]`
+> *If you failed the Challenge on Day 3:* **One harder.** The two men the watchman called up have not gone back to their beds. They walk the streets below the tower now.
 > REWARD: +500g
 > IF YOU FAIL: hours of faded marks by lamplight, in a tower the whole city can see
 
@@ -571,7 +576,7 @@
 > There is no way round. There is only across.
 > **Agility** · through a gap in the ranks, at their pace · `[ROLL]`
 > **Might** · go in where the ranks are thinnest, and take the knocks · `[ROLL]`
-> The hardest yet.
+> *If you failed the Challenge on Day 5:* **One harder.** Someone saw your lamp in the tower last night, and tonight more eyes are on the street.
 > REWARD: +500g · **and you strike first**
 > IF YOU FAIL: one of them sees you, and **it strikes first**
 
@@ -596,6 +601,9 @@
 
 *If the player won, one line more:*
 > You are still on your feet, and it is not. For the length of a breath, not one of the others turns to look.
+
+*If the player loses, one line more:*
+> It is down, but so are you, on one knee in the dust, and the cold of its grip is still round your wrist like a cuff.
 
 > Deep in the crack, at the dead end beside the scored moon, the last fragment is waiting in a cleft at the foot of the blank rock.
 
@@ -649,7 +657,7 @@
 **Designer's notes**
 - **Played beats:** a notice line, the Challenge, which decides how the fight opens; the fight; two acts; the stroke. One roll.
 - **The party:** the friends cross with you; nobody is named today.
-- **Changed from the current script:** today there is no play at all. Now the street is crossed on the hardest roll of the season, and one soldier turns (approved fact 25).
+- **Changed from the current script:** today there is no play at all. Now the street is crossed on the season's last weekday roll, and one soldier turns (approved fact 25). Its card no longer says "The hardest yet.": its DC is the same as the days before it, unless a failed Day 5 makes it one harder (17 Oct).
 - **The last fragment is not quoted** (lock words *ours*, *finish*). Gathering 6 turns on it.
 - **The cup is left on the sill of the wall room.** Gathering 6 has Garrick take "the one that sat on the sill of the wall room last night" from his coat.
 - **The last stroke** is struck at the Gathering, on the threshold.

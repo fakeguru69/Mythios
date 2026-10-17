@@ -12,21 +12,21 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W1D1 | 663 | 9 | 0 | 0 | 168w | 3.6 min | 130w ⚔FIGHT 72w ▸tap 136w 🎲CHALLENGE 157w ▸tap 168w |
 | W1D2 | 947 | 8 | 0 | 0 | 227w | 4.7 min | 227w ▸tap 188w 🎲CHALLENGE 45w ?PRESS ON 77w ▸tap 85w ▸tap 21w ▸tap 126w ▸tap 178w |
 | W1D3 | 667 | 7 | 1 | 0 | 206w | 3.5 min | 206w ◆CHOICE 78w ⚔FIGHT 198w ▸tap 67w ▸tap 118w |
-| W1D4 | 795 | 6 | 0 | 3 | 302w | 3.9 min | 152w ◇flavour 21w 🎲CHALLENGE 78w ◇flavour 168w ▸tap 74w ◇flavour 302w |
+| W1D4 | 936 | 6 | 3 | 0 | 341w | 4.5 min | 152w ◆CHOICE 76w 🎲CHALLENGE 78w ◆CHOICE 215w ▸tap 74w ◆CHOICE 341w |
 | W1D5 | 658 | 7 | 2 | 0 | 255w | 3.5 min | 80w ◆CHOICE 73w ⚔FIGHT 113w ◆CHOICE 255w ▸tap 137w |
-| W1D6 | 664 | 7 | 0 | 1 | 185w | 3.4 min | 132w 🎲CHALLENGE 46w ?PRESS ON 38w ▸tap 72w ▸tap 185w ▸tap 41w ◇flavour 150w |
-| W2D1 | 772 | 6 | 0 | 1 | 193w | 3.8 min | 32w ▸tap 88w ◇flavour 129w ▸tap 150w 🎲CHALLENGE 193w ▸tap 180w |
+| W1D6 | 697 | 7 | 1 | 0 | 185w | 3.5 min | 132w 🎲CHALLENGE 46w ?PRESS ON 38w ▸tap 72w ▸tap 185w ▸tap 41w ◆CHOICE 183w |
+| W2D1 | 810 | 6 | 1 | 0 | 193w | 3.9 min | 32w ▸tap 88w ◆CHOICE 167w ▸tap 150w 🎲CHALLENGE 193w ▸tap 180w |
 | W2D2 | 549 | 5 | 0 | 0 | 185w | 2.7 min | 64w ▸tap 185w 🎲CHALLENGE 127w ?PRESS ON 15w ▸tap 158w |
 | W2D3 | 499 | 8 | 0 | 0 | 143w | 2.9 min | 117w 🎲CHALLENGE 99w ⚔FIGHT 140w ▸tap 143w |
 | W2D4 | 449 | 3 | 0 | 0 | 223w | 2.2 min | 102w 🎲CHALLENGE 223w ▸tap 124w |
 | W2D5 | 513 | 7 | 0 | 0 | 187w | 2.9 min | 36w ▸tap 187w ⚔FIGHT 169w ▸tap 121w |
-| W2D6 | 494 | 7 | 0 | 1 | 206w | 2.6 min | 74w 🎲CHALLENGE 41w ?PRESS ON 30w ▸tap 13w ▸tap 99w ◇flavour 31w ▸tap 206w |
+| W2D6 | 520 | 7 | 1 | 0 | 206w | 2.7 min | 74w 🎲CHALLENGE 41w ?PRESS ON 30w ▸tap 13w ▸tap 99w ◆CHOICE 57w ▸tap 206w |
 | W3D1 | 682 | 9 | 0 | 0 | 215w | 3.7 min | 40w ▸tap 155w ▸tap 86w ⚔FIGHT 86w ▸tap 215w ▸tap 100w |
 | W3D2 | 778 | 6 | 0 | 0 | 409w | 3.8 min | 157w 🎲CHALLENGE 51w ▸tap 409w ▸tap 161w |
 | W3D3 | 599 | 6 | 0 | 0 | 157w | 3.0 min | 114w 🎲CHALLENGE 157w ▸tap 73w ▸tap 43w ?PRESS ON 126w ▸tap 86w |
 | W3D4 | 582 | 5 | 1 | 0 | 228w | 2.9 min | 82w ▸tap 83w ◆CHOICE 43w 🎲CHALLENGE 146w ▸tap 228w |
 | W3D5 | 603 | 10 | 1 | 0 | 240w | 3.5 min | 70w ◆CHOICE 90w ⚔FIGHT 88w ▸tap 240w ▸tap 115w |
-| W3D6 | 509 | 6 | 0 | 1 | 192w | 2.6 min | 92w 🎲CHALLENGE 89w ▸tap 13w ▸tap 30w ▸tap 93w ◇flavour 192w |
+| W3D6 | 535 | 6 | 1 | 0 | 218w | 2.7 min | 92w 🎲CHALLENGE 89w ▸tap 13w ▸tap 30w ▸tap 93w ◆CHOICE 218w |
 | W4D1 | 645 | 5 | 1 | 0 | 365w | 3.1 min | 88w ◆CHOICE 26w 🎲CHALLENGE 77w ?PRESS ON 89w ▸tap 365w |
 | W4D2 | 608 | 10 | 0 | 0 | 200w | 3.5 min | 76w ⚔FIGHT 91w ▸tap 45w ▸tap 75w 🎲CHALLENGE 121w ▸tap 200w |
 | W4D3 | 650 | 5 | 0 | 0 | 232w | 3.2 min | 232w ▸tap 145w 🎲CHALLENGE 106w ▸tap 167w |
@@ -44,9 +44,9 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W6D3 | 453 | 6 | 1 | 0 | 263w | 2.4 min | 41w ▸tap 43w ◆CHOICE 68w 🎲CHALLENGE 28w ?PRESS ON 10w ▸tap 263w |
 | W6D4 | 442 | 10 | 0 | 0 | 85w | 2.8 min | 65w ▸tap 84w ⚔FIGHT 83w ▸tap 73w ▸tap 52w ▸tap 85w |
 | W6D5 | 418 | 6 | 0 | 0 | 155w | 2.2 min | 155w 🎲CHALLENGE 41w ?PRESS ON 10w ▸tap 48w ▸tap 64w ▸tap 100w |
-| W6D6 | 537 | 11 | 0 | 0 | 169w | 3.3 min | 85w 🎲CHALLENGE 45w ⚔FIGHT 69w ▸tap 13w ▸tap 169w ▸tap 156w |
+| W6D6 | 534 | 11 | 0 | 0 | 169w | 3.3 min | 82w 🎲CHALLENGE 45w ⚔FIGHT 69w ▸tap 13w ▸tap 169w ▸tap 156w |
 
-**Averages over the 36 chapters:** 577 words, 6.5 taps, about 3.0 minutes for the chapter alone (the last light and the Campfire come after).
+**Averages over the 36 chapters:** 584 words, 6.5 taps, about 3.0 minutes for the chapter alone (the last light and the Campfire come after).
 
 ## The evening (every weekday after the chapter)
 The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or go straight to the fire. Then the Campfire, one screen.
@@ -95,7 +95,7 @@ Measured on the main path (Approach passed, United Effort won, the first option 
 
 | Week | Story words | Taps to move on | Group decisions | Rolls | Match | Ask questions | Table question | Read time |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 879 | 1 | 1 | 3 (+ the Battle) | 0 | 0 | 1 | 4 min reading |
+| 1 | 911 | 1 | 1 | 3 (+ the Battle) | 0 | 0 | 1 | 4 min reading |
 | 2 | 2231 | 7 | 1 | 3 (+ the Battle) | 2 | 4 | 1 | 10 min reading |
 | 3 | 1452 | 8 | 1 | 3 (+ the Battle) | 2 | 16 | 0 | 6 min reading |
 | 4 | 1731 | 5 | 1 | 3 (+ the Battle) | 2 | 13 | 1 | 8 min reading |

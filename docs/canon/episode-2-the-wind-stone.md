@@ -50,6 +50,15 @@
 
 *Each opens her a different way; all three arrive at the same thing.*
 
+*Crouch down to her:*
+> You crouch down in the road until your eyes are level with hers, and the mud soaks cold through your knee. She studies your face for a long moment, very seriously, the way children study a stranger's dog.
+
+*Ask what the song is:*
+> You ask her what the song is. She stops humming at once, as if she had been caught at something. *"It's a counting one,"* she tells you, as though anybody ought to know that.
+
+*Say nothing:*
+> You say nothing. You only wait with her in the road, while the carter shifts on his seat and the horse blows. After a while her good hand finds your sleeve, and holds on to a fold of it.
+
 > *"I wasn't asleep,"* she says. *"I was counting."*
 >
 > *"One of them said, 'The mill boy next.' And the other one said to hush."*
@@ -85,6 +94,7 @@
 > He saw something on this road, and he has decided not to have seen it.
 > **Charm** · get him talking · `[ROLL]`
 > **Aim** · watch where his eyes keep going, and look there first · `[ROLL]`
+> *If the United Effort was lost at Gathering 1:* **Two harder.** You come down the road still grey with the mine's dust, and you look like the kind of trouble he wants no part of.
 > REWARD: +500g
 > IF YOU FAIL: he tells you to be on your way, and means it
 
@@ -501,6 +511,9 @@
 *If the player won, one line more:*
 > You hit him hard enough to wind him, and still he made no sound. You heard his teeth come together on it.
 
+*If the player loses, one line more:*
+> He gave as good as he got, and better. Your lip is split, you can taste iron, and the strip of coat is the only thing you took from him.
+
 > Before the dark takes him he stops, lifts a shuttered lamp, and opens it twice, toward the shaft.
 >
 > The hill knows you are still out here. Whatever is being made ready down there will not wait for you.
@@ -597,6 +610,12 @@
 > Jo has crawled up beside you at the lip to look. Whoever else is on watch along the hillside is too far off to pass a map to, and they have to have it too.
 
 `[READ IT OUT]` `[LET JO READ IT]`
+
+*Read it out:*
+> You keep your voice low and even, and give it line by line, the way you would give the road to a stranger at a crossroads.
+
+*Let Jo read it:*
+> You pass it to Jo, who tilts it to the starlight and reads it slowly, stopping at every turn of the way to be sure of it.
 
 > It is said aloud, twice, across the dark, so that everybody has it.
 >
@@ -937,8 +956,8 @@
 
 | Question | His answer |
 |---|---|
-| `[DO YOU KNOW HIS NAME?]` | *"Malakor."* Asked how: *"My grandmother taught me that name."* |
-| `[HAVE YOU HEARD OF THIS ORDER?]` | *"I know the name."* Asked how: *"My family's been in these hills longer than the roads have."* |
+| `[DO YOU KNOW HIS NAME?]` | *"Malakor."* And when you ask him how he knows it: *"My grandmother taught me that name."* |
+| `[HAVE YOU HEARD OF THIS ORDER?]` | *"I know the name."* And when you ask him how: *"My family's been in these hills longer than the roads have."* |
 | `[DO YOU KNOW WHAT THE THING WAS?]` | *"I know what that page says."* |
 | `[WHY DON'T THEY TAKE US? WE'RE MARKED TOO]` | *"Look at the ledger. Every name in it is a child's."* |
 

@@ -37,7 +37,7 @@ After the day's main beat, Garrick (or the narrator on W1D1) says the camp is se
 Or they go straight to the fire.
 
 - **One quick action, no fight.** A single Challenge in that lead's own canon verb ("Aim · follow the ruts until they turn"). One tap, using the same canon roll as everything else.
-- **The clue always comes back.** The roll only decides whether you also get the first-letter hint for the day's Fragment. Evidence is never gated on a roll (canon clue rule 7: "the story does not depend on it"). On a fail, the stored line says you found it late, in the dark, for example.
+- **The clue always comes back.** The roll only decides whether you also get the first-letter hint for the day's Fragment (and, from 17 Oct, one more lead's clue on the way back: gameplay verdict C4). Evidence is never gated on a roll (canon clue rule 7: "the story does not depend on it"). On a fail, the stored line says you found it late, in the dark, for example.
 - **Each lead is one stored clue.** Friends who pick the same lead find the same clue; the board shows it as one card with both names (canon §M).
 
 ### Why three leads works for 2 to 6 friends

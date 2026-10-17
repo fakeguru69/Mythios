@@ -1021,6 +1021,20 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                   {(fanOutLead.hintFor === 1 ? dayFragment.word1 : dayFragment.word2)[0].toUpperCase()}”.
                 </div>
               )}
+              {/* A pass also shows one more lead (gameplay verdict C4): online, one nobody has taken yet; here the next. */}
+              {fanOutRollOutcome.cleared && fanOutLeads.length > 1 && (() => {
+                const next = fanOutLeads[(fanOutLeads.findIndex((l) => l.id === fanOutLead.id) + 1) % fanOutLeads.length];
+                return (
+                  <div className="space-y-1" data-glimpse>
+                    <div className="text-[12.5px] font-sans text-[#B7A9CC]">On the way back, the last of the light shows you one more place.</div>
+                    <div className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8]">{placeLabel(next)}</div>
+                    <div className="p-2.5 rounded-lg bg-[#130B1F] border border-[#D4B876]/50 space-y-1">
+                      <div className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] uppercase">{next.clueTitle}</div>
+                      <ScriptText text={fill(next.clueText)} className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.45]" />
+                    </div>
+                  </div>
+                );
+              })()}
               {!isSoloW1D1 && (
                 <div className="text-[12px] font-sans text-[#B7A9CC]">It goes on the board at the fire.</div>
               )}
@@ -2035,7 +2049,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   }));
   const gatheringPartyIds = gatheringParty.map((f) => f.id);
   // Gathering 1: canon's "Dev" in the drop is the friend who fell in the Battle, or else the
-  // friend who finished it with the least HP. They are the one being hauled, so they don't roll.
+  // friend who finished it with the least HP. Since 17 Oct (gameplay verdict) they take their turns too, working
+  // themselves up from below, so nobody sits the United Effort out.
   const riskFriend = (() => {
     const fighters = (battle?.fighters || []).filter((f) => f.id !== 'YOU');
     if (!fighters.length) return gatheringParty.find((f) => f.id !== 'YOU') || gatheringParty[0];
@@ -2043,7 +2058,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     return gatheringParty.find((f) => f.id === pickF.id) || gatheringParty[0];
   })();
   const riskFriendName = riskFriend.name;
-  const ueRollerIds = currentWeek === 1 ? gatheringPartyIds.filter((id) => id !== riskFriend.id) : gatheringPartyIds;
+  const ueRollerIds = gatheringPartyIds;
   const partyName = (id: string) => gatheringParty.find((f) => f.id === id)?.name || id;
   const playerWeapon = GEAR_TABLE[weaponLevel]?.weapon || 14;
   const playerArmor = GEAR_TABLE[armorLevel]?.armor || 27;

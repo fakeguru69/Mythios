@@ -205,7 +205,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The way on is back across the gallery. {RISK} is three steps ahead of you when the floor gives.\n\nThere is no warning. A timber that has waited fifty years goes all at once. {RISK} drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below {RISK}'s boots there is nothing but the sound of the river, a long way down in the dark.\n\nNobody can walk out there. The boards that are holding {RISK} will not hold a second pair of feet.\n\nA rope is no use. {RISK}'s two arms are all that is holding {RISK} up, and neither can let go to catch one.\n\nOne of you can go out flat, on your belly, with the rest standing on the stone at the gallery's edge and holding your ankles, and haul. An arm has one haul like that in it. Then the next of you.\n\n**This is a United Effort. One job, and you take it in turns.**",
+        "text": "The way on is back across the gallery. {RISK} is three steps ahead of you when the floor gives.\n\nThere is no warning. A timber that has waited fifty years goes all at once. {RISK} drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below {RISK}'s boots there is nothing but the sound of the river, a long way down in the dark.\n\nNobody can walk out there. The boards that are holding {RISK} will not hold a second pair of feet.\n\nA rope is no use. {RISK}'s two arms are all that is holding {RISK} up, and neither can let go to catch one.\n\nOne of you can go out flat, on your belly, with the rest standing on the stone at the gallery's edge and holding your ankles, and haul. An arm has one haul like that in it. Then the next of you.\n\nAnd {RISK}, jammed in the boards, can do more than hang there. Every elbow got onto sounder wood, every hand's breadth won from below, counts as much as a haul from above.\n\n**This is a United Effort. One job, and you take it in turns.**",
         "section": "The United Effort"
       },
       {
@@ -715,7 +715,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             ],
             "sealed": false,
             "note": "",
-            "answer": "*\"Malakor.\"* Asked how: *\"My grandmother taught me that name.\"*",
+            "answer": "*\"Malakor.\"* And when you ask him how he knows it: *\"My grandmother taught me that name.\"*",
             "group": ""
           },
           {
@@ -724,7 +724,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             ],
             "sealed": false,
             "note": "",
-            "answer": "*\"I know the name.\"* Asked how: *\"My family's been in these hills longer than the roads have.\"*",
+            "answer": "*\"I know the name.\"* And when you ask him how: *\"My family's been in these hills longer than the roads have.\"*",
             "group": ""
           },
           {
@@ -1180,7 +1180,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             ],
             "sealed": false,
             "note": "",
-            "answer": "Silence.",
+            "answer": "He looks at you for a long moment, and says nothing at all.",
             "group": "The king"
           },
           {
@@ -1234,7 +1234,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             ],
             "sealed": false,
             "note": "",
-            "answer": "*\"Most went home.\"* Pressed on the charcoal woman's nephew: *\"Him we lost.\"* *\"Not by our choosing.\"*",
+            "answer": "*\"Most went home.\"* When you name the charcoal woman's nephew, he is quiet for a long moment. *\"Him we lost.\"* And then, lower: *\"Not by our choosing.\"*",
             "group": "The children"
           },
           {
@@ -1271,7 +1271,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             ],
             "sealed": false,
             "note": "",
-            "answer": "Silence.",
+            "answer": "He looks past you, at the dark the way you came, and says nothing.",
             "group": "This room"
           }
         ],
@@ -1610,7 +1610,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             ],
             "sealed": false,
             "note": "",
-            "answer": "*\"Most went home.\"* Pressed on the charcoal woman's nephew: *\"Him we lost.\"* *\"Not by our choosing.\"*",
+            "answer": "*\"Most went home.\"* When you name the charcoal woman's nephew, he is quiet for a long moment. *\"Him we lost.\"* And then, lower: *\"Not by our choosing.\"*",
             "group": "The faithful"
           }
         ],
@@ -1765,7 +1765,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             ],
             "sealed": false,
             "note": "",
-            "answer": "*\"Yes.\"* Asked why: silence.",
+            "answer": "*\"Yes.\"* When you ask him why, he looks down at the water and says nothing more.",
             "group": "Added when the pen is found"
           },
           {
@@ -1855,7 +1855,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             ],
             "sealed": false,
             "note": "",
-            "answer": "Silence.",
+            "answer": "He opens his mouth, and closes it again, and says nothing.",
             "group": "Added when the torn page is read"
           },
           {
