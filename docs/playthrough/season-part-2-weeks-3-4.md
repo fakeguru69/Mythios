@@ -1285,7 +1285,7 @@ Clue found, "No way down in the dark":
 
 **THE APPROACH: THE WAY DOWN**
 
-*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: By the rope → Craft (rig an anchor that will hold on glass); By the scree → Might (be the anchor). DC 9 (+2 if the party solved the week's map). Pass: +500g · **and the party strikes first**. Fail: it gives halfway, the last of the drop is a slide in a rattle of black glass, and **they strike first**. The result sets who strikes first in the Battle.*
+*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: By the rope → Craft (rig an anchor that will hold on glass); By the scree → Might (be the anchor). DC 9; the roller adds +2 to the roll if the party solved the week's map (the map helps). Pass: +500g · **and the party strikes first**. Fail: it gives halfway, the last of the drop is a slide in a rattle of black glass, and **they strike first**. The result sets who strikes first in the Battle.*
 
 *⚙ If the Approach passed:*
 
@@ -2749,7 +2749,7 @@ Clue found, "The lamp on the shingle":
 
 **THE APPROACH: THE BLACK LAKE**
 
-*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: Across open water → Aim (hold a line on a sound); Along the roofs → Might (row hard, and keep the oars quiet). DC 10 (+2 if the party solved the week's map). Pass: +500g · **and the party strikes first**. Fail: you lose the sound twice, and **they strike first**. The result sets who strikes first in the Battle.*
+*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: Across open water → Aim (hold a line on a sound); Along the roofs → Might (row hard, and keep the oars quiet). DC 10; the roller adds +2 to the roll if the party solved the week's map (the map helps). Pass: +500g · **and the party strikes first**. Fail: you lose the sound twice, and **they strike first**. The result sets who strikes first in the Battle.*
 
 *⚙ If the Approach passed:*
 

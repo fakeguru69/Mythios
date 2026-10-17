@@ -1341,7 +1341,7 @@ Clue found, "A second man":
 
 **THE APPROACH: THE ROTTEN GALLERY**
 
-*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: By the passage → Aim (pick out, from above and by their own torchlight, the boards that will still bear weight); By the mouth → Agility (cross the timbers without a sound). DC 8 (+2 if the party solved the week's map). Pass: +500g · **and the party strikes first**. Fail: a timber cracks like a dropped plate, and **they strike first**. The result sets who strikes first in the Battle.*
+*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: By the passage → Aim (pick out, from above and by their own torchlight, the boards that will still bear weight); By the mouth → Agility (cross the timbers without a sound). DC 8; the roller adds +2 to the roll if the party solved the week's map (the map helps). Pass: +500g · **and the party strikes first**. Fail: a timber cracks like a dropped plate, and **they strike first**. The result sets who strikes first in the Battle.*
 
 *⚙ If the Approach passed:*
 
@@ -2765,7 +2765,7 @@ Clue found, "Your own print":
 
 **THE APPROACH: THE SOFT STAIR**
 
-*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: Going now → Agility (take the stair without a slip); Having waited → Aim (mark each tread by the lamplight from below, and call the footing). DC 9 (+2 if the party solved the week's map). Pass: +500g · **and the party strikes first**. Fail: a boot goes out from under someone, and **they strike first**. The result sets who strikes first in the Battle.*
+*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: Going now → Agility (take the stair without a slip); Having waited → Aim (mark each tread by the lamplight from below, and call the footing). DC 9; the roller adds +2 to the roll if the party solved the week's map (the map helps). Pass: +500g · **and the party strikes first**. Fail: a boot goes out from under someone, and **they strike first**. The result sets who strikes first in the Battle.*
 
 *⚙ If the Approach passed:*
 

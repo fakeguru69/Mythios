@@ -24,7 +24,7 @@ interface StoreState {
   weaponLevel: number;
   armorLevel: number;
   relics: Record<string, number>;
-  closedBy: 'card' | 'press' | 'fight' | null;
+  closedBy: 'card' | 'press' | 'fight' | 'gathering' | null;
   first: boolean;
   gifts: { from: string; relic: string; at: string }[];
   given: number;
@@ -156,7 +156,9 @@ export default function OnlineStore({
             ? 'The Store is closed while your card is open. Set it aside with NOT NOW, or roll it first.'
             : state.closedBy === 'press'
               ? 'The Store is closed while your card is open. Roll it or leave it first.'
-              : 'The Store is closed while your fight is open.'}
+              : state.closedBy === 'gathering'
+                ? 'The Store is closed while your roll or your fight at the Gathering is waiting.'
+                : 'The Store is closed while your fight is open.'}
         </p>
       )}
 

@@ -1,0 +1,863 @@
+Skip to main content
+Ctrl+J
+
+
+
+Model Identification Question
+Grok
+
+Worked for 1m 51s
+Week 1 only. I have not read Week 2.
+
+A Challenge is a dice roll on one of your attributes: pass or fail changes gold, growth, and sometimes the scene, but not the plot. A Pull is the last line that says why tomorrow cannot wait. A colour choice is a button that is meant to change the feel of a moment without changing what happens. Last light (also called Fan Out) is the one optional clue after the chapter. A United Effort is one shared job the party takes in turns, with two bars: the obstacle, and the thing you might lose.
+
+What a player believes by the end of the week: four strangers were handed their own names and sent to an inn; a missing scholar, Meira, wrote the list; quiet, wordless men are taking children on a calendar; you saved one girl, Tamsin; something was lifted out of an old mark before you arrived, and three other children's names are scratched under it. You do not yet know why your names were on the list. That last gap is fair. The rest is clear.
+
+Day 1 — The forest road
+A silent man cuts your axle, fights, and runs. He leaves a list with your name and an inn. The day's question is who he is and what he wants. You learn the second half only: he wanted you to find the list.
+
+Story 8	A clean hook. Nothing is stolen; something is planted. The burned rubbing is a promise the week keeps.
+Play 7	The fight and the box both belong in the scene. Win and loss are different to read, and then the same plot. The two "look" buttons are not a choice: you are told to open both.
+Prose 9	The green light through the trees, the lock forced shut, the cold sliver. This is the voice the game should keep.
+Pull 8	An inn, a day's walk, your name in a stranger's hand. I would open it.
+What works. "Something has been put in." The robber who leaves a list is the right kind of wrong.
+
+What does not.
+
+Heading: Week 1, Day 1, Your thread. Quote: "He breaks off… he is gone" / "He could finish it… and then he is gone." Why: Pass and fail are both "he looks at you and leaves." Gold changes. The story does not. On the first day that teaches the player that fighting is a toll booth. Fix: On a win, he drops the burned rubbing and you see the second set of boots yourself. On a loss, you only find the rubbing later, in the box, and you do not know he had company. Size: Medium.
+Heading: Week 1, Day 1, Your thread. Quote: "Four names. Yours is one of them." Why: The sample is written for four friends. A party of two or six will hear a lie unless every "four" is rewritten for the real party. This will keep happening. Fix: Generate the count, and give every friend who is not "you" one small action this week (the way Mei, Dev and Arjun are used), or the missing friends become furniture. Size: Big, but it is a season rule, not a Day 1 rewrite.
+Day 2 — The Hollow Wake Inn
+The other names are waiting. Garrick names himself, produces Meira's satchel, and agrees to walk you as far as a rock. The day's question is who the others are and who wrote the list. Answer: they are the party, and Meira wrote it, then vanished.
+
+Story 9	The best scene of the week. The extra cup, the cut binding, the child in the unreadable line.
+Play 8	Fitting the page is a real task. Failure is kinder and more social: Mei turns the page. Press On earns a true extra: she cut the pages to send them.
+Prose 9	"Cheapest wine in the house, and tipped like a queen." Garrick arrives fully formed.
+Pull 9	A child, still held, two hours north, and he has only agreed to the rock.
+What works. "I've a business to run." Then the log shifts, and he gives you the Widow's Tooth and no further. Warm, dry, not bossy.
+
+What does not.
+
+Heading: Week 1, Day 2, The Campfire. Quote: Garrick asks "how would you test whether the page is hers?" The pins are "Meira left in a hurry / on purpose." Why: The chapter already proved the page is hers. The spoken question and the answers do not match, so the pin feels like a form. Fix: Ask the pin out loud: "Did she leave in a hurry, or did she mean to send you?" Size: Medium. It happens again on Day 6.
+Heading: Week 1, Day 2, Your thread, the failed Challenge. Quote: "The strangers watch you get it wrong." Why: Those three are the party, sitting on the same bench. Fix: "The others watch you get it wrong. Mei, in the end, reaches over…" Size: Small.
+Day 3 — The Widow's Tooth
+The rock is empty. A watcher fights and runs. Meira's rubbing fits the stone. A child's carved horse has been waiting in the weather. The day's question is whether the child is still there. Answer: not this child, and not recently.
+
+Story 8	The fit of the rubbing is a real payoff. The horse does more than another clue would.
+Play 7	Choosing the ruts or the marking changes who strikes first. That is the first choice that touches the numbers. The fight still ends the same way as Day 1.
+Prose 8	The wind in the split, the horse worn soft. Garrick "complained about the road, his boots and the weather, in that order" is the right joke.
+Pull 8	He has not gone back to the inn. The doors ahead will be shut.
+What works. "Meira stood where you are standing. And the man who came at you on the forest road was carrying her work."
+
+What does not.
+
+Heading: Week 1, Day 3, Your thread, the fight. Quote: "The moment there is a gap he takes it, and he is away." Why: Second silent man, second flight, no word, no dropped object that changes tomorrow. The pattern is not yet readable as a method; it just feels copied. Fix: Let this one leave the notched stick in the fight itself, not only if someone picks that lead. A win could bend the stick or bloody it, so the fire has something the chapter did not. Size: Medium.
+Day 4 — Fenmark
+A shut village. A boy tells you Tamsin, nine, was taken three nights ago. The elder begs you, under his breath, to find a woman who has seen the curved knife. The day's question is what happened here and why nobody will say. Answer: they are afraid of being known to have talked.
+
+Story 9	The week's heart. The warm bowl, the counting, the elder's hands.
+Play 7	Pass or fail changes whether the boy is standing beside you when the men arrive. That matters. The three talk-choices and the three stance-choices are then followed by one shared paragraph.
+Prose 9	"He is not hiding what happened here. He is terrified of what happens to this village if it is known that somebody talked."
+Pull 9	He has half a day on you, and he is running toward the only other witness.
+What works. "Please. There's a woman two hours east who's seen that same curved blade before. Ask her. Don't say I sent you." Then, louder, for the street: "Go on, now."
+
+What does not.
+
+Heading: Week 1, Day 4, Your thread. Quote: "[SHOW HIM THE LIST] or [ASK WHO WAS TAKEN] or [SAY NOTHING. WAIT.] … the story is the same." Same for stand / step back / put yourself in front of the boy. Why: If the next sentences do not change, the buttons are a lie. Players forgive a colour choice once. They notice the second time in the same day. Fix: Three short replies, four to six lines each. Show the list and he goes quieter. Ask who was taken and he says her name first. Wait, and he starts talking because you did not. Stance: if you step in front of him, the elder looks at you, not at the boy. Size: Medium.
+The tone toward the children is right. You are told she counts when she is frightened. You are not shown the taking.
+
+Day 5 — The old charcoal camp
+The runner is at her shutters. She carved the horse for her sister's boy, taken two winters ago by the same knife, and never found. The day's question is who has seen the knife, and what happened that time. Answer: it has happened before, and Meira was writing about the last child, not Tamsin.
+
+Story 9	The calendar turn is clean, and the text lets you count it before it announces it.
+Play 7	The look at the path is the only branch that tells you he is here, and it is also the branch that lets him strike first. Interesting, easy to feel cheated by.
+Prose 9	The banked fire, the axe coming down all at once when she sees the horse, the cup as the first warm thing in a month.
+Pull 8	"If it comes round like a calendar, the time is now." Strong, but you already know you are going north. Slightly less urgent than Fenmark.
+What works. The knife he leaves in the shutter is a plain kitchen knife. The curved knife is a man's signature, not this runner's. That is a fair correction of a guess the player was about to lock in.
+
+What does not.
+
+Heading: Week 1, Day 5, Your thread. Quote: "Who strikes first is set by your choice ([LOOK AT THE PATH] lets the enemy strike first)." Why: The most observant choice is punished, and the other two looks never say what you failed to see. Fix: Looking at the path means you strike first, because you read him. Looking at the step or the fire means he hears you. Put "he is here" in all three branches, said differently: swept step, banked fire, prints over prints. Size: Small.
+Day 6 — The ford
+Her prints end where a man lifted her into the water. The six fragments pull together into a map that ends on Meira's shape. A courier hears the way and leaves. The day's question is where they took her. Answer: into the river; the trail is gone; the map replaces it.
+
+Story 9	The first impossible thing in the season, and it is quiet: the pieces turn the width of a finger and become one map.
+Play 8	The water is a real timer. Press On finds the boat. Failure still learns she was lifted, because Arjun finds the heels. That is the right use of a party.
+Prose 9	"You have been putting them in your pockets like a child picking up stones."
+Pull 9	You will be there by nightfall, and someone else just heard the way.
+What works. The courier who pays and does not take the bed. Nobody explains him. The Gathering then shows you were followed.
+
+What does not.
+
+Heading: Week 1, Day 6, Your thread. Quote: "Not one of you has missed one." Why: A friend who skipped a day makes this line false, and the map still has to form. Fix: "Six pieces, and they are all here now." If someone is behind, the recap already exists: let the map wait until the last piece is in the party, not in every pocket. Size: Medium.
+Heading: Week 1, Day 6, The Campfire. Quote: He asks "what do you notice about how the pieces settled?" The pins are "They carried her across / they wanted us to think so." Why: Same break as Day 2. The interesting argument is in the pins. The spoken line is a different question. Fix: Ask: "Did they carry her across, or did they want the prints to say so?" Save "how the pieces settled" for one line of his recall, which you already have. Size: Medium.
+Day 7 — The Gathering at the mine
+You go in by his boyhood passage or by the drowned mouth, fight four silent guards, and find Tamsin alive, humming, one palm already cut and bound in clean linen. The floor drops Dev. Behind her, the mark is an empty socket. Under it, four children's names. The week's question was why your names were on the list. The night answers a different one: the scratches are children. Then it asks your question again and does not answer it.
+
+Story 9	Tamsin in the cold air, the linen, the empty hole, "Three more." The rescue is not allowed to feel finished.
+Play 8	Everyone fights. Everyone gets a private Notice. The United Effort gives a real loss: if Dev falls, he lives, and you destroy the dust that would have dated the theft. The vote is simple and readable.
+Prose 9	The drop, the counting song still going somewhere behind you, the room where the river cannot be heard.
+Pull 9	Three names, hooves already leaving. I would come back next week.
+What works. "There is a small cut across her palm. It has been bound in clean white linen. Somebody took the time." That is the whole season's method in three sentences, and a first-time player can feel it without understanding it.
+
+What does not.
+
+Heading: Week 1, Day 7, The turn. Quote: "This was never about you. Then why were your names on that list? The wall does not say." Why: Six fires asked that question. The night steps past it. The fair answer you could have given, without spoiling later weeks, is already in the room: the list was how you were brought to their list. Fix: After "They are children's names," one Garrick line, true and incomplete: "Yours brought you here. Theirs were already on the wall." Leave "why marked" for next week. Do not have the narration shrug. Size: Medium.
+Heading: Week 1, Day 7, The Battle. Quote: "It is over." Why: The fight has no condition and no line while it happens. After three weekday fights that also ended in silence, the big fight can feel like waiting. Fix: Two lines only. At half their number: one of them looks back at the girl, not at you. When the last falls: the humming, which you had not known you could hear under it. You already have both ideas in Notice. Move one of them into the fight. Size: Small.
+Match, Ask, and the long scripture are absent. Good. Night one should not teach every device. The question to the table is the right difficulty: children's names, with a hint if the chat is quiet.
+
+The week
+Story. It builds in a straight line: list, author, empty rock, named child, a previous child, a map, a rescue that is not the point. No contradiction. The linen and the courier are plants, not holes. The nephew who was never found is a question left open on purpose; say so in the season summary later if he never returns, or the player will wait for him.
+
+Play. The weekday shape teaches itself in the right order: fight, Challenge, Press On, fragment, one lead, fire, then on Day 7 a vote, a shared fight, a private notice, and one shared job. Choices that change a roll (Day 3, Day 5, the Approach) feel better than choices that change nothing (Day 4). Gold is present and not yet interesting. The Store is barely mentioned. That is fine for week one.
+
+Campfire. It is one form too many from Day 2 on: clue board, fragment question, tonight's question, riddle, a line for the case, an open question, a bottle. The aim is talk. The risk is homework. I would keep the board, one pin, and the riddle. Fold the fragment's "what does this mean?" into tonight's question whenever they are really the same conversation. Make the riddle easy to skip without a guilty button. Day 1, with no Garrick and no riddle, is the right weight. Do not add that weight back.
+
+Compared with a table like D&D. Players cannot do the unexpected, and the story will not bend. For a six-week chat game with stored text, that is the right trade, as long as the buttons you do offer are honest. The fire is where freedom has to live: a pin, a sentence, a bottle. If those are multiple-choice with a blank, friends will still talk in their own chat. They will not talk inside the forms. Do not add more forms to make it feel more like a table.
+
+Garrick. Likeable. Specific. Funny without performing. He never promises and never predicts in this week. "Family habit. We always pour one for whoever can't be with us" sounds like a person. The risk of the computer voice is not his scene lines. It is the kit that repeats every night: "You're first. Pull up a log," four goodnights, and "I saw." Those will harden by Week 4 if they do not vary with what actually happened. His morning notes are some of the best prose in the week. Protect them.
+
+Would I log in? Yes. Fenmark, the horse, the map, and Tamsin are enough. I might rush Day 3, because I have already fought this man.
+
+A friend who misses a day can be told the recap. They cannot be told "nobody missed a fragment" if they did. Catch-up has to be a rule the prose obeys.
+
+Party of two. The United Effort scales its bars down, which is good. The prose still needs a second body in the hole and someone to hold ankles. Write the alone version as carefully as you wrote Dev's, every time.
+
+Week score: 8 / 10. A strong first week, with a voice worth keeping and a Gathering that pays off the rescue while withholding the real answer. The holes are repetition, a few dead buttons, and a Campfire that asks the wrong question out loud.
+
+Three fixes, in order:
+
+Make every fire question the same question as its pins. Cut the fragment pin on nights where tonight's question already covers it.
+Stop ending every road fight with a silent escape. Day 1 and Day 3 need a different leftover.
+Let the Gathering answer one true piece of "why were our names on that list?" without explaining the mark.
+Shall I go on to Week 2?
+
+You
+Next
+
+Grok
+
+Worked for 45s
+Week 2 only. A player who has just saved Tamsin now believes the mine wall was a list of children, not of the party. By Sunday night they believe those children were chosen because they were born when the moon went dark, that the party is marked the same way, and that the takers are an Order praying to a king the world erased. Corin is alive and already cut. A girl was moved "somewhere warm." That is fair, and the week's question is actually answered, which Week 1's was not.
+
+Day 1 — The second name
+Tamsin goes home and gives you the next target: the mill boy. Garrick comes anyway. A farmer saw a lampless cart. The day's question is which child is next, and whether you can get there first. Answer: Corin, and you are already late.
+
+Story 8	Sending her home before the hunt starts is the right kindness. "The mill boy next" is a clean handoff.
+Play 7	The axe conversation is the right Challenge. Pass adds the dragging wheel. The three ways of speaking to Tamsin are again one paragraph.
+Prose 9	"She will not get up onto the wagon." The song getting thinner under the wheels.
+Pull 8	The mill is an hour on. Real, but gentler than a child still in the road.
+What works. "Worst guests I've ever had. Good tippers, though." He walks ahead as if the journey were his idea. That is how you keep a guide from sounding like a quest-giver.
+
+What does not.
+
+Heading: Week 2, Day 1, Your thread. Quote: "[CROUCH DOWN TO HER] or [ASK WHAT THE SONG IS] or [SAY NOTHING. WAIT.] … the story is the same," then one speech. Why: Same dead buttons as Fenmark. This one hurts more, because it is the goodbye. Fix: Crouch, and she says it to your face. Ask about the song, and she hums the line first, then the words. Wait, and she says it to the road, not to you. Three short beats. Size: Medium.
+Day 2 — The mill
+The wheel is turning over nothing. His mother says the man asked for Corin by name, and by the night he was born. The day's question is what happened here. Answer: they collect particular children.
+
+Story 9	The birth-night is the week's key, delivered by a person, not a caption. The horn button is a trail you can hold.
+Play 8	Failure costs the morning and still pays the button, because Arjun mends the latch and nobody pushes. Press On names the cart from the ford.
+Prose 9	"Old flour, from before." The table laid for three.
+Pull 8	Upriver, four-night-old ruts, weather coming. Clear, not yet frightening.
+What works. "He knew the night he was born — knew it better than I did."
+
+What does not.
+
+Heading: Week 2, Day 2, The Campfire. Quote: He asks "how was the mark cut, and with what tool?" The pins are "They had a list with birthdays / They knew him personally." Why: The tool question is a dead end. The pins are the real argument, and they are about the birth-night. Fix: Ask the pin: "A list, or a man who knew the boy?" Let the mark wait for his recall, which already compares it to the mine. Size: Medium.
+Heading: Week 2, Day 2, Your thread. Quote: "They are not taking children. They are collecting particular ones." Why: The scene already said it. The caption flattens it. Fix: Cut those two lines. End on the wheel grinding nothing. Size: Small.
+Day 3 — Upriver
+The cart vanishes onto a tended path. A silent dog. A week-dead stranger whose lock opens for your hand. The day's question is where the cart went. Answer: into the hill, through a door that knows you.
+
+Story 8	The purse still full, the pick still jammed, the collar turned up. A robber story becomes a rule.
+Play 8	Pass or fail sets who strikes first, and the fight pays no gold because the Challenge already did. That is the right economy. Win and loss feel different: it lets you by, or it keeps your sleeve.
+Prose 8	"It does not bark. It has been taught not to." The branch still swinging, and no wind.
+Pull 7	"The path goes on up" is true and a little thin after a corpse and a lock. The player already knows the next step.
+What works. The lock would not open for him. It opens at once for you. First time the party is a key, and it is shown, not explained.
+
+What does not.
+
+Heading: Week 2, Day 3, Your thread, the fight. Quote: "FIGHT: THE DOG ON THE CHAIN." Why: Not a story problem. A tone one. Every other fight is a man who chose a knife. This is an animal on a staple, and the only way on is through it. The win text is merciful, which helps. Some tables will still hate the button. Fix: Keep the dog. Add one line before the fight: the chain reaches both walls, the staple is new, and it has been fed today. Make "go past" the goal in the header, not "beat the dog," and keep the win as "it lies down." Do not add a cute bypass. The path is supposed to be ugly. Size: Small.
+Day 4 — The shaft
+You see Corin alive in a ring of lamps, palms still unmarked, or you only hear him. Then you are driven off and the ladder is taken. The day's question is what is at the end of the path. Answer: him, and a preparation you interrupted too late to enter.
+
+Story 9	Unmarked palms are the clock. Being thrown back is better than a fight you were always going to win.
+Play 8	Pass and fail are the right distance apart: three breaths of the whole room, or a cry under the voices.
+Prose 8	Hooded figures setting things in their places, no hurry. Garrick's "That went about as well as it looked," and the laugh nobody can stop.
+Pull 9	Tonight, another way in, before they finish.
+What works. The pass line "there is not a mark on them," set against Tamsin's linen. A player who succeeded now knows what "finish" means.
+
+What does not.
+
+Heading: Week 2, Day 4, the day summary. Quote: "On a failure: You missed something at the shaft. Someone at the fire may have seen it." Why: If the whole party fails the climb, nobody saw the unmarked hands, and the line is a lie. The Gathering's cut then arrives without the dread you built for the people who passed. Fix: On a party-wide failure, the fire should say the true lesser fact: "We heard a boy. We did not see his hands." Do not promise a friend a sight no one had. Size: Medium.
+Heading: Week 2, Day 4, The Campfire. Quote: "What were they getting ready?" Pins: "Now they'll hurry / They won't change a thing for us." Why: The spoken question is about the rite. The pins are about whether being seen matters. Both are good. They are not the same question. Fix: Ask whether being seen will make them hurry. Move "what are they getting ready?" to the fragment pin, which is already "what did he do down there?" — or swap them. Size: Medium.
+Day 5 — The hillside by night
+No second door. Meira writes that every record of him was scraped clean. A scout fights, runs, signals, and leaves a black circle and a thread that matches the mill button. The day's question is who they are and what they are making ready. Answer, so far: people with a badge, a forgotten man, and a signal that the hill will not wait.
+
+Story 8	The circle and the matching thread join the mill to the hill. Meira's margin is the right size of clue.
+Play 7	The fight finally leaves evidence. Good. Walking the hill lets him strike first, and also tells you there is no second door; reading finds the margin and lets you strike first. Fair split. Then both branches are shown anyway ("it plays, then the others follow"), so the strike-first rule and the "pick one" rule disagree.
+Prose 8	"Sewn to it, no bigger than a thumbnail." Garrick's supper on someone else's plate, and he does not say where it went.
+Pull 8	Five fragments, a clock, no door. The pull explains last week's puzzle outright. Useful, slightly tutorial.
+What works. He makes no sound, even when you hit him hard enough to wind him. Then the lamp, twice, toward the shaft. Silence was a discipline, not an empty fight.
+
+What does not.
+
+Heading: Week 2, Day 5, Your thread. Quote: "Pick one; it plays, then the others follow." Also: "Who strikes first is set by your choice ([WALK THE HILL] lets the enemy strike first)." Why: If both scenes always play, the choice does not change the story, and the fight-rule text pretends it does. A player who reads at the lamp and is then told they were walking the hill will feel the machine. Fix: One branch only. Hill: no second door, he sees you, he strikes first. Pages: the margin, you see him, you strike first. Put the missing half in the recap next morning, one sentence, so nobody loses the clue. Size: Medium.
+Heading: Week 2, Day 5, The Campfire. Quote: Pins: "The king was erased by his enemies / by his own people." Why: Nobody has said "king" yet. The Gathering's whole turn is that the war you were taught had a king cut out of it. The pin gives you the noun early, as a quiz answer. Fix: "Erased by his enemies / erased by the people who followed him." Let Sunday say king. Size: Medium.
+Day 6 — The other way in
+You place the people under the shaft, the fragments make a second map, and it leads to an older mouth nobody is guarding. Then the picks start. The day's question is whether there is another way, and how long is left. Answer: yes, and they are digging toward it now.
+
+Story 8	A second map could have felt like a weekly chore. Pointing it at a different room from the one you can see saves it.
+Play 8	Pass places the boy as the shape that does not move. Press On finds the empty hollow under the room. That is the Gathering's geography, earned.
+Prose 8	"A silence with room in it." The cup poured anyway, with not much left in the flask.
+Pull 9	Be in the old room first. Best clock of the week.
+What works. The sixth piece is not hidden. It is lying in the roots, as if dropped. After five cold secrets, the carelessness is its own clue: they are busy below.
+
+What does not.
+
+Heading: Week 2, Day 6, Your thread. Quote: "It is said aloud, twice, across the dark, so that everybody has it. The night is very still. Sound carries." Then the picks begin. Why: It feels as if speaking the map told them where to dig, but nothing confirms or denies it. If that is the cost, the player never gets to weigh it. If it is not, the "sound carries" line is a fake threat. Fix: Pick one. Either Garrick, later, true and flat: "They were already digging. We heard them turn." Or the fail-forward: you needed them to hear it, because a whisper would not have reached your own watch, and the picks are the price. Do not leave both readings by accident. Size: Medium.
+Heading: Week 2, Day 6, Your thread. Quote: "They move, as the first six did." Why: Not broken yet. By Week 4 a self-assembling map will feel like the puzzle collecting its prize. Fix: Keep the join. Cut the wonder-language the second time. "They settle. You were waiting for that." Size: Small, and a note for later weeks.
+Day 7 — The Gathering under the mill hill
+You take the soft stair, fight the robed circle, and find Corin alive with the cut already bound. The socket is empty and the dust has not settled. Their book names them. The verse tells the war you were taught wrong. The ledger says given. You are marked too. He mentions a girl sent somewhere warm.
+
+Story 9	The week's question is paid in full: dark-moon births, a ledger of children, and the party on the same kind of night. The rescue is allowed to be too late.
+Play 8	The chant is a real fight rule. Notice gives everyone a private tell. The United Effort's loss is the best failure in the season so far: you run, the book breaks, and the boy is the one who saved the ledger. Match is the right size of group puzzle.
+Prose 8	The verse is strong and too long for one sitting. Garrick's relief is the right temperature. "It looks, to everyone standing in it, like a win."
+Pull 9	Somewhere warm. A new child, already moving, and the ledger still open.
+What works. "You saved that boy. Whatever else happened here, you saved him." And the linen in the same knot as Tamsin's. Warmth and dread in the same minute, which is the Garrick problem the whole season is built to survive.
+
+Also the lost tunnel: "Corin is holding something out to you with both hands." The child is not only cargo.
+
+What does not.
+
+Heading: Week 2, Day 7, The Verse of the Answering. Quote: the full verse, after the loss branch "The black book is in three pieces." Why: Win or lose, the player then reads the same complete scripture. The collapse was supposed to cost the book. Fix: On a loss, read only the two passages you Match, from leaves that survived, and let Corin's ledger carry the night. On a win, read the verse whole, because you bought the time to unstick it. Size: Medium.
+Heading: Week 2, Day 7, The Verse of the Answering. Why: Even on a win, this is a lot of reading inside a 20 to 30 minute chat, after a fight and a tunnel. The war, the bread for the herald, the camp walking away, and the scraped name are all good. Together they can turn the table into an audience. Fix: Keep the herald, the one old line "Blood beneath the dark moon — and it answers," and the schoolroom version about the fever. Move "he knew every man on his wall" and the gates opened to every people into a Bag entry they can read in the morning. Size: Medium.
+Heading: Week 2, Day 7, Ask. Quote: four stored questions, one each. Why: Not a cheat. A limit. After a night this large, "you may ask Garrick" sounds like the table opening, and then it is a menu. His answers are in the rules: no lie, no promise, no forecast. They are also a little short for the only time the party can press him. Fix: Keep the menu. Add one free line per friend, capped, answered only if it is about the road, the book, or the boy, and otherwise: "I can tell you what's on that page. That's the part I know." Size: Small.
+The question to the table is fair. Birth-nights, the well fragment, Meira's dates. A quiet party gets the hint. A clever one can say it before the ninety seconds.
+
+The week
+Story. Clearer than Week 1, and better aimed. The birth-night is planted on Day 2, echoed by the Fenmark fragment, and paid on Sunday. The empty socket is the second one. A player should now suspect a pattern: you are led to the child, the child is cut, the thing in the wall is already gone. The text knows this ("it looks like a win"). Do not run the same rescue a third time without a visible change, or the middle of the season will feel like a route.
+
+The dead stranger is not a hole. He tried a door that only your hand opens, and nobody robbed him. That is a rule, not a loose body. The nephew from Week 1 is still missing. Fine, if you have not forgotten him.
+
+Play. Better than Week 1 where it counts. The dog does not pay twice. The shaft failure is a different scene, not a bruised success. The Gathering loss ruins a different thing from Week 1's dust. Gold and relics are still background. I would not add a new system. I would let the Store be one morning line from Garrick when someone can afford a relic, or it will stay invisible.
+
+Campfire. Days 1, 3 and 6 ask the question their pins answer. Days 2, 4 and 5 do not. Day 5 also says "king" early. The stack is the same as last week: board, fragment pin, tonight's pin, riddle, case line, open question, bottle. It is still one question too many. The riddles are charming and starting to be the same kind of charm. Keep them, and let a night skip one without apology. Garrick's "A mill's full of them" earns its keep. "You're carrying one" is a little pleased with itself.
+
+Garrick. Still warm, still dry, still not smug. The cider cup, the grain sack lifted back onto the stack, the supper he does not explain, the last of the flask. He is in more of the week's kindness than anyone else, which is exactly right for later, and not too much yet. "I know the name" and "My grandmother taught me that name" obey the rule and sound like speech. The repeated goodnight set and "You're first" are now two weeks old. Vary them before Week 4 or they will sound like a menu.
+
+Versus a live table. Ask being a menu is the right trade on this night, because a free question would break the stored voice. The United Effort is the part that feels most like passing the dice. Protect the lines that change as the bars fall. They are doing the work a game master would do.
+
+Missed days. The shaft problem above is the sharp case. "Someone at the fire may have seen it" must be true, or it must not be said.
+
+Children. Corin asking for your names, and saying Garrick's twice, is the right size of scene. The cut is clean, shallow, and already bound. You are not invited to dwell on it. Keep that discipline.
+
+Week score: 8 / 10. A better mystery week than the first, with a Gathering that earns its scripture and a failure state that changes what you carry out. It is also the second time the party is one room too late. The writing knows. The next week has to change the shape, not only the place.
+
+Three fixes, in order:
+
+Take "king" out of Friday's pins. Sunday is the reveal.
+Make the Day 2 and Day 4 fire questions match their pins, and stop promising a sight the whole party missed.
+If the map is read aloud into a still night, decide whether that causes the picks. On a lost Gathering, do not hand back the whole verse.
+Shall I go on to Week 3? I will need the next file for that.
+
+You
+Continue
+
+Grok
+
+Worked for 52s
+Week 3 only. I have not read Week 4.
+
+A player arrives knowing two children were cut and returned, the takers pray to a sleeping king, and a girl was sent somewhere warm. By Sunday they know her name is Wren, they were one step behind her all week, and they saw the thing from the socket leave in a box before they could touch it. She was needed once, to wake him. The Seekers who struck him down locked every door with their own blood, and that blood is yours. The fourth child is already with them. That is a fair week, and it finally changes the shape I warned you about.
+
+Day 1 — Somewhere warm
+Corin gives you Wren, and home. The ledger and Meira agree: Ashcombe. A silent man comes up out of the hill, fights, and runs. A light cart and a child's prints go west. You take Corin back to his mother. The day's question is who she is and where "somewhere warm" is. Answer: Wren, Ashcombe, and they told her she was going home.
+
+Story 8	"Going home first" is a better hook than another set of tracks. The return to the mill earns the rescue from last week.
+Play 6	The fight does not change the tracks, the limp, or the road. It is the third silent escape that pays gold and leaves.
+Prose 9	Her home in four details: warm ground, black hills, a fire that went out long ago. His mother learning your faces.
+Pull 8	Why take a stolen child back to where she was born?
+What works. "She said they told her she was going home first." Home as a destination, not a refuge.
+
+What does not.
+
+Heading: Week 3, Day 1, Your thread. Quote: "He breaks away over the shoulder of the hill and is gone, the way the others have gone: the first gap, and no sound." A win adds only: "He leaves the hill with a limp." Why: You already know this fight. The line even admits it. Fix: Cut the fight. Keep the man as a shape on the shoulder who sees you, limps west, and is the reason you find the tracks. If you want the gold, pay it for reading the tracks, which is the scene that matters. Size: Medium.
+The fire question matches its pins. Keep that.
+
+Day 2 — Ashcombe
+A warm village that shuts its doors. Her mother says two polite men knew the birth-night and would only need her once. Last night a cart passed her door and went up the black road. The day's question is whether Wren came home. Answer: no. She was carried past it.
+
+Story 9	The best village since Fenmark. "Only need her the once" is the week's question, asked by the mother before the party can.
+Play 8	Pass opens the house. Fail brings her to your fire at dusk, and you never see the chips on the sill. That is a real loss of a room, not a worse paragraph.
+Prose 9	Bread nobody has eaten. Dust on the sill and none on the chips. The ground ticking as it cools.
+Pull 9	What does anyone need a child for, once?
+What works. "I've been lied to by better men than him. That wasn't what this was." She is telling you the Order's rule before you have the verse for it.
+
+What does not.
+
+Heading: Week 3, Day 2, Your thread. Quote: "[WHO TOOK HER?] or [WHY HER?] or [WHAT DID THEY SAY?]. Pick in any order until every branch has been seen." Why: It is a good conversation and a fake choice. On a phone, three buttons you must press is a checklist. Fix: Let her answer one, then have Garrick or the boy carry the other two in a single later beat, so the player who cares can still ask. Do not lock the day on emptying the menu. Size: Small.
+The manners question at the fire matches the pins. The quiet-night riddle is optional. Both are right.
+
+Day 3 — The Blackglass
+A hillside of frozen black glass. A housing opens for you. You see that each child was taken from beside a mark Meira made. She doubted the word "five." Garrick mends the split boot while you sleep. The day's question is why this place. Answer: it is the third mark, and the riders did not even slow down.
+
+Story 8	"Three children, three marks" is the spine of the season so far, said at the right time. The margin about five is a seed, not a lecture.
+Play 7	Crossing is a fair roll. Press On counts six horses and one child. The join of the three marks is handed to you even if you never looked back.
+Prose 9	Your own shape walking upside down in the glass. "Needed doing."
+Pull 8	They rode past the thing you came for. So what are they riding to?
+What works. The boot, stitched while you sleep, and the bobbin put away. Character, not a reward screen.
+
+What does not.
+
+Heading: Week 3, Day 3, The Campfire. Quote: He asks "why would a scholar write down a number she doubted?" The pins are "The children were chosen for their place / The places were chosen for the children." Why: The pins are the better question. They are about the three marks. The spoken line is about the number five. A player answers one and is scored against the other. Fix: Ask which way the list runs: child first, or place first. Leave "why write five?" as the fragment question. You already have a fragment about a price. Size: Medium.
+Heading: Week 3, Day 3, Your thread. Quote: "Tamsin, at Fenmark, under the Widow's Tooth." Why: In Week 1 the rock and the village are different places, hours apart. A careful player will feel the map slip. Fix: "Tamsin, taken from Fenmark, and the mark on the rock above that road. Corin, at the mill. Wren, under the Blackglass." Size: Small.
+Day 4 — The black ridges
+Wren is dropping chips of glass for whoever follows. Off the riders' line, a buried room where the fragment-writers slept. At dusk, smoke from a hut. The day's question is whether she is still alive. Answer: yes, and she is thinking.
+
+Story 9	She stops being cargo. The chips, spaced, on bare rock, are the best thing a child has done in the game.
+Play 7	Trail or doorway is not a fork. Whichever you pick, a friend does the other, and you get the third chip and the door. The Challenge only changes how much dust you eat.
+Prose 9	"She picks her moments." The bone die worn smooth. Your fire showing as plainly as theirs.
+Pull 9	She is alive, and she is thinking. The hut at first light.
+What works. One scratch, two, three, on the backs of the chips, if someone turns them over. A child counting, like Tamsin, without you being told to notice.
+
+What does not.
+
+Heading: Week 3, Day 4, Your thread. Quote: "Your own fire, in the doorway, shows just as plainly as theirs did." Next day they have run because they saw it. Why: It reads as the party's fault, and nobody was offered a cold camp. Fix: One real choice at dusk: bank the fire, and be cold, and reach a hut that has not yet run; or burn it, and be seen. If you do not want that branch, cut "shows just as plainly" and let them have been about to leave anyway. Size: Medium.
+Day 5 — The shepherd's hut
+A grey coat fights and vanishes onto rock that keeps no prints. The hut is empty, still warm. Her name is cut into the doorframe. Over the bed, the Order's prayer, old in the wood. The day's question is whether she is there. Answer: she was, within the hour, and they hurried for the first time.
+
+Story 8	The folded blanket and the thrown one. The prayer over a child's bed. "Until today, these people have never once hurried."
+Play 6	The approach choice is real on paper and backwards in the text. See below. After that, three searches are again a menu you must finish.
+Prose 8	The cup on its side. Garrick's hand over the ashes. The coat that is a good hat, with two letters a mother stitched.
+Pull 8	One step. The cairn before the light goes. Clear, and a little like yesterday's "go to the smoke."
+What works. "They're always a step ahead of us." Plain, tired, and true of the week.
+
+What does not.
+
+Heading: Week 3, Day 5, Your thread. Quote: the rule says "[WREN'S LINE] lets the enemy strike first." The win text says "You came by her track: you are on him before he has seen you." The loss text says the open line is what let him watch you. Why: The mechanic and the story name opposite paths. Whoever built the screen from one and the prose from the other will ship a fight that contradicts itself. Fix: Her track is the surprise: you strike first. The open line is his: he strikes first. Change the gear line to match the sentences, not the other way round. Her track should be the reward. Size: Big.
+Heading: Week 3, Day 5, The Campfire. Quote: "What tool cuts letters like that into wood?" Pins: "They left her bed as a message / They left it in a hurry." Why: Same break as Day 3. The tool is not what anyone is arguing about. Fix: Ask whether the room was arranged or abandoned. The fresh cuts and the old prayer can sit in his recall. Size: Medium.
+Day 6 — The cairn
+You race the light. The sixth fragment makes a map that ends at a round hill breathing warm air. Garrick names it the Kiln. A lamp climbs it and goes out inside. The day's question is where they have taken her. Answer: under that hill, and it has started.
+
+Story 8	The third map is no longer sold as a miracle. "They settle, as they have twice before" is the right demotion. The lamp going in, not blown out, is the pull.
+Play 7	Pass shows you the hill in sunlight before the map confirms it. Fail makes you fit paper to black shapes. Good. Speaking the way aloud is again a gesture with no consequence you can see.
+Prose 8	A knuckle of stones that never comes nearer. Air like the air over a forge.
+Pull 9	Into the Kiln tonight. I would not skip this Gathering.
+What works. "The Kiln. That's the shepherds' name for it." He names a place the way a local would, after you have already seen it breathe.
+
+What does not.
+
+Heading: Week 3, Day 6, The Campfire. Quote: "Whose was it?" The pins are "We go in now / We watch the lamp first." Why: He asks who. The pins are a plan. On the night before a live session, the plan is the right argument, and the spoken question throws it away. Fix: Ask: "Do we go in now, or watch?" If you still want "whose lamp?", make that the fragment pin. Size: Medium.
+Heading: Week 3, Day 6, Your thread. Quote: "It is said aloud, twice… The wind takes every word of it down the ridge." Then the lamp moves. Why: Same unfinished threat as the hill in Week 2. Either the wind carried the way to someone, or it did not. Fix: Garrick, one dry line at the fire: "The wind was going the wrong way for them. That lamp was already lit." Or the opposite, if you want the cost. Do not wink with the riddle ("Mind who hears yours") and never pay it. Size: Medium.
+Day 7 — The Gathering under the Kiln
+You go down by rope or by scree. For one moment you see a man haul a small box up a vent. Four of the faithful fight and the last one puts his blade down. Wren is on the glass slope. You bring her down whole, or the slope brings her down cut and still holding her chip. The verse says the king sleeps, the Seekers were his own, and a silence is not a lie. The captive, who cannot lie, says the children are to wake him, and the fourth is already with them. Then the lamps go out and the ropes are empty.
+
+Story 9	You are not too late to see the theft. You are too late to stop it. That is a different tragedy from Corin's room, and it is the one this season needed.
+Play 9	The surrender gives you a person to ask, under a rule the book just stated. The climb is the best United Effort yet: her fist stays shut either way. Sealed questions mean a quiet table still hears "He sleeps" and "To wake him."
+Prose 9	"The way children cry when they have learned it does not help." His coat past her knees. The blade set down like something borrowed.
+Pull 9	"We're not finished with you." Footprints, and no captive.
+What works. The box, clutched, gone up the vent before the fight starts. And later: "Seeker blood." The empty case was never a container. It was a test you passed by opening it.
+
+Also: "She has given. She may go." Horrible, and calm, and the answer to the week's question.
+
+What does not.
+
+Heading: Week 3, Day 7, The Verse of the Fall. Why: It is better seated in the night than Week 2's verse, because Ask uses it at once. It is still a long read after a fight and a climb. The gift, the seam, and "he did not die" are the night. The armies that do not tire can be one sentence. Fix: Read the price, the Seekers coming in, and "he sleeps where he fell." Put the rest in the Bag by morning. Size: Small. Do not cut the seam. "A kept silence is not a lie" is the rule the whole captive scene stands on.
+Heading: Week 3, Day 7, the cliffhanger. Quote: every lamp goes out, the ropes are cut clean, one set of footprints. Why: The line "We're not finished with you" is enough. The lights-out escape is a trick you have seen in other stories, and this book has been more particular than that. Fix: Leave him where he is, bound, and have him tell you the footprints are already leaving with the fourth. Or cut the ropes and keep the lamps lit, so the party watches him go and cannot follow without dropping Wren. Size: Small.
+Notice and Look Closer are doing their job. The vent, the swept rim, and the case with no seam are private truths that make the shared scene sharper. Match still fits. Ask is a menu again, and tonight that is correct, because the rule is "ask exactly."
+
+The week
+Story. This is the first week that is not "reach the child after the cut, find an empty hole." You watch the hole empty. Wren acts. The mother, the chips, the name in the wood, and the fist are one character, not a sequence of clues. The week's question is answered in the captive's mouth, which is the right mouth.
+
+The nephew from the charcoal camp is answered, briefly and well: "Him we lost. Not by our choosing." Do not reopen him unless you mean to.
+
+"Five" against "four" is planted and not paid. Fair, if Week 4 or 5 picks it up while the player still has Meira's margin in the Bag. If it waits until the finale with no second touch, it will feel new rather than remembered.
+
+Play. The Kiln is the best Gathering of the three. The weekdays are still the same machine: one roll, one cold fragment, three leads, a fire with two quizzes and a riddle. Days 1 and 5 spend a fight to learn what the tracks already say. Days 3, 5 and 6 ask a fire question their pins do not answer. That is now a habit, not a slip. Fix the habit once, across the remaining weeks, rather than patching nights one by one.
+
+Garrick. Still the person you would walk with. The knees, the boot, the coat, the back of the line so someone can admire the view. "My family's been in these hills longer than the roads have" is the second time that kind of line has appeared, and it still sounds like a man and not a clue with a trench coat. "Always a step ahead of us" includes him in the failure. Keep that. The goodnight menu is now three weeks old. It is the main place he sounds stored.
+
+Children. Wren is frightened and competent. The slide can bloody a sleeve without lingering. The coat is the right last image. Do not add a scene of the cut itself.
+
+Party size. "Four names" and the fourth child still assume a list of four. A party of six friends is not six names on Meira's list, which is correct and easy to confuse in conversation. One line, once, in Week 1 or here, would save it: her list was these children and these friends, not one name per chair.
+
+Week score: 8 / 10. The best week so far when you are together, and a stronger child than Tamsin or Corin. The daily machine and the mismatched fires keep it from a 9.
+
+Three fixes, in order:
+
+Make Wren's goat-track the path that lets you strike first. The prose and the rule currently disagree.
+Rewrite the Day 3, Day 5 and Day 6 fire questions so they are the pin questions. Treat that as a rule for every fire left in the season.
+Stop opening the week with a fight that ends in the first gap and no sound. The tracks are the scene.
+Shall I go on to Week 4?
+
+You
+Continue
+
+Grok
+
+Worked for 1m 8s
+Week 4 only. I have not read Week 5.
+
+A player starts this week knowing the king sleeps, the children wake him, and the fourth is already taken. By Sunday they know the empty sockets were Stones, carried home through doors only their blood could open. Meira is dead. There is a fifth Stone, and the page stops at "the fifth shall end." The dawn stops halfway, and something far north starts to beat. That is the fairest turn of the season so far. The misread a hopeful player will make, that the fifth undoes the four, is earned by the tear in the page, and an attentive one already has a fragment that feared the fifth more than the other four. Leave that split alone.
+
+Day 1 — Not finished
+The ropes are cut. He walked out. Someone stood among you with a blade and used it on rope. You take Wren home. The ledger's last name is Joss, already gone. The day's question is how the captive vanished, and what "not finished" means. Answer to the first: he had help waiting on the glass. The second is still open.
+
+Story 9	Wren's mother on her knees, the folded coat, one chip pressed into your palm. The horror from last night is given a morning.
+Play 8	Ash or Wren first is a real split of labor, and a friend covers the other. Pass reads a walking man and a passage. Press On finds that the cutter left no prints in.
+Prose 9	"At the pace of a man leaving a church." Garrick in his shirtsleeves all the way to the village.
+Pull 8	Two pulls at once: why are you alive, and the north road. Both are good. Only one of them is aimed at Sunday.
+What works. "Every time they've had knives out at you, not one of you has died." Comfort, and a count. He does not say it is luck.
+
+What does not.
+
+Heading: Week 4, Day 1, the Pull, and Week 4, Day 7, The turn. Quote: "Why are you still alive?" Sunday answers where the Stones went, and never looks back at the blade in the dark. Why: The verse already contains the answer: they waited for the children who can open the doors. The night does not say that this is why the knife cut rope. Fix: One line after "Where the Seekers' children walk, the faithful follow." Garrick, or the narration: "That is why the blade cut rope. A dead key opens nothing." Size: Medium.
+The fire question matches its pins. "Count yourselves. I will, too." is the right opening after that room.
+
+Day 2 — The north road
+Hungry men at a ford tell you about four riders and a little cart. A carter describes one box, no child, and pays you with a coin whose king's face has been scraped off. The tracks turn away from the lake. The day's question is who rode north, and what they carry. Answer: the box from the Kiln, not the boy.
+
+Story 8	Splitting the box from the child is the week's real plot move. The coin is the erased king you can hold.
+Play 7	The fight is a change of diet, ordinary thieves who sit down and talk, and it pays no gold. Then the fork is not a fork: friends take the other road, and both answers come back.
+Prose 8	"Four armed men for one little box." "It's terrible. Drink it anyway."
+Pull 8	Reedham by noon, with the box going the other way. You feel the split.
+What works. The scraped face, and the other side kept polished. Someone hated the king and someone else would not let the coin go.
+
+What does not.
+
+Heading: Week 4, Day 2, The Campfire. Quote: "Who scrapes a face off a coin?" Pins: "The box matters more than the swords / The swords are the real message." Why: The coin is the interesting object. The pins are about the cart. Fix: Ask which is the message, the box or the bare blades. Let the coin belong to the fragment and the recall, where Meira's scraped records already sit. Size: Medium.
+Day 3 — Reedham
+Eight notches on the doorpost. A lamp burning at noon. Little boats, each better than the last, the newest without a mast. You row a leaking skiff to a tower standing in the lake, and the mark is there. The day's question is what happened to Joss. Answer: taken before you ever reached Wren, and they are waiting.
+
+Story 9	The notches do the counting for you. Wren was "only the once" and kept for two weeks. Eight nights says the wait is the point.
+Play 8	Patch or bail is a practical Challenge with a funny Garrick line, and both get you there. The fresh keels are the real handoff to tomorrow.
+Prose 9	The tower full of sky. She will not pass in front of the lamp. "I didn't leave a warm bar to drown in a lake."
+Pull 8	Someone else has been rowing to the drowned village. Solid, quieter than the Kiln.
+What works. The newest boat with a hull and no mast, and the knife where he put it down. He is absent, and the room is still his.
+
+What does not.
+
+Heading: Week 4, Day 3, The Campfire. Quote: "What does a skiff tell you about its owner?" Pins: "They're waiting for the right night / the right child." Why: The skiff is not the argument. The eight nights are. Fix: Ask which they are waiting for. The recall already sets Ashcombe's glass against Reedham's lamps. Size: Medium.
+Heading: Week 4, Day 3, Your thread. Quote: "They are waiting for something." Why: The notches and the two-week line already said it. Fix: End on "Eight." Size: Small.
+Day 4 — Old Reedham
+A dry year has uncovered the streets. Men's boots, and smaller prints between them, end where the deep water starts. Meira already copied today's fragment, and glossed a word: moon-blood, the old songs' name for the marked. The day's question is who has been in the drowned streets. Answer: them, with Joss, alive, and then a boat.
+
+Story 8	The word is the right size. You think it means you. You are allowed to.
+Play 8	Pass follows the prints dry. Fail puts you in to the waist and lets Dev find the end by feel. Press On turns his heels toward the one lit window.
+Prose 8	A gull on a chimney with no house. A second line scratched out so hard the nib went through.
+Pull 7	"A warning against what?" is a scholar's question. The reed island is a clearer reason to log in than the glossary.
+What works. Stand where he stood, and the only thing you can see is her lamp. The week keeps choosing the human line over the relic.
+
+What does not.
+
+Heading: Week 4, Day 4, the day summary. Quote: "Today's fragment is a warning about it." Why: The summary solves the tone of the fragment before the fire has asked. "Moon-blood will wake it again, if it is ever let near" can be read as a warning or as instructions. Fix: "Meira called it a word for the marked. The fragment says moon-blood woke it once, and will again." Let the fire decide if that is a warning. Size: Small.
+The fire question and the pins are close enough. Keep them.
+
+Day 5 — The reed island
+Fog, a boat with a black circle, a man who would rather swim than be taken. In the bottom, fresh curls of wood and a tiny hull thrown away. When the fog lifts, a lamp moves toward the tower. The day's question is where the boat took him, and what it has been doing since. Answer: a night ferry, and he is still carving.
+
+Story 8	You meet Joss before you meet him. Angry at his own boat, still himself.
+Play 8	The Challenge decides who hears whom, and who strikes first. The fight pays nothing extra. You keep the boat either way. That is the right prize.
+Prose 9	"He was angry with it." A blanket folded dry under the seat. Three willow shoots, grey, brown, and still white.
+Pull 8	After that lamp, in their own boat.
+What works. The lamp bracket set low, so the shore cannot see it. Craft as a way of thinking, not a stat.
+
+What does not. Nothing large. The man swimming off into the fog is another escape, but this time he leaves you the ferry, the shavings, and the circle. The escape is no longer the whole scene.
+
+Day 6 — The tower at night
+The lamp is out. The sixth piece is on the stair. You read a map by one flame in the wind, and under the tower someone hears every word and rows hard for the drowned village. The day's question is where he is held. Answer: under Old Reedham, and they are ahead of you because you spoke.
+
+Story 9	Weeks 2 and 3 threatened that reading the map aloud had a cost, and never paid it. This night pays it in the next sentence.
+Play 9	Fail does not hide the way. It makes you call it again, slower and louder, and then the oars. The roll and the eavesdropper are the same event.
+Prose 9	Wood knocking on wood in the dark, close enough to have been under your feet.
+Pull 9	After that sound, now.
+What works. "Nobody suggests waiting for morning." And Garrick, later, with no joke in it: "Someone lay under that tower and heard every word."
+
+The fire question matches. Quiet night, riddle optional. This is the Campfire working.
+
+Day 7 — The drowned undercroft
+You follow the oars across black water. You hear the cry cut short as you arrive. Joss is alive, still bleeding, still holding the little boat. The dust in the socket is still falling. The last faithful man is pinned under the water-gate while the second boat leaves. Save his breath and he can be asked. Lose it and he lives, but he will not talk tonight. The verse says the blood wakes the Stones and the Stones wake the king, and that the faithful followed you to every door. Meira's pen is in the pouch. The torn page names a fifth and stops. At dawn the light stops, and a heartbeat starts in the north.
+
+Story 9	The empty rooms of the last three Gatherings become one fact: you opened the doors, they carried the Stones home. The pen is the quietest blow in the season.
+Play 9	The gate is the best shared job yet. The thing at risk is a man's breath, and the prize is answers, not loot. Notice puts a fifth figure in the leaving boat, holding something too small to be a child.
+Prose 9	Dust still falling through the lamplight. "He has not once asked you to hurry." The birds staying down, row by row.
+Pull 10	A dawn that will not finish. I would open Week 5 for that sound alone.
+What works. The little boat in his fist while you lift him down. And "I won't promise you that." Garrick, on whether it can still be stopped. True, incomplete, and exactly his rule.
+
+Also the flinch, when someone only looks from the man to the socket. Better than an explanation.
+
+What does not.
+
+Heading: Week 4, Day 7, The turn. Quote: "This was never about you." Why: You used that sentence in Week 1, when the names on the wall were children. A player who trusted it then will hear a slogan, not a new fact. The new fact is sharper. Fix: "Under the mine, their list was not about you. The doors were. You opened them. The Stones went through." Size: Medium.
+Heading: Week 4, Days 3, 4 and 5, the fragment moments. Why: Tower, market cross, willow roots: three cold lids in three days, each opening because your hand is your hand. The lake, the boy, and the box are doing the real work. The housings have become the daily stamp. Fix: Do not start Week 5 with another one as the thing the day is for. If a fragment must be found, let it be dropped, or wet, or in a pocket, the way the tower stair already did on Day 6. Size: Medium. This is the season's loop getting visible, not a broken day.
+The lost gate still gives you the pages and the pen. Good. It withholds the questions, which is the right cost. Do not also withhold the pen. Her death should not depend on a Craft roll.
+
+Scripture length is under control. The verse is the explanation the empty sockets have been owed since Week 1, and then the table is asked to count the boxes. That is the right order.
+
+The week
+Story. This is the week the season becomes one story. The box, the eight nights, the word moon-blood, the eavesdropper, the dust, the pen, and the fifth are one chain. Meira's margin from the Blackglass is picked up while anyone could still remember it. The nephew stays answered and is not dragged back into the light.
+
+Nothing important fails to add up. They ran tonight because you arrived during the cut, not after it. They stood at the Kiln because they were already done. Garrick naming Malakor, after offering it only when asked in Week 2, is a change of manners, not a contradiction. He has had the page in front of him. "My grandmother taught me that name" still does all the work.
+
+Play. Day 6 is the model for how a roll should matter: the failure is louder speech, and louder speech is why they hear you. The water-gate is the model for a Gathering job: everyone can picture it, the loss hurts, and nobody dies. Gold remains background. Fine.
+
+Campfire. Days 1, 4, 5 and 6 ask what their pins answer. Days 2 and 3 do not. The habit is not dead. His lines are otherwise the warmest they have been: count yourselves, the terrible flask, hands round the cup, a lamp kept lit for eight nights.
+
+Garrick. Likeable, and for the first time a little frightening in retrospect, without breaking the week as a first-time player. He includes himself in the count. He will not promise. He says the king's name as if he has always known it, which a player can hear as an old innkeeper's memory. That is fair. The goodnight menu is now four weeks old. If it repeats next week unchanged, it will be the thing that makes him sound built.
+
+Children. Joss is a maker, not a victim-scene. The cut is still bleeding, and you are not asked to look at it for long. The boat in his hand is the whole performance. Wren's goodbye is the standard to keep using when a child leaves the story.
+
+Week score: 9 / 10. The best week. The middle does not sag in the story. It sags only in the repeated cold lock, and in two fires that ask the wrong question.
+
+Three fixes, in order:
+
+Tie the blade in the dark to Sunday's reveal: they need you alive because you are the key.
+Rewrite the Day 2 and Day 3 fire questions to match their pins.
+Retire the housing-that-opens-at-your-touch as a daily event. Day 6 already shows the better version.
+Shall I go on to Week 5? That needs the next file.
+
+You
+Continue
+
+Grok
+
+Worked for 1m 34s
+Week 5 only. I have not read Week 6.
+
+A player arrives with four children home, four Stones carried off through doors they opened, Meira dead, and a torn line: the fifth shall end. The dawn never finishes. By Sunday they are inside Highwall, holding the fifth, and their own blood has done nothing to it. The Seekers' fragment says the five were joined where he fell, under the dark moon. The Order is counting that night. Seven left. A fresh watchman is looking at the slit they stand behind. The hopeful reading, that the fifth stops the waking, is still possible. It is no longer the only one. That is fair.
+
+Day 1 — The grey afternoon
+Joss goes home in the wrong light. The waystone gives up Highwall, or Garrick does. A second line was cut out of the stone with a patient knife, the same work as the coin. The day's question is where a fifth place could be, when every record says four. Answer: the dead capital, where the heartbeat is.
+
+Story 9	She carries him the way she carried him at two. He holds the broken boat up so you can see he still has it. The week begins with a child, not a relic.
+Play 8	A failed rubbing still shows the cut line, and Garrick still names Highwall. The pass adds the word and the miles. You are not stuck if the roll hates you.
+Prose 9	The lake the colour of old pewter. Frost in a mild wind. The lamp still burning because nobody can tell it is day.
+Pull 9	Louder at dusk, through the chair legs. Two days north.
+What works. "You know now what the luck was." The schoolroom story and the scraped coin finally share a sentence.
+
+What does not.
+
+Heading: Week 5, the week's question at every fire. Quote: "What will it take for the fifth to end this?" Why: The torn page says "end," and stops. A player can hear rescue or finish. The question the fires repeat all week chooses rescue. From Monday on, the game is grading people against a hope. Fix: Ask "What will the fifth do?" Pins can still be "it undoes the four" and "it finishes what they started." Do not put "end this" in Garrick's mouth as if the ending were a rescue. Size: Big.
+The Day 1 pins, Stone-like-the-others or something different, are the right argument. His spoken question, "what would a dead city hide?", is close enough to keep.
+
+Day 2 — The old kingdom's road
+Milestones count down. A family is fleeing their own animals. The mounds are war graves, and one is new. At dusk the grass shivers and the dogs come, then stop when the beat stops. The day's question is what the heartbeat is doing to the country. Answer: it is in the ground, and it is calling or unmaking whatever is alive.
+
+Story 9	The new grave, badly turfed, next to hundreds with no names. The child turned away from it.
+Play 8	Camping in the rows or on the road changes who strikes first, and the sentences agree with the rule. The child is never reached. A win is a dog that looks back and wags once.
+Prose 9	"Like the hide of a horse." Garrick's heel of bread into the child's hand.
+Pull 8	Inside the city, by noon. Clear, and you already knew the destination. The dogs are why you care how you get there.
+What works. They stop mid-stride, heads down, as if they had forgotten what they came for. The soldiers later in the week are this, with a thousand years added.
+
+What does not.
+
+Heading: Week 5, Day 2, Your thread. Quote: "They know whose it is." Why: The new grave is pointed at, and then left. If Week 6 never names it, the Charm line is a debt. Fix: One sentence at the fire, from the father, or cut "they know whose it is" and let it be a grave they will not walk on. Fear does not need a hidden name. Size: Small.
+The fire question matches the pins. Keep it.
+
+Day 3 — The herald's gate
+The city is whole, and nothing in it is alive. You climb the wall the Seekers held. The gate is barred on the inside with new timber in brackets worn bright by centuries of bars. One fire smokes below the hall. The day's question is how you get in, and where you start. Answer: over the wall, on their stretch of it, and someone is still keeping the city shut.
+
+Story 8	The stack of old bars, grey on top and rotted to a line at the bottom, is the best clue in the city. Somebody never threw one away.
+Play 7	Pass gives you the street in daylight. Press On gives you the hoard of bars. The fragment is another chest-high housing that opens for a palm.
+Prose 8	No smell at all. Garrick waits to drink until everyone has.
+Pull 8	Who bars a dead city from the inside, year after year?
+What works. "Whoever changes the bar has kept every one." That is a faith, not a lock.
+
+What does not.
+
+Heading: Week 5, Day 3, Your thread, the fragment. Quote: "A carved housing is set into the parapet… Its stone face swings inward." Why: This is the daily stamp again, after the tower stair and the hand-to-hand map had already shown a better habit. The bar is the scene. The lid is the chore. Fix: Let the fragment be under the newest bar, or in the stack, found because you looked at the wood. Save the palm-opens-stone for doors that matter. Size: Medium.
+The fire's pins, world out or something in, match the question well enough.
+
+Day 4 — The dead streets
+A company stands mid-stride in green-black armour, all on the same step. You pass between them. One helm may have turned. In a cold house Garrick pours the extra cup toward the hall and says his family has waited a long time, and he would like to live to see it. The day's question is who else is in the city. Answer: his soldiers, still at their watch, and perhaps not only standing.
+
+Story 9	The same lifted heel, all the way up the street. Garrick walking last and not looking back.
+Play 8	Pass is a walk close enough to smell the iron. Fail is a scrape, a terrible wait, and the long way round. Press On is the shared step. The night question is a real branch: what they are, who the cup is for, or nothing.
+Prose 9	Cups wiped with a sleeve. "It is easier that way. It should not be."
+Pull 9	Was the helm turned? The smoke is higher. You will go and look.
+What works. "My family's waited a long time for something. I'd like to live to see it." Not a promise. Not a forecast. The most a careful man can say, and the most he has said.
+
+What does not.
+
+Heading: Week 5, Day 4, the last light, "No two alike." Quote: "From the end of the street, any one of them could look turned." Why: This does not break the chapter. It saves it. I am naming it so you do not "fix" it. The dread and the doubt should both reach the fire. They do. His question, helm or dusk, matches the pins. Size: leave it.
+The metal-on-stone sound at dusk is enough of a promise. Sunday pays it when they walk.
+
+Day 5 — Below the hall
+The Order is camped at his doors, and has been for generations. They are not trying to get in. At dusk one of them crosses a chalk stroke. The greeting is "Keep the dark." The answer is "It keeps us." The day's question is who keeps the fire. Answer: the faithful, counting down.
+
+Story 9	Siege, then not a siege. The count is the week's clock, and it is made of chalk.
+Play 8	Pass hears the greeting and reads nine strokes still open. Fail is a lantern in the face and less of the camp. Both learn they are not attacking the doors.
+Prose 8	A hearth blackened right through. A watchman who has not shifted his feet.
+Pull 8	Counting down to what, with five pieces and the trail back on the wall. A little puzzle-pointing, but the count is reason enough.
+What works. "They are not laying siege to him. They are keeping count." Cut any caption that restates a scene, but this one turns the scene. It can stay.
+
+The fire asks what ends when the count ends. The pins, started when the Stones drank or set long ago, are both honest. Good.
+
+Day 6 — The wall again
+You do not read the map aloud. A lookout drops a hand when the watch changes, and you cross forty paces. The map points into the wall, a room with one slit on the hall. The Order has camped in this city for lifetimes and never known. The day's question is where the fifth is. Answer: under your feet since the day you climbed up.
+
+Story 9	The lesson from the drowned tower becomes a plan, and the plan works. "Nobody heard" is a victory the gold cannot touch.
+Play 9	Pass is a clean crossing. Fail is a lantern and a belly-crawl, and you still cross. The map goes hand to hand. That is the mechanic and the story being the same thing.
+Prose 9	"Shapes that walk like watchmen are not looked at twice." Elbow-dips worn in the parapet, facing the hall.
+Pull 9	The watch has changed. It is dark enough. Into the wall tonight.
+What works. "It has been under your feet since the day you climbed up here."
+
+What does not.
+
+Heading: Week 5, Day 6, Your thread. Quote: "[POST Mei] or [POST Dev] or [POST Arjun]." Then: "Mei crouches at the corner." Why: The button is a lie. Whoever you post, Mei is posted. Fix: Three sentences, one name each, or one button: "Post your best eyes." The game already knows who that is. Size: Medium.
+His fire question, "what can you see through one slit?", and the pins, hide the fifth or watch the hall, are the same argument. Keep them.
+
+Day 7 — The wall at Highwall
+You choose the ground and meet the watch short of the room. The hollowed walk, and a cut does not stop them until they are broken. One watchman dies looking at the hall. Up the hill the relief calls the posts, and you answer in their voices. Win, and you hear his prayer. Lose, and you take the page and run. Inside the wall the fifth is in your hands. You cut your palms. Nothing happens. Garrick binds each cut in the same white linen. The tally says seven. He looks at the moon and says you are early. A new watchman looks straight at the slit.
+
+Story 9	The failure of the blood is the right shock. Place and night were in the fragment already. You are not cheated. You are early, and in the wrong room.
+Play 9	The roll-call is the first Gathering job that is social rather than physical, and Charm is the right stat. Loss costs his voice, not the page. The hollowed getting up once is the street of soldiers, turned into a rule.
+Prose 9	"A little bored." "He spoke each of their names. Not one of them answered him." The chalk lying ready, tonight's stroke not yet struck.
+Pull 9	Seven strokes, the moon at the half, and a lantern aimed at your window.
+What works. "The old telling names a place, and a night." He looks at the hall, not at the Stone. And "We're early." Both true. Neither is a promise.
+
+What does not.
+
+Heading: Week 5, Day 7, The attempt. Quote: "Garrick binds each cut palm himself… in the same neat white linen you've seen on every child you've saved. Nobody remarks on it. There's nothing strange about a man having linen to spare." Why: The linen is the loudest fair clue you have placed all season. Then the narration tells the table not to notice. Players can ignore a detail. They should not be instructed to. Fix: Describe the knot and the cloth, and stop. If someone says it aloud, let Garrick answer with something true and small: "I keep it for cuts. The road's full of them." Do not add "nothing strange." Size: Big.
+Heading: Week 5, Day 7, The hidden room. Quote: "The Order has never known the room was there." Why: Said as fact in the arrival, before you have earned it. By the time the map proves the room, the wonder has been spent. Fix: Let the party say it, after the hand-to-hand pass on Day 6. On Sunday, start with the light on the hill and the door in the wall. Size: Small.
+The question to the table is fair. The fragment is in the Chest. The hint is kind. "Not here. Not now" is the answer the week has been building, and it does not require the secret.
+
+The week
+Story. Highwall is the best place in the season. It is not a dungeon with a child at the end. It is a city that kept its watch after the people were gone: bars saved, soldiers unburied, a fire older than the people sitting at it, a room cut so someone could see the doors. The fifth being in the wall, not under the hall, is a better twist than another socket.
+
+The week's question is the one unfairness. Everything else lets the player hold two readings. The fires pick one.
+
+The new grave can stay unnamed. The helm can stay uncertain until they walk. Garrick's wish to live to see it does not break his rule.
+
+Play. Day 6 is the second time a roll and a choice are the same event, after the loud map at the tower. The roll-call belongs beside the water-gate: everyone understands the job, and failure has a sound. Three more palm-housings, on the wall, in the street, and in the fountain, are the only part that feels like last month.
+
+Garrick. His best week since the inn. Bread, the flask last, the cup toward the hall, the line about his family, "we're early," and no comfort after the Stone stays cold. He is warmer here than in the villages, which is right: this is the city his stories come from, and a first-time player can think that is all it is. The goodnight menu is now five weeks old. One week left. Vary it for the last fires, or the last week will have a recorded man walking through the best writing.
+
+Children. All four are home before this week starts. That was the right cut. The only child here is on a cart, going south, and the game does not use them as a key. Keep it that way.
+
+Week score: 9 / 10. The city, the count, the silent map, and the blood that does nothing. Held back by a week's question that has already decided the ending, and by a narration that hides its own best clue.
+
+Three fixes, in order:
+
+Change "What will it take for the fifth to end this?" to a question that does not choose the hopeful reading.
+Delete "There's nothing strange about a man having linen to spare."
+Make the posted lookout the friend who was actually posted.
+Shall I go on to Week 6?
+
+
+
+Week 6 Audit Continuation
+You
+Continue your audit on week 6
+
+Grok
+
+Worked for 5m 10s
+Week 6 only. A player comes in holding a Stone their own blood would not wake, with seven nights on a dead man's page and a room the Order walked past. By Sunday night they know moon-blood was never their word. It was the king's, and then his house's. Garrick is the last of that house. He never lied. His people killed Meira. The fifth did not stop the waking. It finished it. The king is awake, and he is looking at them. All four children are home. That is the right ending. One choice on the last page pretends they can still refuse it.
+
+Day 1 — Six nights
+He looks straight at the window. You sit in the dark and hear them search. Twice the boots pass the hidden door. The day's question is whether you are found. Answer: no. He saw a light. He did not see where. Under the slit, an arrow points down, and you strike their page to six.
+
+Story 8. The count changing hands is the right way to start a last week. The search is tense and then over, which is what a safe room should feel like.
+Play 8. A miss costs the day and brings the boots back to the door. They still walk on. You are not stuck without the arrow. The thing under the Stone is a leaf, not a lid.
+Prose 8. A lamp pinched out between finger and thumb. Hands over the lamps when the boots stop.
+Pull 8. Down into the wall, to the barracks. Clear, and the fright is already spent, so tomorrow is a search.
+
+What works. "I kept a tally behind my bar for years. Most of it was who owed me." He watches you take up their chalk and talks about debts. On a reread it is the count. The first time, it is an innkeeper.
+
+What does not.
+
+Heading: Week 6, Day 1, The Campfire. Quote: He asks what the arrow wants you to find. The pins are "They think the light was nothing" and "They know someone's in the wall." Why: Same break as Week 1. The spoken question is about the barracks. The pins are about whether you are found, which is the argument the day actually earned. Fix: Ask it aloud. "Did he see a light, or did he see us?" Size: Medium.
+
+Day 2 — Five nights
+The street of soldiers is empty. In the barracks one of them stands in the doorway and looks at the fallen stone, not at you. When the beat comes it turns and goes up the hill. The day's question is where the arrow leads. Answer: to the room where the Seekers slept, and the dead are not hunting you.
+
+Story 9. "Not to you." The bunks pulled into a circle. Bowls set out and never filled.
+Play 8. Pass or fail both open the room. Fail drops the ceiling loud enough for the city, and then the soldier comes anyway. [DO NOT MOVE] is one button, and it is the whole scene. There is no fake second choice beside it.
+Prose 9. Pale boot-shapes on the cobbles, where they kept the weather off one patch of stone for longer than anyone has been alive.
+Pull 8. They are going to him. The square, after dark.
+
+What works. The fire matches. "Called, or on guard?" is the pin. Keep that one as the pattern for the other five.
+
+What does not.
+
+Heading: Week 6, Day 2, Your thread. Quote: "In the hearthstone is a housing." Why: The circle of bunks is the scene. The lid is the chore, and it comes back on the wall, in the crack, and under the moon. Day 1's leaf and Day 6's cleft already show the other habit. Fix: Let this one be in the unswept ash, or under the ladle. You do not need a palm to open a cold hearth. Size: Small, and it is the same note as last week.
+
+Day 3 — Four nights
+Twice the watchmen, and they are still only watching. You cross the square. The hall's wall is warm, low down, with no sun to have made it so. The day's question is whether there is a way in at the hall. Answer: not at the front. The back wall runs into the hill.
+
+Story 8. Warm stone, and a heartbeat felt in the hand before it is heard.
+Play 8. [THE WATCH] and [THE BOARD] give different true things: the greeting, or that their chalk and yours agree. Neither is punished. Press On is a real extra. Eleven, six still dusty, packs not unrolled. They were already coming.
+Prose 8. Dust drifted against the doors in one bank, nothing crossed.
+Pull 9. He is on the other side of this wall.
+
+What works. "They did not send for more men to hunt you." That is the season's rule, said a day before anyone can use it: they need you alive, and they are gathering, not searching.
+
+What does not.
+
+Heading: Week 6, Day 3, The Campfire. Quote: "Where would the Seekers have left a door?" The pins are "No way in at the front" and "There is, and it isn't ours." Why: The chapter has already said the front is shut, and the Pull has already named the hill. The pins are a different argument, and the better one. Fix: "Is the front shut to everyone, or only to us?" Size: Medium.
+
+Day 4 — Three nights
+One crack in the hill runs straight. A soldier stands in it with its back to the hall, facing you. You break it. The crack ends in blank rock beside a full moon scored dark. The day's question is where the Seekers' way in is. Answer: here, and it is not the only door.
+
+Story 8. A guard facing out, in a city where every other helm faces the hall, is the image of the day.
+Play 7. You always strike first. Win or lose, it is "broken at last," and you go in. The fight is a toll on the way to the moon carved in the rock.
+Prose 8. The rock healing shut around a cut that was once wide enough for a pack.
+Pull 8. The same mark, high on the moon-tower. Fair, and a step down from the door.
+
+What works. "The Seekers sealed the doors they knew about." True, narrow, and he does not add the stair. That is his best line this week.
+
+What does not.
+
+Heading: Week 6, Day 4, Your thread. Quote: "There is another door. And the Order has it." Why: He didn't say that. The player can reach it, and Sunday shows the trapdoor thrown back. The caption spends the inference a day early, and it spends his care. Fix: End on his line and the scored moon. Let the hall prove the other door. Size: Medium.
+Heading: Week 6, Day 4, The Campfire. Quote: "Why keep a soldier at it?" The pins are "The rock waits for the dark moon" and "The rock will open for us now." Why: The recall is the dog on the chain, which belongs to the soldier. The pins belong to the blank rock. Fix: Ask the pin. "Does it wait for that moon, or will it open because we are here?" Size: Medium.
+
+Day 5 — Two nights
+The sky-watchers' wall stops. One moon is cut deeper than the rest, and then bare stone. Counted forward on a fingertip, that moon comes again in two nights. The day's question is what the scored moon means. Answer: the night he fell, and the night it comes back.
+
+Story 9. The record ends because the recorders did. Garrick sits on the top step and waves you on.
+Play 9. A miss means a lamp in a room the whole city can see, and lanterns lifting in the square. The hour itself is a button, not a roll. Right. You must not be able to miss the night.
+Prose 9. "Give me a minute." A chisel and a mallet left on the ledge. Nobody came back for them.
+Pull 9. You have the hour. Tomorrow is the last day.
+
+What works. "It always comes back." He is looking at the moon, not at you. It can be heard as an echo of the fragment. It is also a man who has been waiting his whole life for one night. The fire matches: why that night, chosen or by chance. Leave both.
+
+What does not. Nothing large.
+
+Day 6 — One night
+The dead are walking. You cross between the ranks. One of them has stopped at the crack and turned. The last piece shows the blank rock is a door, and the word on it is here. The day's question is how the rock opens. Answer: tomorrow night, when the moon goes dark. Everyone in the city is going to the same room.
+
+Story 9. The map is short, and for once that is the point. Six weeks of fragments, and the last one says: this crack, this rock, this night.
+Play 9. The roll is the crossing. Pass, and not one helm turns. Fail, and a shoulder of iron takes you, and then one does. The fight pays no gold because the Challenge already did.
+Prose 9. The last of the bacon, the last of the oats, the onion carried since the lake. "There's nothing to save it for."
+Pull 9. I would open the Gathering for the cup on the sill.
+
+What works. "Drinks are on me. Don't get used to it." And the extra cup set where nobody is sitting, aimed at the hall. That gesture has been in the story since the inn. This is the night it should hurt.
+
+What does not.
+
+Heading: Week 6, Day 6, the wall room and the fire. Quote: "Garrick pours out the last of his flask." Then, at the fire, he pours another extra cup. Why: The last of it cannot be poured twice. The sill is the better of the two, because it aims at the hall. The fire's wordless cup is the old rite, and on this night it repeats a scene the player just played. Fix: One pour. If the fire is that pour, do not play it in the chapter first. Size: Small.
+Heading: Week 6, Day 6, The Campfire. Quote: "Not one of the dead turned its head." Why: One did. You fought it. He sounds as if he were not there, and the pins are a different question anyway: whether tomorrow's door is yours. Fix: Ask the pin, and tell the truth about the street. "Only one of them turned, and it turned for us. Tomorrow night, is that door ours?" Size: Medium.
+
+Day 7 — His hall
+You go in by the crack. The fitted stone opens for your blood. The faithful came up the other stair, the one the Seekers never knew. You fight. A rope older than the Order is all that holds the great lamp. Your blood does nothing, again, in the right place, on the right night. He says "Let me."
+
+Story 10. The cup set down beside the sleeping king. "One stayed close." The faithful finishing the torn line for him. His face courteous, and nothing more. The king looks through him and settles on you. Then the four children, by name, and the same knot.
+Play 7. The Hawser belongs with the water-gate and the roll-call: everyone can see it, and losing it still gets you to the throne, bleeding. The vote under it does not deserve the same scene.
+Prose 9. Death's likeness, and not death. "You've all tried tonight. I haven't." "You saved every child you were sent to save." The dull stretch is the four quotations in a row, and the torn page printed twice.
+Pull 9. His eyes, and Seeker blood. I would come back. I am not yet sure the last heartbeat changed what I would be coming back to.
+
+What works. "No. The faithful don't." And "My people. On the road, the night she left with those pages." He does not explain himself. The documents do, and then he puts the fifth into the hand it was taken from. The Craft notice, and then the last lines for everyone, finally let the linen be seen. Nobody is told it is ordinary. "You've all tried tonight" keeps his rule even if someone asked him to bleed on it a week ago. That is exact work. Do not add a confession on top of it.
+
+What does not.
+
+Heading: Week 6, Day 7, the vote. Quote: "HOLD IT BACK." Then: "He reaches out and closes his hand over the Stone where it lies in yours, and it answers him anyway." Why: This is the choice the season has been walking toward, and the name promises a result the scene refuses. Giving it and refusing it are different kinds of guilt. They are not different results, and the button says they are. A twist can take the Stone. A label should not. Fix: Before the vote, one sentence. He is close enough to touch it either way. Name the buttons for what you do: put it in his hand, or keep your hand shut. If you gave it, the light later frees someone else, because you already let go. If you did not, his hand is on yours, and the heartbeat frees you. Same king. The vote decides whose hand gets the last act, not whether he wakes. Size: Big.
+Heading: Week 6, Day 7, the second twist. Quote: the tin cup, the kneel, "One stayed close," all under "If option 2 was picked." Why: If trusting him skips the cup, the players who do the more terrible thing miss the best page in the season. The rite is not a prize for refusing. Fix: Both branches set the cup down and close the king's hand. Only the taking differs. If they gave it, it is already in his hand. If they did not, he takes it out of theirs and they cannot close their fingers. Size: Big. It is the same repair as the vote.
+Heading: Week 6, Day 7, the act. Quote: tear the page, break the ring, or do nothing. Then the king opens his eyes the same way in all three. Why: Thirty seconds of the table talking, and three sentences of difference, and then the scene returns to one track. The page in the fist and the Stone in the dark are good. They are over before the thing people will remember, which is his eyes. Fix: After the eyes, one beat that is only true of the act. Torn page: he looks at the fist before he looks at your face. Broken ring: his eyes go to the gap, and one Stone answers him late, out of the dark. Nothing: the ring is whole, and his eyes come to you at once. Season 2 has to be visible on this page. Size: Medium.
+Heading: Week 6, Day 7, the Approach. Quote: lamps dark, and on a failure "a lamp slips from somebody's fingers and rings." Why: They chose the dark. A boot on the stair would do it. A lit lamp contradicts the vote. Size: Small.
+Heading: Week 6, Day 7, Garrick's Recap. Quote: "I've known what the fifth was since before you found me." Why: He never says it. "The faithful don't" is the confession, and it is the better one. A second speech that explains his plan would shrink him. Fix: Take the line out of the recap. Do not put it in his mouth. Size: Small.
+
+The lost Hawser still reaches the throne. Good. Do not also withhold the king, the pen, or Meira. Her death was paid in Week 4. It should not depend on Aim.
+
+The battle is the one thin stretch before the lamp. Conditions, and no line while it happens. Two are enough. When the chant breaks, the singing thins and you hear the iron. When a hollowed gets up, it does not look at who put it down. The card's title is also blank. Give it a name.
+
+"To be continued" should live on the summary card. The last words in the hall should be the linen. Tamsin's hand, Corin's, Wren's, Joss's, yours.
+
+The week
+Story. The count, the warm wall, the soldier facing out, the sky-watchers' last chisel, the door with one word on it, and a man who sets a cup down for a king. It is one chain, and Sunday pays it. The week's question is fair in a way Week 5's was not. "What will the fifth do in his hall?" does not choose a rescue. The hall answers it. He had already told them, in pieces, for six weeks. The reread holds. I could not find a lie in his mouth. I could find places where the narration finishes a thought he was careful not to finish.
+
+Play. Day 5 and Day 6 are the model: a miss is a louder, more visible version of the same action, and the thing the week needs cannot be locked behind a roll. The Hawser is the right last job, because it is a picture, and because failing it hurts without robbing the ending. Gold still does not matter. Fine. The vote is the thing that is not fine. A stored-text game cannot let them keep the Stone. It can refrain from offering that.
+
+Campfire. Days 2 and 5 ask what their pins answer. Days 1, 3, 4 and 6 do not. The last fire is the worst of them, because the pins are the right question and the spoken line is untrue. His openings this week are specific and new. The goodnights are the same four lines as the inn. You varied him everywhere except the sentence that ends the night.
+
+Garrick. His best week, and his last as a friend. Bread eaten quietly. The tally. A minute on the stair. The last of the flask. "Let me," said gently, the way he has said everything since the first night. Then courteous, and nothing more. The recap earns its place if it only explains lines they heard. It does not need a line written for it.
+
+Children. They are not in this city, and they are not keys. They are the last thing anyone is asked to say. Keep it that way. The nephew stayed answered. He did not need to be brought into the hall.
+
+Week score: 8 / 10. The true ending of a season that kept its rule, held down by a last vote that breaks the rule the buttons were given in Week 1: if it does not change, do not name it as if it does.
+
+Three fixes, in order:
+
+Tell them he can touch the Stone either way. Let the vote change whose hand is free, not whether he wakes. Play the cup, the kneel, and "One stayed close" on both branches.
+After the king opens his eyes, show which act happened. The thirty seconds have to be visible in the look.
+Make the four broken fires ask their own pins. On the last night, ask whether the door is yours.
+You
+audit the entire season (attached)
+
+Grok
+
+Worked for 2m 23s
+The season, read straight through, and then the recap. A player who finishes believes this: Meira found four marked people and was killed for the pages. Those four, whoever they are, opened doors only their blood could open. Behind every door a child had already been cut, and a Stone had already been carried home. The Stones wake the king. The fifth, which they hoped would end it, is the same key turned the other way. Garrick never lied. He is the last of Malakor's house, and the Order is his. The king is awake and looking at Seeker blood. All four children are home. That belief is earned. Two sentences in the whole six weeks cheat it, and they are both on the way into the hall.
+
+The rule. He does not promise, and he does not predict. "I won't promise you that." "We're early." "As far as the Widow's Tooth. That's all I'm agreeing to." Each one is true in the moment it is spoken, and the second reading is worse, not different. The extra cup, "for whoever can't be with us," is for the king, and it is still a family habit. "My grandmother taught me that name" is the whole plot of his bloodline, said the first time anyone asks, in Week 2, and it does not become a lie later. "You've all tried tonight. I haven't" is exact enough to survive a player who made him bleed on the Stone a week early. I could not find a false sentence in his mouth.
+
+The hope is theirs, not his. He says she wrote about a fifth. He does not say it undoes the four. They finish the torn page the way people finish a torn page. That is the best craft in the season. Do not let a system question do what he refuses to do. Week 5's fire asked "What will it take for the fifth to end this?" for six nights. That question grades them against a rescue. Week 6's question does not. Keep Week 6's.
+
+What the weeks are for.
+
+Week	What they come to believe	What it costs
+1	A list, an inn, a girl saved, an empty socket	The real question, left open on purpose
+2	The children were born under a dark moon. So were you	Corin, already cut
+3	He is not dead. He sleeps. The faithful do not lie	Wren, needed only once
+4	You opened the doors. The Stones went through them	Meira's pen, and a dawn that stops
+5	The fifth is in your hands, and your blood is not the blood	Seven nights, and "We're early"
+6	Moon-blood was his title. The fifth finishes it	The king, looking at you
+The repetition is the plot, and Week 4 is where a player is allowed to notice. Four sockets, four cuts, four children sent home. Tamsin counts. Corin says the names back. Wren leaves a trail of glass. Joss will not drop the boat. By the undercroft the dust is still falling, so the fourth time is not a copy. The silent men who run are the same idea, and it stops being a copy the night one of them stands in the dark and cuts only rope. The linen is one knot, repeated until it is evidence. The cup is one habit, repeated until it is a person. None of that should be thinned out to make the weeks feel more various. The variety is already in the places: a shut village, a mill, a burned hill, a black lake, a dead city.
+
+Week 3 is the one that can feel like last week, until Sunday. "He is not dead. He sleeps" and "Speak true, always" are why that week exists. Both of them detonate in the hall. The nephew, lost "not by our choosing," is closed and stays closed. He does not need a scene in Highwall.
+
+The play, across six weeks. The weekday teaches itself in the right order, and the Gatherings get more serious without adding a new rule every Sunday. Week 1 has no Match and no scripture lecture. Good. The United Efforts are the best thing the system does: a tunnel, a man's breath under a gate, a roll-call, a rope over a beam. Each one can be lost without killing the night. The rolls that matter are the ones where failing is the same event as the story. Reading the map aloud. Crossing the street between the dead. A lamp in a tower the city can see. Gold never becomes interesting. It does not have to.
+
+The fires do not keep up. There are thirty-six of them. About a third ask a different question from the pins underneath, starting at the inn ("how would you test whether the page is hers," pinned as whether she left in a hurry) and still there on the last night, where he says not one of the dead turned its head after they have just fought the one that did. Week 5 is almost clean. So it can be done for a week. The goodnights cannot. Four lines, unchanged from the first fire he attends to the last. His morning notes and his openings change with the road. The sentence that ends the night does not.
+
+The last page. The hall is the right ending. The Stone stays cold in their hands, in the right room, on the right night, and then it answers him. The faithful finish the torn line. He sets the cup down beside the king. "One stayed close." The king looks through him. "You saved every child you were sent to save." I would come back for the eyes alone.
+
+Then the instrument flinches, twice.
+
+"There's nothing strange about a man having linen to spare." The linen is the fairest clue in the season. Week 6 pays it, privately and then for everyone, without a speech. Week 5 tells the table not to see it. He is not allowed to cheat. The narration should not cheat for him.
+
+"HOLD IT BACK." He takes it anyway. Giving it and refusing it are different kinds of guilt, and the button promises different results. If the branch that trusts him also skips the cup, the kneel, and "One stayed close," then the worse choice misses the best page. The rite happens either way. Only the taking differs. The vote can still matter: if they kept the hand shut, his hand is on theirs, and the heartbeat frees that hand. If they gave it, they already let go, and the heartbeat frees someone else. Same king.
+
+The act is the real last choice, and it is smaller than the vote on the page. Tear the page, break the ring, or do nothing, and then he opens his eyes the same way. Season 2 is supposed to begin from that heartbeat. Then it has to be in the look. The fist. The gap in the ring. Or the ring, whole, and his eyes on them at once.
+
+"To be continued" belongs on the card. The last words in the room are the four hands and theirs, and the same knot.
+
+The recap. It is the right reward, and it is not yet a transcript. "You four were on her list. That means something" is not a line he says at the inn. "I've known what the fifth was since before you found me" is not a line he says in the hall, and it would shrink "The faithful don't" if you added it. Several Week 1 and Week 4 entries are answers to questions the played nights never offer. Either those questions exist on a board the playthrough did not print, or the unlock is a second, longer season. Print them, or cut the entries. Do not explain a sentence nobody heard.
+
+The number four. The children are four. That four is the ritual, and it stays. The party is two to six. The sample is four, and the sample has leaked into the prose: four stubs, four of you, four names on Meira's list, a recap line that says "you four." In a party of three that line is a lie, and he is not allowed one. Generate every number that means the people in the room. Leave the children alone.
+
+What not to fix. Do not give him a confession. Do not make the fifth fail because the players were foolish. They read the pages they had, and the missing half was in his coat. Do not bring the children into Highwall, and do not cut their last four lines. Do not add a death. The king opening his eyes is worse, and it is enough. Do not explain Season 2. The open stair, the years he has not been told, and whichever act they managed are enough of a door.
+
+Season score: 8 / 10. I would play all six weeks for the inn, Fenmark, the pen, the dawn, Highwall, and the cup. The story keeps a harder rule than most mysteries, and the last night is the first time the game itself breaks it.
+
+Three fixes, in order:
+
+On the last vote, tell them he can touch the Stone either way. Play the cup and "One stayed close" on both branches. Let the vote decide whose hand is free. After his eyes open, show the act. Delete "There's nothing strange about a man having linen to spare."
+Split the two fours. The children stay four. Every "four" that means the party is generated, including his recap. Cut any recap line the season does not speak.
+Make every fire ask the question its pins answer. Week 5 is the proof. Retire the palm-opened housing as a daily find. It is already retired on the days that are any good.
+You
+give me your full audit into one md file
+
+Grok
+
+Worked for 3m 30s
+The full audit is in one file: weeks 1 through 6, then the season.
+
+Tales of the Dark Moon — full audit
+
+You
+give me your full audit into one md file
+
+Grok
+
+Worked for 5s
+Weeks 1–6 and the season read, in one file.
+
+tales-of-the-dark-moon-audit.md
+
+
+
+
+Preview stopped
+
+Grok finished responding
+Week 6 Audit Continuation - Grok

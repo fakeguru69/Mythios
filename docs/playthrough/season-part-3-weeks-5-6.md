@@ -1241,7 +1241,7 @@ Clue found, "A stride wider":
 
 **THE APPROACH: MAKE YOUR GROUND**
 
-*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: At the door → Might (drag a fallen lintel across the way); In the street → Intellect (read the street, and choose where to stand). DC 11 (+2 if the party solved the week's map). Pass: +500g · **and the party strikes first**. Fail: they are on you before you are set, and **they strike first**. The result sets who strikes first in the Battle.*
+*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: At the door → Might (drag a fallen lintel across the way); In the street → Intellect (read the street, and choose where to stand). DC 11; the roller adds +2 to the roll if the party solved the week's map (the map helps). Pass: +500g · **and the party strikes first**. Fail: they are on you before you are set, and **they strike first**. The result sets who strikes first in the Battle.*
 
 *⚙ If the Approach passed:*
 
@@ -2717,7 +2717,7 @@ Clue found, "Every post empty":
 
 **THE APPROACH: THE SEEKERS' STAIR**
 
-*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: Lamps dark → Agility (bring everyone down the stair without a sound); Lamps lit → Intellect (read the Seekers' marks on the wall, and find where they meant a watcher to stand). DC 11 (+2 if the party solved the week's map). Pass: +500g · **and the party strikes first**. Fail: a lamp rings on stone, and **they strike first**. The result sets who strikes first in the Battle.*
+*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: Lamps dark → Agility (bring everyone down the stair without a sound); Lamps lit → Intellect (read the Seekers' marks on the wall, and find where they meant a watcher to stand). DC 11; the roller adds +2 to the roll if the party solved the week's map (the map helps). Pass: +500g · **and the party strikes first**. Fail: a lamp rings on stone, and **they strike first**. The result sets who strikes first in the Battle.*
 
 *⚙ If the Approach passed:*
 

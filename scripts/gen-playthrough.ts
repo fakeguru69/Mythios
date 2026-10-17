@@ -234,7 +234,7 @@ function gathering(week: number) {
       w(`**THE APPROACH: ${fill(st.title)}**`);
       w(gameplay(
         `One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: ${st.ways.map((x) => `${fill(x.by)} → ${x.attr} (${fill(x.verb)})`).join('; ')}. ` +
-          `DC ${ep.gatheringDC} (+2 if the party solved the week's map). Pass: ${fill(st.reward)}. Fail: ${fill(st.fail)}. The result sets who strikes first in the Battle.`
+          `DC ${ep.gatheringDC}; the roller adds +2 to the roll if the party solved the week's map (the map helps). Pass: ${fill(st.reward)}. Fail: ${fill(st.fail)}. The result sets who strikes first in the Battle.`
       ));
     } else if (st.t === 'battle') {
       w(`**THE BATTLE: ${fill(st.name)}**`);

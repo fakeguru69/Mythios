@@ -30,6 +30,11 @@ interface View {
   n: number | null;
   log: Entry[];
   progress: { gold: number; attrs: Record<string, number>; relics: Record<string, number>; weapon: number; armor: number } | null;
+  /** Opened only after it ended, never having been in it (0072): its recap instead of the night. */
+  missed?: boolean;
+  recap?: string;
+  /** Came in after it started (0072): one "what you missed" line. */
+  lateLine?: string | null;
 }
 
 const ATTRS: AttributeName[] = ['Might', 'Craft', 'Intellect', 'Charm', 'Agility', 'Aim'];
@@ -83,7 +88,7 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
     };
   }, [poll]);
 
-  const logLength = view?.log.length ?? 0;
+  const logLength = view?.log?.length ?? 0;
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [logLength]);
@@ -123,6 +128,20 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
       <div className="space-y-4">
         {header}
         <p className={note}>There is no Gathering tonight.</p>
+      </div>
+    );
+  }
+  // Opened only after it ended (Core Rules §11 "Missing the whole Gathering": the friend gets the recap).
+  if (view.missed) {
+    return (
+      <div className="space-y-4" data-gathering-missed>
+        {header}
+        <p className={note}>Week {view.week} · The Gathering</p>
+        <div className={card}>
+          <h2 className={`${heading} text-[18px]`}>You missed tonight's Gathering.</h2>
+          <p className="text-[14px] text-[#B7A9CC]">The night went on without you. This is what happened.</p>
+          <NarrationBlock text={view.recap ?? ''} />
+        </div>
       </div>
     );
   }
@@ -198,6 +217,14 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
       <div key="tonight" className="rounded-xl bg-[#130B1F] border border-[#3A2555] px-3 py-2 text-[13.5px] text-[#B7A9CC] italic">
         {tonightLine(view.tonight, view.opensAt, view.timeZone)}
       </div>
+    );
+  }
+  // "What you missed" (Core Rules §11): one line for a friend who came in after the start.
+  if (view.lateLine) {
+    nodes.push(
+      <p key="late" className="font-sans italic text-[13.5px] text-[#B7A9CC] px-1" data-late-line>
+        {view.lateLine}
+      </p>
     );
   }
 

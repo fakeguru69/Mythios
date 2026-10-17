@@ -240,10 +240,10 @@ For a new session: read this, then `docs/multiplayer-plan-15oct.md` (the plan an
 **Next, in order** (Fake Guru picks; my suggestion first)
 1. Garrick's open piece: the Gemini key (Fake Guru). Private questions in your own thread and at the fire are built (17 Oct, migration `0067`).
 2. ~~Notifications~~ Built 17 Oct (migrations `0069`–`0071`, the server function `supabase/functions/notify`, `src/online/Notifications.tsx`, `pwa/sw.js`): to be tried on a real phone by Fake Guru.
-3. The Gathering's open pieces: the recap for a friend who missed it, the "what you missed" line for a late friend, switching which fight a reinforcer joins, Ask boards that gain questions during the night (Gathering 4), Garrick's Recap after Gathering 6, the read-backs of the week's pins, the Store closed during your own Gathering roll or fight.
+3. The Gathering's open pieces. Built 17 Oct (migrations `0072`, `0073`): the recap for a friend who opens the Gathering only after it ended (not counted as there), the "what you missed" line for a late friend, Garrick's Recap after Gathering 6 (`GarrickRecap.tsx` on the party page; the data stays on the server until then), the Store closed while your own Gathering roll or fight waits. Still open: switching which fight a reinforcer joins, Ask boards that gain questions during the night (Gathering 4), the read-backs of the week's pins.
 4. ~~A day left open at 5:00am finishing by itself~~ Built 17 Oct (migration `0068`): when anyone in the party next opens the game, every friend's earlier open weekday closes: an unrolled or set-aside card expires as a failure that costs nothing and posts nothing, a [PRESS ON] not taken is left, a fight is rolled out and pays its real result. The day is marked `closed_at`, not played (`finished_at` stays empty), so the friend gets its recap.
 6. Also open:
-   - a late joiner plays Day 1 first;
+   - ~~a late joiner plays Day 1 first~~ built 17 Oct (`0072`: `is_late_day1`; their Day 1 has no recap, then an [ON TO WEEK 1, DAY 2] button);
    - the Record and Bag;
    - the Fan Out first-letter hint.
 
