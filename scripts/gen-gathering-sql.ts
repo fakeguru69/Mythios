@@ -45,7 +45,9 @@ script.steps.forEach((st: GatheringStep, i) => {
       o.nameOf = nameIndex++;
       text = text.replace(/\s*\*\{F\d\}\.\*\s*$/, '');
     } else if (/\{F\d\}/.test(text)) {
-      text = text.replace(/\{F\d\}/g, st.section === 'The act' ? '{CHOSEN}' : '{TAPPER}');
+      // The act's friend, and the cliffhanger's branch line on the torn page ("The page is still in Jo's fist."), is {CHOSEN}.
+      const chosen = st.section === 'The act' || (st.section === 'The Cliffhanger' && st.cond?.on === 'pick');
+      text = text.replace(/\{F\d\}/g, chosen ? '{CHOSEN}' : '{TAPPER}');
     }
     o.text = text;
   }

@@ -600,10 +600,14 @@ Damage = 10 + Roll 6. His Breath 100 → 84
 ## How it ends
 
 **The Hawser reaches 0**
-> The lamp comes down like a bell falling, and the line breaks around it.
+> For a moment nothing happens. Then, high above, the great iron lamp drops out of the dark, turning once as it falls.
+>
+> The lamp comes down like a bell falling, and the line breaks around it. The floor jumps under your feet, and through the dust their singing goes ragged.
 
 **Your Line reaches 0**
-> The chain holds, and you go through them a step at a time, bleeding.
+> The chain holds. The lamp hangs above you, dark and no use to anyone, and their line comes on.
+>
+> So you go through them the hard way, shoulder to shoulder, a step at a time, bleeding, until there is nobody left between you and the throne.
 
 ## Why it holds up
 
@@ -613,7 +617,7 @@ Damage = 10 + Roll 6. His Breath 100 → 84
 | Why one at a time? | The others are holding a line. Each friend who steps out to shoot leaves a gap. |
 | Why does a fail hurt? | The step the shooter gave up is not got back. |
 | Why "Your Line"? | The second draft called it "Your Ground", which nobody could picture. |
-| What is zero? | The party fights through the hard way. **Nothing after it is different, and gold means little on the last night.** It is a set-piece: the party's last win together before everything is taken from it. It is kept short for that reason. |
+| What is zero? | The party fights through the hard way. **Nothing after it is different, and gold means little on the last night.** It is a set-piece: the party's last win together before everything is taken from it. It is kept short for that reason: each ending is one more beat around canon's line, and neither adds an outcome (storybook pass, 16 Oct 2026, approved by Fake Guru; the same text as `episode-6-the-finale.md`). |
 
 ---
 

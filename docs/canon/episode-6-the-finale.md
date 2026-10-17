@@ -39,9 +39,11 @@
 >
 > Up in the square the watchman stands with his lantern raised, and his face turned down the hill to the wall. To your window.
 >
+> Somebody pinches the lamp out between finger and thumb.
+>
 > Then he calls out, one short word, and all round the square other lanterns lift.
 
-> Nobody lights a candle that night. For hours the lanterns move along the foot of the wall and up onto the wall-walk.
+> Nobody lights a candle that night. For hours the lanterns move along the foot of the wall and up onto the wall-walk, and you sit in the dark and listen to them come and go.
 >
 > Twice, boots scrape right past the room's hidden door.
 >
@@ -61,9 +63,11 @@
 
 `[LIFT IT OUT]`
 
+> It comes away from the stone with a dry whisper, and it is colder than the niche that held it.
+>
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> They lived here. They would have left the start of their way here, too.
+> They lived in this room. If the Seekers left a way into his hall, the first step of it would be here.
 
 **Challenge card**
 > **THE ROOM THEY KEPT**
@@ -75,7 +79,7 @@
 > *If the roll-call was lost at the Gathering:* **Two harder.** The hill is already hunting you.
 
 *On a pass:*
-> You find it before the light has moved.
+> You find it before the grey light at the slit has moved, and before any boot comes back along the wall.
 
 *On a failure:*
 > It takes the whole grey day, room and floor and wall, with an ear always on the stair. Late on, the boots come back. They stop outside the hidden door. Everyone in the room stands with a hand over the nearest lamp.
@@ -90,9 +94,9 @@
 
 > Garrick is looking out of the slit window, at the hall. *"Somewhere they'd never be found,"* he says.
 
-> At dusk, up in the square, a watchman takes up the chalk and strikes the board.
+> At dusk, far up in the square, a lantern stops beside the Order's board. A watchman is taking up the chalk.
 >
-> You are holding the watch-page that came off his dead brother. It still shows seven, and nobody is left to mark it.
+> You are holding the watch-page from the dead watchman's fist. It still shows seven, and nobody is left to mark it.
 
 `[STRIKE THE PAGE]`
 
@@ -131,6 +135,7 @@
 - **The fragment is not quoted,** and the optional question does not use its lock words (*household*, *servants*).
 - **Garrick:** two existing lines; the first only if asked.
 - **Fragment text (unchanged):** "His household ran the night we came to the hall. We let them go. They were only servants."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: "the watch-page that came off his dead brother" is now "the watch-page from the dead watchman's fist" ("brother" could mean the watchman at the board, or read as a new fact; on both Gathering 5 branches the watchman dies with the page in his fist); the watchman saw a light, so somebody now puts it out ("Somebody pinches the lamp out between finger and thumb."; "somebody" names no friend); "They lived here. They would have left the start of their way here, too." is now "They lived in this room. If the Seekers left a way into his hall, the first step of it would be here."; the pass line is now "You find it before the grey light at the slit has moved, and before any boot comes back along the wall." (it gives nothing of the find away). The board is far up the hill, so the Order's stroke at dusk is seen as a lantern stopping beside it. New: the night sat out in the dark, listening to the lanterns; the fragment's cold after `[LIFT IT OUT]`. Both Garrick lines, both [PLANT]s, every notice line, the card, the failure line, the Pull and the summary card are word for word.
 
 ---
 
@@ -139,7 +144,7 @@
 *Heading: **Five nights.***
 *Question: where does the arrow lead?*
 
-> You go out by the gate-tower, and past the crossroads where the rest of the soldiers stood.
+> You go out by the gate-tower in the grey morning, and down to the crossroads where the rest of the soldiers stood, mid-stride, for longer than anyone has been alive.
 >
 > The street is empty.
 
@@ -151,7 +156,7 @@
 > **Craft** · Where each one stood, the cobbles are a shade paler, in the shape of two boots. *They kept the weather off that stone for longer than anyone has been alive.*
 > **Aim** · Up the hill, three streets on, something stands across the road. *It was not there before.*
 
-> The defenders' barracks are long, low halls cut into the back of the city wall: rows of stone bunks, racks where spears once stood, a kitchen whose fire went out on the war's last night.
+> The defenders' barracks are long, low halls cut into the back of the city wall: rows of stone bunks, racks where spears once stood, a kitchen whose fire went out on the war's last night. The air smells of cold stone and very old smoke.
 >
 > The far end is blocked. A beam has come down, and half the ceiling with it.
 
@@ -175,7 +180,7 @@
 >
 > Not to you.
 >
-> Nobody breathes.
+> Nobody makes a sound.
 
 `[DO NOT MOVE]`
 
@@ -184,6 +189,8 @@
 > It turns. It climbs the stair. You hear it go on up the hill, one step at a time, until you cannot hear it.
 
 `[PLANT]` *(the dead move, and they pass you by)*
+
+> The room beyond the fall is dark. Garrick turns out a handful of candle stubs from his coat pockets and lights one for each of you, and holds his own low, so that it does not show at the stair.
 
 > At the far end, in a small room of its own, the bunks are not in rows. They have been pulled into a rough circle round a cold hearth, as if the people who slept here wanted to be near each other.
 >
@@ -195,11 +202,11 @@
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
-> On the way back you find the others: three streets further up the hill than they were, as still as before.
+> On the way back you pass the rest of the soldiers: three streets further up the hill than they were, as still as before.
 >
 > Every helm is turned to the hall.
 
-> At dusk the burnt stick snaps halfway through the stroke.
+> At dusk, back in the wall room, the burnt stick snaps halfway through the stroke.
 
 `[FINISH IT WITH THE STUB]`
 
@@ -223,6 +230,7 @@
 - **The fragment is not quoted** (lock words *marked*, *shards*).
 - **Garrick:** no lines.
 - **Fragment text (unchanged):** "We were marked, every one of us. That is how we found the shards."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the opening says when you go and recalls the soldiers who stood "mid-stride, for longer than anyone has been alive" (the Craft notice's own phrase), so "The street is empty." lands; "Nobody breathes." on the stair is now "Nobody makes a sound." (Day 1 opens on the same line); "On the way back you find the others" is now "you pass the rest of the soldiers" ("the others" read as the player's friends). New: the barracks smell of cold stone and very old smoke; the stroke is struck "back in the wall room". Garrick has no new line: he lights a candle stub for each of you, and holds his own low so it does not show at the stair. The [PLANT], every notice line, the card, the Pull and the summary card are word for word.
 
 ---
 
@@ -231,11 +239,13 @@
 *Heading: **Four nights.***
 *Question: is there any way in at the hall itself?*
 
-> Tonight the heartbeat shakes the dust off the rooftops in thin grey sheets.
+> You wait out the grey day in the wall room. At dusk the heartbeat comes, and beyond the slit it shakes the dust off the rooftops in thin grey sheets.
 >
+> The page is on the sill, with the stub beside it.
+
 `[STRIKE THE PAGE]`
 
-> At dusk, in the wall room. Four.
+> Four.
 
 > You go up to the great square after dark. The Order's fire is burning in the ruined house across from the hall, and there are twice as many round it as there were.
 
@@ -257,7 +267,7 @@
 > **Intellect** · Twice the watchmen, and they are still only watching. *They could have searched this city for you. They have not left the fire.*
 > **Charm** · The new men sit a little apart from the old ones. *They have not kept this watch before. They are afraid of the hall.*
 > **Craft** · The seam between the doors has been filled, flush, with something that is not mortar. *Whoever shut these did not mean them to open again.*
-> **Aim** · A watchman walks the square with a lantern, and turns at the same flagstone every time.
+> **Aim** · A watchman walks the square with a lantern, and turns at the same flagstone every time. *Past that stone, he never looks.*
 
 **Challenge card**
 > **THE SQUARE**
@@ -272,6 +282,8 @@
 
 *On a failure:*
 > The lantern swings your way. You spend an hour pressed flat against the cold flags. The watchman goes back to his fire at last, and calls two more men up out of the dark streets to sit with him.
+
+> Garrick comes over last of all, and sets his back against the wall beside you.
 
 **PRESS ON** *(offered on a pass)*
 > **THE FIRE** · from here you can see their faces: count them, and look at each
@@ -303,6 +315,8 @@
 >
 > But the Seekers shut the front. And the hall's back wall runs straight into the hill.
 
+> You cross back on the change of the watch, while the two men are looking at each other, and sleep in the wall room with the warmth of that stone still in your palm.
+>
 > **He is on the other side of this wall. Inside, on the night the moon goes dark, with the fifth: that is the whole plan now. The cracked hill behind the hall.**
 
 **Day summary card**
@@ -323,6 +337,7 @@
 - **The watchmen's lines** are the approved text.
 - **Garrick:** no lines.
 - **Fragment text (unchanged):** "We left him on the floor of his own hall, where he fell. None of us could bear to lift him. We carried the five away, one by one."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the opening gave "Tonight", then the stroke, then "At dusk", so the time came back to front; now the grey day is waited out in the wall room, the heartbeat comes at dusk and the stroke follows (canon's "thin grey sheets" kept; the stray empty quote line before the button is gone). The Aim notice gains its second sentence, "*Past that stone, he never looks.*" (it only sharpens the first). The close: the party crosses back on the change of the watch, which the watch choice has just taught, and sleeps in the wall room (canon left it in the lee of the hall all night). Garrick has no new line: he comes across last of all and sets his back against the wall beside you. The watchmen's lines, both choice branches, the press, every other notice line, the card, the Pull and the summary card are word for word.
 
 ---
 
@@ -331,7 +346,7 @@
 *Heading: **Three nights.***
 *Question: where is the Seekers' own way in?*
 
-> The grey does not lift at all today. By noon it is as dim as dusk.
+> The grey does not lift at all today. By noon it is as dim as dusk, and you go round the hall by the back lanes with a lamp lit in the middle of the day.
 
 `[PLANT]` *(the sky is failing faster)*
 
@@ -369,7 +384,7 @@
 *If the player won, one line more:*
 > Yours was the blow that did it. The helm rolls as far as your foot and stops there, facing the hall.
 
-> You go in sideways. Deep inside, where no light reaches without a lamp, a housing is set into the stone.
+> You go in sideways, one at a time, with the lamp held out ahead. The rock presses cold against your back and your chest. Deep inside, where the last of the grey daylight gives out, a housing is set into the stone.
 
 `[LIFT THE LID]`
 
@@ -414,9 +429,11 @@
 - **Played beats:** a free look, a notice line, the fight, an act, a Talk, the stroke. No roll; the fight is the paid beat.
 - **The party:** the friends are at the crack with you; nobody is named today.
 - **Changed from the current script:** the roll to find the crack is a free look; the soldier in its mouth is new (approved fact 19); "whoever is holding the lamp asks" is a button.
-- **The fragment is not quoted** (lock words *sealed*, *blood*). The narration says only what the party already knows from five weeks of housings.
+- **The fragment is not quoted** (lock words *hands*, *blood*; *sealed* until 17 Oct 2026, see below). The narration says only what the party already knows from five weeks of housings.
 - **Garrick:** one existing line, in answer to a button.
 - **Fragment text (unchanged):** "We sealed his doors with our own hands and left one way in, that only our blood will open. Forgive us for leaving it at all."
+- **One change to the fragment locks (17 Oct 2026, Fake Guru: "Proceed"):** Garrick's approved line, "The Seekers sealed the doors they knew about.", says one of this fragment's two lock words (*sealed*) minutes after it is found, the same fault as Day 5's *always*. The first lock word is changed to ***hands*** (`src/data/mythiosFragments.ts` 6-4); the lock words are now *hands* and *blood*. His line and the fragment's text do not change.
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: "where no light reaches without a lamp" (circular) is now the lamp held out ahead, one at a time, the rock cold against back and chest, "where the last of the grey daylight gives out" (the Agility notice already says it is single file); the first lock word moves from *sealed* to *hands* (above). New: the opening goes round the hall by the back lanes, with a lamp lit at noon, so the [PLANT], the failing sky, is something you do as well as see. Garrick's line, both [PLANT]s, the soldier, the fight card, both fight lines, every notice line, the stroke, the Pull and the summary card are word for word.
 
 ---
 
@@ -433,7 +450,9 @@
 >
 > Here the old kingdom's sky-watchers kept their records. The walls are cut with the moon's phases, full to dark and back, row on row, year on year.
 
-> Garrick reaches the top a long minute after everyone else, and sits down on the top step. *"Give me a minute."*
+> Garrick reaches the top a long minute after everyone else, and sits down on the top step with his back to the wall. *"Give me a minute."*
+>
+> He waves you on into the room with the back of his hand.
 
 **What you notice**
 > **Might** · The rows run higher than anyone could reach from the floor. *The watchers cut ledges in the wall for their own feet.*
@@ -493,7 +512,7 @@
 >
 > That same moon comes round again in two nights.
 
-> Above you, through the open roof, the moon is rising. Nearly full.
+> Above you, through the open roof, the moon has come up. Nearly full.
 >
 > *"It always comes back,"* Garrick says quietly, looking up at it.
 
@@ -520,6 +539,7 @@
 - **The press detail** (the chisel left on the ledge) is new.
 - **Garrick:** two existing lines.
 - **Fragment text (unchanged):** "The dark moon comes back. It always comes back. Be there when it does."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: "the moon is rising" came after a failure that had already burned half the night; now "the moon has come up. Nearly full.", which holds on both branches. Garrick has no new line: on the top step he sits with his back to the wall, and waves you on into the room with the back of his hand. Nothing else changes: the fingertip count, both Garrick lines, every notice line, the card, both branches, the press, the Pull and the summary card are word for word.
 
 ---
 
@@ -544,7 +564,7 @@
 > **Intellect** · Not one has turned its head. *They are not looking for anything. They know where they are going.*
 > **Charm** · They are a company again. *Whatever else has gone, that has not.*
 > **Craft** · Iron on stone, in time. *It covers every other sound in the street. It would cover yours.*
-> **Aim** · At the top of the street, where the hill begins, one of them has stopped.
+> **Aim** · At the top of the street, where the hill begins, one of them has stopped. *It is not facing the hall.*
 
 **Challenge card**
 > **THE STREET**
@@ -587,7 +607,7 @@
 
 `[LAY THEM OUT]`
 
-> They settle, as they have five times before. This time the map is short, and simple.
+> They settle, as they have five times before, on a ledge of rock at the dead end, with the lamp held close and whoever else is in the crack pressed in behind you to see. This time the map is short, and simple.
 >
 > It shows the crack you are standing in. And it shows that the blank rock at the end of it is not rock.
 >
@@ -635,6 +655,7 @@
 - **The last stroke** is struck at the Gathering, on the threshold.
 - **Garrick:** one existing line (in two halves) and one existing action. His answers about the cup, if asked, are unchanged.
 - **Fragment text (unchanged):** "If you are reading this, you are ours — and if he ever stirs, finish what we could not."
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the Aim notice gains its second sentence, "*It is not facing the hall.*", which points at the soldier that has turned round without giving more away; the map is laid out "on a ledge of rock at the dead end, with the lamp held close and whoever else is in the crack pressed in behind you to see" (Day 4's crack takes one person at a time, sideways; "whoever else" holds for two to six). Nothing else changes: the cup on the sill, "Drinks are on me", the [PLANT], the map, every other notice line, the card, the fight card, both fight lines, the Pull and the summary card are word for word.
 
 ---
 
@@ -657,13 +678,15 @@
 
 ### Arrival
 
-> The Seekers' way in is a crack in the hill behind the hall, so narrow you go through it sideways, so old the stone has healed half shut around it. At its end, the fitted stone that passes for rock swings inward under your hands — for your blood, and no one else's.
+> The Seekers' way in is a crack in the hill behind the hall, so narrow you go through it sideways, so old the stone has healed half shut around it. At its end, the fitted stone that passes for rock swings inward under your hands, for your blood, and no one else's.
+>
+> Cold air breathes out of the dark beyond it. It smells of dust, and of lamp-oil burned a very long time ago.
 
 `[STRIKE THE LAST STROKE]` *(the first friend to tap)*
 
 > Mei strikes the last stroke through the watch-page by lamplight, there on the threshold. None left.
 >
-> Above you, the moon is full. At its edge, a sliver of it has already gone dark, and the dark is spreading.
+> Far above, in the thin strip of sky the crack lets through, the moon is full. At its edge, a sliver of it has already gone dark, and the dark is spreading.
 
 ### The Approach
 
@@ -685,13 +708,13 @@
 > You come out behind a pillar, unseen, with one long breath to take in the hall.
 
 *On a failure:*
-> By the time you step out, every face in the hall is already turned toward you.
+> A lamp slips from somebody's fingers and rings on the stair, and the sound goes on and on up into the dark of the roof. By the time you step out, every face among the faithful is already turned your way, and their singing has not missed a note.
 
 ### The Battle
 
 > The hall is vast, and cold, and full.
 >
-> Across the floor, a trapdoor stands thrown back on a stair going down into the dark — the way his household ran, the night the Seekers came. The faithful came up it. They didn't need the Seekers' door. They are here — more than you've ever seen together, robed, singing — and between them stand the hollowed, row on row of them, his soldiers from the last war, still standing their watch after all these centuries. Every blank face turns toward you at once.
+> Across the floor, a trapdoor stands thrown back on a stair going down into the dark: the way his household ran, the night the Seekers came. The faithful came up it. They did not need the Seekers' door. They are here, more than you have ever seen together, robed, singing, and between them stand the hollowed, row on row of them, his soldiers from the last war, still standing their watch after all these centuries. Every blank face turns toward you at once.
 
 **Fight card** *(in each friend's own thread; the season's hardest. Each friend draws one enemy, and so one condition: about half the party meets the faithful and half the hollowed)*
 > **ONE OF THE FAITHFUL** · **The chant:** while more than half the faithful are standing, each of them is harder to put down. *(Rule: while more than half of the faithful are standing, each has DEF +1.)*
@@ -722,16 +745,20 @@
 **How it ends**
 
 **The Hawser reaches 0**
-> The lamp comes down like a bell falling, and the line breaks around it.
+> For a moment nothing happens. Then, high above, the great iron lamp drops out of the dark, turning once as it falls.
+>
+> The lamp comes down like a bell falling, and the line breaks around it. The floor jumps under your feet, and through the dust their singing goes ragged.
 
 **Your Line reaches 0**
-> The chain holds, and you go through them a step at a time, bleeding.
+> The chain holds. The lamp hangs above you, dark and no use to anyone, and their line comes on.
+>
+> So you go through them the hard way, shoulder to shoulder, a step at a time, bleeding, until there is nobody left between you and the throne.
 
 ### The king
 
-> When you break through at last, the singing has stopped, and you see what's at the heart of the hall.
+> When you break through at last, the singing has stopped, and you see what is at the heart of the hall.
 >
-> Before the empty throne, on the stone floor where he fell, lies the king. He isn't dust. He isn't bones. He looks like a man asleep — pale, still, one hand open at his side as though something was once taken out of it. *Death's likeness, and not death.*
+> Before the empty throne, on the stone floor where he fell, lies the king. He is not dust. He is not bones. He looks like a man asleep: pale, still, one hand open at his side as though something was once taken out of it. *Death's likeness, and not death.*
 >
 > Around him, set in a ring, faintly glowing, are the four Stones. Earth, wind, water, fire. Every one you ever found for them.
 
@@ -742,12 +769,16 @@
 `[OPEN YOUR PALM]` *(each friend)*
 
 > Nothing.
+>
+> Your blood runs down over the Stone and drips onto the floor of his hall, and the fifth lies in your hand as cold and dark as the night you found it.
 
 ### The first twist
 
 > The silence is so complete you can hear the last of the faithful breathing in the dark behind you.
 >
 > Garrick crouches beside whoever is holding the fifth. He looks at the cut palm, at the Stone lying cold in it, at the dust of the long road on them. *"You've carried it far enough,"* he says.
+>
+> He says it gently, the way he has said everything to you since the night at the inn.
 >
 > Then he stands, and holds out his hand. *"Let me."*
 
@@ -763,10 +794,10 @@
 *If most give:*
 > You hand him the fifth. You do it yourselves.
 >
-> He doesn't hesitate. The knife is already in his hand, and the cut is quick and practised — and the Stone *answers*.
+> He does not hesitate. The knife is already in his hand, and the cut is quick and practised. And the Stone *answers*.
 
 *If most hold back:*
-> He doesn't argue. The fight has left his palm bleeding. He reaches out and closes his hand over the Stone where it lies in yours — and it answers him anyway. You still carried it to him, into this room.
+> He does not argue. The fight has left his palm bleeding. He reaches out and closes his hand over the Stone where it lies in yours, and it answers him anyway. You still carried it to him, into this room.
 
 > Not a flicker. A flood: cold light pouring up out of it the instant his blood touches it, hungry, as though it has been waiting for this for centuries. Around the king, the four Stones blaze in answer, and the light breaks over the ring like a wave and pins you all where you kneel. You can breathe. You can see. You cannot rise.
 >
@@ -784,7 +815,7 @@
 
 *The story holds for one quiet minute, or until a friend taps `[GO ON]`.*
 
-> *"You read them as one,"* Garrick says. He doesn't sound cruel. *"They cut his name out of everything they could reach. The word outlived him and wandered off onto any child born in the dark. Your Meira used it that way."*
+> *"You read them as one,"* Garrick says. He does not sound cruel. *"They cut his name out of everything they could reach. The word outlived him and wandered off onto any child born in the dark. Your Meira used it that way."*
 
 `[DID YOU EVER LIE TO US?]` *(any friend)*
 
@@ -794,7 +825,7 @@
 
 > *"My people,"* he says. *"On the road, the night she left with those pages."*
 >
-> Her pen is in that satchel still.
+> Her pen is in that satchel still, with the rest of her.
 
 *If a minute passes with either untapped, he answers what is on every face, and the line is said all the same.*
 
@@ -802,7 +833,7 @@
 
 > *"He never lied to us. He only never told us the price."*
 
-> Around the ring, the faithful are getting up off the floor. None of them has ever seen his face. They don't need to: the fifth answered him. One by one they bow their heads to him, and the first of them says it — the words you heard the watchmen trade in the square below this hall.
+> Around the ring, the faithful are getting up off the floor. None of them has ever seen Garrick's face. They do not need to: the fifth answered him. One by one they bow their heads to him, and the first of them says it, the words you heard the watchmen trade in the square below this hall.
 >
 > *"Keep the dark."*
 >
@@ -810,7 +841,7 @@
 
 ### The Verse of the Name
 
-> As the light climbs the four Stones, Garrick takes a book from inside his coat — not a page, not a scrap: his own copy of the Order's scripture, whole, worn soft with handling, nothing torn, nothing burned. He opens it the way a man opens something his family has kept for generations, and reads.
+> As the light climbs the four Stones, Garrick takes a book from inside his coat. Not a page, not a scrap: his own copy of the Order's scripture, whole, worn soft with handling, nothing torn, nothing burned. He opens it the way a man opens something his family has kept for generations, and reads.
 
 *(Each paragraph is its own message. A friend taps `[READ ON]` for the next.)*
 
@@ -827,7 +858,7 @@
 > *"They had known him all his life as one of the marked."*
 
 > All of you matched it.
-> From the barracks hearth, on the second day of this week: *"We were marked, every one of us. That is how we found the shards."*
+> From the barracks hearth, where the Seekers slept: *"We were marked, every one of us. That is how we found the shards."*
 
 `[READ ON]`
 
@@ -840,8 +871,8 @@
 > *"We were only servants, they said."*
 
 > All of you matched it.
-> From the wall room, on the first day of this week: *"His household ran the night we came to the hall. We let them go. They were only servants."*
->
+> From the wall room, where they kept their watch: *"His household ran the night we came to the hall. We let them go. They were only servants."*
+
 *Then, alone on the screen, the sliver from the shepherd's hut:*
 
 > *"Bloodlines outlast kingdoms. That is why kingdoms fear them."*
@@ -851,19 +882,25 @@
 ### The second twist
 
 > He turns the page, and you know it before he reads it: the same page you carried up out of the drowned village, burned and torn. Only his copy is whole.
-
-> > **[The older hand, untorn]**
+>
+> On his page the older hand runs on, unbroken, past the place where yours was torn:
+>
 > > **"Four were given to the wind, the water, the fire, and the earth, and drink deep whichever marked blood finds them first. The fifth heeds no element at all, but blood alone, and remembers whose. What the four begin, the fifth shall end, and the throne rise whole."**
 
-> He reads it as far as the tear — *what the four begin, the fifth shall end* — and stops, and doesn't need to go on. All around the hall, low and together, the faithful finish it for him, in the same voice you first heard chanting under the mill hill: *"…and the throne rise whole."*
-
+> He reads it aloud as far as the tear, *what the four begin, the fifth shall end*, and stops. He does not need to go on. All around the hall, low and together, the faithful finish it for him, in the same voice you first heard chanting under the mill hill: *"…and the throne rise whole."*
+>
 > *"They used his own blood on the fifth while his power was pouring out of him,"* Garrick says, softly, watching the light rise. *"Tonight he sleeps. Same key. Turned the other way."*
+
+*If most held back, one line here:*
+> He takes the fifth out of your hand. Pinned in the light, you cannot close your fingers on it.
+
+> He sets the book down open on the stone. From his coat he takes a tin cup, the one that sat on the sill of the wall room last night, and sets it on the floor beside the sleeping king, with the same small care he gave every cup on the road.
 >
-> He sets the book down open on the stone. From his coat he takes a tin cup — the one that sat on the sill of the wall room last night — and sets it on the floor beside the sleeping king. Every night on the road, one more cup than there were people. It was always for him.
+> Every night on the road, one more cup than there were people. It was always for him.
 >
-> Then he kneels, and closes the king's open hand around the fifth Stone — the hand that's lain empty at his side since the moment he fell. *"One stayed close,"* Garrick says. *"It always did."*
+> Then he kneels, and closes the king's open hand around the fifth Stone: the hand that has lain empty at his side since the moment he fell. *"One stayed close,"* Garrick says. *"It always did."*
 >
-> As the fifth leaves his hand, the light shifts to the king — and for one heartbeat, its grip on one of you slackens.
+> As the fifth leaves his hand, the light shifts to the king, and for one heartbeat, its grip on one of you slackens.
 
 ### The act
 
@@ -880,12 +917,15 @@
 > `[DO NOTHING]`
 
 *Tear the page:*
-> It's done before anyone can stop it. The page is in Jo's fist.
+> It is done before anyone can stop it. The page is in Jo's fist.
 
 *Break the ring:*
-> It skids across the floor, still glowing, out of the light and away into the dark of the hall.
+> One blow, and the Stone skids across the floor, still glowing, out of the light and away into the dark of the hall.
 
-*Neither stops the waking: the fifth is in the king's hand, and the rite is past stopping. Garrick doesn't argue and doesn't reach for anyone; he watches, courteous, and the faithful go on. The players are told nothing of what the act changes. It is logged for Season 2, as in the approved script: the one whole copy of the old words carried out; or the king risen but not whole, with a drunk Stone lost in the dark of his hall; or the king whole, and the Order holding all five and every page.*
+*Do nothing:*
+> Jo does not move. The heartbeat passes, and the light closes round Jo again like a hand.
+
+*Neither tearing nor breaking stops the waking: the fifth is in the king's hand, and the rite is past stopping. Garrick doesn't argue and doesn't reach for anyone; he watches, courteous, and the faithful go on. The players are told nothing of what the act changes. It is logged for Season 2, as in the approved script: the one whole copy of the old words carried out; or the king risen but not whole, with a drunk Stone lost in the dark of his hall; or the king whole, and the Order holding all five and every page.*
 
 > *"Your Seekers made their children the only key,"* Garrick says, looking down at you from the king's side. *"The key that locks is also the key that unlocks."* A breath. *"You were the key."*
 
@@ -895,19 +935,30 @@
 
 ### The Cliffhanger
 
-> Overhead, the last of the moon goes dark.
+> High in the hall's windows, the last of the moon goes dark.
+
+*If the page was torn:*
+> The four Stones flare white. The fifth, in the king's closed hand, burns so cold it frosts the air.
 >
+> The page is still in Jo's fist.
+
+*If a Stone was struck from the ring, instead of the four:*
+> Three flare white in the ring, and far off in the dark of the hall the fourth answers them alone. The fifth, in the king's closed hand, burns so cold it frosts the air.
+
+*If nothing was done:*
 > The four Stones flare white. The fifth, in the king's closed hand, burns so cold it frosts the air.
 
-*(If a Stone was struck from the ring, three flare white in the ring, and far off in the dark of the hall the fourth answers them alone. If the page was torn, it is still in that friend's fist.)*
+*(Build note: the three lines above are the act's three branches, one shown; the four Stones' line is written out on both the torn-page and the nothing branch, because a branch line cannot say "every branch but one".)*
 
+> Nobody breathes.
+>
 > And on the floor of his hall, where he fell, the king opens his eyes.
 >
-> They pass over Garrick, kneeling at his side, as if he weren't there. They move across the ring of light. And they settle on you. Whatever he is now, he knows Seeker blood when he sees it.
+> They pass over Garrick, kneeling at his side, as if he were not there. They move across the ring of light. And they settle on you. Whatever he is now, he knows Seeker blood when he sees it.
 >
 > *The power that gives is also the power that takes.*
 >
-> Garrick looks down at you — at all of you, kneeling in the ring of light, palms cut, still bleeding, the same white linen from a week ago still knotted at every wrist. His face is courteous, and nothing more.
+> Garrick looks down at you, at all of you, kneeling in the ring of light, palms cut open again tonight, the same white linen from a week ago still knotted at every wrist. His face is courteous, and nothing more.
 >
 > *"You saved every child you were sent to save,"* he says.
 
@@ -966,12 +1017,13 @@
 - **Cut:** "the pages rearrange themselves in your heads" and the reading that follows; "Marked. Moon-blood. Two different words."; the list of his true lines (the Recap does this better); the quote-back from the hall's outer wall; "Bloodlines outlast kingdoms…" and "Ours comes from his own house…" as quote-backs; "Not *end* as in stop…"; "You did. You finished it."; "One of you says all four names".
 - **Garrick:** every line is the approved text, word for word. His last warm line is still "You've carried it far enough"; after the light, courtesy only.
 - **The chant and the hollowed** are placeholder conditions until the simulation has looked at them.
+- Storybook pass, 16 Oct 2026 (approved by Fake Guru): player text rewritten in the storybook voice (docs/style/storybook-voice.md); story, clues and numbers unchanged. Decided by Fake Guru: the threshold moon is seen "Far above, in the thin strip of sky the crack lets through" and the cliffhanger's "High in the hall's windows" (canon saw the sky from deep in a crack and from inside a roofed hall), as Week 5's cliffhanger was fixed; both United Effort endings gain a beat around canon's words (the lamp drops "turning once as it falls", the floor jumps, the singing goes ragged; the chain holds, the lamp hangs dark, and you go through the hard way "until there is nobody left between you and the throne"), the same text in `mythios-united-effort-stories.md` Part 7; "Her pen is in that satchel still, with the rest of her." (Week 4's words); "None of them has ever seen Garrick's face" ("his" read first as the king); the untorn page loses its stage bracket: a narrated line frames it ("On his page the older hand runs on, unbroken, past the place where yours was torn:"), and the page's words do not move; if most held the fifth back, one line says how it leaves your hand ("He takes the fifth out of your hand. Pinned in the light, you cannot close your fingers on it."); the act's "Break the ring" opens "One blow, and the Stone skids…" ("It" pointed at nothing), and [DO NOTHING], or no tap, has its own line ("Jo does not move. The heartbeat passes, and the light closes round Jo again like a hand."); the cliffhanger's bracketed branch notes are branch lines; "Nobody breathes." returns once before the king opens his eyes; "palms cut, still bleeding" is "palms cut open again tonight" ("still" was said twice). Kept as canon (Fake Guru): the Verse of the Name's "as many are"; no failure line on the Week 6 summary cards. Also: the arrival breathes dust and old lamp-oil; the Approach's failure says the lamp rings on the stair, and the faithful have already turned, "and their singing has not missed a note", so the Battle's "Every blank face turns toward you at once" is the hollowed and does not happen twice; the Battle and the narration lose their dashes and contractions; [OPEN YOUR PALM] keeps "Nothing." alone, then the blood on the floor of his hall; his last warm line gains one line of narration and no new words ("He says it gently, the way he has said everything to you since the night at the inn."); the Match quote-backs name a place, not "the second day of this week"; the cup is set down "with the same small care he gave every cup on the road", the one action after the reveal, courtesy and not warmth. The fight card's rule stays a build note on the card, as in Gatherings 4 and 5. For the online server, the step count before the fifth's pick and between the two picks is unchanged (the server's summary reads them by position): the untorn page's frame shares a message with "He turns the page", and Garrick's "Same key" line shares one with the faithful finishing the chant. The Verse, both Matches and their fragment quotes, the four messages, the slivers, the private picks, the light's choice, "Say a name" and its four lines, the last notice, the last lines, the season summary card and every Garrick line are word for word.
 
 **Layer(s):** Layer E (antagonist identity) — confirmed, and the faithful greet him as their own. Layer B (activation mechanism) — resolved: it was always his bloodline. Layer G (antagonist origin) — opens and resolves: the Order is the king's house, Garrick its last blood; the extra cup was always for the king. Layer F (false hope) — collapses: the fifth completes. Layer C (the party's own nature) — fully resolved: they could find, never activate — and the waking king knows their blood (the Season 2 hook). Meira's death — owned by Garrick (series audit item 3).
 
 **Fragments re-quoted here before 4 Oct (the quote-backs are now Matches; see the script) (series audit 2026-09-29 — the three strongest of the week, plus the closures the twists need):** Ep6 Days 3 (new text), 1 and 6. Closures: Ep5 Day 3; Ep4 Day 4; Ep3 Day 3 ("He never lied to us…"); Ep3 Day 5 ("Bloodlines outlast kingdoms"); Ep1 Day 1 ("One stayed close" — in Garrick's mouth only now); Ep1 Day 6 (Refrain 2 — in Garrick's mouth, then named as "the very first week", not quoted twice); Ep1 Day 5 (Refrain 1 — the season's last theme line). *(No longer quoted here: Ep6 Day 2, "We were marked, every one of us. That is how we found the shards." — Twist 1's "Marked. Moon-blood. Two different words." carries its limit; Day 4, the Seekers' sealed doors — the arrival shows the door opening for their blood instead; Day 5, "The dark moon comes back…"; and Ep4 Day 5, "We have built a lock…". The narration's doubled "One stayed close" and the Refrain quoted twice in a row are cut.)*
 
-**Deception Table cross-reference:** *"You've carried it far enough."* — **new 2026-09-29**, his last warm line of the season: true — the fifth has reached the one place he needs it; heard as kindness to a tired friend, damning on reread. It predicts nothing and promises nothing. *"Let me."* / *"You've all tried tonight. I haven't."* — true; no fake uncertainty, and "tonight" keeps it true even if he tried at Ep5 when asked. *"The page said the fifth would end this. It never said whose blood."* — true of the torn page, and said only after the Stone has answered him. *"You read them as one. They cut his name out of everything they could reach. The word outlived him and wandered off onto any child born in the dark. Your Meira used it that way."* — true. *"No. The faithful don't."* — true. *"My people. On the road, the night she left with those pages."* — **new in the script 2026-09-29** (series audit item 3): true; his people killed her on the road and took the pages (canon, "The Episode 1 ambush"). *"It keeps us."* — **new 2026-09-29**: the Order's answer to "Keep the dark"; true — the dark, the hiding, has kept his house alive for centuries. *"They used his own blood on the fifth while his power was pouring out of him. Tonight he sleeps. Same key. Turned the other way."* — true. *"One stayed close. It always did."* — true, and the fifth's closure. *"Your Seekers made their children the only key. The key that locks is also the key that unlocks. You were the key."* — true; the Seekers' own words, turned onto the party. *"You saved every child you were sent to save."* — true; now said without warmth.
+**Deception Table cross-reference:** *"You've carried it far enough."* — **new 2026-09-29**, his last warm line of the season: true — the fifth has reached the one place he needs it; heard as kindness to a tired friend, damning on reread. It predicts nothing and promises nothing. *"Let me."* / *"You've all tried tonight. I haven't."* — true; no fake uncertainty, and "tonight" keeps it true even if he tried at Ep5 when asked. *"The page said the fifth would end this. It never said whose blood."* — true of the torn page, and said only after the Stone has answered him. *"You read them as one. They cut his name out of everything they could reach. The word outlived him and wandered off onto any child born in the dark. Your Meira used it that way."* — true. *"No. The faithful don't."* — true. *"My people. On the road, the night she left with those pages."* — **new in the script 2026-09-29** (series audit item 3): true; his people killed her on the road and took the pages (canon, "The Episode 1 ambush"). *"It keeps us."* — **new 2026-09-29**: the Order's answer to "Keep the dark"; true — the dark, the hiding, has kept his house alive for centuries. *"They used his own blood on the fifth while his power was pouring out of him. Tonight he sleeps. Same key. Turned the other way."* — true. *"One stayed close. It always did."* — true, and the fifth's closure (row added to `garrick-deception-table.md` 17 Oct 2026, so Garrick's Recap carries it). *"Your Seekers made their children the only key. The key that locks is also the key that unlocks. You were the key."* — true; the Seekers' own words, turned onto the party (row added to `garrick-deception-table.md` 17 Oct 2026). *"You saved every child you were sent to save."* — true; now said without warmth.
 
 **After this Gathering:** the Garrick Recap unlocks (`mythios-garrick-recap.md`), letting players walk back through every line he said — and the log records which choice, if any, the party made in Act 4.
 

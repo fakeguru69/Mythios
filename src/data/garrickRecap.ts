@@ -227,6 +227,16 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
         "meaning": "True — and the Week 3 doctrine, attached to him out loud at last."
       },
       {
+        "when": "Closing the king's open hand around the fifth",
+        "line": "*\"One stayed close. It always did.\"*",
+        "meaning": "True. The Seekers' first fragment said it of the fifth: five fell, four were scattered after, one stayed close. They kept it within sight of his hall for as long as they lived, and tonight it goes back into the hand it was taken from. Heard as an old riddle answered at last; on reread, he says it of his own house too, which kept its watch on that hall for centuries from just up the hill."
+      },
+      {
+        "when": "From the king's side, after the act",
+        "line": "*\"Your Seekers made their children the only key. The key that locks is also the key that unlocks. You were the key.\"*",
+        "meaning": "True. The Seekers' own words, turned onto the party: they made their children the only key, and the key that locks is also the key that unlocks. Only Seeker blood could find the four Stones and wake them; every map the party solved showed the Order where a Stone lay, and the rite that locked the king is the one that wakes him. Heard as a charge against the Seekers; on reread, it is the whole season."
+      },
+      {
         "when": "",
         "line": "*\"I've known what the fifth was since before you found me.\"*",
         "meaning": "True — what it was, and whose. He never knew *where*; that, and the other four, is what he needed the party for."

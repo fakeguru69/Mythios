@@ -22,10 +22,12 @@ const isVerseStep = (text: string) => {
 };
 
 // Documents the party holds after their Gathering: each is one step, known by its opening.
-const DOCUMENTS: { title: string; section: string; opens: string }[] = [
+// `within`: the document sits inside a step after narration, and the Bag keeps it from its opening on
+// (Gathering 6's untorn page follows "He turns the page…" and its frame line in the same message).
+const DOCUMENTS: { title: string; section: string; opens: string; within?: boolean }[] = [
   { title: 'The torn page', section: 'The torn page', opens: '*From the Second Book of the Order of the Dark Moon. Even in the old telling' },
   { title: 'The Watch', section: 'The Watch', opens: '*From the Third Book of the Order of the Dark Moon — The Watch.*' },
-  { title: 'The untorn page', section: 'The second twist', opens: '**[The older hand, untorn]**' },
+  { title: 'The untorn page', section: 'The second twist', opens: '**"Four were given to the wind', within: true },
 ];
 
 function buildBagVerses(): BagVerse[] {
@@ -43,9 +45,10 @@ function buildBagVerses(): BagVerse[] {
     }
     for (const d of DOCUMENTS) {
       const step = g.steps.find(
-        (s): s is Extract<typeof s, { t: 'say' }> => s.section === d.section && s.t === 'say' && s.text.startsWith(d.opens)
+        (s): s is Extract<typeof s, { t: 'say' }> =>
+          s.section === d.section && s.t === 'say' && (d.within ? s.text.includes(d.opens) : s.text.startsWith(d.opens))
       );
-      if (step) out.push({ week: g.week, title: d.title, text: step.text });
+      if (step) out.push({ week: g.week, title: d.title, text: d.within ? step.text.slice(step.text.indexOf(d.opens)) : step.text });
     }
   }
   return out;

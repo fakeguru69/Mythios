@@ -4692,11 +4692,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "Nobody breathes.\n\nUp in the square the watchman stands with his lantern raised, and his face turned down the hill to the wall. To your window.\n\nThen he calls out, one short word, and all round the square other lanterns lift."
+        "text": "Nobody breathes.\n\nUp in the square the watchman stands with his lantern raised, and his face turned down the hill to the wall. To your window.\n\nSomebody pinches the lamp out between finger and thumb.\n\nThen he calls out, one short word, and all round the square other lanterns lift."
       },
       {
         "t": "say",
-        "text": "Nobody lights a candle that night. For hours the lanterns move along the foot of the wall and up onto the wall-walk.\n\nTwice, boots scrape right past the room's hidden door.\n\nTwice, they walk on."
+        "text": "Nobody lights a candle that night. For hours the lanterns move along the foot of the wall and up onto the wall-walk, and you sit in the dark and listen to them come and go.\n\nTwice, boots scrape right past the room's hidden door.\n\nTwice, they walk on."
       },
       {
         "t": "notice",
@@ -4737,12 +4737,12 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "**A locked Seeker Fragment has been added to your Chest.**",
+        "text": "It comes away from the stone with a dry whisper, and it is colder than the niche that held it.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
       },
       {
         "t": "say",
-        "text": "They lived here. They would have left the start of their way here, too."
+        "text": "They lived in this room. If the Seekers left a way into his hall, the first step of it would be here."
       },
       {
         "t": "challenge",
@@ -4769,7 +4769,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You find it before the light has moved.",
+        "text": "You find it before the grey light at the slit has moved, and before any boot comes back along the wall.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -4797,7 +4797,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "At dusk, up in the square, a watchman takes up the chalk and strikes the board.\n\nYou are holding the watch-page that came off his dead brother. It still shows seven, and nobody is left to mark it."
+        "text": "At dusk, far up in the square, a lantern stops beside the Order's board. A watchman is taking up the chalk.\n\nYou are holding the watch-page from the dead watchman's fist. It still shows seven, and nobody is left to mark it."
       },
       {
         "t": "act",
@@ -4842,7 +4842,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "You go out by the gate-tower, and past the crossroads where the rest of the soldiers stood.\n\nThe street is empty."
+        "text": "You go out by the gate-tower in the grey morning, and down to the crossroads where the rest of the soldiers stood, mid-stride, for longer than anyone has been alive.\n\nThe street is empty."
       },
       {
         "t": "notice",
@@ -4875,7 +4875,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The defenders' barracks are long, low halls cut into the back of the city wall: rows of stone bunks, racks where spears once stood, a kitchen whose fire went out on the war's last night.\n\nThe far end is blocked. A beam has come down, and half the ceiling with it."
+        "text": "The defenders' barracks are long, low halls cut into the back of the city wall: rows of stone bunks, racks where spears once stood, a kitchen whose fire went out on the war's last night. The air smells of cold stone and very old smoke.\n\nThe far end is blocked. A beam has come down, and half the ceiling with it."
       },
       {
         "t": "challenge",
@@ -4912,7 +4912,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Then, on the stair behind you: iron on stone. Slow. One step at a time.\n\nIt stands in the doorway, in armour gone green and black. Its helm is turned to the fallen stone.\n\nNot to you.\n\nNobody breathes."
+        "text": "Then, on the stair behind you: iron on stone. Slow. One step at a time.\n\nIt stands in the doorway, in armour gone green and black. Its helm is turned to the fallen stone.\n\nNot to you.\n\nNobody makes a sound."
       },
       {
         "t": "act",
@@ -4921,6 +4921,10 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "The heartbeat comes.\n\nIt turns. It climbs the stair. You hear it go on up the hill, one step at a time, until you cannot hear it."
+      },
+      {
+        "t": "say",
+        "text": "The room beyond the fall is dark. Garrick turns out a handful of candle stubs from his coat pockets and lights one for each of you, and holds his own low, so that it does not show at the stair."
       },
       {
         "t": "say",
@@ -4937,11 +4941,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "On the way back you find the others: three streets further up the hill than they were, as still as before.\n\nEvery helm is turned to the hall."
+        "text": "On the way back you pass the rest of the soldiers: three streets further up the hill than they were, as still as before.\n\nEvery helm is turned to the hall."
       },
       {
         "t": "say",
-        "text": "At dusk the burnt stick snaps halfway through the stroke."
+        "text": "At dusk, back in the wall room, the burnt stick snaps halfway through the stroke."
       },
       {
         "t": "act",
@@ -4978,7 +4982,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "Tonight the heartbeat shakes the dust off the rooftops in thin grey sheets."
+        "text": "You wait out the grey day in the wall room. At dusk the heartbeat comes, and beyond the slit it shakes the dust off the rooftops in thin grey sheets.\n\nThe page is on the sill, with the stub beside it."
       },
       {
         "t": "act",
@@ -4986,7 +4990,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "At dusk, in the wall room. Four."
+        "text": "Four."
       },
       {
         "t": "say",
@@ -5043,7 +5047,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "second": "Whoever shut these did not mean them to open again."
           },
           "Aim": {
-            "first": "A watchman walks the square with a lantern, and turns at the same flagstone every time."
+            "first": "A watchman walks the square with a lantern, and turns at the same flagstone every time.",
+            "second": "Past that stone, he never looks."
           }
         }
       },
@@ -5079,6 +5084,10 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "on": "challenge",
           "pass": false
         }
+      },
+      {
+        "t": "say",
+        "text": "Garrick comes over last of all, and sets his back against the wall beside you."
       },
       {
         "t": "press",
@@ -5117,7 +5126,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "**He is on the other side of this wall. Inside, on the night the moon goes dark, with the fifth: that is the whole plan now. The cracked hill behind the hall.**",
+        "text": "You cross back on the change of the watch, while the two men are looking at each other, and sleep in the wall room with the warmth of that stone still in your palm.\n\n**He is on the other side of this wall. Inside, on the night the moon goes dark, with the fifth: that is the whole plan now. The cracked hill behind the hall.**",
         "pull": true
       },
       {
@@ -5142,7 +5151,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The grey does not lift at all today. By noon it is as dim as dusk."
+        "text": "The grey does not lift at all today. By noon it is as dim as dusk, and you go round the hall by the back lanes with a lamp lit in the middle of the day."
       },
       {
         "t": "say",
@@ -5212,7 +5221,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You go in sideways. Deep inside, where no light reaches without a lamp, a housing is set into the stone."
+        "text": "You go in sideways, one at a time, with the lamp held out ahead. The rock presses cold against your back and your chest. Deep inside, where the last of the grey daylight gives out, a housing is set into the stone."
       },
       {
         "t": "act",
@@ -5290,7 +5299,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Garrick reaches the top a long minute after everyone else, and sits down on the top step. *\"Give me a minute.\"*"
+        "text": "Garrick reaches the top a long minute after everyone else, and sits down on the top step with his back to the wall. *\"Give me a minute.\"*\n\nHe waves you on into the room with the back of his hand."
       },
       {
         "t": "notice",
@@ -5399,7 +5408,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Above you, through the open roof, the moon is rising. Nearly full.\n\n*\"It always comes back,\"* Garrick says quietly, looking up at it."
+        "text": "Above you, through the open roof, the moon has come up. Nearly full.\n\n*\"It always comes back,\"* Garrick says quietly, looking up at it."
       },
       {
         "t": "act",
@@ -5462,7 +5471,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "second": "It covers every other sound in the street. It would cover yours."
           },
           "Aim": {
-            "first": "At the top of the street, where the hill begins, one of them has stopped."
+            "first": "At the top of the street, where the hill begins, one of them has stopped.",
+            "second": "It is not facing the hall."
           }
         }
       },
@@ -5546,7 +5556,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "They settle, as they have five times before. This time the map is short, and simple.\n\nIt shows the crack you are standing in. And it shows that the blank rock at the end of it is not rock.\n\nIt is a door, fitted so close that it passes for the hill. Worn into it, in the Seekers' plain hand, is one word.\n\n*here.*\n\nBeside the word is the scored moon. The one way in, and when: the night the moon goes dark."
+        "text": "They settle, as they have five times before, on a ledge of rock at the dead end, with the lamp held close and whoever else is in the crack pressed in behind you to see. This time the map is short, and simple.\n\nIt shows the crack you are standing in. And it shows that the blank rock at the end of it is not rock.\n\nIt is a door, fitted so close that it passes for the hill. Worn into it, in the Seekers' plain hand, is one word.\n\n*here.*\n\nBeside the word is the scored moon. The one way in, and when: the night the moon goes dark."
       },
       {
         "t": "say",
