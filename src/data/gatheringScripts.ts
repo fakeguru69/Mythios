@@ -2180,7 +2180,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Nothing.\n\nNot a flicker. Not a warmth. The Stone lies in your hands as cold and dark as it was when you found it, and your blood runs off it like rain off glass.\n\nGarrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved. Nobody remarks on it. There's nothing strange about a man having linen to spare.",
+        "text": "Nothing.\n\nNot a flicker. Not a warmth. The Stone lies in your hands as cold and dark as it was when you found it, and your blood runs off it like rain off glass.\n\nGarrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved. He works without a word, and ties each knot small and firm.",
         "section": "The attempt"
       },
       {
@@ -2532,6 +2532,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       {
         "t": "say",
         "text": "*\"My people,\"* he says. *\"On the road, the night she left with those pages.\"*\n\nHer pen is in that satchel still, with the rest of her.",
+        "section": "The first twist"
+      },
+      {
+        "t": "say",
+        "text": "*\"He never lied to us. He only never told us the price.\"*",
+        "alone": true,
         "section": "The first twist"
       },
       {

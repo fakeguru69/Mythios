@@ -221,11 +221,13 @@
    "callback": "In the mine, that shape was a hole, and what sat in it was gone. Here it's cut into the mill's footing.",
    "riddle": {
     "q": "I have teeth but cannot bite. What am I?",
-    "a": "a comb (or a cog)",
+    "a": "a comb, or a cog",
     "quip": "A mill's full of them.",
     "accept": [
-     "a comb (or a cog)",
-     "comb (or a cog)"
+     "a comb",
+     "comb",
+     "a cog",
+     "cog"
     ],
     "maxTries": 3
    },

@@ -55,6 +55,9 @@ import {
   ScriptTokens,
   TapEcho,
   fillScriptTokens,
+  friendChoiceLabels,
+  friendsWithPicked,
+  isFriendChoice,
   personalStakeLine,
   pickNoticeLine,
 } from './ChapterScriptParts';
@@ -1351,9 +1354,12 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       </div>
     ) : null;
 
+  const chapterFill = fill;
   const scriptWalk = (() => {
     const nodes: React.ReactNode[] = [];
     let done = false;
+    // A friend picked by a choice ("POST {F1}"…) takes the {F1} place from then on (isFriendChoice).
+    let fill = chapterFill;
     if (!chapterScript) return { nodes, done: true };
     const steps = chapterScript.steps;
     for (let i = 0; i < steps.length; i++) {
@@ -1377,11 +1383,17 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       }
       if (step.t === 'choice') {
         const picks = choicePicks[step.id] || [];
+        const friendPick = isFriendChoice(step.labels);
+        const labels = friendPick ? friendChoiceLabels(step.labels, scriptTokens.friends) : step.labels;
+        if (friendPick && picks.length) {
+          const tokens = { ...scriptTokens, friends: friendsWithPicked(scriptTokens.friends, picks[0]) };
+          fill = (text: string) => fillScriptTokens(text, tokens);
+        }
         const branchFor = (opt: number) => step.branches.find((b) => b.options.includes(opt));
         const shownBranches = new Set<number>();
         const showPick = (opt: number, mine: boolean) => {
           const b = branchFor(opt);
-          if (mine) nodes.push(<TapEcho key={`${key}-p${opt}`} label={fill(step.labels[opt])} />);
+          if (mine) nodes.push(<TapEcho key={`${key}-p${opt}`} label={fill(labels[opt])} />);
           if (b && !shownBranches.has(step.branches.indexOf(b))) {
             shownBranches.add(step.branches.indexOf(b));
             nodes.push(<NarrationBlock key={`${key}-b${opt}`} text={fill(b.text)} />);
@@ -1389,7 +1401,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
         };
         picks.forEach((opt) => showPick(opt, true));
         // Options still open: every option before the first pick; in "each" mode, any whose branch is unseen.
-        const open = step.labels
+        const open = labels
           .map((_, oi) => oi)
           .filter((oi) => {
             if (picks.length === 0) return true;
@@ -1411,12 +1423,12 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
               {open.map((oi) => (
                 <ScriptButton
                   key={oi}
-                  label={fill(step.labels[oi])}
+                  label={fill(labels[oi])}
                   onClick={() => {
                     setChoicePicks((p) => ({ ...p, [step.id]: [...(p[step.id] || []), oi] }));
                     // A look that names one of the Challenge's two ways picks that way on the card.
                     const next = steps[i + 1];
-                    if (step.mode === 'flavor' && next?.t === 'challenge' && next.options.length === step.labels.length) {
+                    if (step.mode === 'flavor' && next?.t === 'challenge' && next.options.length === labels.length) {
                       setSelectedAttr(next.options[oi].attr);
                     }
                   }}

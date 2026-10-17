@@ -45,6 +45,26 @@ export function fillScriptTokens(text: string, t: ScriptTokens): string {
     );
 }
 
+/**
+ * A choice whose buttons each name one friend in turn ("POST {F1}", "POST {F2}", "POST {F3}"; W5D6) picks a
+ * friend. It shows one button per friend actually in the party, and from the pick on that friend takes the {F1}
+ * place, so the lines after it name the friend picked (canon: "The player chooses who keeps watch").
+ */
+export function isFriendChoice(labels: string[]): boolean {
+  const rest = (l: string, i: number) => l.split(`{F${i + 1}}`).join('');
+  return labels.length > 1 && labels.every((l, i) => l.includes(`{F${i + 1}}`) && rest(l, i) === rest(labels[0], 0));
+}
+
+export function friendChoiceLabels(labels: string[], friends: string[]): string[] {
+  return (friends.length ? friends : ['a friend']).map((name) => labels[0].split('{F1}').join(name));
+}
+
+/** The friends in order with the picked one first, so {F1} names them. */
+export function friendsWithPicked(friends: string[], pick: number | undefined): string[] {
+  if (pick === undefined || pick < 0 || pick >= friends.length) return friends;
+  return [friends[pick], ...friends.filter((_, j) => j !== pick)];
+}
+
 /** Inline **bold** and *italic*, as canon marks them. */
 function renderInline(text: string, keyBase: string): React.ReactNode[] {
   const out: React.ReactNode[] = [];

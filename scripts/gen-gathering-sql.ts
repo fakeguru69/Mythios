@@ -37,6 +37,8 @@ type Out = Record<string, unknown>;
 const steps: Out[] = [];
 let namesFrom = -1; // index of a "Say a name" pick; the say lines after it name who said each
 let nameIndex = 0;
+const pickMode = (st: GatheringStep, _i: number) =>
+  st.t !== 'pick' ? undefined : st.vote ? 'vote' : st.question === 'THE FIFTH IS IN YOUR HANDS.' ? 'private' : st.question === '' ? 'chosen' : st.question === 'SAY A NAME.' ? 'each' : undefined;
 script.steps.forEach((st: GatheringStep, i) => {
   const o: Out = { ...st };
   if (st.t === 'say') {
@@ -73,8 +75,10 @@ script.steps.forEach((st: GatheringStep, i) => {
       if (/^You earned:/.test(l)) return '{EARNED}';
       if (!/^The party:/.test(l)) return l;
       let p = l.replace('Battle won', 'Battle {battle}');
-      p = p.replace('the fifth `[given / held back]`', 'the fifth {pick:31:given|held back}');
-      p = p.replace('`[the page torn / the ring broken / nothing]`', '{pick:61:the page torn|the ring broken|nothing}');
+      // {pick:N:…} reads the pick at step N (g_pick_tokens, migration 0076), wherever the generator puts it.
+      const pickAt = (mode: string) => script.steps.findIndex((x, j) => x.t === 'pick' && pickMode(x, j) === mode);
+      p = p.replace('the fifth `[given / held back]`', `the fifth {pick:${pickAt('private')}:given|held back}`);
+      p = p.replace('`[the page torn / the ring broken / nothing]`', `{pick:${pickAt('chosen')}:the page torn|the ring broken|nothing}`);
       p = p.replace('`[n]` questions asked', '{asked} questions asked');
       p = p.replace('`[he lived to answer, n questions asked / he did not wake]`', '{ue:he lived to answer, {asked} questions asked|he did not wake}');
       p = p.replace(/`\[([^\]/]+) \/ ([^\]]+)\]`/g, (_m, a: string, b: string) => `{ue:${a.trim()}|${b.trim()}}`);
@@ -86,8 +90,11 @@ script.steps.forEach((st: GatheringStep, i) => {
 });
 // The act's pick and the fifth's pick must sit where the summary tokens say.
 if (week === 6) {
-  const at = (n: number) => steps[n] as { t: string; mode?: string };
-  if (at(31).mode !== 'private' || at(61).mode !== 'chosen') throw new Error('Gathering 6 picks moved: update the summary tokens');
+  const summary = steps.find((x) => x.t === 'summary') as { lines: string[] } | undefined;
+  for (const m of (summary?.lines ?? []).join(' ').matchAll(/\{pick:(\d+):/g)) {
+    const at = steps[Number(m[1])] as { t: string; mode?: string };
+    if (at?.t !== 'pick' || (at.mode !== 'private' && at.mode !== 'chosen')) throw new Error(`summary token pick:${m[1]} is not the fifth's or the act's pick`);
+  }
 }
 // The step a say follows only if the button before it was tapped (Gathering 6: "if nobody taps, the night goes on").
 steps.forEach((s, i) => {

@@ -23,11 +23,6 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
       },
       {
         "when": "",
-        "line": "*\"You {N} were on her list. That means something.\"*",
-        "meaning": "True. It means she identified the only people who could find the Stones — which is why he needs them."
-      },
-      {
-        "when": "",
         "line": "*\"She'd sit right there. I doubt she thought I was listening.\"*",
         "meaning": "True. He was listening for two years — which is exactly how he knew when she had found enough to be worth killing."
       },
@@ -47,14 +42,14 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
         "meaning": "He never says it wasn't his doing."
       },
       {
-        "when": "If asked whether Meira sent the pages",
-        "line": "*\"She wrote them at that table, and took them with her when she left.\"*",
-        "meaning": "True."
+        "when": "Day 3",
+        "line": "*\"People tell a man with a cloth in his hand everything. They forget he's got ears.\"*",
+        "meaning": "True: that's how he knew the rock. On reread, it's how he knew everything."
       },
       {
-        "when": "If asked where she went",
-        "line": "*\"She took her coat and those pages, and she didn't come back.\"*",
-        "meaning": "True — every word."
+        "when": "Day 6, if asked",
+        "line": "*\"Family habit. We always pour one for whoever can't be with us.\"*",
+        "meaning": "True: his family has poured that cup for the sleeping king for generations. You took it for Meira, and he never once said it was. At the end he sets it down beside the king."
       }
     ]
   },
@@ -90,6 +85,21 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
         "when": "Only if someone asks him for the ledger",
         "line": "*\"Here. Read every page.\"*",
         "meaning": "True — an invitation, not a claim. Nothing in the book points at him."
+      },
+      {
+        "when": "Day 1, when a player points out he only agreed to come as far as the Widow's Tooth",
+        "line": "*\"Worst guests I've ever had. Good tippers, though.\"*",
+        "meaning": "An exaggerated feeling plus a true fact: the coin you left on his bar in Week 1. It deflects the question with a joke."
+      },
+      {
+        "when": "Day 4, after being driven back",
+        "line": "*\"That went about as well as it looked.\"*",
+        "meaning": "True understatement; a quiet kindness."
+      },
+      {
+        "when": "At the Gathering, his name, when Corin asks",
+        "line": "*\"Garrick.\"*",
+        "meaning": "True."
       }
     ]
   },
@@ -125,6 +135,16 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
         "when": "Day 6, at the cairn",
         "line": "*\"The Kiln. That's the shepherds' name for it.\"*",
         "meaning": "True."
+      },
+      {
+        "when": "Day 3",
+        "line": "*\"My knees have opinions about this glass. None of them good.\"*",
+        "meaning": "An exaggerated feeling."
+      },
+      {
+        "when": "Day 3, if thanked",
+        "line": "*\"Needed doing.\"*",
+        "meaning": "True. On reread, he kept his tools in working order."
       }
     ]
   },
@@ -132,7 +152,7 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
     "week": 4,
     "entries": [
       {
-        "when": "Day 1, when someone says the Order could have killed them",
+        "when": "Day 1, under the Kiln, after the ropes are cut",
         "line": "*\"Every time they've had knives out at you, not one of you has died.\"*",
         "meaning": "True — the Week 1 ambush (his own people) and the three Gatherings. It sounds like luck. On reread it's the Order's rule: they need the party alive."
       },
@@ -162,19 +182,19 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
         "meaning": "True, and carefully bounded: he reports that she wrote about it, never what she believed it would do. The party supplies \"it can undo this\" themselves — finishing the torn page's missing ending the way hope demands, not because anyone handed them a false conclusion."
       },
       {
-        "when": "If asked why he never mentioned a fifth before.",
-        "line": "*\"She wrote it down. I'm telling you now.\"*",
-        "meaning": "Both true. He never says he didn't know, and never says he took it for a poet's count."
-      },
-      {
-        "when": "If asked why the Order would keep that line.",
-        "line": "*\"'Speak true, always.' It's their book.\"*",
-        "meaning": "True — he points at the page they already hold (the Week 3 doctrine), never at himself. On reread, it's his own creed."
-      },
-      {
         "when": "If asked how the Order knew where their maps pointed",
         "line": "*\"Their own book tells you: closer to you than your own shadows.\"*",
         "meaning": "True — it quotes the page in their hands."
+      },
+      {
+        "when": "Day 2, his flask",
+        "line": "*\"It's terrible. Drink it anyway.\"*",
+        "meaning": "An opinion."
+      },
+      {
+        "when": "Day 3",
+        "line": "*\"I didn't leave a warm bar to drown in a lake. I'd like that noted.\"*",
+        "meaning": "True: he left for his own purpose. True twice on reread."
       }
     ]
   },
@@ -200,6 +220,21 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
         "when": "The cliffhanger, at the moon, seven nights left",
         "line": "*\"We're early.\"*",
         "meaning": "True. He stands in his ancestor's city, with the fifth carried there by friends, a full week before the one night his family has waited centuries for. Players hear \"we're ahead of the night; there is time to find the way in.\" He means early for the waking, not for stopping it, and \"we\" is his house as much as the party. Present tense: no prediction, no promise."
+      },
+      {
+        "when": "Day 4",
+        "line": "*He walks last through the street of standing soldiers, between the party and them, and never looks back.*",
+        "meaning": "An action. On reread, he had nothing to fear from them."
+      },
+      {
+        "when": "Day 4",
+        "line": "*\"My family's waited a long time for something. I'd like to live to see it.\"*",
+        "meaning": "True: they've waited for the king's sleep to end. \"I'd like to\" is a wish, not a prediction."
+      },
+      {
+        "when": "At the Gathering",
+        "line": "*He binds each of your cut palms himself, unasked, in the same white linen you had seen on every child, and ties each knot small and firm.*",
+        "meaning": "A kindness, and the same hands. On reread, it is the linen and the knot on Tamsin's palm, and Corin's, and Wren's, and Joss's: his people bound the children after they took their blood."
       }
     ]
   },
@@ -238,11 +273,6 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
       },
       {
         "when": "",
-        "line": "*\"I've known what the fifth was since before you found me.\"*",
-        "meaning": "True — what it was, and whose. He never knew *where*; that, and the other four, is what he needed the party for."
-      },
-      {
-        "when": "",
         "line": "*\"You saved every child you were sent to save.\"*",
         "meaning": "True. Every one. That was never the part that mattered."
       },
@@ -260,6 +290,31 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
         "when": "Day 5, under the nearly full moon, after \"The dark moon comes back…\"",
         "line": "*\"It always comes back.\"*",
         "meaning": "True — the moon does. Innocent as an echo of the fragment; on reread, a man who has been waiting his whole life for this one night."
+      },
+      {
+        "when": "Day 1",
+        "line": "*\"I kept a tally behind my bar for years. Most of it was who owed me.\"*",
+        "meaning": "True. \"Most of it\" leaves room for what else he was counting."
+      },
+      {
+        "when": "Day 5",
+        "line": "*\"Give me a minute.\"*",
+        "meaning": "True."
+      },
+      {
+        "when": "Day 6",
+        "line": "*\"Drinks are on me. Don't get used to it.\"*",
+        "meaning": "\"Don't get used to it\" is an instruction, not a prediction. On reread, it's his last night pouring for them."
+      },
+      {
+        "when": "At the Gathering",
+        "line": "*\"You've carried it far enough.\"*",
+        "meaning": "True: the fifth has reached the one place he needs it. Heard as kindness; damning on reread."
+      },
+      {
+        "when": "At the Gathering",
+        "line": "*\"My people. On the road, the night she left with those pages.\"* *\"It keeps us.\"*",
+        "meaning": "All true. No warmth from here on."
       }
     ]
   }
