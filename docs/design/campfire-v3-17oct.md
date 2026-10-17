@@ -19,6 +19,23 @@ Today the fire serves neither. The redesign makes it serve both:
 
 That second layer is what can make the fire the best part of the game: thirty-six nights of friends theorising with the culprit pouring the drinks.
 
+## 1a. Four layers of content, each with its own payoff (Fake Guru: "campfire can serve as daily recap and the larger mystery arc, which is seasonal, but campfire can also deal with weekly or even daily mysteries")
+
+| Layer | What it is | Paid off | How it shows at the fire |
+|---|---|---|---|
+| **Today** (the recap) | What the party did and found today; each friend saw a different part (a different Notice line, a pass or a fail, a different lead) | at once | **the table** is today's shared memory: everyone's pieces in one place, and "what we did today" |
+| **Tonight's puzzle** (the daily mystery) | A small question today raises that the evidence can actually answer: who knew where the boy slept? whose cart was it? | **tonight**, when the right pieces click; if they never do, the next morning's chapter or recap gives it anyway | **no question box:** the puzzle is named at the top of the table, and a click solves it ("Solved: …"), crediting the friends whose pieces did it |
+| **Tonight's question** (the weekly mystery, one step) | A theory question the evidence leans on but cannot settle, one rung of the week's question | the next morning, later in the week, or at the Gathering | **the one debated question:** secret pins, the party's call at dawn, read back when the story answers |
+| **The long threads** (the season) | The questions that run all season: who put the list in your box? where is Meira? what is the fifth? | at the Gatherings and the finale | **the casebook:** each thread stays open all season; Link pieces attach to it as they turn up; the thread closes, with the party's best calls read back, when the story answers it |
+
+The fifth layer, the man at the fire, is never a thread and never named: only the notebook, and the reckoning after the finale.
+
+**One night, then, has exactly two things to do, each with its own mechanic:** solve tonight's puzzle by laying pieces down (a click), and call tonight's question by pinning before dawn. The recap is the table itself; the season grows quietly in the casebook. Nothing else asks for an answer.
+
+**The rhythm of a week:** Days 1 and 2 open the week with puzzles that settle fast and questions that set its direction; Days 3 to 5 climb the week's question; Day 6's question is the week's question itself (the party's case), answered at the Gathering. Season threads gain a piece most days and close at their Gathering or the finale.
+
+**Holes checked for the layers:** a puzzle never gates the story (unsolved, its answer still arrives with the morning); a puzzle is solved only by a click, so it rewards laying pieces down, and a party of two can still solve most (each puzzle's pair is written across leads and the pass line, which any two friends can cover); the puzzle and the question never ask the same thing; a season thread is never one the story answers the next day.
+
 ---
 
 ## 2. What "meaningful" means for a piece
@@ -210,6 +227,7 @@ for each night, the question and where it is answered; the three leads as a set 
 
 ## 14. Decisions for Fake Guru
 1. The two mysteries: the case played openly; the man at the fire never mentioned, paid off after the finale. Yes / change.
+1a. The four layers: today (the table), tonight's puzzle (solved by a click), tonight's question (called at dawn), the long threads (the casebook). Yes / change.
 2. The four jobs of a piece (Reveal, Tilt, Turn, Link), and cutting what does none. Yes / change.
 3. Clicks: pairs of pieces that, laid together, show something new. Yes / no.
 4. The night: one open question, pin in secret, the party's call at dawn, read back when the story answers. Yes / change.
