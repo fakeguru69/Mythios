@@ -294,10 +294,10 @@ export const SEEKER_FRAGMENTS: SeekerFragmentData[] = [
   {
     id: '6-4', week: 6, day: 4, placeLabel: 'The deep crack',
     fullText: 'We sealed his doors with our own hands and left one way in, that only our blood will open. Forgive us for leaving it at all.',
-    displayTemplate: 'We {0} his doors with our own hands and left one way in, that only our {1} will open. Forgive us for leaving it at all.',
-    word1: 'sealed', jumble1: ['D', 'S', 'L', 'E', 'E', 'A'],
+    displayTemplate: 'We sealed his doors with our own {0} and left one way in, that only our {1} will open. Forgive us for leaving it at all.',
+    word1: 'hands', jumble1: ['D', 'N', 'H', 'S', 'A'],
     word2: 'blood', jumble2: ['O', 'B', 'D', 'L', 'O'],
-    closureInfo: 'Week 6 Day 6 door & Gathering arrival',
+    closureInfo: 'Week 6 Day 6 door & Gathering arrival (lock word changed from "sealed" to "hands" on 16 Oct: Garrick says "sealed" on Day 4)',
   },
   {
     id: '6-5', week: 6, day: 5, placeLabel: 'The moon ledge',

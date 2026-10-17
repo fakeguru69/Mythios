@@ -175,7 +175,7 @@ All six support the finale — and all six are deliberately oblique. None may le
 | 6 · 1 | His **household** ran the night we came to the hall. We let them go. They were only **servants**. | L S H H O O E U D · R S V A N E T S |
 | 6 · 2 | We were **marked**, every one of us. That is how we found the **shards**. | D A K R M E · H A R S D S |
 | 6 · 3 | We left him on the **floor** of his own hall, where he fell. None of us could bear to lift him. We **carried** the five away, one by one. | R L O F O · R D A R E C I |
-| 6 · 4 | We **sealed** his doors with our own hands and left one way in, that only our **blood** will open. Forgive us for leaving it at all. | D S L E E A · O B D L O |
+| 6 · 4 | We sealed his doors with our own **hands** and left one way in, that only our **blood** will open. Forgive us for leaving it at all. | D N H S A · O B D L O |
 | 6 · 5 | The **dark** moon comes back. It always comes back. Be **there** when it does. | R K A D · E H R T E |
 | 6 · 6 | If you are reading this, you are **ours** — and if he ever stirs, **finish** what we could not. | R U S O · S F I H N I |
 
@@ -186,3 +186,5 @@ All six support the finale — and all six are deliberately oblique. None may le
 *5 Oct 2026, lock words and the day's text (decided):* a day never quotes its own fragment's line in full (Week 4 Day 4, Week 5 Days 2 and 6, all of Week 6 were changed for this). A lock word appearing in ordinary narration is accepted. One exception is kept on purpose: 1 · 5, where the charcoal woman says the refrain aloud. See `review-merged-read-through.md`.
 
 *15 Oct 2026 (Fake Guru, Phase 6, `docs/drafts/phase6-lock-words-draft.md`):* three pairs changed because one word gave the other away or was too short: 4 · 1 *four · five* → *trust · five*; 4 · 4 *woke · wake* → *woke · near*; 4 · 6 *children · key* → *children · asked*. The fragment texts are unchanged; only the blanks moved. The other flagged pairs (1 · 5, 1 · 6, 3 · 4, 5 · 1, 5 · 2, 6 · 5) stay as chosen.
+
+*2026-10-16 (Fake Guru, "Proceed" on the Week 6 storybook pass):* fragment 6-4's first lock word moves from **sealed** to **hands**, because Garrick says "The Seekers sealed the doors they knew about" on Week 6 Day 4, minutes after the find. The same fault was fixed on Day 5 on 5 Oct.
