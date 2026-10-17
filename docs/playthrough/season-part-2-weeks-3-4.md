@@ -887,7 +887,7 @@ Clue found, "Scratched on the back":
 
 > Polite, and in good boots.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WREN'S LINE] lets the enemy strike first). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WREN'S LINE] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 

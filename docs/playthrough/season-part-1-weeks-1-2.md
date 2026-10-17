@@ -502,7 +502,7 @@ Clue found, "The worn end":
 
 > He comes up running, and he is not running away.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 22 is 1 or more; the enemy when d20 + ATK 15 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([FOLLOW THE CART-RUTS] lets the enemy strike first). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 22 is 1 or more; the enemy when d20 + ATK 15 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([FOLLOW THE CART-RUTS] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -920,7 +920,7 @@ Clue found, "Fresh bark":
 
 > He got here first. He is trying the shutters.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 22 is 1 or more; the enemy when d20 + ATK 15 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([LOOK AT THE PATH] lets the enemy strike first). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 22 is 1 or more; the enemy when d20 + ATK 15 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([LOOK AT THE PATH] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -2399,7 +2399,7 @@ Clue found, "The chant ran on":
 
 > He has not come to talk.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 23 is 1 or more; the enemy when d20 + ATK 16 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WALK THE HILL] lets the enemy strike first). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 23 is 1 or more; the enemy when d20 + ATK 16 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WALK THE HILL] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 

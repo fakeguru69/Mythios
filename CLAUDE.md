@@ -239,7 +239,7 @@ For a new session: read this, then `docs/multiplayer-plan-15oct.md` (the plan an
 1. Garrick's open piece: the Gemini key (Fake Guru). Private questions in your own thread and at the fire are built (17 Oct, migration `0067`).
 2. Notifications (push), with the Day 4 Gathering poll and the reminder an hour before.
 3. The Gathering's open pieces: the recap for a friend who missed it, the "what you missed" line for a late friend, switching which fight a reinforcer joins, Ask boards that gain questions during the night (Gathering 4), Garrick's Recap after Gathering 6, the read-backs of the week's pins, the Store closed during your own Gathering roll or fight.
-4. A day left open at 5:00am finishing by itself (an unrolled card takes the failure branch, a fight is rolled out; Core Rules §12a). Not built online yet.
+4. ~~A day left open at 5:00am finishing by itself~~ Built 17 Oct (migration `0068`): when anyone in the party next opens the game, every friend's earlier open weekday closes: an unrolled or set-aside card expires as a failure that costs nothing and posts nothing, a [PRESS ON] not taken is left, a fight is rolled out and pays its real result. The day is marked `closed_at`, not played (`finished_at` stays empty), so the friend gets its recap.
 6. Also open:
    - a late joiner plays Day 1 first;
    - the Record and Bag;

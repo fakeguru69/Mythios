@@ -66,6 +66,7 @@ function chapter(week: number, day: number) {
   w(`### Your thread: the chapter, "${ch.title}"`);
   w(gameplay(`Played alone, in your own thread. Today's question: ${fill(ch.question)}`));
   let lastChoice: string[] = [];
+  const choices: Record<number, string[]> = {};
   for (const st of ch.steps as ScriptStep[]) {
     if (st.t === 'say') {
       const c = chapterCond(st.cond);
@@ -77,6 +78,7 @@ function chapter(week: number, day: number) {
       w(gameplay(`A button: [${fill(st.label)}]`));
     } else if (st.t === 'choice') {
       lastChoice = st.labels;
+      choices[st.id] = st.labels;
       const how = {
         pick: 'Pick one; only the picked branch plays.',
         each: 'Pick in any order until every branch has been seen.',
@@ -111,12 +113,13 @@ function chapter(week: number, day: number) {
       const pay = WEEKDAY_INVENTORY.find((d) => d.week === week && d.day === day)?.fightReward ?? 0;
       w(`**FIGHT: ${fill(st.name)}**`);
       w(quote(st.desc));
+      const sf = st.strikeFirst;
       const first =
-        st.strikeFirst.on === 'player'
+        sf.on === 'player'
           ? 'You strike first.'
-          : st.strikeFirst.on === 'challenge'
+          : sf.on === 'challenge'
             ? 'Who strikes first is set by today\'s Challenge: you on a pass, the enemy on a failure.'
-            : `Who strikes first is set by your choice (${st.strikeFirst.options.map((o) => `[${fill(lastChoice[o] ?? String(o))}]`).join(' or ')} lets the enemy strike first).`;
+            : `Who strikes first is set by your choice (${sf.options.map((o) => `[${fill((choices[sf.choice] ?? lastChoice)[o] ?? String(o))}]`).join(' or ')} lets you strike first; otherwise the enemy does).`;
       w(gameplay(
         `100 HP each. You hit when d20 + Weapon − enemy DEF ${ep.wDef} is 1 or more; the enemy when d20 + ATK ${ep.wAtk} − your Armor is 1 or more. Damage = the margin × 5. One tap a round. ${first} ` +
           `A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: ${pay ? `+${pay}g` : 'no gold (today\'s Challenge is the paid beat)'}. At 0 HP: "DEFEATED.", and the story goes on.`
