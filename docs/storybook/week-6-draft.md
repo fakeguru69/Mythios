@@ -560,7 +560,6 @@
 > There is no way round. There is only across.
 > **Agility** · through a gap in the ranks, at their pace · `[ROLL]`
 > **Might** · go in where the ranks are thinnest, and take the knocks · `[ROLL]`
-> The hardest yet.
 > REWARD: +500g · **and you strike first**
 > IF YOU FAIL: one of them sees you, and **it strikes first**
 

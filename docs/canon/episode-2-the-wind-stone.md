@@ -85,6 +85,7 @@
 > He saw something on this road, and he has decided not to have seen it.
 > **Charm** · get him talking · `[ROLL]`
 > **Aim** · watch where his eyes keep going, and look there first · `[ROLL]`
+> *If the United Effort was lost at Gathering 1:* **Two harder.** You come down the road still grey with the mine's dust, and you look like the kind of trouble he wants no part of.
 > REWARD: +500g
 > IF YOU FAIL: he tells you to be on your way, and means it
 

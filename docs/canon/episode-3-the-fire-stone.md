@@ -166,6 +166,7 @@
 > She is on the other side of it, and she has not walked away.
 > **Charm** · talk to her through the door until she opens it · `[ROLL]`
 > **Intellect** · know what will open it: the ledger's page, and her daughter's name in a stranger's hand · `[ROLL]`
+> *If the United Effort was lost at Gathering 2:* **Two harder.** Word of what happened under the hill has come over the hills ahead of you, and nobody in Ashcombe is quick to open a door.
 > REWARD: +500g
 > IF YOU FAIL: the door stays shut, and you lose the day's light waiting
 

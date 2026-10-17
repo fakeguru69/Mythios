@@ -1149,7 +1149,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "he tells you to be on your way, and means it"
+        "fail": "he tells you to be on your way, and means it",
+        "harderIf": {
+          "key": "G1:united-effort-lost",
+          "has": true,
+          "by": 2,
+          "line": "**Two harder.** You come down the road still grey with the mine's dust, and you look like the kind of trouble he wants no part of."
+        }
       },
       {
         "t": "say",
@@ -2170,7 +2176,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "the door stays shut, and you lose the day's light waiting"
+        "fail": "the door stays shut, and you lose the day's light waiting",
+        "harderIf": {
+          "key": "G2:united-effort-lost",
+          "has": true,
+          "by": 2,
+          "line": "**Two harder.** Word of what happened under the hill has come over the hills ahead of you, and nobody in Ashcombe is quick to open a door."
+        }
       },
       {
         "t": "say",
@@ -3877,7 +3889,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "the stone keeps its word"
+        "fail": "the stone keeps its word",
+        "harderIf": {
+          "key": "G4:united-effort-lost",
+          "has": true,
+          "by": 2,
+          "line": "**Two harder.** Your hands still ache from the water-gate's pin, and the cold off the lake gets into them."
+        }
       },
       {
         "t": "say",
@@ -5067,7 +5085,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "the lantern swings your way, and you lose an hour flat against the stone"
+        "fail": "the lantern swings your way, and you lose an hour flat against the stone",
+        "harderIf": {
+          "key": "6-2:challenge-failed",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** The roof that came down yesterday was heard across the city, and tonight the square's watch is doubled."
+        }
       },
       {
         "t": "say",
@@ -5345,7 +5369,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "hours of faded marks by lamplight, in a tower the whole city can see"
+        "fail": "hours of faded marks by lamplight, in a tower the whole city can see",
+        "harderIf": {
+          "key": "6-3:challenge-failed",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** The two men the watchman called up have not gone back to their beds. They walk the streets below the tower now."
+        }
       },
       {
         "t": "say",
@@ -5479,7 +5509,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "challenge",
         "title": "THE STREET",
-        "desc": "There is no way round. There is only across.\nThe hardest yet.",
+        "desc": "There is no way round. There is only across.",
         "options": [
           {
             "attr": "Agility",
@@ -5491,7 +5521,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g · **and you strike first**",
-        "fail": "one of them sees you, and **it strikes first**"
+        "fail": "one of them sees you, and **it strikes first**",
+        "harderIf": {
+          "key": "6-5:challenge-failed",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** Someone saw your lamp in the tower last night, and tonight more eyes are on the street."
+        }
       },
       {
         "t": "say",

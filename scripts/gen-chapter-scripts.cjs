@@ -136,7 +136,7 @@ function parseNotice(lines) {
   return out;
 }
 
-function parseChallenge(lines) {
+function parseChallenge(lines, week) {
   const c = { title: '', desc: '', options: [], reward: '', fail: '' };
   lines.forEach((l, i) => {
     const t = l.trim();
@@ -148,6 +148,19 @@ function parseChallenge(lines) {
     // Carried from Gathering 5 (Core Rules §11): a lost roll-call makes this card two harder.
     const carried = t.match(/^\*If the roll-call was lost at the Gathering:\*\s*(.*)$/);
     if (carried) return (c.harderIf = { key: 'G5:united-effort-lost', has: true, by: 2, line: tokens(carried[1]) });
+    // Carried results (Fake Guru, 17 Oct, gameplay verdict group C): a lost United Effort at an earlier Gathering, or
+    // the player's own failed Challenge earlier this week, makes this card harder ("**One harder.**", "**Two harder.**").
+    const by = (line) => ({ One: 1, Two: 2, Three: 3 })[(line.match(/^\*\*(One|Two|Three) harder\.\*\*/) || [])[1]];
+    const lostAt = t.match(/^\*If the United Effort was lost at Gathering (\d):\*\s*(.*)$/);
+    if (lostAt) {
+      if (!by(lostAt[2])) throw new Error(`harder card without "**One/Two harder.**": ${t}`);
+      return (c.harderIf = { key: `G${lostAt[1]}:united-effort-lost`, has: true, by: by(lostAt[2]), line: tokens(lostAt[2]) });
+    }
+    const failedOn = t.match(/^\*If you failed the Challenge on Day (\d):\*\s*(.*)$/);
+    if (failedOn) {
+      if (!by(failedOn[2])) throw new Error(`harder card without "**One/Two harder.**": ${t}`);
+      return (c.harderIf = { key: `${week}-${failedOn[1]}:challenge-failed`, has: true, by: by(failedOn[2]), line: tokens(failedOn[2]) });
+    }
     const title = t.match(/^\*\*([^*]+)\*\*$/);
     if (title && !c.title) return (c.title = title[1]);
     c.desc = c.desc ? `${c.desc}\n${tokens(t)}` : tokens(t);
@@ -216,7 +229,7 @@ function buildDay(d) {
       const name = blk.text;
       const next = b[i + 1];
       if (name === 'What you notice' && next?.t === 'quote') { steps.push({ t: 'notice', lines: parseNotice(next.lines) }); i += 2; continue; }
-      if (name === 'Challenge card' && next?.t === 'quote') { steps.push({ t: 'challenge', ...parseChallenge(next.lines) }); i += 2; continue; }
+      if (name === 'Challenge card' && next?.t === 'quote') { steps.push({ t: 'challenge', ...parseChallenge(next.lines, d.week) }); i += 2; continue; }
       if (name === 'PRESS ON' && next?.t === 'quote') { steps.push({ t: 'press', ...parsePress(next.lines) }); i += 2; continue; }
       if (name === 'Fight card' && next?.t === 'quote') {
         const f = parseFight(next.lines);
