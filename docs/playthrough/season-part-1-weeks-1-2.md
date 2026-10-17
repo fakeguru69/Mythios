@@ -80,7 +80,7 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 >
 > He was at this before you ever saw him.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
 - **Might:** He held back. Every blow came a half-beat late.
 
@@ -257,19 +257,19 @@ Clue found, "The oilcloth":
 >
 > And near the back, where the binding shows, some pages are gone.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The satchel strap has been mended three times. *(Adept and up:)* She carried this a long way, often.
+- **Might:** The satchel strap has been mended three times. *(Apprentice and up:)* She carried this a long way, often.
 
-- **Agility:** Dev's knuckles are skinned. So are Arjun's. *(Adept and up:)* Every one of you fought somebody to get here.
+- **Agility:** Dev's knuckles are skinned. So are Arjun's. *(Apprentice and up:)* Every one of you fought somebody to get here.
 
-- **Intellect:** The notes are in two inks. *(Adept and up:)* She came back to these pages years apart.
+- **Intellect:** The notes are in two inks. *(Apprentice and up:)* She came back to these pages years apart.
 
 - **Charm:** The innkeeper has not asked a single one of you your name.
 
-- **Craft:** The binding thread is cut, not torn. *(Adept and up:)* Whoever took those pages took care.
+- **Craft:** The binding thread is cut, not torn. *(Apprentice and up:)* Whoever took those pages took care.
 
-- **Aim:** There is one seat in this room that sees both doors. *(Adept and up:)* It is the one he says was hers.
+- **Aim:** There is one seat in this room that sees both doors. *(Apprentice and up:)* It is the one he says was hers.
 
 **CHALLENGE: FIT THE PAGE**
 
@@ -490,19 +490,19 @@ Clue found, "The worn end":
 
 > The ruts turn off the road toward a line of trees, and a thread of smoke beyond them. You are looking that way, so you see him first: a man lying flat in the bracken, watching the rock.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The ruts are deep going in and shallow coming out. *(Adept and up:)* The cart left lighter than it came. Or it left something here.
+- **Might:** The ruts are deep going in and shallow coming out. *(Apprentice and up:)* The cart left lighter than it came. Or it left something here.
 
-- **Agility:** The bracken is flattened in one place only. *(Adept and up:)* He has been lying there since before dawn.
+- **Agility:** The bracken is flattened in one place only. *(Apprentice and up:)* He has been lying there since before dawn.
 
-- **Intellect:** Nobody watches an empty rock. *(Adept and up:)* So it is not empty to him, or it will not be for long.
+- **Intellect:** Nobody watches an empty rock. *(Apprentice and up:)* So it is not empty to him, or it will not be for long.
 
 - **Charm:** He is not afraid of you. He is afraid of being seen by you.
 
-- **Craft:** The cart has one wheel that pulls left. *(Adept and up:)* You would know its track again.
+- **Craft:** The cart has one wheel that pulls left. *(Apprentice and up:)* You would know its track again.
 
-- **Aim:** From where he lies he can see the road both ways and the village smoke. *(Adept and up:)* It is a post, and it has been used before.
+- **Aim:** From where he lies he can see the road both ways and the village smoke. *(Apprentice and up:)* It is a post, and it has been used before.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -685,19 +685,19 @@ Clue found, "The notched stick":
 >
 > Whoever was eating it left in a hurry, and not long ago.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The bucket was not knocked over. It was set down. *(Adept and up:)* Whoever sat here is small, and careful.
+- **Might:** The bucket was not knocked over. It was set down. *(Apprentice and up:)* Whoever sat here is small, and careful.
 
-- **Agility:** One heel-mark in the mud, deep at the toe. They went at a run. *(Adept and up:)* Toward the back lanes, not the road.
+- **Agility:** One heel-mark in the mud, deep at the toe. They went at a run. *(Apprentice and up:)* Toward the back lanes, not the road.
 
-- **Intellect:** Barley and nothing else, in a house bowl. This is somebody's ordinary dinner. *(Adept and up:)* They live here, and they did not expect to be found.
+- **Intellect:** Barley and nothing else, in a house bowl. This is somebody's ordinary dinner. *(Apprentice and up:)* They live here, and they did not expect to be found.
 
-- **Charm:** Every shutter on the street is closed but one. *(Adept and up:)* Somebody wants to be asked.
+- **Charm:** Every shutter on the street is closed but one. *(Apprentice and up:)* Somebody wants to be asked.
 
-- **Craft:** The spoon is whittled, not bought, and whittled badly. *(Adept and up:)* A child's knife did that.
+- **Craft:** The spoon is whittled, not bought, and whittled badly. *(Apprentice and up:)* A child's knife did that.
 
-- **Aim:** From this bucket you can see the whole lane and nobody in the lane can see you. *(Adept and up:)* It was chosen for watching.
+- **Aim:** From this bucket you can see the whole lane and nobody in the lane can see you. *(Apprentice and up:)* It was chosen for watching.
 
 *⚙ A choice: [LOOK FOR FOOTPRINTS] or [KNOCK NEXT DOOR]. Pick one; the choice colours the moment, the story is the same.*
 
@@ -916,19 +916,19 @@ Clue found, "Fresh bark":
 >
 > He is here.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The axe is gone from the block. The block is still wet. *(Adept and up:)* Whoever lives here took it with them, and not for wood.
+- **Might:** The axe is gone from the block. The block is still wet. *(Apprentice and up:)* Whoever lives here took it with them, and not for wood.
 
-- **Agility:** A shed with one door and a shuttered back window. *(Adept and up:)* Somebody inside it could be gone before you knocked twice.
+- **Agility:** A shed with one door and a shuttered back window. *(Apprentice and up:)* Somebody inside it could be gone before you knocked twice.
 
 - **Intellect:** Nobody keeps a place this tidy and this hidden unless they are waiting for something.
 
-- **Charm:** There is one bowl, one cup, one stool. *(Adept and up:)* She has been alone a long time.
+- **Charm:** There is one bowl, one cup, one stool. *(Apprentice and up:)* She has been alone a long time.
 
-- **Craft:** The shutters bar from the inside and the outside both. *(Adept and up:)* She built this to be watched from.
+- **Craft:** The shutters bar from the inside and the outside both. *(Apprentice and up:)* She built this to be watched from.
 
-- **Aim:** There is a gap in the trees that frames the whole clearing. *(Adept and up:)* You are being looked at through it now.
+- **Aim:** There is a gap in the trees that frames the whole clearing. *(Apprentice and up:)* You are being looked at through it now.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -1134,19 +1134,19 @@ Clue found, "One pair of boots":
 >
 > The river is rising. The edge of the mud is going as you watch, crumb by crumb.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The cart sat low coming down the bank. *(Adept and up:)* It rides high on the far side.
+- **Might:** The cart sat low coming down the bank. *(Apprentice and up:)* It rides high on the far side.
 
-- **Agility:** The small prints are evenly spaced. *(Adept and up:)* Nobody was dragging her. Not yet.
+- **Agility:** The small prints are evenly spaced. *(Apprentice and up:)* Nobody was dragging her. Not yet.
 
-- **Intellect:** A cart that crosses and a child who does not. *(Adept and up:)* They parted here on purpose.
+- **Intellect:** A cart that crosses and a child who does not. *(Apprentice and up:)* They parted here on purpose.
 
 - **Charm:** Dev has stopped talking. Everybody has.
 
-- **Craft:** The left wheel pulls. *(Adept and up:)* It is the cart from the Widow's Tooth.
+- **Craft:** The left wheel pulls. *(Apprentice and up:)* It is the cart from the Widow's Tooth.
 
-- **Aim:** On the far bank, nothing small. *(Adept and up:)* Not one print.
+- **Aim:** On the far bank, nothing small. *(Apprentice and up:)* Not one print.
 
 **CHALLENGE: READ THE WATERLINE**
 
@@ -1620,19 +1620,19 @@ Clue found, "A second man":
 >
 > At evening you come to the last farmhouse before the mill. An old man is splitting wood in the yard. He does not stop when he sees you coming. He only shifts his grip on the axe.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** He is splitting wood he does not need. The stack behind him would see out two winters. *(Adept and up:)* He wants that axe in his hand.
+- **Might:** He is splitting wood he does not need. The stack behind him would see out two winters. *(Apprentice and up:)* He wants that axe in his hand.
 
-- **Agility:** There are fresh ruts in the lane, and he has not once looked at them. *(Adept and up:)* He knows whose they are.
+- **Agility:** There are fresh ruts in the lane, and he has not once looked at them. *(Apprentice and up:)* He knows whose they are.
 
-- **Intellect:** A man afraid of strangers goes indoors. He has stayed where he can see the lane. *(Adept and up:)* It is not you he is watching for.
+- **Intellect:** A man afraid of strangers goes indoors. He has stayed where he can see the lane. *(Apprentice and up:)* It is not you he is watching for.
 
-- **Charm:** There is a child's face at the window, and a hand that pulls it back. *(Adept and up:)* He has somebody to be careful for.
+- **Charm:** There is a child's face at the window, and a hand that pulls it back. *(Apprentice and up:)* He has somebody to be careful for.
 
-- **Craft:** The door-frame is older than the house: a beam from something that stood here first. *(Adept and up:)* Somebody built round it on purpose.
+- **Craft:** The door-frame is older than the house: a beam from something that stood here first. *(Apprentice and up:)* Somebody built round it on purpose.
 
-- **Aim:** From his chopping-block he can see a long way up the lane toward the mill. *(Adept and up:)* He chose where to stand.
+- **Aim:** From his chopping-block he can see a long way up the lane toward the mill. *(Apprentice and up:)* He chose where to stand.
 
 **CHALLENGE: THE MAN WITH THE AXE**
 
@@ -1829,19 +1829,19 @@ Clue found, "Deeper coming down":
 
 > A woman is standing in the mill door. She has been watching you since you came into the yard. There is flour worked deep into the creases of her hands: old flour, from before.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The grain sacks are stacked two high where they were three. *(Adept and up:)* Nobody here has had the heart to lift.
+- **Might:** The grain sacks are stacked two high where they were three. *(Apprentice and up:)* Nobody here has had the heart to lift.
 
-- **Agility:** She is standing where she can reach the door-bar without looking. *(Adept and up:)* She has practised that.
+- **Agility:** She is standing where she can reach the door-bar without looking. *(Apprentice and up:)* She has practised that.
 
-- **Intellect:** The table behind her is laid for three. *(Adept and up:)* She has not been able to stop.
+- **Intellect:** The table behind her is laid for three. *(Apprentice and up:)* She has not been able to stop.
 
-- **Charm:** She looks at your hands before she looks at your faces. *(Adept and up:)* She is making sure you are not them.
+- **Charm:** She looks at your hands before she looks at your faces. *(Apprentice and up:)* She is making sure you are not them.
 
-- **Craft:** The wheel is turning, and there is nothing in the hopper. *(Adept and up:)* She keeps it running so that the house will not be quiet.
+- **Craft:** The wheel is turning, and there is nothing in the hopper. *(Apprentice and up:)* She keeps it running so that the house will not be quiet.
 
-- **Aim:** From that doorway you can see the whole length of the lane. *(Adept and up:)* She watched the cart go.
+- **Aim:** From that doorway you can see the whole length of the lane. *(Apprentice and up:)* She watched the cart go.
 
 **CHALLENGE: THE MILLER'S WIFE**
 
@@ -2029,19 +2029,19 @@ Clue found, "The cropped grass":
 >
 > There is no ford here. There is no reason for a cart to have come this far.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The thorn on the left has been cut back and tied, not broken. *(Adept and up:)* Somebody tends it.
+- **Might:** The thorn on the left has been cut back and tied, not broken. *(Apprentice and up:)* Somebody tends it.
 
-- **Agility:** No bird is singing on the slope above. *(Adept and up:)* Something up there has kept them off for days.
+- **Agility:** No bird is singing on the slope above. *(Apprentice and up:)* Something up there has kept them off for days.
 
-- **Intellect:** A cart does not vanish. It was unloaded here, or it went up. *(Adept and up:)* There is nowhere to unload.
+- **Intellect:** A cart does not vanish. It was unloaded here, or it went up. *(Apprentice and up:)* There is nowhere to unload.
 
-- **Charm:** In the one patch of mud, a child's shoe-print, pointing uphill. *(Adept and up:)* He walked this part.
+- **Charm:** In the one patch of mud, a child's shoe-print, pointing uphill. *(Apprentice and up:)* He walked this part.
 
-- **Craft:** The left wheel pulled. *(Adept and up:)* It left the bank at the grey slab.
+- **Craft:** The left wheel pulled. *(Apprentice and up:)* It left the bank at the grey slab.
 
-- **Aim:** High on the slope there is a line where the bracken lies the wrong way. *(Adept and up:)* A path, seen from the side.
+- **Aim:** High on the slope there is a line where the bracken lies the wrong way. *(Apprentice and up:)* A path, seen from the side.
 
 **CHALLENGE: WHERE THE TRACKS STOP**
 
@@ -2233,19 +2233,19 @@ Clue found, "The full pail":
 >
 > It is a shaft, squared off with timber, with a ladder going down into lamplight. There are voices at the bottom.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The ladder is new ash, pegged, and strong enough for men carrying a load. *(Adept and up:)* They mean to use this place for a long time.
+- **Might:** The ladder is new ash, pegged, and strong enough for men carrying a load. *(Apprentice and up:)* They mean to use this place for a long time.
 
-- **Agility:** The third rung from the top is worn pale on the left. *(Adept and up:)* Everyone who climbs this steps in the same place.
+- **Agility:** The third rung from the top is worn pale on the left. *(Apprentice and up:)* Everyone who climbs this steps in the same place.
 
-- **Intellect:** Lamp-smoke, coming up steadily, and no cooking in it. *(Adept and up:)* Nobody lives down there. They work there.
+- **Intellect:** Lamp-smoke, coming up steadily, and no cooking in it. *(Apprentice and up:)* Nobody lives down there. They work there.
 
-- **Charm:** The voices are not arguing, and they are not laughing. *(Adept and up:)* They are saying the same thing, together.
+- **Charm:** The voices are not arguing, and they are not laughing. *(Apprentice and up:)* They are saying the same thing, together.
 
-- **Craft:** The shaft is old. The timbering is this year's. *(Adept and up:)* Somebody found it, and opened it again.
+- **Craft:** The shaft is old. The timbering is this year's. *(Apprentice and up:)* Somebody found it, and opened it again.
 
-- **Aim:** Straight down: a lamp, a patch of floor, and the edge of something that is not floor. *(Adept and up:)* A foot. Small, and bare.
+- **Aim:** Straight down: a lamp, a patch of floor, and the edge of something that is not floor. *(Apprentice and up:)* A foot. Small, and bare.
 
 **CHALLENGE: DOWN THE SHAFT**
 
@@ -2429,19 +2429,19 @@ Clue found, "The chant ran on":
 
 > Supper is whatever is left: hard bread, and the end of the farmer's cheese. Garrick's share ends up on somebody else's plate. He does not say where it went.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** In one place the ground rings hollow when you stamp. *(Adept and up:)* Not a door. A roof.
+- **Might:** In one place the ground rings hollow when you stamp. *(Apprentice and up:)* Not a door. A roof.
 
-- **Agility:** Something is moving on this hill that is not one of you. *(Adept and up:)* It knows the ground better than you do.
+- **Agility:** Something is moving on this hill that is not one of you. *(Apprentice and up:)* It knows the ground better than you do.
 
-- **Intellect:** They took their ladder away. *(Adept and up:)* Then they have another way out, or they do not mean to leave.
+- **Intellect:** They took their ladder away. *(Apprentice and up:)* Then they have another way out, or they do not mean to leave.
 
-- **Charm:** Nobody has said the boy's name since the shaft. *(Adept and up:)* Everybody is thinking it.
+- **Charm:** Nobody has said the boy's name since the shaft. *(Apprentice and up:)* Everybody is thinking it.
 
-- **Craft:** The stones of the sheepfold were cut once, and cut well. *(Adept and up:)* This hill was built on before it was grazed.
+- **Craft:** The stones of the sheepfold were cut once, and cut well. *(Apprentice and up:)* This hill was built on before it was grazed.
 
-- **Aim:** Down at the shaft: two lamps now, where there was one. *(Adept and up:)* They have set a watch on you.
+- **Aim:** Down at the shaft: two lamps now, where there was one. *(Apprentice and up:)* They have set a watch on you.
 
 > A hooded figure comes up over the shoulder of the hill, alone, walking the way a man walks his own yard.
 
@@ -2606,19 +2606,19 @@ Clue found, "Faces turned in":
 >
 > It is your watch. You lie on your belly at the lip, with the cold coming up out of the ground into your elbows.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** Under your palm the ground is trembling, very slightly. *(Adept and up:)* It is not the river.
+- **Might:** Under your palm the ground is trembling, very slightly. *(Apprentice and up:)* It is not the river.
 
-- **Agility:** The two at the foot of the shaft change places every little while. *(Adept and up:)* They are tired. They have been at this for days.
+- **Agility:** The two at the foot of the shaft change places every little while. *(Apprentice and up:)* They are tired. They have been at this for days.
 
-- **Intellect:** They have not come up after you, and they have not put their lamps out. *(Adept and up:)* They are not afraid of you. They are only keeping you where you are.
+- **Intellect:** They have not come up after you, and they have not put their lamps out. *(Apprentice and up:)* They are not afraid of you. They are only keeping you where you are.
 
-- **Charm:** The chanting has started again. *(Adept and up:)* Whatever they were making ready is nearly ready.
+- **Charm:** The chanting has started again. *(Apprentice and up:)* Whatever they were making ready is nearly ready.
 
-- **Craft:** A sound comes up the shaft, and then the same sound comes up through the ground, a moment later. *(Adept and up:)* There is more hollow under this hill than one room.
+- **Craft:** A sound comes up the shaft, and then the same sound comes up through the ground, a moment later. *(Apprentice and up:)* There is more hollow under this hill than one room.
 
-- **Aim:** The lamplight at the bottom dims and brightens. *(Adept and up:)* People are crossing in front of it, and all of them the same way.
+- **Aim:** The lamplight at the bottom dims and brightens. *(Apprentice and up:)* People are crossing in front of it, and all of them the same way.
 
 **CHALLENGE: READ THE HILL**
 

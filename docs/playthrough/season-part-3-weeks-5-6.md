@@ -58,19 +58,19 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 >
 > At the top of the lane he twists round in her arms and holds the little boat up over her shoulder, high, so that all of you can see he still has it.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** She lifts him clear of the gunwale as if he weighed nothing. *(Adept and up:)* She has not been strong enough for that in years.
+- **Might:** She lifts him clear of the gunwale as if he weighed nothing. *(Apprentice and up:)* She has not been strong enough for that in years.
 
-- **Agility:** You feel each beat come up through the boat's planks before it reaches your ears. *(Adept and up:)* It travels in the ground, and in the water.
+- **Agility:** You feel each beat come up through the boat's planks before it reaches your ears. *(Apprentice and up:)* It travels in the ground, and in the water.
 
-- **Intellect:** It is long past sunrise, and the light has not changed. *(Adept and up:)* This is not weather.
+- **Intellect:** It is long past sunrise, and the light has not changed. *(Apprentice and up:)* This is not weather.
 
-- **Charm:** Up the lane, the lamp is still burning in her window. *(Adept and up:)* Nobody has thought to put it out. Nobody can tell that it is day.
+- **Charm:** Up the lane, the lamp is still burning in her window. *(Apprentice and up:)* Nobody has thought to put it out. Nobody can tell that it is day.
 
-- **Craft:** Joss's little boat has lost its mast. *(Adept and up:)* He held on to it so hard that it broke.
+- **Craft:** Joss's little boat has lost its mast. *(Apprentice and up:)* He held on to it so hard that it broke.
 
-- **Aim:** The beats come from one quarter and no other. *(Adept and up:)* North, and a little east of north.
+- **Aim:** The beats come from one quarter and no other. *(Apprentice and up:)* North, and a little east of north.
 
 > Four children home. Every one you were sent to find.
 >
@@ -269,19 +269,19 @@ Clue found, "Every window lit":
 >
 > Among them, one is new. The turf was cut this week and laid back badly, by people with no time to do better.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The new grave is shallow. *(Adept and up:)* Whoever dug it could not stay to dig deeper.
+- **Might:** The new grave is shallow. *(Apprentice and up:)* Whoever dug it could not stay to dig deeper.
 
-- **Agility:** The family's cow has not stood still once since the cart stopped. *(Adept and up:)* She keeps her head to the south.
+- **Agility:** The family's cow has not stood still once since the cart stopped. *(Apprentice and up:)* She keeps her head to the south.
 
-- **Intellect:** Hundreds of graves, and not one of them marked with a name. *(Adept and up:)* They were buried by people who knew every one of them.
+- **Intellect:** Hundreds of graves, and not one of them marked with a name. *(Apprentice and up:)* They were buried by people who knew every one of them.
 
-- **Charm:** The family walks wide of the new grave, and the child is turned to face the other way. *(Adept and up:)* They know whose it is.
+- **Charm:** The family walks wide of the new grave, and the child is turned to face the other way. *(Apprentice and up:)* They know whose it is.
 
-- **Craft:** At the end of the rows stands one block that is no grave. *(Adept and up:)* It is cut like the waystone at Reedham.
+- **Craft:** At the end of the rows stands one block that is no grave. *(Apprentice and up:)* It is cut like the waystone at Reedham.
 
-- **Aim:** The rows run dead straight, and they all point one way. *(Adept and up:)* North. At the city.
+- **Aim:** The rows run dead straight, and they all point one way. *(Apprentice and up:)* North. At the city.
 
 > At the far end of the rows stands one squared block of stone that is no grave. Its top is a separate slab, fitted like a lid.
 
@@ -467,19 +467,19 @@ Clue found, "Scattered":
 >
 > The gate is shut.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The gate's timbers have not sagged a finger's width. *(Adept and up:)* Something on the far side is holding them up.
+- **Might:** The gate's timbers have not sagged a finger's width. *(Apprentice and up:)* Something on the far side is holding them up.
 
-- **Agility:** The stair to the wall has lost its middle. *(Adept and up:)* What is left of it would take one person at a time.
+- **Agility:** The stair to the wall has lost its middle. *(Apprentice and up:)* What is left of it would take one person at a time.
 
-- **Intellect:** A dead city has no reason to shut its gate. *(Adept and up:)* And nobody left to do it.
+- **Intellect:** A dead city has no reason to shut its gate. *(Apprentice and up:)* And nobody left to do it.
 
-- **Charm:** Nobody has spoken since the wall came into sight. *(Adept and up:)* It is not a place that wants talking in.
+- **Charm:** Nobody has spoken since the wall came into sight. *(Apprentice and up:)* It is not a place that wants talking in.
 
-- **Craft:** The gate-tower door is iron, and rusted into its frame. *(Adept and up:)* The hinges are on your side.
+- **Craft:** The gate-tower door is iron, and rusted into its frame. *(Apprentice and up:)* The hinges are on your side.
 
-- **Aim:** High up, above the terraces, one grey thread stands in the grey air. *(Adept and up:)* It is not cloud.
+- **Aim:** High up, above the terraces, one grey thread stands in the grey air. *(Apprentice and up:)* It is not cloud.
 
 **CHALLENGE: THE WALL**
 
@@ -660,19 +660,19 @@ Clue found, "Knocked out":
 >
 > Their faces are hidden behind their helms. None of them moves.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** That armour should have fallen in on itself long ago. *(Adept and up:)* Something inside it is still holding it up.
+- **Might:** That armour should have fallen in on itself long ago. *(Apprentice and up:)* Something inside it is still holding it up.
 
-- **Agility:** There is room to pass between them. *(Adept and up:)* Just. With your arms in.
+- **Agility:** There is room to pass between them. *(Apprentice and up:)* Just. With your arms in.
 
-- **Intellect:** A dozen, strung out, with gaps. *(Adept and up:)* This is the tail of a column. The rest got further up the hill.
+- **Intellect:** A dozen, strung out, with gaps. *(Apprentice and up:)* This is the tail of a column. The rest got further up the hill.
 
-- **Charm:** Not one of them has a face you can see. *(Adept and up:)* It is easier that way. It should not be.
+- **Charm:** Not one of them has a face you can see. *(Apprentice and up:)* It is easier that way. It should not be.
 
-- **Craft:** Every plate still hangs true on its buckles. *(Adept and up:)* Whoever fastened them expected to undo them again by nightfall.
+- **Craft:** Every plate still hangs true on its buckles. *(Apprentice and up:)* Whoever fastened them expected to undo them again by nightfall.
 
-- **Aim:** Every one of them is looking the same way. *(Adept and up:)* Up the hill, at the hall.
+- **Aim:** Every one of them is looking the same way. *(Apprentice and up:)* Up the hill, at the hall.
 
 **CHALLENGE: THE STREET OF SOLDIERS**
 
@@ -896,19 +896,19 @@ Clue found, "No two alike":
 >
 > Some of them have.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** There is a woodpile against that house, stacked to the eaves. *(Adept and up:)* In a city where nothing grows. They carry it in.
+- **Might:** There is a woodpile against that house, stacked to the eaves. *(Apprentice and up:)* In a city where nothing grows. They carry it in.
 
-- **Agility:** The watchman at the wall has not shifted his feet once. *(Adept and up:)* He has done this every night since he could stand.
+- **Agility:** The watchman at the wall has not shifted his feet once. *(Apprentice and up:)* He has done this every night since he could stand.
 
-- **Intellect:** They are camped at the doors, and have not touched them. *(Adept and up:)* They are not trying to get in.
+- **Intellect:** They are camped at the doors, and have not touched them. *(Apprentice and up:)* They are not trying to get in.
 
-- **Charm:** Nobody at that fire is talking. *(Adept and up:)* It is the quiet of people who have said everything, long ago.
+- **Charm:** Nobody at that fire is talking. *(Apprentice and up:)* It is the quiet of people who have said everything, long ago.
 
-- **Craft:** The hearth is built of dressed stone, blackened right through. *(Adept and up:)* That fire is older than anyone sitting at it.
+- **Craft:** The hearth is built of dressed stone, blackened right through. *(Apprentice and up:)* That fire is older than anyone sitting at it.
 
-- **Aim:** A board is propped beside the wall, covered in chalk. *(Adept and up:)* Rows of strokes, and most of them crossed.
+- **Aim:** A board is propped beside the wall, covered in chalk. *(Apprentice and up:)* Rows of strokes, and most of them crossed.
 
 > As the light goes, one of them rises, faces the hall, and draws the chalk through one more stroke.
 
@@ -1057,19 +1057,19 @@ Clue found, "More bedrolls":
 
 > Mei crouches at the corner of the gate-tower, with the whole square in view, and one hand raised where you can see it.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The parapet on the city side is waist-high and a yard thick. *(Adept and up:)* The wall under you is thicker than any wall needs to be.
+- **Might:** The parapet on the city side is waist-high and a yard thick. *(Apprentice and up:)* The wall under you is thicker than any wall needs to be.
 
-- **Agility:** Forty paces of open stone. *(Adept and up:)* Fewer, if you go when their heads are turned.
+- **Agility:** Forty paces of open stone. *(Apprentice and up:)* Fewer, if you go when their heads are turned.
 
-- **Intellect:** They change the watch at dusk. For a moment both men are looking at each other. *(Adept and up:)* That is the moment.
+- **Intellect:** They change the watch at dusk. For a moment both men are looking at each other. *(Apprentice and up:)* That is the moment.
 
-- **Charm:** From the square, a figure on the wall at dusk is only a shape. *(Adept and up:)* Shapes that walk like watchmen are not looked at twice.
+- **Charm:** From the square, a figure on the wall at dusk is only a shape. *(Apprentice and up:)* Shapes that walk like watchmen are not looked at twice.
 
-- **Craft:** One stone in the walkway has a crack along it that runs too straight. *(Adept and up:)* It was cut, not broken.
+- **Craft:** One stone in the walkway has a crack along it that runs too straight. *(Apprentice and up:)* It was cut, not broken.
 
-- **Aim:** Below the walk, on the city side, there is a slit in the wall's face no wider than a hand. *(Adept and up:)* It looks straight at the hall.
+- **Aim:** Below the walk, on the city side, there is a slit in the wall's face no wider than a hand. *(Apprentice and up:)* It looks straight at the hall.
 
 > Up the hill a lantern crosses the square, and two voices carry down through the still air.
 >
@@ -1557,19 +1557,19 @@ Clue found, "A stride wider":
 >
 > Twice, they walk on.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The hidden door is one slab, a hand thick, hung so that a child could swing it. *(Adept and up:)* It was made to be shut in a hurry, and held.
+- **Might:** The hidden door is one slab, a hand thick, hung so that a child could swing it. *(Apprentice and up:)* It was made to be shut in a hurry, and held.
 
-- **Agility:** The boots on the walk came at the same pace both times. *(Adept and up:)* They are searching by rote. They do not expect to find anything.
+- **Agility:** The boots on the walk came at the same pace both times. *(Apprentice and up:)* They are searching by rote. They do not expect to find anything.
 
-- **Intellect:** They hunted the whole wall, and not this stretch more than any other. *(Adept and up:)* He saw a light. He did not see where.
+- **Intellect:** They hunted the whole wall, and not this stretch more than any other. *(Apprentice and up:)* He saw a light. He did not see where.
 
-- **Charm:** Your palm is stiff under its white linen. *(Adept and up:)* All of you are wearing it now. The same linen as the children.
+- **Charm:** Your palm is stiff under its white linen. *(Apprentice and up:)* All of you are wearing it now. The same linen as the children.
 
-- **Craft:** The floor by the slit is worn into two shallow hollows. *(Adept and up:)* Somebody sat here, on watch, for a lifetime. Then somebody else did.
+- **Craft:** The floor by the slit is worn into two shallow hollows. *(Apprentice and up:)* Somebody sat here, on watch, for a lifetime. Then somebody else did.
 
-- **Aim:** From the slit, the hall's doors sit square in the middle of the view. *(Adept and up:)* This window was cut for one thing.
+- **Aim:** From the slit, the hall's doors sit square in the middle of the view. *(Apprentice and up:)* This window was cut for one thing.
 
 > Morning in the dead city looks like evening anywhere else. The fifth is in a pack, wrapped in cloth, and you can feel the cold of it through the canvas.
 >
@@ -1748,19 +1748,19 @@ Clue found, "The old soot":
 >
 > The street is empty.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** A dozen men in iron walked out of this street, and not a cobble is chipped. *(Adept and up:)* They went carefully.
+- **Might:** A dozen men in iron walked out of this street, and not a cobble is chipped. *(Apprentice and up:)* They went carefully.
 
-- **Agility:** One line of prints leaves each place where a soldier stood, and goes uphill. *(Adept and up:)* Slow, even steps. Nothing hurried them.
+- **Agility:** One line of prints leaves each place where a soldier stood, and goes uphill. *(Apprentice and up:)* Slow, even steps. Nothing hurried them.
 
-- **Intellect:** Some of this company came at you by the wall, and you broke them. *(Adept and up:)* These are the ones that stayed. Until now.
+- **Intellect:** Some of this company came at you by the wall, and you broke them. *(Apprentice and up:)* These are the ones that stayed. Until now.
 
-- **Charm:** Nobody says anything. *(Adept and up:)* Everybody has counted the doorways.
+- **Charm:** Nobody says anything. *(Apprentice and up:)* Everybody has counted the doorways.
 
-- **Craft:** Where each one stood, the cobbles are a shade paler, in the shape of two boots. *(Adept and up:)* They kept the weather off that stone for longer than anyone has been alive.
+- **Craft:** Where each one stood, the cobbles are a shade paler, in the shape of two boots. *(Apprentice and up:)* They kept the weather off that stone for longer than anyone has been alive.
 
-- **Aim:** Up the hill, three streets on, something stands across the road. *(Adept and up:)* It was not there before.
+- **Aim:** Up the hill, three streets on, something stands across the road. *(Apprentice and up:)* It was not there before.
 
 > The defenders' barracks are long, low halls cut into the back of the city wall: rows of stone bunks, racks where spears once stood, a kitchen whose fire went out on the war's last night. The air smells of cold stone and very old smoke.
 >
@@ -1957,19 +1957,19 @@ Clue found, "Bowls never filled":
 >
 > They struck theirs at dusk. So did you.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The doors are taller than houses, and there is no bar, no chain, no lock on them. *(Adept and up:)* Nothing that a strong arm could break.
+- **Might:** The doors are taller than houses, and there is no bar, no chain, no lock on them. *(Apprentice and up:)* Nothing that a strong arm could break.
 
-- **Agility:** The fountain throws a shadow two-thirds of the way across. *(Adept and up:)* The last third is open.
+- **Agility:** The fountain throws a shadow two-thirds of the way across. *(Apprentice and up:)* The last third is open.
 
-- **Intellect:** Twice the watchmen, and they are still only watching. *(Adept and up:)* They could have searched this city for you. They have not left the fire.
+- **Intellect:** Twice the watchmen, and they are still only watching. *(Apprentice and up:)* They could have searched this city for you. They have not left the fire.
 
-- **Charm:** The new men sit a little apart from the old ones. *(Adept and up:)* They have not kept this watch before. They are afraid of the hall.
+- **Charm:** The new men sit a little apart from the old ones. *(Apprentice and up:)* They have not kept this watch before. They are afraid of the hall.
 
-- **Craft:** The seam between the doors has been filled, flush, with something that is not mortar. *(Adept and up:)* Whoever shut these did not mean them to open again.
+- **Craft:** The seam between the doors has been filled, flush, with something that is not mortar. *(Apprentice and up:)* Whoever shut these did not mean them to open again.
 
-- **Aim:** A watchman walks the square with a lantern, and turns at the same flagstone every time. *(Adept and up:)* Past that stone, he never looks.
+- **Aim:** A watchman walks the square with a lantern, and turns at the same flagstone every time. *(Apprentice and up:)* Past that stone, he never looks.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -2150,19 +2150,19 @@ Clue found, "Warm low down":
 >
 > And one that runs straight up and down, as if it had been ruled.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The rock has closed in on that crack over the years. *(Adept and up:)* It is healing shut. It was cut, once, wide enough for a pack.
+- **Might:** The rock has closed in on that crack over the years. *(Apprentice and up:)* It is healing shut. It was cut, once, wide enough for a pack.
 
-- **Agility:** A person could go into it only sideways. *(Adept and up:)* And could not turn round.
+- **Agility:** A person could go into it only sideways. *(Apprentice and up:)* And could not turn round.
 
-- **Intellect:** The hall's back wall and this hill are one piece of rock. *(Adept and up:)* A way into the hill is a way into the hall.
+- **Intellect:** The hall's back wall and this hill are one piece of rock. *(Apprentice and up:)* A way into the hill is a way into the hall.
 
-- **Charm:** Every one of you has gone quiet at the same moment. *(Adept and up:)* You have all seen what is standing in it.
+- **Charm:** Every one of you has gone quiet at the same moment. *(Apprentice and up:)* You have all seen what is standing in it.
 
-- **Craft:** A straight crack in heaved rock. *(Adept and up:)* Somebody made it look like the others, and could not make it crooked.
+- **Craft:** A straight crack in heaved rock. *(Apprentice and up:)* Somebody made it look like the others, and could not make it crooked.
 
-- **Aim:** In the mouth of the crack there is a shape that is not rock. *(Adept and up:)* It has a helm.
+- **Aim:** In the mouth of the crack there is a shape that is not rock. *(Apprentice and up:)* It has a helm.
 
 > A soldier is standing in the mouth of the crack.
 >
@@ -2337,19 +2337,19 @@ Clue found, "Louder here":
 >
 > He waves you on into the room with the back of his hand.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** The rows run higher than anyone could reach from the floor. *(Adept and up:)* The watchers cut ledges in the wall for their own feet.
+- **Might:** The rows run higher than anyone could reach from the floor. *(Apprentice and up:)* The watchers cut ledges in the wall for their own feet.
 
-- **Agility:** The steps are worn in the middle, every one, by the same feet night after night. *(Adept and up:)* The top three are hardly worn at all.
+- **Agility:** The steps are worn in the middle, every one, by the same feet night after night. *(Apprentice and up:)* The top three are hardly worn at all.
 
-- **Intellect:** Row on row, year on year, and never a gap. *(Adept and up:)* Whoever kept this did not miss a night in generations.
+- **Intellect:** Row on row, year on year, and never a gap. *(Apprentice and up:)* Whoever kept this did not miss a night in generations.
 
-- **Charm:** It is patient work, and it is loving. *(Adept and up:)* Somebody was proud of this wall.
+- **Charm:** It is patient work, and it is loving. *(Apprentice and up:)* Somebody was proud of this wall.
 
-- **Craft:** Every moon is cut to the same depth, by the same kind of tool. *(Adept and up:)* All but one.
+- **Craft:** Every moon is cut to the same depth, by the same kind of tool. *(Apprentice and up:)* All but one.
 
-- **Aim:** Follow the rows round, and they stop. *(Adept and up:)* After that, the stone is bare, all the way back to the door.
+- **Aim:** Follow the rows round, and they stop. *(Apprentice and up:)* After that, the stone is bare, all the way back to the door.
 
 **CHALLENGE: THE SKY-WATCHERS' WALL**
 
@@ -2536,19 +2536,19 @@ Clue found, "Cut in a hurry":
 >
 > They are walking: slowly, stiffly, all the same way. Up the hill, to the hall.
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
+*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
 
-- **Might:** They do not go round what is in their way. *(Adept and up:)* A cart, a fallen door: they walk through it.
+- **Might:** They do not go round what is in their way. *(Apprentice and up:)* A cart, a fallen door: they walk through it.
 
-- **Agility:** They keep step. *(Adept and up:)* There are gaps between the ranks, and the gaps move at the same pace.
+- **Agility:** They keep step. *(Apprentice and up:)* There are gaps between the ranks, and the gaps move at the same pace.
 
-- **Intellect:** Not one has turned its head. *(Adept and up:)* They are not looking for anything. They know where they are going.
+- **Intellect:** Not one has turned its head. *(Apprentice and up:)* They are not looking for anything. They know where they are going.
 
-- **Charm:** They are a company again. *(Adept and up:)* Whatever else has gone, that has not.
+- **Charm:** They are a company again. *(Apprentice and up:)* Whatever else has gone, that has not.
 
-- **Craft:** Iron on stone, in time. *(Adept and up:)* It covers every other sound in the street. It would cover yours.
+- **Craft:** Iron on stone, in time. *(Apprentice and up:)* It covers every other sound in the street. It would cover yours.
 
-- **Aim:** At the top of the street, where the hill begins, one of them has stopped. *(Adept and up:)* It is not facing the hall.
+- **Aim:** At the top of the street, where the hill begins, one of them has stopped. *(Apprentice and up:)* It is not facing the hall.
 
 **CHALLENGE: THE STREET**
 

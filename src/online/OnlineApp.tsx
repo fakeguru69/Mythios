@@ -516,6 +516,8 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
     return (
       <OnlineGathering
         partyId={party.id}
+        userId={userId}
+        members={approved}
         onClose={() => {
           setInGathering(false);
           setPlayingDay(false);

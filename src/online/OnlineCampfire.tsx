@@ -5,7 +5,7 @@
 // and sends others' pins only after your own (pin before peek).
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabase, plainError } from './supabaseClient';
-import { NarrationBlock, ScriptText } from '../components/ChapterScriptParts';
+import { NarrationBlock, NoticeBlock, ScriptText, fillScriptTokens } from '../components/ChapterScriptParts';
 import { ATTRIBUTE_META, challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
 import { CAMPFIRE_STORED_LINES } from '../data/campfireDaysData';
 import { ErrorLine, heading, input, note, quietButton } from './ui';
@@ -86,6 +86,14 @@ interface Fire {
   riddleRight?: boolean;
 }
 
+// Sharing at the fire (migration 0079): your Notice line, the lines friends shared, what passers saw.
+interface Shares {
+  mine: { attr: AttributeName; text: string } | null;
+  shared: boolean;
+  noticed: { name: string; attr: AttributeName; body: string }[];
+  saw: { name: string; kind: 'pass' | 'press'; text: string | null; title?: string; detail?: string }[];
+}
+
 const signed = (n: number) => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
 // "Mei thinks the list is a warning." A sentence's first word drops its capital unless it is a name.
 const LOWER_STARTS = new Set(['The', 'He', "It's", 'They', "They're", 'Now', 'Home', 'We', 'It', 'Someone', 'One', 'Their', 'There', 'Upriver']);
@@ -115,11 +123,16 @@ export default function OnlineCampfire({
   const [riddleAsked, setRiddleAsked] = useState(false);
   const [riddleNote, setRiddleNote] = useState<string | null>(null);
   const [leaving, setLeaving] = useState(false);
+  const [shares, setShares] = useState<Shares | null>(null);
 
   const load = useCallback(async () => {
     const { data, error: e } = await supabase.rpc('campfire', { p_party: partyId });
     if (e) return setError(e.message.includes('finish your day first') ? 'The fire opens once your own day is done.' : plainError(e.message));
     setFire(data as Fire);
+    if ((data as Fire)?.chosen) {
+      const { data: sh } = await supabase.rpc('fire_shares', { p_party: partyId });
+      if (sh) setShares(sh as Shares);
+    }
   }, [partyId]);
   useEffect(() => {
     load();
@@ -140,6 +153,12 @@ export default function OnlineCampfire({
     setFire(data as Fire);
     return data as Fire;
   };
+
+  // Once at the fire (after the last light), fetch what the others shared.
+  useEffect(() => {
+    if (!fire?.chosen) return;
+    supabase.rpc('fire_shares', { p_party: partyId }).then(({ data }) => data && setShares(data as Shares));
+  }, [fire?.chosen, fire?.week, fire?.day, partyId]);
 
   const seed = useMemo(() => (fire ? fire.week * 7 + fire.day : 0), [fire?.week, fire?.day]);
 
@@ -226,6 +245,9 @@ export default function OnlineCampfire({
   const garrick = !fire.narrated;
   const frag = fire.fragment;
   const fragDone = Boolean(frag?.text);
+  // Friends' names in shared lines, as in your own chapter ({F1} is the first friend after you).
+  const fillShared = (t: string) =>
+    fillScriptTokens(t, { friends: members.filter((m) => !m.me).map((m) => m.name), partySize: members.length });
 
   // Garrick's stored lines tonight, in priority order; at most eight to one friend (v2.3 §H), the closer kept for leaving.
   const lines: { key: string; text: string }[] = [];
@@ -409,6 +431,47 @@ export default function OnlineCampfire({
           )
         )}
       </Section>
+
+      {/* What each of you saw today (gameplay verdict, 17 Oct): Notice lines shared by choice; what a passer read,
+          for a friend who did not pass ("Someone at the fire may have seen it"); [PRESS ON] finds. */}
+      {shares && (shares.mine || shares.noticed.length > 0 || shares.saw.length > 0) && (
+        <Section label="WHAT EACH OF YOU SAW">
+          {shares.mine && (
+            <div className="space-y-1.5">
+              <NoticeBlock attr={shares.mine.attr} text={fillShared(shares.mine.text)} label="What you noticed" />
+              {fire.narrated ? null : shares.shared ? (
+                <p className={note}>On the board for the others.</p>
+              ) : (
+                <button
+                  disabled={busy}
+                  onClick={async () => {
+                    setBusy(true);
+                    const { data, error: e } = await supabase.rpc('share_notice', { p_party: partyId });
+                    setBusy(false);
+                    if (e) return setError(plainError(e.message));
+                    setShares(data as Shares);
+                  }}
+                  className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`}
+                >
+                  SHARE WHAT YOU NOTICED
+                </button>
+              )}
+            </div>
+          )}
+          {shares.noticed.map((n) => (
+            <NoticeBlock key={`n-${n.name}`} attr={n.attr} text={fillShared(n.body)} label={`${n.name} noticed`} />
+          ))}
+          {shares.saw.map((s) => (
+            <div key={`${s.kind}-${s.name}`} className="rounded-lg bg-[#130B1F] border border-[#3A2555] p-2.5 space-y-1">
+              <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] uppercase text-[#B7A9CC]">
+                {s.kind === 'pass' ? `What ${s.name} saw, that you missed` : `${s.name} pressed on: ${s.title ?? ''}`}
+              </div>
+              {s.kind === 'press' && s.detail && <p className="text-[13.5px] text-[#D9D1E6] italic">{fillShared(s.detail)}.</p>}
+              {s.text && <ScriptText text={fillShared(s.text)} className="text-[14px] text-[#F4F1F8] leading-[1.45]" />}
+            </div>
+          ))}
+        </Section>
+      )}
 
       {/* The fragment, together (design §3.3 part 2). */}
       {frag && (
