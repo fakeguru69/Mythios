@@ -1428,7 +1428,7 @@ Clue found, "A stride wider":
 >
 > Not a flicker. Not a warmth. The Stone lies in your hands as cold and dark as it was when you found it, and your blood runs off it like rain off glass.
 >
-> Garrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved. Nobody remarks on it. There's nothing strange about a man having linen to spare.
+> Garrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved. He works without a word, and ties each knot small and firm.
 
 #### The turn
 

@@ -8,6 +8,15 @@
 const fs = require('fs');
 const path = require('path');
 
+// What he can really say: the six episode files (chapters and Gatherings) and his stored chat lines (garrickRouter.ts).
+const norm = (t) => t.replace(/\{N\}|\{F\d\}/g, ' ').toLowerCase().replace(/[‘’]/g, "'").replace(/[^a-z' ]/g, ' ').replace(/\s+/g, ' ').trim();
+const canonDir = path.join(__dirname, '..', 'docs', 'canon');
+const SAYABLE = norm(
+  fs.readdirSync(canonDir).filter((f) => /^episode-\d/.test(f)).map((f) => fs.readFileSync(path.join(canonDir, f), 'utf8')).join(' ') +
+    ' ' + fs.readFileSync(path.join(__dirname, '..', 'src', 'data', 'garrickRouter.ts'), 'utf8').replace(/\\'/g, "'")
+);
+const skipped = [];
+
 const src = fs.readFileSync(path.join(__dirname, '..', 'docs', 'canon', 'garrick-deception-table.md'), 'utf8').split('\n');
 
 // Sentences about the writing, not the story.
@@ -72,6 +81,25 @@ src.forEach((l) => {
   const cleanLine = stripNotes(line);
   const meaning = stripNotes(cells[1]);
   if (!cleanLine || !meaning) return;
+  // Only lines he can really say (Fake Guru, 17 Oct, from the outside audits): each quoted part must appear in the
+  // story text or among his stored chat lines. A row that answers a question nothing in the game lets anyone ask stays
+  // in the deception table as the plan, and is left out of the Recap.
+  // Sentence by sentence: the story often breaks his speech with narration ("He puts it on the table.").
+  const rawSentences = [...cleanLine.matchAll(/["“]([^"”]+)["”]/g)]
+    .flatMap((m) => m[1].split(/[.?!…]+/))
+    .filter((q) => norm(q).split(' ').length >= 3);
+  // A sentence broken by "he says" counts if each part of it is there.
+  const heardSentence = (raw) => {
+    const q = norm(raw);
+    if (SAYABLE.includes(q)) return true;
+    const parts = raw.split(/[,;:—–-]+/).map(norm).filter((x) => x.split(' ').length >= 3);
+    return parts.length > 1 && parts.every((x) => SAYABLE.includes(x));
+  };
+  const heard = rawSentences.filter(heardSentence).length;
+  if (rawSentences.length && heard < Math.ceil(rawSentences.length / 2)) {
+    skipped.push(`Week ${week}: ${cleanLine}`);
+    return;
+  }
   const list = (weeks[week] = weeks[week] || []);
   if (list.some((e) => e.line === cleanLine)) return; // said once, listed once
   list.push({ when: stripNotes(when).replace(/^./, (c) => c.toUpperCase()), line: cleanLine, meaning });
@@ -94,3 +122,4 @@ export interface GarrickRecapEntry {
 export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = `;
 fs.writeFileSync(path.join(__dirname, '..', 'src', 'data', 'garrickRecap.ts'), header + JSON.stringify(out, null, 2) + ';\n');
 console.log(out.map((w) => `Week ${w.week}: ${w.entries.length} lines`).join(' · '));
+if (skipped.length) console.log(`Left out, never said in the game (${skipped.length}):\n  ` + skipped.join('\n  '));

@@ -12,8 +12,6 @@ Garrick, the warm innkeeper who guides the party, is the last living descendant 
   **Meant:** True: it is his name. He gives his own and asks for none of theirs. He has no need to: they are on the list he has been waiting for.
 - *"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen. Left this. Hasn't been back in three weeks."*  
   **Meant:** True. He never claims she trusted him, and never explains why he kept them.
-- *"You four were on her list. That means something."*  
-  **Meant:** True. It means she identified the only people who could find the Stones — which is why he needs them.
 - *"She'd sit right there. I doubt she thought I was listening."*  
   **Meant:** True. He was listening for two years — which is exactly how he knew when she had found enough to be worth killing.
 - *"I've a business to run."*  
@@ -22,10 +20,6 @@ Garrick, the warm innkeeper who guides the party, is the last living descendant 
   **Meant:** True in that moment — it's all he has agreed to. It leaves the door open for them to ask him again, which they do.
 - *If asked who attacked them:* *"I know what she wrote down."*  
   **Meant:** He never says it wasn't his doing.
-- *If asked whether Meira sent the pages:* *"She wrote them at that table, and took them with her when she left."*  
-  **Meant:** True.
-- *If asked where she went:* *"She took her coat and those pages, and she didn't come back."*  
-  **Meant:** True — every word.
 
 ### Week 2
 
@@ -103,8 +97,6 @@ Garrick, the warm innkeeper who guides the party, is the last living descendant 
   **Meant:** True. The Seekers' first fragment said it of the fifth: five fell, four were scattered after, one stayed close. They kept it within sight of his hall for as long as they lived, and tonight it goes back into the hand it was taken from. Heard as an old riddle answered at last; on reread, he says it of his own house too, which kept its watch on that hall for centuries from just up the hill.
 - *From the king's side, after the act:* *"Your Seekers made their children the only key. The key that locks is also the key that unlocks. You were the key."*  
   **Meant:** True. The Seekers' own words, turned onto the party: they made their children the only key, and the key that locks is also the key that unlocks. Only Seeker blood could find the four Stones and wake them; every map the party solved showed the Order where a Stone lay, and the rite that locked the king is the one that wakes him. Heard as a charge against the Seekers; on reread, it is the whole season.
-- *"I've known what the fifth was since before you found me."*  
-  **Meant:** True — what it was, and whose. He never knew *where*; that, and the other four, is what he needed the party for.
 - *"You saved every child you were sent to save."*  
   **Meant:** True. Every one. That was never the part that mattered.
 - *Day 1, when someone wonders where the king's household could have run to:* *"Somewhere they'd never be found."*  

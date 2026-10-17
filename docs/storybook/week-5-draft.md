@@ -842,7 +842,7 @@
 >
 > Not a flicker. Not a warmth. The Stone lies in your hands as cold and dark as it was when you found it, and your blood runs off it like rain off glass.
 >
-> Garrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved. Nobody remarks on it. There's nothing strange about a man having linen to spare.
+> Garrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved. He works without a word, and ties each knot small and firm.
 
 `[PLANT]` *the same linen, on your own hands now; pays off in the finale*
 
@@ -927,7 +927,7 @@
 
 **Kept word for word**
 - Garrick: *"The old telling names a place, and a night."* and *"We're early."*, with their narration; "Garrick says nothing. He's watching the Stone."; "He does not tell you it will be all right."
-- The [PLANT]: "Garrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved." to "There's nothing strange about a man having linen to spare.", but for "this season".
+- The [PLANT]: "Garrick binds each cut palm himself, without being asked, in the same neat white linen you've seen on every child you've saved." kept but for "this season". (17 Oct, Fake Guru: its last two sentences, "Nobody remarks on it. There's nothing strange about a man having linen to spare.", became "He works without a word, and ties each knot small and firm.": the narration no longer tells the table not to see the clue.)
 - The whole Verse of the Binding and the whole Watch, with their dashes and semicolons; the older hand's line; both Match quotes and both quote-backs; "Tonight they were moving."; Meira's margin.
 - The turn: the table's question, *It is in your Chest.*, *"Where he fell, under the dark moon, the five were joined."*, "Not here. Not now."
 - The United Effort scene, both bars, "Mei. That one is yours.", the Trust ending's "The page comes gently out of his fist, and you are inside the wall before the first lantern reaches the gate."

@@ -23,11 +23,6 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
       },
       {
         "when": "",
-        "line": "*\"You {N} were on her list. That means something.\"*",
-        "meaning": "True. It means she identified the only people who could find the Stones — which is why he needs them."
-      },
-      {
-        "when": "",
         "line": "*\"She'd sit right there. I doubt she thought I was listening.\"*",
         "meaning": "True. He was listening for two years — which is exactly how he knew when she had found enough to be worth killing."
       },
@@ -45,16 +40,6 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
         "when": "If asked who attacked them",
         "line": "*\"I know what she wrote down.\"*",
         "meaning": "He never says it wasn't his doing."
-      },
-      {
-        "when": "If asked whether Meira sent the pages",
-        "line": "*\"She wrote them at that table, and took them with her when she left.\"*",
-        "meaning": "True."
-      },
-      {
-        "when": "If asked where she went",
-        "line": "*\"She took her coat and those pages, and she didn't come back.\"*",
-        "meaning": "True — every word."
       }
     ]
   },
@@ -235,11 +220,6 @@ export const GARRICK_RECAP: { week: number; entries: GarrickRecapEntry[] }[] = [
         "when": "From the king's side, after the act",
         "line": "*\"Your Seekers made their children the only key. The key that locks is also the key that unlocks. You were the key.\"*",
         "meaning": "True. The Seekers' own words, turned onto the party: they made their children the only key, and the key that locks is also the key that unlocks. Only Seeker blood could find the four Stones and wake them; every map the party solved showed the Order where a Stone lay, and the rite that locked the king is the one that wakes him. Heard as a charge against the Seekers; on reread, it is the whole season."
-      },
-      {
-        "when": "",
-        "line": "*\"I've known what the fifth was since before you found me.\"*",
-        "meaning": "True — what it was, and whose. He never knew *where*; that, and the other four, is what he needed the party for."
       },
       {
         "when": "",
