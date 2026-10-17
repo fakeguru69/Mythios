@@ -126,13 +126,19 @@ export default function OnlineGathering({
     if (nearBottom) endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [logLength]);
 
-  // The table's question at the cursor: fetch the answers while it is open and once the night has answered.
-  const turnAt = view?.log?.find((x) => x.t === 'turn' && x.i === view.cursor)?.i ?? null;
+  // The table's questions: fetch the answers while one is open, and once more after the night has answered it.
+  const finalAnswers = useRef<Set<number>>(new Set());
   const viewVersion = view?.key;
   useEffect(() => {
-    if (turnAt === null || turnAt === undefined) return;
-    supabase.rpc('gathering_answers', { p_party: partyId, p_i: turnAt }).then(({ data }) => data && setAnswers((a) => ({ ...a, [turnAt]: data })));
-  }, [turnAt, viewVersion, partyId]);
+    for (const x of view?.log ?? []) {
+      if (x.t !== 'turn' || finalAnswers.current.has(x.i)) continue;
+      const closed = Boolean(x.answer);
+      if (!closed && x.i !== view?.cursor) continue;
+      if (closed) finalAnswers.current.add(x.i);
+      const at = x.i;
+      supabase.rpc('gathering_answers', { p_party: partyId, p_i: at }).then(({ data }) => data && setAnswers((a) => ({ ...a, [at]: data })));
+    }
+  }, [view?.log, view?.cursor, viewVersion, partyId]);
   // The vote at the cursor: its help, once.
   const voteAt = view?.log?.some((x) => x.t === 'pick' && x.mode === 'vote' && x.i === view.cursor) ?? false;
   useEffect(() => {
