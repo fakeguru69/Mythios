@@ -24,5 +24,5 @@
     "allowImportingTsExtensions": true,
     "noEmit": true
   },
-  "exclude": ["node_modules", "dist", "supabase/functions/garrick/index.ts"]
+  "exclude": ["node_modules", "dist", "supabase/functions/garrick/index.ts", "supabase/functions/notify/index.ts"]
 }

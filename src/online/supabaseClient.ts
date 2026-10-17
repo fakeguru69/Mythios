@@ -149,6 +149,9 @@ export const plainError = (message: string | undefined): string => {
   if (m.includes('the party chat is not open yet')) return 'The party chat opens on Day 2.';
   if (m.includes('a message is 1 to 500')) return 'A message is 1 to 500 characters.';
   if (m.includes('failed to fetch') || m.includes('network')) return 'No connection to the server. Try again.';
+  if (m.includes('notifications are not ready yet')) return 'Notifications are not ready yet. Try again in a few minutes.';
+  if (m.includes('the poll is closed')) return 'The poll has closed.';
+  if (m.includes('registration failed') || m.includes('permission denied')) return "Notifications are blocked for this site. You can allow them in your browser's settings.";
   return 'Something went wrong. Try again.';
 };
 

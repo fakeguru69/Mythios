@@ -31,6 +31,7 @@ import { CREDIT_LINE, INVITE_BULLETS, MYTHIOS_INTRO, SERIES, SZ_DOOR, TAGLINE, s
 import SessionZero, { type SeriesCharacter } from './SessionZero';
 import PartyChat from './PartyChat';
 import InstallGuide from './InstallGuide';
+import Notifications from './Notifications';
 import OnlineDay from './OnlineDay';
 import OnlineChest from './OnlineChest';
 import OnlineStore from './OnlineStore';
@@ -715,6 +716,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         <GatheringCard partyId={party.id} isHost={isHost} timeZone={party.time_zone} onOpen={() => setInGathering(true)} />
       )}
 
+      {/* Notifications on this phone: the 8:00am line, the Day 4 poll, the Gathering's time and its reminder (0069). */}
+      {started && me.session_zero_done_at && <Notifications />}
+
       {/* The party chat opens when the party assembles on Day 2 (Fake Guru, 16 Oct); the server enforces it. */}
       {chatOpen && <PartyChat partyId={party.id} userId={userId} members={members} />}
 
@@ -1068,6 +1072,7 @@ function Home({ session }: { session: Session }) {
       </button>
 
       <InstallGuide />
+      <Notifications />
 
       <div className={`${card} mt-6`}>
         {editingName === null ? (
