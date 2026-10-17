@@ -102,6 +102,8 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 > Nothing comes up that you can read. The stone keeps its word, and you will have to hear it from someone else. Only this much is plain: under the worn part there was a second line, and it did not wear away. Somebody cut it out, stroke by stroke, with a patient knife.
 
+*⚙ Either way, every player reads this:*
+
 *⚙ A button: [ASK GARRICK WHERE A FIFTH WOULD BE]*
 
 > Garrick is looking north, the way the heartbeat comes from.
@@ -303,6 +305,8 @@ Clue found, "Every window lit":
 
 > Nothing can come at you unseen. Nothing will fail to see you, either.
 
+*⚙ Whatever you picked, every player reads this:*
+
 > At dusk the heartbeat comes.
 >
 > The grass on the graves shivers with it, row after row, like the hide of a horse. The cow screams and throws herself against her rope.
@@ -323,6 +327,8 @@ Clue found, "Every window lit":
 
 > Among the rows, they came over the mounds: it strikes first.
 
+*⚙ Either way, every player reads this:*
+
 > The cart is in the middle of it, and the child is under the cart, and between you nothing reaches either.
 >
 > Then the beat stops. The dogs stop with it. They stand a moment, heads down, as if they had forgotten what they came for, and go away into the dark.
@@ -330,6 +336,8 @@ Clue found, "Every window lit":
 *⚙ If you won the fight:*
 
 > The one you beat is the last to go. It looks back at you from the edge of the dark and wags its tail, once, as if asking what it has done.
+
+*⚙ Either way, every player reads this:*
 
 > In the morning the family goes south. Before the cart moves off, Garrick puts a heel of bread from his own pack into the child's hand.
 >
@@ -489,6 +497,8 @@ Clue found, "Scattered":
 
 > It takes what is left of the afternoon. You are up, but the light is going, and the city below you is only roofs and shadow.
 
+*⚙ Either way, every player reads this:*
+
 > Garrick passes his flask along the walkway, and waits until the last of you has had some before he takes any himself.
 
 *⚙ A button: [LOOK DOWN AT THE GATE]*
@@ -508,6 +518,8 @@ Clue found, "Scattered":
 > Stacked against the gatehouse wall, one upon another, lie the old bars. Dozens. The topmost are grey. The lowest have rotted to a brown line on the stone.
 >
 > Whoever changes the bar has kept every one.
+
+*⚙ Either way, every player reads this:*
 
 > On the walkway above the gate, where they would have stood shoulder to shoulder, a carved housing is set into the parapet at chest height.
 
@@ -688,6 +700,8 @@ Clue found, "Knocked out":
 >
 > So is the next one's. So is every one's. They all stopped on the same step.
 
+*⚙ Either way, every player reads this:*
+
 > Garrick walks last, between you and them, and does not look back once.
 
 > You do. From the end of the street, you look back.
@@ -723,6 +737,8 @@ Clue found, "Knocked out":
 *⚙ If you pick [SAY NOTHING]:*
 
 > Neither does he.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > The cup stands full by the shutter. Through the gap in it, nothing moves up the hill. Then, looking at the cup:
 >
@@ -873,6 +889,8 @@ Clue found, "No two alike":
 > A stone skitters under your boot. A lantern swings your way, and for one long moment a watchman stares straight at the rubble you are lying behind.
 >
 > Then he lowers the lantern, and goes back to the fire without a word.
+
+*⚙ Either way, every player reads this:*
 
 > Hooded figures: four, five, more. The Order. They have made their camp facing the doors, as if they had been here all their lives.
 >
@@ -1035,6 +1053,8 @@ Clue found, "More bedrolls":
 
 *⚙ A choice: [POST Mei] or [POST Dev] or [POST Arjun]. Pick one; the choice colours the moment, the story is the same.*
 
+*⚙ One button per friend in the party; the lines after it name the friend you picked.*
+
 > Mei crouches at the corner of the gate-tower, with the whole square in view, and one hand raised where you can see it.
 
 *⚙ Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).*
@@ -1072,6 +1092,8 @@ Clue found, "More bedrolls":
 *⚙ If you failed the Challenge:*
 
 > Halfway, a lantern lifts in the square. You lie flat on cold stone until it goes down again, and cross the rest on your belly, a hand's width at a time.
+
+*⚙ Either way, every player reads this:*
 
 > Whoever else is with you comes over the same way, one at a time, on the dropped hand. Mei comes last of all, at a watchman's unhurried walk.
 
@@ -1253,13 +1275,15 @@ Clue found, "A stride wider":
 
 #### The Battle
 
+*⚙ Either way, the whole party reads this:*
+
 > The Order's watchmen come down the hill fighting, and they are not alone. Something comes with them out of a side street: men in armour so old it has gone green and black, moving with a terrible steadiness. You cut one, and it does not bleed. You cut it again, and it does not stop. It keeps walking into your blade as if it had somewhere to be.
 
 **THE BATTLE: THE HOLLOWED**
 
 > **It does not fall until it is broken:** put down, it gets up once more.
 
-*⚙ Every friend fights their own The Hollowed at once (DEF 26, ATK 19), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: The hollowed: the first time an enemy is put down, it rises with 2 HP and loses its next strike. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +1030g each. A fallen friend is "DEFEATED." and stays for the night.*
+*⚙ Every friend fights one enemy of their own at once (The Hollowed: DEF 26, ATK 19), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: The hollowed: the first time an enemy is put down, it rises with 2 HP and loses its next strike. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +1030g each. A fallen friend is "DEFEATED." and stays for the night.*
 
 *⚙ If the party strikes first:*
 
@@ -1325,6 +1349,8 @@ Clue found, "A stride wider":
 
 #### The Verse of the Binding
 
+*⚙ Either way, the whole party reads this:*
+
 > *From the Third Book of the Order of the Dark Moon — The Verse of the Binding.*
 >
 > *Hear how they laid him down.*
@@ -1345,6 +1371,8 @@ Clue found, "A stride wider":
 
 > *Here the hand changes. One line is set apart, in the older hand:*
 
+*⚙ Either way, the whole party reads this:*
+
 > **"The fifth drinks deep of moon-blood, and of no other."**
 >
 > *Until the throne rise whole.*
@@ -1352,6 +1380,8 @@ Clue found, "A stride wider":
 *⚙ If the United Effort was won:*
 
 > On *Until the throne rise whole*, his voice stops, and does not start again.
+
+*⚙ Either way, the whole party reads this:*
 
 > His page is the prayer, word for word, and one line on it is set apart in the older hand: *The fifth drinks deep of moon-blood, and of no other.* Folded behind it is a second, shorter page. It can wait.
 
@@ -1400,6 +1430,8 @@ Clue found, "A stride wider":
 
 > Tonight they were moving.
 
+*⚙ Only if the United Effort was won:*
+
 **MATCH**
 
 *⚙ WHICH OF YOUR FRAGMENTS IS THIS? The card shows this line, and the week's six fragments as rows; each friend picks privately. Each right pick +50g (100g if every friend present is right). Wrong picks are never shown.*
@@ -1409,6 +1441,8 @@ Clue found, "A stride wider":
 > From the broken fountain below the hall
 
 *⚙ The right row: "We kept the fifth where we could watch it, and watch him."*
+
+*⚙ Either way, the whole party reads this:*
 
 > You are standing in the room they kept it in. Its one window faces his hall.
 
@@ -1568,6 +1602,8 @@ Clue found, "A stride wider":
 > It takes the whole grey day, room and floor and wall, with an ear always on the stair. Late on, the boots come back. They stop outside the hidden door. Everyone in the room stands with a hand over the nearest lamp.
 >
 > They walk on.
+
+*⚙ Either way, every player reads this:*
 
 > Scratched small into the stone under the slit window, where only someone sitting watch would see it, is an arrow.
 >
@@ -1743,6 +1779,8 @@ Clue found, "The old soot":
 *⚙ If you failed the Challenge:*
 
 > Part of the ceiling comes down in a roar of dust. When it settles, the way is clear, and everyone is grey.
+
+*⚙ Either way, every player reads this:*
 
 > Then, on the stair behind you: iron on stone. Slow. One step at a time.
 >
@@ -1933,6 +1971,8 @@ Clue found, "Bowls never filled":
 
 - **Aim:** A watchman walks the square with a lantern, and turns at the same flagstone every time. *(Adept and up:)* Past that stone, he never looks.
 
+*⚙ Whatever you picked, every player reads this:*
+
 **CHALLENGE: THE SQUARE**
 
 > Sixty paces to the hall's wall, past the fire.
@@ -1947,6 +1987,8 @@ Clue found, "Bowls never filled":
 
 > The lantern swings your way. You spend an hour pressed flat against the cold flags. The watchman goes back to his fire at last, and calls two more men up out of the dark streets to sit with him.
 
+*⚙ Either way, every player reads this:*
+
 > Garrick comes over last of all, and sets his back against the wall beside you.
 
 **[PRESS ON]: THE FIRE**
@@ -1958,6 +2000,8 @@ Clue found, "Bowls never filled":
 > Eleven. Six of them have road-dust to the knee, and packs not yet unrolled.
 >
 > They did not send for more men to hunt you. These were already coming.
+
+*⚙ Either way, every player reads this:*
 
 > The hall's wall goes up out of sight above you.
 
@@ -2137,6 +2181,8 @@ Clue found, "Warm low down":
 *⚙ If you won the fight:*
 
 > Yours was the blow that did it. The helm rolls as far as your foot and stops there, facing the hall.
+
+*⚙ Either way, every player reads this:*
 
 > You go in sideways, one at a time, with the lamp held out ahead. The rock presses cold against your back and your chest. Deep inside, where the last of the grey daylight gives out, a housing is set into the stone.
 
@@ -2319,6 +2365,8 @@ Clue found, "Louder here":
 
 > It takes hours of reading faded marks by lamplight. You find it. But your lamp has burned half the night in a room open to the sky, and twice, down in the square, a lantern has lifted and looked this way.
 
+*⚙ Either way, every player reads this:*
+
 > One moon is cut deeper than all the rest: a full moon, struck dark.
 >
 > After it, the wall is blank. They never carved another.
@@ -2334,6 +2382,8 @@ Clue found, "Louder here":
 > On the ledge under the last moon, a chisel is lying where it was put down. The mallet is beside it.
 >
 > Nobody came back for them.
+
+*⚙ Either way, every player reads this:*
 
 > Beside the dark moon, a housing gives at a touch.
 
@@ -2517,6 +2567,8 @@ Clue found, "Cut in a hurry":
 >
 > At the top of the street, one helm has turned.
 
+*⚙ Either way, every player reads this:*
+
 > At the mouth of the crack, one soldier has stopped walking, and turned round.
 
 **FIGHT: THE ONE THAT TURNED**
@@ -2533,11 +2585,15 @@ Clue found, "Cut in a hurry":
 
 > It strikes first.
 
+*⚙ Either way, every player reads this:*
+
 > It goes down across the place where the other one lay. Behind you, the street is still walking.
 
 *⚙ If you won the fight:*
 
 > You are still on your feet, and it is not. For the length of a breath, not one of the others turns to look.
+
+*⚙ Either way, every player reads this:*
 
 > Deep in the crack, at the dead end beside the scored moon, the last fragment is waiting in a cleft at the foot of the blank rock.
 
@@ -2729,15 +2785,17 @@ Clue found, "Every post empty":
 
 #### The Battle
 
+*⚙ Either way, the whole party reads this:*
+
 > The hall is vast, and cold, and full.
 >
 > Across the floor, a trapdoor stands thrown back on a stair going down into the dark: the way his household ran, the night the Seekers came. The faithful came up it. They did not need the Seekers' door. They are here, more than you have ever seen together, robed, singing, and between them stand the hollowed, row on row of them, his soldiers from the last war, still standing their watch after all these centuries. Every blank face turns toward you at once.
 
-**THE BATTLE: **
+**THE BATTLE: The Faithful & The Hollowed**
 
 > **ONE OF THE FAITHFUL** · **The chant:** while more than half the faithful are standing, each of them is harder to put down. *or* **ONE OF THE HOLLOWED** · **It does not fall until it is broken:** put down, it gets up once more.
 
-*⚙ Every friend fights their own The Faithful & The Hollowed at once (DEF 26, ATK 19), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: Half faithful (the chant: DEF +1 while >50% stand), half hollowed (rises once at 2 HP). A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +1030g each. A fallen friend is "DEFEATED." and stays for the night.*
+*⚙ Every friend fights one enemy of their own at once (The Faithful & The Hollowed: DEF 26, ATK 19), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: Half faithful (the chant: DEF +1 while >50% stand), half hollowed (rises once at 2 HP). A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +1030g each. A fallen friend is "DEFEATED." and stays for the night.*
 
 *⚙ If the party strikes first:*
 
@@ -2797,6 +2855,8 @@ Clue found, "Every post empty":
 
 #### The king
 
+*⚙ Either way, the whole party reads this:*
+
 > When you break through at last, the singing has stopped, and you see what is at the heart of the hall.
 >
 > Before the empty throne, on the stone floor where he fell, lies the king. He is not dust. He is not bones. He looks like a man asleep: pale, still, one hand open at his side as though something was once taken out of it. *Death's likeness, and not death.*
@@ -2840,6 +2900,8 @@ Clue found, "Every post empty":
 
 > He does not argue. The fight has left his palm bleeding. He reaches out and closes his hand over the Stone where it lies in yours, and it answers him anyway. You still carried it to him, into this room.
 
+*⚙ Either way, the whole party reads this:*
+
 > Not a flicker. A flood: cold light pouring up out of it the instant his blood touches it, hungry, as though it has been waiting for this for centuries. Around the king, the four Stones blaze in answer, and the light breaks over the ring like a wave and pins you all where you kneel. You can breathe. You can see. You cannot rise.
 >
 > *"The page said the fifth would end this,"* Garrick says. *"It never said whose blood."*
@@ -2863,6 +2925,8 @@ Clue found, "Every post empty":
 > *"My people,"* he says. *"On the road, the night she left with those pages."*
 >
 > Her pen is in that satchel still, with the rest of her.
+
+> *"He never lied to us. He only never told us the price."*
 
 > Around the ring, the faithful are getting up off the floor. None of them has ever seen Garrick's face. They do not need to: the fifth answered him. One by one they bow their heads to him, and the first of them says it, the words you heard the watchmen trade in the square below this hall.
 >
@@ -2928,6 +2992,8 @@ Clue found, "Every post empty":
 
 > He takes the fifth out of your hand. Pinned in the light, you cannot close your fingers on it.
 
+*⚙ Either way, the whole party reads this:*
+
 > He sets the book down open on the stone. From his coat he takes a tin cup, the one that sat on the sill of the wall room last night, and sets it on the floor beside the sleeping king, with the same small care he gave every cup on the road.
 >
 > Every night on the road, one more cup than there were people. It was always for him.
@@ -2960,6 +3026,8 @@ Clue found, "Every post empty":
 
 > Arjun does not move. The heartbeat passes, and the light closes round Arjun again like a hand.
 
+*⚙ Either way, the whole party reads this:*
+
 > *"Your Seekers made their children the only key,"* Garrick says, looking down at you from the king's side. *"The key that locks is also the key that unlocks."* A breath. *"You were the key."*
 
 > *"If you are reading this, you are ours — and if he ever stirs, finish what we could not."*
@@ -2981,6 +3049,8 @@ Clue found, "Every post empty":
 *⚙ If option 3 was picked:*
 
 > The four Stones flare white. The fifth, in the king's closed hand, burns so cold it frosts the air.
+
+*⚙ Either way, the whole party reads this:*
 
 > Nobody breathes.
 >

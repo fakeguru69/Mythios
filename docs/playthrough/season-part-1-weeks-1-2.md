@@ -62,6 +62,8 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 > You are on your back in the road, with leaf-mould in your mouth and the green roof turning slowly overhead. He could finish it. He looks down at you for a long moment, and then he is gone into the trees.
 
+*⚙ Either way, every player reads this:*
+
 > The road is very quiet. Somewhere off among the trunks, a single bird starts up again.
 
 *⚙ A choice: [LOOK WHERE HE STOOD] or [LOOK AT WHAT HE WAS AT]. Pick in any order until every branch has been seen.*
@@ -105,6 +107,8 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 *⚙ If you failed the Challenge:*
 
 > It does not want to give, and it takes its time about it. It takes some of your skin as well. When the lid comes up at last your knuckles are bleeding and the trees have gone from green to black.
+
+*⚙ Either way, every player reads this:*
 
 > You go through the box twice, by what light is left. Everything you own is here, folded the way you folded it. Nothing has been taken.
 >
@@ -292,6 +296,8 @@ Clue found, "The oilcloth":
 > Each stub has a faint straight line scored down it. She did not rip these out. She cut them against a rule, one at a time, with care.
 >
 > She meant to send them.
+
+*⚙ Either way, every player reads this:*
 
 > So the list is hers. She wrote your names in a book, and cut them out, and then she stopped coming here. And each of you was set upon on the road, within the same few days, and came away holding a page.
 
@@ -498,6 +504,8 @@ Clue found, "The worn end":
 
 - **Aim:** From where he lies he can see the road both ways and the village smoke. *(Adept and up:)* It is a post, and it has been used before.
 
+*⚙ Whatever you picked, every player reads this:*
+
 **FIGHT: THE MAN IN THE BRACKEN**
 
 > He comes up running, and he is not running away.
@@ -512,6 +520,8 @@ Clue found, "The worn end":
 
 > He was behind you: he strikes first.
 
+*⚙ Either way, every player reads this:*
+
 > He does not say a word. Not when he is hit, and not when he hits. The moment there is a gap he takes it, and he is away through the trees toward the smoke, faster than any of you.
 >
 > Arjun goes twenty yards after him and stops. Arjun stands there a moment longer, listening, then turns back.
@@ -519,6 +529,8 @@ Clue found, "The worn end":
 *⚙ If you won the fight:*
 
 > You had him by the collar for a moment, close enough to smell him. Woodsmoke, and lamp oil.
+
+*⚙ Either way, every player reads this:*
 
 > You go back to the rock.
 >
@@ -707,6 +719,8 @@ Clue found, "The notched stick":
 >
 > He is shaking. Arjun lets go of his sleeve and steps back.
 
+*⚙ Either way, every player reads this:*
+
 > He looks at each of you in turn. He is counting you.
 
 *⚙ A choice: [SHOW HIM THE LIST] or [ASK WHO WAS TAKEN] or [SAY NOTHING. WAIT.]. Pick one; the choice colours the moment, the story is the same.*
@@ -744,6 +758,8 @@ Clue found, "The notched stick":
 *⚙ If you failed the Challenge:*
 
 > The boy is behind Arjun. One of the men looks at him, and he looks at the ground.
+
+*⚙ Either way, every player reads this:*
 
 *⚙ A choice: [STAND WHERE YOU ARE] or [STEP BACK, HANDS OPEN] or [PUT YOURSELF IN FRONT OF THE BOY]. Pick one; the choice colours the moment, the story is the same.*
 
@@ -914,6 +930,8 @@ Clue found, "Fresh bark":
 
 - **Aim:** There is a gap in the trees that frames the whole clearing. *(Adept and up:)* You are being looked at through it now.
 
+*⚙ Whatever you picked, every player reads this:*
+
 > Something moves behind the shed. You hear a blade being worked into wood, and then a breath, held too late.
 
 **FIGHT: THE RUNNER FROM FENMARK**
@@ -930,6 +948,8 @@ Clue found, "Fresh bark":
 
 > He hears you before you see him.
 
+*⚙ Either way, every player reads this:*
+
 > The same silence. The same way of leaving: the first gap, and gone, north through the trees this time.
 >
 > Mei has a hand on Dev's arm, to stop Dev following into the dark. Dev does not shake it off.
@@ -937,6 +957,8 @@ Clue found, "Fresh bark":
 *⚙ If you won the fight:*
 
 > He has left his knife behind, stuck in the shutter where he was working it. A plain kitchen knife. There is nothing curved about it.
+
+*⚙ Either way, every player reads this:*
 
 > A twig goes.
 >
@@ -953,6 +975,8 @@ Clue found, "Fresh bark":
 *⚙ If you pick [HOLD OUT THE CARVED HORSE]:*
 
 > The axe comes down all at once.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > She takes the little horse in both hands. She has to sit.
 >
@@ -1154,6 +1178,8 @@ Clue found, "One pair of boots":
 >
 > There was a boat.
 
+*⚙ Either way, every player reads this:*
+
 > She was carried into the river. The cart went on without her. No tracker alive can follow from here.
 
 > Under the waterline, at the foot of the ford-stone, where you would only see it in a low year:
@@ -1353,13 +1379,15 @@ Clue found, "A second man":
 
 #### The Battle
 
+*⚙ Either way, the whole party reads this:*
+
 > Four of them, between you and a small shape on the floor at the back of the gallery. Not one of them says a word.
 
 > **This is a Battle. All of you fight at once, and it ends when the last enemy falls.**
 
 **THE BATTLE: MINE GUARD**
 
-*⚙ Every friend fights their own Mine Guard at once (DEF 23, ATK 16), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. No condition. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +380g each. A fallen friend is "DEFEATED." and stays for the night.*
+*⚙ Every friend fights one enemy of their own at once (Mine Guard: DEF 23, ATK 16), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. No condition. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +380g each. A fallen friend is "DEFEATED." and stays for the night.*
 
 *⚙ If the party strikes first:*
 
@@ -1428,6 +1456,8 @@ Clue found, "A second man":
 
 > It is you. You are jammed to the chest over the dark, and nobody is coming. Splinters bite your palms. The river's cold breath comes up past your legs. You get an elbow onto sounder wood, a hand's breadth at a time.
 
+*⚙ Either way, the whole party reads this:*
+
 **THE UNITED EFFORT: THE DROP**
 
 *⚙ Two bars at 100 (60 for a friend alone): "The Drop" (the thing in the way) and "Dev HP" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Might Challenge against DC 6. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
@@ -1470,6 +1500,8 @@ Clue found, "A second man":
 
 #### The discovery
 
+*⚙ Either way, the whole party reads this:*
+
 > The room is small, square, and cut by hands a very long time ago. It is dry: the first dry air since the river. Your torches burn straight up in it. Nothing drips. The river, which has been in your ears all night, cannot be heard in here at all.
 >
 > The map ended at a mark. Here is the mark.
@@ -1485,6 +1517,8 @@ Clue found, "A second man":
 *⚙ If the United Effort was lost:*
 
 > There was dust on the rim. Your own sleeves have wiped it. When this was emptied, nobody can now say.
+
+*⚙ Either way, the whole party reads this:*
 
 > Under the empty place, scratched into the stone itself: **four names.**
 >
@@ -1614,6 +1648,8 @@ Clue found, "A second man":
 
 > He tells you to be on your way, and means it. It is Garrick who gets him talking in the end. He leans on the gate and offers a plain word about the weather, then the price of flour: the one subject no farmer can resist. By then the light has gone, and the old man says what he must and not a word over.
 
+*⚙ Either way, every player reads this:*
+
 > It comes out a piece at a time.
 >
 > *"Three nights back. A cart went up the lane to the mill after dark. No lamps. No voices. Moving like they'd done it before."*
@@ -1627,6 +1663,8 @@ Clue found, "A second man":
 > And one thing more, which you did not have to ask for.
 >
 > *"One wheel on it was dragging. I'd know that cart again by the sound alone."*
+
+*⚙ Either way, every player reads this:*
 
 > *No lamps. Moving like they'd done it before.*
 >
@@ -1823,6 +1861,8 @@ Clue found, "Deeper coming down":
 
 > And there she stops. It takes the rest of the morning to earn it back. Arjun mends the latch, and nobody asks her anything at all. The sun is high before she says it, from the doorway, and she does not ask you in.
 
+*⚙ Either way, every player reads this:*
+
 > *"He asked for my boy by name. And he knew the night he was born — knew it better than I did."*
 
 *⚙ If you passed the Challenge:*
@@ -1834,6 +1874,8 @@ Clue found, "Deeper coming down":
 *⚙ If you failed the Challenge:*
 
 > At the doorway, without a word, she presses a horn button into your hand, with a twist of dark thread still through it.
+
+*⚙ Either way, every player reads this:*
 
 > Behind her the wheel goes round, and round, grinding nothing.
 >
@@ -1850,6 +1892,8 @@ Clue found, "Deeper coming down":
 > The left wheel pulls. You have seen that track before, coming down a muddy bank to a ford.
 >
 > It is the same cart.
+
+*⚙ Either way, every player reads this:*
 
 > In the wheel-housing, above the footing, where years of spray should have worn anything away:
 
@@ -1951,7 +1995,7 @@ Clue found, "The cropped grass":
 
 > I have teeth but cannot bite. What am I?
 
-*⚙ Answer: a comb (or a cog). His line when it is solved:*
+*⚙ Answer: a comb, or a cog. His line when it is solved:*
 
 > A mill's full of them.
 
@@ -2013,6 +2057,8 @@ Clue found, "The cropped grass":
 
 > It costs the afternoon. You come out onto the path at the bottom of it, scratched and filthy and cursing, and go up it the way the cart did.
 
+*⚙ Either way, every player reads this:*
+
 > Where the path narrows between two rocks, there is a dog.
 >
 > It is the size of a calf. Its chain is long enough to reach both walls. The staple the chain hangs from is bright new iron, as new as the ruts.
@@ -2042,6 +2088,8 @@ Clue found, "The cropped grass":
 > It has you down, and it does not let go until Mei and Arjun drag you through by the collar. Then it walks back to the middle of the path, and lies down across it again.
 >
 > Your sleeve is in rags. Your arm will remember its teeth for days.
+
+*⚙ Either way, every player reads this:*
 
 > Beyond the dog, a man is lying on the path.
 >
@@ -2218,6 +2266,8 @@ Clue found, "The full pail":
 > A lamp swings up the shaft while you are still at the top, and a watchman's eyes meet yours.
 >
 > Behind him: lamplight, and hooded shapes, and nothing you could swear to. But under the voices there is another sound. A boy, crying, very quietly.
+
+*⚙ Either way, every player reads this:*
 
 > He is alive.
 
@@ -2409,6 +2459,8 @@ Clue found, "The chant ran on":
 
 > You were at the lamp, reading: he sees you first.
 
+*⚙ Either way, every player reads this:*
+
 > He does not say a word. He does not make a sound when he is hit. He tears himself free and is gone downhill, and what is left in your fist is a strip of his coat.
 >
 > Sewn to it, no bigger than a thumbnail: a circle of black cloth.
@@ -2418,6 +2470,8 @@ Clue found, "The chant ran on":
 *⚙ If you won the fight:*
 
 > You hit him hard enough to wind him, and still he made no sound. You heard his teeth come together on it.
+
+*⚙ Either way, every player reads this:*
 
 > Before the dark takes him he stops, lifts a shuttered lamp, and opens it twice, toward the shaft.
 >
@@ -2589,6 +2643,8 @@ Clue found, "Faces turned in":
 > You lay your ear to the cold rock and wait for the chant to come round again. Above, it is muffled and close. Below it there is something else: a silence with room in it.
 >
 > Under the room with the lamps there is another hollow. It is bigger. And there is nobody in it at all.
+
+*⚙ Either way, every player reads this:*
 
 > Somewhere in the long hours it turns up: not hidden, this time. Lying among the roots at the lip of the shaft, as if it had been dropped there yesterday.
 
@@ -2777,6 +2833,8 @@ Clue found, "Your own print":
 
 #### The Battle
 
+*⚙ Either way, the whole party reads this:*
+
 > You come off the last step into lamplight.
 >
 > Four robed figures stand in a ring around a stone table, lamps at their feet, their shadows thrown huge and wavering up the walls. On the table lies the miller's boy. He is awake, with his wrists bound, and his eyes find yours over the shoulder of the one holding the knife.
@@ -2787,7 +2845,7 @@ Clue found, "Your own print":
 
 > **The chant:** while more than half of them are still standing, the chant holds, and each of them is harder to put down.
 
-*⚙ Every friend fights their own The Robed at once (DEF 24, ATK 17), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: The chant: while more than half of them are standing, each has DEF +1. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +520g each. A fallen friend is "DEFEATED." and stays for the night.*
+*⚙ Every friend fights one enemy of their own at once (The Robed: DEF 24, ATK 17), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: The chant: while more than half of them are standing, each has DEF +1. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +520g each. A fallen friend is "DEFEATED." and stays for the night.*
 
 *⚙ If the party strikes first:*
 
@@ -2899,6 +2957,8 @@ Clue found, "Your own print":
 > At the lip of the old shaft, in the night air, you count what you came out with. The black book is in three pieces inside somebody's coat. And Corin is holding something out to you with both hands: a book bound in plain oiled leather. He took it from the niche by the lamp as you carried him past.
 
 #### The Verse of the Answering
+
+*⚙ Either way, the whole party reads this:*
 
 > *From the First Book of the Order of the Dark Moon — The Verse of the Answering.*
 >

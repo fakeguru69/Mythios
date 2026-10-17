@@ -20,7 +20,7 @@ import { GATHERINGS_DATA } from '../src/data/mythiosGatheringsAndAudit';
 import { WEEKDAY_INVENTORY } from '../src/data/mythiosChaptersData';
 import { GARRICK_RECAP } from '../src/data/garrickRecap';
 import * as GOLD from '../src/data/economy';
-import { fillScriptTokens, personalStakeLine } from '../src/components/ChapterScriptParts';
+import { fillScriptTokens, isFriendChoice, personalStakeLine } from '../src/components/ChapterScriptParts';
 
 // The sample party of four: you, then Mei, Dev and Arjun, filled the way the game fills them (ChapterScriptParts.tsx).
 // The stake line uses stand-ins for the player's two optional Session Zero answers.
@@ -67,16 +67,28 @@ function chapter(week: number, day: number) {
   w(gameplay(`Played alone, in your own thread. Today's question: ${fill(ch.question)}`));
   let lastChoice: string[] = [];
   const choices: Record<number, string[]> = {};
+  // After lines only some players read, the next shared line says so (the outside audits read branch-only text
+  // as everyone's, and shared text as branch-only, when this was missing).
+  let branchOpen = '';
+  const shared = () => {
+    if (branchOpen) w(gameplay(branchOpen));
+    branchOpen = '';
+  };
   for (const st of ch.steps as ScriptStep[]) {
     if (st.t === 'say') {
       const c = chapterCond(st.cond);
-      if (c) w(gameplay(`${c}:`));
+      if (c) {
+        w(gameplay(`${c}:`));
+        branchOpen = 'Either way, every player reads this:';
+      } else shared();
       if (st.pull) w(gameplay('The Pull (why tomorrow cannot wait):'));
       if (st.fragment) w(gameplay('The fragment moment:'));
       w(quote(st.text));
     } else if (st.t === 'act') {
+      shared();
       w(gameplay(`A button: [${fill(st.label)}]`));
     } else if (st.t === 'choice') {
+      shared();
       lastChoice = st.labels;
       choices[st.id] = st.labels;
       const how = {
@@ -86,10 +98,12 @@ function chapter(week: number, day: number) {
         flavor: 'Pick one; the choice colours the moment, the story is the same.',
       }[st.mode];
       w(gameplay(`A choice: ${st.labels.map((l) => `[${fill(l)}]`).join(' or ')}. ${how}`));
+      if (isFriendChoice(st.labels)) w(gameplay('One button per friend in the party; the lines after it name the friend you picked.'));
       for (const b of st.branches) {
         w(gameplay(`If you pick ${b.options.map((o) => `[${fill(st.labels[o])}]`).join(' or ')}:`));
         w(quote(b.text));
       }
+      if (st.mode === 'pick' && st.branches.length) branchOpen = 'Whatever you picked, every player reads this:';
     } else if (st.t === 'notice') {
       w(gameplay('Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).'));
       for (const [attr, l] of Object.entries(st.lines)) {
@@ -98,6 +112,7 @@ function chapter(week: number, day: number) {
       }
       out.push('');
     } else if (st.t === 'challenge') {
+      shared();
       const dc = ep.weekdayDC;
       w(`**CHALLENGE: ${fill(st.title)}**`);
       w(quote(st.desc));
@@ -110,6 +125,7 @@ function chapter(week: number, day: number) {
       w(`**[PRESS ON]: ${fill(st.title)}**`);
       w(gameplay(`Offered only after a pass: ${fill(st.detail)}. ${st.harder} harder (DC ${ep.weekdayDC + st.harder}). [PRESS ON] or [LEAVE IT]. Pass: ${fill(st.reward)}; fail costs nothing.`));
     } else if (st.t === 'fight') {
+      shared();
       const pay = WEEKDAY_INVENTORY.find((d) => d.week === week && d.day === day)?.fightReward ?? 0;
       w(`**FIGHT: ${fill(st.name)}**`);
       w(quote(st.desc));
@@ -126,8 +142,10 @@ function chapter(week: number, day: number) {
       ));
       if (st.firstLines) {
         w(gameplay('If you strike first:'), quote(st.firstLines[0]), gameplay('If the enemy strikes first:'), quote(st.firstLines[1]));
+        branchOpen = 'Either way, every player reads this:';
       }
     } else if (st.t === 'summary') {
+      shared();
       w(gameplay('The day summary card:'));
       for (const l of st.lines) out.push(`- ${fill(l).replace(/`\[([^\]]+)\]`/g, '[$1]')}`);
       out.push('');
@@ -202,8 +220,16 @@ function gathering(week: number) {
   const story = UNITED_EFFORT_STORIES[week];
   if (!g) return;
   w(`### The Gathering (live, the whole party together in the party chat)`);
+  let branchOpen = '';
   for (const st of g.steps as GatheringStep[]) {
     const c = gatheringCond(st.cond);
+    // Lines for one outcome only are labelled; the next line for everyone says so.
+    if (c && st.t !== 'say' && st.t !== 'pick') w(gameplay(`Only ${c.charAt(0).toLowerCase()}${c.slice(1)}:`));
+    if (c) branchOpen = 'Either way, the whole party reads this:';
+    else if (branchOpen && st.t !== 'section' && st.t !== 'ueEnd') {
+      w(gameplay(branchOpen));
+      branchOpen = '';
+    }
     if (st.t === 'tonight') {
       w(gameplay('That morning, in each friend\'s thread:'), quote(st.text));
       w(gameplay(
@@ -237,10 +263,10 @@ function gathering(week: number) {
           `DC ${ep.gatheringDC}; the roller adds +2 to the roll if the party solved the week's map (the map helps). Pass: ${fill(st.reward)}. Fail: ${fill(st.fail)}. The result sets who strikes first in the Battle.`
       ));
     } else if (st.t === 'battle') {
-      w(`**THE BATTLE: ${fill(st.name)}**`);
+      w(`**THE BATTLE: ${fill(st.name || gd.enemyName)}**`);
       w(quote(st.desc));
       w(gameplay(
-        `Every friend fights their own ${gd.enemyName} at once (DEF ${ep.gDef}, ATK ${ep.gAtk}), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. ` +
+        `Every friend fights one enemy of their own at once (${gd.enemyName}: DEF ${ep.gDef}, ATK ${ep.gAtk}), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. ` +
           `${week === 1 ? 'No condition.' : `Condition: ${gd.conditionText}`} A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. ` +
           `The party wins when the last enemy falls: +${GOLD.GOLD_GATHERING_BATTLE_REWARDS[week]}g each. A fallen friend is "DEFEATED." and stays for the night.`
       ));

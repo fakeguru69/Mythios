@@ -271,7 +271,9 @@ function buildGathering(week, lines) {
     }
     if (/^\*[^*]/.test(l)) {
       const cond = labelCond(l, week);
-      if (cond && cond.alone) pendingAlone = true;
+      // "Then, alone on the screen" starts a new passage: a note just before it about untapped buttons
+      // ("If a minute passes with either untapped…") has no line of its own and must not swallow it.
+      if (cond && cond.alone) { pendingAlone = true; pendingCond = undefined; }
       else if (cond) pendingCond = cond;
       else if (/^\*Tonight's message/.test(l)) {
         const m = l.match(/"(.+)"/);

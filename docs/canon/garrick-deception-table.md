@@ -181,8 +181,8 @@ Light on purpose: one or two moments per episode. The rest of his warmth is impr
 | Ep1 D2 | The party's over-generous coin on the bar; the extra cup sits untouched | Plant for the Ep2 tip line; first cup. |
 | Ep1 D3 | *"People tell a man with a cloth in his hand everything. They forget he's got ears."* | True: that's how he knew the rock. On reread, it's how he knew everything. |
 | Ep1 D5 | Builds the fire up and puts a cup in the charcoal woman's hands | An action; kindness. |
-| Ep1 D6 | The extra cup; *"Family habit. We always pour one for whoever can't be with us."* if asked | True (the king). `[PLANT]` |
-| Ep2 D1 | *"Worst guests I've ever had. Good tippers, though."* (when a player points out he only agreed to come as far as the Widow's Tooth) | An exaggerated feeling plus a true fact (the Ep1 coin). It deflects the question with a joke. |
+| Ep1 D6 | The extra cup; *"Family habit. We always pour one for whoever can't be with us."* if asked | True: his family has poured that cup for the sleeping king for generations. You took it for Meira, and he never once said it was. At the end he sets it down beside the king. `[PLANT]` |
+| Ep2 D1 | *"Worst guests I've ever had. Good tippers, though."* (when a player points out he only agreed to come as far as the Widow's Tooth) | An exaggerated feeling plus a true fact: the coin you left on his bar in Ep1. It deflects the question with a joke. |
 | Ep2 D1, D6 | The extra cup, in a barn and on a cold hillside | Days corrected 16 Oct to match the episode file: the barn is Day 1. |
 | Ep2 D4 | *"That went about as well as it looked."* (after being driven back); that night his share of the thin supper ends up on someone else's plate | True understatement; a quiet kindness. |
 | Ep2 Gathering | *"Garrick."* (his name, when Corin asks) | True. |
@@ -197,6 +197,7 @@ Light on purpose: one or two moments per episode. The rest of his warmth is impr
 | Ep5 D3 | Passes his flask and waits until the last of them has had some | An action. |
 | Ep5 D4 | Walks last through the street of standing soldiers, between the party and them, and never looks back | An action. On reread, he had nothing to fear from them. |
 | Ep5 D4 | The extra cup at the window facing the hall; then *"My family's waited a long time for something. I'd like to live to see it."* If asked what for: *"For a long night to end."* | True: they've waited for the king's sleep to end. "I'd like to" is a wish, not a prediction. `[PLANT]` |
+| Ep5 Gathering | Binds each of your cut palms himself, unasked, in the same white linen you had seen on every child, and ties each knot small and firm | A kindness, and the same hands. On reread, it is the linen and the knot on Tamsin's palm, and Corin's, and Wren's, and Joss's: his people bound the children after they took their blood. Added 17 Oct from the outside audits (Meta). |
 | Ep6 D1 | *"I kept a tally behind my bar for years. Most of it was who owed me."* | True. "Most of it" leaves room for what else he was counting. |
 | Ep6 D5 | Sits on the top step of the moon-tower: *"Give me a minute."* | True. |
 | Ep6 D6 | The extra cup on the sill of the window facing the hall; *"Drinks are on me. Don't get used to it."* | "Don't get used to it" is an instruction, not a prediction. On reread, it's his last night pouring for them. |
@@ -314,7 +315,7 @@ Found in a cultist's papers, or read off the chamber wall. Delivered plainly, as
 
 | What he said (daily beats) | What it meant |
 |---|---|
-| *(Day 1, when someone says the Order could have killed them)* *"Every time they've had knives out at you, not one of you has died."* *(changed 2026-09-29 from "four times now" — the new Ep2 Day 5 fight at the shaft made the count false)* `[PLANT]` | True — the Ep1 ambush (his own people) and the three Gatherings. It sounds like luck. On reread it's the Order's rule: they need the party alive (canon). |
+| *(Day 1, under the Kiln, after the ropes are cut)* *"Every time they've had knives out at you, not one of you has died."* *(changed 2026-09-29 from "four times now" — the new Ep2 Day 5 fight at the shaft made the count false)* `[PLANT]` | True — the Ep1 ambush (his own people) and the three Gatherings. It sounds like luck. On reread it's the Order's rule: they need the party alive (canon). |
 | *(Day 1, over Meira's notes)* *"Reedham's a fishing village on the Stillwater, two days north. The old village is under the lake. She's marked the tower that still stands out of the water."* | True — he reads her shorthand and says only what it says. |
 | *(Day 2, only if asked what was in the carter's box)* *"No child in it. He was sure of that."* | True — he repeats the carter, a narrower answer (Deflection Bank). He never says he doesn't know; "Whatever it was" was cut on review because it pretended not to. |
 

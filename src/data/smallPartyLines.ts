@@ -60,10 +60,17 @@ export const SMALL_PARTY_LINES: SmallPartyLine[] = [
     full: '{F1} and {F3} are already at the fall of rock, with their sleeves rolled.',
     byFriends: { 1: '{F1} is already at the fall of rock, sleeves rolled.', 2: '{F1} and {F2} are already at the fall of rock, with their sleeves rolled.' },
   },
-  // W4D2 (episode-4:173)
+  // W4D2, the fork beyond the ford (episode-4, Day 2; storybook wording, 17 Oct)
   {
-    full: '{F1} and {F3} walk the left. You take the right.',
-    byFriends: { 1: '{F1} walks the left. You take the right.', 2: '{F1} and {F2} walk the left. You take the right.' },
+    full: '{F1} and {F3} take the lake road, the one to Reedham.',
+    byFriends: { 1: '{F1} takes the lake road, the one to Reedham.', 2: '{F1} and {F2} take the lake road, the one to Reedham.' },
+  },
+  {
+    full: '{F1} and {F3} come back to the fork with nothing to tell but sheep.',
+    byFriends: {
+      1: '{F1} comes back to the fork with nothing to tell but sheep.',
+      2: '{F1} and {F2} come back to the fork with nothing to tell but sheep.',
+    },
   },
 ];
 

@@ -94,6 +94,8 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 > He leaves the hill with a limp he did not bring to it.
 
+*⚙ Either way, every player reads this:*
+
 > Below the shaft, in the wet grass, the tracks are plain to anyone who looks.
 
 *⚙ A button: [LOOK]*
@@ -290,6 +292,8 @@ Clue found, "Facing west":
 >
 > But at dusk she comes out to your fire herself, with a shawl over her head, because nobody else in the world is looking for her daughter. You never see past her door.
 
+*⚙ Either way, every player reads this:*
+
 *⚙ A choice: [WHO TOOK HER?] or [WHY HER?] or [WHAT DID THEY SAY?]. Pick in any order until every branch has been seen.*
 
 *⚙ If you pick [WHO TOOK HER?]:*
@@ -319,6 +323,8 @@ Clue found, "Facing west":
 > On the sill by the door, chips of black glass are set out in a row, smallest to largest, the way a child sets things out.
 >
 > There is dust on the sill. There is none on the chips.
+
+*⚙ Either way, every player reads this:*
 
 > At the well, a boy is selling polished chips of black glass off a board. He has been watching you the whole time. When the grown-ups have gone in he holds one out, and does not ask for the coin.
 >
@@ -492,6 +498,8 @@ Clue found, "Sacking on the stones":
 
 > You go down hard, and slide twenty feet before a ripple in the glass catches you. For a moment you lie still, with your cheek on the warm glass and your heart going. Bruised, shaken, and there all the same.
 
+*⚙ Either way, every player reads this:*
+
 > At the far edge the glass takes its toll. Where it has cracked, its edges are as sharp as knives, and you come off it with one boot split open along the sole.
 >
 > Garrick crosses last, the slow way, testing every step with the toe of his boot before he trusts it.
@@ -535,6 +543,8 @@ Clue found, "Sacking on the stones":
 > Where the horses came off the glass the scratches bunch and deepen, and you can count them.
 >
 > Six horses. One of them is carrying double, and the second rider weighs almost nothing.
+
+*⚙ Either way, every player reads this:*
 
 > You camp in the lee of the glass, where the ground is warm enough to sleep on.
 >
@@ -704,6 +714,8 @@ Clue found, "The view down":
 
 > You go to the fall of rock with the others and stand looking at it. Dev keeps on along the trail, and comes back within the hour with a third chip in hand.
 
+*⚙ Whatever you picked, every player reads this:*
+
 **CHALLENGE: THE BURIED DOORWAY**
 
 > One wrong stone, and the rest of the fall comes with it.
@@ -717,6 +729,8 @@ Clue found, "The view down":
 *⚙ If you failed the Challenge:*
 
 > Half the fall comes down with a roar and a choking cloud of black dust. When it clears, the doorway is open, and you are all the same colour.
+
+*⚙ Either way, every player reads this:*
 
 > Inside is a room cut from the ridge. Old soot blackens its ceiling, from fires that went out centuries ago. Cut into the walls at sleeping height, facing each other across the floor, is a row of niches, each just long enough for a person to lie in. The air in here is cool, and smells of nothing at all.
 >
@@ -879,6 +893,8 @@ Clue found, "Scratched on the back":
 
 > Her chips mark something shorter: a goat-track straight down through the rocks, which nobody on a horse could take. You find five more of them on the way. She walked this part.
 
+*⚙ Whatever you picked, every player reads this:*
+
 > On the ridge above the hut a grey coat stands up from among the rocks, where he was left behind to watch.
 >
 > He comes down to meet you, and he takes his time about it.
@@ -897,11 +913,15 @@ Clue found, "Scratched on the back":
 
 > You came by the open line: he has been watching you for some time.
 
+*⚙ Either way, every player reads this:*
+
 > He goes back up the way he came, without a word, onto the bare black rock, and the rock takes no prints. By the time you reach the top of the rise there is nothing on the ridge but the wind.
 
 *⚙ If you won the fight:*
 
 > He goes without his hat. It is a good hat. Inside the band somebody has stitched two letters, very small, the way a mother would.
+
+*⚙ Either way, every player reads this:*
 
 > The hut is empty.
 >
@@ -1110,6 +1130,8 @@ Clue found, "The gap in the row":
 >
 > It is full dark when you reach the cairn. There is nothing to see from it but black on black, and the stars.
 
+*⚙ Either way, every player reads this:*
+
 > The last fragment is at the cairn's foot: not hidden, only wedged between the lowest stones, where a careless boot would miss it.
 
 *⚙ A button: [TAKE IT]*
@@ -1133,6 +1155,8 @@ Clue found, "The gap in the row":
 *⚙ If you failed the Challenge:*
 
 > You turn it until the drawn ridges sit on the black shapes against the stars. They fit. The place the map ends is a round hill you can only just make out, with a notch in its crown.
+
+*⚙ Either way, every player reads this:*
 
 > *"The Kiln,"* Garrick says. *"That's the shepherds' name for it."*
 
@@ -1295,6 +1319,8 @@ Clue found, "No way down in the dark":
 
 > Halfway, it gives. The last of the drop is a long slide in a rattle of black glass, loud enough to wake the hill.
 
+*⚙ Either way, the whole party reads this:*
+
 > You drop through into the warm dark. Below you a lamp swings, and for one moment you see him: a robed figure hauling himself away up a vent in the rock, the hot air streaming past him, a small box clutched to his chest.
 >
 > Then the lamp swings back, and he is gone, up into the black.
@@ -1307,7 +1333,7 @@ Clue found, "No way down in the dark":
 
 > **Blade and torch:** when one of them lands a hit, the burn does a little more on the round after.
 
-*⚙ Every friend fights their own The Faithful at once (DEF 25, ATK 18), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: Blade and torch: when an enemy hits a friend, that friend loses 2 more HP at the start of the next round. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +740g each. A fallen friend is "DEFEATED." and stays for the night.*
+*⚙ Every friend fights one enemy of their own at once (The Faithful: DEF 25, ATK 18), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: Blade and torch: when an enemy hits a friend, that friend loses 2 more HP at the start of the next round. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +740g each. A fallen friend is "DEFEATED." and stays for the night.*
 
 *⚙ If the party strikes first:*
 
@@ -1364,6 +1390,8 @@ Clue found, "No way down in the dark":
 > When the glass has stopped she is at the foot of it, sitting up, cut in a dozen places, with her fist still shut.
 >
 > The girl is alive. Wren. She is nine or ten, and too frightened yet to say much. Under the new cuts, her palm is cut and bound in the same white linen.
+
+*⚙ Either way, the whole party reads this:*
 
 > Her other fist is shut so tight the knuckles are white. For a long while she will not open it, for anyone.
 >
@@ -1602,6 +1630,8 @@ Clue found, "No way down in the dark":
 
 > She is carried, with her cuts bound in strips of somebody's shirt.
 
+*⚙ Either way, every player reads this:*
+
 **CHALLENGE: THE ASH**
 
 > One careless step, and it says nothing.
@@ -1618,6 +1648,8 @@ Clue found, "No way down in the dark":
 
 > Too many of your own boots have been across it, in the fight and in the dark. All the ash will give you is which way he went: a passage none of you had noticed.
 
+*⚙ Either way, every player reads this:*
+
 > The ropes were cut clean.
 >
 > Somebody stood within arm's reach of you in the dark, with a blade, and used it on rope.
@@ -1633,6 +1665,8 @@ Clue found, "No way down in the dark":
 > You follow them with the lamp held low until the ash thins to a grey breath on the floor, and the rock turns to bare black glass. There they end. Beyond, the passage splits three ways into the dark.
 >
 > No prints come in. Whoever cut him loose came over the glass, and was waiting there before the lamps went out.
+
+*⚙ Either way, every player reads this:*
 
 > You bring Wren up out of the Kiln into a grey dawn. She is still in Garrick's coat, the hem down past her knees, and he walks the whole day in his shirtsleeves and does not mention the cold.
 >
@@ -1796,6 +1830,8 @@ Clue found, "The same side":
 
 > The one you put down first looks up at you out of the water and says he is sorry. He seems to mean it.
 
+*⚙ Either way, every player reads this:*
+
 > Low in the stone of the old ford, where the water runs over it, sits a carved housing.
 
 *⚙ A button: [CLOSE YOUR HAND ON IT]*
@@ -1843,6 +1879,8 @@ Clue found, "The same side":
 *⚙ If you failed the Challenge:*
 
 > It takes a long hour of his opinions on the weather, the road and his brother-in-law. But he gets there.
+
+*⚙ Either way, every player reads this:*
 
 > *"Nothing heavy in that cart,"* he says. *"One box, no bigger than a bread crock. And they guarded it like it was the last gold in the world. Four armed men for one little box."*
 >
@@ -2047,6 +2085,8 @@ Clue found, "The open road":
 
 > The rag works loose a quarter of the way out, and the lake comes in round your boots faster than it can be thrown back. You arrive soaked and bailing. But you arrive.
 
+*⚙ Either way, every player reads this:*
+
 > All the way out, Garrick has been bailing with a tin cup. He does not look up. *"I didn't leave a warm bar to drown in a lake. I'd like that noted."*
 
 > The tower stands on stones far older than the rest of it. Worn into that rock, just above the waterline, is a shape you know: the mark from the Widow's Tooth, the mill, the Blackglass.
@@ -2218,6 +2258,8 @@ Clue found, "A cleared sill":
 
 > You lose them twice. Then a drowned cobble turns under your foot, and you are in to the waist, with the lamp gone out in your fist. Dev finds the last of them by feel: at the edge of the deep water, where they stop.
 
+*⚙ Either way, every player reads this:*
+
 > He was walked through here alive. And then they got into a boat.
 
 **[PRESS ON]: THE SMALL PRINTS**
@@ -2229,6 +2271,8 @@ Clue found, "A cleared sill":
 > In one place the small prints stop, and turn, with both heels dug in.
 >
 > Stand where he stood. From here, and from nowhere else in the lane, you can see one window on the shore with a lamp in it.
+
+*⚙ Either way, every player reads this:*
 
 > In the old market cross, at the centre of the drowned square, is a carved housing, half buried.
 
@@ -2382,6 +2426,8 @@ Clue found, "The scratched line":
 
 > You row in a slow circle for an hour. When the reeds loom up out of the white, you are on the open side, and somebody on the island has been listening to your oars for some time.
 
+*⚙ Either way, every player reads this:*
+
 > The island is a low hummock of willow and rushes. On its far side, drawn up where nobody on shore could see it, is a boat.
 >
 > Painted on its prow, small and neat, is a black circle.
@@ -2402,6 +2448,8 @@ Clue found, "The scratched line":
 
 > He strikes first.
 
+*⚙ Either way, every player reads this:*
+
 > He does not go for the boat. He goes into the reeds, and then into the water, and the fog closes over the place.
 >
 > For a while you can hear him swimming, slow and steady, somewhere out in the white. Then you cannot.
@@ -2411,6 +2459,8 @@ Clue found, "The scratched line":
 *⚙ If you won the fight:*
 
 > One of his oars is still in your hands. He let go of it sooner than be taken.
+
+*⚙ Either way, every player reads this:*
 
 *⚙ A button: [SEARCH IT]*
 
@@ -2617,6 +2667,8 @@ Clue found, "Three shoots":
 
 > It goes out halfway through. It is lit again, and the way is called again from the start, slower, and louder, over the wind.
 
+*⚙ Either way, every player reads this:*
+
 > Under Old Reedham. Down the stair of the drowned church, to a room below the streets where the lake stands knee-deep.
 
 > Then a gust takes the lamp.
@@ -2759,6 +2811,8 @@ Clue found, "The lamp on the shingle":
 
 > Twice the knock of their oars is swallowed by the dark. Twice you sit on the black water with nothing but your own breath, until it comes again.
 
+*⚙ Either way, the whole party reads this:*
+
 > Nobody speaks. The lake is black, the sky is black, and the only thing to steer by is that faint, steady knock of wood on water somewhere ahead. Then the drowned church comes up out of the dark beside you, and the oars stop.
 >
 > It stands at the edge of the deep water, its roof long gone. Its flooded stair leads down under the streets into an undercroft, where the lake has come in through the old stone and stands knee-deep, black and still, at every chamber door.
@@ -2773,7 +2827,7 @@ Clue found, "The lamp on the shingle":
 
 > **Knee-deep:** a bad swing in water this deep costs you your footing, and your next stroke. It costs him the same.
 
-*⚙ Every friend fights their own The Faithful at once (DEF 25, ATK 18), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: Knee-deep: roll a 1, 2 or 3 on a strike and you lose your next strike. So does he. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +740g each. A fallen friend is "DEFEATED." and stays for the night.*
+*⚙ Every friend fights one enemy of their own at once (The Faithful: DEF 25, ATK 18), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: Knee-deep: roll a 1, 2 or 3 on a strike and you lose your next strike. So does he. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +740g each. A fallen friend is "DEFEATED." and stays for the night.*
 
 *⚙ If the party strikes first:*
 
@@ -2865,6 +2919,8 @@ Clue found, "The lamp on the shingle":
 
 #### Notice
 
+*⚙ Either way, the whole party reads this:*
+
 *⚙ Notice: each friend gets one private line for their highest Attribute (a fallen friend gets the "from the floor" line):*
 
 - **Might:** Under the Kiln they stood their ground to the last man. Tonight they ran the moment they could.
@@ -2894,6 +2950,8 @@ Clue found, "The lamp on the shingle":
 >
 > **You may ask him.** Each of you, one question, whenever you choose. The board stays up for the rest of the night, and new questions will come as things are found.
 
+*⚙ Only if the United Effort was won:*
+
 *⚙ ASK: a board of questions; each friend taps one. Sealed questions the night needs are answered after two quiet minutes if nobody asks them.*
 
 - **WHAT GOES IN THERE?** *(sealed)* *(Tonight turns on this)*: He doesn't answer. He flinches — the whole of him, like a struck animal — and looks anywhere but the socket.
@@ -2915,6 +2973,8 @@ Clue found, "The lamp on the shingle":
 > Nobody asks it. Somebody only looks from him to the socket, and that is enough. He flinches — the whole of him, like a struck animal — and looks anywhere else.
 
 #### The Verse of the Four
+
+*⚙ Either way, the whole party reads this:*
 
 > *From the Second Book of the Order of the Dark Moon — The Verse of the Four.*
 >

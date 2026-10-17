@@ -5,6 +5,9 @@ import { supabase, plainError } from './supabaseClient';
 import type { ChapterScript, ScriptCond, ScriptStep, StrikeFirstRule } from '../data/chapterScripts';
 import {
   fillScriptTokens,
+  friendChoiceLabels,
+  friendsWithPicked,
+  isFriendChoice,
   personalStakeLine,
   pickNoticeLine,
   NarrationBlock,
@@ -164,8 +167,11 @@ export default function OnlineDay({
 
   const { week, day, chapter, progress, mine } = today;
   const classAttr = (CLASSES.find((c) => c.name === myClass)?.attribute ?? 'Might') as AttributeName;
-  const fill = (text: string) =>
-    fillScriptTokens(text, { friends, partySize, stake: personalStakeLine(birthplace ?? undefined, grandparent ?? undefined) });
+  // A friend picked by a choice ("POST {F1}"…) takes the {F1} place from then on (isFriendChoice).
+  const stake = personalStakeLine(birthplace ?? undefined, grandparent ?? undefined);
+  const fillWith = (names: string[]) => (text: string) => fillScriptTokens(text, { friends: names, partySize, stake });
+  const roadFill = fillWith(friends);
+  let fill = roadFill;
 
   const header = (
     <div className="flex items-center justify-between gap-2">
@@ -184,7 +190,7 @@ export default function OnlineDay({
         <p className={note}>
           Week {week} · Day {day}
         </p>
-        <RoadSoFar recaps={today.recaps} missed={today.missed} fill={fill} />
+        <RoadSoFar recaps={today.recaps} missed={today.missed} fill={roadFill} />
         <DaySevenLine partyId={partyId} timeZone={timeZone} />
         <ScriptButton label="THE GATHERING" onClick={onOpenGathering} />
       </div>
@@ -264,10 +270,13 @@ export default function OnlineDay({
     }
     if (step.t === 'choice') {
       const picks = mine.picks[String(step.id)] || [];
+      const friendPick = isFriendChoice(step.labels);
+      const labels = friendPick ? friendChoiceLabels(step.labels, friends) : step.labels;
       const branchFor = (opt: number) => step.branches.find((b) => b.options.includes(opt));
       const shown = new Set<number>();
+      if (friendPick && picks.length) fill = fillWith(friendsWithPicked(friends, picks[0]));
       picks.forEach((opt) => {
-        nodes.push(<TapEcho key={`${key}-p${opt}`} label={fill(step.labels[opt])} />);
+        nodes.push(<TapEcho key={`${key}-p${opt}`} label={fill(labels[opt])} />);
         const b = branchFor(opt);
         if (b && !shown.has(step.branches.indexOf(b))) {
           shown.add(step.branches.indexOf(b));
@@ -282,7 +291,7 @@ export default function OnlineDay({
           }
         });
       }
-      const open = step.labels
+      const open = labels
         .map((_, oi) => oi)
         .filter((oi) => {
           if (picks.length === 0) return true;
@@ -296,12 +305,12 @@ export default function OnlineDay({
             {open.map((oi) => (
               <ScriptButton
                 key={oi}
-                label={fill(step.labels[oi])}
+                label={fill(labels[oi])}
                 disabled={busy}
                 onClick={() => {
                   // A look that names one of the Challenge's two ways picks that way on the card (as in the demo).
                   const nx = steps[i + 1];
-                  if (step.mode === 'flavor' && nx?.t === 'challenge' && nx.options.length === step.labels.length) {
+                  if (step.mode === 'flavor' && nx?.t === 'challenge' && nx.options.length === labels.length) {
                     setChosenAttr(nx.options[oi].attr);
                   }
                   call('pick_choice', { p_choice: step.id, p_option: oi });
@@ -672,7 +681,7 @@ export default function OnlineDay({
       header={header}
       title={`Week ${week} · Day ${day}`}
       heading={chapter.script.heading}
-      roadSoFar={<RoadSoFar recaps={today.recaps} missed={today.missed} fill={fill} />}
+      roadSoFar={<RoadSoFar recaps={today.recaps} missed={today.missed} fill={roadFill} />}
       nodes={nodes}
       error={error}
       reachedSummary={reachedSummary}

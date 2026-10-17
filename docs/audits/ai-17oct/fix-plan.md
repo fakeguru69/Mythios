@@ -2,7 +2,7 @@
 
 This plan is built from the claim-by-claim checks in `checked/` (`week-1.md` … `week-6.md`, `season.md`). Every item below was checked against the game files. Claims that turned out wrong, or that came from errors in the play-through document, are left out.
 
-## A. Bugs: plain mistakes, no story change (I can do these now)
+## A. Bugs: plain mistakes, no story change — DONE 17 Oct (Fake Guru: "1 yes"; migrations `0076`–`0078`)
 1. **"Mei and Mei" (W4D2).** In a party of 2 or 3, one friend is named twice. The short-party entry in `smallPartyLines.ts` is out of date. I'll check every other entry at the same time.
 2. **The lookout buttons (W5D6).** The line always names friend 1, and a party of 2 sees three buttons with the same name. The fix: one button per friend, and the line names the friend you posted.
 3. **The W2D2 riddle can't be solved.** Its accept list is "a comb (or a cog)". The fix: accept comb, a comb, cog and a cog, then check all 35 riddles the same way.

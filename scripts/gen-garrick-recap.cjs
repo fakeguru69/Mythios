@@ -8,12 +8,14 @@
 const fs = require('fs');
 const path = require('path');
 
-// What he can really say: the six episode files (chapters and Gatherings) and his stored chat lines (garrickRouter.ts).
+// What he can really say: the text the game plays (chapters, Gatherings, the Campfire, his morning lines) and his
+// stored chat lines (garrickRouter.ts). Not the episode files: their writer's notes quote lines the game never plays.
 const norm = (t) => t.replace(/\{N\}|\{F\d\}/g, ' ').toLowerCase().replace(/[‘’]/g, "'").replace(/[^a-z' ]/g, ' ').replace(/\s+/g, ' ').trim();
-const canonDir = path.join(__dirname, '..', 'docs', 'canon');
+const dataDir = path.join(__dirname, '..', 'src', 'data');
 const SAYABLE = norm(
-  fs.readdirSync(canonDir).filter((f) => /^episode-\d/.test(f)).map((f) => fs.readFileSync(path.join(canonDir, f), 'utf8')).join(' ') +
-    ' ' + fs.readFileSync(path.join(__dirname, '..', 'src', 'data', 'garrickRouter.ts'), 'utf8').replace(/\\'/g, "'")
+  ['chapterScripts.ts', 'gatheringScripts.ts', 'campfireDaysData.ts', 'garrickMorningLines.ts', 'garrickRouter.ts']
+    .map((f) => fs.readFileSync(path.join(dataDir, f), 'utf8').replace(/\\n/g, ' ').replace(/\\(['"])/g, '$1'))
+    .join(' ')
 );
 const skipped = [];
 
@@ -57,9 +59,37 @@ function splitWhen(said) {
 }
 
 const weeks = {};
+// "Where his warm lines sit": the running bits (the extra cup, the tip, the mended boot…), day by day. Listed after
+// each week's own table. A row joins the Recap when he says something there, or when its reading says what the
+// deed meant ("On reread…"); plain plants and kindnesses stay in the table.
+const warm = {};
+let inWarm = false;
+function warmRow(l) {
+  const cells = l.split('|').slice(1, -1).map((c) => c.trim());
+  const m = cells[0] && cells[0].match(/^Ep(\d)\s*(?:D(\d)(?:[–-]\d)?(?:,\s*D\d)*|(Gathering))$/);
+  if (!m || cells.length < 3) return;
+  const meaning = stripNotes(cells[2]);
+  const quotes = [...cells[1].matchAll(/\*"[^"]+"\*/g)].map((q) => q[0]);
+  if (!meaning || meaning === '—' || (!quotes.length && !/On reread/.test(meaning))) return;
+  // When: the day, and the note in brackets after the line if there is one ("when a player points out…"), or
+  // "if asked" / "if thanked".
+  let when = m[3] ? 'At the Gathering' : `Day ${m[2]}`;
+  const note = cells[1].match(/"\*\s*\(([^()]+)\)/) || cells[1].match(/"\*\s+(if (?:asked|thanked)[^.;]*)/);
+  if (note && !WRITER_NOTE.test(note[1])) when += `, ${note[1].trim()}`;
+  // A deed with no words is told as one: "He walks last…".
+  const deed = stripNotes(cells[1]).replace(/\.$/, '');
+  const line = quotes.length ? quotes.join(' ') : `*He ${deed.charAt(0).toLowerCase()}${deed.slice(1)}.*`;
+  (warm[+m[1]] = warm[+m[1]] || []).push({ when, line, meaning, quotes });
+}
 let week = 0;
 let inTable = false;
 src.forEach((l) => {
+  if (/^\| Ep \/ day \| Line or beat/.test(l)) { inWarm = true; return; }
+  if (inWarm) {
+    if (!/^\|/.test(l)) inWarm = false;
+    else if (!/^\|---/.test(l)) warmRow(l);
+    return;
+  }
   const ep = l.match(/^## Episode (\d)/);
   if (ep) { week = +ep[1]; inTable = false; return; }
   if (/^## /.test(l) && !ep) { week = /Episode 6|finale/i.test(l) ? 6 : week; }
@@ -103,6 +133,24 @@ src.forEach((l) => {
   const list = (weeks[week] = weeks[week] || []);
   if (list.some((e) => e.line === cleanLine)) return; // said once, listed once
   list.push({ when: stripNotes(when).replace(/^./, (c) => c.toUpperCase()), line: cleanLine, meaning });
+});
+
+// The warm lines, checked the same way, after each week's table; a line already listed is not listed twice.
+Object.entries(warm).forEach(([w, rows]) => {
+  rows.forEach((r) => {
+    const list = (weeks[w] = weeks[w] || []);
+    let line = r.line;
+    if (r.quotes.length) {
+      // Only the parts the game really plays ("For a long night to end." is never asked for, so it goes).
+      const said = r.quotes.filter((q) =>
+        q.replace(/^\*"|"\*$/g, '').split(/[.?!…]+/).filter((x) => norm(x).split(' ').length >= 2).every((x) => SAYABLE.includes(norm(x)))
+      );
+      if (!said.length) { skipped.push(`Week ${w}: ${r.line}`); return; }
+      line = said.filter((q) => !list.some((e) => norm(e.line).includes(norm(q)))).join(' ');
+      if (!line) return;
+    }
+    list.push({ when: r.when, line, meaning: r.meaning });
+  });
 });
 
 const out = Object.keys(weeks)

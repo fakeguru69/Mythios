@@ -168,7 +168,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Fork: A "They had a list with birthdays." / B "They knew him personally."
 - Fan Out clue (leans A; press-on): The left wheel pulls. You have seen that track before, coming down a muddy bank to a ford. It is the same cart.
 - Callback: "In the mine, that shape was a hole, and what sat in it was gone. Here it's cut into the mill's footing."
-- Riddle: *I have teeth but cannot bite. What am I?* A: a comb (or a cog). Garrick: "A mill's full of them."
+- Riddle: *I have teeth but cannot bite. What am I?* A: a comb, or a cog. Garrick: "A mill's full of them."
 - Nudge: `{friend:Craft}`, how was the mark cut, and with what tool?
 
 **2-3 · Upriver**

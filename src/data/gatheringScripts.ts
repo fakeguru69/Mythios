@@ -2536,6 +2536,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
+        "text": "*\"He never lied to us. He only never told us the price.\"*",
+        "alone": true,
+        "section": "The first twist"
+      },
+      {
+        "t": "say",
         "text": "Around the ring, the faithful are getting up off the floor. None of them has ever seen Garrick's face. They do not need to: the fifth answered him. One by one they bow their heads to him, and the first of them says it, the words you heard the watchmen trade in the square below this hall.\n\n*\"Keep the dark.\"*\n\n*\"It keeps us,\"* Garrick says.",
         "section": "The first twist"
       },

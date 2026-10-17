@@ -20,6 +20,10 @@ Garrick, the warm innkeeper who guides the party, is the last living descendant 
   **Meant:** True in that moment — it's all he has agreed to. It leaves the door open for them to ask him again, which they do.
 - *If asked who attacked them:* *"I know what she wrote down."*  
   **Meant:** He never says it wasn't his doing.
+- *Day 3:* *"People tell a man with a cloth in his hand everything. They forget he's got ears."*  
+  **Meant:** True: that's how he knew the rock. On reread, it's how he knew everything.
+- *Day 6, if asked:* *"Family habit. We always pour one for whoever can't be with us."*  
+  **Meant:** True: his family has poured that cup for the sleeping king for generations. You took it for Meira, and he never once said it was. At the end he sets it down beside the king.
 
 ### Week 2
 
@@ -35,6 +39,12 @@ Garrick, the warm innkeeper who guides the party, is the last living descendant 
   **Meant:** True — he points at the evidence, never at the real reason (they need the party free to find the Stones).
 - *Only if someone asks him for the ledger:* *"Here. Read every page."*  
   **Meant:** True — an invitation, not a claim. Nothing in the book points at him.
+- *Day 1, when a player points out he only agreed to come as far as the Widow's Tooth:* *"Worst guests I've ever had. Good tippers, though."*  
+  **Meant:** An exaggerated feeling plus a true fact: the coin you left on his bar in Week 1. It deflects the question with a joke.
+- *Day 4, after being driven back:* *"That went about as well as it looked."*  
+  **Meant:** True understatement; a quiet kindness.
+- *At the Gathering, his name, when Corin asks:* *"Garrick."*  
+  **Meant:** True.
 
 ### Week 3
 
@@ -50,10 +60,14 @@ Garrick, the warm innkeeper who guides the party, is the last living descendant 
   **Meant:** True. His family is the old royal house of this land.
 - *Day 6, at the cairn:* *"The Kiln. That's the shepherds' name for it."*  
   **Meant:** True.
+- *Day 3:* *"My knees have opinions about this glass. None of them good."*  
+  **Meant:** An exaggerated feeling.
+- *Day 3, if thanked:* *"Needed doing."*  
+  **Meant:** True. On reread, he kept his tools in working order.
 
 ### Week 4
 
-- *Day 1, when someone says the Order could have killed them:* *"Every time they've had knives out at you, not one of you has died."*  
+- *Day 1, under the Kiln, after the ropes are cut:* *"Every time they've had knives out at you, not one of you has died."*  
   **Meant:** True — the Week 1 ambush (his own people) and the three Gatherings. It sounds like luck. On reread it's the Order's rule: they need the party alive.
 - *Day 1, over Meira's notes:* *"Reedham's a fishing village on the Stillwater, two days north. The old village is under the lake. She's marked the tower that still stands out of the water."*  
   **Meant:** True — he reads her shorthand and says only what it says.
@@ -65,12 +79,12 @@ Garrick, the warm innkeeper who guides the party, is the last living descendant 
   **Meant:** True — *The Verse of the Four*, the page in their hands, says exactly that. The fifth isn't on that page, and he doesn't bring it up until the torn page does.
 - *"There's one more. A fifth Stone — she wrote about it."*  
   **Meant:** True, and carefully bounded: he reports that she wrote about it, never what she believed it would do. The party supplies "it can undo this" themselves — finishing the torn page's missing ending the way hope demands, not because anyone handed them a false conclusion.
-- *If asked why he never mentioned a fifth before.:* *"She wrote it down. I'm telling you now."*  
-  **Meant:** Both true. He never says he didn't know, and never says he took it for a poet's count.
-- *If asked why the Order would keep that line.:* *"'Speak true, always.' It's their book."*  
-  **Meant:** True — he points at the page they already hold (the Week 3 doctrine), never at himself. On reread, it's his own creed.
 - *If asked how the Order knew where their maps pointed:* *"Their own book tells you: closer to you than your own shadows."*  
   **Meant:** True — it quotes the page in their hands.
+- *Day 2, his flask:* *"It's terrible. Drink it anyway."*  
+  **Meant:** An opinion.
+- *Day 3:* *"I didn't leave a warm bar to drown in a lake. I'd like that noted."*  
+  **Meant:** True: he left for his own purpose. True twice on reread.
 
 ### Week 5
 
@@ -82,6 +96,12 @@ Garrick, the warm innkeeper who guides the party, is the last living descendant 
   **Meant:** True. He's naming two real missing variables — location and timing — while never naming the one that matters most: whose blood.
 - *The cliffhanger, at the moon, seven nights left:* *"We're early."*  
   **Meant:** True. He stands in his ancestor's city, with the fifth carried there by friends, a full week before the one night his family has waited centuries for. Players hear "we're ahead of the night; there is time to find the way in." He means early for the waking, not for stopping it, and "we" is his house as much as the party. Present tense: no prediction, no promise.
+- *Day 4:* *He walks last through the street of standing soldiers, between the party and them, and never looks back.*  
+  **Meant:** An action. On reread, he had nothing to fear from them.
+- *Day 4:* *"My family's waited a long time for something. I'd like to live to see it."*  
+  **Meant:** True: they've waited for the king's sleep to end. "I'd like to" is a wish, not a prediction.
+- *At the Gathering:* *He binds each of your cut palms himself, unasked, in the same white linen you had seen on every child, and ties each knot small and firm.*  
+  **Meant:** A kindness, and the same hands. On reread, it is the linen and the knot on Tamsin's palm, and Corin's, and Wren's, and Joss's: his people bound the children after they took their blood.
 
 ### Week 6
 
@@ -105,3 +125,13 @@ Garrick, the warm innkeeper who guides the party, is the last living descendant 
   **Meant:** True — they never knew the household's escape stair, which is how the faithful come in at the Gathering. On reread, he's the one who knows the door they missed.
 - *Day 5, under the nearly full moon, after "The dark moon comes back…":* *"It always comes back."*  
   **Meant:** True — the moon does. Innocent as an echo of the fragment; on reread, a man who has been waiting his whole life for this one night.
+- *Day 1:* *"I kept a tally behind my bar for years. Most of it was who owed me."*  
+  **Meant:** True. "Most of it" leaves room for what else he was counting.
+- *Day 5:* *"Give me a minute."*  
+  **Meant:** True.
+- *Day 6:* *"Drinks are on me. Don't get used to it."*  
+  **Meant:** "Don't get used to it" is an instruction, not a prediction. On reread, it's his last night pouring for them.
+- *At the Gathering:* *"You've carried it far enough."*  
+  **Meant:** True: the fifth has reached the one place he needs it. Heard as kindness; damning on reread.
+- *At the Gathering:* *"My people. On the road, the night she left with those pages."* *"It keeps us."*  
+  **Meant:** All true. No warmth from here on.
