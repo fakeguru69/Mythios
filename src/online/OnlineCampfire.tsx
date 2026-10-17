@@ -496,10 +496,10 @@ export default function OnlineCampfire({
             say('fragment') ?? <p className="italic text-[14px]">“{frag.text}”</p>
           ) : (
             <p className="text-[14px]">
-              {frag.words === 0 ? 'You have not found either of its missing words yet.' : 'You have found one of its two missing words.'}
+              {frag.words === 0 ? 'Both of its missing words are still open.' : 'One of its missing words is still open.'}
             </p>
           )}
-          {frag.solvers.length > 0 && <p className={note}>Words found by {frag.solvers.join(', ')}</p>}
+          {frag.solvers.length > 0 && <p className={note}>Found by {frag.solvers.join(', ')}</p>}
           {!fragDone && (
             <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={onOpenChest}>
               🕯️ OPEN THE SEEKER CHEST

@@ -322,11 +322,11 @@ Inside a Gathering Battle a loss reads `DEFEATED. You are down for this Battle. 
 **Seeker Fragments**
 - One fragment arrives each weekday. **It is in every friend's Seeker Chest from the moment the day opens,** whether or not they have read the beat.
 - **The fragment is its own puzzle.** It shows its own text with two words missing and their letters jumbled. The words are listed in `mythios-fragment-registry.md`.
-- Each missing word is its own lock, worth **25g.**
-- **Each friend solves the fragment in their own Chest** (17 Oct 2026, gameplay verdict C5; was "one word per friend until the day ends, first to arrive gets it", which left somebody with nothing most days in a party of three or more). Every friend may find both words, and each word pays 25g to every friend who finds it. A word shows only to a friend who has found it; the others see who found it, never the word.
-- **The party's map** counts a word once any friend has found it (for the map +2, §11). The first friend to find a word posts one line to the party chat.
+- Each missing word is its own lock, worth **25g,** and shows the solver's name once filled.
+- **Until the fragment's own day ends, a player may fill only one of its two words.** After that, anyone may fill what is left, and it still pays 25g a word. If two friends send the same word at the same moment, the first to arrive gets it. *(Kept 17 Oct 2026, Fake Guru: "C". Each friend solving their own Chest was built and turned back the same day.)*
+- A friend who finds a fragment already open can still unjumble its words for fun, for no gold and no credit.
 - **Solving happens inside the Seeker Chest:** tap the letters in order, or type the word. A wrong try costs nothing.
-- At the fire, the fragment's whole text and its meaning question open for a friend once they have found both words themselves.
+- When a fragment opens, its words are open for the whole party, and a line goes to the party chat.
 - **At the end of Day 6** anything unsolved completes itself, with no gold and no name on it, and the six fragments form the week's map. The map is told in words: MYTHIOS posts the map scene from the script, and the Seeker Chest shows the six fragments together under one line naming where they point.
 
 **Gold**
@@ -431,7 +431,7 @@ Class and second Attribute cannot be changed once Day 1 opens.
 | After the first fight | *"Gold buys better weapons and armor in the Store. Every fight starts fresh: your wounds never follow you."* |
 | On the first Challenge card | *"A Challenge. Pick the skill you trust and roll. Pass, and you earn 500 gold and that skill grows. Fail, and it costs 150 gold."* |
 | After the first passed Challenge | *"Might 14 → 26. At 26 a skill becomes Apprentice: +2 on every roll with it. The more days you play, the further you grow."* (with the player's own skill and numbers) |
-| On the first fragment | *"A Seeker Fragment. Two of its words are missing, their letters jumbled. Each word you find is worth 25 gold."* (17 Oct 2026, C5; was "Find one… Leave the other for a friend.") |
+| On the first fragment | *"A Seeker Fragment. Two of its words are missing. Find one, and it is worth 25 gold. Leave the other for a friend."* |
 | On first opening the Store | *"A Relic is used once. One kind adds 4 to a single roll. The other adds 1 to your Weapon and Armor for one fight. You can give them to friends, and sometimes a friend will need one."* |
 | On first opening the party chat | *"Everyone is here now, and so is Garrick. Ask him anything."* |
 
@@ -786,7 +786,7 @@ These settle cases the rules above left open. The engineering notes are in `myth
 **The party**
 - **The party list** is the host, then the friends in the order they finished Session Zero. It never changes order. Every tie the rules send to "the party list" uses it.
 - **A season cannot start** until at least two friends have tapped [READY].
-- **A friend who joins late** plays Day 1 and then the current day, in that order. They count as two days played (12, then 9). On Day 1's fragment they may still find both words, as every friend may.
+- **A friend who joins late** plays Day 1 and then the current day, in that order. They count as two days played (12, then 9). On Day 1's fragment they may still claim an unfilled word.
 
 **The season's clock**
 - **The server keeps the time.** A phone's own clock is ignored.
@@ -805,7 +805,7 @@ These settle cases the rules above left open. The engineering notes are in `myth
 - **The story never waits on the AI.** Every scripted line is stored and sent by the server. If MYTHIOS is slow or fails, the scripted text still arrives.
 
 **Fragments**
-- A fragment is **in the Chest** from the day's opening, **part-solved** for a friend when they have found one word, and **complete** when they have both. The first friend to find each word posts one line in the party chat, naming them.
+- A fragment is **in the Chest** from the day's opening, **part-solved** when one word is filled, and **complete** when both are. Each word filled posts one line in the party chat, naming the friend.
 - The server checks each try and never sends the answer to the phone. After five wrong tries at one word, that friend waits two minutes.
 
 **People and accounts** *(TVMen, 2026-10-03)*

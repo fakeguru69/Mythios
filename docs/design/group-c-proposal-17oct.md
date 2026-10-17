@@ -1,6 +1,6 @@
 # Group C: making results matter (a proposal for Fake Guru, 17 Oct)
 
-**Decided 17 Oct by Claude (Fake Guru: "merged. you decide the rest") and built:** C1 yes at +1, Week 6 only; C2 yes at +2; C3 yes from Day 5; C4 yes; C5 yes; C6 reworded ("The hardest yet." removed, DC stays 9). Details in the master tracker, 17 Oct.
+**Decided 17 Oct by Claude (Fake Guru: "merged. you decide the rest") and built:** C1 yes at +1, Week 6 only; C2 yes at +2; C3 yes from Day 5; C4 yes; C5 yes, then turned back the same day (Fake Guru: "C", keep the race; migration `0086`); C6 reworded ("The hardest yet." removed, DC stays 9). Details in the master tracker, 17 Oct.
 
 These are numbers and rules for you to decide, from the gameplay verdict (`docs/design/gameplay-verdict-17oct.md` §4 C). My suggestion comes first in each item.
 

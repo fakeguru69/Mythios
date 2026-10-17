@@ -638,8 +638,9 @@ export default function App() {
     // Each word pays once (Core Rules §6): ignore a word that is already filled.
     const entry = solvedWords[fragId] || {};
     if (entry[wordIndex === 1 ? 'w1' : 'w2']) return false;
-    // Core Rules §6 (17 Oct, gameplay verdict C5): no one-word-a-day limit; online, each friend solves their own Chest.
-    // On one phone a word, once found, is shown filled for the whole party.
+    // Core Rules §6: until the fragment's own day ends, a player may fill only one of its two words.
+    const otherBy = entry[wordIndex === 1 ? 'w2' : 'w1'];
+    if (fragId === `${currentWeek}-${currentDay}` && otherBy && otherBy === solverName) return false;
     setSolvedWords((prev) => {
       const curr = prev[fragId] || {};
       const updated = {

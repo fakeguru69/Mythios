@@ -35,20 +35,17 @@ const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.j
   await spell(host, 'PETW', 'wept');
   log('today word 1 solved by host:', /“wept”: found by you/.test(await body(host)));
   await spell(host, 'ADEEFR', 'feared');
-  log('second word today allowed (C5):', /“feared”: found by you/.test(await body(host)));
+  log('second word today refused:', /each friend fills one of its two words/.test(await body(host)));
   // Yesterday's fragment: open its card, then both words are allowed.
   await host.getByRole('button', { name: /W1·D1/ }).click(); await host.waitForTimeout(600);
   await spell(host, 'CRETSDTAE', 'scattered'); await spell(host, 'LSECO', 'close');
   log('yesterday both solved:', /“scattered”: found by you · “close”: found by you/.test(await body(host)));
   await host.screenshot({ path: `${S}/02-solved.png`, fullPage: true });
-  // Mei: her own Chest. The host's words show only as names; five wrong tries on one, then a wait; then she finds the other.
+  // Mei: five wrong tries on today's open word, then a wait.
   const mei = await open('mei');
-  // (Mei has not played Day 1 in the test party, so her Chest holds Day 1's fragment only.)
-  log('mei sees who, not the word:', /Word 1: found by TestHost/.test(await body(mei)), !/“scattered”/.test(await body(mei)));
-  for (let k = 0; k < 5; k++) await spell(mei, 'CRETSDTAE', 'cretsdtae');
+  for (let k = 0; k < 5; k++) await spell(mei, 'ADEEFR', 'adeefr');
   log('five wrong then wait:', /Five wrong tries\. Try this word again in \d+ seconds\./.test(await body(mei)));
   await mei.screenshot({ path: `${S}/03-wait.png`, fullPage: true });
-  await spell(mei, 'LSECO', 'close');
-  log('mei finds it too:', /“close”: found by you, TestHost/.test(await body(mei)));
+  log('mei sees host as solver:', /“wept”: found by TestHost/.test(await body(mei)));
   await b.close();
-})().catch(async (e) => { log('FAILED', e.message.split('\n')[0]); process.exit(1); });
+})().catch((e) => { log('FAILED', e.message.split('\n')[0]); process.exit(1); });
