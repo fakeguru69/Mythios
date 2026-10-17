@@ -17,6 +17,7 @@ import { challengeSucceedOn, getTierInfo, type AttributeName } from '../data/myt
 import { CLASSES } from './onlineText';
 import { tonightLine } from './OnlineGathering';
 import { ErrorLine, heading, note, quietButton } from './ui';
+import AskGarrick from './AskGarrick';
 
 interface Roll {
   attr: AttributeName;
@@ -666,6 +667,7 @@ export default function OnlineDay({
       onClose={onClose}
       onOpenFire={onOpenFire}
       endRef={endRef}
+      askGarrick={<AskGarrick partyId={partyId} place="thread" />}
     />
   );
 }
@@ -683,6 +685,7 @@ function DayBody({
   onClose,
   onOpenFire,
   endRef,
+  askGarrick,
 }: {
   header: React.ReactNode;
   title: string;
@@ -696,6 +699,7 @@ function DayBody({
   onClose: () => void;
   onOpenFire: () => void;
   endRef: React.RefObject<HTMLDivElement | null>;
+  askGarrick?: React.ReactNode;
 }) {
   useEffect(() => {
     if (reachedSummary && !finished) onFinish();
@@ -710,6 +714,8 @@ function DayBody({
       </div>
       <div className="space-y-3">{nodes}</div>
       <ErrorLine text={error} />
+      {/* After the day, a private word with Garrick in your own thread (Core Rules §1). */}
+      {reachedSummary && finished && askGarrick}
       {/* After the day: the last light, then the fire (the Campfire opens once the day is done, v2.3 §D). */}
       {reachedSummary && finished && (
         <button
