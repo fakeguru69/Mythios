@@ -1,6 +1,7 @@
 // The Seeker Chest online (Core Rules §6, §12a). The same word-lock as the demo's Chest (BagAndStoreTabs.tsx), but the
-// phone never holds an unsolved word: each finished try goes to the server (solve_word), which pays 25g, keeps one word
-// per friend until the fragment's day ends, and makes a friend wait two minutes after five wrong tries.
+// phone never holds an unsolved word: each finished try goes to the server (solve_word), which pays 25g and makes a
+// friend wait two minutes after five wrong tries. Each friend solves their own Chest (gameplay verdict C5, 17 Oct): a
+// friend's word shows to them only, and others see who found it, never the word.
 import { useCallback, useEffect, useState } from 'react';
 import { supabase, plainError } from './supabaseClient';
 import { ErrorLine, quietButton } from './ui';
@@ -12,6 +13,7 @@ interface Slot {
   solver: string | null;
   mine: boolean | null;
   auto: boolean;
+  others?: string[];
   waitUntil: string | null;
 }
 interface Fragment {
@@ -62,18 +64,11 @@ export default function OnlineChest({ partyId, onClose }: { partyId: string; onC
     const { data, error: e } = await supabase.rpc('solve_word', { p_party: partyId, p_fragment: frag.id, p_slot: slot.slot, p_guess: guess });
     setBusy(false);
     if (e) return setNotice(plainError(e.message));
-    const r = data as { ok: boolean; oneToday?: boolean; waitUntil?: string; taken?: boolean };
-    if (r.ok) {
+    const r = data as { ok: boolean; waitUntil?: string; taken?: boolean };
+    if (r.ok || r.taken) {
       setActive(null);
       setTyped([]);
       setNotice(null);
-    } else if (r.oneToday) {
-      setNotice('Until today ends, each friend fills one of its two words. Leave the other for a friend.');
-      setTyped([]);
-    } else if (r.taken) {
-      setNotice('A friend has just found this word.');
-      setActive(null);
-      setTyped([]);
     } else {
       if (r.waitUntil) {
         const secs = Math.max(1, Math.ceil((new Date(r.waitUntil).getTime() - Date.now()) / 1000));
@@ -163,7 +158,7 @@ export default function OnlineChest({ partyId, onClose }: { partyId: string; onC
       {chest.mySolved === 0 && (
         <div className="pl-3 border-l-2 border-[#D4B876]/45">
           <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.45]">
-            A Seeker Fragment. Two of its words are missing. Find one, and it is worth 25 gold. Leave the other for a friend.
+            A Seeker Fragment. Two of its words are missing, their letters jumbled. Each word you find is worth 25 gold.
           </p>
         </div>
       )}
@@ -229,13 +224,16 @@ export default function OnlineChest({ partyId, onClose }: { partyId: string; onC
               {isOpen && (
                 <div className="p-3.5 space-y-3">
                   {sentence(frag)}
-                  {/* Each filled word shows its solver's name (Core Rules §6). */}
-                  {/* A word that completed itself at the end of Day 6 carries no name. */}
-                  {frag.slots.some((s) => s.word && !s.auto) && (
+                  {/* Who found each word (Core Rules §6): you, and the friends who found it in their own Chests (names
+                      only). A word that completed itself at the end of Day 6 carries no name. */}
+                  {frag.slots.some((s) => s.mine || s.others?.length) && (
                     <p className="text-[12.5px] text-[#B7A9CC]">
                       {frag.slots
-                        .filter((s) => s.word && !s.auto)
-                        .map((s) => `“${s.word}”: ${s.mine ? 'found by you' : `found by ${s.solver}`}`)
+                        .filter((s) => s.mine || s.others?.length)
+                        .map((s) => {
+                          const who = [...(s.mine ? ['you'] : []), ...(s.others ?? [])].join(', ');
+                          return s.word ? `“${s.word}”: found by ${who}` : `Word ${s.slot}: found by ${who}`;
+                        })
                         .join(' · ')}
                     </p>
                   )}

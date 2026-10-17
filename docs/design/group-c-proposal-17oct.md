@@ -1,5 +1,7 @@
 # Group C: making results matter (a proposal for Fake Guru, 17 Oct)
 
+**Decided 17 Oct by Claude (Fake Guru: "merged. you decide the rest") and built:** C1 yes at +1, Week 6 only; C2 yes at +2; C3 yes from Day 5; C4 yes; C5 yes; C6 reworded ("The hardest yet." removed, DC stays 9). Details in the master tracker, 17 Oct.
+
 These are numbers and rules for you to decide, from the gameplay verdict (`docs/design/gameplay-verdict-17oct.md` §4 C). My suggestion comes first in each item.
 
 The game already has a tool for this: a "harder card" (`harderIf`). An earlier result makes a later Challenge harder and adds one line saying why. Today it is used once, when Gathering 5's United Effort is lost and Week 6 Day 1 becomes 2 harder.

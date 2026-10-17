@@ -1021,6 +1021,20 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                   {(fanOutLead.hintFor === 1 ? dayFragment.word1 : dayFragment.word2)[0].toUpperCase()}”.
                 </div>
               )}
+              {/* A pass also shows one more lead (gameplay verdict C4): online, one nobody has taken yet; here the next. */}
+              {fanOutRollOutcome.cleared && fanOutLeads.length > 1 && (() => {
+                const next = fanOutLeads[(fanOutLeads.findIndex((l) => l.id === fanOutLead.id) + 1) % fanOutLeads.length];
+                return (
+                  <div className="space-y-1" data-glimpse>
+                    <div className="text-[12.5px] font-sans text-[#B7A9CC]">On the way back, the last of the light shows you one more place.</div>
+                    <div className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8]">{placeLabel(next)}</div>
+                    <div className="p-2.5 rounded-lg bg-[#130B1F] border border-[#D4B876]/50 space-y-1">
+                      <div className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] uppercase">{next.clueTitle}</div>
+                      <ScriptText text={fill(next.clueText)} className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.45]" />
+                    </div>
+                  </div>
+                );
+              })()}
               {!isSoloW1D1 && (
                 <div className="text-[12px] font-sans text-[#B7A9CC]">It goes on the board at the fire.</div>
               )}

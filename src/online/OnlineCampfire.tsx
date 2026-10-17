@@ -69,8 +69,8 @@ interface Fire {
   } | null;
   members?: Member[];
   firstHere?: boolean;
-  myFanOut?: { lead: string | null; roll: Roll | null; hint: 1 | 2 | null; letter: string | null; lateLine: string | null };
-  board?: { id: string; place: string; finders: string[]; clueTitle: string; clueText: string }[];
+  myFanOut?: { lead: string | null; roll: Roll | null; hint: 1 | 2 | null; letter: string | null; lateLine: string | null; glimpse?: string | null };
+  board?: { id: string; place: string; finders: string[]; glimpsedBy?: string[]; clueTitle: string; clueText: string }[];
   myPin?: { reading: Reading; line: string | null } | null;
   pins?: { name: string; reading: Reading; line: string | null }[];
   catchUp?: { name: string; reading: Reading }[];
@@ -352,6 +352,8 @@ export default function OnlineCampfire({
 
   const my = fire.myFanOut;
   const myLead = fire.board?.find((b) => b.id === my?.lead);
+  // A pass at the last light also shows one more lead (gameplay verdict C4).
+  const myGlimpse = fire.board?.find((b) => b.id === my?.glimpse);
   const riddleOpen = fire.riddle && (fire.tone !== 'quiet' || riddleAsked || fire.riddle.wrong > 0 || fire.riddle.solved);
   const triesLeft = fire.riddle ? fire.riddle.maxTries - fire.riddle.wrong : 0;
   const readingsShown: Reading[] = ['A', 'B', 'NEITHER'];
@@ -412,17 +414,31 @@ export default function OnlineCampfire({
               Word {my.hint} of today's fragment starts with “{my.letter}”.
             </p>
           )}
+          {myGlimpse && (
+            <div className="pt-1 space-y-0.5" data-glimpse>
+              <p className={note}>On the way back, the last of the light shows you one more place.</p>
+              <div className="font-['Cinzel'] font-bold text-[12.5px]">{myGlimpse.place}</div>
+            </div>
+          )}
         </Section>
       )}
 
-      {/* The board: one card per lead with every finder; a lead nobody took shows only its place (design Part 1). */}
+      {/* The board: one card per lead with every finder; a lead nobody took shows only its place (design Part 1),
+          unless a pass at the last light showed it to someone on the way back (C4). */}
       <Section label="THE BOARD">
         {(fire.board ?? []).map((b) =>
-          b.finders.length ? (
+          b.finders.length || b.glimpsedBy?.length ? (
             <div key={b.id} className="rounded-lg bg-[#130B1F] border border-[#D4B876]/50 p-2.5 space-y-1">
               <div className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] uppercase">{b.clueTitle}</div>
               <ScriptText text={b.clueText} className="text-[14px] text-[#F4F1F8] leading-[1.45]" />
-              <p className={note}>Found by {b.finders.join(', ')}</p>
+              <p className={note}>
+                {[
+                  b.finders.length ? `Found by ${b.finders.join(', ')}` : '',
+                  b.glimpsedBy?.length ? `Seen on the way back by ${b.glimpsedBy.join(', ')}` : '',
+                ]
+                  .filter(Boolean)
+                  .join(' · ')}
+              </p>
             </div>
           ) : fire.narrated ? null : (
             <p key={b.id} className="text-[13.5px] text-[#B7A9CC] italic">
@@ -480,10 +496,10 @@ export default function OnlineCampfire({
             say('fragment') ?? <p className="italic text-[14px]">“{frag.text}”</p>
           ) : (
             <p className="text-[14px]">
-              {frag.words === 0 ? 'Both of its missing words are still open.' : 'One of its missing words is still open.'}
+              {frag.words === 0 ? 'You have not found either of its missing words yet.' : 'You have found one of its two missing words.'}
             </p>
           )}
-          {frag.solvers.length > 0 && <p className={note}>Found by {frag.solvers.join(', ')}</p>}
+          {frag.solvers.length > 0 && <p className={note}>Words found by {frag.solvers.join(', ')}</p>}
           {!fragDone && (
             <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={onOpenChest}>
               🕯️ OPEN THE SEEKER CHEST

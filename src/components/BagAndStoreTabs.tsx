@@ -133,7 +133,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
         // Credited to the player by their own name (party[0] is always the player).
         if (!onSolveWord(frag.id, wordIndex, party[0]?.name || 'You')) {
           // Refused: keep the tray open so the reason shows.
-          setWordLockNotice('Until today ends, each friend fills one of its two words. Leave the other for a friend.');
+          setWordLockNotice('This word has already been found.');
           setTypedIndices([]);
           return;
         }
@@ -448,7 +448,7 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
           {!Object.values(solvedWords).some((e) => e.w1 === party[0]?.name || e.w2 === party[0]?.name) && (
             <div className="pl-3 border-l-2 border-[#D4B876]/45">
               <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.45]">
-                A Seeker Fragment. Two of its words are missing. Find one, and it is worth {GOLD_FRAGMENT_WORD_SOLVED} gold. Leave the other for a friend.
+                A Seeker Fragment. Two of its words are missing, their letters jumbled. Each word you find is worth {GOLD_FRAGMENT_WORD_SOLVED} gold.
               </p>
             </div>
           )}
