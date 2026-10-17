@@ -646,7 +646,7 @@
 
 ## Day 7 — THE GATHERING
 
-*(Master copy: `mythios-gathering-scripts.md`, Episode 2 — kept identical. Locked 2026-09-28, Version 2.)*
+*(This file is the only master copy of this Gathering. `mythios-gathering-scripts.md` was retired on 17 Oct 2026, by Fake Guru's decision.)*
 
 *(Version 2, locked 2026-09-28 — replaces the Version 1 draft. Series audit applied 2026-09-29.)*
 

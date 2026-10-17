@@ -642,7 +642,7 @@
 
 ## Day 7 — THE GATHERING
 
-*(Master copy: `mythios-gathering-scripts.md`, Episode 4 — kept identical.)*
+*(This file is the only master copy of this Gathering. `mythios-gathering-scripts.md` was retired on 17 Oct 2026, by Fake Guru's decision.)*
 
 *(Series audit applied 2026-09-29.)*
 
