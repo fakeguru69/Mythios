@@ -75,6 +75,8 @@ Damage = 10 + Roll 6. His Breath 100 → 84
 > A rope is no use. Dev's two arms are all that is holding Dev up, and neither can let go to catch one.
 >
 > One of you can go out flat, on your belly, with the rest standing on the stone at the gallery's edge and holding your ankles, and haul. An arm has one haul like that in it. Then the next of you.
+>
+> And Dev, jammed in the boards, can do more than hang there. Every elbow got onto sounder wood, every hand's breadth won from below, counts as much as a haul from above.
 
 *Dev is the friend who fell in the Battle; if nobody fell, the friend who finished it with the least HP.*
 

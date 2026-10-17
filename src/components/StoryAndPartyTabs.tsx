@@ -2049,7 +2049,8 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   }));
   const gatheringPartyIds = gatheringParty.map((f) => f.id);
   // Gathering 1: canon's "Dev" in the drop is the friend who fell in the Battle, or else the
-  // friend who finished it with the least HP. They are the one being hauled, so they don't roll.
+  // friend who finished it with the least HP. Since 17 Oct (gameplay verdict) they take their turns too, working
+  // themselves up from below, so nobody sits the United Effort out.
   const riskFriend = (() => {
     const fighters = (battle?.fighters || []).filter((f) => f.id !== 'YOU');
     if (!fighters.length) return gatheringParty.find((f) => f.id !== 'YOU') || gatheringParty[0];
@@ -2057,7 +2058,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     return gatheringParty.find((f) => f.id === pickF.id) || gatheringParty[0];
   })();
   const riskFriendName = riskFriend.name;
-  const ueRollerIds = currentWeek === 1 ? gatheringPartyIds.filter((id) => id !== riskFriend.id) : gatheringPartyIds;
+  const ueRollerIds = gatheringPartyIds;
   const partyName = (id: string) => gatheringParty.find((f) => f.id === id)?.name || id;
   const playerWeapon = GEAR_TABLE[weaponLevel]?.weapon || 14;
   const playerArmor = GEAR_TABLE[armorLevel]?.armor || 27;

@@ -530,6 +530,10 @@ Clue found, "The worn end":
 
 > You had him by the collar for a moment, close enough to smell him. Woodsmoke, and lamp oil.
 
+*⚙ If you lost the fight:*
+
+> You are still sitting in the crushed bracken when Arjun gets back, with the wind knocked clean out of you and a bruise coming up along your ribs that you will feel for days.
+
 *⚙ Either way, every player reads this:*
 
 > You go back to the rock.
@@ -699,7 +703,17 @@ Clue found, "The notched stick":
 
 - **Aim:** From this bucket you can see the whole lane and nobody in the lane can see you. *(Apprentice and up:)* It was chosen for watching.
 
-*⚙ A choice: [LOOK FOR FOOTPRINTS] or [KNOCK NEXT DOOR]. Pick one; the choice colours the moment, the story is the same.*
+*⚙ A choice: [LOOK FOR FOOTPRINTS] or [KNOCK NEXT DOOR]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [LOOK FOR FOOTPRINTS]:*
+
+> You crouch by the bucket. The mud there has been trodden by every boot in Fenmark, but over the top of it all runs a line of small prints, quick and light, too short in the stride for any grown man. They go off between the sheds behind the lane, and there you lose them.
+
+*⚙ If you pick [KNOCK NEXT DOOR]:*
+
+> The door beside the well opens the width of a hand before your knuckles have finished on it. An eye, a grey braid, a thin hand on the latch. She does not speak, and she does not shut it. Her gaze goes once, quickly, down the lane and back to you.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: FIND WHO LEFT IT**
 
@@ -723,7 +737,21 @@ Clue found, "The notched stick":
 
 > He looks at each of you in turn. He is counting you.
 
-*⚙ A choice: [SHOW HIM THE LIST] or [ASK WHO WAS TAKEN] or [SAY NOTHING. WAIT.]. Pick one; the choice colours the moment, the story is the same.*
+*⚙ A choice: [SHOW HIM THE LIST] or [ASK WHO WAS TAKEN] or [SAY NOTHING. WAIT.]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [SHOW HIM THE LIST]:*
+
+> You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go.
+
+*⚙ If you pick [ASK WHO WAS TAKEN]:*
+
+> You ask him straight out who they took. His chin comes up at that. For three days Fenmark has told him only to keep quiet, and nobody has asked him anything at all.
+
+*⚙ If you pick [SAY NOTHING. WAIT.]:*
+
+> You say nothing. You lean on the cold lip of the well and let the quiet be, as if you had the whole afternoon to spend on it. The boy watches you do it. He had braced himself for questions.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > For a while he says nothing at all. He looks once down the empty lane. Then it comes out low and fast.
 >
@@ -761,7 +789,21 @@ Clue found, "The notched stick":
 
 *⚙ Either way, every player reads this:*
 
-*⚙ A choice: [STAND WHERE YOU ARE] or [STEP BACK, HANDS OPEN] or [PUT YOURSELF IN FRONT OF THE BOY]. Pick one; the choice colours the moment, the story is the same.*
+*⚙ A choice: [STAND WHERE YOU ARE] or [STEP BACK, HANDS OPEN] or [PUT YOURSELF IN FRONT OF THE BOY]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [STAND WHERE YOU ARE]:*
+
+> You stay exactly where you are, your feet set on the wet cobbles. The two younger men had expected you to give ground. They glance at the elder, and do not quite know what to do with their hands.
+
+*⚙ If you pick [STEP BACK, HANDS OPEN]:*
+
+> You take one slow step back and let them see your empty hands. The nearer of the two young men lets out a breath, and some of the stiffness goes out of the street.
+
+*⚙ If you pick [PUT YOURSELF IN FRONT OF THE BOY]:*
+
+> You step across, between the men and the boy. It is a small movement, and every eye in the lane follows it. The elder's face changes. For a moment he looks less like a man guarding his village than a man ashamed of it.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > Nobody draws. Nobody needs to. The message is plain enough.
 >
@@ -957,6 +999,10 @@ Clue found, "Fresh bark":
 *⚙ If you won the fight:*
 
 > He has left his knife behind, stuck in the shutter where he was working it. A plain kitchen knife. There is nothing curved about it.
+
+*⚙ If you lost the fight:*
+
+> Your shoulder is against the shed wall where he threw you, and the boards are rough and cold through your shirt. It is a while before your hands stop shaking.
 
 *⚙ Either way, every player reads this:*
 
@@ -1224,7 +1270,17 @@ Clue found, "One pair of boots":
 
 > Over supper the way has to be got by heart, and there is only one way to do that. There is one map, and there are four of you.
 
-*⚙ A choice: [READ IT OUT] or [LET Dev READ IT]. Pick one; the choice colours the moment, the story is the same.*
+*⚙ A choice: [READ IT OUT] or [LET Dev READ IT]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [READ IT OUT]:*
+
+> You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark.
+
+*⚙ If you pick [LET Dev READ IT]:*
+
+> You turn the map round and slide it across to Dev, who reads it the way some people read a letter from home: slowly, frowning a little, as if the words might change if they were hurried.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > It is read out, twice, slowly, so that everybody has it. The room is loud enough that you all lean in close to hear.
 >
@@ -1450,6 +1506,8 @@ Clue found, "A second man":
 >
 > One of you can go out flat, on your belly, with the rest standing on the stone at the gallery's edge and holding your ankles, and haul. An arm has one haul like that in it. Then the next of you.
 >
+> And Dev, jammed in the boards, can do more than hang there. Every elbow got onto sounder wood, every hand's breadth won from below, counts as much as a haul from above.
+>
 > **This is a United Effort. One job, and you take it in turns.**
 
 *⚙ If one friend plays alone:*
@@ -1596,7 +1654,21 @@ Clue found, "A second man":
 >
 > She will not get up onto the wagon. She stands in the road with her bandaged hand held against her chest, looking from one of you to the next. She settles on you.
 
-*⚙ A choice: [CROUCH DOWN TO HER] or [ASK WHAT THE SONG IS] or [SAY NOTHING. WAIT.]. Pick one; the choice colours the moment, the story is the same.*
+*⚙ A choice: [CROUCH DOWN TO HER] or [ASK WHAT THE SONG IS] or [SAY NOTHING. WAIT.]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [CROUCH DOWN TO HER]:*
+
+> You crouch down in the road until your eyes are level with hers, and the mud soaks cold through your knee. She studies your face for a long moment, very seriously, the way children study a stranger's dog.
+
+*⚙ If you pick [ASK WHAT THE SONG IS]:*
+
+> You ask her what the song is. She stops humming at once, as if she had been caught at something. *"It's a counting one,"* she tells you, as though anybody ought to know that.
+
+*⚙ If you pick [SAY NOTHING. WAIT.]:*
+
+> You say nothing. You only wait with her in the road, while the carter shifts on his seat and the horse blows. After a while her good hand finds your sleeve, and holds on to a fold of it.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > *"I wasn't asleep,"* she says. *"I was counting."*
 >
@@ -1639,6 +1711,8 @@ Clue found, "A second man":
 > He saw something on this road, and he has decided not to have seen it.
 
 *⚙ Pick one: Charm (get him talking), or Aim (watch where his eyes keep going, and look there first). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: he tells you to be on your way, and means it, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If the party lost Gathering 1's United Effort, the card is 2 harder, and says: **Two harder.** You come down the road still grey with the mine's dust, and you look like the kind of trouble he wants no part of.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2471,6 +2545,10 @@ Clue found, "The chant ran on":
 
 > You hit him hard enough to wind him, and still he made no sound. You heard his teeth come together on it.
 
+*⚙ If you lost the fight:*
+
+> He gave as good as he got, and better. Your lip is split, you can taste iron, and the strip of coat is the only thing you took from him.
+
 *⚙ Either way, every player reads this:*
 
 > Before the dark takes him he stops, lifts a shuttered lamp, and opens it twice, toward the shaft.
@@ -2664,7 +2742,17 @@ Clue found, "Faces turned in":
 
 > Arjun has crawled up beside you at the lip to look. Whoever else is on watch along the hillside is too far off to pass a map to, and they have to have it too.
 
-*⚙ A choice: [READ IT OUT] or [LET Arjun READ IT]. Pick one; the choice colours the moment, the story is the same.*
+*⚙ A choice: [READ IT OUT] or [LET Arjun READ IT]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [READ IT OUT]:*
+
+> You keep your voice low and even, and give it line by line, the way you would give the road to a stranger at a crossroads.
+
+*⚙ If you pick [LET Arjun READ IT]:*
+
+> You pass it to Arjun, who tilts it to the starlight and reads it slowly, stopping at every turn of the way to be sure of it.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > It is said aloud, twice, across the dark, so that everybody has it.
 >
@@ -3086,8 +3174,8 @@ Clue found, "Your own print":
 
 *⚙ ASK: a board of questions; each friend taps one. Sealed questions the night needs are answered after two quiet minutes if nobody asks them.*
 
-- **DO YOU KNOW HIS NAME?**: *"Malakor."* Asked how: *"My grandmother taught me that name."*
-- **HAVE YOU HEARD OF THIS ORDER?**: *"I know the name."* Asked how: *"My family's been in these hills longer than the roads have."*
+- **DO YOU KNOW HIS NAME?**: *"Malakor."* And when you ask him how he knows it: *"My grandmother taught me that name."*
+- **HAVE YOU HEARD OF THIS ORDER?**: *"I know the name."* And when you ask him how: *"My family's been in these hills longer than the roads have."*
 - **DO YOU KNOW WHAT THE THING WAS?**: *"I know what that page says."*
 - **WHY DON'T THEY TAKE US? WE'RE MARKED TOO**: *"Look at the ledger. Every name in it is a child's."*
 

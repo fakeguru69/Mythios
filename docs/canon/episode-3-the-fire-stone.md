@@ -82,6 +82,9 @@
 *If the player won, one line more:*
 > He leaves the hill with a limp he did not bring to it.
 
+*If the player loses, one line more:*
+> You are left sitting in that wet grass, one sleeve torn from cuff to elbow, waiting for the hillside to stop tilting.
+
 > Below the shaft, in the wet grass, the tracks are plain to anyone who looks.
 
 `[LOOK]`
@@ -511,6 +514,9 @@
 *If the player won, one line more:*
 > He goes without his hat. It is a good hat. Inside the band somebody has stitched two letters, very small, the way a mother would.
 
+*If the player loses, one line more:*
+> He never once hurried, and he never once let you close. Your knuckles are skinned raw on the black rock, and he did not lose so much as his hat.
+
 > The hut is empty.
 >
 > The door stands open. A thread of smoke is still going up from the roof-hole into the morning.
@@ -648,6 +654,12 @@
 > Mei came up the last of the ridge at your side. Whoever is still on the slope below is too far down to see what you hold.
 
 `[READ IT OUT]` `[LET MEI READ IT]`
+
+*Read it out:*
+> You have to raise your voice over the wind, and you give it one turn at a time: the crack, the cut way, the room below.
+
+*Let Mei read it:*
+> Mei takes it from you, turns away from the wind to shield it, and reads it out in the steady voice of someone who has decided not to be cold.
 
 > It is said aloud, twice, for the ones on the slope below. The wind takes every word of it down the ridge.
 
@@ -918,7 +930,7 @@
 | **The king** | |
 | `[WHERE DOES HE SLEEP?]` | *"Where he fell."* |
 | `[WILL IT WORK?]` | *"It is written that it will."* |
-| `[GENERATIONS OF CHILDREN. WHY DOES HE STILL SLEEP?]` | Silence. |
+| `[GENERATIONS OF CHILDREN. WHY DOES HE STILL SLEEP?]` | He looks at you for a long moment, and says nothing at all. |
 | **The faithful** | |
 | `[WHO ARE YOU?]` | *"The faithful."* And to whom: *"To the king who did not kneel."* |
 | `[WHO LEADS YOU?]` | *"One whose face I've never seen."* |
@@ -926,12 +938,12 @@
 | `[WERE YOU LYING JUST NOW?]` | A look that is almost pity. *"The faithful do not lie."* |
 | **The children** | |
 | `[WILL WREN GO HOME?]` | *"She has given. She may go."* |
-| `[THE OTHERS YOU TOOK, BEFORE]` | *"Most went home."* Pressed on the charcoal woman's nephew: *"Him we lost."* *"Not by our choosing."* |
+| `[THE OTHERS YOU TOOK, BEFORE]` | *"Most went home."* When you name the charcoal woman's nephew, he is quiet for a long moment. *"Him we lost."* And then, lower: *"Not by our choosing."* |
 | `[WHO SCRATCHED THE NAMES?]` | *"The faithful write the names of those who will give, so that he may know them."* |
 | **This room** | |
 | `[WHY CARRY THAT CASE?]` | *"So that we would know you."* |
 | `[WHAT SAT IN THAT HOLLOW?]` · `[WHAT WAS IN THE BOX?]` | Silence. Not refusal: the kind that costs him. *"Until the throne rise whole,"* he says instead, softly, the way you would end a prayer. |
-| `[HOW DID YOU GET HERE FIRST?]` | Silence. |
+| `[HOW DID YOU GET HERE FIRST?]` | He looks past you, at the dark the way you came, and says nothing. |
 
 *Each question is spent when tapped, and its answer is posted for everyone. If two quiet minutes pass with a ◆ question unasked:*
 

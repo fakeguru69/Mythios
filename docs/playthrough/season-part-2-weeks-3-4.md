@@ -94,6 +94,10 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 > He leaves the hill with a limp he did not bring to it.
 
+*⚙ If you lost the fight:*
+
+> You are left sitting in that wet grass, one sleeve torn from cuff to elbow, waiting for the hillside to stop tilting.
+
 *⚙ Either way, every player reads this:*
 
 > Below the shaft, in the wet grass, the tracks are plain to anyone who looks.
@@ -279,6 +283,8 @@ Clue found, "Facing west":
 > She is on the other side of it, and she has not walked away.
 
 *⚙ Pick one: Charm (talk to her through the door until she opens it), or Intellect (know what will open it: the ledger's page, and her daughter's name in a stranger's hand). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: the door stays shut, and you lose the day's light waiting, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If the party lost Gathering 2's United Effort, the card is 2 harder, and says: **Two harder.** Word of what happened under the hill has come over the hills ahead of you, and nobody in Ashcombe is quick to open a door.*
 
 *⚙ If you passed the Challenge:*
 
@@ -921,6 +927,10 @@ Clue found, "Scratched on the back":
 
 > He goes without his hat. It is a good hat. Inside the band somebody has stitched two letters, very small, the way a mother would.
 
+*⚙ If you lost the fight:*
+
+> He never once hurried, and he never once let you close. Your knuckles are skinned raw on the black rock, and he did not lose so much as his hat.
+
 *⚙ Either way, every player reads this:*
 
 > The hut is empty.
@@ -1164,7 +1174,17 @@ Clue found, "The gap in the row":
 
 > Mei came up the last of the ridge at your side. Whoever is still on the slope below is too far down to see what you hold.
 
-*⚙ A choice: [READ IT OUT] or [LET Mei READ IT]. Pick one; the choice colours the moment, the story is the same.*
+*⚙ A choice: [READ IT OUT] or [LET Mei READ IT]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [READ IT OUT]:*
+
+> You have to raise your voice over the wind, and you give it one turn at a time: the crack, the cut way, the room below.
+
+*⚙ If you pick [LET Mei READ IT]:*
+
+> Mei takes it from you, turns away from the wind to shield it, and reads it out in the steady voice of someone who has decided not to be cold.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > It is said aloud, twice, for the ones on the slope below. The wind takes every word of it down the ridge.
 
@@ -1528,17 +1548,17 @@ Clue found, "No way down in the dark":
 - **THE FOURTH CHILD. WHERE IS HE?** *(sealed)* *(Tonight turns on these)*: *"Already with us."*
 - **WHERE DOES HE SLEEP?** *(The king)*: *"Where he fell."*
 - **WILL IT WORK?** *(The king)*: *"It is written that it will."*
-- **GENERATIONS OF CHILDREN. WHY DOES HE STILL SLEEP?** *(The king)*: Silence.
+- **GENERATIONS OF CHILDREN. WHY DOES HE STILL SLEEP?** *(The king)*: He looks at you for a long moment, and says nothing at all.
 - **WHO ARE YOU?** *(The faithful)*: *"The faithful."* And to whom: *"To the king who did not kneel."*
 - **WHO LEADS YOU?** *(The faithful)*: *"One whose face I've never seen."*
 - **DO YOU KNOW THIS MAN?** *(The faithful)*: *"No."* *(of Garrick)*
 - **WERE YOU LYING JUST NOW?** *(The faithful)*: A look that is almost pity. *"The faithful do not lie."*
 - **WILL WREN GO HOME?** *(The children)*: *"She has given. She may go."*
-- **THE OTHERS YOU TOOK, BEFORE** *(The children)*: *"Most went home."* Pressed on the charcoal woman's nephew: *"Him we lost."* *"Not by our choosing."*
+- **THE OTHERS YOU TOOK, BEFORE** *(The children)*: *"Most went home."* When you name the charcoal woman's nephew, he is quiet for a long moment. *"Him we lost."* And then, lower: *"Not by our choosing."*
 - **WHO SCRATCHED THE NAMES?** *(The children)*: *"The faithful write the names of those who will give, so that he may know them."*
 - **WHY CARRY THAT CASE?** *(This room)*: *"So that we would know you."*
 - **WHAT SAT IN THAT HOLLOW? / WHAT WAS IN THE BOX?** *(This room)*: Silence. Not refusal: the kind that costs him. *"Until the throne rise whole,"* he says instead, softly, the way you would end a prayer.
-- **HOW DID YOU GET HERE FIRST?** *(This room)*: Silence.
+- **HOW DID YOU GET HERE FIRST?** *(This room)*: He looks past you, at the dark the way you came, and says nothing.
 
 > Nobody asks it. The answer comes anyway, as if the room had asked.
 
@@ -1829,6 +1849,10 @@ Clue found, "The same side":
 *⚙ If you won the fight:*
 
 > The one you put down first looks up at you out of the water and says he is sorry. He seems to mean it.
+
+*⚙ If you lost the fight:*
+
+> Not before one of them has had you face down in the ford, though. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon.
 
 *⚙ Either way, every player reads this:*
 
@@ -2460,6 +2484,10 @@ Clue found, "The scratched line":
 
 > One of his oars is still in your hands. He let go of it sooner than be taken.
 
+*⚙ If you lost the fight:*
+
+> While it lasted he had the better of you. Your forearm aches where the oar came down across it, and the fog has found its way into your wet sleeves.
+
 *⚙ Either way, every player reads this:*
 
 *⚙ A button: [SEARCH IT]*
@@ -2958,7 +2986,7 @@ Clue found, "The lamp on the shingle":
 - **WHO LEADS YOU?** *(The faithful)*: *"One whose face I've never seen."*
 - **IS HE HERE?** *(The faithful)*: *"I don't know. I've never seen his face."*
 - **DO YOU KNOW THIS MAN?** *(The faithful)*: *"No."* *(of Garrick)*
-- **THE OTHERS YOU TOOK, BEFORE** *(The faithful)*: *"Most went home."* Pressed on the charcoal woman's nephew: *"Him we lost."* *"Not by our choosing."*
+- **THE OTHERS YOU TOOK, BEFORE** *(The faithful)*: *"Most went home."* When you name the charcoal woman's nephew, he is quiet for a long moment. *"Him we lost."* And then, lower: *"Not by our choosing."*
 
 *⚙ If the party moves on with a sealed question unasked:*
 
@@ -3060,7 +3088,7 @@ Clue found, "The lamp on the shingle":
 
 - **WHOSE IS THIS?** *(Added when the pen is found)*: *"The scholar's."*
 - **IS SHE DEAD?** *(Added when the pen is found)*: *"Yes."*
-- **DID YOUR PEOPLE KILL HER?** *(Added when the pen is found)*: *"Yes."* Asked why: silence.
+- **DID YOUR PEOPLE KILL HER?** *(Added when the pen is found)*: *"Yes."* When you ask him why, he looks down at the water and says nothing more.
 - **DID YOU KILL HER?** *(Added when the pen is found)*: *"No."*
 - **WHERE DID YOU GET IT?** *(Added when the pen is found)*: *"With her pages."*
 
@@ -3103,7 +3131,7 @@ Clue found, "The lamp on the shingle":
 *⚙ ASK: a board of questions; each friend taps one. Sealed questions the night needs are answered after two quiet minutes if nobody asks them.*
 
 - **HOW DOES THE PAGE END?** *(Added when the torn page is read)*: *"I have never seen it whole."*
-- **WILL THE FIFTH STOP HIM?** *(Added when the torn page is read)*: Silence.
+- **WILL THE FIFTH STOP HIM?** *(Added when the torn page is read)*: He opens his mouth, and closes it again, and says nothing.
 - **WHO GAVE YOU THIS PAGE?** *(Added when the torn page is read)*: *"It was given me to carry."*
 
 #### The Cliffhanger

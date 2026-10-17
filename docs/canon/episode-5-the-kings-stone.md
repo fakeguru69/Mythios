@@ -211,6 +211,9 @@
 *If the player won, one line more:*
 > The one you beat is the last to go. It looks back at you from the edge of the dark and wags its tail, once, as if asking what it has done.
 
+*If the player loses, one line more:*
+> There is a row of tooth-marks through your sleeve, and the skin beneath is bruised but not broken. The child under the cart watches you rub at it, and says nothing.
+
 > In the morning the family goes south. Before the cart moves off, Garrick puts a heel of bread from his own pack into the child's hand.
 >
 > The child on the tailboard watches you all the way to the bend.

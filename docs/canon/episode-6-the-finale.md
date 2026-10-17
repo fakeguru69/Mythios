@@ -385,6 +385,9 @@
 *If the player won, one line more:*
 > Yours was the blow that did it. The helm rolls as far as your foot and stops there, facing the hall.
 
+*If the player loses, one line more:*
+> It had you against the rock more than once before the end. Your shoulder is stiff, and your ears are still ringing with the iron of it.
+
 > You go in sideways, one at a time, with the lamp held out ahead. The rock presses cold against your back and your chest. Deep inside, where the last of the grey daylight gives out, a housing is set into the stone.
 
 `[LIFT THE LID]`
@@ -598,6 +601,9 @@
 
 *If the player won, one line more:*
 > You are still on your feet, and it is not. For the length of a breath, not one of the others turns to look.
+
+*If the player loses, one line more:*
+> It is down, but so are you, on one knee in the dust, and the cold of its grip is still round your wrist like a cuff.
 
 > Deep in the crack, at the dead end beside the scored moon, the last fragment is waiting in a cleft at the foot of the blank rock.
 

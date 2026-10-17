@@ -486,6 +486,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
+        "text": "You are still sitting in the crushed bracken when {F3} gets back, with the wind knocked clean out of you and a bruise coming up along your ribs that you will feel for days.",
+        "cond": {
+          "on": "fight",
+          "won": false
+        }
+      },
+      {
+        "t": "say",
         "text": "You go back to the rock.\n\nSomebody takes the burned scrap from the forest road out of a pocket, and holds it against the marking.\n\nIt fits. Every raised line sits under its line of charcoal, and there is charcoal still, ground into the edges of the stone. She laid her paper here and rubbed. This rock is what the scrap is a picture of.\n\nFor a moment nobody says anything. The wind goes on sounding its one low note in the split.\n\nMeira stood where you are standing. And the man who came at you on the forest road was carrying her work."
       },
       {
@@ -582,8 +590,21 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "LOOK FOR FOOTPRINTS",
           "KNOCK NEXT DOOR"
         ],
-        "mode": "flavor",
-        "branches": []
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You crouch by the bucket. The mud there has been trodden by every boot in Fenmark, but over the top of it all runs a line of small prints, quick and light, too short in the stride for any grown man. They go off between the sheds behind the lane, and there you lose them."
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "The door beside the well opens the width of a hand before your knuckles have finished on it. An eye, a grey braid, a thin hand on the latch. She does not speak, and she does not shut it. Her gaze goes once, quickly, down the lane and back to you."
+          }
+        ]
       },
       {
         "t": "challenge",
@@ -630,8 +651,27 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "ASK WHO WAS TAKEN",
           "SAY NOTHING. WAIT."
         ],
-        "mode": "flavor",
-        "branches": []
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go."
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You ask him straight out who they took. His chin comes up at that. For three days Fenmark has told him only to keep quiet, and nobody has asked him anything at all."
+          },
+          {
+            "options": [
+              2
+            ],
+            "text": "You say nothing. You lean on the cold lip of the well and let the quiet be, as if you had the whole afternoon to spend on it. The boy watches you do it. He had braced himself for questions."
+          }
+        ]
       },
       {
         "t": "say",
@@ -678,8 +718,27 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "STEP BACK, HANDS OPEN",
           "PUT YOURSELF IN FRONT OF THE BOY"
         ],
-        "mode": "flavor",
-        "branches": []
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You stay exactly where you are, your feet set on the wet cobbles. The two younger men had expected you to give ground. They glance at the elder, and do not quite know what to do with their hands."
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You take one slow step back and let them see your empty hands. The nearer of the two young men lets out a breath, and some of the stiffness goes out of the street."
+          },
+          {
+            "options": [
+              2
+            ],
+            "text": "You step across, between the men and the boy. It is a small movement, and every eye in the lane follows it. The elder's face changes. For a moment he looks less like a man guarding his village than a man ashamed of it."
+          }
+        ]
       },
       {
         "t": "say",
@@ -806,6 +865,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "cond": {
           "on": "fight",
           "won": true
+        }
+      },
+      {
+        "t": "say",
+        "text": "Your shoulder is against the shed wall where he threw you, and the boards are rough and cold through your shirt. It is a while before your hands stop shaking.",
+        "cond": {
+          "on": "fight",
+          "won": false
         }
       },
       {
@@ -1021,8 +1088,21 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "READ IT OUT",
           "LET {F2} READ IT"
         ],
-        "mode": "flavor",
-        "branches": []
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark."
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You turn the map round and slide it across to {F2}, who reads it the way some people read a letter from home: slowly, frowning a little, as if the words might change if they were hurried."
+          }
+        ]
       },
       {
         "t": "say",
@@ -1078,8 +1158,27 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "ASK WHAT THE SONG IS",
           "SAY NOTHING. WAIT."
         ],
-        "mode": "flavor",
-        "branches": []
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You crouch down in the road until your eyes are level with hers, and the mud soaks cold through your knee. She studies your face for a long moment, very seriously, the way children study a stranger's dog."
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You ask her what the song is. She stops humming at once, as if she had been caught at something. *\"It's a counting one,\"* she tells you, as though anybody ought to know that."
+          },
+          {
+            "options": [
+              2
+            ],
+            "text": "You say nothing. You only wait with her in the road, while the carter shifts on his seat and the horse blows. After a while her good hand finds your sleeve, and holds on to a fold of it."
+          }
+        ]
       },
       {
         "t": "say",
@@ -1784,6 +1883,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
+        "text": "He gave as good as he got, and better. Your lip is split, you can taste iron, and the strip of coat is the only thing you took from him.",
+        "cond": {
+          "on": "fight",
+          "won": false
+        }
+      },
+      {
+        "t": "say",
         "text": "Before the dark takes him he stops, lifts a shuttered lamp, and opens it twice, toward the shaft.\n\nThe hill knows you are still out here. Whatever is being made ready down there will not wait for you."
       },
       {
@@ -1940,8 +2047,21 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "READ IT OUT",
           "LET {F3} READ IT"
         ],
-        "mode": "flavor",
-        "branches": []
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You keep your voice low and even, and give it line by line, the way you would give the road to a stranger at a crossroads."
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You pass it to {F3}, who tilts it to the starlight and reads it slowly, stopping at every turn of the way to be sure of it."
+          }
+        ]
       },
       {
         "t": "say",
@@ -2040,6 +2160,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "cond": {
           "on": "fight",
           "won": true
+        }
+      },
+      {
+        "t": "say",
+        "text": "You are left sitting in that wet grass, one sleeve torn from cuff to elbow, waiting for the hillside to stop tilting.",
+        "cond": {
+          "on": "fight",
+          "won": false
         }
       },
       {
@@ -2658,6 +2786,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
+        "text": "He never once hurried, and he never once let you close. Your knuckles are skinned raw on the black rock, and he did not lose so much as his hat.",
+        "cond": {
+          "on": "fight",
+          "won": false
+        }
+      },
+      {
+        "t": "say",
         "text": "The hut is empty.\n\nThe door stands open. A thread of smoke is still going up from the roof-hole into the morning."
       },
       {
@@ -2895,8 +3031,21 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "READ IT OUT",
           "LET {F1} READ IT"
         ],
-        "mode": "flavor",
-        "branches": []
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You have to raise your voice over the wind, and you give it one turn at a time: the crack, the cut way, the room below."
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "{F1} takes it from you, turns away from the wind to shield it, and reads it out in the steady voice of someone who has decided not to be cold."
+          }
+        ]
       },
       {
         "t": "say",
@@ -3139,6 +3288,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "cond": {
           "on": "fight",
           "won": true
+        }
+      },
+      {
+        "t": "say",
+        "text": "Not before one of them has had you face down in the ford, though. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon.",
+        "cond": {
+          "on": "fight",
+          "won": false
         }
       },
       {
@@ -3619,6 +3776,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         }
       },
       {
+        "t": "say",
+        "text": "While it lasted he had the better of you. Your forearm aches where the oar came down across it, and the fog has found its way into your wet sleeves.",
+        "cond": {
+          "on": "fight",
+          "won": false
+        }
+      },
+      {
         "t": "act",
         "label": "SEARCH IT"
       },
@@ -4090,6 +4255,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "cond": {
           "on": "fight",
           "won": true
+        }
+      },
+      {
+        "t": "say",
+        "text": "There is a row of tooth-marks through your sleeve, and the skin beneath is bruised but not broken. The child under the cart watches you rub at it, and says nothing.",
+        "cond": {
+          "on": "fight",
+          "won": false
         }
       },
       {
@@ -5245,6 +5418,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
+        "text": "It had you against the rock more than once before the end. Your shoulder is stiff, and your ears are still ringing with the iron of it.",
+        "cond": {
+          "on": "fight",
+          "won": false
+        }
+      },
+      {
+        "t": "say",
         "text": "You go in sideways, one at a time, with the lamp held out ahead. The rock presses cold against your back and your chest. Deep inside, where the last of the grey daylight gives out, a housing is set into the stone."
       },
       {
@@ -5571,6 +5752,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "cond": {
           "on": "fight",
           "won": true
+        }
+      },
+      {
+        "t": "say",
+        "text": "It is down, but so are you, on one knee in the dust, and the cold of its grip is still round your wrist like a cuff.",
+        "cond": {
+          "on": "fight",
+          "won": false
         }
       },
       {
