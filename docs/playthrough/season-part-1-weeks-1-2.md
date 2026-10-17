@@ -1712,7 +1712,7 @@ Clue found, "A second man":
 
 *⚙ Pick one: Charm (get him talking), or Aim (watch where his eyes keep going, and look there first). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: he tells you to be on your way, and means it, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If the party lost Gathering 1's United Effort, the card is 2 harder, and says: **Two harder.** You come down the road still grey with the mine's dust, and you look like the kind of trouble he wants no part of.*
+*⚙ If the party lost Gathering 1's United Effort, the card is 2 harder, and says: **Two harder.** Two days on, the mine still shows on every one of you: the scrapes, the stiff way you walk, the look of people who lost something in the dark. You are exactly the kind of trouble he wants no part of.*
 
 *⚙ If you passed the Challenge:*
 

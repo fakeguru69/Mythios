@@ -170,7 +170,7 @@
 > The one you put down first looks up at you out of the water and says he is sorry. He seems to mean it.
 
 *If the player loses, one line more:*
-> Not before one of them has had you face down in the ford, though. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon.
+> Quick as it was, one of them has had you face down in the ford for the worst of it. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon.
 
 > Low in the stone of the old ford, where the water runs over it, sits a carved housing.
 
@@ -505,7 +505,7 @@
 > One of his oars is still in your hands. He let go of it sooner than be taken.
 
 *If the player loses, one line more:*
-> While it lasted he had the better of you. Your forearm aches where the oar came down across it, and the fog has found its way into your wet sleeves.
+> While it lasted he had the better of you. Your forearm aches where the oar came down across it, and the fog has found its way into your sleeves.
 
 `[SEARCH IT]`
 

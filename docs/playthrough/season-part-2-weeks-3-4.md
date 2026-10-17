@@ -284,7 +284,7 @@ Clue found, "Facing west":
 
 *⚙ Pick one: Charm (talk to her through the door until she opens it), or Intellect (know what will open it: the ledger's page, and her daughter's name in a stranger's hand). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: the door stays shut, and you lose the day's light waiting, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If the party lost Gathering 2's United Effort, the card is 2 harder, and says: **Two harder.** Word of what happened under the hill has come over the hills ahead of you, and nobody in Ashcombe is quick to open a door.*
+*⚙ If the party lost Gathering 2's United Effort, the card is 2 harder, and says: **Two harder.** Since the night under the hill, somebody has been down this street ahead of you with a fresh warning, and nobody in Ashcombe is quick to open a door.*
 
 *⚙ If you passed the Challenge:*
 
@@ -1852,7 +1852,7 @@ Clue found, "The same side":
 
 *⚙ If you lost the fight:*
 
-> Not before one of them has had you face down in the ford, though. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon.
+> Quick as it was, one of them has had you face down in the ford for the worst of it. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon.
 
 *⚙ Either way, every player reads this:*
 
@@ -2486,7 +2486,7 @@ Clue found, "The scratched line":
 
 *⚙ If you lost the fight:*
 
-> While it lasted he had the better of you. Your forearm aches where the oar came down across it, and the fog has found its way into your wet sleeves.
+> While it lasted he had the better of you. Your forearm aches where the oar came down across it, and the fog has found its way into your sleeves.
 
 *⚙ Either way, every player reads this:*
 

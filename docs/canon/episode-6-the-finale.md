@@ -274,7 +274,7 @@
 > Sixty paces to the hall's wall, past the fire.
 > **Agility** · the fountain's shadow, then the open ground, fast · `[ROLL]`
 > **Charm** · keep everyone calm and still while the lantern goes by · `[ROLL]`
-> *If you failed the Challenge on Day 2:* **One harder.** The roof that came down yesterday was heard across the city, and tonight the square's watch is doubled.
+> *If you failed the Challenge on Day 2:* **One harder.** The ceiling that came down yesterday was heard across the city, and tonight the square's watch is doubled.
 > REWARD: +500g
 > IF YOU FAIL: the lantern swings your way, and you lose an hour flat against the stone
 
@@ -576,7 +576,7 @@
 > There is no way round. There is only across.
 > **Agility** · through a gap in the ranks, at their pace · `[ROLL]`
 > **Might** · go in where the ranks are thinnest, and take the knocks · `[ROLL]`
-> *If you failed the Challenge on Day 5:* **One harder.** Someone saw your lamp in the tower last night, and tonight more eyes are on the street.
+> *If you failed the Challenge on Day 5:* **One harder.** Your lamp burned half the night in the tower, and the square took note. Tonight more eyes are on the street.
 > REWARD: +500g · **and you strike first**
 > IF YOU FAIL: one of them sees you, and **it strikes first**
 
