@@ -27,7 +27,7 @@
 **Decided 4 Oct 2026, to be worked through the scripts** (see `review-daily-chapter-audit.md`):
 - **One paid beat a day (decided 4 Oct 2026).** Every weekday chapter has one beat that pays gold: a Challenge or a fight. A second roll appears only where the scene has a second real risk. The rest of a day's play is Choices, Talks and acts, and each of those must change something (what the player finds, how the next beat opens, which lead a friend takes). The season plan has 29 Challenges and 12 weekday fights, so five days have both: Week 1 Day 1 (the tutorial teaches each once), and Week 2 Day 3, Week 4 Day 2, Week 4 Day 5 and Week 6 Day 6, where the roll decides how the fight opens. The numbers in §12 and the simulation are to be re-run on that basis. (Count corrected 5 Oct 2026; this line had said 30 and 8.)
 - **More game per minute, not more minutes (decided 4 Oct 2026).** Four additions to every weekday chapter, none of which lengthens it:
-  - **Your build notices things.** Once or twice a day the chapter has a "notice" line with six versions, one for each Attribute. A player sees the version for their own highest Attribute; from Adept upward it gains a second sentence. A notice line gives extra detail and never a fact the story needs: every player gets the day's answer.
+  - **Your build notices things.** Once or twice a day the chapter has a "notice" line with six versions, one for each Attribute. A player sees the version for their own highest Attribute; from Apprentice upward it gains a second sentence (Fake Guru, 17 Oct; it was Adept). At the fire a friend may share the line they saw, and a friend who failed sees what a friend who passed read. A notice line gives extra detail and never a fact the story needs: every player gets the day's answer.
   - **The roll sets up what follows.** A passed Challenge changes the player's position in the next beat: who is standing beside them, whether they are seen, and in a fight, who strikes first or how the enemy starts.
   - **About two weekday fights a week where the story allows** (the season plan has 12, and 29 Challenges). Not every enemy is the Order: beasts, the dead, a chained dog and ordinary thieves give gear and Combat Relics more use without repeating the silent man who runs.
   - **The summary card shows the chase:** the Attribute's old and new number with how far the next tier is, and what the player's gold can now buy.
@@ -600,10 +600,10 @@ Every simulated number in §12 is a prediction. Log these, per player:
 - **Rolls at a Gathering:** one friend rolls the Approach. Friends take turns at the United Effort (§5) until the job ends; a friend who never rolls still gets the 300g if it is won. `[LOOK CLOSER]` is separate and open to every friend.
 
 **Pacing and choices in the Gathering**
-- MYTHIOS posts the story a short passage at a time. The next follows after a few seconds, or at once when any friend taps [GO ON].
+- MYTHIOS posts the story a short passage at a time. The next follows once the passage has had its reading time (about 18 characters a second, at most a minute), or sooner when more than half of the friends here have tapped [GO ON] (Fake Guru, 17 Oct: "make sure story is paced between game"; it was "after a few seconds, or when any friend taps"). The screen follows the story down only for a friend who has not scrolled up to read, and the party chat sits on the same screen for the table's talk.
 - **A found document is read by the party, not to it.** Each paragraph is its own message, and the next comes only when a friend taps [READ ON]. No message is longer than about 120 words.
 - Where the script expects questions, the story holds until a friend taps [GO ON], or for two quiet minutes.
-- **A question put to the table** holds until a friend answers: one nudge after sixty quiet seconds, the answer after ninety. MYTHIOS never grades what a friend says.
+- **A question put to the table** holds until every friend here has answered (17 Oct; it was the first friend to answer): one nudge after sixty seconds, the answer after ninety. Each friend sees the others' answers once they have given their own. MYTHIOS never grades what a friend says.
 - **A friend is named only for what they really did** (the one who rolled, the one who tapped). A small act the story wants from a friend is a button.
 - A Gathering takes about 20 to 30 minutes with the table talking. The script alone, played by one friend with no chat, timed at 15 minutes typical and up to 24 with slow waits (paper timing, 5 Oct 2026; was "30 to 45", which nothing in the script supports). A real play was skipped on 5 Oct 2026 (TV); the paper timing stands.
 - **The group Choice:** each friend present taps one option. The majority wins after 30 seconds, or sooner once everyone has tapped. A tie goes to the first vote cast.
@@ -796,7 +796,7 @@ These settle cases the rules above left open. The engineering notes are in `myth
 - **"Here" means** a friend has the Gathering open when it starts, or opens it later.
 - **It starts once.** The first of the four start conditions to happen starts it; the others then do nothing.
 - **When nobody steps up to roll,** the roll goes to the friend who has not yet rolled tonight and has rolled fewest at Gatherings this season, then by the party list.
-- **Shared buttons** ([GO ON], [READ ON], the group Choice, a help-call): the first tap to reach the server counts, and the rest do nothing.
+- **Shared buttons** ([READ ON], the group Choice, a help-call): the first tap to reach the server counts, and the rest do nothing. [GO ON] is counted: the passage moves on once more than half of the friends here have tapped it (17 Oct).
 - **A Gathering nobody attends:** the recap tells the story as the script's success path, with its Twist. No Challenge is rolled, and nobody earns gold or growth.
 - **The story never waits on the AI.** Every scripted line is stored and sent by the server. If MYTHIOS is slow or fails, the scripted text still arrives.
 

@@ -55,9 +55,12 @@ async function player(b, who) {
 
 // One move: the first thing on screen this player can do.
 async function move({ p, who }) {
+  // A page behind another can have its timers slowed by the browser, so its two-second poll stops: act from the front.
+  await p.bringToFront();
   const answer = p.getByPlaceholder('Your answer, for the table');
-  if (who === 'host' && await answer.count()) {
-    await answer.fill('Every one of them was born on a dark moon.');
+  // Every friend answers the table's question (17 Oct); the night's answer follows once all here have.
+  if (await answer.count()) {
+    await answer.fill(who === 'host' ? 'Every one of them was born on a dark moon.' : 'They were all marked the same way.');
     await p.getByRole('button', { name: 'SAY IT', exact: true }).click();
     return 'answered the table';
   }

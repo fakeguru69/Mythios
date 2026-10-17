@@ -12,7 +12,7 @@
 **How to read this**
 - Quote blocks are what MYTHIOS says in the chat. `[BUTTONS]` are what the player taps.
 - *Mei, Dev* and *Jo* stand in for the player's real friends, named for what they do and never for what they say.
-- **What you notice:** the player sees one line, the one for their highest Attribute; from Adept upward, the second sentence too.
+- **What you notice:** the player sees one line, the one for their highest Attribute; from Apprentice upward, the second sentence too (Adept until 17 Oct).
 - Gold: set in Core Rules §3 and §6 and §12. A Challenge pays +500g and costs 150g on a failure; a [PRESS ON] pays +200g; a fight on a day with no Challenge pays 300g on a win and nothing on a loss; a fight on a day that also has a Challenge pays nothing; [LOOK CLOSER] pays +75g. Difficulty is the weekday DC in §12.
 - **Every Garrick line is an existing, approved line, word for word.** None is new.
 

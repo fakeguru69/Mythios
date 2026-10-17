@@ -158,7 +158,8 @@ export const ScriptButton: React.FC<{ label: string; onClick: () => void; disabl
   </button>
 );
 
-/** Canon: the player sees the line for their highest Attribute; from Adept (51) upward, the second sentence too. */
+/** Canon: the player sees the line for their highest Attribute; from Apprentice (26) upward, the second sentence too
+ * (was Adept, 51, until 17 Oct: daily players almost never saw it before Week 4, and it usually holds the clue). */
 export function pickNoticeLine(
   lines: Partial<Record<AttributeName, { first: string; second?: string }>>,
   attributes: Record<AttributeName, number>,
@@ -173,8 +174,8 @@ export function pickNoticeLine(
     return top;
   }, available[0]);
   const entry = lines[best]!;
-  const adept = (attributes[best] || 0) >= 51;
-  return { attr: best, text: adept && entry.second ? `${entry.first} ${entry.second}` : entry.first };
+  const apprentice = (attributes[best] || 0) >= 26;
+  return { attr: best, text: apprentice && entry.second ? `${entry.first} ${entry.second}` : entry.first };
 }
 
 export const NoticeBlock: React.FC<{ attr: AttributeName; text: string; label?: string }> = ({ attr, text, label }) => (

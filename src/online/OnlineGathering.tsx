@@ -7,6 +7,8 @@ import { supabase, plainError } from './supabaseClient';
 import { NarrationBlock, NoticeBlock, ScriptButton, ScriptInline, ScriptText, TapEcho } from '../components/ChapterScriptParts';
 import { challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
 import { card, ErrorLine, goldButton, heading, input, note, quietButton } from './ui';
+import PartyChat from './PartyChat';
+import type { MemberRow } from './supabaseClient';
 
 type Entry = { i: number; t: string; at: string } & Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 interface View {
@@ -54,7 +56,18 @@ export const clockTime = (iso: string, tz: string) => {
 export const tonightLine = (tonight: string | null, opensAt: string, tz: string) =>
   tonight ? tonight.replace(/^Tonight: the Gathering\./, `Tonight: the Gathering, ${clockTime(opensAt, tz)}.`) : null;
 
-export default function OnlineGathering({ partyId, onClose }: { partyId: string; onClose: () => void }) {
+export default function OnlineGathering({
+  partyId,
+  onClose,
+  userId,
+  members,
+}: {
+  partyId: string;
+  onClose: () => void;
+  /** For the table talk on the Gathering screen (gameplay verdict, 17 Oct). */
+  userId?: string;
+  members?: MemberRow[];
+}) {
   const [view, setView] = useState<View | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -63,6 +76,18 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
   const [answer, setAnswer] = useState('');
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const keyRef = useRef<string | null>(null);
+  // [GO ON] now needs more than half of the friends here (migration 0080): the passages this phone has asked to leave.
+  const [goneOn, setGoneOn] = useState<Record<number, boolean>>({});
+  // The table's question: every friend's answer, once you have given yours (migration 0080).
+  const [answers, setAnswers] = useState<Record<number, { mine: boolean; answers: { name: string; text: string }[]; count: number }>>({});
+  // The vote's help: each way's Attribute and the best friend here at it (Core Rules §11 "toolkit").
+  const [voteHelp, setVoteHelp] = useState<{ attr: AttributeName; best: { name: string; score: number; bonus: number } | null }[] | null>(null);
+  // The case so far, read back at the opening (migration 0079, as in the demo).
+  const [caseSoFar, setCaseSoFar] = useState<{
+    question: string | null;
+    lines: { name: string; firstDay: number; first: string; lastDay: number; last: string }[];
+    more: boolean;
+  } | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
 
   const take = (v: View) => {
@@ -88,10 +113,38 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
     };
   }, [poll]);
 
+  const caseWeek = view?.startedAt ? view.week : null;
+  useEffect(() => {
+    if (!caseWeek) return;
+    supabase.rpc('gathering_case', { p_party: partyId, p_week: caseWeek }).then(({ data }) => data && setCaseSoFar(data));
+  }, [caseWeek, partyId]);
+
   const logLength = view?.log?.length ?? 0;
   useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    // Follow the story down only if this friend is already near the bottom: someone scrolled up to read stays put.
+    const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 400;
+    if (nearBottom) endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [logLength]);
+
+  // The table's questions: fetch the answers while one is open, and once more after the night has answered it.
+  const finalAnswers = useRef<Set<number>>(new Set());
+  const viewVersion = view?.key;
+  useEffect(() => {
+    for (const x of view?.log ?? []) {
+      if (x.t !== 'turn' || finalAnswers.current.has(x.i)) continue;
+      const closed = Boolean(x.answer);
+      if (!closed && x.i !== view?.cursor) continue;
+      if (closed) finalAnswers.current.add(x.i);
+      const at = x.i;
+      supabase.rpc('gathering_answers', { p_party: partyId, p_i: at }).then(({ data }) => data && setAnswers((a) => ({ ...a, [at]: data })));
+    }
+  }, [view?.log, view?.cursor, viewVersion, partyId]);
+  // The vote at the cursor: its help, once.
+  const voteAt = view?.log?.some((x) => x.t === 'pick' && x.mode === 'vote' && x.i === view.cursor) ?? false;
+  useEffect(() => {
+    if (!voteAt || voteHelp) return;
+    supabase.rpc('gathering_vote_help', { p_party: partyId }).then(({ data }) => data && setVoteHelp(data));
+  }, [voteAt, voteHelp, partyId]);
 
   const go = async (action: string, args: Record<string, unknown> = {}) => {
     setBusy(true);
@@ -219,6 +272,19 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
       </div>
     );
   }
+  // The case so far (Fan Out and Campfire proposal §3.4): the week's question and at most three friends' week lines,
+  // the most recently updated first; a changed line shows its first day too. Days by number. Never graded.
+  if (caseSoFar?.question && caseSoFar.lines.length) {
+    const said = caseSoFar.lines.map((l) =>
+      l.first !== l.last ? `On Day ${l.firstDay}, ${l.name} thought: “${l.first}” Tonight: “${l.last}”` : `${l.name}: “${l.last}”`
+    );
+    nodes.push(
+      <div key="g-case" className="space-y-1.5" data-week-readback>
+        <div className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] uppercase text-[#B7A9CC]">The case so far</div>
+        <NarrationBlock text={[`*${caseSoFar.question}*`, ...said, ...(caseSoFar.more ? ['The rest are on the board.'] : [])].join('\n\n')} />
+      </div>
+    );
+  }
   // "What you missed" (Core Rules §11): one line for a friend who came in after the start.
   if (view.lateLine) {
     nodes.push(
@@ -339,6 +405,12 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
                   className={`w-full text-left p-2.5 rounded-xl border text-[#F4F1F8] ${myPick === oi ? 'bg-[#3A2555] border-[#E5C158]' : 'bg-[#2A1B40] border-[#D4B876]'} disabled:cursor-default`}>
                   <span className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] uppercase">{o.label}</span>
                   {o.desc && <span className="block text-[13.5px] mt-0.5">{o.desc}</span>}
+                  {e.mode === 'vote' && voteHelp?.[oi] && (
+                    <span className="block text-[12px] text-[#B7A9CC] mt-0.5">
+                      Rolls {voteHelp[oi].attr}
+                      {voteHelp[oi].best ? ` · best here: ${voteHelp[oi].best!.name} (${voteHelp[oi].attr} ${voteHelp[oi].best!.score}, +${voteHelp[oi].best!.bonus})` : ''}
+                    </span>
+                  )}
                   {who.length > 0 && <span className="block text-[12px] text-[#E5C158] mt-0.5">{who.join(', ')}</span>}
                 </button>
               );
@@ -461,14 +533,34 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
             <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#C4A1FF] uppercase">MYTHIOS asks the table</div>
             <ScriptText text={e.question} className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]" />
             {e.nudge && <ScriptText text={e.nudge} className="font-sans text-[14px] text-[#B7A9CC] leading-[1.42]" />}
-            {e.by && <p className="text-[14px]"><span className="font-semibold text-[#E5C158]">{e.by}:</span> {e.said}</p>}
-            {!e.by && !e.answer && current(e) && (
+            {(answers[e.i]?.answers ?? []).map((a) => (
+              <p key={a.name} className="text-[14px]"><span className="font-semibold text-[#E5C158]">{a.name}:</span> {a.text}</p>
+            ))}
+            {!answers[e.i]?.answers?.length && e.by && <p className="text-[14px]"><span className="font-semibold text-[#E5C158]">{e.by}:</span> {e.said}</p>}
+            {!e.answer && current(e) && !answers[e.i]?.mine && (
               <div className="flex gap-1.5">
                 <input className={input} maxLength={140} value={answer} onChange={(ev) => setAnswer(ev.target.value)} placeholder="Your answer, for the table" />
-                <button className={quietButton} disabled={busy || !answer.trim()} onClick={async () => { await go('answer', { i: e.i, text: answer.trim() }); setAnswer(''); }}>
+                <button
+                  className={quietButton}
+                  disabled={busy || !answer.trim()}
+                  onClick={async () => {
+                    setBusy(true);
+                    const { data, error: er } = await supabase.rpc('gathering_answer', { p_party: partyId, p_i: e.i, p_text: answer.trim() });
+                    setBusy(false);
+                    if (er) return setError(plainError(er.message));
+                    keyRef.current = null;
+                    take(data as View);
+                    setAnswer('');
+                    const { data: an } = await supabase.rpc('gathering_answers', { p_party: partyId, p_i: e.i });
+                    if (an) setAnswers((x) => ({ ...x, [e.i]: an }));
+                  }}
+                >
                   SAY IT
                 </button>
               </div>
+            )}
+            {!e.answer && current(e) && answers[e.i]?.mine && (
+              <p className={note}>The answer comes once everyone here has said theirs.</p>
             )}
           </div>
         );
@@ -546,11 +638,27 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
         Week {view.week} · The Gathering · {view.party.filter((p) => p.here).map((p) => (p.id === view.me ? 'You' : p.name)).join(', ')}
       </p>
       {nodes}
-      {reading && (
-        <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} disabled={busy} onClick={() => go('go_on', { i: view.cursor })}>
-          GO ON
-        </button>
-      )}
+      {reading &&
+        (goneOn[view.cursor] ? (
+          <p className={`${note} text-center`}>Waiting for the others, or for the page to turn.</p>
+        ) : (
+          <button
+            className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`}
+            disabled={busy}
+            onClick={async () => {
+              const at = view.cursor;
+              setGoneOn((x) => ({ ...x, [at]: true }));
+              setBusy(true);
+              const { data, error: er } = await supabase.rpc('gathering_go_on', { p_party: partyId, p_i: at });
+              setBusy(false);
+              if (er) return setError(plainError(er.message));
+              keyRef.current = null;
+              take(data as View);
+            }}
+          >
+            GO ON
+          </button>
+        ))}
       {view.endedAt && (
         <button className={goldButton} onClick={onClose}>
           BACK TO THE PARTY
@@ -558,6 +666,12 @@ export default function OnlineGathering({ partyId, onClose }: { partyId: string;
       )}
       <ErrorLine text={error} />
       <div ref={endRef} />
+      {/* Table talk (Core Rules §11: the night assumes the table talking): the party chat, on the same screen. */}
+      {userId && members && !view.endedAt && (
+        <div className="pt-2" data-gathering-chat>
+          <PartyChat partyId={partyId} userId={userId} members={members} />
+        </div>
+      )}
     </div>
   );
 }

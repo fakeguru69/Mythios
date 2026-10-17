@@ -1612,78 +1612,6 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             "note": "",
             "answer": "*\"Most went home.\"* Pressed on the charcoal woman's nephew: *\"Him we lost.\"* *\"Not by our choosing.\"*",
             "group": "The faithful"
-          },
-          {
-            "questions": [
-              "WHOSE IS THIS?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"The scholar's.\"*",
-            "group": "Added when the pen is found"
-          },
-          {
-            "questions": [
-              "IS SHE DEAD?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"Yes.\"*",
-            "group": "Added when the pen is found"
-          },
-          {
-            "questions": [
-              "DID YOUR PEOPLE KILL HER?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"Yes.\"* Asked why: silence.",
-            "group": "Added when the pen is found"
-          },
-          {
-            "questions": [
-              "DID YOU KILL HER?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"No.\"*",
-            "group": "Added when the pen is found"
-          },
-          {
-            "questions": [
-              "WHERE DID YOU GET IT?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"With her pages.\"*",
-            "group": "Added when the pen is found"
-          },
-          {
-            "questions": [
-              "HOW DOES THE PAGE END?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"I have never seen it whole.\"*",
-            "group": "Added when the torn page is read"
-          },
-          {
-            "questions": [
-              "WILL THE FIFTH STOP HIM?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "Silence.",
-            "group": "Added when the torn page is read"
-          },
-          {
-            "questions": [
-              "WHO GAVE YOU THIS PAGE?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"It was given me to carry.\"*",
-            "group": "Added when the torn page is read"
           }
         ],
         "section": "Ask",
@@ -1811,6 +1739,61 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "section": "The pen"
       },
       {
+        "t": "ask",
+        "rows": [
+          {
+            "questions": [
+              "WHOSE IS THIS?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"The scholar's.\"*",
+            "group": "Added when the pen is found"
+          },
+          {
+            "questions": [
+              "IS SHE DEAD?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"Yes.\"*",
+            "group": "Added when the pen is found"
+          },
+          {
+            "questions": [
+              "DID YOUR PEOPLE KILL HER?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"Yes.\"* Asked why: silence.",
+            "group": "Added when the pen is found"
+          },
+          {
+            "questions": [
+              "DID YOU KILL HER?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"No.\"*",
+            "group": "Added when the pen is found"
+          },
+          {
+            "questions": [
+              "WHERE DID YOU GET IT?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"With her pages.\"*",
+            "group": "Added when the pen is found"
+          }
+        ],
+        "section": "The pen",
+        "cond": {
+          "on": "ue",
+          "won": true
+        }
+      },
+      {
         "t": "section",
         "title": "The torn page",
         "section": "The torn page"
@@ -1853,6 +1836,43 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "t": "say",
         "text": "Garrick says nothing at all.",
         "section": "The torn page"
+      },
+      {
+        "t": "ask",
+        "rows": [
+          {
+            "questions": [
+              "HOW DOES THE PAGE END?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"I have never seen it whole.\"*",
+            "group": "Added when the torn page is read"
+          },
+          {
+            "questions": [
+              "WILL THE FIFTH STOP HIM?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "Silence.",
+            "group": "Added when the torn page is read"
+          },
+          {
+            "questions": [
+              "WHO GAVE YOU THIS PAGE?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"It was given me to carry.\"*",
+            "group": "Added when the torn page is read"
+          }
+        ],
+        "section": "The torn page",
+        "cond": {
+          "on": "ue",
+          "won": true
+        }
       },
       {
         "t": "section",

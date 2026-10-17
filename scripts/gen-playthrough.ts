@@ -105,10 +105,10 @@ function chapter(week: number, day: number) {
       }
       if (st.mode === 'pick' && st.branches.length) branchOpen = 'Whatever you picked, every player reads this:';
     } else if (st.t === 'notice') {
-      w(gameplay('Your build notices: you see the line for your highest Attribute (from Adept on, with its second sentence).'));
+      w(gameplay('Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).'));
       for (const [attr, l] of Object.entries(st.lines)) {
         if (!l) continue;
-        w(`- **${attr}:** ${fill(l.first)}${l.second ? ` *(Adept and up:)* ${fill(l.second)}` : ''}`);
+        w(`- **${attr}:** ${fill(l.first)}${l.second ? ` *(Apprentice and up:)* ${fill(l.second)}` : ''}`);
       }
       out.push('');
     } else if (st.t === 'challenge') {
