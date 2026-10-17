@@ -2259,7 +2259,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The Seekers' way in is a crack in the hill behind the hall, so narrow you go through it sideways, so old the stone has healed half shut around it. At its end, the fitted stone that passes for rock swings inward under your hands — for your blood, and no one else's.",
+        "text": "The Seekers' way in is a crack in the hill behind the hall, so narrow you go through it sideways, so old the stone has healed half shut around it. At its end, the fitted stone that passes for rock swings inward under your hands, for your blood, and no one else's.\n\nCold air breathes out of the dark beyond it. It smells of dust, and of lamp-oil burned a very long time ago.",
         "section": "Arrival"
       },
       {
@@ -2269,7 +2269,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "{F1} strikes the last stroke through the watch-page by lamplight, there on the threshold. None left.\n\nAbove you, the moon is full. At its edge, a sliver of it has already gone dark, and the dark is spreading.",
+        "text": "{F1} strikes the last stroke through the watch-page by lamplight, there on the threshold. None left.\n\nFar above, in the thin strip of sky the crack lets through, the moon is full. At its edge, a sliver of it has already gone dark, and the dark is spreading.",
         "section": "Arrival"
       },
       {
@@ -2328,7 +2328,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "By the time you step out, every face in the hall is already turned toward you.",
+        "text": "A lamp slips from somebody's fingers and rings on the stair, and the sound goes on and on up into the dark of the roof. By the time you step out, every face among the faithful is already turned your way, and their singing has not missed a note.",
         "cond": {
           "on": "approach",
           "pass": false
@@ -2342,7 +2342,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The hall is vast, and cold, and full.\n\nAcross the floor, a trapdoor stands thrown back on a stair going down into the dark — the way his household ran, the night the Seekers came. The faithful came up it. They didn't need the Seekers' door. They are here — more than you've ever seen together, robed, singing — and between them stand the hollowed, row on row of them, his soldiers from the last war, still standing their watch after all these centuries. Every blank face turns toward you at once.",
+        "text": "The hall is vast, and cold, and full.\n\nAcross the floor, a trapdoor stands thrown back on a stair going down into the dark: the way his household ran, the night the Seekers came. The faithful came up it. They did not need the Seekers' door. They are here, more than you have ever seen together, robed, singing, and between them stand the hollowed, row on row of them, his soldiers from the last war, still standing their watch after all these centuries. Every blank face turns toward you at once.",
         "section": "The Battle"
       },
       {
@@ -2384,7 +2384,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The lamp comes down like a bell falling, and the line breaks around it.",
+        "text": "For a moment nothing happens. Then, high above, the great iron lamp drops out of the dark, turning once as it falls.\n\nThe lamp comes down like a bell falling, and the line breaks around it. The floor jumps under your feet, and through the dust their singing goes ragged.",
         "cond": {
           "on": "ue",
           "won": true
@@ -2398,7 +2398,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The chain holds, and you go through them a step at a time, bleeding.",
+        "text": "The chain holds. The lamp hangs above you, dark and no use to anyone, and their line comes on.\n\nSo you go through them the hard way, shoulder to shoulder, a step at a time, bleeding, until there is nobody left between you and the throne.",
         "cond": {
           "on": "ue",
           "won": false
@@ -2412,7 +2412,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "When you break through at last, the singing has stopped, and you see what's at the heart of the hall.\n\nBefore the empty throne, on the stone floor where he fell, lies the king. He isn't dust. He isn't bones. He looks like a man asleep — pale, still, one hand open at his side as though something was once taken out of it. *Death's likeness, and not death.*\n\nAround him, set in a ring, faintly glowing, are the four Stones. Earth, wind, water, fire. Every one you ever found for them.",
+        "text": "When you break through at last, the singing has stopped, and you see what is at the heart of the hall.\n\nBefore the empty throne, on the stone floor where he fell, lies the king. He is not dust. He is not bones. He looks like a man asleep: pale, still, one hand open at his side as though something was once taken out of it. *Death's likeness, and not death.*\n\nAround him, set in a ring, faintly glowing, are the four Stones. Earth, wind, water, fire. Every one you ever found for them.",
         "section": "The king"
       },
       {
@@ -2427,7 +2427,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Nothing.",
+        "text": "Nothing.\n\nYour blood runs down over the Stone and drips onto the floor of his hall, and the fifth lies in your hand as cold and dark as the night you found it.",
         "section": "The king"
       },
       {
@@ -2437,7 +2437,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The silence is so complete you can hear the last of the faithful breathing in the dark behind you.\n\nGarrick crouches beside whoever is holding the fifth. He looks at the cut palm, at the Stone lying cold in it, at the dust of the long road on them. *\"You've carried it far enough,\"* he says.\n\nThen he stands, and holds out his hand. *\"Let me.\"*",
+        "text": "The silence is so complete you can hear the last of the faithful breathing in the dark behind you.\n\nGarrick crouches beside whoever is holding the fifth. He looks at the cut palm, at the Stone lying cold in it, at the dust of the long road on them. *\"You've carried it far enough,\"* he says.\n\nHe says it gently, the way he has said everything to you since the night at the inn.\n\nThen he stands, and holds out his hand. *\"Let me.\"*",
         "section": "The first twist"
       },
       {
@@ -2468,7 +2468,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "You hand him the fifth. You do it yourselves.\n\nHe doesn't hesitate. The knife is already in his hand, and the cut is quick and practised — and the Stone *answers*.",
+        "text": "You hand him the fifth. You do it yourselves.\n\nHe does not hesitate. The knife is already in his hand, and the cut is quick and practised. And the Stone *answers*.",
         "cond": {
           "on": "pick",
           "option": 0
@@ -2477,7 +2477,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "He doesn't argue. The fight has left his palm bleeding. He reaches out and closes his hand over the Stone where it lies in yours — and it answers him anyway. You still carried it to him, into this room.",
+        "text": "He does not argue. The fight has left his palm bleeding. He reaches out and closes his hand over the Stone where it lies in yours, and it answers him anyway. You still carried it to him, into this room.",
         "cond": {
           "on": "pick",
           "option": 1
@@ -2511,7 +2511,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "*\"You read them as one,\"* Garrick says. He doesn't sound cruel. *\"They cut his name out of everything they could reach. The word outlived him and wandered off onto any child born in the dark. Your Meira used it that way.\"*",
+        "text": "*\"You read them as one,\"* Garrick says. He does not sound cruel. *\"They cut his name out of everything they could reach. The word outlived him and wandered off onto any child born in the dark. Your Meira used it that way.\"*",
         "section": "The first twist"
       },
       {
@@ -2531,12 +2531,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "*\"My people,\"* he says. *\"On the road, the night she left with those pages.\"*\n\nHer pen is in that satchel still.",
+        "text": "*\"My people,\"* he says. *\"On the road, the night she left with those pages.\"*\n\nHer pen is in that satchel still, with the rest of her.",
         "section": "The first twist"
       },
       {
         "t": "say",
-        "text": "Around the ring, the faithful are getting up off the floor. None of them has ever seen his face. They don't need to: the fifth answered him. One by one they bow their heads to him, and the first of them says it — the words you heard the watchmen trade in the square below this hall.\n\n*\"Keep the dark.\"*\n\n*\"It keeps us,\"* Garrick says.",
+        "text": "Around the ring, the faithful are getting up off the floor. None of them has ever seen Garrick's face. They do not need to: the fifth answered him. One by one they bow their heads to him, and the first of them says it, the words you heard the watchmen trade in the square below this hall.\n\n*\"Keep the dark.\"*\n\n*\"It keeps us,\"* Garrick says.",
         "section": "The first twist"
       },
       {
@@ -2546,7 +2546,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "As the light climbs the four Stones, Garrick takes a book from inside his coat — not a page, not a scrap: his own copy of the Order's scripture, whole, worn soft with handling, nothing torn, nothing burned. He opens it the way a man opens something his family has kept for generations, and reads.",
+        "text": "As the light climbs the four Stones, Garrick takes a book from inside his coat. Not a page, not a scrap: his own copy of the Order's scripture, whole, worn soft with handling, nothing torn, nothing burned. He opens it the way a man opens something his family has kept for generations, and reads.",
         "section": "The Verse of the Name"
       },
       {
@@ -2558,7 +2558,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "t": "match",
         "question": "WHICH OF YOUR FRAGMENTS IS THIS?",
         "quote": "*\"They had known him all his life as one of the marked.\"*",
-        "source": "From the barracks hearth, on the second day of this week",
+        "source": "From the barracks hearth, where the Seekers slept",
         "fragment": "We were marked, every one of us. That is how we found the shards.",
         "section": "The Verse of the Name"
       },
@@ -2576,7 +2576,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "t": "match",
         "question": "WHICH OF YOUR FRAGMENTS IS THIS?",
         "quote": "*\"We were only servants, they said.\"*",
-        "source": "From the wall room, on the first day of this week",
+        "source": "From the wall room, where they kept their watch",
         "fragment": "His household ran the night we came to the hall. We let them go. They were only servants.",
         "section": "The Verse of the Name"
       },
@@ -2598,22 +2598,26 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "He turns the page, and you know it before he reads it: the same page you carried up out of the drowned village, burned and torn. Only his copy is whole.",
+        "text": "He turns the page, and you know it before he reads it: the same page you carried up out of the drowned village, burned and torn. Only his copy is whole.\n\nOn his page the older hand runs on, unbroken, past the place where yours was torn:\n\n**\"Four were given to the wind, the water, the fire, and the earth, and drink deep whichever marked blood finds them first. The fifth heeds no element at all, but blood alone, and remembers whose. What the four begin, the fifth shall end, and the throne rise whole.\"**",
         "section": "The second twist"
       },
       {
         "t": "say",
-        "text": "**[The older hand, untorn]**\n**\"Four were given to the wind, the water, the fire, and the earth, and drink deep whichever marked blood finds them first. The fifth heeds no element at all, but blood alone, and remembers whose. What the four begin, the fifth shall end, and the throne rise whole.\"**",
+        "text": "He reads it aloud as far as the tear, *what the four begin, the fifth shall end*, and stops. He does not need to go on. All around the hall, low and together, the faithful finish it for him, in the same voice you first heard chanting under the mill hill: *\"…and the throne rise whole.\"*\n\n*\"They used his own blood on the fifth while his power was pouring out of him,\"* Garrick says, softly, watching the light rise. *\"Tonight he sleeps. Same key. Turned the other way.\"*",
         "section": "The second twist"
       },
       {
         "t": "say",
-        "text": "He reads it as far as the tear — *what the four begin, the fifth shall end* — and stops, and doesn't need to go on. All around the hall, low and together, the faithful finish it for him, in the same voice you first heard chanting under the mill hill: *\"…and the throne rise whole.\"*",
+        "text": "He takes the fifth out of your hand. Pinned in the light, you cannot close your fingers on it.",
+        "cond": {
+          "on": "pick",
+          "option": 1
+        },
         "section": "The second twist"
       },
       {
         "t": "say",
-        "text": "*\"They used his own blood on the fifth while his power was pouring out of him,\"* Garrick says, softly, watching the light rise. *\"Tonight he sleeps. Same key. Turned the other way.\"*\n\nHe sets the book down open on the stone. From his coat he takes a tin cup — the one that sat on the sill of the wall room last night — and sets it on the floor beside the sleeping king. Every night on the road, one more cup than there were people. It was always for him.\n\nThen he kneels, and closes the king's open hand around the fifth Stone — the hand that's lain empty at his side since the moment he fell. *\"One stayed close,\"* Garrick says. *\"It always did.\"*\n\nAs the fifth leaves his hand, the light shifts to the king — and for one heartbeat, its grip on one of you slackens.",
+        "text": "He sets the book down open on the stone. From his coat he takes a tin cup, the one that sat on the sill of the wall room last night, and sets it on the floor beside the sleeping king, with the same small care he gave every cup on the road.\n\nEvery night on the road, one more cup than there were people. It was always for him.\n\nThen he kneels, and closes the king's open hand around the fifth Stone: the hand that has lain empty at his side since the moment he fell. *\"One stayed close,\"* Garrick says. *\"It always did.\"*\n\nAs the fifth leaves his hand, the light shifts to the king, and for one heartbeat, its grip on one of you slackens.",
         "section": "The second twist"
       },
       {
@@ -2648,7 +2652,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It's done before anyone can stop it. The page is in {F3}'s fist.",
+        "text": "It is done before anyone can stop it. The page is in {F3}'s fist.",
         "cond": {
           "on": "pick",
           "option": 0
@@ -2657,10 +2661,19 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It skids across the floor, still glowing, out of the light and away into the dark of the hall.",
+        "text": "One blow, and the Stone skids across the floor, still glowing, out of the light and away into the dark of the hall.",
         "cond": {
           "on": "pick",
           "option": 1
+        },
+        "section": "The act"
+      },
+      {
+        "t": "say",
+        "text": "{F3} does not move. The heartbeat passes, and the light closes round {F3} again like a hand.",
+        "cond": {
+          "on": "pick",
+          "option": 2
         },
         "section": "The act"
       },
@@ -2682,12 +2695,39 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Overhead, the last of the moon goes dark.\n\nThe four Stones flare white. The fifth, in the king's closed hand, burns so cold it frosts the air.",
+        "text": "High in the hall's windows, the last of the moon goes dark.",
         "section": "The Cliffhanger"
       },
       {
         "t": "say",
-        "text": "And on the floor of his hall, where he fell, the king opens his eyes.\n\nThey pass over Garrick, kneeling at his side, as if he weren't there. They move across the ring of light. And they settle on you. Whatever he is now, he knows Seeker blood when he sees it.\n\n*The power that gives is also the power that takes.*\n\nGarrick looks down at you — at all of you, kneeling in the ring of light, palms cut, still bleeding, the same white linen from a week ago still knotted at every wrist. His face is courteous, and nothing more.\n\n*\"You saved every child you were sent to save,\"* he says.",
+        "text": "The four Stones flare white. The fifth, in the king's closed hand, burns so cold it frosts the air.\n\nThe page is still in {F3}'s fist.",
+        "cond": {
+          "on": "pick",
+          "option": 0
+        },
+        "section": "The Cliffhanger"
+      },
+      {
+        "t": "say",
+        "text": "Three flare white in the ring, and far off in the dark of the hall the fourth answers them alone. The fifth, in the king's closed hand, burns so cold it frosts the air.",
+        "cond": {
+          "on": "pick",
+          "option": 1
+        },
+        "section": "The Cliffhanger"
+      },
+      {
+        "t": "say",
+        "text": "The four Stones flare white. The fifth, in the king's closed hand, burns so cold it frosts the air.",
+        "cond": {
+          "on": "pick",
+          "option": 2
+        },
+        "section": "The Cliffhanger"
+      },
+      {
+        "t": "say",
+        "text": "Nobody breathes.\n\nAnd on the floor of his hall, where he fell, the king opens his eyes.\n\nThey pass over Garrick, kneeling at his side, as if he were not there. They move across the ring of light. And they settle on you. Whatever he is now, he knows Seeker blood when he sees it.\n\n*The power that gives is also the power that takes.*\n\nGarrick looks down at you, at all of you, kneeling in the ring of light, palms cut open again tonight, the same white linen from a week ago still knotted at every wrist. His face is courteous, and nothing more.\n\n*\"You saved every child you were sent to save,\"* he says.",
         "section": "The Cliffhanger"
       },
       {

@@ -61,6 +61,12 @@ function labelCond(text, week) {
   if (/^If it is read from the page/.test(t)) return { on: 'ue', won: false };
   if (/^If most give/.test(t) || /^Tear the page/.test(t)) return { on: 'pick', option: 0 };
   if (/^If most hold back/.test(t) || /^Break the ring/.test(t)) return { on: 'pick', option: 1 };
+  // Gathering 6: the hold-back line in the second twist (the fifth's pick), and the act's third branch
+  // and the cliffhanger's three branch lines (the act's pick, the last one before them).
+  if (/^If most held back/.test(t)) return { on: 'pick', option: 1 };
+  if (/^If the page was torn/.test(t)) return { on: 'pick', option: 0 };
+  if (/^If a Stone was struck from the ring/.test(t)) return { on: 'pick', option: 1 };
+  if (/^Do nothing:?$/.test(t) || /^If nothing was done/.test(t)) return { on: 'pick', option: 2 };
   if (/^Then, alone on the screen/.test(t)) return { alone: true };
   // Lines for when nobody taps in time: the one-phone demo always has a tap, so they are kept apart.
   if (/^If nobody taps the last question/.test(t) || /^If two quiet minutes pass/.test(t) || /^If a minute passes with either untapped/.test(t)) return { on: 'unasked' };
