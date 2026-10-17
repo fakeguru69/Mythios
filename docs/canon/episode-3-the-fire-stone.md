@@ -684,7 +684,7 @@
 
 ## Day 7 — THE GATHERING
 
-*(Master copy: `mythios-gathering-scripts.md`, Episode 3 — kept identical.)*
+*(This file is the only master copy of this Gathering. `mythios-gathering-scripts.md` was retired on 17 Oct 2026, by Fake Guru's decision.)*
 
 *(Rewritten 2026-09-28 — TVMen: the Episode 3 twist is now "they're waking him"; the awakening's mechanism, the Stones, stays for Episode 4. "The Six" is retired: the ancient heroes are only ever "the Seekers". Series audit applied 2026-09-29.)*
 

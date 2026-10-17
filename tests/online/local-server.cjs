@@ -119,7 +119,11 @@ http
       // Server functions (Edge Functions) run separately: tests/online/local-garrick.ts.
       if (url.pathname.startsWith('/functions/v1/')) {
         const fwd = http.request({ host: 'localhost', port: Number(process.env.LOCAL_FUNCTIONS_PORT || 54322), path: url.pathname.replace('/functions/v1', ''),
-          method: req.method, headers: req.headers }, (r) => { res.writeHead(r.statusCode, { ...headers, ...r.headers }); r.pipe(res); });
+          method: req.method, headers: req.headers }, (r) => {
+          // One copy of each header: the function's own CORS lines replace the stand-in's (a doubled Allow-Origin is refused by browsers).
+          const merged = {}; for (const [k, v] of Object.entries({ ...headers, ...r.headers })) merged[k.toLowerCase()] = v;
+          res.writeHead(r.statusCode, merged); r.pipe(res);
+        });
         fwd.on('error', (e) => send(502, JSON.stringify({ message: e.message })));
         fwd.end(raw);
         return;

@@ -70,11 +70,56 @@ async function smallTalk(env: GarrickEnv, question: string, ctx: Record<string, 
   return text || null;
 }
 
+// A private question (migration 0067): in your own thread (Core Rules §1), or at the fire (Campfire table §E: stored
+// lines only, and never "Malakor"). Nothing goes to the party chat; only the asker sees the answer.
+async function privateQuestion(env: GarrickEnv, auth: string, asker: string, party: string, text: string, place: 'thread' | 'fire') {
+  let when: { o_week: number; o_day: number }[];
+  try {
+    when = await rpc(env, 'garrick_private_open', { p_party: party, p_place: place }, auth, env.anonKey);
+  } catch (e) {
+    return json((e as { status?: number }).status || 400, { message: (e as Error).message });
+  }
+  const service = `Bearer ${env.serviceKey}`;
+  const ctx = await rpc(env, 'garrick_state', { p_party: party }, service, env.serviceKey);
+  primeGarrickRotation(ctx.history || {});
+  const state = { ...(ctx.state as GarrickStoryState), atCampfire: place === 'fire' };
+  const routed = routeGarrickMessage(text, state);
+  let reply = routed.reply.replace(/^[“"]|[”"]$/g, '');
+  let ai = false;
+  let filtered: string | null = null;
+  if (place === 'thread' && routed.route === 'AI_SMALL_TALK' && (ctx.aiToday ?? 0) < AI_PER_DAY) {
+    try {
+      const draft = await smallTalk(env, text, ctx);
+      if (draft) {
+        const check = passesGarrickFilter(draft);
+        if (check.ok) {
+          reply = draft;
+          ai = true;
+        } else filtered = `${draft} [blocked: ${check.matched}]`;
+      }
+    } catch {
+      // The stored line goes instead.
+    }
+  }
+  await rpc(
+    env,
+    'garrick_private_post',
+    {
+      p_party: party, p_user: asker, p_place: place, p_week: when[0]?.o_week, p_day: when[0]?.o_day, p_question: text,
+      p_reply: reply, p_route: routed.route, p_category: routed.category, p_flags: routed.flagsUsed, p_ai: ai, p_filtered: filtered,
+    },
+    service,
+    env.serviceKey
+  );
+  // Only the words he says come back: never the route's hidden meaning.
+  return json(200, { reply });
+}
+
 export async function handleGarrick(req: Request, env: GarrickEnv): Promise<Response> {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: cors });
   if (req.method !== 'POST') return json(405, { message: 'not allowed' });
   const auth = req.headers.get('Authorization') || '';
-  let body: { party?: string; text?: string };
+  let body: { party?: string; text?: string; place?: string };
   try {
     body = await req.json();
   } catch {
@@ -85,6 +130,7 @@ export async function handleGarrick(req: Request, env: GarrickEnv): Promise<Resp
   if (!party || !text) return json(400, { message: 'bad request' });
   const asker = await whoAsks(env, auth);
   if (!asker) return json(401, { message: 'not signed in' });
+  if (body.place === 'thread' || body.place === 'fire') return privateQuestion(env, auth, asker, party, text.slice(0, 300), body.place);
 
   // The friend's own message first, as them: post_message checks the party, that the chat is open, and the length.
   let questionId: number;

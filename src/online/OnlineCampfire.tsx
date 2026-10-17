@@ -9,6 +9,7 @@ import { NarrationBlock, ScriptText } from '../components/ChapterScriptParts';
 import { ATTRIBUTE_META, challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
 import { CAMPFIRE_STORED_LINES } from '../data/campfireDaysData';
 import { ErrorLine, heading, input, note, quietButton } from './ui';
+import AskGarrick from './AskGarrick';
 
 type Reading = 'A' | 'B' | 'NEITHER';
 interface Lead {
@@ -593,6 +594,7 @@ export default function OnlineCampfire({
           {noteBox('bottle', 'One line for the others', 'LEAVE IT')}
         </Section>
       )}
+      <AskGarrick partyId={partyId} place="fire" />
 
       <ErrorLine text={error} />
       {leaveButton}

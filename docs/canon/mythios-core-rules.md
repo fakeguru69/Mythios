@@ -2,7 +2,7 @@
 
 **Clean edition, 2026-10-03. This file states only the rules in force.** Every earlier version, correction and piece of reasoning is kept in `mythios-core-rules-history.md`. If the two ever disagree, this file is right.
 
-**What this document is:** the engine any Mythios season runs on, whatever its story. Narrative craft is in `mythios-gm-principles.md`; the story of this season (Tales of the Dark Moon) is in the episode files and `mythios-gathering-scripts.md`.
+**What this document is:** the engine any Mythios season runs on, whatever its story. Narrative craft is in `mythios-gm-principles.md`; the story of this season (Tales of the Dark Moon) is in the six episode files (the Gatherings included; `mythios-gathering-scripts.md` was retired on 17 Oct 2026).
 
 **The dividing line:** if a rule would have to change to run a different story, it is story content and does not belong here. Names (Attributes, classes, gear) may be reskinned per story; numbers and structure may not, without a deliberate, tested reason.
 
