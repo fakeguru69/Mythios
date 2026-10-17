@@ -503,9 +503,11 @@ Rules for all of it:
 
 **Two layout rules:** features used every day sit together (the chats, the Seeker Chest); anything that runs across a week has a view that is always open, never only chat scrollback.
 
-**Push notifications:** at most three on a weekday and four on Day 7; none between 10:00pm and 8:00am in the friend's own time zone, so the day's first push comes at 8:00am, not 5:00am. The two Gathering pushes (the reminder and the lobby opening) are sent whatever the hour. A help-call is never a push.
+**Push notifications:** no daily limit (Fake Guru, 17 Oct 2026: "It's not a nag, it's a feature"; was at most three on a weekday and four on Day 7). None between 10:00pm and 8:00am in the party's time zone, so the day's first push comes at 8:00am, not 5:00am. The two Gathering pushes (the reminder and the lobby opening) are sent whatever the hour. A help-call is never a push.
 
-If more are due than the limit allows, this is the order of importance, with the wording:
+**A friend has come to the fire** (17 Oct 2026, Fake Guru: "the campfire is the place for the players to interact in a day"): when a friend first sits at the day's fire, every other friend gets *"Mei has come to the fire."*, or *"Mei has come to the fire. Your day is still waiting."* if they have not played the day. Once per friend per day; friends who arrive close together share one alert ("Mei and Dev have come to the fire."), and a newer alert replaces the older on the phone. Not sent to a friend at the fire at that moment, not on Week 1 Day 1 (the party has not met), not to a late joiner still on their own Day 1, and not between 10:00pm and 8:00am: an arrival from 5:00am is sent at 8:00am, one after 10:00pm never.
+
+These are the notifications, with the wording (the order no longer matters, as there is no limit):
 
 | # | When | Wording |
 |---|---|---|
@@ -519,6 +521,7 @@ If more are due than the limit allows, this is the order of importance, with the
 | 7 | End of Day 6 | "The map is complete." |
 | 8 | Evening, once a day | "Today: TV and Mei reached the mill. One word of the fragment is still open." |
 | 9 | After three missed days, once | "The road has gone on without you. Two minutes will catch you up." |
+| 10 | A friend first sits at the day's fire (sent 8:00am to 10:00pm) | "Mei has come to the fire." or "Mei has come to the fire. Your day is still waiting." |
 
 ---
 

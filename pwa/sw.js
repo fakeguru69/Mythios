@@ -1,5 +1,6 @@
 // The game's service worker: it lets phones install the game to the home screen, and shows the game's notifications
-// (migration 0069: the 8:00am line, the Day 4 poll, the Gathering's time and its reminder). Tapping one opens the game.
+// (migration 0069: the 8:00am line, the Day 4 poll, the Gathering's time and its reminder; 0089: a friend has come to the
+// fire, tag 'fire', so a newer one replaces the older). Tapping one opens the game.
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', (event) => event.waitUntil(self.clients.claim()));
 self.addEventListener('fetch', () => {});
