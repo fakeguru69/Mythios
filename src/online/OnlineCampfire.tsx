@@ -26,6 +26,7 @@ import {
   partyDayStart,
   sendChat,
   useChatMessages,
+  useKeepNewInView,
   type ChatMessage,
 } from './FireChat';
 
@@ -456,6 +457,7 @@ export default function OnlineCampfire({
   if (garrick && t?.evening) add(new Date().toISOString(), 'closer', <GarrickBubble text={pick(CAMPFIRE_STORED_LINES.closers, seed)} />);
 
   items.sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0));
+  const follow = useKeepNewInView(items.length);
 
   // ---- Tonight's question, pinned: before your pick, nothing of the others' (pin before peek); after, who said what. ----
   const myPick = fire.myPin?.reading ?? null;
@@ -563,6 +565,7 @@ export default function OnlineCampfire({
         <Composer
           placeholder="Say something at the fire"
           glow={hands.length > 0}
+          onSent={follow}
           onSend={async (text) => {
             const e = await sendChat(partyId, text, true);
             if (!e) reloadChat();
