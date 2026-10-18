@@ -67,5 +67,4 @@ Status: TODO, IN PROGRESS, DONE, BLOCKED (say why).
 ## Needs Fake Guru (remind him, simply)
 
 Google sign-in setup; terms and privacy before launch; deleting the test accounts before launch; the four wording fixes
-in the stats document (Sunday, check/obstacle, quiz, stone charms); approval of the solitary-night line ("You sit alone
-tonight. The others are on roads of their own."); reading and approving each week's drafts in E.
+in the stats document (Sunday, check/obstacle, quiz, stone charms) are APPROVED (18 Oct: "okay"): apply them when the stats file is in the repo; the solitary-night line is NOT approved (Fake Guru, 18 Oct: "do you know there are others on day 1?": real friends are playing Day 1 too, so "You sit alone tonight" is wrong; options are with him); reading and approving each week's drafts in E.
