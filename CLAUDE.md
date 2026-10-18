@@ -93,6 +93,10 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 ---
 
+**The build is done in small pieces, each merged to `main` (18 Oct, Fake Guru).** The ordered list, its status and how to carry on from a `git pull` is `docs/design/handoff-ledger.md`; the full brief is `docs/design/next-build-prompt-18oct.md`; a prompt for an independent auditor of the code and the list is `docs/design/audit-prompt-for-another-ai-18oct.md`. Update the ledger in every piece, in the same commit.
+
+---
+
 ## 5. Current state
 
 **Good and must be kept:** the Seeker word-lock puzzle; Campfire v2.3 data (exact); `economy.ts`; the growth formula; gold never below 0; verses gated to each Gathering (read to its end); Garrick present all of Week 6 (no empty seat); Malakor's name gated to Gathering 2 or later; continuity fixes reach the player view; the Gathering boss only loses at 0 HP; Fan Out's "Head to the Campfire" shown as a finished day; 0 HP = "DEFEATED." (canon §4 card; Fake Guru chose it over the build's "Bruised Scrape" on 16 Oct), story goes on.
