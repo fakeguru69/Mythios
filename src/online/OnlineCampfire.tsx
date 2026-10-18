@@ -391,9 +391,9 @@ export default function OnlineCampfire({
 
   // The party's talk since this morning: the fire is the party chat. "X pinned a theory." is already on the fire's own line.
   if (together) {
-    const since = partyDayStart(timeZone);
+    const since = new Date(partyDayStart(timeZone)).getTime();
     messages
-      .filter((m) => m.created_at >= since && !(m.kind === 'notice' && / pinned a theory\.$/.test(m.body)))
+      .filter((m) => new Date(m.created_at).getTime() >= since && !(m.kind === 'notice' && / pinned a theory\.$/.test(m.body)))
       .forEach((m) => add(m.created_at, `msg-${m.id}`, <ChatBubble m={m} userId={userId} members={memberRows} onReport={setReporting} />));
   }
 

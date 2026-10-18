@@ -143,7 +143,7 @@ export default function GameShell({
               onInfo={onInfo}
               reloadKey={storyKey}
             />
-            {info?.gathering && <OnlineGathering partyId={party.id} onClose={() => undefined} embedded />}
+            {info?.gathering && <OnlineGathering partyId={party.id} userId={userId} members={members} onClose={() => undefined} embedded />}
             {info && !info.gathering && info.finished && (
               <div data-thread-fire>
                 <OnlineCampfire

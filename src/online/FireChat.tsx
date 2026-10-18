@@ -290,10 +290,13 @@ export function EarlierFire({
 }) {
   const { messages, reload } = useChatMessages(partyId, true);
   const [reporting, setReporting] = useState<ChatMessage | null>(null);
-  const cutoff = partyDayStart(timeZone);
-  const yesterday = new Date(new Date(cutoff).getTime() - 86400000).toISOString();
+  const cutoff = new Date(partyDayStart(timeZone)).getTime();
+  const yesterday = cutoff - 86400000;
   // Last night's talk (the day before this morning), and anything you have said since.
-  const shown = messages.filter((m) => (m.created_at >= yesterday && m.created_at < cutoff) || (m.created_at >= cutoff && m.author_id === userId));
+  const shown = messages.filter((m) => {
+    const t = new Date(m.created_at).getTime();
+    return (t >= yesterday && t < cutoff) || (t >= cutoff && m.author_id === userId);
+  });
   return (
     <div className="space-y-3" data-earlier-fire>
       <div className="flex items-center gap-2 text-[12px] font-bold tracking-[1px] text-[#8F82A6]">
