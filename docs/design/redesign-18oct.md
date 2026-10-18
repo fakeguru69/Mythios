@@ -40,3 +40,17 @@ built until he says yes.
     "Reading Day 2"), Remove behind a ⋯ menu, the Gathering time with "Singapore time", settings at the bottom.
 11. **The cover** is one screen: MYTHIOS, one line on what it is, Tales of the Dark Moon as the featured series with
     its art, hook and four facts, and two buttons.
+
+## Decided with Fake Guru (18 Oct, after the proposal above)
+- **The shape: B**, a chat where the people are real and the story is written. Story arrives as messages; your
+  choices are buttons where the keyboard would be; free typing only where someone listens (the fire, Garrick).
+- **One thread from morning to the fire.** No separate day and fire screens: the day's chapter, the end-of-day
+  card, the last light ("One more look" or "Sit by the fire") and the fire follow one another in the same thread.
+  Day 7 is the Gathering in the same place. Scrolling up goes back to earlier days; tapping the day name lists the
+  days played.
+- **Tabs: STORY · RECORD · BAG · STORE.** No party tab: tapping the party name opens a panel (friends, invite,
+  notifications, the Gathering time, the clock, your name). The Record is the stats page from the demo
+  (`RecordTabView.tsx`); it was never built online, so it is new work, not a loss.
+- **The fire opens only once your day's chapter is finished.**
+- **Messages arrive by themselves** with a "typing" dot (tap to read faster); the screen stays where you last read.
+- Superseded above: item 1's tab list, item 7's "To the fire" button, item 8's separate fire tab, item 10's tab.
