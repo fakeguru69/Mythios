@@ -406,7 +406,8 @@ export default function OnlineCampfire({
 
   // Words found, and the whole fragment with its meaning question.
   if (frag) {
-    frag.solvers.forEach((s, i) => add(later(arrival, 10 + i), `word-${i}`, <SmallLine>{s} found a missing word.</SmallLine>));
+    // A solitary night (Week 1 Day 1) says nothing of the others: no names of friends who found a word, no answers.
+    if (!fire.narrated) frag.solvers.forEach((s, i) => add(later(arrival, 10 + i), `word-${i}`, <SmallLine>{s} found a missing word.</SmallLine>));
     if (fragDone) {
       const myMeaning = notes.find((n) => n.kind === 'meaning' && n.mine)?.body ?? '';
       const draft = meaningDraft ?? myMeaning;
@@ -420,7 +421,7 @@ export default function OnlineCampfire({
             <>
               <ScriptText text={fire.meaningQuestion} className="text-[16px] text-[#E6E0F0]" />
               {notes
-                .filter((n) => n.kind === 'meaning' && !n.mine)
+                .filter((n) => n.kind === 'meaning' && !n.mine && !fire.narrated)
                 .map((n) => (
                   <p key={n.name} className="text-[15px]">
                     <span className="font-semibold text-[#C39BF5]">{n.name}:</span> {n.body}
@@ -609,9 +610,7 @@ export default function OnlineCampfire({
             </>
           )}
         />
-      ) : (
-        <SmallLine>{fire.narrated ? 'You sit alone tonight. The others are on roads of their own.' : ''}</SmallLine>
-      )}
+      ) : null /* Day 1's fire is solitary and says nothing of the others (Fake Guru, 18 Oct: "keep it solitary, don't mention others"). */}
     </div>
   );
 }

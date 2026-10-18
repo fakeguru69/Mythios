@@ -161,7 +161,7 @@ computed styles; no horizontal scroll at 375px; lint, builds and leak grep clean
 
 Spec: `docs/canon/mythios-core-rules.md` (the Record section; twelve numbers and twelve badges), `docs/canon/
 mythios-stats-and-badges-proposal.md`, and the stats document Fake Guru pasted on 18 Oct
-(`docs/mythios-stats-page-and-chase-architecture.md`: if it is not in the repo ask him for it). The demo's
+(now in the repo as `docs/design/stats-page-and-chase-18oct.md`, with the four wording fixes applied). The demo's
 `src/components/RecordTabView.tsx` is the visual reference; nothing of the Record exists online yet.
 
 1. **RECORD tab.** Banner (emblem, name, class, series and week), six Attributes as coloured bars with tier, bonus and
