@@ -127,9 +127,10 @@ function InviteCard({ info, onJoin }: { info: InviteCardInfo | null | undefined;
 }
 
 // Screen 2 and 3: sign in (review §1): Google (once switched on in Supabase), or email and a password. No Apple (Fake Guru, 16 Oct).
-function SignIn() {
-  const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState<'in' | 'up'>('up');
+// returning: opened from "Already playing? Sign in", straight to the email sign-in.
+function SignIn({ returning = false }: { returning?: boolean }) {
+  const [open, setOpen] = useState(returning);
+  const [mode, setMode] = useState<'in' | 'up'>(returning ? 'in' : 'up');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -218,7 +219,7 @@ function SignIn() {
   return (
     <div className={card}>
       <h2 className={`${heading} text-[17px]`}>First, so the story knows you.</h2>
-      {!open && providers.google && (
+      {(!open || returning) && providers.google && (
         <button className={goldButton} onClick={() => oauth('google')}>
           CONTINUE WITH GOOGLE
         </button>
@@ -1179,6 +1180,7 @@ export default function OnlineApp() {
   const joinCode = startQuery.get('join');
   const info = useInvite(joinCode);
   const [wantsSignIn, setWantsSignIn] = useState(false);
+  const [returning, setReturning] = useState(false);
   const [recovering, setRecovering] = useState(false);
 
   useEffect(() => {
@@ -1225,10 +1227,20 @@ export default function OnlineApp() {
         <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={() => setWantsSignIn(true)}>
           I HAVE AN INVITE
         </button>
+        {/* A friend coming back to their party signs in here (Fake Guru, 18 Oct: "No login button"). */}
+        <button
+          className="w-full text-[14px] text-[#D9D1E6] underline"
+          onClick={() => {
+            setReturning(true);
+            setWantsSignIn(true);
+          }}
+        >
+          Already playing? Sign in
+        </button>
         <p className="text-center text-[12px] text-[#8B7A9E]">{CREDIT_LINE}</p>
       </div>
     );
-  } else body = <SignIn />;
+  } else body = <SignIn returning={returning} />;
 
   return <Shell>{body}</Shell>;
 }
