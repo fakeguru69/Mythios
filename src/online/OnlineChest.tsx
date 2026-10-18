@@ -30,7 +30,7 @@ interface Chest {
   mySolved: number;
 }
 
-export default function OnlineChest({ partyId, onClose, embedded = false }: { partyId: string; onClose: () => void; embedded?: boolean }) {
+export default function OnlineChest({ partyId, onClose, embedded = false, onChanged }: { partyId: string; onClose: () => void; embedded?: boolean; onChanged?: () => void }) {
   const [chest, setChest] = useState<Chest | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [week, setWeek] = useState<number | null>(null);
@@ -67,6 +67,7 @@ export default function OnlineChest({ partyId, onClose, embedded = false }: { pa
       setActive(null);
       setTyped([]);
       setNotice(null);
+      onChanged?.(); // the 25g reward: the shell's gold follows
     } else if (r.taken) {
       setNotice('A friend has just found this word.');
       setActive(null);

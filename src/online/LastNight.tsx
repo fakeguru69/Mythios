@@ -45,11 +45,26 @@ export default function LastNight({ partyId, week, day }: { partyId: string; wee
       }
     });
   }, [partyId, week, day]);
+  // The card arrives after the chapter has painted; it eases open instead of pushing the chapter down in one jump
+  // (handoff ledger piece 5).
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (!line) {
+      setOpen(false);
+      return;
+    }
+    const id = window.requestAnimationFrame(() => setOpen(true));
+    return () => window.cancelAnimationFrame(id);
+  }, [line]);
   if (!line) return null;
   return (
-    <div className="rounded-2xl bg-[#16233A] border border-[#3E5C8A] px-3 py-2.5 space-y-1" data-last-call>
-      <div className="font-['Cinzel'] font-bold text-[12px] text-[#9CC2F0] tracking-[1px]">LAST NIGHT</div>
-      <p className="text-[16px] text-[#F4F1F8] leading-[1.4]">{line}</p>
+    <div className="grid transition-[grid-template-rows] duration-300 ease-out" style={{ gridTemplateRows: open ? '1fr' : '0fr' }} data-last-call-wrap>
+      <div className="overflow-hidden">
+        <div className="rounded-2xl bg-[#16233A] border border-[#3E5C8A] px-3 py-2.5 space-y-1" data-last-call>
+          <div className="font-['Cinzel'] font-bold text-[12px] text-[#9CC2F0] tracking-[1px]">LAST NIGHT</div>
+          <p className="text-[16px] text-[#F4F1F8] leading-[1.4]">{line}</p>
+        </div>
+      </div>
     </div>
   );
 }

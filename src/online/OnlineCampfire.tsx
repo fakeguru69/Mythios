@@ -160,12 +160,19 @@ export default function OnlineCampfire({
   const [meaningDraft, setMeaningDraft] = useState<string | null>(null);
   const [questionOpen, setQuestionOpen] = useState(false); // after your pick, the pinned strip folds to one line
 
+  // The newest answer wins (handoff ledger piece 5): every request takes a number, and an answer that arrives after a
+  // newer request began, or after one of your own taps was answered, is dropped, so a slow poll never puts old news back.
+  const seq = useRef(0);
   const load = useCallback(async () => {
+    const my = ++seq.current;
     const { data, error: e } = await supabase.rpc('campfire', { p_party: partyId });
+    if (my !== seq.current) return;
     if (e) return setError(e.message.includes('finish your day first') ? 'The fire opens once your own day is done.' : plainError(e.message));
+    setError(null); // a later success clears an earlier failure
     setFire(data as Fire);
     if ((data as Fire)?.chosen) {
       const { data: tb } = await supabase.rpc('fire_table', { p_party: partyId });
+      if (my !== seq.current) return;
       if (tb) setTable(tb as FireTable);
     }
   }, [partyId]);
@@ -214,6 +221,7 @@ export default function OnlineCampfire({
       setError(plainError(e.message));
       return null;
     }
+    seq.current++; // polls still on their way are older than this answer
     setFire(data as Fire);
     return data as Fire;
   };
@@ -223,10 +231,13 @@ export default function OnlineCampfire({
     const { data, error: e } = await supabase.rpc(fn, { p_party: partyId, ...args });
     setBusy(false);
     if (e) return setError(plainError(e.message));
+    seq.current++;
     setTable(data as FireTable);
   };
   useEffect(() => {
-    if (atFire) supabase.rpc('fire_table', { p_party: partyId }).then(({ data }) => data && setTable(data as FireTable));
+    if (!atFire) return;
+    const my = ++seq.current;
+    supabase.rpc('fire_table', { p_party: partyId }).then(({ data }) => data && my === seq.current && setTable(data as FireTable));
   }, [atFire, partyId, fire?.week, fire?.day]);
 
   const seed = useMemo(() => (fire ? fire.week * 7 + fire.day : 0), [fire?.week, fire?.day]);

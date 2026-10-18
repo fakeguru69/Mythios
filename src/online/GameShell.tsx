@@ -78,8 +78,9 @@ export default function GameShell({
   // not the top of the day.
   const scrolls = useRef<Partial<Record<Tab, number>>>({});
   const show = (t: Tab) => {
-    // Back on the story, reload the day so gold spent in the Store and words found in the Chest show at once.
-    if (t === 'story' && tab !== 'story') setStoryKey((k) => k + 1);
+    // Whichever tab you move to, the day's data is read again (gold, gear, words found), so the top bar and the Record
+    // never show old numbers (handoff ledger piece 5).
+    if (t !== tab) setStoryKey((k) => k + 1);
     scrolls.current[tab] = window.scrollY;
     setTab(t);
     const y = scrolls.current[t] ?? 0;
@@ -278,7 +279,7 @@ export default function GameShell({
                 </button>
               ))}
             </div>
-            {bagView === 'chest' && <OnlineChest partyId={party.id} onClose={() => undefined} embedded />}
+            {bagView === 'chest' && <OnlineChest partyId={party.id} onClose={() => undefined} embedded onChanged={() => setStoryKey((k) => k + 1)} />}
             {bagView === 'verses' && (
               <div className="rounded-2xl border border-[#3A2555] bg-[#180F29] p-4 space-y-2" data-shelf="verses">
                 <h2 className="font-['Cinzel'] font-bold text-[17px] text-[#E5C158]">The Dark Moon Verses</h2>

@@ -49,13 +49,15 @@ export function useChatMessages(partyId: string, enabled: boolean) {
     if (!enabled) return;
     // Garrick's morning line goes up first if nobody has opened the app yet today.
     await supabase.rpc('garrick_morning', { p_party: partyId });
-    const { data } = await supabase
+    const { data, error: e } = await supabase
       .from('party_messages')
       .select('id,author_id,kind,speaker,body,created_at')
       .eq('party_id', partyId)
       .order('created_at', { ascending: false })
       .limit(200);
-    setMessages(((data as ChatMessage[] | null) ?? []).reverse());
+    // A failed load keeps what is already on screen (handoff ledger piece 5): the chat is never emptied by a bad moment.
+    if (e || !data) return;
+    setMessages((data as ChatMessage[]).reverse());
   }, [partyId, enabled]);
   useEffect(() => {
     if (!enabled) return;
@@ -64,7 +66,7 @@ export function useChatMessages(partyId: string, enabled: boolean) {
       .channel(`fire-chat-${partyId}-${Math.random().toString(36).slice(2)}`)
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'party_messages', filter: `party_id=eq.${partyId}` }, (payload) => {
         const m = payload.new as ChatMessage;
-        setMessages((prev) => (prev.some((x) => x.id === m.id) ? prev : [...prev, m].sort((a, b) => a.created_at.localeCompare(b.created_at))));
+        setMessages((prev) => (prev.some((x) => x.id === m.id) ? prev : [...prev, m].sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())));
       })
       .subscribe();
     const t = window.setInterval(load, 15000);
