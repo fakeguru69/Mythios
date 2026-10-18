@@ -12,7 +12,8 @@ import OnlineGathering from './OnlineGathering';
 import OnlineChest from './OnlineChest';
 import OnlineCasebook from './OnlineCasebook';
 import OnlineStore from './OnlineStore';
-import PartyChat from './PartyChat';
+import { EarlierFire } from './FireChat';
+import LastNight from './LastNight';
 import { NotebookProvider } from './Markable';
 import { ATTRIBUTE_META, GEAR_TABLE, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
 
@@ -121,6 +122,7 @@ export default function GameShell({
         {/* The story stays mounted behind the other tabs, so coming back finds your place in the thread. */}
         <div className={tab === 'story' ? 'space-y-5' : 'hidden'} data-pane="story">
           <NotebookProvider partyId={party.id}>
+            {info && !info.gathering && <LastNight partyId={party.id} week={info.week} day={info.day} />}
             <OnlineDay
               partyId={party.id}
               friends={friends.map((r) => r.character_name)}
@@ -143,29 +145,24 @@ export default function GameShell({
             />
             {info?.gathering && <OnlineGathering partyId={party.id} onClose={() => undefined} embedded />}
             {info && !info.gathering && info.finished && (
-              <div className="space-y-4" data-thread-fire>
-                <div className="flex items-center gap-2 text-[12px] font-bold tracking-[1px] text-[#F0A552]">
-                  <div className="flex-1 h-px bg-[#5C3A1C]" />
-                  <span>EVENING · THE FIRE</span>
-                  <div className="flex-1 h-px bg-[#5C3A1C]" />
-                </div>
+              <div data-thread-fire>
                 <OnlineCampfire
                   key={`${info.week}-${info.day}`}
                   partyId={party.id}
-                  onClose={() => undefined}
+                  userId={userId}
+                  members={members}
+                  chatOpen={chatOpen}
+                  timeZone={party.time_zone}
                   onOpenChest={() => {
                     setBagView('chest');
                     show('bag');
                   }}
-                  embedded
                 />
               </div>
             )}
-            {/* The party chat sits at the foot of the thread until the fire becomes the chat (phase B). */}
-            {chatOpen && (
-              <div className="pt-2" data-thread-chat>
-                <PartyChat partyId={party.id} userId={userId} members={members} />
-              </div>
+            {/* Before your own day is done: last night's talk, and you can still talk; tonight's fire waits (phase B). */}
+            {info && !info.gathering && !info.finished && chatOpen && (
+              <EarlierFire partyId={party.id} userId={userId} members={members} timeZone={party.time_zone} />
             )}
           </NotebookProvider>
         </div>

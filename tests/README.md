@@ -35,7 +35,8 @@ Playwright scripts that drive the real app in a browser. The online tests also t
   - rolling the card with an Attribute Relic.
 
   It needs a day whose card has not been rolled, and about 500g.
-- `node tests/online/campfire.cjs <run> "<party name>"`: host and Mei each play today's chapter, follow different leads, and sit at the fire. Covers the board, pin before peek, the catch-up line, the bottle, the open question, the week line, the riddle (tries counted per friend), and leaving. Needs a weekday neither has finished.
+- `node tests/online/campfire.cjs <run> "<party name>"`: host and Mei each play today's chapter, take one more look at the last light (different leads), and sit at the fire, which is one chat under the day (phase B): the divider and who is here, tonight's question pinned (pin before peek, folding after a pick, changing sides), pieces laid from the "+" tray as cards with Agree and Doubt, talk in the chat, Garrick named at the fire answering from stored lines, margin notes, the Journal. Needs a weekday neither has finished.
+- `FRIEND_EMAIL=mei@mythios.test FRIEND_PASSWORD=… node tests/online/fire-friends.cjs "<party name>"`: a pretend friend for a busy fire. It plays the friend's day if needed (headless browser at `APP_URL`), sits at the fire, lays its pieces, talks, makes a call, and for `WATCH_MIN` minutes (default 10) agrees with or doubts every new piece someone else lays. `SUPABASE_URL` and `SUPABASE_ANON_KEY` point it at the live project instead of the local copy.
 
 - `node tests/online/gathering.cjs <run> "<party name>"`: host and Mei each open the Gathering and tap whatever the night offers them (the host answers the table's question) until both reach the summary card. Covers the lobby, the vote, the Approach, the Battle, Notice and [LOOK CLOSER], the United Effort, Match, the table question, Ask and the summary. The party must be on Day 7. Takes about ten minutes (the Battle plays one round every 10 seconds).
 
