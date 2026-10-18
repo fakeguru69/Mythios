@@ -4,6 +4,7 @@
 // already reached. Canon's words come from the server; the labels here are the demo's (StoryAndPartyTabs).
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase, plainError } from './supabaseClient';
+import { Markable } from './Markable';
 import { NarrationBlock, NoticeBlock, ScriptButton, ScriptInline, ScriptText, TapEcho } from '../components/ChapterScriptParts';
 import { challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
 import { card, ErrorLine, goldButton, heading, input, note, quietButton } from './ui';
@@ -311,7 +312,9 @@ export default function OnlineGathering({
               <ScriptText text={e.text} className="font-['Cormorant_Garamond',serif] italic text-[20px] text-[#F4E8C1] leading-[1.35]" />
             </div>
           ) : (
-            <NarrationBlock key={k} text={e.text} />
+            <Markable key={k} source={`Gathering ${view.week}`} text={e.text}>
+              <NarrationBlock text={e.text} />
+            </Markable>
           )
         );
         break;
@@ -564,7 +567,12 @@ export default function OnlineGathering({
             )}
           </div>
         );
-        if (e.answer) nodes.push(<NarrationBlock key={`${k}-a`} text={e.answer} />);
+        if (e.answer)
+          nodes.push(
+            <Markable key={`${k}-a`} source={`Gathering ${view.week}`} text={e.answer}>
+              <NarrationBlock text={e.answer} />
+            </Markable>
+          );
         break;
       case 'ask': {
         const rows = e.rows as { q: string; sealed: boolean; note: string; group: string; by: string | null; answer: string | null }[];
@@ -574,7 +582,11 @@ export default function OnlineGathering({
               r.by ? (
                 <React.Fragment key={ri}>
                   <TapEcho label={`${r.by} · ${r.q}`} />
-                  {r.answer && <NarrationBlock text={r.answer} />}
+                  {r.answer && (
+                    <Markable source={`Garrick, at Gathering ${view.week}`} text={r.answer}>
+                      <NarrationBlock text={r.answer} />
+                    </Markable>
+                  )}
                 </React.Fragment>
               ) : null
             )}
@@ -599,7 +611,11 @@ export default function OnlineGathering({
               (e.unasked as number[]).map((ri) => (
                 <React.Fragment key={`u${ri}`}>
                   {e.unaskedLine && <NarrationBlock text={e.unaskedLine} />}
-                  {rows[ri]?.answer && <NarrationBlock text={rows[ri].answer!} />}
+                  {rows[ri]?.answer && (
+                    <Markable source={`Garrick, at Gathering ${view.week}`} text={rows[ri].answer!}>
+                      <NarrationBlock text={rows[ri].answer!} />
+                    </Markable>
+                  )}
                 </React.Fragment>
               ))}
           </div>

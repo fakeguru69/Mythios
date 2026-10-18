@@ -11,6 +11,7 @@ import { ATTRIBUTE_META, challengeSucceedOn, getTierInfo, type AttributeName } f
 import { CAMPFIRE_STORED_LINES } from '../data/campfireDaysData';
 import { ErrorLine, heading, input, note, quietButton } from './ui';
 import AskGarrick from './AskGarrick';
+import { Markable } from './Markable';
 
 type Reading = 'A' | 'B' | 'NEITHER';
 interface Lead {
@@ -512,7 +513,9 @@ export default function OnlineCampfire({
                 </div>
                 <div className="text-[12px] text-[#B7A9CC] whitespace-nowrap">{p.by.map((b) => b.name).join(', ')}</div>
               </div>
-              <ScriptText text={fillShared(p.text ?? '')} className="text-[14px] text-[#F4F1F8] leading-[1.45]" />
+              <Markable source={`${p.title}, at the fire`} text={fillShared(p.text ?? '')}>
+                <ScriptText text={fillShared(p.text ?? '')} className="text-[14px] text-[#F4F1F8] leading-[1.45]" />
+              </Markable>
               {!p.mine && !fire.narrated && reactButtons(p.key, p.myReaction)}
               {reactLine(p.agree, p.doubt)}
             </div>
@@ -747,7 +750,9 @@ export default function OnlineCampfire({
             m.kind === 'say' ? (
               <div key={i}>
                 <div className="text-[12px] font-semibold text-[#D9C9F0]">{m.mine ? `${m.name} (you)` : m.name}</div>
-                <p className="text-[14px]">{m.body}</p>
+                <Markable source={`${m.name}, at the fire`} text={m.body}>
+                  <p className="text-[14px]">{m.body}</p>
+                </Markable>
               </div>
             ) : m.kind === 'click' ? (
               <div key={i} className="rounded-lg bg-[#16233A] border border-[#3E5C8A] px-2.5 py-2" data-click>
@@ -804,10 +809,12 @@ export default function OnlineCampfire({
 
 function GarrickLine({ text }: { text: string }) {
   return (
-    <div className="rounded-xl bg-[#241638] border border-[#5E4585] px-3 py-2">
-      <div className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
-      <ScriptText text={text} className="text-[14.5px] text-[#F4F1F8] leading-[1.45]" />
-    </div>
+    <Markable source="Garrick, at the fire" text={text}>
+      <div className="rounded-xl bg-[#241638] border border-[#5E4585] px-3 py-2">
+        <div className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
+        <ScriptText text={text} className="text-[14.5px] text-[#F4F1F8] leading-[1.45]" />
+      </div>
+    </Markable>
   );
 }
 

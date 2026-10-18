@@ -3,6 +3,7 @@
 // Press and hold a friend's message to report it (review-accounts-and-invites.md §5).
 // Garrick replies when spoken to: a message that names him goes through the server function "garrick", which posts it
 // and his answer (stored lines first; the AI only for small talk). His lines carry speaker 'garrick' and no author.
+import { Markable } from './Markable';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase, plainError, type MemberRow } from './supabaseClient';
 import { card, ErrorLine, heading, input, note, quietButton } from './ui';
@@ -123,7 +124,9 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
           m.speaker === 'garrick' ? (
             <div key={m.id} className="rounded-lg px-3 py-1.5 text-[15px] bg-[#2A2013] border border-[#D4B876]/40 mr-8">
               <span className="text-[12px] text-[#D4B876] font-semibold font-['Cinzel']">Garrick</span>
-              <div className="whitespace-pre-wrap break-words">{m.body}</div>
+              <Markable source="Garrick, in the party chat" text={m.body}>
+                <div className="whitespace-pre-wrap break-words">{m.body}</div>
+              </Markable>
             </div>
           ) : m.kind === 'notice' ? (
             <p key={m.id} className={`${note} italic text-center`}>

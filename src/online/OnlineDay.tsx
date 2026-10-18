@@ -20,6 +20,7 @@ import { challengeSucceedOn, getTierInfo, type AttributeName } from '../data/myt
 import { CLASSES } from './onlineText';
 import { tonightLine } from './OnlineGathering';
 import { ErrorLine, goldButton, heading, note, quietButton } from './ui';
+import { Markable } from './Markable';
 import AskGarrick from './AskGarrick';
 
 interface Roll {
@@ -247,7 +248,11 @@ export default function OnlineDay({
     const key = `s${i}`;
     if (step.t === 'say') {
       if (!condMet(step.cond)) continue;
-      nodes.push(<NarrationBlock key={key} text={fill(step.text)} pull={step.pull} />);
+      nodes.push(
+        <Markable key={key} source={`Week ${week}, Day ${day}`} text={fill(step.text)}>
+          <NarrationBlock text={fill(step.text)} pull={step.pull} />
+        </Markable>
+      );
       // The day's fragment is in the Chest from the day's opening (Core Rules §6).
       if (step.fragment) {
         nodes.push(
@@ -280,14 +285,22 @@ export default function OnlineDay({
         const b = branchFor(opt);
         if (b && !shown.has(step.branches.indexOf(b))) {
           shown.add(step.branches.indexOf(b));
-          nodes.push(<NarrationBlock key={`${key}-b${opt}`} text={fill(b.text)} />);
+          nodes.push(
+            <Markable key={`${key}-b${opt}`} source={`Week ${week}, Day ${day}`} text={fill(b.text)}>
+              <NarrationBlock text={fill(b.text)} />
+            </Markable>
+          );
         }
       });
       if (picks.length > 0 && step.mode === 'auto') {
         step.branches.forEach((b, bi) => {
           if (!shown.has(bi)) {
             shown.add(bi);
-            nodes.push(<NarrationBlock key={`${key}-a${bi}`} text={fill(b.text)} />);
+            nodes.push(
+              <Markable key={`${key}-a${bi}`} source={`Week ${week}, Day ${day}`} text={fill(b.text)}>
+                <NarrationBlock text={fill(b.text)} />
+              </Markable>
+            );
           }
         });
       }

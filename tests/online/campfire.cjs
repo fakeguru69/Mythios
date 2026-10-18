@@ -109,10 +109,23 @@ async function asPlayer(b, who, leadIndex, act) {
     t = await body();
     log('mei changed sides:', /Mei changed sides|You changed sides/.test(t));
     await shot('3-fire-after');
+    // The notebook: tap Garrick's opener, mark it with a note.
+    await p.locator('[data-markable]').filter({ hasText: 'GARRICK' }).first().click(); await p.waitForTimeout(500);
+    await p.locator('[data-mark-bar]').getByPlaceholder('A few words, if you like').fill('Why ask for the birth night?');
+    await p.locator('[data-mark-bar]').getByRole('button', { name: 'MARK', exact: true }).click(); await p.waitForTimeout(1500);
+    log('mei marked a line:', /In your notebook: Why ask for the birth night\?/.test(await body()));
     await click('REST FOR THE NIGHT');
     t = await body();
     log('mei resting: closer:', /GARRICK/.test(t), '| what we did:', (t.match(/Mei [^\n]*\./) || [])[0], '| back later:', /come back to the fire until dawn/.test(t));
     await shot('4-resting');
+    await click('BACK TO THE PARTY'); await p.waitForTimeout(1500);
+    await click('THE CASEBOOK AND YOUR NOTEBOOK'); await p.waitForTimeout(1500);
+    t = await body();
+    log('casebook: tonight shown:', /Day \d+ · /.test(t), '| pieces:', /ON THE TABLE/.test(t));
+    await p.getByRole('tab', { name: 'My notebook' }).click(); await p.waitForTimeout(1500);
+    t = await body();
+    log('notebook: the marked line and note:', /Why ask for the birth night\?/.test(t), '| source:', /Garrick, at the fire/.test(t));
+    await shot('5-notebook');
   });
   await b.close();
 })().catch((e) => { log('FAILED', e.message.split('\n')[0]); process.exit(1); });

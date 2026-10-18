@@ -36,6 +36,7 @@ import GarrickRecap from './GarrickRecap';
 import OnlineDay from './OnlineDay';
 import OnlineChest from './OnlineChest';
 import OnlineCasebook from './OnlineCasebook';
+import { NotebookProvider } from './Markable';
 import OnlineStore from './OnlineStore';
 import OnlineCampfire from './OnlineCampfire';
 import OnlineGathering, { GatheringCard } from './OnlineGathering';
@@ -518,37 +519,42 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   // The Gathering on Day 7, live with the whole party (from the party page, or Day 7's Tonight line).
   if (inGathering) {
     return (
-      <OnlineGathering
-        partyId={party.id}
-        userId={userId}
-        members={approved}
-        onClose={() => {
-          setInGathering(false);
-          setPlayingDay(false);
-          load();
-        }}
-      />
+      <NotebookProvider partyId={party.id}>
+        <OnlineGathering
+          partyId={party.id}
+          userId={userId}
+          members={approved}
+          onClose={() => {
+            setInGathering(false);
+            setPlayingDay(false);
+            load();
+          }}
+        />
+      </NotebookProvider>
     );
   }
 
   // The last light and the Campfire (after the day's chapter; from the party page or the day's end).
   if (atFire) {
     return (
-      <OnlineCampfire
-        partyId={party.id}
-        onClose={() => {
-          setAtFire(false);
-          setPlayingDay(false);
-          load();
-        }}
-        onOpenChest={() => setInChest(true)}
-      />
+      <NotebookProvider partyId={party.id}>
+        <OnlineCampfire
+          partyId={party.id}
+          onClose={() => {
+            setAtFire(false);
+            setPlayingDay(false);
+            load();
+          }}
+          onOpenChest={() => setInChest(true)}
+        />
+      </NotebookProvider>
     );
   }
 
   // Today's chapter, from the server (the days online).
   if (playingDay) {
     return (
+      <NotebookProvider partyId={party.id}>
       <OnlineDay
         partyId={party.id}
         friends={approved.filter((r) => r.user_id !== userId).map((r) => r.character_name)}
@@ -566,6 +572,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         onOpenGathering={() => setInGathering(true)}
         timeZone={party.time_zone}
       />
+      </NotebookProvider>
     );
   }
 
@@ -713,7 +720,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
             🔥 THE CAMPFIRE
           </button>
           <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInCasebook(true)}>
-            THE CASEBOOK
+            THE CASEBOOK AND YOUR NOTEBOOK
           </button>
           <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInStore(true)}>
             THE STORE
@@ -739,7 +746,11 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       )}
 
       {/* The party chat opens when the party assembles on Day 2 (Fake Guru, 16 Oct); the server enforces it. */}
-      {chatOpen && <PartyChat partyId={party.id} userId={userId} members={members} />}
+      {chatOpen && (
+        <NotebookProvider partyId={party.id}>
+          <PartyChat partyId={party.id} userId={userId} members={members} />
+        </NotebookProvider>
+      )}
 
       {isHost && !me.session_zero_done_at && (
         <div className={card}>

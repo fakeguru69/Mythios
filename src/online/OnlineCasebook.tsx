@@ -1,10 +1,12 @@
 // The casebook (Campfire version 3, docs/design/campfire-v3-17oct.md §6): the party's own investigation, night by
 // night: each night's readings, the pieces laid at the fire with who laid them, what clicked, and the party's call
-// once the night was over. Read from the server (casebook); nothing here is graded.
+// once the night was over. Read from the server (casebook); nothing here is graded. Beside it, your own notebook:
+// every line you marked, private to you (notebook, mark_line; 0093).
 import { useCallback, useEffect, useState } from 'react';
 import { supabase, plainError } from './supabaseClient';
 import { ErrorLine, heading, note, quietButton } from './ui';
 import { asClause } from './OnlineCampfire';
+import type { Mark } from './Markable';
 
 type Reading = 'A' | 'B' | 'NEITHER';
 interface Night {
@@ -27,6 +29,19 @@ const nameList = (xs: string[]) => (xs.length < 2 ? xs.join('') : `${xs.slice(0,
 
 export default function OnlineCasebook({ partyId, onClose }: { partyId: string; onClose: () => void }) {
   const [book, setBook] = useState<Book | null>(null);
+  const [tab, setTab] = useState<'casebook' | 'notebook'>('casebook');
+  const [marks, setMarks] = useState<Mark[] | null>(null);
+  const openNotebook = async () => {
+    setTab('notebook');
+    const { data, error: e } = await supabase.rpc('notebook', { p_party: partyId });
+    if (e) return setError(plainError(e.message));
+    setMarks(data as Mark[]);
+  };
+  const takeOut = async (m: Mark) => {
+    const { data, error: e } = await supabase.rpc('mark_line', { p_party: partyId, p_source: m.source, p_quote: m.quote, p_note: '', p_remove: true });
+    if (e) return setError(plainError(e.message));
+    setMarks(data as Mark[]);
+  };
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(
@@ -62,9 +77,35 @@ export default function OnlineCasebook({ partyId, onClose }: { partyId: string; 
       </button>
       <div>
         <p className={note}>The party's own investigation</p>
-        <h2 className={`${heading} text-[19px]`}>The Casebook</h2>
+        <h2 className={`${heading} text-[19px]`}>{tab === 'casebook' ? 'The Casebook' : 'My Notebook'}</h2>
       </div>
-      {book && (
+      <div className="grid grid-cols-2 gap-1.5" role="tablist">
+        <button role="tab" aria-selected={tab === 'casebook'} onClick={() => setTab('casebook')}
+          className={`rounded-lg border py-2 text-[13px] font-semibold ${tab === 'casebook' ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}>
+          The casebook
+        </button>
+        <button role="tab" aria-selected={tab === 'notebook'} onClick={openNotebook}
+          className={`rounded-lg border py-2 text-[13px] font-semibold ${tab === 'notebook' ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}>
+          My notebook
+        </button>
+      </div>
+      {tab === 'notebook' && (
+        <div className="space-y-2.5" data-notebook>
+          <p className={note}>Only you see this. Tap any line in a chapter, at the fire or in the chat to mark it.</p>
+          {marks && marks.length === 0 && <p className={note}>Nothing marked yet.</p>}
+          {(marks ?? []).map((m) => (
+            <div key={m.id} className="rounded-xl bg-[#1A1424] border border-[#4A3A60] p-3 space-y-1.5">
+              <p className="text-[14.5px] italic text-[#F4F1F8]">“{m.quote}”</p>
+              <p className="text-[12px] text-[#B7A9CC]">{m.source}</p>
+              {m.note && <p className="text-[13.5px]">Your note: {m.note}</p>}
+              <button className={quietButton} onClick={() => takeOut(m)}>
+                Take it out
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+      {tab === 'casebook' && book && (
         <div className="flex gap-1.5 flex-wrap">
           {Array.from({ length: book.currentWeek }, (_, i) => i + 1).map((w) => (
             <button
@@ -77,9 +118,9 @@ export default function OnlineCasebook({ partyId, onClose }: { partyId: string; 
           ))}
         </div>
       )}
-      {book?.weekQuestion && <p className="text-[15px] font-semibold">{book.weekQuestion}</p>}
-      {book && book.nights.length === 0 && <p className={note}>Nothing written here yet this week.</p>}
-      {book?.nights.map((n) => (
+      {tab === 'casebook' && book?.weekQuestion && <p className="text-[15px] font-semibold">{book.weekQuestion}</p>}
+      {tab === 'casebook' && book && book.nights.length === 0 && <p className={note}>Nothing written here yet this week.</p>}
+      {tab === 'casebook' && book?.nights.map((n) => (
         <div key={n.day} className="rounded-xl bg-[#180F29] border border-[#3A2555] p-3 space-y-2" data-night={n.day}>
           <h3 className="font-['Cinzel'] font-bold text-[13px] text-[#E5C158]">
             Day {n.day} · {n.place}
