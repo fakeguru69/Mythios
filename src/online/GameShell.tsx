@@ -3,7 +3,7 @@
 // party panel; the day; the gold) and four tabs, STORY · RECORD · BAG · STORE. The story is one thread: the day's
 // chapter, and once it is done the fire below it (Day 7: the Gathering in its place). There is no party page and no
 // way "back to the party": what the party page held that is not a tab now sits in the panel.
-import { useCallback, useEffect, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { type MemberRow, type PartyRow } from './supabaseClient';
 import { useBareShell } from './ui';
 import OnlineDay, { type DayInfo } from './OnlineDay';
@@ -12,7 +12,7 @@ import OnlineGathering, { GatheringCard } from './OnlineGathering';
 import OnlineChest from './OnlineChest';
 import OnlineCasebook from './OnlineCasebook';
 import OnlineStore from './OnlineStore';
-import { EarlierFire } from './FireChat';
+import { EarlierFire, partyDayStart } from './FireChat';
 import LastNight from './LastNight';
 import { NotebookProvider } from './Markable';
 import { ATTRIBUTE_META, GEAR_TABLE, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
@@ -80,6 +80,31 @@ export default function GameShell({
     setTab(t);
     window.scrollTo({ top: 0 });
   };
+  // The day turns over at 5:00am on the party's clock (handoff ledger piece 2). An app left open overnight reloads the
+  // story at that moment, and when it comes back to the front on a new day; a failed load retries (OnlineDay).
+  const dayStartRef = useRef(partyDayStart(party.time_zone));
+  useEffect(() => {
+    const turn = () => {
+      const now = partyDayStart(party.time_zone);
+      if (now !== dayStartRef.current) {
+        dayStartRef.current = now;
+        setStoryKey((k) => k + 1);
+      }
+    };
+    const toNext = () => new Date(partyDayStart(party.time_zone)).getTime() + 86400000 - Date.now() + 1500;
+    let timer = window.setTimeout(function tick() {
+      turn();
+      timer = window.setTimeout(tick, Math.max(toNext(), 60000));
+    }, Math.max(toNext(), 1000));
+    const back = () => document.visibilityState === 'visible' && turn();
+    document.addEventListener('visibilitychange', back);
+    window.addEventListener('focus', back);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener('visibilitychange', back);
+      window.removeEventListener('focus', back);
+    };
+  }, [party.time_zone]);
   useEffect(() => {
     if (!panelOpen) return;
     const close = (e: KeyboardEvent) => e.key === 'Escape' && setPanelOpen(false);
