@@ -26,7 +26,6 @@ import {
   partyDayStart,
   sendChat,
   useChatMessages,
-  useKeepNewInView,
   type ChatMessage,
 } from './FireChat';
 
@@ -458,7 +457,6 @@ export default function OnlineCampfire({
   if (garrick && t?.evening) add(new Date().toISOString(), 'closer', <GarrickBubble text={pick(CAMPFIRE_STORED_LINES.closers, seed)} />);
 
   items.sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0));
-  const follow = useKeepNewInView(items.length);
 
   // ---- Tonight's question, pinned: before your pick, nothing of the others' (pin before peek); after, who said what. ----
   const myPick = fire.myPin?.reading ?? null;
@@ -487,7 +485,7 @@ export default function OnlineCampfire({
                 fold ▴
               </button>
             ) : (
-              <div className="text-[12px] text-[#CDB594]">pick to see the others'</div>
+              <div className="text-[12px] text-[#CDB594]">{together ? "pick to see the others'" : 'choose one'}</div>
             )}
           </div>
           <div className="space-y-1.5">
@@ -517,7 +515,7 @@ export default function OnlineCampfire({
               );
             })}
           </div>
-          {myPick && <p className="text-[13px] text-[#CDB594]">You can change it until dawn. The fire's call is made then.</p>}
+          {myPick && <p className="text-[13px] text-[#CDB594]">{together ? 'You can change it until dawn. The fire\'s call is made then.' : 'You can change it until dawn.'}</p>}
           {!myPick && together && (t?.pinned ?? []).length > 0 && (
             <p className="text-[13px] text-[#CDB594]">
               {nameList(t!.pinned)} {t!.pinned.length === 1 ? 'has' : 'have'} made a call.
@@ -566,7 +564,6 @@ export default function OnlineCampfire({
         <Composer
           placeholder="Say something at the fire"
           glow={hands.length > 0}
-          onSent={follow}
           onSend={async (text) => {
             const e = await sendChat(partyId, text, true);
             if (!e) reloadChat();
