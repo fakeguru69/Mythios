@@ -323,7 +323,8 @@ export default function OnlineCampfire({
     })
     .filter((l): l is string => Boolean(l));
 
-  // Resting for the night: Garrick's closer, what we did today, the Pull (v2.3 step 7).
+  // Resting for the night: Garrick's closer and what we did today (v2.3 step 7). The Pull is not shown again here:
+  // the chapter already ends on it, word for word (Fake Guru, 18 Oct: "how come got repeat of the last paragraph").
   if (leaving) {
     return (
       <div className="space-y-4">
@@ -339,7 +340,6 @@ export default function OnlineCampfire({
             ))}
           </Section>
         )}
-        {fire.pull && <NarrationBlock text={fire.pull} pull />}
         <p className={note}>You can come back to the fire until dawn.</p>
         <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={onClose}>
           BACK TO THE PARTY
