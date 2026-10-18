@@ -106,3 +106,14 @@ Each phase is tested in a browser against the local server, then merged.
   - **The Journal**: "Nights by the fire" (the party's nights: the question, what was laid, what clicked, the call)
     and "Your margin notes" (lines you marked, with your notes; private).
 - **Testing the fire**: a test party with pretend friends, moved by a script, so one person can play a busy fire.
+- **The chase list: yes** (Fake Guru: "think what works effectively"). Built in phase D as written above: big moments
+  in the chat (a natural 20, a badge, a crown taken, a new tier), the lost crown told privately as a chase, one
+  near-miss line at most on your day card, the next step shown on the Record.
+- **A fork read well can pay a Relic** (Fake Guru: "yes to reward since fork is due to discernment"). Checked with the
+  numbers: a Daily player earns about 20,900g a season and has about 7,000g spare that already goes on Relics (150g
+  each; `docs/numbers-pass-15oct.md`). One Relic a week found on a road is about 900g of value a season, under 5%,
+  and it adds no gold, so gear timing does not change. So: at most one road a week carries a Relic, on a trade fork,
+  on the road a careful reader would take; the other road still gets its own clue. **No gold found** (it would move
+  the gear curve).
+- **Every night's question pays off within its week** (Fake Guru's rule; the Week 1 check and its two fixes are in
+  `campfire-week1-content-18oct.md`).
