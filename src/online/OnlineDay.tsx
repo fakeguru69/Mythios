@@ -158,6 +158,12 @@ export default function OnlineDay({
   useEffect(() => {
     load();
   }, [load, reloadKey]);
+  // A first load that failed tries again by itself (handoff ledger piece 2), instead of waiting for a tap on the tab.
+  useEffect(() => {
+    if (today || !error) return;
+    const id = window.setTimeout(load, 8000);
+    return () => window.clearTimeout(id);
+  }, [today, error, load]);
 
   useEffect(() => {
     if (!today || !onInfo) return;
@@ -193,8 +199,8 @@ export default function OnlineDay({
     return (
       <div className="space-y-3">
         <ErrorLine text={error} />
-        <button className={quietButton} onClick={onClose}>
-          Back
+        <button className={quietButton} onClick={embedded ? load : onClose}>
+          {embedded ? 'Try again' : 'Back'}
         </button>
       </div>
     );
