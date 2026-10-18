@@ -38,3 +38,14 @@
   scrollbar-width: none;
 }
 
+
+/* iPhone Safari zooms in on any text box whose writing is under 16px, and stays zoomed, so the page looks cut off on
+   the right (Fake Guru, 18 Oct, iPhone 13 mini). Every box is 16px; the page never grows wider than the phone. */
+input, textarea, select {
+  font-size: 16px !important;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
+}
