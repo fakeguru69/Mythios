@@ -48,6 +48,16 @@ async function player(b, who) {
   await click('SIGN IN'); await p.waitForTimeout(2000);
   // Day 7: the STORY tab holds the Gathering itself (the game shell, phase A).
   await enterParty(p, PARTY); await p.waitForTimeout(2500);
+  // Opening the app on Day 7 must not count the friend as at the Gathering (handoff ledger piece 1): the live Gathering
+  // is mounted only after they tap to join, so no gathering_tick has gone out yet.
+  const join = p.getByRole('button', { name: /^(THE GATHERING|JOIN THE GATHERING|TONIGHT’S GATHERING)$/ }).first();
+  const ticksBefore = stats.ticks;
+  const cardShown = (await join.count()) > 0;
+  log(who, 'before joining: card shown', cardShown, '| gathering ticks sent', ticksBefore);
+  if (!cardShown || ticksBefore > 0) { log(who, 'FAIL: the Gathering must wait for the join tap'); process.exitCode = 1; }
+  if (cardShown) { await join.click(); await p.waitForTimeout(2500); }
+  log(who, 'after joining: gathering ticks sent', stats.ticks);
+  if (stats.ticks === 0) { log(who, 'FAIL: joining did not start the Gathering'); process.exitCode = 1; }
   fs.writeFileSync(`${S}/${who}-0-party.txt`, await body());
   fs.writeFileSync(`${S}/${who}-1-lobby.txt`, await body());
   await p.screenshot({ path: `${S}/${who}-1-lobby.png`, fullPage: true });

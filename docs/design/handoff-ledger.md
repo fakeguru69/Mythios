@@ -32,7 +32,7 @@ Status: TODO, IN PROGRESS, DONE, BLOCKED (say why).
 | # | Piece | Status | Done in |
 |---|---|---|---|
 | 0 | This ledger and the auditor prompt (`audit-prompt-for-another-ai-18oct.md`) | DONE | 18 Oct (the pull request that adds them) |
-| 1 | **Day 7 presence.** Do not mount the live Gathering until the friend taps to join (before that, a card with the time and "Join the Gathering"); fix the party panel's Gathering button. | TODO | |
+| 1 | **Day 7 presence.** Do not mount the live Gathering until the friend taps to join (before that, a card with the time and "Join the Gathering"); fix the party panel's Gathering button. | DONE | 18 Oct (PR for piece 1). The Gathering is mounted only after a join tap (`GameShell.tsx`, `joined`); `tests/online/gathering.cjs` asserts no tick before joining and ticks after; the panel button joins and closes the panel. |
 | 2 | **Story refresh.** Reload today at the 5:00am rollover, on a failed first load, and when the app returns to the foreground. | TODO | |
 | 3 | **Scrolling.** Tab switches keep each tab's scroll; new chat messages (yours too) scroll into view above the composer; the "+" tray gets a maximum height and scrolls. | TODO | |
 | 4 | **Fire stream correctness.** Each notice once (no duplicates of "finished the day" / "found a word"); events placed at when they happened, not at your arrival; Garrick's noticing and nudge lines stable once read; no friends' names or party promises on a solitary night. | TODO | |
