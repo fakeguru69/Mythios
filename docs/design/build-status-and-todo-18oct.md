@@ -10,13 +10,14 @@ Compiled for Fake Guru. Written from what is in the repository, the review of ph
 |---|---|
 | Safari zoom fix, repeated Pull removed, Garrick not answering before he is met (migration `0094`) | **Live** (PR #55, #56 merged; `0094` applied and checked) |
 | "Look at both" shows one action at a time | **Live** (PR #56) |
-| Phase A: the game shell (STORY · RECORD · BAG · STORE, party panel, no party page) | **Built and tested locally, pushed to branch `ccr-a7850714-ouedaq`, not merged, not on the website** |
-| Phase B: the fire as one chat inside STORY | **Built and tested locally, pushed (commit `907e6e5`), not merged, not on the website** |
-| Garrick function change for phase B (`atFire`) | **Not deployed** (and needs rework, see 2.3) |
+| Phase A: the game shell (STORY · RECORD · BAG · STORE, party panel, no party page) | **Merged and on the website (18 Oct, with the fixes below)** |
+| Phase B: the fire as one chat inside STORY | **Merged and on the website (18 Oct)** |
+| Garrick function change for phase B (`atFire`) | **Deployed, version 7 (18 Oct)**; it still trusts a client flag, see 2.3 |
+| Fixed after the review (18 Oct) | The Day 7 chat (2.1) and Garrick's morning line / time comparison (2.2). Everything else in section 2 is still open |
 | Independent review of phases A and B | Done. 35 problems reported; 13 double-checked (11 real); 22 not double-checked because the session limit ran out |
 | Phases C, D, E | Not started |
 
-The website still shows the old party page and the old fire.
+The website shows phases A and B from 18 Oct. The remaining items in section 2 are still open; the next session's full prompt is `next-build-prompt-18oct.md`.
 
 ## 2. Phase A and B: to fix before they go on the website
 
