@@ -5,6 +5,7 @@
 //   The party must be on Day 7. Against the real server: MYTHIOS_TEST_PASSWORD set. Against the local stand-in
 //   (tests/online/local-server.cjs, with `node tests/online/gathering.cjs setup-local` to make the party): any password.
 const { chromium } = require('./playwright.cjs');
+const { enterParty } = require('./shell.cjs');
 const fs = require('fs');
 const S = require('path').join(process.env.TEST_OUT || 'test-output', 'gathering-' + (process.argv[2] || 'run'));
 fs.mkdirSync(S, { recursive: true });
@@ -45,9 +46,9 @@ async function player(b, who) {
   await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
   await p.getByPlaceholder('Email').fill(`${who}@mythios.test`); await p.getByPlaceholder('Password').fill(PASSWORD);
   await click('SIGN IN'); await p.waitForTimeout(2000);
-  await p.getByRole('button', { name: new RegExp(PARTY) }).first().click(); await p.waitForTimeout(2500);
+  // Day 7: the STORY tab holds the Gathering itself (the game shell, phase A).
+  await enterParty(p, PARTY); await p.waitForTimeout(2500);
   fs.writeFileSync(`${S}/${who}-0-party.txt`, await body());
-  await p.getByRole('button', { name: /^(JOIN THE |TONIGHT.S )?GATHERING$|^THE GATHERING$/ }).first().click(); await p.waitForTimeout(2500);
   fs.writeFileSync(`${S}/${who}-1-lobby.txt`, await body());
   await p.screenshot({ path: `${S}/${who}-1-lobby.png`, fullPage: true });
   return { p, who, body, stats };
@@ -102,7 +103,7 @@ async function move({ p, who }) {
     await players[0].p.waitForTimeout(900);
     if (n % 30 === 29) log('ticks so far:', players.map((pl) => `${pl.who} ${pl.stats.ticks}`).join(', '));
     const t = await players[0].body();
-    ended = /BACK TO THE PARTY/.test(t) && /BACK TO THE PARTY/.test(await players[1].body());
+    ended = (await players[0].p.locator('[data-gathering-ended]').count()) > 0 && (await players[1].p.locator('[data-gathering-ended]').count()) > 0;
     if (Date.now() - started > 20 * 60000) { log('TIMED OUT'); break; }
   }
   for (const { p, who, body } of players) {

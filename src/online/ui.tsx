@@ -1,5 +1,5 @@
 // Shared look for the online screens: the game's night palette and Cinzel headings.
-import type { ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 
 export const card = 'rounded-2xl bg-[#1E1232] border border-[#3A2555] p-4 space-y-3';
 export const input =
@@ -11,14 +11,29 @@ export const quietButton =
 export const heading = "font-['Cinzel'] font-bold text-[#E5C158]";
 export const note = 'text-[13px] text-[#8B7A9E]';
 
+// The game shell (docs/design/one-thread-18oct.md) brings its own top bar, so while it shows, the page drops the
+// MYTHIOS title and its padding (useBareShell).
+const BareContext = createContext<(bare: boolean) => void>(() => undefined);
+export function useBareShell() {
+  const setBare = useContext(BareContext);
+  useEffect(() => {
+    setBare(true);
+    return () => setBare(false);
+  }, [setBare]);
+}
+
 export function Shell({ children }: { children: ReactNode }) {
+  const [bare, setBare] = useState(false);
   return (
-    <div className="min-h-screen bg-[#130B1F] text-[#F4F1F8] font-sans">
-      <div className="max-w-[440px] mx-auto px-4 py-6 space-y-4">
-        <h1 className={`${heading} text-[24px] text-center tracking-[3px]`}>MYTHIOS</h1>
-        {children}
+    <BareContext.Provider value={setBare}>
+      <div className="min-h-screen bg-[#130B1F] text-[#F4F1F8] font-sans">
+        {/* One tree either way (only the classes and the title change), so switching never remounts the screens. */}
+        <div className={bare ? 'max-w-[440px] mx-auto' : 'max-w-[440px] mx-auto px-4 py-6 space-y-4'}>
+          {!bare && <h1 className={`${heading} text-[24px] text-center tracking-[3px]`}>MYTHIOS</h1>}
+          {children}
+        </div>
       </div>
-    </div>
+    </BareContext.Provider>
   );
 }
 

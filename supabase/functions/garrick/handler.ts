@@ -123,7 +123,7 @@ export async function handleGarrick(req: Request, env: GarrickEnv): Promise<Resp
   if (req.method === 'OPTIONS') return new Response('ok', { headers: cors });
   if (req.method !== 'POST') return json(405, { message: 'not allowed' });
   const auth = req.headers.get('Authorization') || '';
-  let body: { party?: string; text?: string; place?: string };
+  let body: { party?: string; text?: string; place?: string; atFire?: boolean };
   try {
     body = await req.json();
   } catch {
@@ -149,11 +149,14 @@ export async function handleGarrick(req: Request, env: GarrickEnv): Promise<Resp
   const service = `Bearer ${env.serviceKey}`;
   const ctx = await rpc(env, 'garrick_state', { p_party: party }, service, env.serviceKey);
   primeGarrickRotation(ctx.history || {});
-  const routed = routeGarrickMessage(text, ctx.state as GarrickStoryState);
+  // The fire is the party chat (phase B, 18 Oct): named there, he answers from his stored lines only and never says
+  // "Malakor" (Campfire table §E: no AI free text at the fire).
+  const atFire = body.atFire === true;
+  const routed = routeGarrickMessage(text, { ...(ctx.state as GarrickStoryState), atCampfire: atFire || (ctx.state as GarrickStoryState).atCampfire });
   let reply = routed.reply.replace(/^[“"]|[”"]$/g, '');
   let ai = false;
   let filtered: string | null = null;
-  if (routed.route === 'AI_SMALL_TALK' && (ctx.aiToday ?? 0) < AI_PER_DAY) {
+  if (!atFire && routed.route === 'AI_SMALL_TALK' && (ctx.aiToday ?? 0) < AI_PER_DAY) {
     try {
       const draft = await smallTalk(env, text, ctx);
       if (draft) {

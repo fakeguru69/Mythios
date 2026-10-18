@@ -17,7 +17,7 @@ const keyBytes = (b64: string) => {
 
 type State = 'checking' | 'iphone-install' | 'unsupported' | 'blocked' | 'off' | 'on';
 
-export default function Notifications() {
+export default function Notifications({ compact = false }: { compact?: boolean }) {
   const [state, setState] = useState<State>('checking');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -77,6 +77,23 @@ export default function Notifications() {
   };
 
   if (state === 'checking' || state === 'unsupported') return null;
+  // The game shell's party panel (phase A; Fake Guru, 18 Oct: "just click this button… collapse after use"): one
+  // button while they are off, nothing once they are on.
+  if (compact) {
+    if (state === 'on') return null;
+    return (
+      <div className="space-y-1.5" data-notifications={state}>
+        {state === 'off' && (
+          <button className={goldButton} disabled={busy} onClick={turnOn}>
+            TURN ON NOTIFICATIONS
+          </button>
+        )}
+        {state === 'iphone-install' && <p className={note}>To get notifications on an iPhone, put Mythios on your home screen first, then open it from there.</p>}
+        {state === 'blocked' && <p className={note}>Notifications are blocked for this site. You can allow them again in your browser's settings.</p>}
+        <ErrorLine text={error} />
+      </div>
+    );
+  }
   return (
     <div className={card} data-notifications={state}>
       <h3 className={`${heading} text-[15px]`}>Notifications</h3>

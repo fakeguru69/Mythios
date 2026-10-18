@@ -35,7 +35,8 @@ Playwright scripts that drive the real app in a browser. The online tests also t
   - rolling the card with an Attribute Relic.
 
   It needs a day whose card has not been rolled, and about 500g.
-- `node tests/online/campfire.cjs <run> "<party name>"`: host and Mei each play today's chapter, follow different leads, and sit at the fire. Covers the board, pin before peek, the catch-up line, the bottle, the open question, the week line, the riddle (tries counted per friend), and leaving. Needs a weekday neither has finished.
+- `node tests/online/campfire.cjs <run> "<party name>"`: host and Mei each play today's chapter, take one more look at the last light (different leads), and sit at the fire, which is one chat under the day (phase B): the divider and who is here, tonight's question pinned (pin before peek, folding after a pick, changing sides), pieces laid from the "+" tray as cards with Agree and Doubt, talk in the chat, Garrick named at the fire answering from stored lines, margin notes, the Journal. Needs a weekday neither has finished.
+- `FRIEND_EMAIL=mei@mythios.test FRIEND_PASSWORD=… node tests/online/fire-friends.cjs "<party name>"`: a pretend friend for a busy fire. It plays the friend's day if needed (headless browser at `APP_URL`), sits at the fire, lays its pieces, talks, makes a call, and for `WATCH_MIN` minutes (default 10) agrees with or doubts every new piece someone else lays. `SUPABASE_URL` and `SUPABASE_ANON_KEY` point it at the live project instead of the local copy.
 
 - `node tests/online/gathering.cjs <run> "<party name>"`: host and Mei each open the Gathering and tap whatever the night offers them (the host answers the table's question) until both reach the summary card. Covers the lobby, the vote, the Approach, the Battle, Notice and [LOOK CLOSER], the United Effort, Match, the table question, Ask and the summary. The party must be on Day 7. Takes about ten minutes (the Battle plays one round every 10 seconds).
 
@@ -87,7 +88,7 @@ node tests/online/gathering.cjs local "Gathering Test"
 
 The live chat (websocket) is not served locally; the chat still loads each time it opens.
 
-Garrick's server function runs locally too: `npx tsx tests/online/local-garrick.ts &` (port 54322; the stand-in forwards `/functions/v1/garrick` to it). Set `GEMINI_API_KEY` to try the AI small talk; without it he answers from stored lines. `tests/online/ask-garrick.cjs <run> "<party>"` asks him three things in your own thread and two at the fire, and logs each reply.
+Garrick's server function runs locally too: `npx tsx tests/online/local-garrick.ts &` (port 54322; the stand-in forwards `/functions/v1/garrick` to it). Set `GEMINI_API_KEY` to try the AI small talk; without it he answers from stored lines. ("A word with Garrick" was taken out of the online screens on 18 Oct, with its test; the server functions stay.)
 
 **Notifications and the Day 4 poll** (`tests/online/notifications.cjs <run> "<party>"`): needs the party on Day 4 or 5 and a built site, because the service worker exists only in a build: `VITE_ONLINE_ONLY=1 VITE_SUPABASE_URL=http://localhost:54321 VITE_SUPABASE_ANON_KEY=x npx vite build --outDir <dir>`, then `npx vite preview --outDir <dir> --port 3000` with the stand-in running. Headless Chromium refuses push, so the card shows as blocked; the poll is fully tested. The rules in `notify_due()` are tested in SQL on the local copy by moving the party's clock (`update public.parties set day1_opens_at = day1_opens_at - interval '1 day'`). The local copy has no pg_cron: call `select public.notify_due()` yourself.
 

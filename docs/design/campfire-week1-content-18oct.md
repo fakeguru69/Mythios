@@ -261,3 +261,22 @@ Scored out of 5 for **debate** (would two friends really disagree?) and **payoff
 3. The four new leads (No hurry, The thumbed leaf, Past three doors, The worn bar), replacing four that had no payoff or repeated the chapter. Yes / change.
 4. Garrick's new nudges, the split variant, and the narrated silence for Fenmark. Yes / change.
 5. Then I build it into the game (the data, the read-backs at their points, the morning line for an unsolved puzzle) and do Week 2 the same way.
+
+## Fake Guru's rule for every night's question (18 Oct)
+
+"As long as the question is not a non-event or filler and there is payoff the next day or within the week. The payoff
+should seem to offer a better (though probably smaller) revelation to the mystery. Everyday, we know a bit more."
+
+Checked against it:
+- Day 1: answered the next morning ("So the list is hers."). A small, real revelation: the list is Meira's. Passes.
+- Day 2: answered on Day 5 ("About the last one."). Passes.
+- Day 3: answered the next evening. Passes.
+- Day 4: answered at Gathering 1 (her name on the wall). Passes.
+- **Day 5: failed.** Answered only at Gathering 2, a week later. **Fixed:** a first answer at Gathering 1, at "Whoever
+  tied them has tied a great many." (one careful hand, many times: a way of working), then the full answer at
+  Gathering 2's ledger as before.
+- **Day 6: failed.** Answered only at Gathering 2. **Fixed:** a first answer at Gathering 1, at "None of them is
+  yours." (the wall's four names are the children's, not yours, which tilts against "they want us too"), then the full
+  answer at Gathering 2's "You're marked too." as before. The turn between the two is the payoff.
+- The riddle and its quips are dropped (the riddle is cut). The fragment's meaning question stays, as a card in the
+  fire chat when the fragment is complete.

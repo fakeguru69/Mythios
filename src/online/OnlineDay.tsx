@@ -21,7 +21,6 @@ import { CLASSES } from './onlineText';
 import { tonightLine } from './OnlineGathering';
 import { ErrorLine, goldButton, heading, note, quietButton } from './ui';
 import { Markable } from './Markable';
-import AskGarrick from './AskGarrick';
 
 interface Roll {
   attr: AttributeName;
@@ -87,6 +86,17 @@ interface Today {
   claims?: string[]; // what earlier Gatherings carry into the weekdays ("G5:united-effort-lost")
 }
 
+export interface DayInfo {
+  week: number;
+  day: number;
+  gold: number;
+  attrs: Record<AttributeName, number>;
+  weaponLevel: number;
+  armorLevel: number;
+  finished: boolean;
+  gathering: boolean;
+}
+
 // An enemy's card title ("A MAN ON THE ROAD") inside a sentence: "A man on the road".
 const sentenceCase = (t: string) => (t === t.toUpperCase() ? t.charAt(0) + t.slice(1).toLowerCase() : t);
 const signed = (n: number) => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
@@ -104,6 +114,9 @@ export default function OnlineDay({
   onOpenFire,
   onOpenGathering,
   timeZone,
+  embedded = false,
+  onInfo,
+  reloadKey = 0,
 }: {
   partyId: string;
   friends: string[];
@@ -117,6 +130,13 @@ export default function OnlineDay({
   onOpenFire: () => void;
   onOpenGathering: () => void;
   timeZone: string;
+  /** In the game shell's story thread (docs/design/one-thread-18oct.md, phase A): no header, no way back to a party
+   *  page, and the shell shows the fire (or the Gathering) below the day itself. */
+  embedded?: boolean;
+  /** The shell's top bar: the day, the gold, and whether the day is done (so the fire can follow it). */
+  onInfo?: (info: DayInfo) => void;
+  /** Bumped by the shell when the story tab is shown again, so gold spent in the Store shows at once. */
+  reloadKey?: number;
 }) {
   const [today, setToday] = useState<Today | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -137,7 +157,22 @@ export default function OnlineDay({
   }, [partyId]);
   useEffect(() => {
     load();
-  }, [load]);
+  }, [load, reloadKey]);
+
+  useEffect(() => {
+    if (!today || !onInfo) return;
+    onInfo({
+      week: today.week,
+      day: today.day,
+      gold: today.progress.gold,
+      attrs: today.progress.attrs,
+      weaponLevel: today.progress.weapon_level,
+      armorLevel: today.progress.armor_level,
+      // A late joiner's Day 1 leads on to the party's day first (the ON TO button); the fire waits until then.
+      finished: Boolean(today.mine.finished_at) && !nextDay,
+      gathering: !today.chapter,
+    });
+  }, [today, onInfo, nextDay]);
 
   const call = async (fn: string, args: Record<string, unknown>) => {
     setBusy(true);
@@ -174,7 +209,7 @@ export default function OnlineDay({
   const roadFill = fillWith(friends);
   let fill = roadFill;
 
-  const header = (
+  const header = embedded ? null : (
     <div className="flex items-center justify-between gap-2">
       <button className={quietButton} onClick={onClose}>
         ← The party
@@ -193,7 +228,7 @@ export default function OnlineDay({
         </p>
         <RoadSoFar recaps={today.recaps} missed={today.missed} fill={roadFill} />
         <DaySevenLine partyId={partyId} timeZone={timeZone} />
-        <ScriptButton label="THE GATHERING" onClick={onOpenGathering} />
+        {!embedded && <ScriptButton label="THE GATHERING" onClick={onOpenGathering} />}
       </div>
     );
   }
@@ -719,8 +754,8 @@ export default function OnlineDay({
       }}
       onClose={onClose}
       onOpenFire={onOpenFire}
+      embedded={embedded}
       endRef={endRef}
-      askGarrick={<AskGarrick partyId={partyId} place="thread" />}
     />
   );
 }
@@ -737,8 +772,8 @@ function DayBody({
   onFinish,
   onClose,
   onOpenFire,
+  embedded,
   endRef,
-  askGarrick,
 }: {
   header: React.ReactNode;
   title: string;
@@ -751,8 +786,8 @@ function DayBody({
   onFinish: () => void;
   onClose: () => void;
   onOpenFire: () => void;
+  embedded?: boolean;
   endRef: React.RefObject<HTMLDivElement | null>;
-  askGarrick?: React.ReactNode;
 }) {
   useEffect(() => {
     if (reachedSummary && !finished) onFinish();
@@ -767,10 +802,9 @@ function DayBody({
       </div>
       <div className="space-y-3">{nodes}</div>
       <ErrorLine text={error} />
-      {/* After the day, a private word with Garrick in your own thread (Core Rules §1). */}
-      {reachedSummary && finished && askGarrick}
       {/* After the day: the last light, then the fire (the Campfire opens once the day is done, v2.3 §D). */}
-      {reachedSummary && finished && (
+      {/* In the game shell the fire follows below the day in the same thread, so neither button is needed. */}
+      {reachedSummary && finished && !embedded && (
         <button
           className="w-full py-2.5 rounded-lg bg-[#2A2018] border border-[#F0A552]/70 font-['Cinzel'] font-bold text-[13px] text-[#F0A552]"
           onClick={onOpenFire}
@@ -778,7 +812,7 @@ function DayBody({
           🔥 THE LAST LIGHT
         </button>
       )}
-      {reachedSummary && (
+      {reachedSummary && !embedded && (
         <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={onClose}>
           BACK TO THE PARTY
         </button>

@@ -3,6 +3,7 @@
 // in a build: VITE_ONLINE_ONLY=1 vite build, then vite preview --port 3000).
 // Run: MYTHIOS_TEST_PASSWORD=local node tests/online/notifications.cjs <run> "<party name>"
 const { chromium } = require('./playwright.cjs');
+const { enterParty, openPanel } = require('./shell.cjs');
 const fs = require('fs');
 const S = require('path').join(process.env.TEST_OUT || 'test-output', 'notifications-' + (process.argv[2] || 'run'));
 fs.mkdirSync(S, { recursive: true });
@@ -21,12 +22,13 @@ const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.j
   await p.getByPlaceholder('Email').fill('host@mythios.test'); await p.getByPlaceholder('Password').fill(process.env.MYTHIOS_TEST_PASSWORD);
   await click('SIGN IN'); await p.waitForTimeout(2000);
   log('shelf card:', await p.locator('[data-notifications]').getAttribute('data-notifications').catch(() => 'none'));
-  await p.getByRole('button', { name: new RegExp(PARTY) }).first().click(); await p.waitForTimeout(2500);
+  // The party panel holds the notifications button and the Gathering box (the game shell, phase A).
+  await enterParty(p, PARTY); await openPanel(p);
   const box = p.locator('[data-notifications]');
   log('party card:', await box.getAttribute('data-notifications').catch(() => 'none'));
   if (await box.getByRole('button', { name: 'TURN ON NOTIFICATIONS' }).count()) {
     await box.getByRole('button', { name: 'TURN ON NOTIFICATIONS' }).click(); await p.waitForTimeout(6000);
-    log('after turning on:', await box.getAttribute('data-notifications'), '|', (await box.innerText()).replace(/\n/g, ' / '));
+    log('after turning on: the button is gone:', (await box.count()) === 0);
   }
   const poll = p.locator('[data-gathering-poll]');
   log('poll shown:', await poll.count());

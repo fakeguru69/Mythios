@@ -62,9 +62,12 @@ export default function OnlineGathering({
   onClose,
   userId,
   members,
+  embedded = false,
 }: {
   partyId: string;
   onClose: () => void;
+  /** In the game shell's story thread (phase A): no header, no way back to a party page. */
+  embedded?: boolean;
   /** For the table talk on the Gathering screen (gameplay verdict, 17 Oct). */
   userId?: string;
   members?: MemberRow[];
@@ -159,7 +162,7 @@ export default function OnlineGathering({
     setBusy(false);
   };
 
-  const header = (
+  const header = embedded ? null : (
     <div className="flex items-center justify-between gap-2">
       <button className={quietButton} onClick={onClose}>
         ← The party
@@ -675,7 +678,8 @@ export default function OnlineGathering({
             GO ON
           </button>
         ))}
-      {view.endedAt && (
+      {view.endedAt && embedded && <div data-gathering-ended />}
+      {view.endedAt && !embedded && (
         <button className={goldButton} onClick={onClose}>
           BACK TO THE PARTY
         </button>

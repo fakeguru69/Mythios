@@ -1,17 +1,33 @@
-// The Campfire online (canon docs/canon/mythios-campfire-table-v2.md v2.3; redesigned as version 3,
-// docs/design/campfire-v3-17oct.md). First the last light (one Fan Out lead, or straight to the fire), then the fire:
-// the table (every friend's pieces, agree and doubt), tonight's question (pin before peek, changes until dawn), the
-// fragment and the rest, over one thread of what happens around the fire, with Garrick's card for your next step.
-// Everything Garrick says is stored text; he never grades a theory. The server (campfire, fire_table, fire_lay,
-// fire_react, fire_say, pin_theory, fan_out_roll, leave_note, riddle_guess) keeps all of it.
+// The fire, as one chat (docs/design/one-thread-18oct.md, phase B; Fake Guru, 18 Oct: "fold the complicated campfire
+// into one chat interface"). It sits in the story thread under the finished day:
+//   1. "The light is going": one more look (the last light's leads, a roll, the find) or sit by the fire.
+//   2. A divider with who is here, then "Around the fire tonight" (what each friend did today, good news only).
+//   3. Tonight's question, the one pinned thing (A, B or neither; pin before peek; changeable until dawn).
+//   4. One stream, in time order: Garrick's stored lines at their moments (MYTHIOS narration on a narrated night), the
+//      party's talk (party_messages: the fire is the party chat), pieces laid as cards with Agree and Doubt, "changed
+//      sides", clicks, words found, and the fragment card with its meaning question once the fragment is whole.
+//   5. The composer at the foot, with a "+" tray: lay a clue, your fragment.
+// Everything Garrick says here is stored text; named in the chat at the fire, his stored lines only (canon §E).
+// The server keeps all of it (campfire, fire_table, fire_lay, fire_react, pin_theory, fan_out_roll, leave_note).
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { supabase, plainError } from './supabaseClient';
-import { NarrationBlock, NoticeBlock, ScriptText, fillScriptTokens } from '../components/ChapterScriptParts';
+import { supabase, plainError, type MemberRow } from './supabaseClient';
+import { NoticeBlock, ScriptText, fillScriptTokens } from '../components/ChapterScriptParts';
 import { ATTRIBUTE_META, challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
 import { CAMPFIRE_STORED_LINES } from '../data/campfireDaysData';
-import { ErrorLine, heading, input, note, quietButton } from './ui';
-import AskGarrick from './AskGarrick';
+import { ErrorLine } from './ui';
 import { Markable } from './Markable';
+import {
+  ChatBubble,
+  Composer,
+  GarrickBubble,
+  NarrationMessage,
+  ReportBox,
+  SmallLine,
+  partyDayStart,
+  sendChat,
+  useChatMessages,
+  type ChatMessage,
+} from './FireChat';
 
 type Reading = 'A' | 'B' | 'NEITHER';
 interface Lead {
@@ -46,11 +62,9 @@ interface Fire {
   chosen: boolean;
   place: string;
   narrated: boolean;
-  // Before choosing
   leads?: Lead[];
   progress?: { attrs: Record<AttributeName, number> };
   dc?: number;
-  // At the fire
   tone?: 'wry' | 'quiet';
   cupNight?: boolean;
   opener?: string;
@@ -58,34 +72,15 @@ interface Fire {
   forkB?: string;
   callback?: string | null;
   nudge?: string | null;
-  pull?: string | null;
-  riddle?: {
-    q: string;
-    maxTries: number;
-    wrong: number;
-    gaveUp: boolean;
-    solved: boolean;
-    solvedBy: string | null;
-    answer: string | null;
-    quip: string | null;
-  } | null;
   members?: Member[];
   firstHere?: boolean;
   myFanOut?: { lead: string | null; roll: Roll | null; hint: 1 | 2 | null; letter: string | null; lateLine: string | null; glimpse?: string | null };
   board?: { id: string; place: string; finders: string[]; glimpsedBy?: string[]; clueTitle: string; clueText: string }[];
   myPin?: { reading: Reading; line: string | null } | null;
-  pins?: { name: string; reading: Reading; line: string | null }[];
-  catchUp?: { name: string; reading: Reading }[];
-  pinCount?: number;
-  weekPins?: { name: string; day: number; reading: Reading }[] | null;
-  weekForks?: Record<string, { A: string; B: string }> | null;
   notes?: { kind: 'bottle' | 'question' | 'meaning' | 'week'; name: string; body: string; mine: boolean; day: number }[];
   fragment?: { words: number; text: string | null; solvers: string[]; hintOpen: boolean };
   meaningQuestion?: string | null;
-  weekQuestion?: string | null;
   noticings?: { kind: keyof typeof CAMPFIRE_STORED_LINES.noticingTemplates; name: string }[];
-  atFire?: number;
-  riddleRight?: boolean;
 }
 
 // The fire's table (migration 0092): pieces with who laid them, agree and doubt, the thread, readings after your own pin.
@@ -96,6 +91,7 @@ interface Piece {
   text: string | null;
   attr?: AttributeName;
   by: { id: string; name: string }[];
+  at?: string;
   mine: boolean;
   agree: string[];
   doubt: string[];
@@ -106,21 +102,10 @@ interface FireTable {
   evening: boolean;
   pieces: Piece[];
   hands: { kind: 'notice' | 'pass' | 'press'; title: string; attr?: AttributeName; text: string }[];
-  clicks: { text: string; names: string[]; solves: boolean }[];
-  puzzle: string | null;
-  thread: { kind: 'say' | 'pinned' | 'changed' | 'click' | 'laid'; name: string | null; mine: boolean | null; body: string }[];
+  thread: { kind: 'say' | 'pinned' | 'changed' | 'click' | 'laid'; name: string | null; mine: boolean | null; body: string; at: string }[];
   pinned: string[];
-  readings: { id: string; name: string; reading: Reading; line: string | null; mine: boolean; agree: string[]; doubt: string[]; myReaction: 'agree' | 'doubt' | null }[] | null;
-  leaning: 'split' | 'same' | null;
-  lastCall: {
-    forkA: string | null;
-    forkB: string | null;
-    reading: Reading | null;
-    split: boolean;
-    backers: Partial<Record<Reading, string[]>>;
-  } | null;
+  readings: { id: string; name: string; reading: Reading; line: string | null; mine: boolean }[] | null;
 }
-type FireTab = 'table' | 'question' | 'fragment' | 'more';
 
 const signed = (n: number) => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
 // "Mei thinks the list is a warning." A sentence's first word drops its capital unless it is a name.
@@ -131,29 +116,33 @@ export const asClause = (s: string) => {
   return LOWER_STARTS.has(first) ? t.charAt(0).toLowerCase() + t.slice(1) : t;
 };
 const pick = <T,>(list: readonly T[], seed: number) => list[Math.abs(seed) % list.length];
+const nameList = (xs: string[]) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
+const later = (iso: string, ms: number) => new Date(new Date(iso).getTime() + ms).toISOString();
 
 export default function OnlineCampfire({
   partyId,
-  onClose,
+  userId,
+  members: memberRows,
+  chatOpen,
+  timeZone,
   onOpenChest,
 }: {
   partyId: string;
-  onClose: () => void;
+  userId: string;
+  members: MemberRow[];
+  /** The party has met (Week 1 Day 2): the fire is the party's chat. Before that, each friend sits alone. */
+  chatOpen: boolean;
+  timeZone: string;
   onOpenChest: () => void;
 }) {
   const [fire, setFire] = useState<Fire | null>(null);
+  const [table, setTable] = useState<FireTable | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
-  const [reading, setReading] = useState<Reading | null>(null);
-  const [pinLine, setPinLine] = useState('');
-  const [drafts, setDrafts] = useState<Record<string, string>>({});
-  const [riddleGuess, setRiddleGuess] = useState('');
-  const [riddleAsked, setRiddleAsked] = useState(false);
-  const [riddleNote, setRiddleNote] = useState<string | null>(null);
-  const [leaving, setLeaving] = useState(false);
-  const [table, setTable] = useState<FireTable | null>(null);
-  const [tab, setTab] = useState<FireTab>('table');
-  const [sayText, setSayText] = useState('');
+  const [looking, setLooking] = useState(false); // "One more look" chosen
+  const [reporting, setReporting] = useState<ChatMessage | null>(null);
+  const [meaningDraft, setMeaningDraft] = useState<string | null>(null);
+  const [questionOpen, setQuestionOpen] = useState(false); // after your pick, the pinned strip folds to one line
 
   const load = useCallback(async () => {
     const { data, error: e } = await supabase.rpc('campfire', { p_party: partyId });
@@ -164,16 +153,16 @@ export default function OnlineCampfire({
       if (tb) setTable(tb as FireTable);
     }
   }, [partyId]);
-  const loadTable = useCallback(async () => {
-    const { data } = await supabase.rpc('fire_table', { p_party: partyId });
-    if (data) setTable(data as FireTable);
-  }, [partyId]);
   useEffect(() => {
     load();
-    // Friends arrive, pin and solve while you sit here (live play, design §3.5).
-    const t = window.setInterval(load, 20000);
+    // Friends arrive, lay pieces and pin while you sit here.
+    const t = window.setInterval(load, 12000);
     return () => window.clearInterval(t);
   }, [load]);
+
+  const atFire = Boolean(fire?.chosen);
+  const together = chatOpen && Boolean(fire) && !fire!.narrated;
+  const { messages, reload: reloadChat } = useChatMessages(partyId, atFire && together);
 
   const call = async (fn: string, args: Record<string, unknown>) => {
     setBusy(true);
@@ -187,119 +176,6 @@ export default function OnlineCampfire({
     setFire(data as Fire);
     return data as Fire;
   };
-
-  // Once at the fire (after the last light), fetch the table.
-  useEffect(() => {
-    if (fire?.chosen) loadTable();
-  }, [fire?.chosen, fire?.week, fire?.day, loadTable]);
-
-  const seed = useMemo(() => (fire ? fire.week * 7 + fire.day : 0), [fire?.week, fire?.day]);
-
-  const back = (
-    <button className={quietButton} onClick={onClose}>
-      ← The party
-    </button>
-  );
-  if (!fire) {
-    return (
-      <div className="space-y-3">
-        {back}
-        {error ? <ErrorLine text={error} /> : <p className="text-center text-[#B7A9CC]">…</p>}
-      </div>
-    );
-  }
-
-  const title = (
-    <div>
-      <p className={note}>
-        Week {fire.week} · Day {fire.day}
-      </p>
-      <h2 className={`${heading} text-[19px]`}>{fire.chosen ? 'The Campfire' : 'The last light'}</h2>
-    </div>
-  );
-
-  // ---- The last light: one lead, or straight to the fire (design Part 1). ----
-  if (!fire.chosen) {
-    const attrs = fire.progress?.attrs ?? ({} as Record<AttributeName, number>);
-    const dc = fire.dc ?? 6;
-    return (
-      <div className="space-y-4">
-        {back}
-        {title}
-        <p className={note}>One more look, or the fire.</p>
-        <div className="space-y-2.5">
-          {(fire.leads ?? []).map((lead) => (
-            <div key={lead.id} className="p-2.5 rounded-xl bg-[#180F29] border border-[#3A2555] space-y-1.5">
-              <div className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">{lead.place}</div>
-              <div className="grid grid-cols-2 gap-1.5">
-                {lead.actions.map((a) => {
-                  const score = attrs[a.attr] ?? 10;
-                  return (
-                    <button
-                      key={a.attr}
-                      disabled={busy}
-                      onClick={() => call('fan_out_roll', { p_lead: lead.id, p_attr: a.attr })}
-                      className="py-2 px-2 rounded-lg bg-[#D4B876]/15 border border-[#D4B876]/70 text-left disabled:opacity-50"
-                    >
-                      <div className="font-['Cinzel'] font-bold text-[11.5px] uppercase" style={{ color: ATTRIBUTE_META[a.attr]?.color }}>
-                        {a.attr} {score}
-                      </div>
-                      <div className="text-[12.5px] text-[#E6E0F0] leading-snug">
-                        {a.verb} · {challengeSucceedOn(dc, getTierInfo(score).bonus)}+
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </div>
-        <button
-          disabled={busy}
-          onClick={() => call('fan_out_fire', {})}
-          className="w-full py-2 px-3 rounded-lg bg-[#2A2018] border border-[#F0A552]/70 font-['Cinzel'] font-bold text-[12px] text-[#F0A552] uppercase"
-        >
-          {fire.narrated ? 'Rest for the night' : 'Head straight to the fire'}
-        </button>
-        <ErrorLine text={error} />
-      </div>
-    );
-  }
-
-  // ---- The fire, version 3 (docs/design/campfire-v3-17oct.md): the table, tonight's question, the fragment and
-  // the rest, over one thread of what happens around the fire; Garrick's card says what is yours to do next. ----
-  const members = fire.members ?? [];
-  const me = members.find((m) => m.me);
-  const myName = me?.name ?? 'You';
-  const readingText = (r: Reading, forks?: { A: string; B: string }) =>
-    r === 'A' ? forks?.A ?? fire.forkA ?? '' : r === 'B' ? forks?.B ?? fire.forkB ?? '' : 'Neither.';
-  const notes = fire.notes ?? [];
-  const othersHere = members.filter((m) => !m.me && m.here);
-  const garrick = !fire.narrated;
-  const frag = fire.fragment;
-  const fragDone = Boolean(frag?.text);
-  const t = table;
-  // Friends' names in shared lines, as in your own chapter ({F1} is the first friend after you).
-  const fillShared = (x: string) =>
-    fillScriptTokens(x, { friends: members.filter((m) => !m.me).map((m) => m.name), partySize: members.length });
-  const nameList = (xs: string[]) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
-
-  const note1 = (kind: string) => notes.find((n) => n.kind === kind && n.mine)?.body ?? '';
-  const draft = (kind: string) => drafts[kind] ?? note1(kind);
-  const setDraft = (kind: string, v: string) => setDrafts((d) => ({ ...d, [kind]: v }));
-  const saveNote = async (kind: string) => {
-    const ok = await call('leave_note', { p_kind: kind, p_body: draft(kind) });
-    if (ok) setDrafts((d) => ({ ...d, [kind]: undefined as unknown as string }));
-  };
-  const noteBox = (kind: 'meaning' | 'week', placeholder: string, button: string) => (
-    <div className="flex gap-2">
-      <input className={input} maxLength={200} placeholder={placeholder} value={draft(kind)} onChange={(e) => setDraft(kind, e.target.value)} />
-      <button className={quietButton} disabled={busy || !draft(kind).trim() || draft(kind) === note1(kind)} onClick={() => saveNote(kind)}>
-        {button}
-      </button>
-    </div>
-  );
-
   const callTable = async (fn: string, args: Record<string, unknown>) => {
     setBusy(true);
     setError(null);
@@ -308,521 +184,431 @@ export default function OnlineCampfire({
     if (e) return setError(plainError(e.message));
     setTable(data as FireTable);
   };
+  useEffect(() => {
+    if (atFire) supabase.rpc('fire_table', { p_party: partyId }).then(({ data }) => data && setTable(data as FireTable));
+  }, [atFire, partyId, fire?.week, fire?.day]);
 
-  // What we did today (v2.3 step 7): one line per friend, only for what they really did.
-  const whatWeDid = members
-    .map((m) => {
-      const parts: string[] = [];
-      if (m.passed) parts.push(`passed today's Challenge at ${fire.place}`);
-      else if (m.scraped) parts.push(`was defeated at ${fire.place}`);
-      if (m.gaveTo) parts.push(`gave a Relic to ${[...new Set(m.gaveTo.split(', '))].join(', ')}`);
-      if (m.lead) parts.push('brought back a clue from the last light');
-      if (m.words >= 2) parts.push("found both missing words in today's fragment");
-      else if (m.words === 1) parts.push("found a missing word in today's fragment");
-      return parts.length ? `${m.name} ${parts.join(' · ')}.` : null;
-    })
-    .filter((l): l is string => Boolean(l));
+  const seed = useMemo(() => (fire ? fire.week * 7 + fire.day : 0), [fire?.week, fire?.day]);
 
-  // Resting for the night: Garrick's closer and what we did today (v2.3 step 7). The Pull is not shown again here:
-  // the chapter already ends on it, word for word (Fake Guru, 18 Oct: "how come got repeat of the last paragraph").
-  if (leaving) {
+  if (!fire) return error ? <ErrorLine text={error} /> : <p className="text-center text-[#B7A9CC]">…</p>;
+
+  // ---- 1. The light is going: one more look, or the fire (a fork: choosing one closes the other). ----
+  if (!fire.chosen) {
+    const attrs = fire.progress?.attrs ?? ({} as Record<AttributeName, number>);
+    const dc = fire.dc ?? 6;
     return (
-      <div className="space-y-4">
-        {back}
-        {title}
-        {garrick ? <GarrickLine text={pick(CAMPFIRE_STORED_LINES.closers, seed)} /> : null}
-        {whatWeDid.length > 0 && !fire.narrated && (
-          <Section label="WHAT WE DID TODAY">
-            {whatWeDid.map((l) => (
-              <p key={l} className="text-[14px]">
-                {l}
-              </p>
+      <div className="space-y-3" data-light-going>
+        <div className="text-[13px] font-bold tracking-[1px] text-[#8F82A6]">THE LIGHT IS GOING</div>
+        {!looking ? (
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              disabled={busy}
+              onClick={() => setLooking(true)}
+              className="min-h-[52px] rounded-2xl border border-[#8A6E34] text-[#E5C158] font-bold text-[16px] disabled:opacity-50"
+            >
+              One more look
+            </button>
+            <button
+              disabled={busy}
+              onClick={() => call('fan_out_fire', {})}
+              className="min-h-[52px] rounded-2xl bg-[#F0A552] text-[#1A0F26] font-bold text-[16px] disabled:opacity-50"
+            >
+              Sit by the fire
+            </button>
+          </div>
+        ) : (
+          <div className="space-y-2.5" data-leads>
+            <p className="text-[15px] text-[#D9D1E6]">One more look before dark. Where?</p>
+            {(fire.leads ?? []).map((lead) => (
+              <div key={lead.id} className="p-3 rounded-2xl bg-[#180F29] border border-[#3A2555] space-y-2">
+                <div className="font-['Cinzel'] font-bold text-[15px] text-[#F4F1F8]">{lead.place}</div>
+                <div className="grid grid-cols-2 gap-2">
+                  {lead.actions.map((a) => {
+                    const score = attrs[a.attr] ?? 10;
+                    return (
+                      <button
+                        key={a.attr}
+                        disabled={busy}
+                        onClick={() => call('fan_out_roll', { p_lead: lead.id, p_attr: a.attr })}
+                        className="py-2 px-2.5 rounded-xl bg-[#D4B876]/12 border border-[#D4B876]/70 text-left disabled:opacity-50"
+                      >
+                        <div className="font-['Cinzel'] font-bold text-[13px] uppercase" style={{ color: ATTRIBUTE_META[a.attr]?.color }}>
+                          {a.attr} {score}
+                        </div>
+                        <div className="text-[15px] text-[#E6E0F0] leading-snug">
+                          {a.verb} · you succeed on {challengeSucceedOn(dc, getTierInfo(score).bonus)}+
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             ))}
-          </Section>
+          </div>
         )}
-        <p className={note}>You can come back to the fire until dawn.</p>
-        <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={onClose}>
-          BACK TO THE PARTY
-        </button>
         <ErrorLine text={error} />
       </div>
     );
   }
 
-  const my = fire.myFanOut;
-  const myLead = fire.board?.find((b) => b.id === my?.lead);
-  // A pass at the last light also shows one more lead (gameplay verdict C4).
-  const myGlimpse = fire.board?.find((b) => b.id === my?.glimpse);
-  const riddleOpen = fire.riddle && (fire.tone !== 'quiet' || riddleAsked || fire.riddle.wrong > 0 || fire.riddle.solved);
-  const triesLeft = fire.riddle ? fire.riddle.maxTries - fire.riddle.wrong : 0;
-  const readingsShown: Reading[] = ['A', 'B', 'NEITHER'];
+  // ---- 2 to 5. The fire. ----
+  const members = fire.members ?? [];
+  const me = members.find((m) => m.me);
+  const t = table;
+  const garrick = !fire.narrated;
+  const frag = fire.fragment;
+  const fragDone = Boolean(frag?.text);
   const pieces = t?.pieces ?? [];
   const hands = t?.hands ?? [];
-  const takenLeads = new Set(pieces.filter((p) => p.kind === 'lead').map((p) => p.key.slice(5)));
-  const untaken = (fire.board ?? []).filter((b) => !takenLeads.has(b.id));
-  const solved = (t?.clicks ?? []).find((c) => c.solves);
+  const notes = fire.notes ?? [];
+  const fillShared = (x: string) =>
+    fillScriptTokens(x, { friends: members.filter((m) => !m.me).map((m) => m.name), partySize: members.length });
+  const readingText = (r: Reading) => (r === 'A' ? fire.forkA ?? '' : r === 'B' ? fire.forkB ?? '' : 'Neither.');
+  const arrival = me?.visitedAt ?? new Date().toISOString();
+  const here = members.filter((m) => m.visitedAt);
 
-  // Last night's call, by name, never counts (v3 §5).
-  const last = t?.lastCall;
-  const lastForks = last ? { A: last.forkA ?? '', B: last.forkB ?? '' } : undefined;
-  const backers = (r: Reading) => (last?.backers?.[r] ?? []) as string[];
-  const lastLine = !last
-    ? null
-    : last.reading
-      ? `Last night the fire called it: ${asClause(readingText(last.reading, lastForks)).replace(/\.$/, '')}. ${nameList(backers(last.reading))} said so${
-          readingsShown.filter((r) => r !== last.reading).flatMap(backers).length
-            ? `; ${nameList(readingsShown.filter((r) => r !== last.reading).flatMap(backers))} held out`
-            : ''
-        }.`
-      : last.split
-        ? `Last night the fire was split. ${readingsShown
-            .filter((r) => backers(r).length)
-            .map((r) => `${nameList(backers(r))}: ${asClause(readingText(r, lastForks)).replace(/\.$/, '')}`)
-            .join('; ')}.`
-        : null;
+  // "Around the fire tonight": good news only, one sentence per friend.
+  const aroundLines = members
+    .map((m) => {
+      const parts: string[] = [];
+      if (m.passed) parts.push(`passed today's Challenge at ${fire.place}`);
+      if (m.gaveTo) parts.push(`gave a Relic to ${nameList([...new Set(m.gaveTo.split(', '))])}`);
+      if (m.lead) parts.push('brought back a clue from the last light');
+      if (m.words >= 2) parts.push("found both missing words in today's fragment");
+      else if (m.words === 1) parts.push("found a missing word in today's fragment");
+      return parts.length ? `${m.me ? 'You' : m.name} ${nameList(parts)}.` : null;
+    })
+    .filter((l): l is string => Boolean(l));
 
-  // Garrick's card, yours alone: the one thing to do next (v3 §5).
-  let cardText: string | null = null;
-  let cardAction: { label: string; run: () => void } | null = null;
-  if (!fire.narrated) {
-    if (hands.length) {
-      cardText = 'You noticed something today. Lay it down?';
-      cardAction = { label: 'THE TABLE', run: () => setTab('table') };
-    } else if (!fire.myPin) {
-      cardText = t?.evening ? "The fire's call closes at dawn." : "Tonight's question is still open for you. Pin your reading before you look at the others'.";
-      cardAction = { label: "TONIGHT'S QUESTION", run: () => setTab('question') };
-    } else if (t?.leaning === 'split') {
-      cardText = 'Good. Argue it out. I listen better than I talk.';
-    } else if (t?.leaning === 'same') {
-      cardText = 'Everyone leans the same way. What would it take to be wrong?';
-    } else {
-      cardText = 'Sit as long as you like. You can change your reading until dawn.';
+  // ---- The stream: everything said and done at the fire, in time order. ----
+  type Item = { at: string; key: string; node: React.ReactNode };
+  const items: Item[] = [];
+  const add = (at: string, key: string, node: React.ReactNode) => items.push({ at, key, node });
+
+  // Arriving: the cup, his greeting and opener, what he notices (stored lines, v2.3 §B, §C, §I).
+  if (fire.cupNight) add(arrival, 'cup', <NarrationMessage text={CAMPFIRE_STORED_LINES.cupNightStageDirection} />);
+  if (fire.narrated && fire.opener) add(later(arrival, 1), 'opener', <NarrationMessage text={fire.opener} />);
+  if (garrick && fire.firstHere) add(later(arrival, 1), 'greet', <GarrickBubble text={CAMPFIRE_STORED_LINES.firstArrivalGreeting} />);
+  if (garrick && fire.opener) add(later(arrival, 2), 'opener', <GarrickBubble text={fire.opener} />);
+  if (garrick)
+    (fire.noticings ?? []).forEach((n, i) =>
+      add(later(arrival, 3 + i), `notice-${i}`, <GarrickBubble text={CAMPFIRE_STORED_LINES.noticingTemplates[n.kind].replace('{friend}', n.name)} />)
+    );
+  // Your own find at the last light: the roll, the late line, the first-letter hint, the glimpse.
+  const my = fire.myFanOut;
+  const myLead = fire.board?.find((b) => b.id === my?.lead);
+  const myGlimpse = fire.board?.find((b) => b.id === my?.glimpse);
+  if (my?.lead && my.roll && myLead)
+    add(
+      later(arrival, -1),
+      'myfind',
+      <div className="rounded-2xl border border-[#3A2555] bg-[#180F29] p-3 space-y-1.5" data-my-find>
+        <div className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">The last light · {myLead.place}</div>
+        <p className="font-mono text-[14px] text-[#D8CEE8]">
+          🎲 {my.roll.d20} + {my.roll.attr} {my.roll.score} (+{my.roll.bonus}) − DC {my.roll.dc} = {signed(my.roll.net)}{' '}
+          <span className={my.roll.pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}>{my.roll.pass ? 'PASSED' : 'FAILED'}</span>
+        </p>
+        {!my.roll.pass && my.lateLine && <ScriptText text={my.lateLine} className="text-[16px] text-[#D9D1E6]" />}
+        {my.letter && frag?.hintOpen && (
+          <p className="text-[15px] text-[#6FD39A]">
+            Word {my.hint} of today's fragment starts with “{my.letter}”.
+          </p>
+        )}
+        {myGlimpse && <p className="text-[15px] text-[#B7A9CC]">On the way back, the last of the light shows you one more place: {myGlimpse.place}.</p>}
+      </div>
+    );
+  // Friends arriving.
+  if (together)
+    members
+      .filter((m) => !m.me && m.visitedAt)
+      .forEach((m) => add(m.visitedAt!, `came-${m.id}`, <SmallLine>{m.name} came to the fire.</SmallLine>));
+
+  // Pieces on the table, each a card where it was laid.
+  pieces.forEach((p) =>
+    add(
+      p.at ?? arrival,
+      `piece-${p.key}`,
+      <div className="rounded-2xl border border-[#3F5E86] bg-[#111A28] p-3 space-y-2" data-piece={p.key}>
+        <div className="flex justify-between gap-2 items-baseline">
+          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#8DB4F5] uppercase">
+            On the table · {p.kind === 'notice' && p.attr ? `${p.title} · ${p.attr}` : p.title}
+          </div>
+          <div className="text-[13px] text-[#A9B9D3] whitespace-nowrap">{p.by.map((b) => (b.id === userId ? 'You' : b.name)).join(', ')}</div>
+        </div>
+        <Markable source={`${p.title}, at the fire`} text={fillShared(p.text ?? '')}>
+          <ScriptText text={fillShared(p.text ?? '')} className="font-['Cormorant_Garamond',serif] font-semibold text-[18px] leading-[1.45] text-[#F4F1F8]" />
+        </Markable>
+        {!p.mine && together && (
+          <div className="flex gap-2">
+            {(['agree', 'doubt'] as const).map((k) => (
+              <button
+                key={k}
+                disabled={busy}
+                onClick={() => callTable('fire_react', { p_target: p.key, p_kind: k })}
+                className={`h-9 px-4 rounded-full border text-[14px] font-semibold ${
+                  p.myReaction === k ? (k === 'agree' ? 'border-[#6FD39A] text-[#6FD39A]' : 'border-[#F0A552] text-[#F0A552]') : 'border-[#3F5E86] text-[#A9C4F5]'
+                }`}
+              >
+                {k === 'agree' ? 'Agree' : 'Doubt'}
+              </button>
+            ))}
+          </div>
+        )}
+        {(p.agree.length > 0 || p.doubt.length > 0) && (
+          <p className="text-[14px] text-[#A9B9D3]">
+            {[p.agree.length ? `Agreed: ${p.agree.join(', ')}` : '', p.doubt.length ? `Doubted: ${p.doubt.join(', ')}` : ''].filter(Boolean).join(' · ')}
+          </p>
+        )}
+      </div>
+    )
+  );
+
+  // The fire's own events: pins, changed sides, clicks, and lines said at the old fire.
+  (t?.thread ?? []).forEach((m, i) => {
+    if (m.kind === 'laid') return; // shown as the piece's card
+    if (m.kind === 'click')
+      add(
+        m.at,
+        `click-${i}`,
+        <div className="rounded-2xl border border-[#8A6E34] bg-[#2A2010] p-3 space-y-1" data-click>
+          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158]">MYTHIOS · SOMETHING CLICKS</div>
+          <ScriptText text={m.body} className="font-['Cormorant_Garamond',serif] font-semibold text-[18px] leading-[1.45] text-[#F4E8C8]" />
+        </div>
+      );
+    else if (m.kind === 'say')
+      add(
+        m.at,
+        `say-${i}`,
+        <div className={`flex flex-col ${m.mine ? 'items-end' : 'items-start'}`}>
+          {!m.mine && <div className="text-[12px] font-bold text-[#C39BF5]">{m.name}</div>}
+          <div className={`max-w-[86%] px-3 py-2 text-[16px] border ${m.mine ? 'rounded-[16px_16px_4px_16px] bg-[#3A2A12] border-[#8A6E34]' : 'rounded-[4px_16px_16px_16px] bg-[#221636] border-[#3A2555]'}`}>
+            {m.body}
+          </div>
+        </div>
+      );
+    else add(m.at, `ev-${i}`, <SmallLine>{m.mine ? m.body.replace(m.name ?? '', 'You') : m.body}</SmallLine>);
+  });
+
+  // The party's talk since this morning: the fire is the party chat. "X pinned a theory." is already on the fire's own line.
+  if (together) {
+    const since = new Date(partyDayStart(timeZone)).getTime();
+    messages
+      .filter((m) => new Date(m.created_at).getTime() >= since && !(m.kind === 'notice' && / pinned a theory\.$/.test(m.body)))
+      .forEach((m) => add(m.created_at, `msg-${m.id}`, <ChatBubble m={m} userId={userId} members={memberRows} onReport={setReporting} />));
+  }
+
+  // His nudge, once something is on the table (or on arriving); MYTHIOS asks it on a narrated night.
+  const firstPieceAt = pieces.map((p) => p.at).filter(Boolean).sort()[0];
+  const nudgeAt = later(firstPieceAt && firstPieceAt > arrival ? firstPieceAt : arrival, 5);
+  if (fire.nudge) add(nudgeAt, 'nudge', garrick ? <GarrickBubble text={fire.nudge} /> : <NarrationMessage text={fire.nudge} />);
+  if (garrick && fire.callback) add(later(nudgeAt, 1), 'callback', <GarrickBubble text={fire.callback} />);
+
+  // Words found, and the whole fragment with its meaning question.
+  if (frag) {
+    frag.solvers.forEach((s, i) => add(later(arrival, 10 + i), `word-${i}`, <SmallLine>{s} found a missing word.</SmallLine>));
+    if (fragDone) {
+      const myMeaning = notes.find((n) => n.kind === 'meaning' && n.mine)?.body ?? '';
+      const draft = meaningDraft ?? myMeaning;
+      add(
+        later(arrival, 20),
+        'fragment',
+        <div className="rounded-2xl border border-[#5E4585] bg-[#1A1226] p-3 space-y-2" data-fragment-card>
+          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#C39BF5]">TODAY'S FRAGMENT IS WHOLE</div>
+          <p className="font-['Cormorant_Garamond',serif] font-semibold italic text-[19px] leading-[1.45] text-[#F4F1F8]">“{frag.text}”</p>
+          {fire.meaningQuestion && (
+            <>
+              <ScriptText text={fire.meaningQuestion} className="text-[16px] text-[#E6E0F0]" />
+              {notes
+                .filter((n) => n.kind === 'meaning' && !n.mine)
+                .map((n) => (
+                  <p key={n.name} className="text-[15px]">
+                    <span className="font-semibold text-[#C39BF5]">{n.name}:</span> {n.body}
+                  </p>
+                ))}
+              <div className="flex gap-2">
+                <input
+                  className="flex-1 min-w-0 h-11 rounded-xl bg-[#0F0A18] border border-[#3A2555] px-3 text-[16px] text-[#F4F1F8] placeholder:text-[#6F6385]"
+                  maxLength={200}
+                  placeholder="What do you think it means?"
+                  value={draft}
+                  onChange={(e) => setMeaningDraft(e.target.value)}
+                  aria-label="What do you think it means?"
+                />
+                <button
+                  disabled={busy || !draft.trim() || draft === myMeaning}
+                  onClick={async () => {
+                    const ok = await call('leave_note', { p_kind: 'meaning', p_body: draft });
+                    if (ok) setMeaningDraft(null);
+                  }}
+                  className="shrink-0 h-11 px-4 rounded-xl border border-[#5E4585] text-[#D9D1E6] font-semibold disabled:opacity-40"
+                >
+                  {myMeaning ? 'Change' : 'Say it'}
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      );
     }
   }
 
-  const reactButtons = (target: string, mine: string | null | undefined) => (
-    <div className="flex gap-2">
-      {(['agree', 'doubt'] as const).map((k) => (
-        <button
-          key={k}
-          disabled={busy}
-          onClick={() => callTable('fire_react', { p_target: target, p_kind: k })}
-          className={`rounded-full border px-3 py-1 text-[12.5px] ${
-            mine === k ? (k === 'agree' ? 'border-[#6FD39A] text-[#6FD39A]' : 'border-[#F0A552] text-[#F0A552]') : 'border-[#3A2555] text-[#D8CEE8]'
-          }`}
-        >
-          {k === 'agree' ? 'Agree' : 'Doubt'}
+  // His closer, from 8:00pm (stored, v2.3 step 7).
+  if (garrick && t?.evening) add(new Date().toISOString(), 'closer', <GarrickBubble text={pick(CAMPFIRE_STORED_LINES.closers, seed)} />);
+
+  items.sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0));
+
+  // ---- Tonight's question, pinned: before your pick, nothing of the others' (pin before peek); after, who said what. ----
+  const myPick = fire.myPin?.reading ?? null;
+  const readings = t?.readings ?? [];
+  const pickedBy = (r: Reading) => readings.filter((x) => x.reading === r).map((x) => (x.mine ? 'you' : x.name));
+  const folded = Boolean(myPick) && !questionOpen;
+  const question = (
+    <section
+      className={`sticky top-[116px] z-10 rounded-2xl border px-3 py-2.5 space-y-2 bg-[#1F140C] ${
+        myPick ? 'border-[#8A5A24]' : 'border-[#F0A552] shadow-[0_0_14px_rgba(240,165,82,0.35)]'
+      }`}
+      data-question
+    >
+      {folded ? (
+        <button className="w-full text-left flex items-center gap-2" onClick={() => setQuestionOpen(true)} aria-expanded={false} data-question-folded>
+          <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#F0A552] shrink-0">TONIGHT</span>
+          <span className="flex-1 min-w-0 truncate text-[15px] text-[#F4E8C8]">{readingText(myPick!)}</span>
+          <span className="shrink-0 text-[13px] text-[#CDB594]">change ▾</span>
         </button>
-      ))}
-    </div>
-  );
-  const reactLine = (agree: string[], doubt: string[]) =>
-    agree.length || doubt.length ? (
-      <p className={note}>
-        {[agree.length ? `Agreed: ${agree.join(', ')}` : '', doubt.length ? `Doubted: ${doubt.join(', ')}` : ''].filter(Boolean).join(' · ')}
-      </p>
-    ) : null;
-
-  const tabs: { key: FireTab; label: string }[] = [
-    { key: 'table', label: 'The table' },
-    { key: 'question', label: 'The question' },
-    { key: 'fragment', label: 'The fragment' },
-    { key: 'more', label: 'More' },
-  ];
-
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between gap-2">
-        {back}
-        <button className={quietButton} onClick={() => setLeaving(true)}>
-          Rest for the night
-        </button>
-      </div>
-      {title}
-      {othersHere.length > 0 && <p className="text-[13px] text-[#6FD39A]">At the fire now: {othersHere.map((m) => m.name).join(', ')}</p>}
-
-      {/* Arriving: the cup (an action only), the opener, what he notices (v2.3 §B, §C, §I). */}
-      {fire.cupNight && (
-        <p className="font-sans italic text-[14px] text-[#B7A9CC] px-1">{CAMPFIRE_STORED_LINES.cupNightStageDirection}</p>
-      )}
-      {fire.narrated ? <NarrationBlock text={fire.opener ?? ''} /> : null}
-      {garrick && fire.firstHere ? <GarrickLine text={CAMPFIRE_STORED_LINES.firstArrivalGreeting} /> : null}
-      {garrick && fire.opener ? <GarrickLine text={fire.opener} /> : null}
-      {garrick &&
-        (fire.noticings ?? []).map((n, i) => (
-          <GarrickLine key={`n${i}`} text={CAMPFIRE_STORED_LINES.noticingTemplates[n.kind].replace('{friend}', n.name)} />
-        ))}
-      {lastLine && (
-        <div className="rounded-xl bg-[#16233A] border border-[#3E5C8A] px-3 py-2" data-last-call>
-          <div className="font-['Cinzel'] font-bold text-[11px] text-[#9CC2F0] tracking-[0.6px]">LAST NIGHT</div>
-          <p className="text-[14px] text-[#F4F1F8] italic">{lastLine}</p>
-        </div>
-      )}
-      {t?.puzzle && (
-        <div className={`rounded-xl px-3 py-2 border ${solved ? 'border-[#5C9A6C]' : 'border-[#3A2555]'} bg-[#1E1232]`} data-puzzle>
-          <div className="font-['Cinzel'] font-bold text-[11px] text-[#B7A9CC] tracking-[0.6px]">TONIGHT'S PUZZLE</div>
-          <p className="text-[15px] font-semibold">{t.puzzle}</p>
-          <p className={`text-[13px] ${solved ? 'text-[#6FD39A]' : 'text-[#B7A9CC]'}`}>
-            {solved ? `Solved by ${nameList(solved.names)}: ${solved.text}` : 'The right two pieces on the table will show it.'}
-          </p>
-        </div>
-      )}
-
-      <div className="grid grid-cols-4 gap-1.5" role="tablist">
-        {tabs.map((x) => (
-          <button
-            key={x.key}
-            role="tab"
-            aria-selected={tab === x.key}
-            onClick={() => setTab(x.key)}
-            className={`rounded-lg border py-2 text-[12.5px] font-semibold ${tab === x.key ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}
-          >
-            {x.label}
-          </button>
-        ))}
-      </div>
-
-      {tab === 'table' && (
-        <div className="space-y-2.5" data-tab="table">
-          {/* Your own find: the roll, the first-letter hint, the glimpse (C4). */}
-          {my?.lead && my.roll && myLead && (
-            <div className="rounded-lg border border-[#3A2555] p-2.5 space-y-1">
-              <div className="font-['Cinzel'] font-bold text-[12px]">Your find · {myLead.place}</div>
-              <p className="font-mono text-[12.5px] text-[#D8CEE8]">
-                🎲 {my.roll.d20} + {my.roll.attr} {my.roll.score} (+{my.roll.bonus}) − DC {my.roll.dc} = {signed(my.roll.net)}{' '}
-                <span className={my.roll.pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}>{my.roll.pass ? 'PASSED' : 'FAILED'}</span>
-              </p>
-              {!my.roll.pass && my.lateLine && <p className="italic text-[14px] text-[#D9D1E6]">{my.lateLine}</p>}
-              {my.letter && frag?.hintOpen && (
-                <p className="text-[13px] text-[#6FD39A]">
-                  Word {my.hint} of today's fragment starts with “{my.letter}”.
-                </p>
-              )}
-              {myGlimpse && (
-                <p className={note} data-glimpse>
-                  On the way back, the last of the light shows you one more place: {myGlimpse.place}.
-                </p>
-              )}
-            </div>
-          )}
-          {pieces.map((p) => (
-            <div key={p.key} className="rounded-lg bg-[#130B1F] border border-[#D4B876]/50 p-2.5 space-y-1.5" data-piece={p.key}>
-              <div className="flex justify-between gap-2 items-baseline">
-                <div className="font-['Cinzel'] font-bold text-[11.5px] text-[#E5C158] uppercase">
-                  {p.kind === 'notice' && p.attr ? `${p.title} · ${p.attr}` : p.title}
-                </div>
-                <div className="text-[12px] text-[#B7A9CC] whitespace-nowrap">{p.by.map((b) => b.name).join(', ')}</div>
-              </div>
-              <Markable source={`${p.title}, at the fire`} text={fillShared(p.text ?? '')}>
-                <ScriptText text={fillShared(p.text ?? '')} className="text-[14px] text-[#F4F1F8] leading-[1.45]" />
-              </Markable>
-              {!p.mine && !fire.narrated && reactButtons(p.key, p.myReaction)}
-              {reactLine(p.agree, p.doubt)}
-            </div>
-          ))}
-          {!fire.narrated &&
-            untaken.map((b) =>
-              b.glimpsedBy?.length ? (
-                <p key={b.id} className="text-[13.5px] text-[#B7A9CC] italic">
-                  Nobody went to {b.place} tonight. {b.glimpsedBy.join(', ')} saw it on the way back.
-                </p>
-              ) : (
-                <p key={b.id} className="text-[13.5px] text-[#B7A9CC] italic">
-                  Nobody went to {b.place} tonight.
-                </p>
-              )
+      ) : (
+        <>
+          <div className="flex justify-between items-center gap-2">
+            <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#F0A552]">TONIGHT'S QUESTION</div>
+            {myPick ? (
+              <button className="text-[13px] text-[#CDB594]" onClick={() => setQuestionOpen(false)}>
+                fold ▴
+              </button>
+            ) : (
+              <div className="text-[12px] text-[#CDB594]">pick to see the others'</div>
             )}
-          {hands.length > 0 && (
-            <div className="rounded-lg border border-dashed border-[#6B5A85] p-2.5 space-y-2" data-hands>
-              <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#B7A9CC]">STILL IN YOUR HANDS</div>
-              {hands.map((h) => (
-                <div key={h.kind} className="space-y-1.5">
-                  {h.kind === 'notice' && h.attr ? (
-                    <NoticeBlock attr={h.attr} text={fillShared(h.text)} label="What you noticed" />
-                  ) : (
-                    <>
-                      <div className="font-['Cinzel'] font-bold text-[11.5px] text-[#F4F1F8] uppercase">{h.title}</div>
-                      <ScriptText text={fillShared(h.text)} className="text-[14px] text-[#D9D1E6] leading-[1.45]" />
-                    </>
-                  )}
-                  <button
-                    disabled={busy}
-                    onClick={() => callTable('fire_lay', { p_kind: h.kind })}
-                    className="rounded-lg bg-[#D4B876] px-3 py-1.5 font-[Cinzel] font-bold text-[12px] text-[#130B1F] disabled:opacity-50"
-                  >
-                    LAY IT DOWN
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {tab === 'question' && (
-        <div className="space-y-2.5" data-tab="question">
-          {garrick && fire.nudge ? <GarrickLine text={fire.nudge} /> : null}
-          {garrick && fire.callback ? <GarrickLine text={fire.callback} /> : null}
-          {fire.narrated && fire.nudge && <NarrationBlock text={fire.nudge} />}
+          </div>
           <div className="space-y-1.5">
-            {readingsShown.map((r) => {
-              const chosen = (reading ?? fire.myPin?.reading) === r;
+            {(['A', 'B', 'NEITHER'] as Reading[]).map((r) => {
+              const chosen = myPick === r;
+              const names = myPick && !fire.narrated ? pickedBy(r) : [];
               return (
                 <button
                   key={r}
-                  onClick={() => setReading(r)}
-                  className={`w-full text-left rounded-lg border px-3 py-2 text-[14px] ${
-                    chosen ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555] bg-[#130B1F]'
+                  disabled={busy}
+                  onClick={async () => {
+                    if (chosen) return setQuestionOpen(false);
+                    const ok = await call('pin_theory', { p_reading: r, p_line: '' });
+                    if (ok) {
+                      setQuestionOpen(false);
+                      supabase.rpc('fire_table', { p_party: partyId }).then(({ data }) => data && setTable(data as FireTable));
+                    }
+                  }}
+                  className={`w-full text-left rounded-xl border px-3 py-2 text-[15px] leading-snug ${
+                    chosen ? 'border-[#F0A552] bg-[#3A2410] text-[#F4E8C8]' : 'border-[#5C3A1C] text-[#E6D8C0]'
                   }`}
+                  data-reading-option={r}
                 >
                   {readingText(r)}
+                  {names.length > 0 && <span className="block text-[13px] text-[#CDB594]">{nameList(names)}</span>}
                 </button>
               );
             })}
           </div>
-          <div className="flex gap-2">
-            <input
-              className={input}
-              maxLength={140}
-              placeholder={fire.myPin?.line ?? 'In your own words, if you like'}
-              value={pinLine}
-              onChange={(e) => setPinLine(e.target.value)}
-            />
-            <button
-              className={quietButton}
-              disabled={busy || !(reading ?? fire.myPin?.reading)}
-              onClick={async () => {
-                const ok = await call('pin_theory', { p_reading: reading ?? fire.myPin?.reading, p_line: pinLine || fire.myPin?.line || '' });
-                if (ok) {
-                  setPinLine('');
-                  setReading(null);
-                  loadTable();
-                }
-              }}
-            >
-              PIN
-            </button>
-          </div>
-          <p className={note}>
-            {fire.myPin
-              ? 'Pinned. You can change it until dawn; the fire is told you changed sides, never to which.'
-              : 'Your pin stays secret until you have made it.'}
-          </p>
-          {!fire.narrated && (
-            <div className="rounded-lg border border-[#3A2555] p-2.5 space-y-2">
-              <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#B7A9CC]">THE FIRE'S READINGS</div>
-              {!fire.myPin ? (
-                <p className={note}>
-                  {(t?.pinned ?? []).length
-                    ? `${nameList(t!.pinned)} ${t!.pinned.length === 1 ? 'has' : 'have'} pinned. Pin yours to see ${t!.pinned.length === 1 ? 'it' : 'them'}.`
-                    : 'Nobody has pinned yet.'}
-                </p>
-              ) : (
-                (t?.readings ?? []).map((r) => (
-                  <div key={r.id} className="space-y-1" data-reading={r.name}>
-                    <p className="text-[13.5px]">
-                      <span className="font-semibold">{r.mine ? `${r.name} (you)` : r.name}:</span> {readingText(r.reading)}
-                    </p>
-                    {r.line && <p className="text-[13.5px] italic">“{r.line}”</p>}
-                    {!r.mine && reactButtons(`pin:${r.id}`, r.myReaction)}
-                    {reactLine(r.agree, r.doubt)}
-                  </div>
-                ))
-              )}
-              <p className={note}>The fire's call is made at dawn, from whoever has pinned.</p>
-            </div>
-          )}
-        </div>
-      )}
-
-      {tab === 'fragment' && frag && (
-        <Section label="TODAY'S FRAGMENT">
-          {fragDone ? (
-            <p className="italic text-[14px]">“{frag.text}”</p>
-          ) : (
-            <p className="text-[14px]">
-              {frag.words === 0 ? 'Both of its missing words are still open.' : 'One of its missing words is still open.'}
+          {myPick && <p className="text-[13px] text-[#CDB594]">You can change it until dawn. The fire's call is made then.</p>}
+          {!myPick && together && (t?.pinned ?? []).length > 0 && (
+            <p className="text-[13px] text-[#CDB594]">
+              {nameList(t!.pinned)} {t!.pinned.length === 1 ? 'has' : 'have'} made a call.
             </p>
           )}
-          {frag.solvers.length > 0 && <p className={note}>Found by {frag.solvers.join(', ')}</p>}
-          {!fragDone && (
-            <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={onOpenChest}>
-              🕯️ OPEN THE SEEKER CHEST
-            </button>
-          )}
-          {fragDone && fire.meaningQuestion && (
-            <div className="space-y-1.5 pt-1">
-              <ScriptText text={fire.meaningQuestion} className="text-[14px] text-[#E6E0F0]" />
-              {notes
-                .filter((n) => n.kind === 'meaning' && !n.mine)
-                .map((n) => (
-                  <p key={n.name} className="text-[13.5px]">
-                    <span className="font-semibold">{n.name}:</span> {n.body}
-                  </p>
-                ))}
-              {noteBox('meaning', 'Your answer, in one line', 'PIN')}
-            </div>
-          )}
-        </Section>
+        </>
+      )}
+    </section>
+  );
+
+  return (
+    <div className="space-y-4" data-fire>
+      <div className="flex items-center gap-2 text-[12px] font-bold tracking-[1px] text-[#F0A552]" data-fire-divider>
+        <div className="flex-1 h-px bg-[#5C3A1C]" />
+        <span className="text-center">
+          EVENING · THE FIRE
+          {together && here.length
+            ? ` · ${nameList(here.map((m) => (m.me ? 'you' : m.name)))} ${here.length === 1 && !here[0].me ? 'is' : 'are'} here`
+            : ''}
+        </span>
+        <div className="flex-1 h-px bg-[#5C3A1C]" />
+      </div>
+
+      {together && aroundLines.length > 0 && (
+        <div className="rounded-2xl border border-[#3A2555] bg-[#180F29] p-3 space-y-1" data-around>
+          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876]">AROUND THE FIRE TONIGHT</div>
+          {aroundLines.map((l) => (
+            <p key={l} className="text-[16px] leading-[1.4]">
+              {l}
+            </p>
+          ))}
+        </div>
       )}
 
-      {tab === 'more' && (
-        <div className="space-y-3" data-tab="more">
-          {/* The case so far (design §3.3 part 4): the week's question and each friend's current line. */}
-          {fire.weekQuestion && (
-            <Section label="THE CASE SO FAR">
-              <p className="text-[14.5px] font-semibold">{fire.weekQuestion}</p>
-              {notes
-                .filter((n) => n.kind === 'week' && !n.mine)
-                .map((n) => (
-                  <p key={n.name} className="text-[13.5px]">
-                    <span className="font-semibold">{n.name}:</span> {n.body}
-                  </p>
-                ))}
-              {noteBox('week', 'Your theory, in one line', 'SAVE')}
-              {fire.myPin && !draft('week') && (
-                <button className={quietButton} onClick={() => setDraft('week', fire.myPin!.line || readingText(fire.myPin!.reading))}>
-                  Use tonight's pin
-                </button>
-              )}
-              {fire.day === 6 &&
-                (fire.weekPins ?? []).map((p, i) => (
-                  <p key={i} className="text-[13.5px]">
-                    {p.name}, Day {p.day}: {readingText(p.reading, fire.weekForks?.[String(p.day)])}
-                  </p>
-                ))}
-            </Section>
-          )}
-          {/* The riddle (v2.3 §G, §M): shared, three tries each; on a quiet night only if asked for. */}
-          {fire.riddle && (
-            <Section label="A RIDDLE">
-              {!riddleOpen ? (
-                <button className={quietButton} onClick={() => setRiddleAsked(true)}>
-                  A riddle?
-                </button>
-              ) : (
-                <>
-                  <p className="text-[14.5px] italic">{fire.riddle.q}</p>
-                  {fire.riddle.solved ? (
-                    <p className="text-[14px]">
-                      {fire.riddle.solvedBy} solved it: {fire.riddle.answer}.
-                    </p>
-                  ) : fire.riddle.answer ? (
-                    <p className="text-[14px]">The answer: {fire.riddle.answer}.</p>
+      {question}
+
+      <div className="space-y-3" data-stream>
+        {items.map((it) => (
+          <React.Fragment key={it.key}>{it.node}</React.Fragment>
+        ))}
+      </div>
+      {reporting && <ReportBox m={reporting} onDone={() => setReporting(null)} />}
+      <ErrorLine text={error} />
+
+      {together ? (
+        <Composer
+          placeholder="Say something at the fire"
+          glow={hands.length > 0}
+          onSend={async (text) => {
+            const e = await sendChat(partyId, text, true);
+            if (!e) reloadChat();
+            return e;
+          }}
+          tray={(close) => (
+            <>
+              <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#B7A9CC]">LAY A CLUE</div>
+              {hands.length === 0 && <p className="text-[14px] text-[#8B7A9E]">Nothing in your hands tonight that is not already on the table.</p>}
+              {hands.map((h) => (
+                <div key={h.kind} className="rounded-xl border border-dashed border-[#6B5A85] p-2.5 space-y-2" data-hand={h.kind}>
+                  {h.kind === 'notice' && h.attr ? (
+                    <NoticeBlock attr={h.attr} text={fillShared(h.text)} label="What you noticed" />
                   ) : (
                     <>
-                      <div className="flex gap-2">
-                        <input className={input} value={riddleGuess} onChange={(e) => setRiddleGuess(e.target.value)} placeholder="Your answer" />
-                        <button
-                          className={quietButton}
-                          disabled={busy || !riddleGuess.trim()}
-                          onClick={async () => {
-                            const r = await call('riddle_guess', { p_guess: riddleGuess });
-                            setRiddleGuess('');
-                            setRiddleNote(r && !r.riddleRight && !r.riddle?.answer ? 'Not that.' : null);
-                          }}
-                        >
-                          TRY
-                        </button>
-                      </div>
-                      <p className={note}>
-                        {triesLeft} {triesLeft === 1 ? 'try' : 'tries'} left.{riddleNote ? ` ${riddleNote}` : ''}
-                      </p>
-                      <button className={quietButton} disabled={busy} onClick={() => call('riddle_give_up', {})}>
-                        Give up
-                      </button>
+                      <div className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8] uppercase">{h.title}</div>
+                      <ScriptText text={fillShared(h.text)} className="text-[15px] text-[#D9D1E6] leading-[1.45]" />
                     </>
                   )}
-                  {garrick && fire.riddle.quip ? <GarrickLine text={fire.riddle.quip} /> : null}
-                </>
-              )}
-            </Section>
+                  <button
+                    disabled={busy}
+                    onClick={async () => {
+                      await callTable('fire_lay', { p_kind: h.kind });
+                      close();
+                    }}
+                    className="h-10 px-4 rounded-xl bg-[#D4B876] font-bold text-[15px] text-[#130B1F] disabled:opacity-50"
+                  >
+                    Lay it on the table
+                  </button>
+                </div>
+              ))}
+              <button
+                onClick={() => {
+                  close();
+                  onOpenChest();
+                }}
+                className="w-full h-11 rounded-xl border border-[#4A3266] text-[#D9D1E6] font-semibold text-[15px]"
+              >
+                Your fragment
+              </button>
+            </>
           )}
-          <AskGarrick partyId={partyId} place="fire" />
-        </div>
+        />
+      ) : (
+        <SmallLine>{fire.narrated ? 'You sit alone tonight. The others are on roads of their own.' : ''}</SmallLine>
       )}
-
-      {/* Around the fire: one thread, in time order, for live and async alike (v3 §8). */}
-      {!fire.narrated && (
-        <Section label="AROUND THE FIRE">
-          {(t?.thread ?? []).length === 0 && <p className={note}>Nothing yet tonight.</p>}
-          {(t?.thread ?? []).map((m, i) =>
-            m.kind === 'say' ? (
-              <div key={i}>
-                <div className="text-[12px] font-semibold text-[#D9C9F0]">{m.mine ? `${m.name} (you)` : m.name}</div>
-                <Markable source={`${m.name}, at the fire`} text={m.body}>
-                  <p className="text-[14px]">{m.body}</p>
-                </Markable>
-              </div>
-            ) : m.kind === 'click' ? (
-              <div key={i} className="rounded-lg bg-[#16233A] border border-[#3E5C8A] px-2.5 py-2" data-click>
-                <div className="font-['Cinzel'] font-bold text-[10.5px] text-[#9CC2F0] tracking-[0.6px]">MYTHIOS · THE TABLE CLICKS</div>
-                <p className="text-[14px] italic">{m.body}</p>
-              </div>
-            ) : (
-              <p key={i} className="text-[12.5px] text-[#8B7A9E] text-center">
-                {m.kind === 'laid' ? `${m.mine ? 'You' : m.name} laid a piece down: ${m.body}.` : m.mine ? m.body.replace(myName, 'You') : m.body}
-              </p>
-            )
-          )}
-          <div className="flex gap-2">
-            <input
-              className={input}
-              maxLength={300}
-              placeholder="Say something at the fire"
-              value={sayText}
-              onChange={(e) => setSayText(e.target.value)}
-            />
-            <button
-              className={quietButton}
-              disabled={busy || !sayText.trim()}
-              onClick={async () => {
-                await callTable('fire_say', { p_body: sayText });
-                setSayText('');
-              }}
-            >
-              SAY
-            </button>
-          </div>
-        </Section>
-      )}
-
-      {cardText && (
-        <div className="rounded-xl bg-[#2A1A10] border border-[#5A4020] px-3 py-2 space-y-1.5" data-card>
-          <div className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158] tracking-[0.6px]">GARRICK, TO YOU</div>
-          <ScriptText text={cardText} className="text-[14.5px] text-[#F4F1F8] leading-[1.45]" />
-          {cardAction && (
-            <button className={quietButton} onClick={cardAction.run}>
-              {cardAction.label}
-            </button>
-          )}
-        </div>
-      )}
-
-      <ErrorLine text={error} />
-      <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setLeaving(true)}>
-        REST FOR THE NIGHT
-      </button>
-    </div>
-  );
-}
-
-function GarrickLine({ text }: { text: string }) {
-  return (
-    <Markable source="Garrick, at the fire" text={text}>
-      <div className="rounded-xl bg-[#241638] border border-[#5E4585] px-3 py-2">
-        <div className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
-        <ScriptText text={text} className="text-[14.5px] text-[#F4F1F8] leading-[1.45]" />
-      </div>
-    </Markable>
-  );
-}
-
-function Section({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="rounded-xl bg-[#180F29] border border-[#3A2555] p-3 space-y-2">
-      <h3 className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876]">{label}</h3>
-      {children}
     </div>
   );
 }
