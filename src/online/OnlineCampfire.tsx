@@ -405,7 +405,8 @@ export default function OnlineCampfire({
 
   // Words found, and the whole fragment with its meaning question.
   if (frag) {
-    frag.solvers.forEach((s, i) => add(later(arrival, 10 + i), `word-${i}`, <SmallLine>{s} found a missing word.</SmallLine>));
+    // A solitary night (Week 1 Day 1) says nothing of the others: no names of friends who found a word, no answers.
+    if (!fire.narrated) frag.solvers.forEach((s, i) => add(later(arrival, 10 + i), `word-${i}`, <SmallLine>{s} found a missing word.</SmallLine>));
     if (fragDone) {
       const myMeaning = notes.find((n) => n.kind === 'meaning' && n.mine)?.body ?? '';
       const draft = meaningDraft ?? myMeaning;
@@ -419,7 +420,7 @@ export default function OnlineCampfire({
             <>
               <ScriptText text={fire.meaningQuestion} className="text-[16px] text-[#E6E0F0]" />
               {notes
-                .filter((n) => n.kind === 'meaning' && !n.mine)
+                .filter((n) => n.kind === 'meaning' && !n.mine && !fire.narrated)
                 .map((n) => (
                   <p key={n.name} className="text-[15px]">
                     <span className="font-semibold text-[#C39BF5]">{n.name}:</span> {n.body}
@@ -484,7 +485,7 @@ export default function OnlineCampfire({
                 fold ▴
               </button>
             ) : (
-              <div className="text-[12px] text-[#CDB594]">pick to see the others'</div>
+              <div className="text-[12px] text-[#CDB594]">{together ? "pick to see the others'" : 'choose one'}</div>
             )}
           </div>
           <div className="space-y-1.5">
@@ -514,7 +515,7 @@ export default function OnlineCampfire({
               );
             })}
           </div>
-          {myPick && <p className="text-[13px] text-[#CDB594]">You can change it until dawn. The fire's call is made then.</p>}
+          {myPick && <p className="text-[13px] text-[#CDB594]">{together ? 'You can change it until dawn. The fire\'s call is made then.' : 'You can change it until dawn.'}</p>}
           {!myPick && together && (t?.pinned ?? []).length > 0 && (
             <p className="text-[13px] text-[#CDB594]">
               {nameList(t!.pinned)} {t!.pinned.length === 1 ? 'has' : 'have'} made a call.
@@ -606,9 +607,7 @@ export default function OnlineCampfire({
             </>
           )}
         />
-      ) : (
-        <SmallLine>{fire.narrated ? 'You sit alone tonight. The others are on roads of their own.' : ''}</SmallLine>
-      )}
+      ) : null /* Day 1's fire is solitary and says nothing of the others (Fake Guru, 18 Oct: "keep it solitary, don't mention others"). */}
     </div>
   );
 }
