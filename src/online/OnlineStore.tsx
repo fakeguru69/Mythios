@@ -40,11 +40,16 @@ export default function OnlineStore({
   myClass,
   friends,
   onClose,
+  embedded = false,
+  onGold,
 }: {
   partyId: string;
   myClass: string | null;
   friends: { id: string; name: string }[];
   onClose: () => void;
+  /** The game shell's STORE tab (phase A): no back button; the gold shows in the shell's top bar. */
+  embedded?: boolean;
+  onGold?: (gold: number) => void;
 }) {
   const [state, setState] = useState<StoreState | null>(null);
   const [firstLine, setFirstLine] = useState(false);
@@ -63,13 +68,20 @@ export default function OnlineStore({
   useEffect(() => {
     load();
   }, [load]);
+  // The shell's top bar follows every purchase.
+  const gold = state?.gold;
+  useEffect(() => {
+    if (gold !== undefined) onGold?.(gold);
+  }, [gold, onGold]);
 
   if (!state) {
     return (
       <div className="space-y-3">
-        <button className={quietButton} onClick={onClose}>
-          ← Back
-        </button>
+        {!embedded && (
+          <button className={quietButton} onClick={onClose}>
+            ← Back
+          </button>
+        )}
         {error ? <ErrorLine text={error} /> : <p className="text-center text-[#B7A9CC]">…</p>}
       </div>
     );
@@ -140,12 +152,14 @@ export default function OnlineStore({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-2">
-        <button className={quietButton} onClick={onClose}>
-          ← Back
-        </button>
-        <span className="font-['Cinzel'] font-bold text-[13px] text-[#E5C158]">◎ {state.gold.toLocaleString()}g</span>
-      </div>
+      {!embedded && (
+        <div className="flex items-center justify-between gap-2">
+          <button className={quietButton} onClick={onClose}>
+            ← Back
+          </button>
+          <span className="font-['Cinzel'] font-bold text-[13px] text-[#E5C158]">◎ {state.gold.toLocaleString()}g</span>
+        </div>
+      )}
       <h2 className={`${heading} text-[19px]`}>The Store</h2>
 
       {firstLine && <p className="font-sans italic text-[14px] text-[#B7A9CC]">{FIRST_STORE_LINE}</p>}

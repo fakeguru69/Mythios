@@ -61,7 +61,7 @@ export function Markable({ source, text, children }: { source: string; text: str
         <div className="mt-1.5 space-y-1.5 rounded-lg border border-[#3A2555] bg-[#130B1F] p-2" data-mark-bar>
           {mine ? (
             <>
-              <p className="text-[12.5px] text-[#D4B876]">In your notebook{mine.note ? `: ${mine.note}` : '.'}</p>
+              <p className="text-[12.5px] text-[#D4B876]">In your margin notes{mine.note ? `: ${mine.note}` : '.'}</p>
               <div className="flex gap-2">
                 <input className={input} maxLength={200} placeholder="A few words, if you like" value={noteText} onChange={(e) => setNoteText(e.target.value)} />
                 <button className={quietButton} disabled={!noteText.trim()} onClick={() => run(false)}>
@@ -69,7 +69,7 @@ export function Markable({ source, text, children }: { source: string; text: str
                 </button>
               </div>
               <button className={quietButton} onClick={() => run(true)}>
-                Take it out of my notebook
+                Take it out of your margin notes
               </button>
             </>
           ) : (

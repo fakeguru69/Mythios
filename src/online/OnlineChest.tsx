@@ -30,7 +30,7 @@ interface Chest {
   mySolved: number;
 }
 
-export default function OnlineChest({ partyId, onClose }: { partyId: string; onClose: () => void }) {
+export default function OnlineChest({ partyId, onClose, embedded = false }: { partyId: string; onClose: () => void; embedded?: boolean }) {
   const [chest, setChest] = useState<Chest | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [week, setWeek] = useState<number | null>(null);
@@ -152,10 +152,12 @@ export default function OnlineChest({ partyId, onClose }: { partyId: string; onC
 
   return (
     <div className="space-y-3.5">
-      <button className={quietButton} onClick={onClose}>
-        ← Back
-      </button>
-      <h2 className="font-['Cinzel'] font-bold text-[16px] text-[#E5C158]">🕯️ SEEKER CHEST</h2>
+      {!embedded && (
+        <button className={quietButton} onClick={onClose}>
+          ← Back
+        </button>
+      )}
+      <h2 className="font-['Cinzel'] font-bold text-[16px] text-[#E5C158]">🕯️ THE SEEKER CHEST</h2>
       {/* Core Rules §7's first-fragment line, until the player has filled a word of their own. */}
       {chest.mySolved === 0 && (
         <div className="pl-3 border-l-2 border-[#D4B876]/45">

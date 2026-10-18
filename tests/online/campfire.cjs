@@ -5,6 +5,7 @@
 // did today, the Pull).
 // Usage: node tests/online/campfire.cjs <run> "<party name>"   (host@ then mei@; the day must be unplayed or unfinished)
 const { chromium } = require('./playwright.cjs');
+const { enterParty, openTab, openPanel, dayDone } = require('./shell.cjs');
 const fs = require('fs');
 const S = require('path').join(process.env.TEST_OUT || 'test-output', 'campfire-' + (process.argv[2] || 'run'));
 fs.mkdirSync(S, { recursive: true });
@@ -22,13 +23,13 @@ async function asPlayer(b, who, leadIndex, act) {
   await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
   await p.getByPlaceholder('Email').fill(`${who}@mythios.test`); await p.getByPlaceholder('Password').fill(process.env.MYTHIOS_TEST_PASSWORD);
   await click('SIGN IN'); await p.waitForTimeout(2000);
-  await p.getByRole('button', { name: new RegExp(PARTY) }).first().click(); await p.waitForTimeout(2500);
-  // Today's chapter to its end.
-  await click("OPEN TODAY'S CHAPTER"); await p.waitForTimeout(2500);
+  await enterParty(p, PARTY);
+  // Today's chapter to its end (the STORY tab opens on it).
+  await p.waitForTimeout(1500);
   let stuck = 0;
   for (let n = 0; n < 150; n++) {
     const t = await body();
-    if (/THE LAST LIGHT/.test(t)) break;
+    if (await dayDone(p)) break;
     let done = false;
     for (const re of [/^🎲 ROUND \d+$/, /^🎲 ROLL \w+$/]) {
       const bt = p.getByRole('button', { name: re });
@@ -38,10 +39,10 @@ async function asPlayer(b, who, leadIndex, act) {
     if (!done) { if (++stuck > 8) { log(who, 'STUCK in the chapter'); break; } await p.waitForTimeout(1000); continue; }
     stuck = 0; await p.waitForTimeout(1300);
   }
-  await click('🔥 THE LAST LIGHT'); await p.waitForTimeout(1500);
+  await p.waitForTimeout(2000); // the fire (the last light first) follows the day in the same thread
   await shot('1-last-light');
   // The lead's first action button: each lead card holds two; pick lead N's first.
-  const leadButtons = p.locator('div.rounded-xl', { hasText: '' }).locator('button.text-left');
+  const leadButtons = p.locator('[data-thread-fire] div.rounded-xl', { hasText: '' }).locator('button.text-left');
   await leadButtons.nth(leadIndex * 2).click();
   await p.getByText('AROUND THE FIRE', { exact: true }).waitFor({ timeout: 15000 }); await p.waitForTimeout(800);
   await act(p, body, click, shot);
@@ -110,22 +111,22 @@ async function asPlayer(b, who, leadIndex, act) {
     log('mei changed sides:', /Mei changed sides|You changed sides/.test(t));
     await shot('3-fire-after');
     // The notebook: tap Garrick's opener, mark it with a note.
-    await p.locator('[data-markable]').filter({ hasText: 'GARRICK' }).first().click(); await p.waitForTimeout(500);
+    await p.locator('[data-thread-fire] [data-markable]').filter({ hasText: 'GARRICK' }).first().click(); await p.waitForTimeout(500);
     await p.locator('[data-mark-bar]').getByPlaceholder('A few words, if you like').fill('Why ask for the birth night?');
     await p.locator('[data-mark-bar]').getByRole('button', { name: 'MARK', exact: true }).click(); await p.waitForTimeout(1500);
-    log('mei marked a line:', /In your notebook: Why ask for the birth night\?/.test(await body()));
+    log('mei marked a line:', /In your margin notes: Why ask for the birth night\?/.test(await body()));
     await click('REST FOR THE NIGHT');
     t = await body();
     log('mei resting: closer:', /GARRICK/.test(t), '| what we did:', (t.match(/Mei [^\n]*\./) || [])[0], '| back later:', /come back to the fire until dawn/.test(t));
     await shot('4-resting');
-    await click('BACK TO THE PARTY'); await p.waitForTimeout(1500);
-    await click('THE CASEBOOK AND YOUR NOTEBOOK'); await p.waitForTimeout(1500);
+    await openTab(p, 'bag');
+    await p.getByRole('tab', { name: 'The Journal' }).click(); await p.waitForTimeout(1500);
     t = await body();
     log('casebook: tonight shown:', /Day \d+ · /.test(t), '| pieces:', /ON THE TABLE/.test(t));
-    await p.getByRole('tab', { name: 'My notebook' }).click(); await p.waitForTimeout(1500);
+    await p.getByRole('tab', { name: 'Your margin notes' }).click(); await p.waitForTimeout(1500);
     t = await body();
     log('notebook: the marked line and note:', /Why ask for the birth night\?/.test(t), '| source:', /Garrick, at the fire/.test(t));
     await shot('5-notebook');
   });
   await b.close();
-})().catch((e) => { log('FAILED', e.message.split('\n')[0]); process.exit(1); });
+})().catch((e) => { log('FAILED', e.message.split('\n').slice(0, 3).join(' | ')); process.exit(1); });

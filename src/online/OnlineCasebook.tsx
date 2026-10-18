@@ -27,7 +27,7 @@ interface Book {
 
 const nameList = (xs: string[]) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
 
-export default function OnlineCasebook({ partyId, onClose }: { partyId: string; onClose: () => void }) {
+export default function OnlineCasebook({ partyId, onClose, embedded = false }: { partyId: string; onClose: () => void; embedded?: boolean }) {
   const [book, setBook] = useState<Book | null>(null);
   const [tab, setTab] = useState<'casebook' | 'notebook'>('casebook');
   const [marks, setMarks] = useState<Mark[] | null>(null);
@@ -72,21 +72,23 @@ export default function OnlineCasebook({ partyId, onClose }: { partyId: string; 
 
   return (
     <div className="space-y-4">
-      <button className={quietButton} onClick={onClose}>
-        ← The party
-      </button>
+      {!embedded && (
+        <button className={quietButton} onClick={onClose}>
+          ← The party
+        </button>
+      )}
       <div>
-        <p className={note}>The party's own investigation</p>
-        <h2 className={`${heading} text-[19px]`}>{tab === 'casebook' ? 'The Casebook' : 'My Notebook'}</h2>
+        <p className={note}>The Journal</p>
+        <h2 className={`${heading} text-[19px]`}>{tab === 'casebook' ? 'Nights by the fire' : 'Your margin notes'}</h2>
       </div>
       <div className="grid grid-cols-2 gap-1.5" role="tablist">
         <button role="tab" aria-selected={tab === 'casebook'} onClick={() => setTab('casebook')}
           className={`rounded-lg border py-2 text-[13px] font-semibold ${tab === 'casebook' ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}>
-          The casebook
+          Nights by the fire
         </button>
         <button role="tab" aria-selected={tab === 'notebook'} onClick={openNotebook}
           className={`rounded-lg border py-2 text-[13px] font-semibold ${tab === 'notebook' ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}>
-          My notebook
+          Your margin notes
         </button>
       </div>
       {tab === 'notebook' && (

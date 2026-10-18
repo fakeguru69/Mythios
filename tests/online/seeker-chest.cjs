@@ -1,4 +1,5 @@
 const { chromium } = require('./playwright.cjs');
+const { enterParty, openTab } = require('./shell.cjs');
 const fs = require('fs');
 const S = require('path').join(process.env.TEST_OUT || 'test-output', 'chest-' + (process.argv[2] || 'run'));
 fs.mkdirSync(S, { recursive: true });
@@ -15,8 +16,8 @@ const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.j
     await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
     await p.getByPlaceholder('Email').fill(`${who}@mythios.test`); await p.getByPlaceholder('Password').fill(process.env.MYTHIOS_TEST_PASSWORD);
     await click('SIGN IN'); await p.waitForTimeout(2000);
-    await p.getByRole('button', { name: new RegExp(PARTY) }).first().click(); await p.waitForTimeout(2500);
-    await click('🕯️ SEEKER CHEST'); await p.waitForTimeout(2000);
+    await enterParty(p, PARTY);
+    await openTab(p, 'bag'); await p.waitForTimeout(1000); // the Bag opens on the Seeker Chest
     return p;
   };
   const body = (p) => p.locator('body').innerText();

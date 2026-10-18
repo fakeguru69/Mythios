@@ -10,7 +10,6 @@ import { NarrationBlock, NoticeBlock, ScriptText, fillScriptTokens } from '../co
 import { ATTRIBUTE_META, challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
 import { CAMPFIRE_STORED_LINES } from '../data/campfireDaysData';
 import { ErrorLine, heading, input, note, quietButton } from './ui';
-import AskGarrick from './AskGarrick';
 import { Markable } from './Markable';
 
 type Reading = 'A' | 'B' | 'NEITHER';
@@ -136,10 +135,13 @@ export default function OnlineCampfire({
   partyId,
   onClose,
   onOpenChest,
+  embedded = false,
 }: {
   partyId: string;
   onClose: () => void;
   onOpenChest: () => void;
+  /** In the game shell's story thread (docs/design/one-thread-18oct.md, phase A): no way back to a party page. */
+  embedded?: boolean;
 }) {
   const [fire, setFire] = useState<Fire | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -195,7 +197,7 @@ export default function OnlineCampfire({
 
   const seed = useMemo(() => (fire ? fire.week * 7 + fire.day : 0), [fire?.week, fire?.day]);
 
-  const back = (
+  const back = embedded ? null : (
     <button className={quietButton} onClick={onClose}>
       ← The party
     </button>
@@ -341,9 +343,15 @@ export default function OnlineCampfire({
           </Section>
         )}
         <p className={note}>You can come back to the fire until dawn.</p>
-        <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={onClose}>
-          BACK TO THE PARTY
-        </button>
+        {embedded ? (
+          <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={() => setLeaving(false)}>
+            BACK TO THE FIRE
+          </button>
+        ) : (
+          <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={onClose}>
+            BACK TO THE PARTY
+          </button>
+        )}
         <ErrorLine text={error} />
       </div>
     );
@@ -432,7 +440,7 @@ export default function OnlineCampfire({
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between gap-2">
+      <div className={`flex items-center ${embedded ? 'justify-end' : 'justify-between'} gap-2`}>
         {back}
         <button className={quietButton} onClick={() => setLeaving(true)}>
           Rest for the night
@@ -738,7 +746,6 @@ export default function OnlineCampfire({
               )}
             </Section>
           )}
-          <AskGarrick partyId={partyId} place="fire" />
         </div>
       )}
 

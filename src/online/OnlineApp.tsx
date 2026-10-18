@@ -3,7 +3,7 @@
 // A series (Tales of the Dark Moon) has seasons; a party plays one season (Fake Guru, 16 Oct).
 // The screens' words are from review-accounts-and-invites.md and the Mythios intro (approved 16 Oct, in onlineText.ts).
 // Opened with ?online=1, or by an invite link (?join=CODE). The one-phone demo is unchanged.
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import {
   supabase,
@@ -33,13 +33,9 @@ import PartyChat from './PartyChat';
 import InstallGuide from './InstallGuide';
 import Notifications from './Notifications';
 import GarrickRecap from './GarrickRecap';
-import OnlineDay from './OnlineDay';
-import OnlineChest from './OnlineChest';
-import OnlineCasebook from './OnlineCasebook';
+import GameShell from './GameShell';
 import { NotebookProvider } from './Markable';
-import OnlineStore from './OnlineStore';
-import OnlineCampfire from './OnlineCampfire';
-import OnlineGathering, { GatheringCard } from './OnlineGathering';
+import { GatheringCard } from './OnlineGathering';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
 const startQuery = new URLSearchParams(window.location.search);
@@ -385,13 +381,8 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [startDate, setStartDate] = useState('');
   const [editingName, setEditingName] = useState<string | null>(null);
   const [myCharacter, setMyCharacter] = useState<SeriesCharacter | null>(null);
-  const [playingDay, setPlayingDay] = useState(false);
-  const [inChest, setInChest] = useState(false);
-  const [inCasebook, setInCasebook] = useState(false);
-  const [inStore, setInStore] = useState(false);
-  const [atFire, setAtFire] = useState(false);
-  const [inGathering, setInGathering] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
+  const [menuFor, setMenuFor] = useState<string | null>(null); // the party panel's ⋯ menu beside a friend (host only)
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -500,83 +491,6 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       ? `Day 1 opens at 5:00am ${dayOneOpening(party.day1_opens_at, party.time_zone)}.`
       : SZ_DOOR;
 
-  // The Seeker Chest (from the party page, or from the day's fragment; back goes where you came from).
-  if (inChest) return <OnlineChest partyId={party.id} onClose={() => setInChest(false)} />;
-  // The casebook: every night at the fire, with the party's calls (Campfire version 3).
-  if (inCasebook) return <OnlineCasebook partyId={party.id} onClose={() => setInCasebook(false)} />;
-
-  // The Store and your Relics (from the party page, or from a card set aside; back goes where you came from).
-  if (inStore) {
-    return (
-      <OnlineStore
-        partyId={party.id}
-        myClass={me.class}
-        friends={approved.filter((r) => r.user_id !== userId && r.session_zero_done_at).map((r) => ({ id: r.user_id, name: r.character_name }))}
-        onClose={() => setInStore(false)}
-      />
-    );
-  }
-
-  // The Gathering on Day 7, live with the whole party (from the party page, or Day 7's Tonight line).
-  if (inGathering) {
-    return (
-      <NotebookProvider partyId={party.id}>
-        <OnlineGathering
-          partyId={party.id}
-          userId={userId}
-          members={approved}
-          onClose={() => {
-            setInGathering(false);
-            setPlayingDay(false);
-            load();
-          }}
-        />
-      </NotebookProvider>
-    );
-  }
-
-  // The last light and the Campfire (after the day's chapter; from the party page or the day's end).
-  if (atFire) {
-    return (
-      <NotebookProvider partyId={party.id}>
-        <OnlineCampfire
-          partyId={party.id}
-          onClose={() => {
-            setAtFire(false);
-            setPlayingDay(false);
-            load();
-          }}
-          onOpenChest={() => setInChest(true)}
-        />
-      </NotebookProvider>
-    );
-  }
-
-  // Today's chapter, from the server (the days online).
-  if (playingDay) {
-    return (
-      <NotebookProvider partyId={party.id}>
-      <OnlineDay
-        partyId={party.id}
-        friends={approved.filter((r) => r.user_id !== userId).map((r) => r.character_name)}
-        partySize={approved.length}
-        myClass={me.class}
-        birthplace={me.birthplace ?? null}
-        grandparent={me.grandparent_name ?? null}
-        onClose={() => {
-          setPlayingDay(false);
-          load();
-        }}
-        onOpenChest={() => setInChest(true)}
-        onOpenStore={() => setInStore(true)}
-        onOpenFire={() => setAtFire(true)}
-        onOpenGathering={() => setInGathering(true)}
-        timeZone={party.time_zone}
-      />
-      </NotebookProvider>
-    );
-  }
-
   if (doingSessionZero) {
     return (
       <SessionZero
@@ -610,6 +524,141 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
     );
   }
 
+
+  const removeDialog = (
+    <>
+      {confirm?.kind === 'remove' && (
+        <Confirm
+          title={`Remove ${confirm.name} from the party?`}
+          body="They will lose their place in this story and can't come back to it."
+          yes="REMOVE"
+          no="KEEP"
+          onYes={async () => {
+            await act('set_member_status', { p_party: party.id, p_user: confirm.user, p_status: 'removed' });
+            setConfirm(null);
+          }}
+          onNo={() => setConfirm(null)}
+        />
+      )}
+    </>
+  );
+  const leaveDialog = (
+    <>
+      {confirm?.kind === 'leave' && (
+        <Confirm
+          title="Leave the party?"
+          body="Your friends will carry on without you. You can't come back to this story."
+          yes="LEAVE"
+          no="STAY"
+          onYes={async () => {
+            await act('leave_party', { p_party: party.id });
+            onBack();
+          }}
+          onNo={() => setConfirm(null)}
+        />
+      )}
+    </>
+  );
+  const pendingCard = (
+    <>
+      {isHost && pending.length > 0 && (
+        <div className={card}>
+          <h3 className={`${heading} text-[15px]`}>Asking to join</h3>
+          {pending.map((r) => (
+            <div key={r.user_id} className="flex items-center justify-between gap-2">
+              <span className="text-[15px]">{r.character_name}</span>
+              <span className="flex gap-2">
+                <button
+                  className="rounded-lg bg-[#D4B876] px-3 py-1.5 font-[Cinzel] font-bold text-[12px] text-[#130B1F] disabled:opacity-50"
+                  disabled={full || setOff}
+                  onClick={() => act('set_member_status', { p_party: party.id, p_user: r.user_id, p_status: 'approved' })}
+                >
+                  LET IN
+                </button>
+                <button className={quietButton} onClick={() => act('set_member_status', { p_party: party.id, p_user: r.user_id, p_status: 'removed' })}>
+                  NOT THIS TIME
+                </button>
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  );
+  const inviteCard = (
+    <>
+      {/* Screen 3 of the host's path: the invite. */}
+      {isHost && !full && !setOff && (
+        <div className={card}>
+          <h3 className={`${heading} text-[15px]`}>Send this to your friends.</h3>
+          <p className="break-all text-[13px] text-[#B7A9CC]">{inviteLink(party.invite_code)}</p>
+          <div className="flex flex-wrap gap-2">
+            <button
+              className={quietButton}
+              onClick={async () => {
+                try {
+                  await navigator.clipboard.writeText(inviteLink(party.invite_code));
+                  setCopied(true);
+                  window.setTimeout(() => setCopied(false), 1500);
+                } catch {
+                  setCopied(false);
+                }
+              }}
+            >
+              {copied ? 'COPIED' : 'COPY'}
+            </button>
+            {typeof navigator.share === 'function' && (
+              <button
+                className={quietButton}
+                onClick={() => navigator.share({ title: 'Tales of the Dark Moon', url: inviteLink(party.invite_code) }).catch(() => undefined)}
+              >
+                SHARE
+              </button>
+            )}
+            <button className={quietButton} onClick={() => act('new_invite_code', { p_party: party.id })}>
+              NEW LINK
+            </button>
+          </div>
+          <p className={note}>Anyone you send it to can ask to join. Nobody gets in until you say so.</p>
+        </div>
+      )}
+    </>
+  );
+  const nameCard = (
+      <div className={card}>
+        {editingName === null ? (
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[14px]">
+              <span className="font-semibold">Your name in {seriesTitle(party.series_id)}:</span> {me.character_name}
+            </span>
+            <button className={quietButton} onClick={() => setEditingName(me.character_name)}>
+              CHANGE
+            </button>
+          </div>
+        ) : (
+          <div className="flex gap-2">
+            <input className={input} maxLength={MAX_PLAYER_NAME} value={editingName} onChange={(e) => setEditingName(e.target.value)} />
+            <button
+              className={quietButton}
+              disabled={!editingName.trim()}
+              onClick={async () => {
+                // One character per series: the new name shows in every party of this series (Fake Guru, 16 Oct).
+                const { error: e } = await supabase.rpc('rename_character', { p_series: party.series_id, p_name: editingName.trim() });
+                if (e) setError(plainError(e.message));
+                setEditingName(null);
+                await load();
+              }}
+            >
+              SAVE
+            </button>
+          </div>
+        )}
+        <button className={quietButton} onClick={() => setConfirm({ kind: 'leave' })}>
+          Leave the party
+        </button>
+      </div>
+  );
+
   const partyList = (
     <ul className="space-y-1.5">
       {approved.map((r) => (
@@ -629,36 +678,86 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
     </ul>
   );
 
+  // Once the season is under way and your character is made, the party opens straight into the game shell
+  // (docs/design/one-thread-18oct.md, phase A). Everything the page held that is not a tab sits in the party panel.
+  if (started && !beforeDayOne && me.session_zero_done_at) {
+    const panel = (
+      <div className="space-y-4">
+        {removeDialog}
+        {leaveDialog}
+        <Notifications compact />
+        <div className="space-y-2">
+          <p className="text-[12px] font-bold tracking-[1px] text-[#8F82A6]">
+            {party.name.toUpperCase()} · {approved.length} OF {MAX_PARTY_SIZE}
+          </p>
+          {approved.map((r) => (
+            <div key={r.user_id} className="rounded-xl border border-[#2C1D40] bg-[#150D22] px-3 py-2.5 space-y-2" data-panel-friend>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 shrink-0 rounded-full bg-[#2A1A40] text-[#E5C158] font-['Cinzel'] font-bold text-[15px] flex items-center justify-center">
+                  {(r.character_name || '?').charAt(0).toUpperCase()}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[16px] font-semibold truncate">
+                    {r.character_name}
+                    {r.user_id === userId && <span className="font-normal text-[#B7A9CC]"> · you</span>}
+                    {r.user_id === party.host_id && <span className="font-normal text-[#B7A9CC]"> · host</span>}
+                  </div>
+                  {r.class && <div className="text-[13px] text-[#B7A9CC]">{r.class}</div>}
+                </div>
+                {isHost && r.user_id !== userId && (
+                  <button
+                    className="w-9 h-9 rounded-full text-[18px] text-[#8F82A6]"
+                    aria-label={`More for ${r.character_name}`}
+                    onClick={() => setMenuFor(menuFor === r.user_id ? null : r.user_id)}
+                  >
+                    ⋯
+                  </button>
+                )}
+              </div>
+              {menuFor === r.user_id && (
+                <button
+                  className={quietButton}
+                  onClick={() => {
+                    setMenuFor(null);
+                    setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name });
+                  }}
+                >
+                  Remove from the party
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+        {pendingCard}
+        {inviteCard}
+        <GatheringCard partyId={party.id} isHost={isHost} timeZone={party.time_zone} onOpen={() => window.scrollTo({ top: 0 })} />
+        <GarrickRecap
+          partyId={party.id}
+          partySize={approved.length}
+          friends={approved.filter((r) => r.user_id !== userId).map((r) => r.character_name ?? '')}
+        />
+        <div className="rounded-xl border border-[#2C1D40] overflow-hidden text-[15px]">
+          <div className="flex justify-between gap-3 px-3 py-3 border-b border-[#2C1D40]">
+            <span className="text-[#B7A9CC]">Party clock</span>
+            <span className="text-right">{timeZoneLabel(party.time_zone)}</span>
+          </div>
+        </div>
+        {nameCard}
+        <ErrorLine text={error} />
+        <button className={`w-full ${quietButton} py-2.5`} onClick={onBack}>
+          ← Your stories
+        </button>
+      </div>
+    );
+    return <GameShell party={party} userId={userId} me={me} approved={approved} members={members} chatOpen={chatOpen} panel={panel} />;
+  }
+
   return (
     <div className="space-y-4">
       {back}
 
-      {confirm?.kind === 'remove' && (
-        <Confirm
-          title={`Remove ${confirm.name} from the party?`}
-          body="They will lose their place in this story and can't come back to it."
-          yes="REMOVE"
-          no="KEEP"
-          onYes={async () => {
-            await act('set_member_status', { p_party: party.id, p_user: confirm.user, p_status: 'removed' });
-            setConfirm(null);
-          }}
-          onNo={() => setConfirm(null)}
-        />
-      )}
-      {confirm?.kind === 'leave' && (
-        <Confirm
-          title="Leave the party?"
-          body="Your friends will carry on without you. You can't come back to this story."
-          yes="LEAVE"
-          no="STAY"
-          onYes={async () => {
-            await act('leave_party', { p_party: party.id });
-            onBack();
-          }}
-          onNo={() => setConfirm(null)}
-        />
-      )}
+      {removeDialog}
+      {leaveDialog}
       {confirm?.kind === 'start' && (
         <Confirm
           title={started ? 'Change the day the story starts?' : `Start the story for ${readyCount} of you?`}
@@ -707,33 +806,6 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         {isHost && started && beforeDayOne && <p className="text-[15px] pt-1">{doorLine}</p>}
       </div>
 
-      {/* Once Day 1 has opened: today's chapter. */}
-      {started && !beforeDayOne && me.session_zero_done_at && (
-        <div className={`${card} border-[#D4B876]/60`}>
-          <h3 className={`${heading} text-[15px]`}>Today</h3>
-          <button className={goldButton} onClick={() => setPlayingDay(true)}>
-            OPEN TODAY'S CHAPTER
-          </button>
-          <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInChest(true)}>
-            🕯️ SEEKER CHEST
-          </button>
-          <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setAtFire(true)}>
-            🔥 THE CAMPFIRE
-          </button>
-          <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInCasebook(true)}>
-            THE CASEBOOK AND YOUR NOTEBOOK
-          </button>
-          <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInStore(true)}>
-            THE STORE
-          </button>
-        </div>
-      )}
-
-      {/* This week's Gathering: its time (the host can change it until the lobby opens), and on Day 7 the way in. */}
-      {started && !beforeDayOne && me.session_zero_done_at && (
-        <GatheringCard partyId={party.id} isHost={isHost} timeZone={party.time_zone} onOpen={() => setInGathering(true)} />
-      )}
-
       {/* Notifications on this phone: the 8:00am line, the Day 4 poll, the Gathering's time and its reminder (0069). */}
       {started && me.session_zero_done_at && <Notifications />}
 
@@ -762,64 +834,8 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         </div>
       )}
 
-      {isHost && pending.length > 0 && (
-        <div className={card}>
-          <h3 className={`${heading} text-[15px]`}>Asking to join</h3>
-          {pending.map((r) => (
-            <div key={r.user_id} className="flex items-center justify-between gap-2">
-              <span className="text-[15px]">{r.character_name}</span>
-              <span className="flex gap-2">
-                <button
-                  className="rounded-lg bg-[#D4B876] px-3 py-1.5 font-[Cinzel] font-bold text-[12px] text-[#130B1F] disabled:opacity-50"
-                  disabled={full || setOff}
-                  onClick={() => act('set_member_status', { p_party: party.id, p_user: r.user_id, p_status: 'approved' })}
-                >
-                  LET IN
-                </button>
-                <button className={quietButton} onClick={() => act('set_member_status', { p_party: party.id, p_user: r.user_id, p_status: 'removed' })}>
-                  NOT THIS TIME
-                </button>
-              </span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Screen 3 of the host's path: the invite. */}
-      {isHost && !full && !setOff && (
-        <div className={card}>
-          <h3 className={`${heading} text-[15px]`}>Send this to your friends.</h3>
-          <p className="break-all text-[13px] text-[#B7A9CC]">{inviteLink(party.invite_code)}</p>
-          <div className="flex flex-wrap gap-2">
-            <button
-              className={quietButton}
-              onClick={async () => {
-                try {
-                  await navigator.clipboard.writeText(inviteLink(party.invite_code));
-                  setCopied(true);
-                  window.setTimeout(() => setCopied(false), 1500);
-                } catch {
-                  setCopied(false);
-                }
-              }}
-            >
-              {copied ? 'COPIED' : 'COPY'}
-            </button>
-            {typeof navigator.share === 'function' && (
-              <button
-                className={quietButton}
-                onClick={() => navigator.share({ title: 'Tales of the Dark Moon', url: inviteLink(party.invite_code) }).catch(() => undefined)}
-              >
-                SHARE
-              </button>
-            )}
-            <button className={quietButton} onClick={() => act('new_invite_code', { p_party: party.id })}>
-              NEW LINK
-            </button>
-          </div>
-          <p className={note}>Anyone you send it to can ask to join. Nobody gets in until you say so.</p>
-        </div>
-      )}
+      {pendingCard}
+      {inviteCard}
 
       {isHost && (
         <div className={card}>
@@ -867,38 +883,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
 
       <ErrorLine text={error} />
 
-      <div className={card}>
-        {editingName === null ? (
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-[14px]">
-              <span className="font-semibold">Your name in {seriesTitle(party.series_id)}:</span> {me.character_name}
-            </span>
-            <button className={quietButton} onClick={() => setEditingName(me.character_name)}>
-              CHANGE
-            </button>
-          </div>
-        ) : (
-          <div className="flex gap-2">
-            <input className={input} maxLength={MAX_PLAYER_NAME} value={editingName} onChange={(e) => setEditingName(e.target.value)} />
-            <button
-              className={quietButton}
-              disabled={!editingName.trim()}
-              onClick={async () => {
-                // One character per series: the new name shows in every party of this series (Fake Guru, 16 Oct).
-                const { error: e } = await supabase.rpc('rename_character', { p_series: party.series_id, p_name: editingName.trim() });
-                if (e) setError(plainError(e.message));
-                setEditingName(null);
-                await load();
-              }}
-            >
-              SAVE
-            </button>
-          </div>
-        )}
-        <button className={quietButton} onClick={() => setConfirm({ kind: 'leave' })}>
-          Leave the party
-        </button>
-      </div>
+      {nameCard}
     </div>
   );
 }
@@ -917,6 +902,7 @@ function Home({ session }: { session: Session }) {
   const [joinError, setJoinError] = useState<string | null>(null);
   const [editingName, setEditingName] = useState<string | null>(null);
   const info = useInvite(joinCode);
+  const autoOpened = useRef(false);
 
   const load = useCallback(async () => {
     const [{ data: prof }, { data: mine }, { data: chars }] = await Promise.all([
@@ -940,6 +926,13 @@ function Home({ session }: { session: Session }) {
       if (name) r.parties = { name, series_id: 'dark-moon', season_number: 1 };
     }
     setRows(list);
+    // With one party, signing in goes straight into it (phase A, docs/design/one-thread-18oct.md); once only, so
+    // "Your stories" still reaches the shelf.
+    if (!autoOpened.current && !startQuery.get('join') && list.length === 1 && list[0].status === 'approved') {
+      autoOpened.current = true;
+      setOpenParty(list[0].party_id);
+    }
+    autoOpened.current = true;
   }, [userId]);
 
   useEffect(() => {

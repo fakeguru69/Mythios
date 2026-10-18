@@ -1,5 +1,6 @@
 // Continue: play today's chapter for the host in an existing party (name in argv[3]).
 const { chromium } = require('./playwright.cjs');
+const { enterParty, openPanel, dayDone } = require('./shell.cjs');
 const fs = require('fs');
 const S = require('path').join(process.env.TEST_OUT || 'test-output', 'online5b-' + (process.argv[2] || 'run'));
 fs.mkdirSync(S, { recursive: true });
@@ -16,12 +17,11 @@ const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.j
   await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
   await p.getByPlaceholder('Email').fill(`${WHO}@mythios.test`); await p.getByPlaceholder('Password').fill(process.env.MYTHIOS_TEST_PASSWORD);
   await click('SIGN IN'); await p.waitForTimeout(2000);
-  await p.getByRole('button', { name: new RegExp(PARTY) }).first().click(); await p.waitForTimeout(2500);
-  await click("OPEN TODAY'S CHAPTER"); await p.waitForTimeout(2500);
+  await enterParty(p, PARTY); await p.waitForTimeout(1500); // the STORY tab opens on today's chapter
   const taps = []; let stuck = 0;
   for (let n = 0; n < 150; n++) {
     const t = await body();
-    if (/BACK TO THE PARTY/.test(t)) break;
+    if (await dayDone(p)) break;
     let done = false;
     for (const re of [/^🎲 ROUND \d+$/, /^🎲 ROLL \w+$/]) {
       const bt = p.getByRole('button', { name: re });
@@ -33,10 +33,11 @@ const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.j
   }
   fs.writeFileSync(`${S}/day.txt`, await body()); await p.screenshot({ path: `${S}/day.png`, fullPage: true });
   const t = await body();
-  log('taps', taps.length, '| summary:', /You earned:/.test(t), '| gold:', (t.match(/◎ ([\d,]+)g/) || [])[1]);
+  log('taps', taps.length, '| summary:', /You earned:/.test(t), '| gold:', ((await p.locator('[data-gold]').innerText()).match(/([\d,]+)g/) || [])[1]);
   log('rolls:', (t.match(/🎲 \d+ \+ \w+ \d+ \(\+\d\) − DC \d+ = [+−]\d+/g) || []).join(' | '));
   log('fight:', (t.match(/(VICTORY[^\n]*|DEFEATED\.)/) || [])[0] ?? 'none');
   log('earned:', (t.match(/You earned: [^\n]*/) || [])[0]);
-  if (/BACK TO THE PARTY/.test(t)) { await click('BACK TO THE PARTY'); await p.waitForTimeout(2500); fs.writeFileSync(`${S}/party.txt`, await body()); }
+  log('fire follows the day:', await dayDone(p));
+  await openPanel(p); fs.writeFileSync(`${S}/party.txt`, await body());
   await b.close();
 })().catch((e) => { log('FAILED', e.message.split('\n')[0]); process.exit(1); });
