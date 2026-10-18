@@ -1,14 +1,14 @@
 // The fire's stream tells each thing once, in the order it happened (docs/design/handoff-ledger.md, piece 4):
 // the party's "found a missing word" notices are the only word lines (shown once each, at their real time, and the
 // whole-fragment card after the last one); the day-result notices ("has read today's chapter", "passed / failed today's
-// Challenge") are not repeated in the stream; a line Garrick has said never changes under the reader (a different line
-// for the same slot arrives as a new line below it). Local copy of the server. Run campfire.cjs first (two friends at
+// Challenge") are not repeated in the stream; a line Garrick has said never changes under the reader and is kept on the server
+// (fire_said): a different line for the same slot arrives as a new line below it, on any phone. Local copy of the server. Run campfire.cjs first (two friends at
 // the Week 1 Day 2 fire). Usage: node tests/online/fire-stream.cjs "<party name>"
 const { chromium } = require('./playwright.cjs');
 const { enterParty } = require('./shell.cjs');
 const { execFileSync } = require('child_process');
 const PARTY = process.argv[2] || 'Gathering Test';
-const P = '22222222-2222-2222-2222-222222222222', MEI = '00000000-0000-0000-0000-0000000000a2';
+const P = '22222222-2222-2222-2222-222222222222', MEI = '00000000-0000-0000-0000-0000000000a2', HOST = '00000000-0000-0000-0000-0000000000a1';
 let failed = false;
 const check = (name, ok) => { console.log((ok ? 'ok   ' : 'FAIL ') + name); if (!ok) failed = true; };
 const sql = (s) => execFileSync('psql', ['-U', process.env.PGUSER || 'postgres', '-qAtX', '-c', s], { encoding: 'utf8' });
@@ -44,23 +44,32 @@ const sql = (s) => execFileSync('psql', ['-U', process.env.PGUSER || 'postgres',
   check("a failure is never named in the stream ('failed today's Challenge')", count(/failed today's Challenge/g) === 0);
   const frag = t.indexOf('TODAY\'S FRAGMENT IS WHOLE'), lastWord = t.lastIndexOf('found a missing word');
   check('the whole-fragment card comes after the last word was found', frag > lastWord && lastWord > 0);
-  // Garrick's lines do not change under the reader: put an older nudge in memory, reload, and both lines show in order.
-  const nudgeLine = await p.evaluate(() => { const k = Object.keys(sessionStorage).find((x) => x.startsWith('fire-said:')); return k ? JSON.parse(sessionStorage.getItem(k)).nudge : null; });
-  check('the nudge was remembered when first shown', Array.isArray(nudgeLine) && nudgeLine.length >= 1);
-  if (Array.isArray(nudgeLine)) {
-    const old = 'An older nudge that was shown before.';
-    await p.evaluate((o) => {
-      const k = Object.keys(sessionStorage).find((x) => x.startsWith('fire-said:'));
-      const v = JSON.parse(sessionStorage.getItem(k));
-      const cur = v.nudge[v.nudge.length - 1];
-      v.nudge = [{ text: o, at: new Date(new Date(cur.at).getTime() - 60000).toISOString() }, cur];
-      sessionStorage.setItem(k, JSON.stringify(v));
-    }, old);
-    await p.reload(); await p.waitForTimeout(4500);
-    t = await stream();
-    const iOld = t.indexOf(old), iNew = t.indexOf(nudgeLine[nudgeLine.length - 1].text);
-    check('a line already read is not rewritten: the old nudge stays and the new one follows it', iOld >= 0 && iNew > iOld);
-  }
+  // Garrick's lines do not change under the reader, and the server remembers them (piece 4b, fire_said): an older nudge
+  // that was shown to the host before is already on the server; the new one arrives below it, and a different phone (a
+  // fresh browser with no memory of its own) sees the same two lines in the same order.
+  const old = 'An older nudge that was shown before.';
+  const rows = () => Number(sql(`select count(*) from public.fire_said where party_id = '${P}' and user_id = '${HOST}' and slot = 'nudge'`).trim());
+  sql(`delete from public.fire_said where party_id = '${P}' and user_id = '${HOST}';
+       insert into public.fire_said (party_id, user_id, week, day, slot, body, at) values ('${P}', '${HOST}', 1, 2, 'nudge', '${old}', now() - interval '30 minutes');`);
+  await p.reload(); await p.waitForTimeout(5000);
+  t = await stream();
+  const lines = sql(`select body from public.fire_said where party_id = '${P}' and user_id = '${HOST}' and slot = 'nudge' order by id`).trim().split('\n');
+  check(`the server holds the old nudge and the new one below it (${lines.length} rows)`, lines.length === 2 && lines[0] === old);
+  const iOld = t.indexOf(old), iNew = lines[1] ? t.indexOf(lines[1]) : -1;
+  check('the old nudge stays and the new one follows it on screen', iOld >= 0 && iNew > iOld);
+  await p.reload(); await p.waitForTimeout(4500);
+  check('reloading does not add rows (the record is kept once)', rows() === 2);
+  const other = await (await b.newContext({ viewport: { width: 375, height: 900 } })).newPage();
+  await other.goto('http://localhost:3000/?online=1'); await other.waitForTimeout(1500);
+  await other.getByRole('button', { name: 'START A PARTY', exact: true }).click(); await other.waitForTimeout(800);
+  await other.getByRole('button', { name: 'USE EMAIL AND A PASSWORD', exact: true }).click(); await other.waitForTimeout(800);
+  await other.getByRole('button', { name: 'Have an account? Sign in' }).click();
+  await other.getByPlaceholder('Email').fill('host@mythios.test'); await other.getByPlaceholder('Password').fill('x');
+  await other.getByRole('button', { name: 'SIGN IN', exact: true }).click(); await other.waitForTimeout(2000);
+  await enterParty(other, PARTY); await other.waitForTimeout(4500);
+  const t2 = await other.locator('[data-stream]').innerText();
+  check('another phone (no memory of its own) shows the same two lines in the same order', t2.indexOf(old) >= 0 && t2.indexOf(lines[1]) > t2.indexOf(old));
+  check('the other phone added no rows either', rows() === 2);
   await b.close();
   process.exit(failed ? 1 : 0);
 })().catch((e) => { console.log('FAILED', e.message.split('\n')[0]); process.exit(1); });
