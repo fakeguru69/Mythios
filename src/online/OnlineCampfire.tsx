@@ -9,7 +9,7 @@
 //   5. The composer at the foot, with a "+" tray: lay a clue, your fragment.
 // Everything Garrick says here is stored text; named in the chat at the fire, his stored lines only (canon §E).
 // The server keeps all of it (campfire, fire_table, fire_lay, fire_react, pin_theory, fan_out_roll, leave_note).
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { supabase, plainError, type MemberRow } from './supabaseClient';
 import { NoticeBlock, ScriptText, fillScriptTokens } from '../components/ChapterScriptParts';
 import { ATTRIBUTE_META, challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
@@ -120,6 +120,21 @@ const pick = <T,>(list: readonly T[], seed: number) => list[Math.abs(seed) % lis
 const nameList = (xs: string[]) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
 const later = (iso: string, ms: number) => new Date(new Date(iso).getTime() + ms).toISOString();
 
+// The party's notices the fire already says in its own way, so the stream shows each once (handoff ledger piece 4):
+// "X pinned a theory." (the fire's pinned line), the day-result notices ("X has read today's chapter.", "X passed /
+// failed today's Challenge.": the Around the fire card tells the good news, and a failure is never named here), and
+// "X found a missing word…" for any day but this one's (this day's is shown, at its real time, in the stream).
+const WORD_NOTICE = /^(.+) found a missing word in the Week (\d+), Day (\d+) fragment\.$/;
+const isWordNoticeFor = (body: string, week: number, day: number) => {
+  const m = WORD_NOTICE.exec(body);
+  return Boolean(m) && Number(m![2]) === week && Number(m![3]) === day;
+};
+const fireOwnNotice = (body: string, week: number, day: number) =>
+  / pinned a theory\.$/.test(body) ||
+  / has read today's chapter\.$/.test(body) ||
+  / (passed|failed) today's Challenge\.$/.test(body) ||
+  (WORD_NOTICE.test(body) && !isWordNoticeFor(body, week, day));
+
 export default function OnlineCampfire({
   partyId,
   userId,
@@ -166,6 +181,8 @@ export default function OnlineCampfire({
   const { messages, reload: reloadChat } = useChatMessages(partyId, atFire && together);
   // The page follows new lines to the foot only when the friend is already there (a hook, so it sits above the early returns).
   const follow = useKeepNewInView(messages.length + (table?.thread?.length ?? 0) + (table?.pieces?.length ?? 0));
+  // What Garrick (or MYTHIOS) has said at this fire, kept so a line never changes after it was read (handoff ledger piece 4).
+  const said = useRef<{ key: string; slots: Record<string, { text: string; at: string }[]> }>({ key: '', slots: {} });
 
   const call = async (fn: string, args: Record<string, unknown>) => {
     setBusy(true);
@@ -287,6 +304,30 @@ export default function OnlineCampfire({
   type Item = { at: string; key: string; node: React.ReactNode };
   const items: Item[] = [];
   const add = (at: string, key: string, node: React.ReactNode) => items.push({ at, key, node });
+  // A stored line is placed where it was first shown and never rewritten: if the server later offers a different line for
+  // the same slot (a new nudge once a piece is on the table), it is a new line at that moment, below the first.
+  const sayOnce = (slot: string, text: string, at: string): { text: string; at: string }[] => {
+    const key = `fire-said:${partyId}:${fire.week}:${fire.day}`;
+    if (said.current.key !== key) {
+      let slots: Record<string, { text: string; at: string }[]> = {};
+      try {
+        slots = JSON.parse(sessionStorage.getItem(key) || '{}');
+      } catch {
+        /* no memory of earlier lines */
+      }
+      said.current = { key, slots };
+    }
+    const list = said.current.slots[slot] ?? [];
+    if (!list.length || list[list.length - 1].text !== text) {
+      said.current.slots[slot] = [...list, { text, at: list.length ? new Date().toISOString() : at }];
+      try {
+        sessionStorage.setItem(key, JSON.stringify(said.current.slots));
+      } catch {
+        /* private window */
+      }
+    }
+    return said.current.slots[slot];
+  };
 
   // Arriving: the cup, his greeting and opener, what he notices (stored lines, v2.3 §B, §C, §I).
   if (fire.cupNight) add(arrival, 'cup', <NarrationMessage text={CAMPFIRE_STORED_LINES.cupNightStageDirection} />);
@@ -295,7 +336,9 @@ export default function OnlineCampfire({
   if (garrick && fire.opener) add(later(arrival, 2), 'opener', <GarrickBubble text={fire.opener} />);
   if (garrick)
     (fire.noticings ?? []).forEach((n, i) =>
-      add(later(arrival, 3 + i), `notice-${i}`, <GarrickBubble text={CAMPFIRE_STORED_LINES.noticingTemplates[n.kind].replace('{friend}', n.name)} />)
+      sayOnce(`notice-${i}`, CAMPFIRE_STORED_LINES.noticingTemplates[n.kind].replace('{friend}', n.name), later(arrival, 3 + i)).forEach((e, j) =>
+        add(e.at, `notice-${i}-${j}`, <GarrickBubble text={e.text} />)
+      )
     );
   // Your own find at the last light: the roll, the late line, the first-letter hint, the glimpse.
   const my = fire.myFanOut;
@@ -396,25 +439,33 @@ export default function OnlineCampfire({
   if (together) {
     const since = new Date(partyDayStart(timeZone)).getTime();
     messages
-      .filter((m) => new Date(m.created_at).getTime() >= since && !(m.kind === 'notice' && / pinned a theory\.$/.test(m.body)))
+      .filter((m) => new Date(m.created_at).getTime() >= since && !(m.kind === 'notice' && fireOwnNotice(m.body, fire.week, fire.day)))
       .forEach((m) => add(m.created_at, `msg-${m.id}`, <ChatBubble m={m} userId={userId} members={memberRows} onReport={setReporting} />));
   }
 
   // His nudge, once something is on the table (or on arriving); MYTHIOS asks it on a narrated night.
   const firstPieceAt = pieces.map((p) => p.at).filter(Boolean).sort()[0];
   const nudgeAt = later(firstPieceAt && firstPieceAt > arrival ? firstPieceAt : arrival, 5);
-  if (fire.nudge) add(nudgeAt, 'nudge', garrick ? <GarrickBubble text={fire.nudge} /> : <NarrationMessage text={fire.nudge} />);
-  if (garrick && fire.callback) add(later(nudgeAt, 1), 'callback', <GarrickBubble text={fire.callback} />);
+  if (fire.nudge)
+    sayOnce('nudge', fire.nudge, nudgeAt).forEach((e, j) =>
+      add(e.at, `nudge-${j}`, garrick ? <GarrickBubble text={e.text} /> : <NarrationMessage text={e.text} />)
+    );
+  if (garrick && fire.callback) sayOnce('callback', fire.callback, later(nudgeAt, 1)).forEach((e, j) => add(e.at, `callback-${j}`, <GarrickBubble text={e.text} />));
 
   // Words found, and the whole fragment with its meaning question.
   if (frag) {
-    // A solitary night (Week 1 Day 1) says nothing of the others: no names of friends who found a word, no answers.
-    if (!fire.narrated) frag.solvers.forEach((s, i) => add(later(arrival, 10 + i), `word-${i}`, <SmallLine>{s} found a missing word.</SmallLine>));
+    // "X found a missing word" is the party's own notice, shown at the moment it was posted (see the messages above), so
+    // the fire adds no second line for it. The whole fragment is placed when its last word was found. A solitary night
+    // (Week 1 Day 1) says nothing of the others.
+    const wordTimes = together
+      ? messages.filter((m) => m.kind === 'notice' && isWordNoticeFor(m.body, fire.week, fire.day)).map((m) => new Date(m.created_at).getTime())
+      : [];
+    const fragAt = wordTimes.length ? new Date(Math.max(...wordTimes) + 5).toISOString() : later(arrival, 20);
     if (fragDone) {
       const myMeaning = notes.find((n) => n.kind === 'meaning' && n.mine)?.body ?? '';
       const draft = meaningDraft ?? myMeaning;
       add(
-        later(arrival, 20),
+        fragAt,
         'fragment',
         <div className="rounded-2xl border border-[#5E4585] bg-[#1A1226] p-3 space-y-2" data-fragment-card>
           <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#C39BF5]">TODAY'S FRAGMENT IS WHOLE</div>
@@ -457,9 +508,10 @@ export default function OnlineCampfire({
   }
 
   // His closer, from 8:00pm (stored, v2.3 step 7).
-  if (garrick && t?.evening) add(new Date().toISOString(), 'closer', <GarrickBubble text={pick(CAMPFIRE_STORED_LINES.closers, seed)} />);
+  if (garrick && t?.evening)
+    sayOnce('closer', pick(CAMPFIRE_STORED_LINES.closers, seed), new Date().toISOString()).forEach((e, j) => add(e.at, `closer-${j}`, <GarrickBubble text={e.text} />));
 
-  items.sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0));
+  items.sort((a, b) => new Date(a.at).getTime() - new Date(b.at).getTime());
 
   // ---- Tonight's question, pinned: before your pick, nothing of the others' (pin before peek); after, who said what. ----
   const myPick = fire.myPin?.reading ?? null;
