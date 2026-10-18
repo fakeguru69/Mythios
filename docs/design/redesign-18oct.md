@@ -40,3 +40,25 @@ built until he says yes.
     "Reading Day 2"), Remove behind a ⋯ menu, the Gathering time with "Singapore time", settings at the bottom.
 11. **The cover** is one screen: MYTHIOS, one line on what it is, Tales of the Dark Moon as the featured series with
     its art, hook and four facts, and two buttons.
+
+## Decided with Fake Guru (18 Oct, after the proposal above)
+- **The shape: B**, a chat where the people are real and the story is written. Story arrives as messages; your
+  choices are buttons where the keyboard would be; free typing only where someone listens (the fire, Garrick).
+- **One thread from morning to the fire.** No separate day and fire screens: the day's chapter, the end-of-day
+  card, the last light ("One more look" or "Sit by the fire") and the fire follow one another in the same thread.
+  Day 7 is the Gathering in the same place. Scrolling up goes back to earlier days; tapping the day name lists the
+  days played.
+- **Tabs: STORY · RECORD · BAG · STORE.** No party tab: tapping the party name opens a panel (friends, invite,
+  notifications, the Gathering time, the clock, your name). The Record is the stats page from the demo
+  (`RecordTabView.tsx`); it was never built online, so it is new work, not a loss.
+- **The fire opens only once your day's chapter is finished.**
+- **Messages arrive by themselves** with a "typing" dot (tap to read faster); the screen stays where you last read.
+- Superseded above: item 1's tab list, item 7's "To the fire" button, item 8's separate fire tab, item 10's tab.
+
+## Choices (Fake Guru, 18 Oct)
+- **The rule:** two options shown together are a choice; picking one closes the other. Built: "look at both" and
+  "look at all" steps now offer one action at a time (Week 1 Day 1: "Look where he stood", its passage, then "Look at
+  what he was at"). Checked in a local play of Week 1 Day 1: never two options at once.
+- **Forks** may rejoin, but must never feel as if they did not matter. Proposed (awaiting his yes): the other path
+  stays closed; each path leaves its own find for the fire; a short join line per path; about one fork in three
+  carries a stake; some are remembered later. Week 1 has 7 forks to draft first.

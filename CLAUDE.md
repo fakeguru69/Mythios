@@ -128,6 +128,8 @@ Stack: React 19 + TypeScript + Vite + Tailwind 4, Express server (`server.ts`, r
 
 These gates bind Garrick's words, the Campfire and the build's own text (leads, questions, Bag, router). The episode files' story text may use a word earlier, and it stays (Fake Guru, 15 Oct): Gathering 1's "four names", Gathering 2's "Highwall" and "the Order", fragment 1-1's "Five fell". Garrick's "Kings have had less." waits until W2D5.
 
+**Choices (Fake Guru, 18 Oct):** two options on screen together are a choice, and picking one closes the other: never go back to choose the second. A "look at both" (`each`) or a look that shows everything (`auto`) offers one action at a time, never side by side (`OnlineDay.tsx`, `StoryAndPartyTabs.tsx`). Forks may rejoin later, but the player must never feel the choice did not matter: each path leaves something of its own (rules being drafted, `docs/design/redesign-18oct.md`).
+
 **Highwall tally (canon):** 8 left at Week 5 Day 5, 7 left at the end of Gathering 5, 6 left at Week 6 Day 1.
 
 **Party size (Campfire v2.3 §M):** 2 to 6 friends. No hard-coded four. `[N]` = the party size as a word (two … six). Lines about the four children or four Stones are story facts and stay.

@@ -312,10 +312,13 @@ export default function OnlineDay({
           const b = branchFor(oi);
           return Boolean(b) && !shown.has(step.branches.indexOf(b!));
         });
-      if (open.length > 0) {
+      // A rule (Fake Guru, 18 Oct): two options on screen together are a choice, and picking one closes the other. So a
+      // "look at both" (each) or a look that shows everything (auto) offers one action at a time, never side by side.
+      const shownOpen = step.mode === 'each' || step.mode === 'auto' ? open.slice(0, 1) : open;
+      if (shownOpen.length > 0) {
         nodes.push(
           <div key={`${key}-o`} className="space-y-1.5">
-            {open.map((oi) => (
+            {shownOpen.map((oi) => (
               <ScriptButton
                 key={oi}
                 label={fill(labels[oi])}
