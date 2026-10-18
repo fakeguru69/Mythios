@@ -62,14 +62,11 @@ export default function OnlineChest({ partyId, onClose }: { partyId: string; onC
     const { data, error: e } = await supabase.rpc('solve_word', { p_party: partyId, p_fragment: frag.id, p_slot: slot.slot, p_guess: guess });
     setBusy(false);
     if (e) return setNotice(plainError(e.message));
-    const r = data as { ok: boolean; oneToday?: boolean; waitUntil?: string; taken?: boolean };
+    const r = data as { ok: boolean; waitUntil?: string; taken?: boolean };
     if (r.ok) {
       setActive(null);
       setTyped([]);
       setNotice(null);
-    } else if (r.oneToday) {
-      setNotice('Until today ends, each friend fills one of its two words. Leave the other for a friend.');
-      setTyped([]);
     } else if (r.taken) {
       setNotice('A friend has just found this word.');
       setActive(null);
@@ -163,7 +160,7 @@ export default function OnlineChest({ partyId, onClose }: { partyId: string; onC
       {chest.mySolved === 0 && (
         <div className="pl-3 border-l-2 border-[#D4B876]/45">
           <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-[1.45]">
-            A Seeker Fragment. Two of its words are missing. Find one, and it is worth 25 gold. Leave the other for a friend.
+            A Seeker Fragment. Two of its words are missing. Each one you find fills it in for the whole party, and is worth 25 gold.
           </p>
         </div>
       )}

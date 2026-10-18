@@ -111,6 +111,23 @@ Damage = 10 + Roll 6. His Breath 100 → 84
 | | Dev has stopped looking at any of you, and is looking down. |
 | 0 | The boards go, all of them, and Dev goes with them into the dark. A long moment. Then, far below, water. |
 
+## When Dev takes the turn
+
+*Added 17 Oct 2026 (Fake Guru: "go with your suggestion"): Dev now takes turns too, working up from below. On Dev's own turn the lines above would describe somebody else hauling, so these are used instead, in order and never twice; the two lines for 0 stay as they are. Alone, these are the friend's own turns.*
+
+| On a SUCCESS | Story |
+|---|---|
+| 1 | Dev gets an elbow onto sounder wood, then the other, and comes up a hand's breadth unaided. |
+| 2 | Somewhere down in the dark, Dev finds a crossbeam with one boot, and pushes. The boards groan. Dev rises with them. |
+| 3 | Inch by inch, Dev works a knee up over the timber's edge, and this time keeps it there. |
+| 4 | Dev hauls on a beam until the knuckles go white, and the hole gives up another hand's breadth. |
+
+| On a FAIL | Story |
+|---|---|
+| 1 | Dev reaches for a better hold, and the board meant to give it snaps off clean and goes spinning down into the dark. |
+| 2 | Dev tries to lever up on one arm, and the arm will not take it. The boards close in again, tighter than before. |
+| 3 | A heave that should have worked costs Dev the skin from wrist to elbow, and gains nothing at all. |
+
 ## The hand-on
 
 > Mei is dragged back, spent. **Jo. On your belly. Go.**

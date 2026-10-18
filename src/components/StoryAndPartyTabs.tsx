@@ -2148,6 +2148,14 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
           .slice(0, -1)
           .filter((r) => r.success === last.success && unitedEffortBand(r.barAfter, next.start) === band).length;
         line = story[side][band][usedBefore];
+        // Gathering 1: on the turn of the friend in the drop, their own lines (bands 1 to 3), in order, never twice.
+        const self = last.success ? story.selfSuccess : story.selfFail;
+        if (self && band > 0 && rollerId === riskFriend.id) {
+          const selfBefore = next.rolls
+            .slice(0, -1)
+            .filter((r) => r.rollerId === riskFriend.id && r.success === last.success && unitedEffortBand(r.barAfter, next.start) > 0).length;
+          line = self[selfBefore] ?? line;
+        }
         const turn = next.rolls.length;
         if (next.outcome === 'ongoing' && (turn === 2 || turn === 4 || turn === 6)) {
           between = story.between[turn / 2 - 1];

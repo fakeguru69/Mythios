@@ -61,11 +61,15 @@ async function smallTalk(env: GarrickEnv, question: string, ctx: Record<string, 
     body: JSON.stringify({
       systemInstruction: { parts: [{ text: GARRICK_IMPLICIT_CACHE_SYSTEM_PREFIX }] },
       contents: [{ role: 'user', parts: [{ text: payload }] }],
-      generationConfig: { temperature: 0.4, maxOutputTokens: 120 },
+      // Room for the model's own thinking, which counts against the limit (a cap of 120 cut replies to a few words,
+      // 18 Oct); the prompt keeps the reply itself under 35 words.
+      generationConfig: { temperature: 0.4, maxOutputTokens: 1024, thinkingConfig: { thinkingLevel: 'low' } },
     }),
   });
   if (!res.ok) return null;
   const data = await res.json();
+  // A reply cut short is never sent: the stored line goes instead.
+  if (data?.candidates?.[0]?.finishReason !== 'STOP') return null;
   const text = (data?.candidates?.[0]?.content?.parts ?? []).map((p: { text?: string }) => p.text ?? '').join('').trim();
   return text || null;
 }

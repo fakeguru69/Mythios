@@ -1253,7 +1253,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "key": "G1:united-effort-lost",
           "has": true,
           "by": 2,
-          "line": "**Two harder.** You come down the road still grey with the mine's dust, and you look like the kind of trouble he wants no part of."
+          "line": "**Two harder.** Two days on, the mine still shows on every one of you: the scrapes, the stiff way you walk, the look of people who lost something in the dark. You are exactly the kind of trouble he wants no part of."
         }
       },
       {
@@ -2309,7 +2309,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "key": "G2:united-effort-lost",
           "has": true,
           "by": 2,
-          "line": "**Two harder.** Word of what happened under the hill has come over the hills ahead of you, and nobody in Ashcombe is quick to open a door."
+          "line": "**Two harder.** Since the night under the hill, somebody has been down this street ahead of you with a fresh warning, and nobody in Ashcombe is quick to open a door."
         }
       },
       {
@@ -3292,7 +3292,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Not before one of them has had you face down in the ford, though. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon.",
+        "text": "Quick as it was, one of them has had you face down in the ford for the worst of it. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon.",
         "cond": {
           "on": "fight",
           "won": false
@@ -3777,7 +3777,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "While it lasted he had the better of you. Your forearm aches where the oar came down across it, and the fog has found its way into your wet sleeves.",
+        "text": "While it lasted he had the better of you. Your forearm aches where the oar came down across it, and the fog has found its way into your sleeves.",
         "cond": {
           "on": "fight",
           "won": false
@@ -5263,7 +5263,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "key": "6-2:challenge-failed",
           "has": true,
           "by": 1,
-          "line": "**One harder.** The roof that came down yesterday was heard across the city, and tonight the square's watch is doubled."
+          "line": "**One harder.** The ceiling that came down yesterday was heard across the city, and tonight the square's watch is doubled."
         }
       },
       {
@@ -5707,7 +5707,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "key": "6-5:challenge-failed",
           "has": true,
           "by": 1,
-          "line": "**One harder.** Someone saw your lamp in the tower last night, and tonight more eyes are on the street."
+          "line": "**One harder.** Your lamp burned half the night in the tower, and the square took note. Tonight more eyes are on the street."
         }
       },
       {

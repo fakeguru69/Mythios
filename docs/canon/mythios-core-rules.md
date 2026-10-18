@@ -323,7 +323,7 @@ Inside a Gathering Battle a loss reads `DEFEATED. You are down for this Battle. 
 - One fragment arrives each weekday. **It is in every friend's Seeker Chest from the moment the day opens,** whether or not they have read the beat.
 - **The fragment is its own puzzle.** It shows its own text with two words missing and their letters jumbled. The words are listed in `mythios-fragment-registry.md`.
 - Each missing word is its own lock, worth **25g,** and shows the solver's name once filled.
-- **Until the fragment's own day ends, a player may fill only one of its two words.** After that, anyone may fill what is left, and it still pays 25g a word. If two friends send the same word at the same moment, the first to arrive gets it. *(Kept 17 Oct 2026, Fake Guru: "C". Each friend solving their own Chest was built and turned back the same day.)*
+- **Any friend may fill either word, or both,** at any time; the first to find a word fills it in for the whole party and takes its 25g. If two friends send the same word at the same moment, the first to arrive gets it. Each word stays its own lock, so this is not the retired winner-take-all race (§14). *(17 Oct 2026, Fake Guru: "for convenience, a party can solve both words. The earlier the puzzles are solved the faster campfire can discuss it." This ends the earlier "one word per friend until the day ends". Each friend solving their own Chest was built and turned back the same day.)*
 - A friend who finds a fragment already open can still unjumble its words for fun, for no gold and no credit.
 - **Solving happens inside the Seeker Chest:** tap the letters in order, or type the word. A wrong try costs nothing.
 - When a fragment opens, its words are open for the whole party, and a line goes to the party chat.
@@ -431,7 +431,7 @@ Class and second Attribute cannot be changed once Day 1 opens.
 | After the first fight | *"Gold buys better weapons and armor in the Store. Every fight starts fresh: your wounds never follow you."* |
 | On the first Challenge card | *"A Challenge. Pick the skill you trust and roll. Pass, and you earn 500 gold and that skill grows. Fail, and it costs 150 gold."* |
 | After the first passed Challenge | *"Might 14 → 26. At 26 a skill becomes Apprentice: +2 on every roll with it. The more days you play, the further you grow."* (with the player's own skill and numbers) |
-| On the first fragment | *"A Seeker Fragment. Two of its words are missing. Find one, and it is worth 25 gold. Leave the other for a friend."* |
+| On the first fragment | *"A Seeker Fragment. Two of its words are missing. Each one you find fills it in for the whole party, and is worth 25 gold."* |
 | On first opening the Store | *"A Relic is used once. One kind adds 4 to a single roll. The other adds 1 to your Weapon and Armor for one fight. You can give them to friends, and sometimes a friend will need one."* |
 | On first opening the party chat | *"Everyone is here now, and so is Garrick. Ask him anything."* |
 
@@ -503,9 +503,11 @@ Rules for all of it:
 
 **Two layout rules:** features used every day sit together (the chats, the Seeker Chest); anything that runs across a week has a view that is always open, never only chat scrollback.
 
-**Push notifications:** at most three on a weekday and four on Day 7; none between 10:00pm and 8:00am in the friend's own time zone, so the day's first push comes at 8:00am, not 5:00am. The two Gathering pushes (the reminder and the lobby opening) are sent whatever the hour. A help-call is never a push.
+**Push notifications:** no daily limit (Fake Guru, 17 Oct 2026: "It's not a nag, it's a feature"; was at most three on a weekday and four on Day 7). None between 10:00pm and 8:00am in the party's time zone, so the day's first push comes at 8:00am, not 5:00am. The two Gathering pushes (the reminder and the lobby opening) are sent whatever the hour. A help-call is never a push.
 
-If more are due than the limit allows, this is the order of importance, with the wording:
+**A friend has come to the fire** (17 Oct 2026, Fake Guru: "the campfire is the place for the players to interact in a day"): when a friend first sits at the day's fire, every other friend gets *"Mei has come to the fire."*, or *"Mei has come to the fire. Your day is still waiting."* if they have not played the day. Once per friend per day; friends who arrive close together share one alert ("Mei and Dev have come to the fire."), and a newer alert replaces the older on the phone. Not sent to a friend at the fire at that moment, not on Week 1 Day 1 (the party has not met), not to a late joiner still on their own Day 1, and not between 10:00pm and 8:00am: an arrival from 5:00am is sent at 8:00am, one after 10:00pm never.
+
+These are the notifications, with the wording (the order no longer matters, as there is no limit):
 
 | # | When | Wording |
 |---|---|---|
@@ -519,6 +521,7 @@ If more are due than the limit allows, this is the order of importance, with the
 | 7 | End of Day 6 | "The map is complete." |
 | 8 | Evening, once a day | "Today: TV and Mei reached the mill. One word of the fragment is still open." |
 | 9 | After three missed days, once | "The road has gone on without you. Two minutes will catch you up." |
+| 10 | A friend first sits at the day's fire (sent 8:00am to 10:00pm) | "Mei has come to the fire." or "Mei has come to the fire. Your day is still waiting." |
 
 ---
 

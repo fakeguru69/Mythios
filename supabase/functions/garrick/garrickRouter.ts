@@ -672,7 +672,7 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
     };
   }
 
-  if (/\b(secret|hiding|know something|not telling|coincidence|worked for the order|where is her body|meira|stone|stones|shard|order|cult|malakor|king|socket|moon-blood|ledger|verse|answering|children|tamsin|corin|wren|joss|rider|strangers)\b/i.test(q)) {
+  if (/\b(secret|hiding|know something|not telling|coincidence|worked for the order|where is her body|meira|stone|stones|shard|order|cult|malakor|king|socket|moon-blood|ledger|verse|answering|children|tamsin|corin|wren|joss|rider|strangers|list|lists|map|maps|fragment|fragments|seeker|cart|mill|mine|well|marked|mark|marks|rubbing|symbol|shape|scripture|clue|clues|kidnapped|taken|took|ritual|ruts|ford)\b/i.test(q)) {
     const picked = pickRotated('secret_knowledge', DEFLECTION_BANK.secret_knowledge, state.episode, state.day);
     return {
       question,
@@ -722,6 +722,20 @@ export function routeGarrickMessage(question: string, state: GarrickStoryState):
     .filter(({ after }) => !after || state.episode > after[0] || (state.episode === after[0] && state.day > after[1]))
     .map(({ line }) => line);
   const fallbackLine = openPool[Math.abs(question.length) % openPool.length];
+
+  // Only plain talk about the road, food, drink, weather, rest and the fire may go to the AI (Core Rules §12a). Anything
+  // else that reached here gets a stored line, so the AI is never asked about the story (found live, 18 Oct: "who
+  // wrote the list?" went to the AI).
+  if (!/\b(weather|rain|wind|windy|cold|chilly|warm|hot|sun|sunny|snow|sky|fog|mist|storm|food|eat|eating|hungry|dinner|supper|breakfast|lunch|stew|bread|soup|cook|cooking|meal|tea|ale|drink|beer|wine|kettle|cup|road|walk|walking|journey|travel|tired|sleep|rest|bed|fire|inn|horse|boots|socks|feet|song|sing|music|joke|morning|evening|night|hello|hi|hey|thanks|thank you|how are you|cheers)\b/i.test(q)) {
+    return {
+      question,
+      route: 'STORED_IN_WORLD_LINE',
+      category: 'small_talk_stored',
+      reply: fallbackLine,
+      trueMeaning: 'Not plainly small talk, so a stored warm line instead of the AI.',
+      flagsUsed: activeFlags,
+    };
+  }
 
   return {
     question,

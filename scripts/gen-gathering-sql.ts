@@ -117,7 +117,11 @@ const data = {
     barRisk: week === 1 ? '{RISK} HP' : gd.ueBarBName,
   },
   steps,
-  ue: { success: band(story.success), fail: band(story.fail), between: story.between.map(riskify) },
+  ue: {
+    success: band(story.success), fail: band(story.fail), between: story.between.map(riskify),
+    // Gathering 1: the friend in the drop's own turns (they now roll too).
+    ...(story.selfSuccess ? { selfSuccess: story.selfSuccess.map(riskify), selfFail: (story.selfFail ?? []).map(riskify) } : {}),
+  },
 };
 
 if (asJson) {

@@ -1,0 +1,2938 @@
+[
+    {
+        "day": 1,
+        "pull": "A man broke into your box to leave you a list with your name on it.\n\n**One day north: the Hollow Wake Inn. Somebody wants you there.**",
+        "tone": "wry",
+        "week": 1,
+        "forkA": "The list is a warning.",
+        "forkB": "The list is an invitation.",
+        "leads": [
+            {
+                "id": "1-1-1",
+                "place": "the list, by the last light",
+                "actions": [
+                    {
+                        "attr": "Intellect",
+                        "verb": "read it again, line by line"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "hold it to the light and look at the ink"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Not one name is crossed out or written over. Every line sits level, and the inn's line is in the same hand as the names.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The even hand"
+            },
+            {
+                "id": "1-1-2",
+                "place": "the trees where he went",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "go after him into the trees"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "pick out his trail in the dusk"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Twenty paces in, his prints meet another man's. The two go on together, at a walk.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "Two sets of boots"
+            },
+            {
+                "id": "1-1-3",
+                "place": "the bottom of the cargo box",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "take the box apart, board by board"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "go through it a third time"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Under your things lies a square of oilcloth you never packed, folded small. Whatever he put in the box, he wrapped it first against the wet.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The oilcloth"
+            }
+        ],
+        "nudge": "{friend:Intellect}, what is odd about a stranger who leaves something behind?",
+        "place": "The forest road",
+        "opener": "One list, one inn's name. Nothing was taken.",
+        "riddle": null,
+        "callback": null,
+        "cupNight": false,
+        "narrated": true,
+        "weekQuestion": "Why are our names on that list?",
+        "meaningQuestion": "*\"One stayed close.\"* Close to what?"
+    },
+    {
+        "day": 2,
+        "pull": "**First light. Two hours north. A child was held at that rock, and whatever it is has not finished.**",
+        "tone": "wry",
+        "week": 1,
+        "forkA": "Meira left in a hurry.",
+        "forkB": "Meira left on purpose.",
+        "leads": [
+            {
+                "id": "1-2-1",
+                "place": "the bottom of her satchel",
+                "actions": [
+                    {
+                        "attr": "Intellect",
+                        "verb": "empty it out onto the table"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "feel along the lining"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "In the bottom of the satchel: a heel of bread in a cloth, hard as wood, and a new candle that was never lit.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Bread and a candle"
+            },
+            {
+                "id": "1-2-2",
+                "place": "the notebook, page by page",
+                "actions": [
+                    {
+                        "attr": "Intellect",
+                        "verb": "go through it, leaf by leaf"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "look at how each page is kept"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Every loose slip in the notebook is pinned to the page it belongs with. Not one is out of place.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Every slip pinned"
+            },
+            {
+                "id": "1-2-3",
+                "place": "the seat that was hers",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "sit where she sat and look out"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "go from her seat to the nearest door"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Her seat is the end of a bench. It is worn pale on one side only: the side nearer the door.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "The worn end"
+            }
+        ],
+        "nudge": "{friend:Craft}, how would you test whether the page is hers?",
+        "place": "The Hollow Wake Inn",
+        "opener": "You've paid for your rooms and you haven't burned anything down. That's more than most guests manage.",
+        "riddle": {
+            "a": "a bottle",
+            "q": "What has a neck but no head?",
+            "quip": "The inn is full of them. None of them talk.",
+            "accept": [
+                "a bottle",
+                "bottle"
+            ],
+            "maxTries": 3
+        },
+        "callback": "She hasn't sat in that seat for three weeks. Your pages all reached you on the road within the same few days.",
+        "cupNight": true,
+        "narrated": false,
+        "weekQuestion": "Why are our names on that list?",
+        "meaningQuestion": "*\"They wept for him before they feared him.\"* What changed between the two?"
+    },
+    {
+        "day": 3,
+        "pull": "Garrick has not gone back to his inn. He is standing in the road with his pack on, looking at the smoke.\n\n**The ruts go that way. So did the man. He will be there before you, and every door will be shut when you come.**",
+        "tone": "wry",
+        "week": 1,
+        "forkA": "The man in the bracken was guarding the rock.",
+        "forkB": "He was waiting for us.",
+        "leads": [
+            {
+                "id": "1-3-1",
+                "place": "the bracken where he waited",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "crawl into his hollow in the bracken"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "read the ground he lay on"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "In the flattened bracken a flask has left a ring in the dew, and a second ring beside it where he set it down again.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "The second ring"
+            },
+            {
+                "id": "1-3-2",
+                "place": "the far side of the rock",
+                "actions": [
+                    {
+                        "attr": "Might",
+                        "verb": "climb round the split to the far side"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "pace out the ground round its foot"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Round the foot of the rock the turf is worn to bare earth in a narrow path, all the way round. Someone walks round this stone, and often.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "The worn path"
+            },
+            {
+                "id": "1-3-3",
+                "place": "the gap he ran through",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "run his line to the trees"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "search the ground he crossed"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "In the gap where he ran, a stick lies dropped, notched down one side. The newest notches are still pale and wet.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "The notched stick"
+            }
+        ],
+        "nudge": "{friend:Aim}, from his hollow in the bracken, what was he watching?",
+        "place": "The Widow's Tooth",
+        "opener": "You've not eaten. Sit.",
+        "riddle": {
+            "a": "footsteps",
+            "q": "The more you take, the more you leave behind. What am I?",
+            "quip": "There's bracken full of them out there.",
+            "accept": [
+                "footsteps"
+            ],
+            "maxTries": 3
+        },
+        "callback": "The man on the forest road was carrying her rubbing. The man in the bracken was watching her rock.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "Why are our names on that list?",
+        "meaningQuestion": "*\"Some locks already know their key.\"* Whose key?"
+    },
+    {
+        "day": 4,
+        "pull": "**East. Two hours. He has half a day on you, and he is heading for the only other person alive who has seen that knife.**",
+        "tone": "quiet",
+        "week": 1,
+        "forkA": "The village is protecting the girl.",
+        "forkB": "The village is protecting itself.",
+        "leads": [
+            {
+                "id": "1-4-1",
+                "place": "the gate at the end of the lane",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "look at how the gate was left"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "lift the bar and feel its weight"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The gate at the end of the lane is swinging, but its bar has been lifted and leaned neatly against the post, not thrown down.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "The leaned bar"
+            },
+            {
+                "id": "1-4-2",
+                "place": "the one open shutter",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "stop at the open shutter and wait"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "look in from across the lane"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "On the sill of the open shutter stands a cup of milk with a cloth over it. Under the window, a child's stool is set square to the wall.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "The covered cup"
+            },
+            {
+                "id": "1-4-3",
+                "place": "where the elder's men stood",
+                "actions": [
+                    {
+                        "attr": "Intellect",
+                        "verb": "look over the ground where they stood"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "pick through what they left in the mud"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Where the men stood with the elder, curls of fresh bark lie in the mud. Somebody in Fenmark cut a cudgel today.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Fresh bark"
+            }
+        ],
+        "nudge": "{friend:Charm}, when Fenmark shut its doors on us, who was it protecting?",
+        "place": "Fenmark",
+        "opener": "A village that won't talk is still talking. Mostly with its shutters.",
+        "riddle": {
+            "a": "silence",
+            "q": "What breaks the moment you say its name?",
+            "quip": "Fenmark's had plenty of practice.",
+            "accept": [
+                "silence"
+            ],
+            "maxTries": 3
+        },
+        "callback": "The boy says they moved like they'd done it before. The little horse at the rock had sat out a winter or two.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "Why are our names on that list?",
+        "meaningQuestion": "*\"Marked before the first cry's through.\"* Marked by whom, and for what?"
+    },
+    {
+        "day": 5,
+        "pull": "At first light she walks you to the edge of the camp, and stands on the old charcoal road, and points.\n\n**North. The same man, the same country, the same season. If it comes round like a calendar, the time is now.**",
+        "tone": "wry",
+        "week": 1,
+        "forkA": "It's the same man, twice.",
+        "forkB": "It's a way of working, not one man.",
+        "leads": [
+            {
+                "id": "1-5-1",
+                "place": "the woman at the edge of the firelight",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "sit with her and let her talk"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "ask her what she saw two winters back"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "She says she never saw his face, only the knife, and it is the knife she knows him by.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The knife, not the face"
+            },
+            {
+                "id": "1-5-2",
+                "place": "the shutter he was trying",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "run a thumb along the marks in the wood"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "set the old marks beside the new"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Under his fresh marks on the shutter are older ones, grey with weather, worked in at the same place, where the bar sits.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "Older marks"
+            },
+            {
+                "id": "1-5-3",
+                "place": "the clean path in",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "read the path by the firelight"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "count the prints worn into it"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The path in is worn by one pair of small boots, hers, over and over. Under them you find no other prints but tonight's.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "One pair of boots"
+            }
+        ],
+        "nudge": "{friend:Intellect}, two children, two winters apart. One man's habit, or someone's way of working?",
+        "place": "The old charcoal camp",
+        "opener": "Two winters between two children. Some people count in winters. It's a way of keeping still.",
+        "riddle": {
+            "a": "fire",
+            "q": "I grow, but I'm not alive. I need air, but I have no lungs. Water kills me. What am I?",
+            "quip": "Which is why I tend this one myself.",
+            "accept": [
+                "fire"
+            ],
+            "maxTries": 3
+        },
+        "callback": "The road, the rock, and tonight her shutters. Not one of those men has said a word.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "Why are our names on that list?",
+        "meaningQuestion": "*\"The power that gives is also the power that takes.\"* What has been given this week, and what has been taken?"
+    },
+    {
+        "day": 6,
+        "pull": "**Cross at first light. You will be there by morning. Whatever is at the place the map marks, the season for it is now.**",
+        "tone": "wry",
+        "week": 1,
+        "forkA": "They carried her across the water.",
+        "forkB": "They wanted us to think so.",
+        "leads": [
+            {
+                "id": "1-6-1",
+                "place": "the far bank, along the water",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "scan the far bank from the ford-stone"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "wade the safe line across"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "On a thorn at the water's edge of the far bank, a little way along from the ruts, a few woollen threads hang at the height of a child.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Threads on a thorn"
+            },
+            {
+                "id": "1-6-2",
+                "place": "the ruts up the far bank",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "read the hoofprints beside the ruts"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "cross and walk the ruts up the bank"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Beside the ruts, the horse's prints up the far bank are short, deep and dug in at the toe. It went up at a run.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Up at a run"
+            },
+            {
+                "id": "1-6-3",
+                "place": "the heel-marks at the water",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "get down to them before the river does"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "work out whose feet went where"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Beside the heel-marks, a second man's prints come down from the cart to the water and go straight back up to it.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "A second man"
+            }
+        ],
+        "nudge": "{friend:Intellect}, what do you notice about how the pieces settled?",
+        "place": "The Low Ford",
+        "opener": "Six pieces, one map. Eat something before you stare at it.",
+        "riddle": {
+            "a": "a river",
+            "q": "I have a bed but never sleep, a mouth but never speak. What am I?",
+            "quip": "The one in front of us says nothing, and I believe it.",
+            "accept": [
+                "a river",
+                "river"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Meira had this shape on paper before any of you found a piece. Tonight the pieces drew it.",
+        "cupNight": true,
+        "narrated": false,
+        "weekQuestion": "Why are our names on that list?",
+        "meaningQuestion": "*\"The key that locks.\"* What is locked, and who holds the key?"
+    },
+    {
+        "day": 1,
+        "pull": "**The mill is an hour on. At first light: what did the family see?**",
+        "tone": "wry",
+        "week": 2,
+        "forkA": "They're keeping Corin close, upriver.",
+        "forkB": "Upriver is only the road away.",
+        "leads": [
+            {
+                "id": "2-1-1",
+                "place": "the bench by his door",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "let him tell it his own way"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "ask him about the horse, not the men"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The old man says the horse never balked at his gate or at the fork, in full dark and with no lamp. It took the mill lane at a steady walk.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "The steady horse"
+            },
+            {
+                "id": "2-1-2",
+                "place": "the fresh ruts in the lane",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "follow the ruts past his gate"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "read where the wheels ran"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The ruts run past his gate without a check. By that gate, in plain sight of the lane, a child's wooden horse lies on its side in the grass.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Past the gate"
+            },
+            {
+                "id": "2-1-3",
+                "place": "where the cart turned upriver",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "run down to the turn before dark"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "read the turn in the half-light"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Where the cart turned upriver, the ruts coming down sink deeper into the verge than the ruts going up.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Deeper coming down"
+            }
+        ],
+        "nudge": "{friend:Aim}, the cart turned upriver. How far do you think it went?",
+        "place": "The mine, then the mill road",
+        "opener": "Beds are in the barn tonight. Pick a corner and take it.",
+        "riddle": {
+            "a": "a clock",
+            "q": "I have a face and two hands but no arms or legs. What am I?",
+            "quip": "Time's the one thing the cart has on us.",
+            "accept": [
+                "a clock",
+                "clock"
+            ],
+            "maxTries": 3
+        },
+        "callback": "The mine wall put Tamsin's name first and Corin's second. Tamsin heard them say \"the mill boy next\".",
+        "cupNight": true,
+        "narrated": false,
+        "weekQuestion": "Why these children, and not any others?",
+        "meaningQuestion": "*\"We held his last wall.\"* Whose wall, and why was it meant to fall?"
+    },
+    {
+        "day": 2,
+        "pull": "**Upriver. The ruts are four nights old, and there is weather coming.**",
+        "tone": "wry",
+        "week": 2,
+        "forkA": "They had a list with birthdays.",
+        "forkB": "They knew him personally.",
+        "leads": [
+            {
+                "id": "2-2-1",
+                "place": "the doorway, with her",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "ask her what was in his hands"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "ask her what he did before he spoke"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "She says he had a folded paper in his fist. He looked at it once, then said the boy's name.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "The paper in his fist"
+            },
+            {
+                "id": "2-2-2",
+                "place": "inside the mill door",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "follow his boot-marks inside"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "read the dried mud on the boards"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Nobody has swept since. His dried boot-mud goes from the door straight to the boy's bed and back, and never turns aside.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Straight to the bed"
+            },
+            {
+                "id": "2-2-3",
+                "place": "the yard where the cart stood",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "walk the yard by the light from the door"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "read what the horse left behind"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Where the cart stood in the yard, the grass is cropped short in a wide half-circle, as far as a tethered horse can reach.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "The cropped grass"
+            }
+        ],
+        "nudge": "{friend:Craft}, how was the mark cut, and with what tool?",
+        "place": "The mill",
+        "opener": "Asked for by name, and by the night he was born. That's an odd thing to ask for.",
+        "riddle": {
+            "a": "a comb, or a cog",
+            "q": "I have teeth but cannot bite. What am I?",
+            "quip": "A mill's full of them.",
+            "accept": [
+                "a comb",
+                "comb",
+                "a cog",
+                "cog"
+            ],
+            "maxTries": 3
+        },
+        "callback": "In the mine, that shape was a hole, and what sat in it was gone. Here it's cut into the mill's footing.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "Why these children, and not any others?",
+        "meaningQuestion": "*\"By the third, we had stopped.\"* Why stop counting?"
+    },
+    {
+        "day": 3,
+        "pull": "**Where was he trying to get to? The path goes on past him, and up.**",
+        "tone": "wry",
+        "week": 2,
+        "forkA": "The stranger wanted the same door.",
+        "forkB": "The stranger was left as a warning.",
+        "leads": [
+            {
+                "id": "2-3-1",
+                "place": "the stone round the housing",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "look at the stone round the lock"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "read the marks cut into it"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The stone round the housing is scored with dozens of short scratches, some weathered and some bright. He tried it more than once, on more than one day.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The scratches"
+            },
+            {
+                "id": "2-3-2",
+                "place": "the stranger on the path",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "kneel by him and close his eyes"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "go through what he carried"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "His purse is still on his belt, and there is silver in it. A week of people have stepped over him, and not one has taken it.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "Silver in his purse"
+            },
+            {
+                "id": "2-3-3",
+                "place": "the narrows where the dog lies",
+                "actions": [
+                    {
+                        "attr": "Might",
+                        "verb": "hold the chain short and get past"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "look past the dog from the rocks"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Behind the dog, at the end of its chain, stands a pail of water, full and clean. There is a scrap of fresh meat beside it.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The full pail"
+            }
+        ],
+        "nudge": "{friend:Intellect}, did that stranger die trying the lock, or was he left for us?",
+        "place": "Upriver",
+        "opener": "A stranger dead at a lock, and a lock that opened for you. Rooms like that have opinions.",
+        "riddle": {
+            "a": "a piano",
+            "q": "What has many keys but opens no door?",
+            "quip": "Not like that lock. It opened for you.",
+            "accept": [
+                "a piano",
+                "piano"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Corin was asked for by name. Today a lock that wouldn't open for a dead man opened for you.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "Why these children, and not any others?",
+        "meaningQuestion": "*\"Ours was the last light burning.\"* The last of what?"
+    },
+    {
+        "day": 4,
+        "pull": "**Is there another way into this hill, before they finish? You have tonight to find it.**",
+        "tone": "wry",
+        "week": 2,
+        "forkA": "Now they'll hurry.",
+        "forkB": "They won't change a thing for us.",
+        "leads": [
+            {
+                "id": "2-4-1",
+                "place": "the foot of the shaft",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "look down past the edge"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "creep back to the lip and look"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "A second lamp stands lit at the foot of the shaft, filled and trimmed, the same make as the ring in the chamber. Nobody grabbed it in a hurry.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "The second lamp"
+            },
+            {
+                "id": "2-4-2",
+                "place": "the timbers at the shaft's mouth",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "look over the timbering at the top"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "follow the timber down by the lamplight"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "On the timbering just below the top, a fresh pale scar runs down the wood, where a stone knocked loose went bouncing all the way to the bottom.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "The pale scar"
+            },
+            {
+                "id": "2-4-3",
+                "place": "the voices down the shaft",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "lie flat at the edge and listen"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "count the voices as they go round"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "When the shout went up, the heads turned, but the chant never stopped. It ran on under the shout the whole time, the same few words.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "The chant ran on"
+            }
+        ],
+        "nudge": "{friend:Charm}, the voices below all said the same words. What were they getting ready?",
+        "place": "The shaft in the hillside",
+        "opener": "Sit down before you fall down.",
+        "riddle": {
+            "a": "light",
+            "q": "What can fill a cave and weigh nothing?",
+            "quip": "Bring a lantern. Bring two.",
+            "accept": [
+                "light"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Yesterday a branch swung on the slope with no wind. Today they knew you were at the shaft.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "Why these children, and not any others?",
+        "meaningQuestion": "*\"His hand was bleeding, and he told us to sleep.\"* What did he do down there?"
+    },
+    {
+        "day": 5,
+        "pull": "**There is no second door on this hillside, and now there is a clock. Last week, six cold slivers showed you a way nobody was watching. You have five.**",
+        "tone": "wry",
+        "week": 2,
+        "forkA": "The king was erased by his enemies.",
+        "forkB": "The king was erased by his own people.",
+        "leads": [
+            {
+                "id": "2-5-1",
+                "place": "the old stone where he signalled",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "run a hand over each face of it"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "look at it side-on by the lamp"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "On the old stone where the scout stood, one face has been ground flat, long ago. The chisel scars are weathered grey. Whatever was carved there is gone.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "The ground-flat face"
+            },
+            {
+                "id": "2-5-2",
+                "place": "the scree below the stone",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "scramble down the scree"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "search the scree by lamplight"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Mixed into the scree are chips of dressed stone, blackened by fire. One still carries the curve of a carved letter, broken off mid-word.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Burned chips"
+            },
+            {
+                "id": "2-5-3",
+                "place": "the fallen sheepfold",
+                "actions": [
+                    {
+                        "attr": "Might",
+                        "verb": "lift the fallen stones one by one"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "look at how the fold was built"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The fold's old cut stones were laid with their carved sides turned inward, against each other, every one. From outside, the wall shows nothing.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Faces turned in"
+            }
+        ],
+        "nudge": "{friend:Intellect}, who gains from a forgotten name?",
+        "place": "The hillside by night",
+        "opener": "A small black circle. Somebody wanted a thing forgotten, and somebody else wouldn't let it be.",
+        "riddle": {
+            "a": "a circle",
+            "q": "What has no beginning, no middle and no end?",
+            "quip": "A small black one, this evening.",
+            "accept": [
+                "a circle",
+                "circle"
+            ],
+            "maxTries": 3
+        },
+        "callback": "On Day 2 a horn button, on Day 3 a dead stranger. Tonight, a circle.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "Why these children, and not any others?",
+        "meaningQuestion": "*\"Not one of us who would not have died for him.\"* Who was he, to the people who wrote this?"
+    },
+    {
+        "day": 6,
+        "pull": "**They are digging toward the old room. Be in it first.**",
+        "tone": "wry",
+        "week": 2,
+        "forkA": "They're digging toward the old room to get in.",
+        "forkB": "They're digging to find something that's already there.",
+        "leads": [
+            {
+                "id": "2-6-1",
+                "place": "the ground over the picks",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "feel the strokes through the turf"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "time the strokes and place them"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The strokes come from one place only, and each new stroke lands a little nearer the old shaft than the last.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "One line"
+            },
+            {
+                "id": "2-6-2",
+                "place": "the two lamps at the foot",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "watch what passes the lamps"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "crawl to the edge and look down"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "In the lamplight at the foot of the shaft, baskets of dug earth are tipped out. Someone kneels and sifts each one through their hands before it is thrown aside.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Sifted by hand"
+            },
+            {
+                "id": "2-6-3",
+                "place": "the hole under the old stone",
+                "actions": [
+                    {
+                        "attr": "Might",
+                        "verb": "shift one more stone"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "squeeze in to the first step"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Under the stones, the first step down is thick with dust. In the dust there is no print but your own.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Your own print"
+            }
+        ],
+        "nudge": "{friend:Might}, you've heard them digging. Cutting a way in, or searching for something?",
+        "place": "The lip of the shaft",
+        "opener": "Digging toward an older room. You have to respect the effort.",
+        "riddle": {
+            "a": "a map",
+            "q": "I have rivers with no water and cities with no houses. What am I?",
+            "quip": "You're carrying one.",
+            "accept": [
+                "a map",
+                "map"
+            ],
+            "maxTries": 3
+        },
+        "callback": "In the mine, you reached the mark after it was emptied. Tonight they're still digging toward the older room.",
+        "cupNight": true,
+        "narrated": false,
+        "weekQuestion": "Why these children, and not any others?",
+        "meaningQuestion": "*\"Morning came. The enemy did not.\"* Where did they go?"
+    },
+    {
+        "day": 1,
+        "pull": "They are not hiding her. They told her she was going home.\n\n**Why would anyone take a stolen child back to where she was born? Ashcombe: a long day west.**",
+        "tone": "wry",
+        "week": 3,
+        "forkA": "They need her at home.",
+        "forkB": "Home is only the first stop.",
+        "leads": [
+            {
+                "id": "3-1-1",
+                "place": "Corin, on the walk down",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "walk beside him and let him talk"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "look him over in the morning light"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Corin has a child's woollen mitten tucked in his belt that is not his. The wool is rough and grey, and it smells of sheep.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The grey wool"
+            },
+            {
+                "id": "3-1-2",
+                "place": "where the cart stood, below the shaft",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "read what the cart left in the grass"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "work out what they loaded"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Where the cart stood, a cask has pressed a deep ring into the mud. The grass round it is soaked where they topped it up from the stream, right to the brim.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The full cask"
+            },
+            {
+                "id": "3-1-3",
+                "place": "the shoulder of the hill he ran over",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "go up the shoulder after him"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "follow his line from the shaft mouth"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "At the top of the shoulder the ground is scuffed where he stood a while, facing west. Then his prints go on, the same way the cart went.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "Facing west"
+            }
+        ],
+        "nudge": "{friend:Intellect}, they took Wren back to where she was born. Why home, of all places?",
+        "place": "Somewhere warm",
+        "opener": "Somewhere warm. I'd settle for a warm supper. Eat.",
+        "riddle": {
+            "a": "an egg",
+            "q": "What has to be broken before you can use it?",
+            "quip": "Ashcombe's hens have views.",
+            "accept": [
+                "an egg",
+                "egg"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Corin was held a morning's walk from his own mill. Wren was told she was going home first.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What do they need Wren for?",
+        "meaningQuestion": "*\"Then they stopped being ours.\"* Whose were they, and what took them?"
+    },
+    {
+        "day": 2,
+        "pull": "**What does anyone need a child for, once? The Blackglass: half a day up the black road, the place Meira marked.**",
+        "tone": "quiet",
+        "week": 3,
+        "forkA": "The manners were real.",
+        "forkB": "The manners are the trick.",
+        "leads": [
+            {
+                "id": "3-2-1",
+                "place": "the well, and the board of chips",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "crouch by the board and wait"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "watch the well from across the street"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "At the well a boy holds his chip out low and quick, then shoves it back into his shirt before you have looked at it properly.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "The boy at the well"
+            },
+            {
+                "id": "3-2-2",
+                "place": "the empty cart at the foot of the black road",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "climb up and look over the boards"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "go over the cart end to end"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "In the bed of the empty cart a sheepskin is spread over the boards, and a blanket is folded at one end like a pillow.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "The made bed"
+            },
+            {
+                "id": "3-2-3",
+                "place": "the street, where every door shut",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "walk the street with your eyes on the ground"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "pick out what is caught between the stones"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Caught between the stones down the middle of the street are scraps of sacking. It is the kind men tie over hooves to quiet them on a night road.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Sacking on the stones"
+            }
+        ],
+        "nudge": "{friend:Charm}, why would men taking a child bother with good manners?",
+        "place": "Ashcombe",
+        "opener": "Eat first. Then think. It goes better in that order.",
+        "riddle": {
+            "a": "a needle",
+            "q": "What has an eye but cannot see?",
+            "quip": "Sharp little thing. Sharper than a polite man.",
+            "accept": [
+                "a needle",
+                "needle"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Tamsin and Corin each came home with one cut palm, bound clean. Wren's taker said they'd only need her the once.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What do they need Wren for?",
+        "meaningQuestion": "*\"Remember that, when you hear where else we stood.\"* Where else might they have stood?"
+    },
+    {
+        "day": 3,
+        "pull": "**They rode straight past the one thing Meira marked. So what are they riding to? On, into the black ridges.**",
+        "tone": "wry",
+        "week": 3,
+        "forkA": "The children were chosen for their place.",
+        "forkB": "The places were chosen for the children.",
+        "leads": [
+            {
+                "id": "3-3-1",
+                "place": "where the shepherds' path meets the glass",
+                "actions": [
+                    {
+                        "attr": "Intellect",
+                        "verb": "look at where the path gives out"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "walk the edge of the glass"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Where the shepherds' path meets the glass, a row of old stones lies across it, sunk deep in the turf. The path stops dead at the row.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "The row of stones"
+            },
+            {
+                "id": "3-3-2",
+                "place": "the housing beside the mark",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "run a finger round its carving"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "look it over before you step away"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The glass round the housing is dull with fine dust. The only marks in it are the ones your own hand just made.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Only your hand"
+            },
+            {
+                "id": "3-3-3",
+                "place": "the far edge, where the glass is cracked",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "look back the way you came"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "climb onto the highest lip of glass"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "From the far edge you can see all the way down the black road to Ashcombe's roofs, and the well in the middle of them.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "The view down"
+            }
+        ],
+        "nudge": "{friend:Intellect}, why would a scholar write down a number she doubted?",
+        "place": "The Blackglass",
+        "opener": "Mind your hands on that glass, all of you.",
+        "riddle": {
+            "a": "coal",
+            "q": "Black when you buy it, red when you burn it, grey when you throw it away. What is it?",
+            "quip": "Charcoal's cheaper than glass. Kinder to knees.",
+            "accept": [
+                "coal"
+            ],
+            "maxTries": 3
+        },
+        "callback": "At the Widow's Tooth a man lay in the bracken watching the rock. Here the riders went past this one without slowing.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What do they need Wren for?",
+        "meaningQuestion": "*\"He only never told us the price.\"* The price of what?"
+    },
+    {
+        "day": 4,
+        "pull": "**She is alive, and she is thinking. The hut, at first light.**",
+        "tone": "wry",
+        "week": 3,
+        "forkA": "The chips are for us.",
+        "forkB": "The chips are for herself.",
+        "leads": [
+            {
+                "id": "3-4-1",
+                "place": "the rises along the riders' trail",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "look back down the trail from the last rise"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "run the trail back to the first chip"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Each chip lay on bare rock at the top of a rise, never down in the ash where it would sink. Coming up behind, you see each one glint before you reach it.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "On the bare rock"
+            },
+            {
+                "id": "3-4-2",
+                "place": "the bone-white trees along the trail",
+                "actions": [
+                    {
+                        "attr": "Intellect",
+                        "verb": "set each chip beside what stood near it"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "look round from where each one lay"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Each chip lay a few paces from a dead tree, the tallest one in sight. Stand at one tree, and you can see the next.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "A tree at each"
+            },
+            {
+                "id": "3-4-3",
+                "place": "the three chips in your hand",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "turn each one over in the light"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "lay them out side by side"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Turn the chips over. One has a single short scratch on its back, one has two, and one has three.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Scratched on the back"
+            }
+        ],
+        "nudge": "{friend:Agility}, you followed Wren's chips up the ridges. Left for us, or for herself?",
+        "place": "The black ridges",
+        "opener": "She's leaving chips on the trail. Clever girl.",
+        "riddle": {
+            "a": "your shadow",
+            "q": "What follows you all day and vanishes at dark?",
+            "quip": "Long ones on a ridge at dusk.",
+            "accept": [
+                "shadow",
+                "your shadow"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Tamsin wasn't asleep; she was counting. Wren is dropping her chips, one by one, on their trail.",
+        "cupNight": true,
+        "narrated": false,
+        "weekQuestion": "What do they need Wren for?",
+        "meaningQuestion": "*\"We locked with what we are.\"* What are they?"
+    },
+    {
+        "day": 5,
+        "pull": "**A step, now, and no more. If they could see you, can you see them? The cairn on the highest ridge, before the light goes.**",
+        "tone": "wry",
+        "week": 3,
+        "forkA": "They left her bed as a message.",
+        "forkB": "They left it in a hurry.",
+        "leads": [
+            {
+                "id": "3-5-1",
+                "place": "low on the doorframe",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "run a thumbnail along the letters"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "look at how each letter was made"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Each stroke of the name has been cut twice, the second pass deeper than the first.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "Cut twice"
+            },
+            {
+                "id": "3-5-2",
+                "place": "the spring below the hut",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "get down to the water fast"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "look over the ground by the spring"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "By the spring a water skin lies in the grass, half full. Its stopper is a pace away.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The dropped skin"
+            },
+            {
+                "id": "3-5-3",
+                "place": "the wall beside the pallet",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "sit on the pallet and look round"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "look at what is kept by the bed"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Along the wall by the pallet, small things are set out in a row: a twist of grey wool, a white pebble, a hen's feather. At one end there is a gap, and the dust there is clean.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The gap in the row"
+            }
+        ],
+        "nudge": "{friend:Craft}, what tool cuts letters like that into wood?",
+        "place": "The shepherd's hut",
+        "opener": "That was an empty hut. Come nearer the fire.",
+        "riddle": {
+            "a": "a keyhole",
+            "q": "What goes through a door but never goes in or out?",
+            "quip": "Doors keep secrets better than people.",
+            "accept": [
+                "a keyhole",
+                "keyhole"
+            ],
+            "maxTries": 3
+        },
+        "callback": "At the mine someone took the time to bind Tamsin's hand in clean linen. Here someone folded one blanket with care, and threw the other down.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What do they need Wren for?",
+        "meaningQuestion": "*\"That is why kingdoms fear them.\"* Why would a kingdom fear a family?"
+    },
+    {
+        "day": 6,
+        "pull": "**Whatever happens under that hill has started. Into the Kiln, tonight.**",
+        "tone": "wry",
+        "week": 3,
+        "forkA": "We go in now.",
+        "forkB": "We watch the lamp first.",
+        "leads": [
+            {
+                "id": "3-6-1",
+                "place": "the foot of the round hill",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "look down at the foot of the hill"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "go over every shape below the crown"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Not one horse is tethered at the foot of the Kiln.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "No horses"
+            },
+            {
+                "id": "3-6-2",
+                "place": "the crack across its crown",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "watch the crown after the lamp goes in"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "watch the air over the crack"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Soon after the lamp goes in, thin pale smoke starts to rise from the crack. By daylight there was only shimmering air.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Smoke from the crack"
+            },
+            {
+                "id": "3-6-3",
+                "place": "the knife-edge below the cairn",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "go a little way back along the edge"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "test the stones of the face"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Now the light has gone, the knife-edge below the cairn is a black line with nothing either side. The face beside it drops straight to loose scree.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "No way down in the dark"
+            }
+        ],
+        "nudge": "{friend:Aim}, a lamp went into the hill ahead of us. Whose was it?",
+        "place": "The cairn",
+        "opener": "Fire's built up. Sit by it before you decide anything.",
+        "riddle": {
+            "a": "your word",
+            "q": "What can you keep only after you've given it?",
+            "quip": "Mind who hears yours.",
+            "accept": [
+                "word",
+                "your word"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Corin said Wren's home was always warm. Tonight the map ends at a hill that breathes warm air.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What do they need Wren for?",
+        "meaningQuestion": "*\"We never dug him a grave.\"* Why not?"
+    },
+    {
+        "day": 1,
+        "pull": "*Already with us.* Joss is not waiting to be taken.\n\n**A blade within arm's reach, in the dark, and it cut rope. Why are you still alive? The north road, at first light.**",
+        "tone": "wry",
+        "week": 4,
+        "forkA": "He had help in the room.",
+        "forkB": "He didn't need any.",
+        "leads": [
+            {
+                "id": "4-1-1",
+                "place": "the passage none of you had noticed",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "go a few steps in, without a lamp"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "stand in its mouth and take stock"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "A few steps into the passage the air smells of a wick just put out. None of your lamps has been in there.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "The snuffed wick"
+            },
+            {
+                "id": "4-1-2",
+                "place": "the place where he knelt",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "pace it out from the passage"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "work out what he could reach from there"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Where he knelt is three paces from the passage mouth, in the corner your lamps lit least.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Three paces"
+            },
+            {
+                "id": "4-1-3",
+                "place": "the ropes on the stone",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "lay the cut ends side by side"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "pick them up and test each one"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Every rope is cut a finger's width from its knot, and every cut is on the same side.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "The same side"
+            }
+        ],
+        "nudge": "{friend:Craft}, the ropes were cut clean in the dark. His own hand, or another's?",
+        "place": "Under the Kiln, then Ashcombe",
+        "opener": "Count yourselves. I will, too.",
+        "riddle": {
+            "a": "a promise",
+            "q": "What can you break without ever touching it?",
+            "quip": "Careful what you hand out.",
+            "accept": [
+                "a promise",
+                "promise"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Every one of them you've fought has run at the first gap. Tonight one stood among you with a blade and cut only rope.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What do they need Joss for?",
+        "meaningQuestion": "*\"To hold what needed five.\"* What needed holding, and what is the last lock?"
+    },
+    {
+        "day": 2,
+        "pull": "**Four armed men for one small box, riding away from the boy. What is in it? Reedham, by noon tomorrow.**",
+        "tone": "wry",
+        "week": 4,
+        "forkA": "The box matters more than the swords.",
+        "forkB": "The swords are the real message.",
+        "leads": [
+            {
+                "id": "4-2-1",
+                "place": "the carter, watering his horses",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "let him run on about the riders"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "ask how the four rode"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The carter says the four never spoke to each other, and never once looked at the road or the lake. Every eye stayed on the cart.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Every eye on the cart"
+            },
+            {
+                "id": "4-2-2",
+                "place": "the men in the shallows",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "sit down in the water with them"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "ask what made them let it pass"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "They say the four came through the ford with their blades bare across their saddles, in full daylight, and did not slow down.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Blades bare"
+            },
+            {
+                "id": "4-2-3",
+                "place": "the ruts going north",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "follow them as far as the light lets you"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "read where they could have turned off"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Their ruts keep to the open road the whole way, past every shepherd's hut. A sheep-path along the ridge would have hidden them from all of it.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "The open road"
+            }
+        ],
+        "nudge": "{friend:Intellect}, who scrapes a face off a coin?",
+        "place": "The north road",
+        "opener": "Cold road. Put your hands round that cup.",
+        "riddle": {
+            "a": "a coin",
+            "q": "What has a head and a tail but no body?",
+            "quip": "Someone scrubbed a face off this one.",
+            "accept": [
+                "a coin",
+                "coin"
+            ],
+            "maxTries": 3
+        },
+        "callback": "The carter's coin has the king's face scraped off. Meira wrote that every record of him had been scraped clean.",
+        "cupNight": true,
+        "narrated": false,
+        "weekQuestion": "What do they need Joss for?",
+        "meaningQuestion": "*\"The fifth had no element at all.\"* What could it be, if it is not earth, wind, water or fire?"
+    },
+    {
+        "day": 3,
+        "pull": "Back on the shingle, beside the place her skiff was lying, there are keel-marks that are not hers. Fresh ones.\n\n**Someone has been rowing out to the drowned village by night. Old Reedham, at the shallow end, tomorrow.**",
+        "tone": "quiet",
+        "week": 4,
+        "forkA": "They're waiting for the right night.",
+        "forkB": "They're waiting for the right child.",
+        "leads": [
+            {
+                "id": "4-3-1",
+                "place": "the fisherman on the shingle",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "help him with his nets and listen"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "ask what he hears at night"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "On the shingle the fisherman says he hears oars out on the lake every night, at the same hour, just after dusk. He has never gone to look.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The oars at dusk"
+            },
+            {
+                "id": "4-3-2",
+                "place": "the lane up from the water",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "walk the lane up from the shingle"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "look at every door you pass"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Small dark spots of lamp-oil stain the stones of the lane, a pace apart. They go up to her door and back, and to no other door.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "One door"
+            },
+            {
+                "id": "4-3-3",
+                "place": "the tower's lowest window",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "climb up to the sill from the skiff"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "look it over from the water"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "On the tower's lowest sill, on the side facing Reedham, the weed is scraped away in a patch the size of a seat. From there you can see her window.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "A cleared sill"
+            }
+        ],
+        "nudge": "{friend:Craft}, what does a skiff tell you about its owner?",
+        "place": "Reedham",
+        "opener": "A lamp in a window at noon. Somebody has kept it lit for eight nights.",
+        "riddle": {
+            "a": "a towel",
+            "q": "What gets wetter the more it dries?",
+            "quip": "Hang it by the fire.",
+            "accept": [
+                "a towel",
+                "towel"
+            ],
+            "maxTries": 3
+        },
+        "callback": "In Ashcombe a baby born when the moon goes out is given a chip of black glass. In Reedham every window is lit for one.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What do they need Joss for?",
+        "meaningQuestion": "*\"So does anyone born in its dark.\"* What does a child born in the dark have in common with what fell?"
+    },
+    {
+        "day": 4,
+        "pull": "**A warning against what? The reed island, a mile out: the only place on this lake a boat can put in unseen.**",
+        "tone": "wry",
+        "week": 4,
+        "forkA": "'Moon-blood' just means the marked children.",
+        "forkB": "It means something else.",
+        "leads": [
+            {
+                "id": "4-4-1",
+                "place": "the drowned windows",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "look along the windows in the low light"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "look at the iron in each frame"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "In every drowned window frame is the same iron lamp-hook that hangs in Reedham's windows today. Each one is black with old soot.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "The old hooks"
+            },
+            {
+                "id": "4-4-2",
+                "place": "the earlier pages of her notes",
+                "actions": [
+                    {
+                        "attr": "Intellect",
+                        "verb": "go back through them, page by page"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "set the copied hands side by side"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Two pages back, she copied \"the marked\" out of a different record. The two words never appear in the same copied line.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Two records"
+            },
+            {
+                "id": "4-4-3",
+                "place": "the margin of her page",
+                "actions": [
+                    {
+                        "attr": "Intellect",
+                        "verb": "read her note against the line"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "hold the page to the lamp"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Under her note she began a second line, then scratched it out so hard the nib went through the paper.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "The scratched line"
+            }
+        ],
+        "nudge": "{friend:Intellect}, why would Meira use an old song's word when a plain one would do?",
+        "place": "Old Reedham",
+        "opener": "Meira had a gloss for it: 'the old songs' word for the marked.' She was careful with her words.",
+        "riddle": {
+            "a": "a sponge",
+            "q": "What is full of holes but still holds water?",
+            "quip": "A drowned street is a sponge.",
+            "accept": [
+                "a sponge",
+                "sponge"
+            ],
+            "maxTries": 3
+        },
+        "callback": "At the ford, Tamsin's small prints stopped at the water. Today Joss's stop at the edge of deep water.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What do they need Joss for?",
+        "meaningQuestion": "*\"Moon-blood woke it once.\"* What did it wake, and when?"
+    },
+    {
+        "day": 5,
+        "pull": "**Why would anyone keep watch on an empty tower? After that lamp, tonight, in their own boat.**",
+        "tone": "wry",
+        "week": 4,
+        "forkA": "They still move Joss by boat.",
+        "forkB": "Joss is held in one place now.",
+        "leads": [
+            {
+                "id": "4-5-1",
+                "place": "the rope in the bottom of their boat",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "sift the shavings out of the rope"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "look at how each one was cut"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Every curl in the bottom of the boat is long and unbroken, and all of them are fresh. Nobody hurried him.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Long curls"
+            },
+            {
+                "id": "4-5-2",
+                "place": "the stern seat",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "feel under the thwart"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "lift the seat board out"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Under the stern seat, out of the spray, a blanket is folded small. It is dry.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Folded dry"
+            },
+            {
+                "id": "4-5-3",
+                "place": "the willows at the water's edge",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "work along the bank through the willows"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "look at where the wood was cut"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "One willow has had three straight shoots cut from it with a sharp blade. One cut is grey, one is brown, and one is still white.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Three shoots"
+            }
+        ],
+        "nudge": "{friend:Aim}, they moved Joss by water once. Would they risk the lake again?",
+        "place": "The reed island",
+        "opener": "Pale curls of whittled wood. Somebody's still carving.",
+        "riddle": {
+            "a": "a boat",
+            "q": "What floats when empty and sinks when full?",
+            "quip": "Yours is on loan. I'd return it.",
+            "accept": [
+                "a boat",
+                "boat"
+            ],
+            "maxTries": 3
+        },
+        "callback": "At the Widow's Tooth a little carved horse was left behind. Today, in their boat, a little carved hull was thrown away.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What do they need Joss for?",
+        "meaningQuestion": "*\"Pray no one ever learns it is also a door.\"* A door to what, and who would want it opened?"
+    },
+    {
+        "day": 6,
+        "pull": "**Down the stair, into the boat you took from them, and after that sound. Now.**",
+        "tone": "quiet",
+        "week": 4,
+        "forkA": "Someone followed us.",
+        "forkB": "Someone was already there.",
+        "leads": [
+            {
+                "id": "4-6-1",
+                "place": "the dark water under the wall",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "watch the water as you tie up"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "lean out over the stones"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "As you tie up at the tower, rings are already spreading from the dark under its wall, and your oars have been still for a minute.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "The rings"
+            },
+            {
+                "id": "4-6-2",
+                "place": "the empty windows of the bell-chamber",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "look back the way you came"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "watch the water you crossed"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Out toward the island, low on the water, a light shows for a breath and goes out. It does not show again.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "One light"
+            },
+            {
+                "id": "4-6-3",
+                "place": "the lights of Reedham",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "pick out every light on the shore"
+                    },
+                    {
+                        "attr": "Charm",
+                        "verb": "watch the shore with the others, quietly"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Down on the shore, one lamp moves slowly along the shingle. It stops below her lane, and stays there.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "The lamp on the shingle"
+            }
+        ],
+        "nudge": "{friend:Aim}, whoever lay under the tower: did they follow us, or wait for us?",
+        "place": "The tower at night",
+        "opener": "Someone lay under that tower and heard every word.",
+        "riddle": {
+            "a": "an echo",
+            "q": "What can you hear but never touch?",
+            "quip": "Towers hand it back.",
+            "accept": [
+                "an echo",
+                "echo"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Yesterday you took their boat. Tonight someone took your words.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What do they need Joss for?",
+        "meaningQuestion": "*\"We never asked what that would make them.\"* What has it made them?"
+    },
+    {
+        "day": 1,
+        "pull": "At dusk the heartbeat comes again. It is louder than it was at dawn.\n\n**What is left in a city where nothing grows and nobody goes? The old kingdom's road: two days north.**",
+        "tone": "wry",
+        "week": 5,
+        "forkA": "The fifth is a Stone like the others.",
+        "forkB": "The fifth is something different.",
+        "leads": [
+            {
+                "id": "5-1-1",
+                "place": "the worn face of the waystone",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "run a thumb along the cut-away line"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "hold the light low and look at its edges"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Frost has eaten the old carving, but the edges of the cut-out line are crisp. Not one letter of it is left.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The crisp edge"
+            },
+            {
+                "id": "5-1-2",
+                "place": "the crack at the waystone's foot",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "scrape back the rime with a knife"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "watch the crack while the beat comes"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Long after the fragment is out, the rime stays in the crack, in a mild wind. It is the same cold you have felt at every hiding place since the forest road.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The rime stays"
+            },
+            {
+                "id": "5-1-3",
+                "place": "the lane up from the shingle",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "walk up the lane and stop at a door"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "look up the lane from the boat"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Every window up the lane has a lamp burning at midday, as Reedham does only on a dark-moon night.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "Every window lit"
+            }
+        ],
+        "nudge": "{friend:Intellect}, what would a dead city hide?",
+        "place": "Reedham, and the waystone",
+        "opener": "North, then. That's a long road for tired boots.",
+        "riddle": {
+            "a": "a road",
+            "q": "What goes on for miles but never moves?",
+            "quip": "North, and mind your boots.",
+            "accept": [
+                "a road",
+                "road"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Meira looked for a fifth and never found one. Today, on the road north, somebody had cut a line out of a stone.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What will it take for the fifth to end this?",
+        "meaningQuestion": "*\"Then it began to take.\"* Take what, and from whom?"
+    },
+    {
+        "day": 2,
+        "pull": "**It is nearer every dusk, and it is coming from inside the city. Highwall, by noon.**",
+        "tone": "wry",
+        "week": 5,
+        "forkA": "The beat calls them north.",
+        "forkB": "The beat only maddens them.",
+        "leads": [
+            {
+                "id": "5-2-1",
+                "place": "the edge of the dark, past the cart",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "watch them at the edge of the dark"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "stand over the cart and hold your ground"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "When the beat stops, every dog stops with it, heads down, mid-stride. Not one runs away, and not one comes on.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Heads down"
+            },
+            {
+                "id": "5-2-2",
+                "place": "the bandage on the man's forearm",
+                "actions": [
+                    {
+                        "attr": "Charm",
+                        "verb": "ask to see the arm"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "tie the bandage again, properly"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Under the bandage is a single bite, deep and clean. The teeth went in once and held, and nothing tore.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "One bite"
+            },
+            {
+                "id": "5-2-3",
+                "place": "where the dogs came out of the dusk",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "read the ground at first light"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "walk their tracks back the way they came"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "At first light their tracks come in together, in a straight line from the north. They go out scattered every way, the prints far apart.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Scattered"
+            }
+        ],
+        "nudge": "{friend:Might}, you stood over the cart. Did the beat call those dogs, or only madden them?",
+        "place": "The old kingdom's road",
+        "opener": "The grass on a war grave shouldn't shiver. I'd say that's the heartbeat.",
+        "riddle": {
+            "a": "grass",
+            "q": "What bends in the wind but never breaks?",
+            "quip": "Not this lot.",
+            "accept": [
+                "grass"
+            ],
+            "maxTries": 3
+        },
+        "callback": "On the Stillwater the birds went quiet at the first beat. Tonight the dogs came with it.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What will it take for the fifth to end this?",
+        "meaningQuestion": "*\"That is why it had to be us.\"* Had to be them, for what?"
+    },
+    {
+        "day": 3,
+        "pull": "**Who bars a dead city from the inside, year after year? Down into the streets, following the wall.**",
+        "tone": "wry",
+        "week": 5,
+        "forkA": "The bar keeps the world out.",
+        "forkB": "The bar keeps something in.",
+        "leads": [
+            {
+                "id": "5-3-1",
+                "place": "the street behind the gate",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "look down into the street from the walkway"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "lean out over the inner parapet"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "In the dust of the street behind the gate, one narrow path is trodden from the bar up the hill, toward the smoke.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "One trodden path"
+            },
+            {
+                "id": "5-3-2",
+                "place": "the near end of the new bar",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "pick out the bar's end from above"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "judge the timber by its colour"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "The bar's cut end is still white, and the axe-marks are sharp. It was put up within the last few days.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Still white"
+            },
+            {
+                "id": "5-3-3",
+                "place": "the broken stair",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "climb down to the gap in the stair"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "look at the broken edges"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The missing steps lie at the stair's foot in big, square pieces. Every break shows the bite of a hammer, weathered smooth.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Knocked out"
+            }
+        ],
+        "nudge": "{friend:Craft}, new wood in brackets worn bright. Who keeps barring this gate?",
+        "place": "The herald's gate",
+        "opener": "A bar of new timber in brackets worn bright. Somebody's been barring this gate for centuries, and the wood's new.",
+        "riddle": {
+            "a": "darkness",
+            "q": "The more of me there is, the less you see. What am I?",
+            "quip": "The city has plenty.",
+            "accept": [
+                "darkness"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Upriver, somebody kept a hidden path clear and a dog on new iron. Here somebody keeps a new bar on an old gate.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What will it take for the fifth to end this?",
+        "meaningQuestion": "*\"None of us gave to the fifth.\"* Why give to four and not to the fifth?"
+    },
+    {
+        "day": 4,
+        "pull": "**Was that helm turned before? Nobody is sure. And the smoke is higher up the hill. The square below the hall.**",
+        "tone": "quiet",
+        "week": 5,
+        "forkA": "The soldiers are only standing.",
+        "forkB": "One helm has turned.",
+        "leads": [
+            {
+                "id": "5-4-1",
+                "place": "the ground round the soldiers",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "look at the street round them"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "crouch and look at the dust"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Round every boot the dust lies in one even skin. The only prints in it are yours.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Unbroken dust"
+            },
+            {
+                "id": "5-4-2",
+                "place": "the barred door of the empty house",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "keep an eye to the crack in the door"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "sit by the door, ready, and listen"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "As the light goes, one sound comes from the direction of the street of soldiers: metal on stone, once. Then nothing.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Metal on stone"
+            },
+            {
+                "id": "5-4-3",
+                "place": "the helms down the street",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "look along the line of helms"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "set each helm against the next"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Every helm sits a little crooked on its neck, this way or that, no two the same. From the end of the street, any one of them could look turned.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "No two alike"
+            }
+        ],
+        "nudge": "{friend:Aim}, did one of those helms turn, or did the dusk play tricks?",
+        "place": "The dead streets",
+        "opener": "Nobody's kept a fire here for us. Keep this one small.",
+        "riddle": {
+            "a": "a weathervane",
+            "q": "What turns but never leaves its post?",
+            "quip": "The wind decides. Mostly.",
+            "accept": [
+                "a weathervane",
+                "weathervane"
+            ],
+            "maxTries": 3
+        },
+        "callback": "On the road, when the beat stopped, the dogs stopped where they stood. These soldiers stopped mid-stride, and never started again.",
+        "cupNight": true,
+        "narrated": false,
+        "weekQuestion": "What will it take for the fifth to end this?",
+        "meaningQuestion": "*\"We could not bring ourselves to break them.\"* Why not?"
+    },
+    {
+        "day": 5,
+        "pull": "**Counting down to what? You hold five pieces, and the trail began on the wall. The wall again.**",
+        "tone": "wry",
+        "week": 5,
+        "forkA": "Their count began when the Stones drank.",
+        "forkB": "Their count was set long ago.",
+        "leads": [
+            {
+                "id": "5-5-1",
+                "place": "the board propped by the wall",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "read the board from the rubble"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "creep close enough to see the chalk"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Every stroke on the board is in the same thick, square hand, the crossed ones and the ones still to cross. The chalk has been gone over many times, never redrawn.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "One hand"
+            },
+            {
+                "id": "5-5-2",
+                "place": "the hooded figures at the fire",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "watch their faces from the rubble"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "crawl close enough to see them"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Every one of them sits facing the doors. When the beat comes, every head lifts at once, and stays lifted until it has passed.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "Every head lifts"
+            },
+            {
+                "id": "5-5-3",
+                "place": "the shell of the house across the square",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "slip round to its back wall"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "look in through the broken window"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Round the fire lie more bedrolls than there are people at it, each one rolled tight and tied.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "More bedrolls"
+            }
+        ],
+        "nudge": "{friend:Intellect}, what ends when the count ends?",
+        "place": "Below the hall",
+        "opener": "One chalk stroke each dusk. Somebody's counting.",
+        "riddle": {
+            "a": "a candle",
+            "q": "What burns shorter every night but is never cut?",
+            "quip": "Fires and candles, same trade.",
+            "accept": [
+                "a candle",
+                "candle"
+            ],
+            "maxTries": 3
+        },
+        "callback": "At Reedham they kept Joss eight nights, waiting for something. Here they strike off one night every dusk.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What will it take for the fifth to end this?",
+        "meaningQuestion": "*\"Where we could watch it, and watch him.\"* Why keep the two so close?"
+    },
+    {
+        "day": 6,
+        "pull": "**The watch has changed. It is dark enough. Into the wall, tonight.**",
+        "tone": "wry",
+        "week": 5,
+        "forkA": "The room was built to hide the fifth.",
+        "forkB": "The room was built to watch the hall.",
+        "leads": [
+            {
+                "id": "5-6-1",
+                "place": "the city side of the wall, below the walk",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "lean out over the parapet"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "brace on the parapet and lean far out"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The slit is no wider than a hand, low in the wall's face. Unless you lean out over the parapet and look straight down the stone, you cannot see it at all.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "The narrow slit"
+            },
+            {
+                "id": "5-6-2",
+                "place": "the parapet on the city side",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "run a hand along the parapet's top"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "lean your weight where others leaned"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Above where the map points, the parapet's top is worn into two shallow dips, the width of a pair of elbows. They face the hall.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Two shallow dips"
+            },
+            {
+                "id": "5-6-3",
+                "place": "the forty paces of open stone",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "pace the walk while their heads are turned"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "measure the walk against the gate-tower"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Here the walk is wider than at the gate, by a good stride. All of the extra width is on the city side.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "A stride wider"
+            }
+        ],
+        "nudge": "{friend:Aim}, what can you see through one slit?",
+        "place": "The wall again",
+        "opener": "A slit window, a hidden room, a night nobody heard you.",
+        "riddle": {
+            "a": "a hole",
+            "q": "What gets bigger the more you take away?",
+            "quip": "A room hollowed out of a wall is one.",
+            "accept": [
+                "a hole",
+                "hole"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Every map before tonight was read out loud. Tonight it went hand to hand, and nobody heard.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What will it take for the fifth to end this?",
+        "meaningQuestion": "*\"Where he fell, under the dark moon, the five were joined.\"* Why there, and why that night?"
+    },
+    {
+        "day": 1,
+        "pull": "**The hall is sealed, and the Seekers left a way in, somewhere. The arrow points down: the defenders' barracks, under the wall.**",
+        "tone": "wry",
+        "week": 6,
+        "forkA": "They think the light was nothing.",
+        "forkB": "They know someone's in the wall.",
+        "leads": [
+            {
+                "id": "6-1-1",
+                "place": "the slit, after dark",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "watch the lanterns from the slit"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "follow where each lantern goes"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Not a candle burns in the room. Every lantern you can see from the slit is out in the square, and none of them reaches in.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "No light inside"
+            },
+            {
+                "id": "6-1-2",
+                "place": "the board in the square",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "watch the board from the slit at dusk"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "watch the man with the chalk, not the board"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "At dusk the watchman with the chalk stops before he strikes the board. He turns, looks down the hill at the wall, and then strikes it.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "One look down the hill"
+            },
+            {
+                "id": "6-1-3",
+                "place": "the stone niche where it lay",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "hold a hand inside and feel the stone"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "look at the niche with the lamp unlit"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "The back of the stone niche is blackened in one small round patch, the way a candle marks stone over years. The niche faces the inner wall, away from the slit.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "The old soot"
+            }
+        ],
+        "nudge": "{friend:Aim}, an arrow under the window, pointing down. What does it want us to find?",
+        "place": "The wall room (Six nights)",
+        "opener": "Quiet's good in a hole in a wall. I'll take it.",
+        "riddle": {
+            "a": "light",
+            "q": "What can fill a room and take no space?",
+            "quip": "A little of it, please.",
+            "accept": [
+                "light"
+            ],
+            "maxTries": 3
+        },
+        "callback": "At dusk you crossed the wall and nobody heard. By the end of the night a watchman was looking straight at your window.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What will the fifth do in his hall?",
+        "meaningQuestion": "*\"We let them go.\"* Why spare anyone, on a night like that?"
+    },
+    {
+        "day": 2,
+        "pull": "**They are not coming for you. They are going to him. And wherever the Seekers' way in begins, it begins at his walls. The great square, after dark.**",
+        "tone": "quiet",
+        "week": 6,
+        "forkA": "They go up to the hall to answer a call.",
+        "forkB": "They go up to guard it.",
+        "leads": [
+            {
+                "id": "6-2-1",
+                "place": "where the spears once stood",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "look at the dust under the racks"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "walk the racks end to end"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The spear-racks along the wall are empty, and the dust under every one is swept clean in the same short arc.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "The swept racks"
+            },
+            {
+                "id": "6-2-2",
+                "place": "the stair up to the street",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "climb to the top step and listen"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "count what you hear"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "When the heartbeat comes, you hear iron move all over the city at once: one scrape of a foot from every street, then quiet.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Every foot at once"
+            },
+            {
+                "id": "6-2-3",
+                "place": "the kitchen whose fire went out",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "look over the board and the pot"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "lift the lid of the cold pot"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "In the kitchen, bowls are set out along the board for a meal, and a ladle lies in the cold pot. Not one bowl was filled.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Bowls never filled"
+            }
+        ],
+        "nudge": "{friend:Agility}, the dead passed us by on their way up. Called, or on guard?",
+        "place": "The barracks under the wall (Five nights)",
+        "opener": "The dead move when nobody watches, and they passed you by. Sit down a minute.",
+        "riddle": {
+            "a": "your breath",
+            "q": "What can you hold but never see, and the more you hold it the less you speak?",
+            "quip": "Hold yours.",
+            "accept": [
+                "breath",
+                "your breath"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Last week you couldn't be sure a helm had turned toward you. Today one stood in your doorway and looked at the fallen stone instead.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What will the fifth do in his hall?",
+        "meaningQuestion": "*\"That is how we found the shards.\"* How could a mark help anyone find one?"
+    },
+    {
+        "day": 3,
+        "pull": "**He is on the other side of this wall. Inside, on the night the moon goes dark, with the fifth: that is the whole plan now. The cracked hill behind the hall.**",
+        "tone": "wry",
+        "week": 6,
+        "forkA": "There is no way in at the front.",
+        "forkB": "There is, and it isn't ours.",
+        "leads": [
+            {
+                "id": "6-3-1",
+                "place": "the foot of the great doors",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "slip along the wall to the doors"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "look at the ground under the seam"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "At the foot of the great doors, dust has drifted against the seam in one smooth bank, from post to post. Nothing has crossed it.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "The unbroken drift"
+            },
+            {
+                "id": "6-3-2",
+                "place": "the ruined house across from the hall",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "pick out what is stacked by their fire"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "creep along the ruined house's wall"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "By the Order's fire the new men's packs are stacked in a row. On top of each lies a folded robe, brushed clean of the road.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "Clean robes"
+            },
+            {
+                "id": "6-3-3",
+                "place": "the hall's great wall",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "feel the stone, hand over hand"
+                    },
+                    {
+                        "attr": "Might",
+                        "verb": "climb a little way and feel higher"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Move your palm up the wall and the stone cools. The warmth is only low down, at the height of your knee and below.",
+                "lateLine": "It takes you until full dark, but you find it.",
+                "clueTitle": "Warm low down"
+            }
+        ],
+        "nudge": "{friend:Intellect}, where would the Seekers have left a door?",
+        "place": "The great square (Four nights)",
+        "opener": "The hall's warm from within. More faithful arriving. What's missing is a door.",
+        "riddle": {
+            "a": "a blanket",
+            "q": "What is warm in the cold but has no fire?",
+            "quip": "Bring one.",
+            "accept": [
+                "a blanket",
+                "blanket"
+            ],
+            "maxTries": 3
+        },
+        "callback": "The soldiers are three streets nearer the hall. Round the Order's fire there are twice as many as before.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What will the fifth do in his hall?",
+        "meaningQuestion": "*\"None of us could bear to lift him.\"* What kept them from lifting him?"
+    },
+    {
+        "day": 4,
+        "pull": "**What does a full moon struck dark mean? The moon-tower.**",
+        "tone": "wry",
+        "week": 6,
+        "forkA": "The rock waits for the dark moon.",
+        "forkB": "The rock will open for us now.",
+        "leads": [
+            {
+                "id": "6-4-1",
+                "place": "inside the crack, by lamplight",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "go in sideways, lamp first"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "light the ground ahead and look"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Past where the soldier stood, the grit on the crack's floor lies smooth and untouched. Your boots are the first marks in it.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "The untouched grit"
+            },
+            {
+                "id": "6-4-2",
+                "place": "the soldier in the mouth of the crack",
+                "actions": [
+                    {
+                        "attr": "Might",
+                        "verb": "drag the broken armour aside"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "look at the rock it stood on"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The rock where it stood is worn into two shallow hollows, one for each foot. It stood on that one spot, facing out, for a very long time.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Two hollows"
+            },
+            {
+                "id": "6-4-3",
+                "place": "the blank rock at the dead end",
+                "actions": [
+                    {
+                        "attr": "Agility",
+                        "verb": "squeeze on to the very end"
+                    },
+                    {
+                        "attr": "Charm",
+                        "verb": "keep everyone quiet, and listen"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "Put your ear to the blank rock. When the heartbeat comes, it is louder here than anywhere else in the crack.",
+                "lateLine": "You almost give up. Then, at the last of the light, there it is.",
+                "clueTitle": "Louder here"
+            }
+        ],
+        "nudge": "{friend:Craft}, nobody has walked that crack before us. Why keep a soldier at it?",
+        "place": "The hill behind the hall (Three nights)",
+        "opener": "That hill was steeper than it looked. Sit.",
+        "riddle": {
+            "a": "the moon",
+            "q": "What changes shape but is never touched?",
+            "quip": "It keeps its own hours.",
+            "accept": [
+                "moon",
+                "the moon"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Upriver, a dog on a chain kept the hidden path. Today a soldier stood in the crack with its back to the hall.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What will the fifth do in his hall?",
+        "meaningQuestion": "*\"Forgive us for leaving it at all.\"* Why would leaving a way in need forgiving?"
+    },
+    {
+        "day": 5,
+        "pull": "**You have the hour. One piece is left, and the Seekers' way ends at a blank rock with this same moon beside it. Tomorrow is the last day.**",
+        "tone": "wry",
+        "week": 6,
+        "forkA": "The Seekers chose the dark moon.",
+        "forkB": "The dark moon came by chance.",
+        "leads": [
+            {
+                "id": "6-5-1",
+                "place": "the sky-watchers' wall, row by row",
+                "actions": [
+                    {
+                        "attr": "Intellect",
+                        "verb": "measure the space between the moons"
+                    },
+                    {
+                        "attr": "Aim",
+                        "verb": "follow one row all the way round"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "Lay a finger between any two moons, on any row. The space is the same every time, year on year, round the whole room.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "A finger's width"
+            },
+            {
+                "id": "6-5-2",
+                "place": "the floor of the round room",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "gather up what lies on the floor"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "read the scratches by daylight"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "On the floor lie the sky-watchers' slates, scratched with long sums. Many are crossed through and begun again.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Sums begun again"
+            },
+            {
+                "id": "6-5-3",
+                "place": "where the rows stop",
+                "actions": [
+                    {
+                        "attr": "Might",
+                        "verb": "climb the ledges to the last rows"
+                    },
+                    {
+                        "attr": "Craft",
+                        "verb": "run a thumb along the last cuts"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "In the last rows before they stop, every moon is cut to the right depth, but the edges are rough, as if made in a hurry. Not one night is missing.",
+                "lateLine": "You go over the same ground twice before you see it.",
+                "clueTitle": "Cut in a hurry"
+            }
+        ],
+        "nudge": "{friend:Intellect}, the sky-watchers' record stops on one night. Why that night?",
+        "place": "The moon-tower (Two nights)",
+        "opener": "Two nights. Eat while there's something to eat.",
+        "riddle": {
+            "a": "sleep",
+            "q": "What is taken every night and returned at dawn?",
+            "quip": "Get some.",
+            "accept": [
+                "sleep"
+            ],
+            "maxTries": 3
+        },
+        "callback": "The Order's board has counted down for generations. The sky-watchers' wall, counted forward, lands on the same night.",
+        "cupNight": false,
+        "narrated": false,
+        "weekQuestion": "What will the fifth do in his hall?",
+        "meaningQuestion": "*\"Be there when it does.\"* Be there to do what?"
+    },
+    {
+        "day": 6,
+        "pull": "**Tomorrow night, when the moon goes dark: through the Seekers' door, into his hall, with the fifth in your hands.**",
+        "tone": "wry",
+        "week": 6,
+        "forkA": "We open the rock tomorrow night.",
+        "forkB": "The door is not ours to open tomorrow.",
+        "leads": [
+            {
+                "id": "6-6-1",
+                "place": "the street below the crack",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "watch the street from the crack's mouth"
+                    },
+                    {
+                        "attr": "Intellect",
+                        "verb": "count the ranks as they climb"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "From the crack's mouth you can see the whole street climbing toward you. Every helm in it is turned to the hall, not one to the hill.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Every helm to the hall"
+            },
+            {
+                "id": "6-6-2",
+                "place": "the foot of the blank rock",
+                "actions": [
+                    {
+                        "attr": "Craft",
+                        "verb": "look at how the grit lies"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "get down low with the lamp"
+                    }
+                ],
+                "hintFor": 2,
+                "clueText": "At the foot of the blank rock, the old grit on your side lies swept flat in a smooth quarter-circle. Its point is at the rock's left edge.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "The swept fan"
+            },
+            {
+                "id": "6-6-3",
+                "place": "the streets you crossed this morning",
+                "actions": [
+                    {
+                        "attr": "Aim",
+                        "verb": "look back down the hill from the crack"
+                    },
+                    {
+                        "attr": "Agility",
+                        "verb": "go back the long way, street by street"
+                    }
+                ],
+                "hintFor": 1,
+                "clueText": "The crossroads, the gate-tower, the street under the wall: every place where a soldier stood is empty now. Only the pale marks of their boots are left.",
+                "lateLine": "By the time you find it, the fire is the only light left.",
+                "clueTitle": "Every post empty"
+            }
+        ],
+        "nudge": "{friend:Intellect}, not one of the dead turned its head. What do they know that we don't?",
+        "place": "The crack in the hill (One night)",
+        "opener": "Last night of the count. Eat what you like.",
+        "riddle": {
+            "a": "a story",
+            "q": "What gets better when you share it and worse when you keep it?",
+            "quip": "Tell one.",
+            "accept": [
+                "a story",
+                "story"
+            ],
+            "maxTries": 3
+        },
+        "callback": "Six nights ago you had a hidden room. Tonight you have one stroke left.",
+        "cupNight": true,
+        "narrated": false,
+        "weekQuestion": "What will the fifth do in his hall?",
+        "meaningQuestion": "*\"Finish what we could not.\"* What did the Seekers leave unfinished?"
+    }
+]

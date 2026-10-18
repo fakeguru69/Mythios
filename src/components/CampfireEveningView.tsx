@@ -433,7 +433,7 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
       if (formed.toLowerCase() === targetWord.toLowerCase()) {
         clearWordTries(activeFragment.id, wordIndex);
         if (!onSolveWord(activeFragment.id, wordIndex, friendNames[activeSeat])) {
-          setWordLockNotice('Until today ends, each friend fills one of its two words. Leave the other for a friend.');
+          setWordLockNotice('A friend has just found this word.');
         }
         setSeekerTypedIndices([]);
       } else {
