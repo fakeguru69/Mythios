@@ -181,8 +181,29 @@ export default function OnlineCampfire({
   const { messages, reload: reloadChat } = useChatMessages(partyId, atFire && together);
   // The page follows new lines to the foot only when the friend is already there (a hook, so it sits above the early returns).
   const follow = useKeepNewInView(messages.length + (table?.thread?.length ?? 0) + (table?.pieces?.length ?? 0));
-  // What Garrick (or MYTHIOS) has said at this fire, kept so a line never changes after it was read (handoff ledger piece 4).
+  // What Garrick (or MYTHIOS) has said at this fire, kept so a line never changes after it was read (handoff ledger
+  // pieces 4 and 4b): the server keeps the record (fire_said, migration 0095), so it survives a reload and another phone;
+  // `said` is this session's own memory, used the moment a line is first shown and until the server answers.
   const said = useRef<{ key: string; slots: Record<string, { text: string; at: string }[]> }>({ key: '', slots: {} });
+  const [serverSaid, setServerSaid] = useState<Record<string, { text: string; at: string }[]>>({});
+  const want = useRef<Record<string, { text: string; at: string }>>({});
+  const sent = useRef<{ key: string; at: number }>({ key: '', at: 0 });
+  useEffect(() => {
+    const lines = Object.entries(want.current).map(([slot, v]) => ({ slot, text: v.text, at: v.at }));
+    if (!lines.length) return;
+    const key = JSON.stringify(lines.map((l) => [l.slot, l.text]));
+    if (key === sent.current.key || Date.now() - sent.current.at < 20000) return;
+    sent.current = { key, at: Date.now() };
+    supabase.rpc('fire_remember', { p_party: partyId, p_lines: lines.slice(0, 20) }).then(({ data, error: e }) => {
+      if (e || !Array.isArray(data)) {
+        sent.current.key = ''; // try again on a later render (not within 20 seconds)
+        return;
+      }
+      const grouped: Record<string, { text: string; at: string }[]> = {};
+      for (const x of data as { slot: string; text: string; at: string }[]) (grouped[x.slot] ||= []).push({ text: x.text, at: x.at });
+      setServerSaid(grouped);
+    });
+  });
 
   const call = async (fn: string, args: Record<string, unknown>) => {
     setBusy(true);
@@ -317,16 +338,22 @@ export default function OnlineCampfire({
       }
       said.current = { key, slots };
     }
-    const list = said.current.slots[slot] ?? [];
+    const srv = serverSaid[slot] ?? [];
+    const loc = said.current.slots[slot] ?? [];
+    let list = srv.length ? srv : loc;
+    // This session may already have added the new line below the server's (the server has not answered yet).
+    if (list[list.length - 1]?.text !== text && loc.length > list.length && loc[loc.length - 1].text === text) list = loc;
     if (!list.length || list[list.length - 1].text !== text) {
-      said.current.slots[slot] = [...list, { text, at: list.length ? new Date().toISOString() : at }];
+      list = [...list, { text, at: list.length ? new Date().toISOString() : at }];
+      said.current.slots[slot] = list;
       try {
         sessionStorage.setItem(key, JSON.stringify(said.current.slots));
       } catch {
         /* private window */
       }
     }
-    return said.current.slots[slot];
+    want.current[slot] = { text, at: list[list.length - 1].at };
+    return list;
   };
 
   // Arriving: the cup, his greeting and opener, what he notices (stored lines, v2.3 §B, §C, §I).
