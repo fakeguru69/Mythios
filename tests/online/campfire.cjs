@@ -1,6 +1,8 @@
-// The Campfire online with two friends: each plays today's chapter, follows a different lead at the last light,
-// then sits at the fire. Checks the board (one card per lead, "Nobody went to…"), pin before peek, the catch-up line,
-// the bottle, the week line, the riddle (tries counted per friend), and leaving (what we did today, the Pull).
+// The Campfire online (version 3) with two friends: each plays today's chapter, follows a different lead at the last
+// light, then sits at the fire. Checks the table (pieces with names, "Nobody went to…", laying a piece from your
+// hands), agree and doubt, the fire's thread (saying something, "pinned a reading", "changed sides", a click when the
+// night's data has one), pin before peek, the riddle (tries counted per friend), and resting for the night (what we
+// did today, the Pull).
 // Usage: node tests/online/campfire.cjs <run> "<party name>"   (host@ then mei@; the day must be unplayed or unfinished)
 const { chromium } = require('./playwright.cjs');
 const fs = require('fs');
@@ -41,7 +43,7 @@ async function asPlayer(b, who, leadIndex, act) {
   // The lead's first action button: each lead card holds two; pick lead N's first.
   const leadButtons = p.locator('div.rounded-xl', { hasText: '' }).locator('button.text-left');
   await leadButtons.nth(leadIndex * 2).click();
-  await p.getByText('THE BOARD', { exact: true }).waitFor({ timeout: 15000 }); await p.waitForTimeout(800);
+  await p.getByText('AROUND THE FIRE', { exact: true }).waitFor({ timeout: 15000 }); await p.waitForTimeout(800);
   await act(p, body, click, shot);
   return p;
 }
@@ -49,23 +51,30 @@ async function asPlayer(b, who, leadIndex, act) {
 (async () => {
   const b = await chromium.launch({ args: [`--proxy-server=${process.env.HTTPS_PROXY}`, '--proxy-bypass-list=localhost;127.0.0.1'] });
 
+  const pinA = async (p, line) => {
+    await p.getByRole('tab', { name: 'The question' }).click(); await p.waitForTimeout(500);
+    await p.locator('[data-tab=question] button.text-left').nth(line === null ? 1 : 0).click();
+    if (line) await p.getByPlaceholder('In your own words, if you like').fill(line);
+    await p.locator('[data-tab=question]').getByRole('button', { name: 'PIN', exact: true }).click(); await p.waitForTimeout(2000);
+  };
+
   await asPlayer(b, 'host', 0, async (p, body, click, shot) => {
     let t = await body();
-    log('host fire: opener shown:', /GARRICK/.test(t), '| first here:', /You're first/.test(t), '| your find:', /YOUR FIND/.test(t));
-    log('host glimpse:', /On the way back, the last of the light/.test(t), '| seen on the way back:', (t.match(/Seen on the way back by [^\n]*/g) || []).join(' / '));
-    log('host board:', (t.match(/Found by [^\n]*/g) || []).join(' / '), '|', (t.match(/Nobody went to [^\n]*/g) || []).length, 'not visited');
+    log('host fire: opener shown:', /GARRICK/.test(t), '| first here:', /You're first/.test(t), '| your find:', /Your find ·/.test(t));
+    log('host table: pieces', await p.locator('[data-piece]').count(), '|', (t.match(/Nobody went to [^\n]*/g) || []).length, 'not visited',
+        '| in your hands:', await p.locator('[data-hands] button').count(), '| card:', ((t.match(/GARRICK, TO YOU\n([^\n]*)/) || [])[1] || ''));
     await shot('2-fire');
-    // Pin reading A with a line.
-    await p.locator('button.text-left').filter({ hasNot: p.locator('div') }).first().click();
-    await p.getByPlaceholder('In your own words (optional)').fill('The horse knew the way.');
-    await p.getByPlaceholder('In your own words (optional)').locator('xpath=..').getByRole('button', { name: 'PIN', exact: true }).click(); await p.waitForTimeout(2000);
+    // Lay everything in your hands.
+    for (let i = 0; i < 3 && await p.locator('[data-hands] button').count(); i++) { await p.locator('[data-hands] button').first().click(); await p.waitForTimeout(1500); }
     t = await body();
-    log('host after pin: ack shown:', /Pinned|on the board|Written up/.test(t), '| own name under reading:', /\(you\)/.test(t));
+    log('host after laying: pieces', await p.locator('[data-piece]').count(), '| laid lines:', (t.match(/You laid a piece down: [^\n]*/g) || []).length);
+    await p.getByPlaceholder('Say something at the fire').fill('A paper in his fist. That is a list.'); await click('SAY');
+    await pinA(p, 'The horse knew the way.');
+    t = await body();
+    log('host after pin: own reading shown:', /TestHost \(you\):/.test(t), '| thread:', /pinned a reading/.test(t));
+    await p.getByRole('tab', { name: 'More' }).click(); await p.waitForTimeout(500);
     await p.getByPlaceholder('Your theory, in one line').fill(`Someone picked these children long ago (${process.argv[2]}).`);
     await click('SAVE');
-    await p.getByPlaceholder('Something you want the others to think about').fill('Who paid for the cart?');
-    await p.getByPlaceholder('Something you want the others to think about').locator('xpath=..').getByRole('button', { name: 'PIN', exact: true }).click(); await p.waitForTimeout(1500);
-    // Riddle: one wrong try, then give up (the answer shows for the host only; Mei still has her three tries).
     const ans = p.getByPlaceholder('Your answer', { exact: true });
     if (await ans.count()) {
       await ans.fill('a teapot'); await click('TRY');
@@ -74,26 +83,36 @@ async function asPlayer(b, who, leadIndex, act) {
       log('host riddle:', ((await body()).match(/The answer: [^\n]*/) || [])[0]);
     }
     await shot('3-fire-after');
-    await click('LEAVE THE FIRE');
-    t = await body();
-    log('host leaving: closer:', /GARRICK/.test(t), '| what we did:', (t.match(/TestHost [^\n]*\./) || [])[0], '| pull:', ((t.split('A MESSAGE IN A BOTTLE')[0].trim().split('\n').pop()) || '').slice(0, 60));
-    await p.getByPlaceholder('One line for the others').fill('Look at the mill lane.'); await click('LEAVE IT');
-    await shot('4-leaving');
   });
 
   await asPlayer(b, 'mei', 1, async (p, body, click, shot) => {
     let t = await body();
-    log('mei fire: catch-up:', (t.match(/TestHost thinks [^\n]*/) || [])[0], '| bottle:', /Look at the mill lane/.test(t), '| question:', /Who paid for the cart/.test(t));
-    log('mei board:', (t.match(/Found by [^\n]*/g) || []).join(' / '), '|', (t.match(/Nobody went to [^\n]*/g) || []).length, 'not visited');
-    log('mei before pin: others hidden:', /Pin your own to see the others/.test(t), '| riddle still open for her:', /3 tries left/.test(t));
-    log('mei noticings:', (t.match(/(gave a hand today|favouring that arm|had the Fragment|Good to see you|isn't here yet)[^\n]*/g) || []).join(' / '));
-    await shot('2-fire');
-    await p.locator('button.text-left').filter({ hasNot: p.locator('div') }).nth(1).click();
-    await p.getByPlaceholder('In your own words (optional)').locator('xpath=..').getByRole('button', { name: 'PIN', exact: true }).click(); await p.waitForTimeout(2000);
+    log('mei table: pieces', await p.locator('[data-piece]').count(), '| host pieces:', (t.match(/TestHost/g) || []).length > 0, '| click:', await p.locator('[data-click]').count());
+    log('mei thread: host said:', /That is a list/.test(t), '| host pinned:', /TestHost pinned a reading/.test(t));
+    // Agree with the host's find, doubt it, take it back.
+    const hostPiece = p.locator('[data-piece^="lead:"]').filter({ hasText: 'TestHost' }).first();
+    await hostPiece.getByRole('button', { name: 'Agree' }).click(); await p.waitForTimeout(1500);
+    log('mei agreed:', /Agreed: Mei/.test(await hostPiece.innerText()));
+    await hostPiece.getByRole('button', { name: 'Doubt' }).click(); await p.waitForTimeout(1500);
+    log('mei doubted instead:', /Doubted: Mei/.test(await hostPiece.innerText()) && !/Agreed: Mei/.test(await hostPiece.innerText()));
+    await p.getByRole('tab', { name: 'The question' }).click(); await p.waitForTimeout(500);
     t = await body();
-    log('mei after pin: sees host:', /TestHost/.test(t) && /The horse knew the way/.test(t), '| two readings line:', /Two readings at the fire/.test(t));
-    log('mei case so far: host line shown:', t.includes(`long ago (${process.argv[2]})`));
+    log('mei before pin: hidden:', /TestHost has pinned\. Pin yours to see it\./.test(t), '| host line hidden:', !/The horse knew the way/.test(t));
+    await shot('2-fire');
+    await pinA(p, null);
+    t = await body();
+    log('mei after pin: sees host:', /TestHost:/.test(t) && /The horse knew the way/.test(t));
+    await p.locator('[data-reading="TestHost"]').getByRole('button', { name: 'Doubt' }).click(); await p.waitForTimeout(1500);
+    log('mei doubted the reading:', /Doubted: Mei/.test(await p.locator('[data-reading="TestHost"]').innerText()), '| card:', ((await body()).match(/GARRICK, TO YOU\n([^\n]*)/) || [])[1]);
+    // Change sides: the thread says so, never to which side.
+    await pinA(p, '');
+    t = await body();
+    log('mei changed sides:', /Mei changed sides|You changed sides/.test(t));
     await shot('3-fire-after');
+    await click('REST FOR THE NIGHT');
+    t = await body();
+    log('mei resting: closer:', /GARRICK/.test(t), '| what we did:', (t.match(/Mei [^\n]*\./) || [])[0], '| back later:', /come back to the fire until dawn/.test(t));
+    await shot('4-resting');
   });
   await b.close();
 })().catch((e) => { log('FAILED', e.message.split('\n')[0]); process.exit(1); });

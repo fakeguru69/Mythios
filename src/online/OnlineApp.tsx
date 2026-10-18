@@ -35,6 +35,7 @@ import Notifications from './Notifications';
 import GarrickRecap from './GarrickRecap';
 import OnlineDay from './OnlineDay';
 import OnlineChest from './OnlineChest';
+import OnlineCasebook from './OnlineCasebook';
 import OnlineStore from './OnlineStore';
 import OnlineCampfire from './OnlineCampfire';
 import OnlineGathering, { GatheringCard } from './OnlineGathering';
@@ -384,6 +385,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [myCharacter, setMyCharacter] = useState<SeriesCharacter | null>(null);
   const [playingDay, setPlayingDay] = useState(false);
   const [inChest, setInChest] = useState(false);
+  const [inCasebook, setInCasebook] = useState(false);
   const [inStore, setInStore] = useState(false);
   const [atFire, setAtFire] = useState(false);
   const [inGathering, setInGathering] = useState(false);
@@ -498,6 +500,8 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
 
   // The Seeker Chest (from the party page, or from the day's fragment; back goes where you came from).
   if (inChest) return <OnlineChest partyId={party.id} onClose={() => setInChest(false)} />;
+  // The casebook: every night at the fire, with the party's calls (Campfire version 3).
+  if (inCasebook) return <OnlineCasebook partyId={party.id} onClose={() => setInCasebook(false)} />;
 
   // The Store and your Relics (from the party page, or from a card set aside; back goes where you came from).
   if (inStore) {
@@ -707,6 +711,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           </button>
           <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setAtFire(true)}>
             🔥 THE CAMPFIRE
+          </button>
+          <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInCasebook(true)}>
+            THE CASEBOOK
           </button>
           <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={() => setInStore(true)}>
             THE STORE
