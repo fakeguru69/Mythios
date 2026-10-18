@@ -60,7 +60,10 @@ From the review. Items 1 to 9 matter most.
     - friends' names and party promises show on a solitary (narrated) night (`OnlineCampfire.tsx`:408);
     - later events are placed at your arrival time, not when they happened; Garrick's noticing and nudge lines can
       change after they have been read (`OnlineCampfire.tsx`:402, 413).
-12. **Re-run the 22 findings that were not double-checked** after the fixes (the review workflow can resume).
+12. **The 22 findings that were not double-checked have now been checked (18 Oct): 35 findings in all, 29 confirmed,
+    6 refuted.** Fixed since: the Day 7 chat and the real-time comparison. Refuted or narrowed: the late-joiner chat,
+    the store-test timing (not from this diff), and the string-compare and Day 7 chat findings once fixed. Today's
+    talk readable through the data connection is true but was already so before this work (item 6 stays as hardening).
 
 ## 3. Phase A and B: left undone by the builds
 
