@@ -80,3 +80,29 @@ the card, and it becomes a piece you can lay on the fire.
 - **E. Content.** Disguised forks and the single buttons sorted (`disguised-forks-draft-18oct.md`), Week 1 first.
 
 Each phase is tested in a browser against the local server, then merged.
+
+## Locked with Fake Guru (18 Oct, "BUILD")
+
+- **Forks are readable trades, never hidden luck.** Three kinds: a trade the wording shows (what you gain, what you
+  risk), a fit (each road suits a different skill: the fork before a Challenge picks which skill you roll), or who you
+  are (no numbers; the story remembers). A fork whose outcome cannot be guessed from its words is not allowed. Week 1's
+  seven forks are redrafted on this rule (phase E). No +2 / −2.
+- **Strike the page** (Week 6's tally) keeps its button.
+- **The Notice gets an easy roll** on your strongest skill: a Novice succeeds on 4 or more (DC 3; a higher tier adds
+  its bonus as usual). Pass: your line, and from Apprentice its second sentence. Fail: "Nothing catches your eye." A
+  Novice also sees "A more practised eye would see more here." Pays nothing. (Phase C.)
+- **The fragment's meaning stays**: when the party completes the day's fragment, it posts into the fire chat as a card
+  with its meaning question under it. Tonight's question stays the one pinned thing. (Replaces "the meaning pin is cut"
+  in the table above.)
+- **A quiet word with Garrick is dropped** (too many things). The server keeps it, unused.
+- **No "week so far" page**: each day already opens with the recap.
+- **The "…" lead-in**: the narration before every Challenge, fight or roll card ends on a "…" lead-in (phase C; every
+  day checked).
+- **The Bag's four shelves**, named to say what they hold, in the story's voice, and never with the day card's words
+  ("You learned", "You hold", "Tomorrow"):
+  - **The Seeker Chest**: the fragments.
+  - **The Dark Moon Verses**: the cult's scripture, a passage after each Gathering.
+  - **Found Along the Road**: the things you carry and every clue found.
+  - **The Journal**: "Nights by the fire" (the party's nights: the question, what was laid, what clicked, the call)
+    and "Your margin notes" (lines you marked, with your notes; private).
+- **Testing the fire**: a test party with pretend friends, moved by a script, so one person can play a busy fire.
