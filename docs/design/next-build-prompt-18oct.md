@@ -100,7 +100,13 @@ Do these in order. For each: write a test that fails before the fix and passes a
    check in `campfire.cjs` can never fail; `party-chat.cjs` is stale; the store check "store closed at the card"
    is a timing problem in the test (wait for the state, not fixed sleeps). Make every check fail the run when false.
    Run `gathering.cjs` and `notifications.cjs`, which were updated but not run.
-10. **Resume the review** (the workflow script
+10. **The review was resumed and finished (18 Oct): 35 findings, 29 confirmed, 6 refuted.** Refuted or narrowed: the
+    late-joiner chat on Week 1 Day 1 (a friend admitted later never plays Day 1 that way; narrowed to a check, not a
+    fix); the "today's talk readable through the data connection" finding (confirmed true but it is not new in this
+    diff: `party_messages` read rules were already membership-only, so item 2 above stays as a hardening task); the
+    store-test timing (the test file did not change in this diff); the string-compare and Day 7 chat findings
+    (fixed on 18 Oct). Everything else confirmed is in items 1 to 9 above. Re-check after fixing.
+10b. **Resume the review** (the workflow script
     `~/.claude/projects/.../workflows/scripts/review-phase-ab-wf_5428fb64-c5b.js`, or write a fresh one) over the
     findings that were never double-checked, after the fixes.
 
