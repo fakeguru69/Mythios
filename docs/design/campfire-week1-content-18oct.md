@@ -119,7 +119,7 @@ The Intellect notice, "two inks, years apart", also tilts B.
 | Piece | Job | Payoff |
 |---|---|---|
 | **NEW** *Past three doors* (replaces "Fresh bark", lead 1-4-3, which spoke to the old question). New place: the boy, at the gate [Charm: ask the boy how they came · Intellect: ask the boy what they passed]. "The boy says they came up the lane in the dark and went past three doors with children behind them. They did not try one." | Reveal; Tilt A | Week 2, Day 2: "collecting particular ones" |
-| The leaned bar (lead 1-4-1, as now) | Turn: it looks as if someone in Fenmark let a man through quietly; it was the watcher, at first light | Day 4: the boy's "A man ran through at first light." |
+| The leaned bar (lead 1-4-1, as now) | Link to Day 3: the watcher came through ahead of you, yet stopped to lift the bar and lean it neatly. He knows this gate, and he was not in a panic | Day 4: the boy's "A man ran through at first light." |
 | The covered cup (lead 1-4-2, as now) | Link: on this lane, a cup is kept covered for a child | Week 2, Day 1: a carter takes Tamsin home |
 
 The boy's lines in the chapter tilt both ways: "Like they'd done it before" leans B (practised), and "She was counting" leans neither.
@@ -179,7 +179,7 @@ The win line, "A plain kitchen knife. There is nothing curved about it.", tilts 
 
 **Garrick:**
 - **Opener:** as now (*"Six pieces, one map. Eat something before you stare at it."*).
-- **Nudge, NEW:** *"{friend}, you've had a long look at that list today. Tell the table what you see in it."*
+- **Nudge, NEW:** *"{friend}, that list has been in your pocket all week. Tell the table what you make of it now."*
 
 ---
 
@@ -210,7 +210,7 @@ The rules:
 | "{friend}, three doors, and they tried none of them. Why hers?" | only once the piece is laid |
 | "{friend}, of all the children in Fenmark, why her?" | a question |
 | "{friend}, she knows him by a knife. How many men can carry one knife?" | the chapter's own words |
-| "{friend}, you've had a long look at that list today. Tell the table what you see in it." | hosting, no inference |
+| "{friend}, that list has been in your pocket all week. Tell the table what you make of it now." | hosting, no inference |
 | "Good. Argue it out. I listen better than I talk." (when the fire splits) | true; its Deception Table meaning says only that he hears every theory, never that he passes them on |
 | **NEW** variant for a split: "Go on, both of you. I'm listening." | true; same meaning |
 | "Everyone leans the same way. What would it take to be wrong?" | now only when every pin agrees and at least two have pinned (it fired on "three or more", which is untrue when others disagree) |
@@ -231,6 +231,29 @@ The rules:
 11. **Day 5's click overclaimed** why she bars her door. It is reworded.
 12. **"Everyone leans the same way"** fired when only three agreed. Its trigger is fixed in the build.
 13. **"Eat first. Questions keep."** is a deflection, wrong as an opener. Fenmark now has a narrated silence instead.
+
+## Claude's audit: does each night make sense, and is it interesting? (Fake Guru: "You audit and see if it make sense and is interesting")
+
+Scored out of 5 for **debate** (would two friends really disagree?) and **payoff** (does the answer land, and soon enough to feel it?).
+
+| Night | Debate | Payoff | Verdict |
+|---|---|---|---|
+| Day 1 | 2 | 4 | A teaching night: most clues lean one way, and the next morning answers it. It teaches the loop (pin tonight, the story answers tomorrow) with a quick, sure win. That is right for the first night, alone. |
+| Day 2 | 4 | 5 | The best surprise of the week. Everyone will assume the child is being held now; Day 5 turns it ("About the last one."), and anyone who pinned "long ago" off the thumbed leaf gets the moment. |
+| Day 3 | 3 | 4 | A fair split: he ran toward the village (B), but nobody watches an empty rock (A). Answered the next evening. The click (the rock has been watched a long time) quietly sets up Day 5's calendar. |
+| Day 4 | 4 | 5 | The week's real question in small: why her? Answered twice, at Gathering 1 (her name on the wall) and in Week 2 ("collecting particular ones"). No puzzle, by design: a quiet night after a child was taken. |
+| Day 5 | 5 | 4 | Kept: real evidence both ways (her certainty against the plain kitchen knife), answered by the ledger. |
+| Day 6 | 4 | 5 | The case. Both readings hold part of the truth, and Gathering 2's "You're marked too" lands on whoever said "they want us too". The decoy cart click gives the night a clever small win. |
+
+**Does it make sense?** Every click states only what the story backs, every read-back quotes a real line, and no night's question is already answered when its fire opens. Two small fixes made in this pass:
+- The leaned bar is not a Turn, since the chapter already says the watcher came through the gate. It is now a Link to Day 3: he stopped to lean the bar neatly, so he knows that gate.
+- Day 6's nudge spoke of "that list today", but Day 6 is the map. It now says the list has been in your pocket all week.
+
+**What could be stronger** (not needed now; for after a playtest):
+- Day 1 is gentle. A real Turn piece, true but misleading, would make it a debate. Nothing in the chapter supports one without inventing lore, so I left it.
+- Clicks mostly confirm what a careful player suspects. Week 2 has richer material (the paper, the bed, the cart) and will have sharper ones.
+
+**Verdict:** it makes sense and holds together. Days 2, 4, 5 and 6 are genuinely interesting. Day 1 is a deliberate warm-up, and Day 3 is solid.
 
 ## Decisions for Fake Guru
 1. The six questions and their read-back points. Yes / change.
