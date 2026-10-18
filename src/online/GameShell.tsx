@@ -74,11 +74,16 @@ export default function GameShell({
     setInfo(i);
     setGold(i.gold);
   }, []);
+  // Each tab keeps its own place (handoff ledger piece 3): leaving the story at the fire and coming back finds the fire,
+  // not the top of the day.
+  const scrolls = useRef<Partial<Record<Tab, number>>>({});
   const show = (t: Tab) => {
     // Back on the story, reload the day so gold spent in the Store and words found in the Chest show at once.
     if (t === 'story' && tab !== 'story') setStoryKey((k) => k + 1);
+    scrolls.current[tab] = window.scrollY;
     setTab(t);
-    window.scrollTo({ top: 0 });
+    const y = scrolls.current[t] ?? 0;
+    window.requestAnimationFrame(() => window.requestAnimationFrame(() => window.scrollTo({ top: y })));
   };
   // The day turns over at 5:00am on the party's clock (handoff ledger piece 2). An app left open overnight reloads the
   // story at that moment, and when it comes back to the front on a new day; a failed load retries (OnlineDay).

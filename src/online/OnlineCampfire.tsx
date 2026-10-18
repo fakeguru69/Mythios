@@ -26,6 +26,7 @@ import {
   partyDayStart,
   sendChat,
   useChatMessages,
+  useKeepNewInView,
   type ChatMessage,
 } from './FireChat';
 
@@ -163,6 +164,8 @@ export default function OnlineCampfire({
   const atFire = Boolean(fire?.chosen);
   const together = chatOpen && Boolean(fire) && !fire!.narrated;
   const { messages, reload: reloadChat } = useChatMessages(partyId, atFire && together);
+  // The page follows new lines to the foot only when the friend is already there (a hook, so it sits above the early returns).
+  const follow = useKeepNewInView(messages.length + (table?.thread?.length ?? 0) + (table?.pieces?.length ?? 0));
 
   const call = async (fn: string, args: Record<string, unknown>) => {
     setBusy(true);
@@ -564,6 +567,7 @@ export default function OnlineCampfire({
         <Composer
           placeholder="Say something at the fire"
           glow={hands.length > 0}
+          onSent={follow}
           onSend={async (text) => {
             const e = await sendChat(partyId, text, true);
             if (!e) reloadChat();
