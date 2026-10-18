@@ -1,4 +1,4 @@
-// Notifications on this phone (migration 0069; Fake Guru, 17 Oct: "8am"; the fire alert 0089): a word when the day opens at 8:00am, a friend at the fire, the Day 4
+// Notifications on this phone (migration 0069; Fake Guru, 17 Oct: "8am"; the fire alert 0089; the Campfire v3 alerts 0093): a word when the day opens at 8:00am, a friend at the fire, the Day 4
 // question of when the party can meet, the Gathering's time, and a reminder before it. Web Push: the phone asks once,
 // and its subscription is kept on the server. On an iPhone it works only once the game is on the home screen.
 import { useEffect, useState } from 'react';
@@ -81,7 +81,7 @@ export default function Notifications() {
     <div className={card} data-notifications={state}>
       <h3 className={`${heading} text-[15px]`}>Notifications</h3>
       <p className="text-[14px]">
-        A word at 8:00am when the day opens, when a friend comes to the fire, the Day 4 question of when you can all meet, the Gathering's time, and a reminder before it begins.
+        A word at 8:00am when the day opens, when a friend comes to the fire, when the fire's table clicks, when someone doubts your reading or changes sides, the last call for tonight's pins, the Day 4 question of when you can all meet, the Gathering's time, and a reminder before it begins.
       </p>
       {state === 'iphone-install' && (
         <p className={note}>On an iPhone, put Mythios on your home screen first, then open it from there and turn these on.</p>
