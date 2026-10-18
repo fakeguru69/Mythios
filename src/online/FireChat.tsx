@@ -17,6 +17,31 @@ export interface ChatMessage {
   created_at: string;
 }
 
+/** Keep new lines in view (handoff ledger piece 3): when the stream grows and the friend is at the foot of the page, the
+ *  page follows; if they have scrolled up to read, it never jumps. `follow()` says "show me the end" (after sending). */
+export function useKeepNewInView(count: number): () => void {
+  const near = useRef(true);
+  useEffect(() => {
+    const on = () => {
+      near.current = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 220;
+    };
+    on();
+    window.addEventListener('scroll', on, { passive: true });
+    return () => window.removeEventListener('scroll', on);
+  }, []);
+  const first = useRef(true);
+  useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    if (near.current) window.requestAnimationFrame(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }));
+  }, [count]);
+  return () => {
+    near.current = true;
+  };
+}
+
 /** The party's messages, newest 200, live. */
 export function useChatMessages(partyId: string, enabled: boolean) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -216,9 +241,12 @@ export function Composer({
   onSend,
   tray,
   glow = false,
+  onSent,
 }: {
   placeholder: string;
   onSend: (text: string) => Promise<string | null>;
+  /** Called after a message went through (the page follows it to the foot). */
+  onSent?: () => void;
   tray?: (close: () => void) => React.ReactNode;
   glow?: boolean;
 }) {
@@ -233,11 +261,14 @@ export function Composer({
     const e = await onSend(body);
     setBusy(false);
     setError(e);
-    if (!e) setText('');
+    if (!e) {
+      setText('');
+      onSent?.();
+    }
   };
   return (
     <div className="sticky bottom-0 z-10 -mx-4 px-3 pt-2 pb-3 bg-[#150D22] border-t border-[#2C1D40] space-y-2" data-composer>
-      {open && tray && <div className="space-y-2" data-tray>{tray(() => setOpen(false))}</div>}
+      {open && tray && <div className="space-y-2 max-h-[40vh] overflow-y-auto overscroll-contain" data-tray>{tray(() => setOpen(false))}</div>}
       <div className="flex gap-2 items-center">
         {tray && (
           <button
@@ -297,6 +328,7 @@ export function EarlierFire({
     const t = new Date(m.created_at).getTime();
     return (t >= yesterday && t < cutoff) || (t >= cutoff && m.author_id === userId);
   });
+  const follow = useKeepNewInView(shown.length);
   return (
     <div className="space-y-3" data-earlier-fire>
       <div className="flex items-center gap-2 text-[12px] font-bold tracking-[1px] text-[#8F82A6]">
@@ -312,6 +344,7 @@ export function EarlierFire({
       <SmallLine>Tonight's fire opens once your day is done.</SmallLine>
       <Composer
         placeholder="Say something to the party"
+        onSent={follow}
         onSend={async (t) => {
           const e = await sendChat(partyId, t, false);
           if (!e) reload();
