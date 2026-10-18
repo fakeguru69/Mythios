@@ -681,7 +681,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   // Once the season is under way and your character is made, the party opens straight into the game shell
   // (docs/design/one-thread-18oct.md, phase A). Everything the page held that is not a tab sits in the party panel.
   if (started && !beforeDayOne && me.session_zero_done_at) {
-    const panel = (
+    const panel = (shell: { joinGathering: () => void }) => (
       <div className="space-y-4">
         {removeDialog}
         {leaveDialog}
@@ -730,7 +730,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         </div>
         {pendingCard}
         {inviteCard}
-        <GatheringCard partyId={party.id} isHost={isHost} timeZone={party.time_zone} onOpen={() => window.scrollTo({ top: 0 })} />
+        <GatheringCard partyId={party.id} isHost={isHost} timeZone={party.time_zone} onOpen={shell.joinGathering} />
         <GarrickRecap
           partyId={party.id}
           partySize={approved.length}

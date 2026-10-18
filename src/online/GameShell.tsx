@@ -8,7 +8,7 @@ import { type MemberRow, type PartyRow } from './supabaseClient';
 import { useBareShell } from './ui';
 import OnlineDay, { type DayInfo } from './OnlineDay';
 import OnlineCampfire from './OnlineCampfire';
-import OnlineGathering from './OnlineGathering';
+import OnlineGathering, { GatheringCard } from './OnlineGathering';
 import OnlineChest from './OnlineChest';
 import OnlineCasebook from './OnlineCasebook';
 import OnlineStore from './OnlineStore';
@@ -49,7 +49,7 @@ export default function GameShell({
   members: MemberRow[];
   chatOpen: boolean;
   /** Everything from the old party page that is not a tab: friends, invite, notifications, the Gathering's time… */
-  panel: ReactNode;
+  panel: (shell: { joinGathering: () => void }) => ReactNode;
 }) {
   useBareShell();
   const [tab, setTab] = useState<Tab>('story');
@@ -58,6 +58,17 @@ export default function GameShell({
   const [gold, setGold] = useState<number | null>(null);
   const [storyKey, setStoryKey] = useState(0);
   const [bagView, setBagView] = useState<BagShelf>('chest');
+  // The live Gathering counts a friend as present the moment it is open, so it is mounted only once the friend taps to
+  // join (handoff ledger piece 1). A new week starts again from the card.
+  const [joined, setJoined] = useState<string | null>(null);
+  const gatheringKey = info ? `${party.id}:${info.week}` : '';
+  const inGathering = Boolean(info?.gathering) && joined === gatheringKey;
+  const joinGathering = () => {
+    setJoined(gatheringKey);
+    setPanelOpen(false);
+    setTab('story');
+    window.scrollTo({ top: 0 });
+  };
 
   const onInfo = useCallback((i: DayInfo) => {
     setInfo(i);
@@ -143,7 +154,10 @@ export default function GameShell({
               onInfo={onInfo}
               reloadKey={storyKey}
             />
-            {info?.gathering && <OnlineGathering partyId={party.id} userId={userId} members={members} onClose={() => undefined} embedded />}
+            {info?.gathering && !inGathering && (
+              <GatheringCard partyId={party.id} isHost={party.host_id === userId} timeZone={party.time_zone} onOpen={joinGathering} />
+            )}
+            {inGathering && <OnlineGathering partyId={party.id} userId={userId} members={members} onClose={() => undefined} embedded />}
             {info && !info.gathering && info.finished && (
               <div data-thread-fire>
                 <OnlineCampfire
@@ -277,7 +291,7 @@ export default function GameShell({
                 ×
               </button>
             </div>
-            {panel}
+            {panel({ joinGathering })}
           </div>
         </div>
       )}
