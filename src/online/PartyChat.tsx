@@ -112,40 +112,47 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
 
   return (
     <div className={card}>
-      <h3 className={`${heading} text-[15px]`}>Party chat</h3>
-      <div className="max-h-[360px] overflow-y-auto space-y-1.5 pr-1">
-        {hello && <p className={`${note} italic text-center`}>Everyone is here now, and so is Garrick. Ask him anything.</p>}
+      <h3 className={`${heading} text-[16px]`}>Party chat</h3>
+      <div className="max-h-[360px] overflow-y-auto space-y-2 pr-1">
+        {hello && <p className={`${note} text-center`}>Everyone is here now, and so is Garrick. Ask him anything.</p>}
         {messages.map((m) =>
           m.speaker === 'garrick' ? (
-            <div key={m.id} className="rounded-lg px-3 py-1.5 text-[15px] bg-[#2A2013] border border-[#D4B876]/40 mr-8">
-              <span className="text-[12px] text-[#D4B876] font-semibold font-['Cinzel']">Garrick</span>
+            <div key={m.id} className="max-w-[88%] space-y-1" data-garrick-line>
+              <div className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
               <Markable source="Garrick, in the party chat" text={m.body}>
-                <div className="whitespace-pre-wrap break-words">{m.body}</div>
+                <div className="rounded-[4px_16px_16px_16px] bg-[#2B1E10] border border-[#6B5524] px-3 py-2 font-['Cormorant_Garamond',serif] font-semibold text-[18px] leading-[1.45] text-[#F4E8C8] whitespace-pre-wrap break-words">
+                  {m.body}
+                </div>
               </Markable>
             </div>
           ) : m.kind === 'notice' ? (
-            <p key={m.id} className={`${note} italic text-center`}>
+            <p key={m.id} className={`${note} text-center`}>
               {m.body}
             </p>
           ) : (
-            <div
-              key={m.id}
-              className={`select-none rounded-lg px-3 py-1.5 text-[15px] ${m.author_id === userId ? 'bg-[#2E1B42] ml-8' : 'bg-[#130B1F] mr-8'}`}
-              onPointerDown={() => startHold(m)}
-              onPointerUp={endHold}
-              onPointerLeave={endHold}
-              onContextMenu={(e) => {
-                if (m.author_id !== userId && m.speaker !== 'garrick') {
-                  e.preventDefault();
-                  setReporting(m);
-                  setReportNote('');
-                  setReported(false);
-                  setAskedReport(false);
-                }
-              }}
-            >
-              <span className="text-[12px] text-[#E5C158] font-semibold">{m.author_id === userId ? 'You' : nameOf(m.author_id)}</span>
-              <div className="whitespace-pre-wrap break-words">{m.body}</div>
+            <div key={m.id} className={`flex flex-col ${m.author_id === userId ? 'items-end' : 'items-start'}`} data-chat={m.author_id === userId ? 'mine' : 'friend'}>
+              {m.author_id !== userId && <div className="text-[12px] font-bold text-[#C39BF5]">{nameOf(m.author_id)}</div>}
+              <div
+                className={`select-none max-w-[86%] px-3 py-2 text-[16px] leading-[1.4] whitespace-pre-wrap break-words border ${
+                  m.author_id === userId
+                    ? 'rounded-[16px_16px_4px_16px] bg-[#3A2A12] border-[#8A6E34] text-[#F4E8C8]'
+                    : 'rounded-[4px_16px_16px_16px] bg-[#221636] border-[#3A2555] text-[#F4F1F8]'
+                }`}
+                onPointerDown={() => startHold(m)}
+                onPointerUp={endHold}
+                onPointerLeave={endHold}
+                onContextMenu={(e) => {
+                  if (m.author_id !== userId && m.speaker !== 'garrick') {
+                    e.preventDefault();
+                    setReporting(m);
+                    setReportNote('');
+                    setReported(false);
+                    setAskedReport(false);
+                  }
+                }}
+              >
+                {m.body}
+              </div>
             </div>
           ),
         )}

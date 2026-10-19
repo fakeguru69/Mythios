@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 
 export const card = 'rounded-2xl bg-[#1E1232] border border-[#3A2555] p-4 space-y-3';
 export const input =
-  'w-full rounded-lg bg-[#130B1F] border border-[#3A2555] px-3 py-2 text-[15px] text-[#F4F1F8] placeholder-[#8B7A9E] focus:outline-none focus:border-[#D4B876]';
+  'w-full rounded-lg bg-[#130B1F] border border-[#3A2555] px-3 py-2 text-[16px] text-[#F4F1F8] placeholder-[#8B7A9E] focus:outline-none focus:border-[#D4B876]';
 export const goldButton =
   'w-full rounded-lg bg-[#D4B876] hover:bg-[#E5C158] disabled:opacity-50 px-3 py-2.5 font-[Cinzel] font-bold text-[13px] text-[#130B1F] transition';
 export const quietButton =

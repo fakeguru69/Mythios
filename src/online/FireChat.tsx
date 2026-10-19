@@ -113,7 +113,7 @@ export function NarrationMessage({ text }: { text: string }) {
   return (
     <div className="space-y-1" data-narration>
       <div className="font-['Cinzel'] font-bold text-[11px] text-[#B7A9CC] tracking-[1.2px]">MYTHIOS</div>
-      <ScriptText text={text} className="font-['Cormorant_Garamond',serif] font-semibold text-[18px] leading-[1.55] text-[#E6E0F0]" />
+      <ScriptText text={text} className="font-['Cormorant_Garamond',serif] text-[18px] leading-[1.5] text-[#F4F1F8]" />
     </div>
   );
 }
@@ -151,7 +151,9 @@ export function ChatBubble({
       {!mine && <div className="text-[12px] font-bold text-[#C39BF5]">{nameOf(members, m.author_id)}</div>}
       <div
         className={`select-none max-w-[86%] px-3 py-2 text-[16px] leading-[1.4] whitespace-pre-wrap break-words border ${
-          mine ? 'rounded-[16px_16px_4px_16px] bg-[#3A2A12] border-[#8A6E34] text-[#F4E8C8]' : 'rounded-[4px_16px_16px_16px] bg-[#221636] border-[#3A2555]'
+          mine
+            ? 'rounded-[16px_16px_4px_16px] bg-[#3A2A12] border-[#8A6E34] text-[#F4E8C8]'
+            : 'rounded-[4px_16px_16px_16px] bg-[#221636] border-[#3A2555] text-[#F4F1F8]'
         }`}
         onPointerDown={startHold}
         onPointerUp={endHold}
@@ -177,7 +179,7 @@ export function ReportBox({ m, onDone }: { m: ChatMessage; onDone: () => void })
   return (
     <div className="rounded-xl border border-[#D4B876]/60 bg-[#1A1226] p-3 space-y-2" data-report>
       {sent ? (
-        <p className="text-[15px]">Thank you.</p>
+        <p className="text-[16px]">Thank you.</p>
       ) : !asked ? (
         <div className="flex gap-2">
           <button className={quietButton} onClick={() => setAsked(true)}>
@@ -189,7 +191,7 @@ export function ReportBox({ m, onDone }: { m: ChatMessage; onDone: () => void })
         </div>
       ) : (
         <>
-          <p className="text-[15px]">Tell us what's wrong.</p>
+          <p className="text-[16px]">Tell us what's wrong.</p>
           <input className={input} maxLength={500} value={noteText} onChange={(e) => setNoteText(e.target.value)} />
           <div className="flex gap-2">
             <button

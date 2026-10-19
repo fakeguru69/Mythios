@@ -10,9 +10,11 @@ import {
   isFriendChoice,
   personalStakeLine,
   pickNoticeLine,
+  HowItWorks,
   NarrationBlock,
   NoticeBlock,
   ScriptButton,
+  ScriptInline,
   ScriptText,
   TapEcho,
 } from '../components/ChapterScriptParts';
@@ -273,7 +275,7 @@ export default function OnlineDay({
   // While a card or a fight not yet begun is set aside with [NOT NOW], the Store is open (Core Rules §3).
   const asideNote = (
     <div className="space-y-1.5">
-      <p className="font-sans italic text-[13.5px] text-[#B7A9CC]">Set aside. It waits here until you take it up, and the Store is open.</p>
+      <HowItWorks text="Set aside. It waits here until you take it up, and the Store is open." />
       <button className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={onOpenStore}>
         THE STORE
       </button>
@@ -402,13 +404,11 @@ export default function OnlineDay({
           </div>
           <div className="p-2.5 space-y-2">
             {today.daysPlayed === 0 && !challenge && (
-              <p className="font-sans italic text-[13.5px] text-[#B7A9CC]">
-                A Challenge. Pick the skill you trust and roll. Pass, and you earn 500 gold and that skill grows. Fail, and it costs 150 gold.
-              </p>
+              <HowItWorks text="A Challenge. Pick the skill you trust and roll. Pass, and you earn 500 gold and that skill grows. Fail, and it costs 150 gold." />
             )}
-            <ScriptText text={fill(step.desc)} className="font-sans text-[14px] text-[#E6E0F0] leading-[1.4]" />
+            <ScriptText text={fill(step.desc)} className="font-sans text-[16px] text-[#E6E0F0] leading-[1.42]" />
             {harder > 0 && step.harderIf && (
-              <ScriptText text={fill(step.harderIf.line)} className="font-sans text-[13.5px] text-[#E0645C] leading-[1.4]" />
+              <ScriptText text={fill(step.harderIf.line)} className="font-sans text-[16px] text-[#E0645C] leading-[1.42]" />
             )}
             {!challenge ? (
               <>
@@ -423,10 +423,10 @@ export default function OnlineDay({
                             attr === o.attr ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555] bg-[#130B1F]'
                           }`}
                         >
-                          <span className="font-semibold text-[14px]">
+                          <span className="font-semibold text-[16px]">
                             {o.attr} {s} (+{getTierInfo(s).bonus})
                           </span>
-                          <span className="text-[13.5px] text-[#B7A9CC]"> · {fill(o.verb)}</span>
+                          <span className="text-[16px] text-[#B7A9CC]"> · {fill(o.verb)}</span>
                         </button>
                         {/* The Relic choice shows only when the player holds a matching Relic (Core Rules §3). */}
                         {held(o.attr) > 0 && (
@@ -479,10 +479,9 @@ export default function OnlineDay({
                 {challenge.pass &&
                   !!challenge.growth &&
                   Object.values(progress.attrs).reduce((a, b) => a + b, 0) - challenge.growth === 66 && (
-                    <p className="font-sans italic text-[13.5px] text-[#B7A9CC]">
-                      {challenge.attr} {challenge.score} → {challenge.score + challenge.growth}. At 26 a skill becomes Apprentice: +2 on
-                      every roll with it. The more days you play, the further you grow.
-                    </p>
+                    <HowItWorks
+                      text={`${challenge.attr} ${challenge.score} → ${challenge.score + challenge.growth}. At 26 a skill becomes Apprentice: +2 on every roll with it. The more days you play, the further you grow.`}
+                    />
                   )}
               </div>
             )}
@@ -508,7 +507,7 @@ export default function OnlineDay({
             )}
           </div>
           <div className="p-2.5 space-y-2">
-            <ScriptText text={fill(`${step.detail.charAt(0).toUpperCase()}${step.detail.slice(1)}. ${step.reward}.`)} className="font-sans text-[14px] text-[#E6E0F0] leading-[1.4]" />
+            <ScriptText text={fill(`${step.detail.charAt(0).toUpperCase()}${step.detail.slice(1)}. ${step.reward}.`)} className="font-sans text-[16px] text-[#E6E0F0] leading-[1.42]" />
             {!press ? (
               <>
                 {held(challenge.attr) > 0 && (
@@ -559,17 +558,11 @@ export default function OnlineDay({
       const last = rounds[rounds.length - 1];
       const php = last?.playerHpAfter ?? 100;
       const ehp = last?.enemyHpAfter ?? 100;
-      nodes.push(
-        <div key={`${key}-d`} className="font-sans italic text-[14px] text-[#B7A9CC] px-1">
-          {fill(step.desc)}
-        </div>
-      );
+      nodes.push(<NarrationBlock key={`${key}-d`} text={fill(step.desc)} />);
       if (step.firstLines) nodes.push(<NarrationBlock key={`${key}-f`} text={fill(playerFirst ? step.firstLines[0] : step.firstLines[1])} />);
       if (today.daysPlayed === 0 && rounds.length === 0) {
         nodes.push(
-          <p key={`${key}-first`} className="font-sans italic text-[13.5px] text-[#B7A9CC] px-1">
-            Your first fight. You and he take turns. A roll decides each blow.
-          </p>
+          <HowItWorks key={`${key}-first`} text="Your first fight. You and he take turns. A roll decides each blow." />
         );
       }
       const bar = (label: string, hp: number, colour: string, labelColour: string) => (
@@ -701,9 +694,7 @@ export default function OnlineDay({
               </p>
               {/* After the first fight (Core Rules §7 first-time lines): everyone's first fight is Week 1 Day 1's. */}
               {week === 1 && day === 1 && (
-                <p className="font-sans italic text-[13.5px] text-[#B7A9CC]">
-                  Gold buys better weapons and armor in the Store. Every fight starts fresh: your wounds never follow you.
-                </p>
+                <HowItWorks text="Gold buys better weapons and armor in the Store. Every fight starts fresh: your wounds never follow you." />
               )}
             </div>
           )}
@@ -740,10 +731,22 @@ export default function OnlineDay({
           <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555]">
             <ScriptText text={fill(titleLine)} className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] text-[#E5C158]" />
           </div>
-          <div className="p-3 space-y-1">
-            {shown.map((l, li) => (
-              <ScriptText key={li} text={fill(l)} className="font-sans text-[14px] text-[#E6E0F0] leading-[1.42]" />
-            ))}
+          <div className="p-3 space-y-1.5">
+            {shown.map((l, li) => {
+              const filled = fill(l);
+              const tomorrow = filled.match(/^Tomorrow:\s*(.*)$/);
+              if (tomorrow) {
+                return (
+                  <p key={li} className="font-sans text-[16px] text-[#E6E0F0] leading-[1.42]">
+                    <span className="font-['Cinzel'] font-bold text-[#E5C158] tracking-[0.6px] uppercase mr-1.5" data-tomorrow-label>
+                      Tomorrow:
+                    </span>
+                    <ScriptInline text={tomorrow[1]} />
+                  </p>
+                );
+              }
+              return <ScriptText key={li} text={filled} className="font-sans text-[16px] text-[#E6E0F0] leading-[1.42]" />;
+            })}
           </div>
         </div>
       );
@@ -753,7 +756,7 @@ export default function OnlineDay({
   if (nextDay) {
     nodes.push(
       <div key="next-day" className="space-y-2" data-next-day>
-        <p className="font-sans italic text-[14px] text-[#B7A9CC] px-1">The others are already a day further down the road.</p>
+        <p className="font-sans text-[16px] text-[#B7A9CC] px-1">The others are already a day further down the road.</p>
         <button
           className={goldButton}
           onClick={() => {
@@ -871,7 +874,7 @@ function DaySevenLine({ partyId, timeZone }: { partyId: string; timeZone: string
       if (data?.tonight) setLine(tonightLine(data.tonight, data.opensAt, timeZone));
     });
   }, [partyId, timeZone]);
-  return <p className="text-[15px] italic text-[#B7A9CC]">{line ?? 'Tonight: the Gathering.'}</p>;
+  return <p className="text-[16px] text-[#B7A9CC]">{line ?? 'Tonight: the Gathering.'}</p>;
 }
 
 // The road so far: the story up to yesterday, in the storybook voice, before today's chapter. A friend who missed days
@@ -894,7 +897,7 @@ function RoadSoFar({
       {recaps.map((r) => (
         <div key={`${r.week}-${r.day}`} className="space-y-1">
           {several && (
-            <p className="font-sans text-[11.5px] text-[#8B7A9E]">
+            <p className="font-sans text-[12px] text-[#8B7A9E]">
               {r.day === 7 ? `Week ${r.week} · The Gathering` : `Week ${r.week} · Day ${r.day}`}
             </p>
           )}
@@ -902,7 +905,7 @@ function RoadSoFar({
         </div>
       ))}
       {!!missed && missed > 0 && (
-        <p className="font-sans italic text-[13.5px] text-[#B7A9CC] px-1">
+        <p className="font-sans text-[16px] text-[#B7A9CC] px-1">
           You missed {missed < DAY_COUNT_WORDS.length ? DAY_COUNT_WORDS[missed] : `${missed} days`}. The story went on. Today is still yours.
         </p>
       )}

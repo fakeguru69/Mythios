@@ -50,12 +50,14 @@ html {
   overflow-x: clip;
 }
 
-/* The game shell (docs/design/one-thread-18oct.md, phase A; Fake Guru, 18 Oct: "All text should be bigger, one size
+/* The game shell (docs/design/one-thread-18oct.md, phase C1; Fake Guru, 18 Oct: "All text should be bigger, one size
    up from a phone's message text"): story text 18px, other reading text 16px, small notes 15px. Scoped to the shell so
    the one-phone demo and the screens before the season are unchanged. */
-[data-game-shell] [data-pane="story"] .text-\[15px\] { font-size: 18px; }
+[data-game-shell] [data-mythios-story] p,
+[data-game-shell] [data-narration] p { font-size: 18px; }
 [data-game-shell] [data-pane="story"] .text-\[17px\] { font-size: 19px; }
 [data-game-shell] .text-\[13\.5px\],
 [data-game-shell] .text-\[14px\],
-[data-game-shell] .text-\[14\.5px\] { font-size: 16px; }
+[data-game-shell] .text-\[14\.5px\],
+[data-game-shell] .text-\[15px\] { font-size: 16px; }
 [data-game-shell] .text-\[13px\] { font-size: 15px; }

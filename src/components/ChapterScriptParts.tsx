@@ -1,5 +1,5 @@
 import React from 'react';
-import { AttributeName, ATTRIBUTE_META } from '../data/mythiosRulesData';
+import { AttributeName } from '../data/mythiosRulesData';
 import { applySmallPartyLines } from '../data/smallPartyLines';
 
 // Display pieces for the weekday chapter as canon writes it (docs/canon/episode-*.md).
@@ -102,7 +102,7 @@ export const ScriptText: React.FC<{ text: string; className?: string }> = ({ tex
     {text.split(/\n\s*\n/).map((para, pi) => (
       <p
         key={pi}
-        className={className ?? 'font-sans text-[15px] text-[#F4F1F8] leading-[1.45]'}
+        className={className ?? 'font-sans text-[16px] text-[#F4F1F8] leading-[1.45]'}
       >
         {para.split('\n').map((line, li, arr) => (
           <React.Fragment key={li}>
@@ -115,30 +115,32 @@ export const ScriptText: React.FC<{ text: string; className?: string }> = ({ tex
   </>
 );
 
-/** MYTHIOS narration (style guide: a gold rule down the left, no bubble). */
-export const NarrationBlock: React.FC<{ text: string; pull?: boolean }> = ({ text, pull }) => (
-  <div
-    className={`pl-3 border-l-2 space-y-2 ${
-      pull ? 'border-[#D4B876] py-1' : 'border-[#D4B876]/45'
-    }`}
-  >
+/** MYTHIOS telling the story (phase C1 voice key): one serif, 18px, white, no italics, no side bar. */
+export const NarrationBlock: React.FC<{ text: string; pull?: boolean }> = ({ text }) => (
+  <div className="space-y-2" data-mythios-story>
     <ScriptText
       text={text}
-      className={
-        pull
-          ? "font-['Cormorant_Garamond',serif] italic text-[17px] text-[#F4E8C1] leading-[1.4]"
-          : 'font-sans text-[15px] text-[#F4F1F8] leading-[1.45]'
-      }
+      className="font-['Cormorant_Garamond',serif] text-[18px] text-[#F4F1F8] leading-[1.5]"
     />
   </div>
 );
 
-/** The player's tap, echoed as a small gold chip on the right. */
+/** How-to lines (phase C1 voice key): a small gold "HOW IT WORKS" strip. */
+export const HowItWorks: React.FC<{ text: string }> = ({ text }) => (
+  <div className="rounded-xl bg-[#2A2010] border border-[#D4B876]/60 px-3.5 py-2.5 space-y-1" data-how-it-works>
+    <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] uppercase text-[#E5C158]">
+      HOW IT WORKS
+    </div>
+    <p className="font-sans text-[16px] text-[#F4E8C8] leading-[1.42]">{text}</p>
+  </div>
+);
+
+/** Your own choice (phase C1 voice key): your bubble on the right. */
 export const TapEcho: React.FC<{ label: string }> = ({ label }) => (
-  <div className="flex justify-end">
-    <span className="px-2.5 py-1 rounded-full bg-[#4A3B24] border border-[#E5C77B]/70 font-['Cinzel'] font-bold text-[11px] tracking-[0.6px] text-[#F3D88B] uppercase">
+  <div className="flex justify-end" data-choice-echo>
+    <div className="max-w-[86%] rounded-[16px_16px_4px_16px] bg-[#3A2A12] border border-[#8A6E34] px-3.5 py-2 font-sans text-[16px] leading-[1.4] text-[#F4E8C8]">
       {label}
-    </span>
+    </div>
   </div>
 );
 
@@ -178,14 +180,12 @@ export function pickNoticeLine(
   return { attr: best, text: apprentice && entry.second ? `${entry.first} ${entry.second}` : entry.first };
 }
 
+/** The Notice (phase C1 voice key): a blue card. */
 export const NoticeBlock: React.FC<{ attr: AttributeName; text: string; label?: string }> = ({ attr, text, label }) => (
-  <div className="rounded-xl bg-[#130B1F] border border-[#3A2555] px-3 py-2 space-y-1">
-    <div
-      className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] uppercase"
-      style={{ color: label ? '#B7A9CC' : ATTRIBUTE_META[attr]?.color || '#D4B876' }}
-    >
+  <div className="rounded-xl bg-[#101C30] border border-[#3B669E] px-3.5 py-2.5 space-y-1" data-notice-card>
+    <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] uppercase text-[#7AA7FF]">
       {label ?? `What you notice · ${attr}`}
     </div>
-    <ScriptText text={text} className="font-sans text-[14.5px] text-[#E6E0F0] leading-[1.42]" />
+    <ScriptText text={text} className="font-sans text-[16px] text-[#E8F1FF] leading-[1.45]" />
   </div>
 );
