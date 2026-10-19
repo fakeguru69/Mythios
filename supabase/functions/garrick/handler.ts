@@ -147,12 +147,12 @@ export async function handleGarrick(req: Request, env: GarrickEnv): Promise<Resp
   if (!/\bgarrick\b/i.test(text)) return json(200, { posted: questionId });
 
   const service = `Bearer ${env.serviceKey}`;
-  const ctx = await rpc(env, 'garrick_state', { p_party: party }, service, env.serviceKey);
+  const ctx = await rpc(env, 'garrick_state', { p_party: party, p_asked_by: asker }, service, env.serviceKey);
   primeGarrickRotation(ctx.history || {});
-  // The fire is the party chat (phase B, 18 Oct): named there, he answers from his stored lines only and never says
-  // "Malakor" (Campfire table §E: no AI free text at the fire).
-  const atFire = body.atFire === true;
-  const routed = routeGarrickMessage(text, { ...(ctx.state as GarrickStoryState), atCampfire: atFire || (ctx.state as GarrickStoryState).atCampfire });
+  // The server decides whether this message was spoken at the fire (handoff ledger piece 6):
+  // client-sent flags are ignored; the server checks that the friend has finished today's chapter and the fire is open.
+  const atFire = Boolean((ctx.state as GarrickStoryState)?.atCampfire ?? ctx.atFire);
+  const routed = routeGarrickMessage(text, { ...(ctx.state as GarrickStoryState), atCampfire: atFire });
   let reply = routed.reply.replace(/^[“"]|[”"]$/g, '');
   let ai = false;
   let filtered: string | null = null;
@@ -175,7 +175,7 @@ export async function handleGarrick(req: Request, env: GarrickEnv): Promise<Resp
     'garrick_post',
     {
       p_party: party, p_asked_by: asker, p_question_id: questionId, p_body: reply, p_route: routed.route,
-      p_category: routed.category, p_flags: routed.flagsUsed, p_ai: ai, p_filtered: filtered,
+      p_category: routed.category, p_flags: routed.flagsUsed, p_ai: ai, p_filtered: filtered, p_at_fire: atFire,
     },
     service,
     env.serviceKey

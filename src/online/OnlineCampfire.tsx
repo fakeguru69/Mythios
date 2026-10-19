@@ -474,10 +474,16 @@ export default function OnlineCampfire({
   });
 
   // The party's talk since this morning: the fire is the party chat. "X pinned a theory." is already on the fire's own line.
+  // Daytime Garrick replies (at_fire === false) never appear at the fire (handoff ledger piece 6): stored lines only here.
   if (together) {
     const since = new Date(partyDayStart(timeZone)).getTime();
     messages
-      .filter((m) => new Date(m.created_at).getTime() >= since && !(m.kind === 'notice' && fireOwnNotice(m.body, fire.week, fire.day)))
+      .filter((m) => {
+        if (new Date(m.created_at).getTime() < since) return false;
+        if (m.kind === 'notice' && fireOwnNotice(m.body, fire.week, fire.day)) return false;
+        if (m.speaker === 'garrick' && m.at_fire === false) return false;
+        return true;
+      })
       .forEach((m) => add(m.created_at, `msg-${m.id}`, <ChatBubble m={m} userId={userId} members={memberRows} onReport={setReporting} />));
   }
 

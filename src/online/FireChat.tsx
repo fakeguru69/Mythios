@@ -15,6 +15,8 @@ export interface ChatMessage {
   speaker?: 'garrick' | null;
   body: string;
   created_at: string;
+  at_fire?: boolean;
+  reply_to_user?: string | null;
 }
 
 /** Keep new lines in view (handoff ledger piece 3): when the stream grows and the friend is at the foot of the page, the
@@ -221,9 +223,9 @@ export function ReportBox({ m, onDone }: { m: ChatMessage; onDone: () => void })
 }
 
 /** Say something: to the party, and to Garrick when he is named (at the fire, his stored lines only). */
-export async function sendChat(partyId: string, body: string, atFire: boolean): Promise<string | null> {
+export async function sendChat(partyId: string, body: string, _atFire?: boolean): Promise<string | null> {
   if (/\bgarrick\b/i.test(body)) {
-    const { error: e } = await supabase.functions.invoke('garrick', { body: { party: partyId, text: body, atFire } });
+    const { error: e } = await supabase.functions.invoke('garrick', { body: { party: partyId, text: body } });
     if (!e) return null;
     let message = e.message;
     try {
@@ -325,10 +327,10 @@ export function EarlierFire({
   const [reporting, setReporting] = useState<ChatMessage | null>(null);
   const cutoff = new Date(partyDayStart(timeZone)).getTime();
   const yesterday = cutoff - 86400000;
-  // Last night's talk (the day before this morning), and anything you have said since.
+  // Last night's talk (the day before this morning), and anything you have said since (including Garrick's answers to your questions).
   const shown = messages.filter((m) => {
     const t = new Date(m.created_at).getTime();
-    return (t >= yesterday && t < cutoff) || (t >= cutoff && m.author_id === userId);
+    return (t >= yesterday && t < cutoff) || (t >= cutoff && (m.author_id === userId || m.reply_to_user === userId));
   });
   const follow = useKeepNewInView(shown.length);
   return (

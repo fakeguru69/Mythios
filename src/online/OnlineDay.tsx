@@ -16,7 +16,7 @@ import {
   ScriptText,
   TapEcho,
 } from '../components/ChapterScriptParts';
-import { challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
+import { challengeSucceedOn, getTierInfo, type AttributeName, EPISODE_NUMBERS, GEAR_TABLE } from '../data/mythiosRulesData';
 import { CLASSES } from './onlineText';
 import { tonightLine } from './OnlineGathering';
 import { ErrorLine, goldButton, heading, note, quietButton } from './ui';
@@ -583,11 +583,46 @@ export default function OnlineDay({
           </div>
         </div>
       );
+      const epMeta = EPISODE_NUMBERS[(today?.week ?? 1) - 1] || EPISODE_NUMBERS[0];
+      const playerGear = GEAR_TABLE[today?.progress?.weapon_level ?? 1] || GEAR_TABLE[1];
+      const curWep = rounds[0]?.playerAtk ?? playerGear.weapon;
+      const curAmr = rounds[0]?.playerArmor ?? playerGear.armor;
+      const curDef = rounds[0]?.enemyDef ?? epMeta.wDef;
+      const curAtk = rounds[0]?.enemyAtk ?? epMeta.wAtk;
+
       nodes.push(
         <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] p-3 space-y-2">
           <div className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8]">⚔️ {fill(step.name)}</div>
-          {bar('You', php, '#6FD39A')}
-          {bar(fill(step.name), ehp, '#F08A8A')}
+          
+          <div className="grid grid-cols-2 gap-2">
+            <div className="p-2 rounded-lg bg-[#130B1F] border border-[#3A2555]">
+              {bar('You', php, '#6FD39A')}
+              <div className="mt-1.5 space-y-0.5 text-[11px] font-sans">
+                <div className="flex items-center justify-between font-semibold text-[#E5C158]">
+                  <span>Weapon WEP</span>
+                  <span className="font-bold">{curWep}</span>
+                </div>
+                <div className="flex items-center justify-between font-semibold text-[#7AA7FF]">
+                  <span>Armour AMR</span>
+                  <span className="font-bold">{curAmr}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-2 rounded-lg bg-[#130B1F] border border-[#3A2555]">
+              {bar(fill(step.name), ehp, '#F08A8A')}
+              <div className="mt-1.5 space-y-0.5 text-[11px] font-sans">
+                <div className="flex items-center justify-between font-semibold text-[#FB923C]">
+                  <span>Defence DEF</span>
+                  <span className="font-bold">{curDef}</span>
+                </div>
+                <div className="flex items-center justify-between font-semibold text-[#C084FC]">
+                  <span>Attack ATK</span>
+                  <span className="font-bold">{curAtk}</span>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="space-y-1">
             {rounds.map((r, ri) => {
               // Canon's round message (Core Rules §4): the roll, then on a hit the damage and the target's HP before and after.
