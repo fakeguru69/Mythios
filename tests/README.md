@@ -18,9 +18,9 @@ Playwright scripts that drive the real app in a browser. The online tests also t
 - `node tests/online/party-chat.cjs <run>`: covers
   - the full invite flow, including turning a friend away;
   - starting the story;
-  - then the party chat.
+  - then in the game shell (once the clock is moved past Day 2): sending a message in the FireChat composer, renaming a character and leaving the party from the party panel.
 
-  It waits for the file `READY-FOR-CLOCK` in its output folder. Then move that party's clock past Day 2 (SQL below) and it carries on: messages, a report, a name change, the host leaving.
+  It waits for the file `READY-FOR-CLOCK` in its output folder. Then move that party's clock past Day 2 (SQL below) and it carries on.
 - `node tests/online/play-today.cjs <run> "<party name>" [host|mei|dev]`: plays today's chapter to its end in an existing party, and prints the rolls, the fight and the gold.
 - `node tests/online/seeker-chest.cjs <run> "<party name>"`: covers
   - solving words;
@@ -36,6 +36,13 @@ Playwright scripts that drive the real app in a browser. The online tests also t
 
   It needs a day whose card has not been rolled, and about 500g.
 - `node tests/online/campfire.cjs <run> "<party name>"`: host and Mei each play today's chapter, take one more look at the last light (different leads), and sit at the fire, which is one chat under the day (phase B): the divider and who is here, tonight's question pinned (pin before peek, folding after a pick, changing sides), pieces laid from the "+" tray as cards with Agree and Doubt, talk in the chat, Garrick named at the fire answering from stored lines, margin notes, the Journal. Needs a weekday neither has finished.
+- `node tests/online/refresh.cjs "<party name>"`: story refresh on returning to the front on a new day, at the 5:00am rollover, and retry on a failed first load.
+- `node tests/online/scroll.cjs "<party name>"`: tab scroll retention, "+" tray max height, own message following to the foot, and friend's line not jumping while reading.
+- `node tests/online/fire-stream.cjs "<party name>"`: each notice once, events placed at real time, and server-remembered Garrick lines (`fire_said`).
+- `node tests/online/errors.cjs "<party name>"`: fire error clearing, stale poll ignored after tap, failed chat load keeping messages, and top-bar gold / Record gear refreshing.
+- `node tests/online/garrick-at-fire.cjs`: server-decided Garrick at the fire and daytime replies shown to the asker in `EarlierFire`.
+- `node tests/online/spoiler-hardening.cjs`: server-side spoiler hardening (`party_chat_messages` and revoked direct reads on `party_messages`).
+- `node tests/online/assert-checks.cjs`: verifies every test in `tests/online/` asserts and exits non-zero on failure, including the pin-before-peek negative check.
 - `FRIEND_EMAIL=mei@mythios.test FRIEND_PASSWORD=… node tests/online/fire-friends.cjs "<party name>"`: a pretend friend for a busy fire. It plays the friend's day if needed (headless browser at `APP_URL`), sits at the fire, lays its pieces, talks, makes a call, and for `WATCH_MIN` minutes (default 10) agrees with or doubts every new piece someone else lays. `SUPABASE_URL` and `SUPABASE_ANON_KEY` point it at the live project instead of the local copy.
 
 - `node tests/online/gathering.cjs <run> "<party name>"`: host and Mei each open the Gathering and tap whatever the night offers them (the host answers the table's question) until both reach the summary card. Covers the lobby, the vote, the Approach, the Battle, Notice and [LOOK CLOSER], the United Effort, Match, the table question, Ask and the summary. The party must be on Day 7. Takes about ten minutes (the Battle plays one round every 10 seconds).

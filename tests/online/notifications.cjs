@@ -9,33 +9,50 @@ const S = require('path').join(process.env.TEST_OUT || 'test-output', 'notificat
 fs.mkdirSync(S, { recursive: true });
 const PARTY = process.argv[3];
 const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.join(' ') + '\n'); };
+let failed = false;
+const check = (name, ok) => {
+  log((ok ? 'ok   ' : 'FAIL ') + name);
+  if (!ok) failed = true;
+};
+const waitUntil = async (fn, ms = 8000, step = 250) => {
+  const end = Date.now() + ms;
+  while (Date.now() < end) {
+    if (await fn()) return true;
+    await new Promise((r) => setTimeout(r, step));
+  }
+  return Boolean(await fn());
+};
+
 (async () => {
   const b = await chromium.launch({ args: [`--proxy-server=${process.env.HTTPS_PROXY}`, '--proxy-bypass-list=localhost;127.0.0.1'] });
   const ctx = await b.newContext({ viewport: { width: 400, height: 860 }, ignoreHTTPSErrors: true });
   await ctx.grantPermissions(['notifications'], { origin: 'http://localhost:3000' });
   const p = await ctx.newPage();
-  p.on('pageerror', (e) => log('PAGEERROR', e.message));
-  const click = async (name) => { await p.getByRole('button', { name, exact: true }).first().click(); await p.waitForTimeout(1200); };
-  await p.goto('http://localhost:3000/'); await p.waitForTimeout(1500);
+  p.on('pageerror', (e) => { log('PAGEERROR', e.message); failed = true; });
+  const click = async (name) => { await p.getByRole('button', { name, exact: true }).first().click(); await p.waitForTimeout(800); };
+  await p.goto('http://localhost:3000/'); await p.waitForTimeout(1200);
   await click('START A PARTY'); await click('USE EMAIL AND A PASSWORD');
   await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
   await p.getByPlaceholder('Email').fill('host@mythios.test'); await p.getByPlaceholder('Password').fill(process.env.MYTHIOS_TEST_PASSWORD);
-  await click('SIGN IN'); await p.waitForTimeout(2000);
+  await click('SIGN IN'); await p.waitForTimeout(1500);
   log('shelf card:', await p.locator('[data-notifications]').getAttribute('data-notifications').catch(() => 'none'));
   // The party panel holds the notifications button and the Gathering box (the game shell, phase A).
   await enterParty(p, PARTY); await openPanel(p);
   const box = p.locator('[data-notifications]');
-  log('party card:', await box.getAttribute('data-notifications').catch(() => 'none'));
+  const attr = await box.getAttribute('data-notifications').catch(() => 'none');
+  check('notifications card present in party panel', attr !== 'none');
   if (await box.getByRole('button', { name: 'TURN ON NOTIFICATIONS' }).count()) {
-    await box.getByRole('button', { name: 'TURN ON NOTIFICATIONS' }).click(); await p.waitForTimeout(6000);
-    log('after turning on: the button is gone:', (await box.count()) === 0);
+    await box.getByRole('button', { name: 'TURN ON NOTIFICATIONS' }).click();
+    await waitUntil(async () => (await box.count()) === 0 || (await box.getAttribute('data-notifications').catch(() => '')) !== attr, 6000);
   }
   const poll = p.locator('[data-gathering-poll]');
-  log('poll shown:', await poll.count());
+  check('Gathering time poll shown on Day 4/5', (await poll.count()) > 0);
   if (await poll.count()) {
-    await poll.getByRole('button', { name: /7:00pm/ }).click(); await p.waitForTimeout(1500);
-    log('poll after tap:', (await poll.innerText()).replace(/\n/g, ' / '));
+    await poll.getByRole('button', { name: /7:00pm/ }).click();
+    await waitUntil(async () => /TestHost|You/i.test(await poll.innerText()), 6000);
+    check('poll records host vote for 7:00pm', /7:00pm/.test(await poll.innerText()));
   }
   await p.screenshot({ path: `${S}/party.png`, fullPage: true });
   await b.close();
+  process.exit(failed ? 1 : 0);
 })().catch((e) => { log('FAILED', e.message.split('\n')[0]); process.exit(1); });

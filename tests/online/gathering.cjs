@@ -12,6 +12,19 @@ fs.mkdirSync(S, { recursive: true });
 const PARTY = process.argv[3] || 'Gathering Test';
 const PASSWORD = process.env.MYTHIOS_TEST_PASSWORD || 'local';
 const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.join(' ') + '\n'); };
+let failed = false;
+const check = (name, ok) => {
+  log((ok ? 'ok   ' : 'FAIL ') + name);
+  if (!ok) failed = true;
+};
+const waitUntil = async (fn, ms = 10000, step = 250) => {
+  const end = Date.now() + ms;
+  while (Date.now() < end) {
+    if (await fn()) return true;
+    await new Promise((r) => setTimeout(r, step));
+  }
+  return Boolean(await fn());
+};
 
 // A party on Week 2 Day 7 in the local test database (host, then Mei), each with a little gold and one of each Relic.
 if (process.argv[2] === 'setup-local') {
@@ -36,28 +49,32 @@ if (process.argv[2] === 'setup-local') {
 
 async function player(b, who) {
   const p = await (await b.newContext({ viewport: { width: 400, height: 860 }, ignoreHTTPSErrors: true })).newPage();
-  p.on('pageerror', (e) => log(who, 'PAGEERROR', e.message));
+  p.on('pageerror', (e) => { log(who, 'PAGEERROR', e.message); failed = true; });
   const stats = { ticks: 0 };
   p.on('request', (r) => { if (/gathering_tick/.test(r.url())) stats.ticks++; });
   const body = () => p.locator('body').innerText();
-  const click = async (name) => { await p.getByRole('button', { name, exact: true }).first().click(); await p.waitForTimeout(1200); };
-  await p.goto('http://localhost:3000/?online=1'); await p.waitForTimeout(1500);
+  const click = async (name) => { await p.getByRole('button', { name, exact: true }).first().click(); await p.waitForTimeout(800); };
+  await p.goto('http://localhost:3000/?online=1'); await p.waitForTimeout(1200);
   await click('START A PARTY'); await click('USE EMAIL AND A PASSWORD');
   await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
   await p.getByPlaceholder('Email').fill(`${who}@mythios.test`); await p.getByPlaceholder('Password').fill(PASSWORD);
-  await click('SIGN IN'); await p.waitForTimeout(2000);
+  await click('SIGN IN'); await p.waitForTimeout(1500);
   // Day 7: the STORY tab holds the Gathering itself (the game shell, phase A).
-  await enterParty(p, PARTY); await p.waitForTimeout(2500);
+  await enterParty(p, PARTY);
+  const join = p.getByRole('button', { name: /^(THE GATHERING|JOIN THE GATHERING|TONIGHT’S GATHERING)$/ }).first();
+  await waitUntil(async () => (await join.count()) > 0, 8000);
   // Opening the app on Day 7 must not count the friend as at the Gathering (handoff ledger piece 1): the live Gathering
   // is mounted only after they tap to join, so no gathering_tick has gone out yet.
-  const join = p.getByRole('button', { name: /^(THE GATHERING|JOIN THE GATHERING|TONIGHT’S GATHERING)$/ }).first();
   const ticksBefore = stats.ticks;
   const cardShown = (await join.count()) > 0;
-  log(who, 'before joining: card shown', cardShown, '| gathering ticks sent', ticksBefore);
-  if (!cardShown || ticksBefore > 0) { log(who, 'FAIL: the Gathering must wait for the join tap'); process.exitCode = 1; }
-  if (cardShown) { await join.click(); await p.waitForTimeout(2500); }
-  log(who, 'after joining: gathering ticks sent', stats.ticks);
-  if (stats.ticks === 0) { log(who, 'FAIL: joining did not start the Gathering'); process.exitCode = 1; }
+  check(`${who}: before joining card shown and 0 ticks sent`, cardShown && ticksBefore === 0);
+  if (cardShown) {
+    await join.click();
+    await waitUntil(() => stats.ticks > 0, 8000);
+  }
+  check(`${who}: after joining gathering ticks sent`, stats.ticks > 0);
+  await waitUntil(async () => (await p.locator('[data-gathering-chat]').count()) > 0, 8000);
+  check(`${who}: Gathering table-talk chat is mounted`, (await p.locator('[data-gathering-chat]').count()) > 0);
   fs.writeFileSync(`${S}/${who}-0-party.txt`, await body());
   fs.writeFileSync(`${S}/${who}-1-lobby.txt`, await body());
   await p.screenshot({ path: `${S}/${who}-1-lobby.png`, fullPage: true });
@@ -112,18 +129,21 @@ async function move({ p, who }) {
     }
     await players[0].p.waitForTimeout(900);
     if (n % 30 === 29) log('ticks so far:', players.map((pl) => `${pl.who} ${pl.stats.ticks}`).join(', '));
-    const t = await players[0].body();
     ended = (await players[0].p.locator('[data-gathering-ended]').count()) > 0 && (await players[1].p.locator('[data-gathering-ended]').count()) > 0;
     if (Date.now() - started > 20 * 60000) { log('TIMED OUT'); break; }
   }
+  check('Gathering finished for both players before timeout', ended);
   for (const { p, who, body } of players) {
     const t = await body();
     fs.writeFileSync(`${S}/${who}-2-end.txt`, t);
     await p.screenshot({ path: `${S}/${who}-2-end.png`, fullPage: true });
     const card = t.slice(t.lastIndexOf('· Gathering'));
     log(who, 'summary:', card.replace(/\n/g, ' | ').slice(0, 400));
-    log(who, 'unfilled stand-ins:', (t.match(/\{[A-Z]+\}|\{ue:|\{pick:/g) || []).join(' ') || 'none');
+    const unfilled = t.match(/\{[A-Z]+\}|\{ue:|\{pick:/g) || [];
+    check(`${who}: summary card shown`, /· Gathering/.test(t));
+    check(`${who}: no unfilled stand-ins`, unfilled.length === 0);
   }
   log('minutes:', ((Date.now() - started) / 60000).toFixed(1));
   await b.close();
-})();
+  process.exit(failed ? 1 : 0);
+})().catch((e) => { log('FAILED', e.message.split('\n')[0]); process.exit(1); });
