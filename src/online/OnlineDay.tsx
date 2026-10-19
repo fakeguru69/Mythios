@@ -584,85 +584,144 @@ export default function OnlineDay({
         </div>
       );
       const epMeta = EPISODE_NUMBERS[(today?.week ?? 1) - 1] || EPISODE_NUMBERS[0];
-      const playerGear = GEAR_TABLE[today?.progress?.weapon_level ?? 1] || GEAR_TABLE[1];
-      const curWep = rounds[0]?.playerAtk ?? playerGear.weapon;
-      const curAmr = rounds[0]?.playerArmor ?? playerGear.armor;
-      const curDef = rounds[0]?.enemyDef ?? epMeta.wDef;
-      const curAtk = rounds[0]?.enemyAtk ?? epMeta.wAtk;
+      const wepGear = GEAR_TABLE[today?.progress?.weapon_level ?? 1] || GEAR_TABLE[1];
+      const amrGear = GEAR_TABLE[today?.progress?.armor_level ?? 1] || GEAR_TABLE[1];
+      const relicActive = fight?.relicFrom !== undefined && rounds.length + 1 >= fight.relicFrom;
+      const curWep = last?.playerAtk ?? wepGear.weapon + (relicActive ? 1 : 0);
+      const curAmr = last?.playerArmor ?? amrGear.armor + (relicActive ? 1 : 0);
+      const curDef = last?.enemyDef ?? chapter.meta.wDef ?? epMeta.wDef;
+      const curAtk = last?.enemyAtk ?? chapter.meta.wAtk ?? epMeta.wAtk;
+      const youHitOn = challengeSucceedOn(curDef, curWep);
+      const foeHitsOn = challengeSucceedOn(curAmr, curAtk);
 
       pushItem(
         key,
-        <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] p-3 space-y-2">
-          <div className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8]">⚔️ {fill(step.name)}</div>
-          
-          <div className="grid grid-cols-2 gap-2">
-            <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-              {bar('YOU', php, '#6FD39A', '#6FD39A')}
-              <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
-                <div className="flex items-center justify-between font-semibold text-[#E5C158]">
-                  <span>Weapon WEP</span>
-                  <span className="font-bold">{curWep}</span>
-                </div>
-                <div className="flex items-center justify-between font-semibold text-[#7AA7FF]">
-                  <span>Armour AMR</span>
-                  <span className="font-bold">{curAmr}</span>
-                </div>
-              </div>
-            </div>
+        <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-fight-card>
+          <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+            <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8] truncate">⚔️ {fill(step.name)}</span>
+            <span className="font-['Cinzel'] font-bold text-[11.5px] whitespace-nowrap" data-hit-on>
+              <span className="text-[#E5C158]">You hit on {youHitOn}+</span>
+              <span className="text-[#8B7A9E]"> / </span>
+              <span className="text-[#FB923C]">He hits on {foeHitsOn}+</span>
+            </span>
+          </div>
 
-            <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
-              {bar('FOE', ehp, '#E0645C', '#E0645C')}
-              <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
-                <div className="flex items-center justify-between font-semibold text-[#FB923C]">
-                  <span>Defence DEF</span>
-                  <span className="font-bold">{curDef}</span>
+          <div className="p-3 space-y-2.5">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]" data-fight-you>
+                {bar('YOU', php, '#6FD39A', '#6FD39A')}
+                <div className="mt-1.5 space-y-0.5 text-[12px] font-sans">
+                  <div className="flex items-center justify-between font-semibold text-[#E5C158]" data-stat-weapon>
+                    <span>Weapon WEP</span>
+                    <span className="font-bold">{curWep}</span>
+                  </div>
+                  <div className="flex items-center justify-between font-semibold text-[#7AA7FF]" data-stat-armour>
+                    <span>Armour AMR</span>
+                    <span className="font-bold">{curAmr}</span>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between font-semibold text-[#C084FC]">
-                  <span>Attack ATK</span>
-                  <span className="font-bold">{curAtk}</span>
+              </div>
+
+              <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]" data-fight-foe>
+                {bar('FOE', ehp, '#E0645C', '#E0645C')}
+                <div className="mt-1.5 space-y-0.5 text-[12px] font-sans">
+                  <div className="flex items-center justify-between font-semibold text-[#FB923C]" data-stat-defence>
+                    <span>Defence DEF</span>
+                    <span className="font-bold">{curDef}</span>
+                  </div>
+                  <div className="flex items-center justify-between font-semibold text-[#C084FC]" data-stat-attack>
+                    <span>Attack ATK</span>
+                    <span className="font-bold">{curAtk}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="space-y-1">
-            {rounds.map((r, ri) => {
-              // Canon's round message (Core Rules §4): the roll, then on a hit the damage and the target's HP before and after.
-              const prev = rounds[ri - 1];
-              const n = (v: number) => (v < 0 ? `−${Math.abs(v)}` : `${v}`);
-              const name = sentenceCase(fill(step.name));
-              let enemyHp = prev?.enemyHpAfter ?? 100;
-              let playerHp = prev?.playerHpAfter ?? 100;
-              const myStrike = () => {
-                if (!r.playerStruck) return [];
-                const out = [`You Roll ${r.d20} + Weapon ${r.playerAtk} − DEF ${r.enemyDef} = ${n(r.margin)}. ${r.hit ? 'HIT' : 'MISS'}`];
-                if (r.hit) {
-                  const after = Math.max(0, enemyHp - r.margin * 5);
-                  out.push(`Damage = ${r.margin} × 5 = ${r.margin * 5}. ${name} HP ${enemyHp} → ${after}`);
-                  enemyHp = after;
-                }
-                return out;
-              };
-              const theirs = () => {
-                if (!r.enemyStruck) return [];
-                const out = [`Enemy Rolls ${r.enemyD20} + ATK ${r.enemyAtk} − Armor ${r.playerArmor} = ${n(r.enemyMargin)}. ${r.enemyHit ? 'HIT' : 'MISS'}`];
-                if (r.enemyHit) {
-                  const after = Math.max(0, playerHp - r.enemyMargin * 5);
-                  out.push(`Damage = ${r.enemyMargin} × 5 = ${r.enemyMargin * 5}. Your HP ${playerHp} → ${after}`);
-                  playerHp = after;
-                }
-                return out;
-              };
-              const lines = r.enemyFirst ? [...theirs(), ...myStrike()] : [...myStrike(), ...theirs()];
-              return (
-                <div key={r.round} className="font-mono text-[12px] text-[#D9D1E6]">
-                  <div className="text-[#8B7A9E]">Round {r.round}{r.relic ? ' · Combat Relic: +1 Weapon, +1 Armor' : ''}</div>
-                  {lines.map((l, li) => (
-                    <div key={li}>{l}</div>
-                  ))}
-                </div>
-              );
-            })}
-          </div>
+            {rounds.length > 0 && (
+              <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555] space-y-2" data-fight-rounds>
+                {rounds.map((r, ri) => {
+                  // Canon's round message (Core Rules §4): the roll, then on a hit the damage and the target's HP before and after.
+                  const prev = rounds[ri - 1];
+                  const n = (v: number) => (v < 0 ? `−${Math.abs(v)}` : `+${v}`);
+                  const name = sentenceCase(fill(step.name));
+                  const enemyHpBefore = prev?.enemyHpAfter ?? 100;
+                  const playerHpBefore = prev?.playerHpAfter ?? 100;
+                  const enemyHpAfter = r.hit ? Math.max(0, enemyHpBefore - r.margin * 5) : enemyHpBefore;
+                  const playerHpAfter = r.enemyHit ? Math.max(0, playerHpBefore - r.enemyMargin * 5) : playerHpBefore;
+
+                  const myStrikeNode = r.playerStruck ? (
+                    <div key="you" className="space-y-0.5" data-round-you>
+                      <div className="font-semibold leading-snug">
+                        <span className="text-[#6FD39A] font-bold">You Roll </span>
+                        <span className="text-[#F4F1F8]">🎲 {r.d20}</span>
+                        <span className="text-[#8B7A9E]"> + </span>
+                        <span className="text-[#E5C158]">Weapon {r.playerAtk}</span>
+                        <span className="text-[#8B7A9E]"> − </span>
+                        <span className="text-[#FB923C]">DEF {r.enemyDef}</span>
+                        <span className="text-[#8B7A9E]"> = </span>
+                        <span className={`font-bold ${r.hit ? 'text-[#6FD39A]' : 'text-[#9A90B8]'}`}>
+                          {n(r.margin)}. {r.hit ? 'HIT' : 'MISS'}
+                        </span>
+                      </div>
+                      {r.hit && (
+                        <div className="font-bold text-[#6FD39A]">
+                          Damage = {r.margin} × 5 = {r.margin * 5}.{' '}
+                          <span className="text-[#E0645C]">
+                            {name} HP {enemyHpBefore} → {enemyHpAfter}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  ) : null;
+
+                  const enemyStrikeNode = r.enemyStruck ? (
+                    <div
+                      key="foe"
+                      className={`space-y-0.5 ${r.playerStruck ? 'pt-1 border-t border-white/[0.05]' : ''}`}
+                      data-round-foe
+                    >
+                      <div className="font-semibold leading-snug">
+                        <span className="text-[#E0645C] font-bold">Enemy Rolls </span>
+                        <span className="text-[#F4F1F8]">🎲 {r.enemyD20}</span>
+                        <span className="text-[#8B7A9E]"> + </span>
+                        <span className="text-[#C084FC]">ATK {r.enemyAtk}</span>
+                        <span className="text-[#8B7A9E]"> − </span>
+                        <span className="text-[#7AA7FF]">Armor {r.playerArmor}</span>
+                        <span className="text-[#8B7A9E]"> = </span>
+                        <span className={`font-bold ${r.enemyHit ? 'text-[#E0645C]' : 'text-[#9A90B8]'}`}>
+                          {n(r.enemyMargin)}. {r.enemyHit ? 'HIT' : 'MISS'}
+                        </span>
+                      </div>
+                      {r.enemyHit && (
+                        <div className="font-bold text-[#E0645C]">
+                          Damage = {r.enemyMargin} × 5 = {r.enemyMargin * 5}.{' '}
+                          <span className="text-[#6FD39A]">
+                            Your HP {playerHpBefore} → {playerHpAfter}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  ) : null;
+
+                  const ordered = r.enemyFirst ? [enemyStrikeNode, myStrikeNode] : [myStrikeNode, enemyStrikeNode];
+                  return (
+                    <div
+                      key={r.round}
+                      className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 flex flex-col gap-1 text-[13px] font-sans"
+                      data-fight-round={r.round}
+                    >
+                      <div className="flex items-center justify-between border-b border-white/[0.06] pb-1">
+                        <span className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158]">
+                          ROUND {r.round}
+                          {r.relic ? ' · Combat Relic: +1 Weapon, +1 Armor' : ''}
+                        </span>
+                        <span className="text-[11px] font-semibold text-[#B7A9CC]">Damage = Margin × 5</span>
+                      </div>
+                      {ordered}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           {!fightDone ? (
             <>
               {/* A Combat Relic: +1 Weapon and +1 Armor for the rest of the fight, from the next round; once per fight (§5, §12a). */}
@@ -706,6 +765,7 @@ export default function OnlineDay({
               )}
             </div>
           )}
+          </div>
         </div>,
         { instant: true, resolved: rounds.length > 0 }
       );

@@ -712,11 +712,32 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
     if (l.attacker === 'The burn') return <div key={li}>{l.note} {l.target} HP {l.hpBefore} → {l.hpAfter}</div>;
     const isParty = l.side === 'party';
     return (
-      <div key={li}>
+      <div key={li} className="space-y-0.5">
         {l.note && <div className="text-[#8B7A9E]">{l.note}</div>}
-        {isParty ? `${l.attacker === me?.name ? 'You Roll' : `${l.attacker} Rolls`} ${l.roll} + Weapon ${l.attack} − DEF ${l.defence}` : `Enemy Rolls ${l.roll} + ATK ${l.attack} − Armor ${l.defence}`} ={' '}
-        {signed(l.margin ?? 0)}. <span className={l.hit ? 'text-[#E5C158]' : 'text-[#8B7A9E]'}>{l.hit ? 'HIT' : 'MISS'}</span>
-        {l.hit && <div>Damage = {l.margin} × 5 = {l.damage}. {isParty ? l.target : l.target === me?.name ? 'Your' : l.target} HP {l.hpBefore} → {l.hpAfter}</div>}
+        <div>
+          {isParty ? (
+            <>
+              <span className="text-[#6FD39A] font-bold">{l.attacker === me?.name ? 'You Roll' : `${l.attacker} Rolls`}</span>{' '}
+              <span className="text-[#F4F1F8]">🎲 {l.roll}</span> + <span className="text-[#E5C158]">Weapon {l.attack}</span> −{' '}
+              <span className="text-[#FB923C]">DEF {l.defence}</span>
+            </>
+          ) : (
+            <>
+              <span className="text-[#E0645C] font-bold">Enemy Rolls</span>{' '}
+              <span className="text-[#F4F1F8]">🎲 {l.roll}</span> + <span className="text-[#C084FC]">ATK {l.attack}</span> −{' '}
+              <span className="text-[#7AA7FF]">Armor {l.defence}</span>
+            </>
+          )}{' '}
+          = <span className={`font-bold ${l.hit ? (isParty ? 'text-[#6FD39A]' : 'text-[#E0645C]') : 'text-[#9A90B8]'}`}>{signed(l.margin ?? 0)}. {l.hit ? 'HIT' : 'MISS'}</span>
+        </div>
+        {l.hit && (
+          <div className={`font-bold ${isParty ? 'text-[#6FD39A]' : 'text-[#E0645C]'}`}>
+            Damage = {l.margin} × 5 = {l.damage}.{' '}
+            <span className={isParty ? 'text-[#E0645C]' : 'text-[#6FD39A]'}>
+              {isParty ? l.target : l.target === me?.name ? 'Your' : l.target} HP {l.hpBefore} → {l.hpAfter}
+            </span>
+          </div>
+        )}
       </div>
     );
   };
@@ -725,11 +746,22 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
       {e.desc && <ScriptText text={e.desc} className="font-sans italic text-[14px] text-[#B7A9CC] leading-[1.4] px-1" />}
       {e.firstLine && <NarrationBlock text={e.firstLine} />}
       <div className={shell}>
-        {cardHead(`⚔️ ${String(e.name).toUpperCase()}`, `DEF ${e.def} · ATK ${e.atk}`)}
+        {cardHead(
+          `⚔️ ${String(e.name).toUpperCase()}`,
+          <span>
+            <span className="text-[#FB923C]">DEF {e.def}</span> · <span className="text-[#C084FC]">ATK {e.atk}</span>
+          </span>
+        )}
         <div className="p-3 space-y-2.5">
           <div className="text-[13.5px] text-[#E6E0F0] space-y-0.5">
-            <div>You hit on <b className="text-[#E5C158]">{Math.min(20, Math.max(2, e.def + 1 - weapon))}+</b> (Roll + Weapon {weapon} − DEF {e.def})</div>
-            <div>Enemy hits on <b className="text-[#E5C158]">{Math.min(20, Math.max(2, armor + 1 - e.atk))}+</b> (Roll + ATK {e.atk} − Armor {armor})</div>
+            <div>
+              You hit on <b className="text-[#E5C158]">{Math.min(20, Math.max(2, e.def + 1 - weapon))}+</b> (Roll +{' '}
+              <span className="text-[#E5C158] font-semibold">Weapon {weapon}</span> − <span className="text-[#FB923C] font-semibold">DEF {e.def}</span>)
+            </div>
+            <div>
+              Enemy hits on <b className="text-[#FB923C]">{Math.min(20, Math.max(2, armor + 1 - e.atk))}+</b> (Roll +{' '}
+              <span className="text-[#C084FC] font-semibold">ATK {e.atk}</span> − <span className="text-[#7AA7FF] font-semibold">Armor {armor}</span>)
+            </div>
             <div>Damage = Margin × 5 · REWARD: <b className="text-[#E5C158]">{e.reward}g</b> to every friend if the party wins</div>
             {e.condition && <div className="text-[#B7A9CC]">{e.condition}</div>}
           </div>
@@ -739,15 +771,15 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
             {fighters.map((f) => (
               <div key={f.id} className="p-2 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[12.5px]">
                 <div className="flex items-center justify-between gap-2 font-bold">
-                  <span>
+                  <span className="text-[#6FD39A]">
                     {f.id === view.me ? 'YOU' : f.name.toUpperCase()}
                     {f.relic ? (f.relic === f.name ? ' ♦ Combat Relic' : ` ♦ Combat Relic from ${f.relic}`) : ''}
                     {f.fallen ? ' · DOWN' : ''}
                   </span>
-                  <span>{f.hp} HP</span>
+                  <span className="text-[#6FD39A]">{f.hp} HP</span>
                 </div>
                 {!f.foe.none && (
-                  <div className="flex items-center justify-between gap-2 text-[#B7A9CC]">
+                  <div className="flex items-center justify-between gap-2 text-[#E0645C] font-semibold">
                     <span>{f.foe.name}</span>
                     <span>{f.foe.hp} HP</span>
                   </div>
@@ -756,11 +788,11 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
               </div>
             ))}
           </div>
-          <div className="space-y-1.5 font-mono text-[12px] text-[#D9D1E6]">
+          <div className="space-y-1.5 font-sans text-[13px] text-[#D9D1E6]">
             {(e.myRounds as { round: number; lines: Line[] }[]).map((r) =>
               r.lines.length ? (
-                <div key={r.round}>
-                  <div className="text-[#8B7A9E]">Round {r.round}</div>
+                <div key={r.round} className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 space-y-1">
+                  <div className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158]">ROUND {r.round}</div>
                   {r.lines.map(line)}
                 </div>
               ) : null
