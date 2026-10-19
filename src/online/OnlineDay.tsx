@@ -572,14 +572,14 @@ export default function OnlineDay({
           </p>
         );
       }
-      const bar = (label: string, hp: number, colour: string) => (
-        <div className="space-y-0.5">
-          <div className="flex justify-between text-[12px]">
-            <span className="font-semibold">{label}</span>
-            <span>{hp} HP</span>
+      const bar = (label: string, hp: number, colour: string, labelColour: string) => (
+        <div className="space-y-1">
+          <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
+            <span style={{ color: labelColour }} className="truncate">{label}</span>
+            <span style={{ color: labelColour }} className="whitespace-nowrap shrink-0">{hp} HP</span>
           </div>
-          <div className="h-2 rounded bg-[#130B1F] overflow-hidden">
-            <div className="h-full" style={{ width: `${hp}%`, background: colour }} />
+          <div className="w-full h-1.5 bg-[#2A1B40] rounded-full overflow-hidden mt-1">
+            <div className="h-full transition-all duration-300" style={{ width: `${hp}%`, background: colour }} />
           </div>
         </div>
       );
@@ -595,9 +595,9 @@ export default function OnlineDay({
           <div className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8]">⚔️ {fill(step.name)}</div>
           
           <div className="grid grid-cols-2 gap-2">
-            <div className="p-2 rounded-lg bg-[#130B1F] border border-[#3A2555]">
-              {bar('You', php, '#6FD39A')}
-              <div className="mt-1.5 space-y-0.5 text-[11px] font-sans">
+            <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
+              {bar('YOU', php, '#6FD39A', '#6FD39A')}
+              <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
                 <div className="flex items-center justify-between font-semibold text-[#E5C158]">
                   <span>Weapon WEP</span>
                   <span className="font-bold">{curWep}</span>
@@ -609,9 +609,9 @@ export default function OnlineDay({
               </div>
             </div>
 
-            <div className="p-2 rounded-lg bg-[#130B1F] border border-[#3A2555]">
-              {bar(fill(step.name), ehp, '#F08A8A')}
-              <div className="mt-1.5 space-y-0.5 text-[11px] font-sans">
+            <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]">
+              {bar('FOE', ehp, '#E0645C', '#E0645C')}
+              <div className="mt-1.5 space-y-0.5 text-[11.5px] font-sans">
                 <div className="flex items-center justify-between font-semibold text-[#FB923C]">
                   <span>Defence DEF</span>
                   <span className="font-bold">{curDef}</span>
