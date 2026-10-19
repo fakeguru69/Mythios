@@ -120,7 +120,7 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
             <div key={m.id} className="max-w-[88%] space-y-1" data-garrick-line>
               <div className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
               <Markable source="Garrick, in the party chat" text={m.body}>
-                <div className="rounded-[4px_16px_16px_16px] bg-[#2B1E10] border border-[#6B5524] px-3 py-2 font-['Cormorant_Garamond',serif] font-semibold text-[18px] leading-[1.45] text-[#F4E8C8] whitespace-pre-wrap break-words">
+                <div className="rounded-[4px_16px_16px_16px] bg-[#2B1E10] border border-[#6B5524] px-3 py-2 font-sans text-[16px] leading-[1.45] text-[#F4E8C8] whitespace-pre-wrap break-words">
                   {m.body}
                 </div>
               </Markable>

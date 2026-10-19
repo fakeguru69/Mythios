@@ -115,12 +115,12 @@ export const ScriptText: React.FC<{ text: string; className?: string }> = ({ tex
   </>
 );
 
-/** MYTHIOS telling the story (phase C1 voice key): one serif, 18px, white, no italics, no side bar. */
+/** MYTHIOS telling the story (phase C1 voice key): 18px sans-serif, white, no italics, no side bar. */
 export const NarrationBlock: React.FC<{ text: string; pull?: boolean }> = ({ text }) => (
   <div className="space-y-2" data-mythios-story>
     <ScriptText
       text={text}
-      className="font-['Cormorant_Garamond',serif] text-[18px] text-[#F4F1F8] leading-[1.5]"
+      className="font-sans text-[18px] text-[#F4F1F8] leading-[1.5]"
     />
   </div>
 );

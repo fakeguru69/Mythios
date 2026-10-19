@@ -102,7 +102,7 @@ export function GarrickBubble({ text, source = 'Garrick, at the fire' }: { text:
       <div className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
       <Markable source={source} text={text}>
         <div className="rounded-[4px_16px_16px_16px] bg-[#2B1E10] border border-[#6B5524] px-3 py-2">
-          <ScriptText text={text} className="font-['Cormorant_Garamond',serif] font-semibold text-[18px] leading-[1.45] text-[#F4E8C8]" />
+          <ScriptText text={text} className="font-sans text-[16px] leading-[1.45] text-[#F4E8C8]" />
         </div>
       </Markable>
     </div>
@@ -113,7 +113,7 @@ export function NarrationMessage({ text }: { text: string }) {
   return (
     <div className="space-y-1" data-narration>
       <div className="font-['Cinzel'] font-bold text-[11px] text-[#B7A9CC] tracking-[1.2px]">MYTHIOS</div>
-      <ScriptText text={text} className="font-['Cormorant_Garamond',serif] text-[18px] leading-[1.5] text-[#F4F1F8]" />
+      <ScriptText text={text} className="font-sans text-[18px] leading-[1.5] text-[#F4F1F8]" />
     </div>
   );
 }

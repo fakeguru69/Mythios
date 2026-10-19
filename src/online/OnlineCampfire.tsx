@@ -420,7 +420,7 @@ export default function OnlineCampfire({
           <div className="text-[13px] text-[#A9B9D3] whitespace-nowrap">{p.by.map((b) => (b.id === userId ? 'You' : b.name)).join(', ')}</div>
         </div>
         <Markable source={`${p.title}, at the fire`} text={fillShared(p.text ?? '')}>
-          <ScriptText text={fillShared(p.text ?? '')} className="font-['Cormorant_Garamond',serif] font-semibold text-[18px] leading-[1.45] text-[#F4F1F8]" />
+          <ScriptText text={fillShared(p.text ?? '')} className="font-sans text-[16px] leading-[1.45] text-[#F4F1F8]" />
         </Markable>
         {!p.mine && together && (
           <div className="flex gap-2">
@@ -456,7 +456,7 @@ export default function OnlineCampfire({
         `click-${i}`,
         <div className="rounded-2xl border border-[#8A6E34] bg-[#2A2010] p-3 space-y-1" data-click>
           <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158]">MYTHIOS · SOMETHING CLICKS</div>
-          <ScriptText text={m.body} className="font-['Cormorant_Garamond',serif] font-semibold text-[18px] leading-[1.45] text-[#F4E8C8]" />
+          <ScriptText text={m.body} className="font-sans text-[18px] leading-[1.5] text-[#F4E8C8]" />
         </div>
       );
     else if (m.kind === 'say')

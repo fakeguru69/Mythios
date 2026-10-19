@@ -191,12 +191,6 @@ export default function OnlineDay({
     setBusy(false);
   };
 
-  // Keep the newest part of the chapter in view as it grows.
-  const stepCount = today ? JSON.stringify(today.mine).length : 0;
-  useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  }, [stepCount]);
-
   if (error && !today) {
     return (
       <div className="space-y-3">
@@ -282,7 +276,23 @@ export default function OnlineDay({
     </div>
   );
 
-  const nodes: React.ReactNode[] = [];
+  const items: StoryItem[] = [];
+  const pushItem = (key: string, node: React.ReactNode, opts?: { instant?: boolean; resolved?: boolean }) => {
+    items.push({ key, node, instant: opts?.instant, resolved: opts?.resolved });
+  };
+  const pushSay = (keyBase: string, rawText: string, pull?: boolean) => {
+    const filled = fill(rawText);
+    const paras = filled.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
+    paras.forEach((para, pi) => {
+      const k = `${keyBase}-m${pi}`;
+      pushItem(
+        k,
+        <Markable key={k} source={`Week ${week}, Day ${day}`} text={para}>
+          <NarrationBlock text={para} pull={pull && pi === paras.length - 1} />
+        </Markable>
+      );
+    });
+  };
   let actIndex = 0;
   let reachedSummary = false;
 
@@ -291,17 +301,15 @@ export default function OnlineDay({
     const key = `s${i}`;
     if (step.t === 'say') {
       if (!condMet(step.cond)) continue;
-      nodes.push(
-        <Markable key={key} source={`Week ${week}, Day ${day}`} text={fill(step.text)}>
-          <NarrationBlock text={fill(step.text)} pull={step.pull} />
-        </Markable>
-      );
+      pushSay(key, step.text, step.pull);
       // The day's fragment is in the Chest from the day's opening (Core Rules §6).
       if (step.fragment) {
-        nodes.push(
+        pushItem(
+          `${key}-chest`,
           <button key={`${key}-chest`} className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={onOpenChest}>
             🕯️ OPEN THE SEEKER CHEST
-          </button>
+          </button>,
+          { instant: true }
         );
       }
       continue;
@@ -309,11 +317,11 @@ export default function OnlineDay({
     if (step.t === 'act') {
       actIndex += 1;
       if (actIndex <= mine.acts) {
-        nodes.push(<TapEcho key={key} label={fill(step.label)} />);
+        pushItem(key, <TapEcho key={key} label={fill(step.label)} />, { instant: true, resolved: true });
         continue;
       }
       const next = actIndex;
-      nodes.push(<ScriptButton key={key} label={fill(step.label)} disabled={busy} onClick={() => call('tap_act', { p_acts: next })} />);
+      pushItem(key, <ScriptButton key={key} label={fill(step.label)} disabled={busy} onClick={() => call('tap_act', { p_acts: next })} />, { instant: true });
       break;
     }
     if (step.t === 'choice') {
@@ -324,26 +332,18 @@ export default function OnlineDay({
       const shown = new Set<number>();
       if (friendPick && picks.length) fill = fillWith(friendsWithPicked(friends, picks[0]));
       picks.forEach((opt) => {
-        nodes.push(<TapEcho key={`${key}-p${opt}`} label={fill(labels[opt])} />);
+        pushItem(`${key}-p${opt}`, <TapEcho key={`${key}-p${opt}`} label={fill(labels[opt])} />, { instant: true, resolved: true });
         const b = branchFor(opt);
         if (b && !shown.has(step.branches.indexOf(b))) {
           shown.add(step.branches.indexOf(b));
-          nodes.push(
-            <Markable key={`${key}-b${opt}`} source={`Week ${week}, Day ${day}`} text={fill(b.text)}>
-              <NarrationBlock text={fill(b.text)} />
-            </Markable>
-          );
+          pushSay(`${key}-b${opt}`, b.text);
         }
       });
       if (picks.length > 0 && step.mode === 'auto') {
         step.branches.forEach((b, bi) => {
           if (!shown.has(bi)) {
             shown.add(bi);
-            nodes.push(
-              <Markable key={`${key}-a${bi}`} source={`Week ${week}, Day ${day}`} text={fill(b.text)}>
-                <NarrationBlock text={fill(b.text)} />
-              </Markable>
-            );
+            pushSay(`${key}-a${bi}`, b.text);
           }
         });
       }
@@ -359,7 +359,8 @@ export default function OnlineDay({
       // "look at both" (each) or a look that shows everything (auto) offers one action at a time, never side by side.
       const shownOpen = step.mode === 'each' || step.mode === 'auto' ? open.slice(0, 1) : open;
       if (shownOpen.length > 0) {
-        nodes.push(
+        pushItem(
+          `${key}-o`,
           <div key={`${key}-o`} className="space-y-1.5">
             {shownOpen.map((oi) => (
               <ScriptButton
@@ -376,7 +377,8 @@ export default function OnlineDay({
                 }}
               />
             ))}
-          </div>
+          </div>,
+          { instant: true }
         );
         break;
       }
@@ -384,7 +386,7 @@ export default function OnlineDay({
     }
     if (step.t === 'notice') {
       const line = pickNoticeLine(step.lines, progress.attrs, classAttr);
-      if (line) nodes.push(<NoticeBlock key={key} attr={line.attr} text={fill(line.text)} />);
+      if (line) pushItem(key, <NoticeBlock key={key} attr={line.attr} text={fill(line.text)} />);
       continue;
     }
     if (step.t === 'challenge') {
@@ -392,7 +394,8 @@ export default function OnlineDay({
       const attr = (challenge?.attr ?? chosenAttr ?? options[0].attr) as AttributeName;
       const score = progress.attrs[attr] ?? 10;
       const bonus = getTierInfo(score).bonus;
-      nodes.push(
+      pushItem(
+        key,
         <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
           <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
             <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">🎯 {fill(step.title)}</span>
@@ -486,7 +489,8 @@ export default function OnlineDay({
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        { instant: true, resolved: Boolean(challenge) }
       );
       if (!challenge) break;
       continue;
@@ -496,7 +500,8 @@ export default function OnlineDay({
       const score = progress.attrs[challenge.attr] ?? 10;
       const bonus = getTierInfo(score).bonus;
       const pressDc = dc + step.harder;
-      nodes.push(
+      pushItem(
+        key,
         <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
           <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
             <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">[PRESS ON] · {fill(step.title)}</span>
@@ -547,7 +552,8 @@ export default function OnlineDay({
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        { instant: true, resolved: Boolean(press) }
       );
       if (!press) break;
       continue;
@@ -558,10 +564,11 @@ export default function OnlineDay({
       const last = rounds[rounds.length - 1];
       const php = last?.playerHpAfter ?? 100;
       const ehp = last?.enemyHpAfter ?? 100;
-      nodes.push(<NarrationBlock key={`${key}-d`} text={fill(step.desc)} />);
-      if (step.firstLines) nodes.push(<NarrationBlock key={`${key}-f`} text={fill(playerFirst ? step.firstLines[0] : step.firstLines[1])} />);
+      pushSay(`${key}-d`, step.desc);
+      if (step.firstLines) pushSay(`${key}-f`, playerFirst ? step.firstLines[0] : step.firstLines[1]);
       if (today.daysPlayed === 0 && rounds.length === 0) {
-        nodes.push(
+        pushItem(
+          `${key}-first`,
           <HowItWorks key={`${key}-first`} text="Your first fight. You and he take turns. A roll decides each blow." />
         );
       }
@@ -583,7 +590,8 @@ export default function OnlineDay({
       const curDef = rounds[0]?.enemyDef ?? epMeta.wDef;
       const curAtk = rounds[0]?.enemyAtk ?? epMeta.wAtk;
 
-      nodes.push(
+      pushItem(
+        key,
         <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] p-3 space-y-2">
           <div className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8]">⚔️ {fill(step.name)}</div>
           
@@ -698,7 +706,8 @@ export default function OnlineDay({
               )}
             </div>
           )}
-        </div>
+        </div>,
+        { instant: true, resolved: rounds.length > 0 }
       );
       if (!fightDone) break;
       continue;
@@ -726,7 +735,8 @@ export default function OnlineDay({
           return l;
         })
         .filter((l): l is string => Boolean(l));
-      nodes.push(
+      pushItem(
+        key,
         <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#D4B876]/70 overflow-hidden shadow-lg">
           <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555]">
             <ScriptText text={fill(titleLine)} className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] text-[#E5C158]" />
@@ -754,7 +764,8 @@ export default function OnlineDay({
     }
   }
   if (nextDay) {
-    nodes.push(
+    pushItem(
+      'next-day',
       <div key="next-day" className="space-y-2" data-next-day>
         <p className="font-sans text-[16px] text-[#B7A9CC] px-1">The others are already a day further down the road.</p>
         <button
@@ -767,17 +778,19 @@ export default function OnlineDay({
         >
           {`ON TO WEEK ${nextDay.week}, DAY ${nextDay.day}`}
         </button>
-      </div>
+      </div>,
+      { instant: true }
     );
   }
 
   return (
     <DayBody
+      dayKey={`${partyId}:${week}:${day}`}
       header={header}
       title={`Week ${week} · Day ${day}`}
       heading={chapter.script.heading}
       roadSoFar={<RoadSoFar recaps={today.recaps} missed={today.missed} fill={roadFill} />}
-      nodes={nodes}
+      items={items}
       error={error}
       reachedSummary={reachedSummary}
       finished={Boolean(mine.finished_at)}
@@ -804,12 +817,43 @@ export default function OnlineDay({
   );
 }
 
+interface StoryItem {
+  key: string;
+  node: React.ReactNode;
+  instant?: boolean;
+  resolved?: boolean;
+}
+
+const includeTrailingInstants = (items: StoryItem[], count: number) => {
+  let c = Math.max(0, Math.min(items.length, count));
+  while (c < items.length && items[c]?.instant) c += 1;
+  return c;
+};
+
+function readNumber(key: string): number {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? Math.max(0, Number(raw) || 0) : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function writeNumber(key: string, value: number) {
+  try {
+    localStorage.setItem(key, String(Math.round(value)));
+  } catch {
+    /* private window */
+  }
+}
+
 function DayBody({
+  dayKey,
   header,
   title,
   heading: chapterHeading,
   roadSoFar,
-  nodes,
+  items,
   error,
   reachedSummary,
   finished,
@@ -819,11 +863,12 @@ function DayBody({
   embedded,
   endRef,
 }: {
+  dayKey: string;
   header: React.ReactNode;
   title: string;
   heading: string;
   roadSoFar: React.ReactNode;
-  nodes: React.ReactNode[];
+  items: StoryItem[];
   error: string | null;
   reachedSummary: boolean;
   finished: boolean;
@@ -833,22 +878,157 @@ function DayBody({
   embedded?: boolean;
   endRef: React.RefObject<HTMLDivElement | null>;
 }) {
+  const shownKey = `story-shown:${dayKey}`;
+  const scrollKey = `story-scroll:${dayKey}`;
+
+  let lastResolved = -1;
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].resolved) lastResolved = i;
+  }
+  const savedShown = readNumber(shownKey);
+  const floorShown = finished
+    ? items.length
+    : includeTrailingInstants(items, Math.max(1, lastResolved + 1, savedShown));
+
+  const [shown, setShown] = useState<number>(() => floorShown);
+  const visibleCount = Math.min(items.length, Math.max(shown, floorShown));
+  const typing = visibleCount < items.length;
+
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const prevKeyRef = useRef<string>('');
+  const prevShownRef = useRef<number>(visibleCount);
+  const unreadAnchorRef = useRef<number>(Math.max(0, visibleCount - 1));
+
+  // When the day opens (or changes), restore the friend's last-read scroll place, or start cleanly at the top (0)
+  // so no text is cut off at the top.
   useEffect(() => {
-    if (reachedSummary && !finished) onFinish();
-  }, [reachedSummary, finished, onFinish]);
+    if (prevKeyRef.current === dayKey) return;
+    prevKeyRef.current = dayKey;
+    prevShownRef.current = visibleCount;
+    unreadAnchorRef.current = Math.max(0, visibleCount - 1);
+    const savedY = readNumber(scrollKey);
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: savedY > 0 ? savedY : 0 });
+    });
+  }, [dayKey, scrollKey, visibleCount]);
+
+  // Remember the friend's last-read scroll place when they scroll or leave and return.
+  useEffect(() => {
+    const onScroll = () => {
+      writeNumber(scrollKey, window.scrollY);
+      // If the friend scrolls past the unread anchor, advance the anchor to the first item still in view.
+      const safeTop = 104;
+      while (unreadAnchorRef.current < visibleCount - 1) {
+        const el = itemRefs.current[unreadAnchorRef.current];
+        if (el && el.getBoundingClientRect().bottom < safeTop + 20) {
+          unreadAnchorRef.current += 1;
+        } else {
+          break;
+        }
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [scrollKey, visibleCount]);
+
+  // Persist how many messages have been revealed so returning keeps the friend's place.
+  useEffect(() => {
+    if (visibleCount > 0) writeNumber(shownKey, visibleCount);
+  }, [shownKey, visibleCount]);
+
+  // Each paragraph arrives after a short typing indicator (three dots).
+  const advanceOne = useCallback(() => {
+    setShown((prev) => {
+      const base = Math.max(prev, floorShown);
+      if (base >= items.length) return items.length;
+      unreadAnchorRef.current = base;
+      return includeTrailingInstants(items, base + 1);
+    });
+  }, [floorShown, items]);
+
+  useEffect(() => {
+    if (!typing) return;
+    const id = window.setTimeout(() => {
+      setShown((prev) => {
+        const base = Math.max(prev, floorShown);
+        if (base >= items.length) return items.length;
+        return includeTrailingInstants(items, base + 1);
+      });
+    }, 650);
+    return () => window.clearTimeout(id);
+  }, [typing, visibleCount, floorShown, items]);
+
+  // Scroll only far enough to show the top of the new message, and never scroll past text the friend has not read.
+  useEffect(() => {
+    const prev = prevShownRef.current;
+    prevShownRef.current = visibleCount;
+    if (prev <= 0 || visibleCount <= prev) return;
+    const newEl = itemRefs.current[prev] ?? itemRefs.current[visibleCount - 1];
+    if (!newEl) return;
+    const rect = newEl.getBoundingClientRect();
+    // Do not yank the screen if the friend has scrolled far up to re-read an earlier passage.
+    if (rect.top > window.innerHeight + 180) return;
+    const safeTop = 104;
+    const unreadEl = itemRefs.current[Math.min(unreadAnchorRef.current, prev)] ?? newEl;
+    const unreadRect = unreadEl.getBoundingClientRect();
+    const neededForTop = rect.top + Math.min(rect.height, 72) - (window.innerHeight - 24);
+    const maxWithoutCuttingUnread = Math.max(0, unreadRect.top - safeTop);
+    const delta = Math.min(neededForTop, maxWithoutCuttingUnread);
+    if (delta > 4) {
+      window.scrollBy({ top: delta, behavior: 'smooth' });
+    }
+  }, [visibleCount]);
+
+  useEffect(() => {
+    if (reachedSummary && !typing && !finished) onFinish();
+  }, [reachedSummary, typing, finished, onFinish]);
+
+  const onTapThread = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!typing) return;
+    const target = e.target as HTMLElement | null;
+    if (target?.closest('button, input, textarea, select, a, [role="button"]')) return;
+    advanceOne();
+  };
+
   return (
-    <div className="space-y-3">
+    <div className="space-y-3" data-day-thread onClick={onTapThread}>
       {header}
       {roadSoFar}
       <div>
         <p className={note}>{title}</p>
         <h2 className={`${heading} text-[19px]`}>{chapterHeading}</h2>
       </div>
-      <div className="space-y-3">{nodes}</div>
+      <div className="space-y-3">
+        {items.slice(0, visibleCount).map((it, idx) => (
+          <div
+            key={it.key}
+            ref={(el) => {
+              itemRefs.current[idx] = el;
+            }}
+            data-story-item={idx}
+            className="scroll-mt-28"
+          >
+            {it.node}
+          </div>
+        ))}
+        {typing && (
+          <button
+            type="button"
+            onClick={advanceOne}
+            aria-label="MYTHIOS is typing — tap to show now"
+            data-typing-indicator
+            className="inline-flex items-center gap-1.5 rounded-full bg-[#1E1232] border border-[#3A2555] px-3.5 py-2 text-[#B7A9CC]"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D4B876] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D4B876] animate-pulse [animation-delay:150ms]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D4B876] animate-pulse [animation-delay:300ms]" />
+          </button>
+        )}
+      </div>
       <ErrorLine text={error} />
       {/* After the day: the last light, then the fire (the Campfire opens once the day is done, v2.3 §D). */}
       {/* In the game shell the fire follows below the day in the same thread, so neither button is needed. */}
-      {reachedSummary && finished && !embedded && (
+      {reachedSummary && !typing && finished && !embedded && (
         <button
           className="w-full py-2.5 rounded-lg bg-[#2A2018] border border-[#F0A552]/70 font-['Cinzel'] font-bold text-[13px] text-[#F0A552]"
           onClick={onOpenFire}
@@ -856,7 +1036,7 @@ function DayBody({
           🔥 THE LAST LIGHT
         </button>
       )}
-      {reachedSummary && !embedded && (
+      {reachedSummary && !typing && !embedded && (
         <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={onClose}>
           BACK TO THE PARTY
         </button>

@@ -17,19 +17,19 @@ const partyChat = fs.readFileSync(path.join(root, 'src/online/PartyChat.tsx'), '
 const ui = fs.readFileSync(path.join(root, 'src/online/ui.tsx'), 'utf8');
 const css = fs.readFileSync(path.join(root, 'src/index.css'), 'utf8');
 
-// 1. MYTHIOS telling the story: one serif, 18px, white (#F4F1F8), no italics, no side bar.
+// 1. MYTHIOS telling the story: 18px sans-serif, white (#F4F1F8), no italics, no side bar.
 const narrationBlock = parts.slice(parts.indexOf('export const NarrationBlock'), parts.indexOf('export const HowItWorks'));
 check(
-  /font-\['Cormorant_Garamond',serif\]/.test(narrationBlock) &&
+  /font-sans/.test(narrationBlock) &&
     /text-\[18px\]/.test(narrationBlock) &&
     /text-\[#F4F1F8\]/.test(narrationBlock) &&
     !/border-l-2/.test(narrationBlock) &&
     !/\bitalic\b/.test(narrationBlock),
-  'MYTHIOS NarrationBlock is 18px white Cormorant Garamond serif with no side bar and no italics'
+  'MYTHIOS NarrationBlock is 18px white sans-serif with no side bar and no italics'
 );
 check(
-  /data-narration[\s\S]{0,260}font-\['Cormorant_Garamond',serif\][\s\S]{0,120}text-\[18px\][\s\S]{0,120}text-\[#F4F1F8\]/.test(fire),
-  'FireChat NarrationMessage is 18px white Cormorant Garamond serif'
+  /data-narration[\s\S]{0,260}font-sans[\s\S]{0,120}text-\[18px\][\s\S]{0,120}text-\[#F4F1F8\]/.test(fire),
+  'FireChat NarrationMessage is 18px white sans-serif'
 );
 
 // 2. How-to lines: a small gold "HOW IT WORKS" strip.
