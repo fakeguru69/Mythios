@@ -51,6 +51,7 @@ end;
 $$;
 
 -- Restrictive row-level policy and closed direct table reads on party_messages.
+drop policy if exists "messages: today's fire talk only after finishing today" on public.party_messages;
 create policy "messages: today's fire talk only after finishing today" on public.party_messages
   as restrictive for select to authenticated
   using (public.party_message_visible(party_id, author_id, reply_to_user, created_at));

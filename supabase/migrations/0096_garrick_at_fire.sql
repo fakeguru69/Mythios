@@ -7,6 +7,10 @@
 alter table public.party_messages add column if not exists at_fire boolean not null default false;
 alter table public.party_messages add column if not exists reply_to_user uuid references public.profiles (id) on delete set null;
 
+-- Drop the earlier 1-arg / 9-arg signatures from 0042 so the new signatures replace them cleanly without ambiguity.
+drop function if exists public.garrick_state(uuid);
+drop function if exists public.garrick_post(uuid, uuid, bigint, text, text, text, jsonb, boolean, text);
+
 -- Story state the router needs: now checks whether p_asked_by is at the fire.
 create or replace function public.garrick_state(p_party uuid, p_asked_by uuid default null) returns jsonb
 language plpgsql stable security definer set search_path = '' as $$
@@ -108,5 +112,5 @@ begin
 end;
 $$;
 
-revoke execute on function public.garrick_state, public.garrick_post from public, anon, authenticated;
-grant execute on function public.garrick_state, public.garrick_post to service_role;
+revoke execute on function public.garrick_state(uuid, uuid), public.garrick_post(uuid, uuid, bigint, text, text, text, jsonb, boolean, text, boolean) from public, anon, authenticated;
+grant execute on function public.garrick_state(uuid, uuid), public.garrick_post(uuid, uuid, bigint, text, text, text, jsonb, boolean, text, boolean) to service_role;
