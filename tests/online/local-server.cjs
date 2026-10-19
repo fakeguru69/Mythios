@@ -71,6 +71,9 @@ function rpc(name, body, uid) {
 // Table reads: ?select=a,b,rel(c,d)&col=eq.v&col=in.(a,b)&order=col.asc&limit=n
 const EMBED = { parties: 'party_id' };
 function tableGet(table, params, single) {
+  if (table === 'party_messages' && sql(`select to_regproc('public.party_chat_messages') is not null and not has_table_privilege('authenticated', 'public.party_messages', 'SELECT')`) === 't') {
+    throw Object.assign(new Error('permission denied for table party_messages'), { pg: true });
+  }
   const cols = [];
   const sel = params.get('select') || '*';
   for (const part of sel.match(/[a-z0-9_]+\([^)]*\)|[a-z0-9_*]+/g) || []) {

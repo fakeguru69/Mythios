@@ -44,23 +44,18 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
   const load = useCallback(async () => {
     // Garrick's morning line goes up first if nobody has opened the app yet today (it carries the day's 5:00am time).
     await supabase.rpc('garrick_morning', { p_party: partyId });
-    // The newest 200, shown oldest first.
-    const { data } = await supabase
-      .from('party_messages')
-      .select('id,author_id,kind,speaker,body,created_at')
-      .eq('party_id', partyId)
-      .order('created_at', { ascending: false })
-      .limit(200);
-    setMessages(((data as Message[] | null) ?? []).reverse());
+    // The newest 200, shown oldest first (read through the server's spoiler-hardened function, piece 7).
+    const { data, error: e } = await supabase.rpc('party_chat_messages', { p_party: partyId });
+    if (e || !Array.isArray(data)) return;
+    setMessages((data as Message[]).slice().reverse());
   }, [partyId]);
 
   useEffect(() => {
     load();
     const channel = supabase
       .channel(`party-chat-${partyId}`)
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'party_messages', filter: `party_id=eq.${partyId}` }, (payload) => {
-        const m = payload.new as Message;
-        setMessages((prev) => (prev.some((x) => x.id === m.id) ? prev : [...prev, m].sort((a, b) => a.created_at.localeCompare(b.created_at))));
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'party_messages', filter: `party_id=eq.${partyId}` }, () => {
+        load();
       })
       .subscribe();
     return () => {

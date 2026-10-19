@@ -32,8 +32,8 @@ const sql = (s) => execFileSync('psql', ['-U', process.env.PGUSER || 'postgres',
     }
     return route.continue();
   });
-  await p.route(/\/rest\/v1\/party_messages/, (route) => {
-    if (ctl.failChat && route.request().method() === 'GET') return route.fulfill({ status: 500, contentType: 'application/json', body: JSON.stringify({ message: 'forced failure' }) });
+  await p.route(/\/rest\/v1\/party_messages|\/rpc\/party_chat_messages/, (route) => {
+    if (ctl.failChat) return route.fulfill({ status: 500, contentType: 'application/json', body: JSON.stringify({ message: 'forced failure' }) });
     return route.continue();
   });
   await p.goto('http://localhost:3000/?online=1'); await p.waitForTimeout(1500);
