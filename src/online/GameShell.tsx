@@ -15,7 +15,8 @@ import OnlineStore from './OnlineStore';
 import { EarlierFire, partyDayStart } from './FireChat';
 import LastNight from './LastNight';
 import { NotebookProvider } from './Markable';
-import { ATTRIBUTE_META, GEAR_TABLE, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
+import { RecordTabView } from '../components/RecordTabView';
+import { ATTRIBUTE_META, CLASS_META, GEAR_TABLE, getTierInfo, type AttributeName, type ClassName } from '../data/mythiosRulesData';
 
 type Tab = 'story' | 'record' | 'bag' | 'store';
 const TABS: { key: Tab; label: string }[] = [
@@ -213,51 +214,39 @@ export default function GameShell({
         </div>
 
         {tab === 'record' && (
-          <div className="space-y-4" data-pane="record">
-            <div className="rounded-2xl border border-[#5E4585] bg-[#1E1430] p-4 flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full border-2 border-[#D4B876] bg-[#2A1A40] text-[#E5C158] font-['Cinzel'] font-bold text-[22px] flex items-center justify-center">
-                {(me.character_name || '?').charAt(0).toUpperCase()}
-              </div>
-              <div className="min-w-0">
-                <div className="font-['Cinzel'] font-bold text-[20px] text-[#E5C158] truncate">{me.character_name}</div>
-                <div className="text-[15px] text-[#D9D1E6]">{me.class ?? ''}</div>
-              </div>
-            </div>
-            {info && (
-              <div className="grid grid-cols-2 gap-2">
-                {ATTR_ORDER.map((a) => {
-                  const score = info.attrs?.[a] ?? 10;
-                  const tier = getTierInfo(score);
-                  const color = ATTRIBUTE_META[a].color;
-                  return (
-                    <div key={a} className="rounded-xl border border-[#2C1D40] bg-[#1A1226] p-3 space-y-1.5" data-record-attr={a}>
-                      <div className="flex justify-between font-['Cinzel'] font-bold text-[14px]">
-                        <span style={{ color }}>{a.toUpperCase()}</span>
-                        <span className="text-[#E5C158]">+{tier.bonus}</span>
-                      </div>
-                      <div className="h-1.5 rounded bg-[#2C1D40]">
-                        <div className="h-1.5 rounded" style={{ width: `${tier.pctInTier}%`, background: color }} />
-                      </div>
-                      <div className="flex justify-between text-[14px]">
-                        <span className="text-[#B7A9CC]">{tier.name}</span>
-                        <b>{score}</b>
-                      </div>
-                    </div>
-                  );
-                })}
-                <div className="rounded-xl border border-[#2C1D40] bg-[#1A1226] p-3">
-                  <div className="text-[15px] font-bold text-[#E5C158]">Weapon {GEAR_TABLE[info.weaponLevel]?.weapon ?? ''}</div>
-                  <div className="text-[13px] text-[#B7A9CC]">Level {info.weaponLevel} of 5</div>
-                </div>
-                <div className="rounded-xl border border-[#2C1D40] bg-[#1A1226] p-3">
-                  <div className="text-[15px] font-bold text-[#8DB4F5]">Armour {GEAR_TABLE[info.armorLevel]?.armor ?? ''}</div>
-                  <div className="text-[13px] text-[#B7A9CC]">Level {info.armorLevel} of 5</div>
-                </div>
-              </div>
-            )}
-            <div className="rounded-2xl border border-[#3A2555] bg-[#180F29] p-4">
-              <p className="text-[16px] text-[#D9D1E6]">Your Record arrives soon: your season in twelve numbers, the crowns you hold, and your badges.</p>
-            </div>
+          <div data-pane="record">
+            <RecordTabView
+              characterName={me.character_name ?? 'You'}
+              characterClass={(me.class as ClassName) || 'Warrior'}
+              secondAttr={
+                me.class === 'Warrior' ? 'Craft' :
+                me.class === 'Artificer' ? 'Might' :
+                me.class === 'Sage' ? 'Charm' :
+                me.class === 'Trickster' ? 'Agility' :
+                me.class === 'Assassin' ? 'Aim' :
+                'Intellect'
+              }
+              partyName={party.name}
+              currentWeek={info?.week ?? 1}
+              attributes={info?.attrs ?? { Might: 10, Craft: 10, Intellect: 10, Charm: 10, Agility: 10, Aim: 10 }}
+              weaponLevel={info?.weaponLevel ?? 1}
+              armorLevel={info?.armorLevel ?? 1}
+              stats={{
+                daysPlayed: info?.daysPlayed ?? (info ? (info.week - 1) * 6 + info.day : 1),
+                bestStreak: info?.daysPlayed ?? (info ? (info.week - 1) * 6 + info.day : 1),
+                gatheringsAttended: Math.max(0, (info?.week ?? 1) - 1),
+                fragmentsSolved: 0,
+                relicsGiven: 0,
+                timesSteppedUp: 0,
+                fragmentsMatched: 0,
+                battlesWon: 0,
+                challengesCleared: 0,
+                challengesPressedOn: 0,
+                enemiesDefeated: 0,
+                perfectRolls: 0,
+              }}
+              earnedBadgeIds={['first-light']}
+            />
           </div>
         )}
 

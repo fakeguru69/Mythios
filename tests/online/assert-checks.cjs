@@ -33,6 +33,7 @@ const mustAssertFiles = [
   'notice-roll.cjs',
   'cover-page.cjs',
   'fork-changed.cjs',
+  'record.cjs',
 ];
 
 for (const file of mustAssertFiles) {

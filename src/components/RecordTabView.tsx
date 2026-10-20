@@ -158,11 +158,11 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
   ).length;
 
   return (
-    <div className="flex-1 overflow-y-auto px-3.5 py-3.5 space-y-4 bg-[#0D0714] text-[#F4F1F8]">
+    <div className="flex-1 overflow-y-auto px-3.5 py-3.5 space-y-4 bg-[#0D0714] text-[#F4F1F8]" data-record-tab>
       {/* =====================================================================
           SECTION 1 — HERO COLLECTOR CARD BANNER & COLORED ATTRIBUTE BARS (#25, #26)
          ===================================================================== */}
-      <div className="rounded-2xl bg-[#1E1232] border border-[#7E68B8] overflow-hidden shadow-xl">
+      <div className="rounded-2xl bg-[#1E1232] border border-[#7E68B8] overflow-hidden shadow-xl" data-record-banner>
         {/* #25: Collector Banner Header with 72px Gold-Ringed Class Emblem & Non-Truncated Identity */}
         <div className="p-4 bg-gradient-to-r from-[#2E1B42] via-[#261539] to-[#1E1232] border-b border-[#3A2555] flex items-center gap-3.5">
           <div className="w-[70px] h-[70px] rounded-full bg-[#130B1F] border-2 border-[#D4B876] shadow-inner flex items-center justify-center text-[30px] shrink-0">
@@ -205,7 +205,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
 
         <div className="p-3.5 space-y-3.5">
           {/* #26: 2-Column Attribute Cards with Colored Progress Bars */}
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2" data-record-attributes>
             {allAttrs.map((attr) => {
               const val = attributes[attr];
               const tier = getTierInfo(val);
@@ -215,6 +215,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
               return (
                 <div
                   key={attr}
+                  data-record-attr={attr}
                   className={`p-3 rounded-xl bg-[#2A1B40] border transition ${
                     isFocus ? 'border-[#D4B876]/60' : 'border-[#3A2555]'
                   }`}
@@ -253,7 +254,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
 
           {/* 2 Raised Gear Tiles with 5 Level Pips (#26) */}
           <div className="grid grid-cols-2 gap-2">
-            <div className="p-3 rounded-xl bg-[#2A1B40] border border-[#3A2555] space-y-1.5">
+            <div className="p-3 rounded-xl bg-[#2A1B40] border border-[#3A2555] space-y-1.5" data-record-gear="weapon">
               <div className="flex items-center justify-between">
                 <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8] truncate">
                   ⚔️ {classMeta.weapon}
@@ -279,7 +280,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
               </div>
             </div>
 
-            <div className="p-3 rounded-xl bg-[#2A1B40] border border-[#3A2555] space-y-1.5">
+            <div className="p-3 rounded-xl bg-[#2A1B40] border border-[#3A2555] space-y-1.5" data-record-gear="armor">
               <div className="flex items-center justify-between">
                 <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8] truncate">
                   🛡️ {classMeta.armor}
@@ -324,7 +325,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
         </div>
 
         {/* Joined Ruled Slab (#2A1B40 with #44305F hairlines) */}
-        <div className="rounded-2xl bg-[#2A1B40] border border-[#7E68B8]/60 overflow-hidden shadow-lg grid grid-cols-4">
+        <div className="rounded-2xl bg-[#2A1B40] border border-[#7E68B8]/60 overflow-hidden shadow-lg grid grid-cols-4" data-record-slab>
           {RECORD_STATS_META.map((stat, idx) => {
             const val = stats[stat.key] ?? 0;
             const isSelected = selectedStatKey === stat.key;
@@ -336,6 +337,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
             return (
               <button
                 key={stat.key}
+                data-stat-cell={stat.key}
                 onClick={() =>
                   setSelectedStatKey(isSelected ? null : stat.key)
                 }
@@ -370,7 +372,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
 
         {/* #31: Tap-to-Explain Callout ONLY appears when a stat cell is tapped */}
         {selectedStat && (
-          <div className="p-3.5 rounded-xl bg-[#130B1F] border border-[#B7A9CC] flex items-start justify-between gap-2 shadow-md">
+          <div className="p-3.5 rounded-xl bg-[#130B1F] border border-[#B7A9CC] flex items-start justify-between gap-2 shadow-md" data-stat-explainer>
             <div className="min-w-0">
               <div className="font-['Cinzel'] font-bold text-[13px] text-[#D4B876]">
                 {selectedStat.fullTitle} ({stats[selectedStat.key] ?? 0})
@@ -402,7 +404,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
           </span>
         </div>
 
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-4 gap-2" data-badge-grid>
           {BADGES_META.map((b) => {
             const isEarned = earnedBadgeIds.includes(b.id);
             const isSelected = selectedBadgeId === b.id;
@@ -410,6 +412,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
             return (
               <button
                 key={b.id}
+                data-badge-cell={b.id}
                 onClick={() =>
                   setSelectedBadgeId(isSelected ? null : b.id)
                 }
@@ -449,7 +452,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
 
         {/* Tap-to-Explain Badge Callout (Hidden until tapped) */}
         {selectedBadge && (
-          <div className="p-3.5 rounded-xl bg-[#130B1F] border border-[#B7A9CC] flex items-start justify-between gap-2 shadow-md">
+          <div className="p-3.5 rounded-xl bg-[#130B1F] border border-[#B7A9CC] flex items-start justify-between gap-2 shadow-md" data-badge-explainer>
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-['Cinzel'] font-bold text-[13px] text-[#D4B876]">
@@ -483,6 +486,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
 
       {/* SHARE RECORD BUTTON */}
       <button
+        data-button-share-record
         onClick={() => {
           setShowShareModal(true);
           setShareCopied(false);
@@ -494,7 +498,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
 
       {/* SHAREABLE COLLECTOR CARD MODAL */}
       {showShareModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" data-share-modal>
           <div className="w-full max-w-[350px] rounded-2xl bg-[#1E1232] border-2 border-[#D4B876] p-5 space-y-4 shadow-2xl">
             <div className="flex items-center gap-3 border-b border-[#3A2555] pb-3.5">
               <div className="w-14 h-14 rounded-full bg-[#130B1F] border-2 border-[#D4B876] flex items-center justify-center text-[24px] shrink-0">

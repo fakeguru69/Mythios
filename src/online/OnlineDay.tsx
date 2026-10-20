@@ -101,6 +101,7 @@ export interface DayInfo {
   armorLevel: number;
   finished: boolean;
   gathering: boolean;
+  daysPlayed?: number;
 }
 
 // An enemy's card title ("A MAN ON THE ROAD") inside a sentence: "A man on the road".
