@@ -37,6 +37,8 @@ alter table public.party_messages drop constraint if exists party_messages_kind_
 alter table public.party_messages add constraint party_messages_kind_check check (kind in ('chat', 'notice', 'nudge'));
 
 -- 4. Visibility function: private nudge is visible ONLY to reply_to_user or author
+drop policy if exists "messages: today's fire talk only after finishing today" on public.party_messages;
+drop function if exists public.party_message_visible(uuid, uuid, uuid, timestamptz);
 create or replace function public.party_message_visible(
   p_party uuid,
   p_author uuid,
@@ -191,8 +193,7 @@ begin
 end;
 $$;
 
-revoke execute on function public.post_natural_20(uuid, uuid, text) from public, anon;
-grant execute on function public.post_natural_20(uuid, uuid, text) to authenticated;
+revoke execute on function public.post_natural_20(uuid, uuid, text) from public, anon, authenticated;
 
 -- 7. Function to evaluate and announce big moments (badges, tier level-ups, crowns taken)
 create or replace function public.check_member_big_moments(
@@ -362,8 +363,7 @@ begin
 end;
 $$;
 
-revoke execute on function public.check_member_big_moments(uuid, uuid) from public, anon;
-grant execute on function public.check_member_big_moments(uuid, uuid) to authenticated;
+revoke execute on function public.check_member_big_moments(uuid, uuid) from public, anon, authenticated;
 
 -- 8. Hook check_member_big_moments into my_record
 create or replace function public.my_record(p_party uuid)
