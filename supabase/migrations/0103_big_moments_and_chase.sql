@@ -293,8 +293,18 @@ begin
         end if;
       end if;
 
-      -- Check Master (>= 76)
+      -- Check Champion (>= 76)
       if v_val >= 76 then
+        v_tier_key := 'tier:' || p_user || ':' || v_attr || ':Champion';
+        if not exists (select 1 from public.party_moments where party_id = p_party and moment_key = v_tier_key) then
+          insert into public.party_moments (party_id, moment_key) values (p_party, v_tier_key) on conflict do nothing;
+          insert into public.party_messages (party_id, kind, body)
+          values (p_party, 'notice', v_name || '''s ' || v_attr || ' reached Champion.');
+        end if;
+      end if;
+
+      -- Check Master (>= 101)
+      if v_val >= 101 then
         v_tier_key := 'tier:' || p_user || ':' || v_attr || ':Master';
         if not exists (select 1 from public.party_moments where party_id = p_party and moment_key = v_tier_key) then
           insert into public.party_moments (party_id, moment_key) values (p_party, v_tier_key) on conflict do nothing;

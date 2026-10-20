@@ -127,17 +127,36 @@ const check = (name, ok) => {
     canonicalTitles.every(([key, title]) => SEASON_TITLES_META[key] && SEASON_TITLES_META[key].title === title)
   );
 
-  // 5. Security definer and privileges on all 16 functions in migration 0104
+  // 5. Security definer and privileges on all 21 functions in migration 0104
   check(
-    'All 16 functions in migration 0104 use security definer set search_path = ""',
-    (mig104.match(/security definer set search_path = ''/g) || []).length === 16
+    'All 21 functions in migration 0104 use security definer set search_path = ""',
+    (mig104.match(/security definer set search_path = ''/g) || []).length === 21
   );
 
   check(
-    'Internal helpers (lock_today_seen_snapshot, check_member_big_moments, g_view, triggers) are revoked from public, anon, authenticated',
+    'Internal helpers (lock_today_seen_snapshot, check_member_big_moments, g_view, compute_member_record, triggers) are revoked from public, anon, authenticated',
     mig104.includes('revoke execute on function public.lock_today_seen_snapshot(uuid, uuid) from public, anon, authenticated;') &&
     mig104.includes('revoke execute on function public.check_member_big_moments(uuid, uuid) from public, anon, authenticated;') &&
-    mig104.includes('revoke execute on function public.g_view(uuid, int, uuid) from public, anon, authenticated;')
+    mig104.includes('revoke execute on function public.g_view(uuid, int, uuid) from public, anon, authenticated;') &&
+    mig104.includes('revoke execute on function public.compute_member_record(uuid, uuid) from public, anon, authenticated;') &&
+    mig104.includes('revoke execute on function public.trg_member_days_activity_seq() from public, anon, authenticated;') &&
+    mig104.includes('revoke execute on function public.trg_relic_gifts_activity_seq() from public, anon, authenticated;') &&
+    mig104.includes('revoke execute on function public.trg_party_messages_event_day() from public, anon, authenticated;')
+  );
+
+  check(
+    'party_yesterday bounds events to yesterday (v_prev_week, v_prev_day) and fire_table/share_notice require passed Notice roll',
+    mig104.includes('and coalesce(m.event_week, v_prev_week) = v_prev_week') &&
+    mig104.includes('and coalesce(m.event_day, v_prev_day) = v_prev_day') &&
+    mig104.includes('if coalesce(v_notice_passed, false) then') &&
+    mig104.includes("if not coalesce(v_notice_passed, false) then\n    raise exception 'nothing to share';")
+  );
+
+  const { getTierInfo } = require(path.join(root, 'src/data/mythiosRulesData.ts'));
+  const coverSrc = fs.readFileSync(path.join(root, 'src/components/CoverPage.tsx'), 'utf8');
+  check(
+    'getTierInfo(80) returns Champion (Core Rules §12) and CoverPage.tsx displays 3 to 6 friends',
+    getTierInfo(80).name === 'Champion' && coverSrc.includes('3 to 6 friends') && !coverSrc.includes('2 to 6 friends')
   );
 
   // 6. Big-moment hooks in actual gameplay RPCs & whole-party badge deduplication

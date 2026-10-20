@@ -204,7 +204,7 @@ export const FirstTimeNoticeInfo: React.FC<{ attr: AttributeName }> = ({ attr })
       THE NOTICE · {attr.toUpperCase()}, YOUR BEST
     </div>
     <div className="font-sans text-[15px] text-[#CBE0FF] leading-[1.45]">
-      Each day you notice one thing others may miss. Your best Attribute gives you the eye for it.
+      Sometimes a room has something to tell you. Tap Roll to see if you catch it. This roll is free — it never costs gold or HP.
     </div>
   </div>
 );
@@ -230,19 +230,29 @@ export const NoticeRollCard: React.FC<{
     {showFirstTime && <FirstTimeNoticeInfo attr={roll.attr} />}
     <div className="rounded-xl bg-[#101C30] border border-[#3B669E] p-3.5 space-y-2 shadow-md" data-notice-card>
       <div className="flex justify-between items-center text-[12px] font-['Cinzel'] font-bold tracking-[1px] uppercase">
-        <span className="text-[#7AA7FF]">WHAT YOU NOTICE · {roll.attr}</span>
-        <span className={roll.pass ? 'text-[#82E6A1]' : 'text-[#E68282]'}>
-          {roll.pass ? 'PASSED' : 'FAILED'} (DC {roll.dc})
+        <span className="text-[#7AA7FF]">
+          NOTICE · {roll.attr}{roll.score !== undefined ? ` ${roll.score} (+${roll.bonus})` : ''}
+        </span>
+        <span className={roll.pass ? 'text-[#82E6A1]' : 'text-[#B7A9CC]'}>
+          {roll.pass ? 'NOTICED' : 'MISSED'} (DC {roll.dc})
         </span>
       </div>
-      <div className="text-[13px] font-mono text-[#82A2E6]">
-        Roll: d20 [{roll.d20}] {roll.bonus >= 0 ? `+ ${roll.bonus}` : `- ${Math.abs(roll.bonus)}`} = {roll.total} vs DC {roll.dc}
+      <div className="text-[13px] font-sans text-[#82A2E6]">
+        🎲 {roll.d20} + {roll.attr}{roll.score !== undefined ? ` ${roll.score}` : ''} (+{roll.bonus}) − DC {roll.dc} = {roll.total - roll.dc >= 0 ? `+${roll.total - roll.dc}` : `−${Math.abs(roll.total - roll.dc)}`}
       </div>
-      <ScriptText text={roll.text} className="font-sans text-[16px] text-[#E8F1FF] leading-[1.45]" />
-      {roll.pass && roll.noviceNote && (
-        <div className="text-[14px] italic text-[#A2C2F5] pt-1 border-t border-[#233B61]" data-novice-note>
-          {roll.noviceNote}
-        </div>
+      {roll.pass ? (
+        <>
+          <ScriptText text={roll.text} className="font-sans text-[16px] text-[#E8F1FF] leading-[1.45]" />
+          {(roll.noviceNote || (roll.score !== undefined && roll.score < 26)) && (
+            <div className="text-[14px] italic text-[#A2C2F5] pt-1 border-t border-[#233B61]" data-novice-note>
+              {roll.noviceNote || 'At Apprentice (26), you would catch more.'}
+            </div>
+          )}
+        </>
+      ) : (
+        <p className="font-sans italic text-[16px] text-[#B7A9CC] leading-[1.45]" data-notice-fail-line>
+          {roll.text || 'Nothing catches your eye.'}
+        </p>
       )}
     </div>
   </div>
@@ -251,30 +261,34 @@ export const NoticeRollCard: React.FC<{
 /** Interactive Notice Roll card before rolling on the server. */
 export const NoticeRollActionCard: React.FC<{
   attr: AttributeName;
+  score?: number;
   bonus: number;
   dc: number;
   onRoll: () => void;
   busy?: boolean;
   showFirstTime?: boolean;
-}> = ({ attr, bonus, dc, onRoll, busy, showFirstTime }) => (
+}> = ({ attr, score, bonus, dc, onRoll, busy, showFirstTime }) => (
   <div className="space-y-2" data-notice-container>
     {showFirstTime && <FirstTimeNoticeInfo attr={attr} />}
     <div className="rounded-xl bg-[#101C30] border border-[#3B669E] p-3.5 space-y-3 shadow-md" data-notice-card>
       <div className="flex justify-between items-center text-[12px] font-['Cinzel'] font-bold tracking-[1px] uppercase">
-        <span className="text-[#7AA7FF]">WHAT YOU NOTICE · {attr}</span>
-        <span className="text-[#E5C158]">DC {dc} · YOU SUCCEED ON {challengeSucceedOn(dc, bonus)}+</span>
+        <span className="text-[#7AA7FF]">
+          NOTICE · {attr}{score !== undefined ? ` ${score} (+${bonus})` : ` (+${bonus})`}
+        </span>
+        <span className="text-[#E5C158]">DC {dc}</span>
       </div>
       <p className="font-sans text-[16px] text-[#E8F1FF] leading-[1.45]">
-        Your eye catches something in your surroundings. Roll to see if you discern it clearly.
+        Roll {challengeSucceedOn(dc, bonus)}+ on d20 to catch what&apos;s off.
       </p>
       <button
         type="button"
         disabled={busy}
         onClick={onRoll}
         data-button-roll-notice
+        data-script-step
         className="w-full py-2.5 px-3 rounded-xl bg-[#7AA7FF]/20 hover:bg-[#7AA7FF]/30 active:bg-[#7AA7FF]/40 border border-[#7AA7FF] text-[#F4F1F8] font-['Cinzel'] font-bold text-[13px] tracking-[0.8px] uppercase transition disabled:opacity-50"
       >
-        {busy ? 'ROLLING…' : `ROLL NOTICE · ${attr} (+${bonus})`}
+        {busy ? 'ROLLING…' : 'ROLL · NOTICE'}
       </button>
     </div>
   </div>

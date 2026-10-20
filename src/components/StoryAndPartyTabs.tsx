@@ -50,6 +50,9 @@ import {
 import {
   NarrationBlock,
   NoticeBlock,
+  NoticeRollActionCard,
+  NoticeRollCard,
+  NoticeRollResult,
   ScriptButton,
   ScriptInline,
   ScriptText,
@@ -271,6 +274,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   const [fightRounds, setFightRounds] = useState<FightRoundEntry[]>([]);
   const [fightDone, setFightDone] = useState(false);
   const [isRollingRound, setIsRollingRound] = useState(false);
+  const [noticeOutcome, setNoticeOutcome] = useState<NoticeRollResult | null>(null);
+  const [isRollingNotice, setIsRollingNotice] = useState(false);
 
 
   const rawDayData =
@@ -309,6 +314,8 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     setPressRelic(false);
     setIsRollingPress(false);
     setClaimResults({});
+    setNoticeOutcome(null);
+    setIsRollingNotice(false);
   }
 
   const activeAttr: AttributeName =
@@ -1603,7 +1610,54 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       }
       if (step.t === 'notice') {
         const line = pickNoticeLine(step.lines, attributes, CLASS_META[characterClass].attribute);
-        if (line) nodes.push(<NoticeBlock key={key} attr={line.attr} text={fill(line.text)} />);
+        if (line) {
+          const showFirstTime = typeof window !== 'undefined' && !localStorage.getItem('mythios_notice_explained');
+          if (noticeOutcome) {
+            nodes.push(
+              <NoticeRollCard
+                key={key}
+                roll={{ ...noticeOutcome, text: fill(noticeOutcome.text) }}
+                showFirstTime={showFirstTime}
+              />
+            );
+          } else {
+            const score = attributes[line.attr] || 20;
+            const bonus = getTierInfo(score).bonus;
+            nodes.push(
+              <NoticeRollActionCard
+                key={key}
+                attr={line.attr}
+                score={score}
+                bonus={bonus}
+                dc={3}
+                busy={isRollingNotice}
+                showFirstTime={showFirstTime}
+                onRoll={async () => {
+                  setIsRollingNotice(true);
+                  if (typeof window !== 'undefined') {
+                    try { localStorage.setItem('mythios_notice_explained', '1'); } catch {}
+                  }
+                  const d20 = await rollChallengeD20(3, bonus, 0);
+                  const total = d20 + bonus;
+                  const pass = total >= 4;
+                  setNoticeOutcome({
+                    attr: line.attr,
+                    score,
+                    d20,
+                    bonus,
+                    total,
+                    dc: 3,
+                    pass,
+                    text: pass ? line.text : 'Nothing catches your eye.',
+                    noviceNote: pass && score < 26 ? 'At Apprentice (26), you would catch more.' : null,
+                  });
+                  setIsRollingNotice(false);
+                }}
+              />
+            );
+            return { nodes, done: false };
+          }
+        }
         continue;
       }
       if (step.t === 'challenge') {

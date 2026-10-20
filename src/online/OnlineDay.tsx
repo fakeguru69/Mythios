@@ -430,7 +430,14 @@ export default function OnlineDay({
         const storedNotice = (today?.mine?.notice || (today as any)?.notice) as NoticeRollResult | undefined;
         const showFirstTime = typeof window !== 'undefined' && !localStorage.getItem('mythios_notice_explained');
         if (storedNotice) {
-          pushItem(key, <NoticeRollCard key={key} roll={storedNotice} showFirstTime={showFirstTime} />);
+          pushItem(
+            key,
+            <NoticeRollCard
+              key={key}
+              roll={{ ...storedNotice, text: fill(storedNotice.text) }}
+              showFirstTime={showFirstTime}
+            />
+          );
         } else {
           const score = progress.attrs[line.attr] ?? 10;
           const bonus = getTierInfo(score).bonus;
@@ -439,6 +446,7 @@ export default function OnlineDay({
             <NoticeRollActionCard
               key={key}
               attr={line.attr}
+              score={score}
               bonus={bonus}
               dc={3}
               busy={busy}
@@ -449,8 +457,10 @@ export default function OnlineDay({
                 }
                 await call('roll_notice', { p_party: partyId });
               }}
-            />
+            />,
+            { instant: true }
           );
+          break;
         }
       }
       continue;

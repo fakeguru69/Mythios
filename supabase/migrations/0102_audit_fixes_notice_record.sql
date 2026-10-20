@@ -85,7 +85,7 @@ begin
       v_text := 'You notice subtle details in your surroundings.';
     end if;
     if v_top < 26 then
-      v_novice_note := 'A more practised eye would see more here.';
+      v_novice_note := 'At Apprentice (26), you would catch more.';
     end if;
   else
     v_text := 'Nothing catches your eye.';

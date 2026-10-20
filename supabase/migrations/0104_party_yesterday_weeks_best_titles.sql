@@ -19,7 +19,13 @@ alter table public.member_days
   add column if not exists press_seq bigint;
 
 alter table public.relic_gifts
-  add column if not exists gift_seq bigint not null default nextval('public.party_activity_seq');
+  add column if not exists gift_seq bigint not null default nextval('public.party_activity_seq'),
+  add column if not exists event_week int,
+  add column if not exists event_day int;
+
+alter table public.party_messages
+  add column if not exists event_week int,
+  add column if not exists event_day int;
 
 create or replace function public.trg_member_days_activity_seq() returns trigger
 language plpgsql security definer set search_path = '' as $$
@@ -42,8 +48,16 @@ create trigger member_days_activity_seq_trg
 
 create or replace function public.trg_relic_gifts_activity_seq() returns trigger
 language plpgsql security definer set search_path = '' as $$
+declare
+  v_w int;
+  v_d int;
 begin
   new.gift_seq := nextval('public.party_activity_seq');
+  if new.event_week is null or new.event_day is null then
+    select t.week, t.day into v_w, v_d from public.party_today(new.party_id) t;
+    new.event_week := coalesce(new.event_week, v_w);
+    new.event_day := coalesce(new.event_day, v_d);
+  end if;
   return new;
 end;
 $$;
@@ -53,8 +67,29 @@ create trigger relic_gifts_activity_seq_trg
   before insert on public.relic_gifts
   for each row execute function public.trg_relic_gifts_activity_seq();
 
+create or replace function public.trg_party_messages_event_day() returns trigger
+language plpgsql security definer set search_path = '' as $$
+declare
+  v_w int;
+  v_d int;
+begin
+  if new.event_week is null or new.event_day is null then
+    select t.week, t.day into v_w, v_d from public.party_today(new.party_id) t;
+    new.event_week := coalesce(new.event_week, v_w);
+    new.event_day := coalesce(new.event_day, v_d);
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists party_messages_event_day_trg on public.party_messages;
+create trigger party_messages_event_day_trg
+  before insert on public.party_messages
+  for each row execute function public.trg_party_messages_event_day();
+
 revoke execute on function public.trg_member_days_activity_seq() from public, anon, authenticated;
 revoke execute on function public.trg_relic_gifts_activity_seq() from public, anon, authenticated;
+revoke execute on function public.trg_party_messages_event_day() from public, anon, authenticated;
 
 -- 2. Lock the caller's seen snapshot for today's chapter before updating chat_seen_msg_id
 create or replace function public.lock_today_seen_snapshot(p_party uuid, p_user uuid) returns void
@@ -240,13 +275,15 @@ begin
   v_seen_seq := coalesce(v_seen_seq, 0);
   v_day_start := public.party_day_start(p_party, v_week, v_day);
 
-  -- Priority 1: Badges earned by friends (or whole party) not yet seen in chat
+  -- Priority 1: Badges earned by friends (or whole party) yesterday, not yet seen in chat
   for v_line in
     select m.body
     from public.party_messages m
     where m.party_id = p_party
       and m.kind = 'notice'
       and m.id > v_seen_msg_id
+      and coalesce(m.event_week, v_prev_week) = v_prev_week
+      and coalesce(m.event_day, v_prev_day) = v_prev_day
       and (m.body like '% earned the % badge.' or m.body like 'The party earned the % badge.' or m.body like 'BADGE:%')
       and (v_my_name = '' or not (m.body like v_my_name || ' earned %'))
     order by m.id asc
@@ -256,13 +293,15 @@ begin
     end if;
   end loop;
 
-  -- Priority 2: Perfect Rolls (natural 20s) by friends not yet seen in chat
+  -- Priority 2: Perfect Rolls (natural 20s) by friends yesterday, not yet seen in chat
   for v_line in
     select m.body
     from public.party_messages m
     where m.party_id = p_party
       and m.kind = 'notice'
       and m.id > v_seen_msg_id
+      and coalesce(m.event_week, v_prev_week) = v_prev_week
+      and coalesce(m.event_day, v_prev_day) = v_prev_day
       and (m.body like '% rolled a natural 20!' or m.body like '% PERFECT ROLL%')
       and (v_my_name = '' or not (m.body like v_my_name || ' rolled %'))
     order by m.id asc
@@ -272,7 +311,7 @@ begin
     end if;
   end loop;
 
-  -- Priority 3: Relics given by friends since caller last looked
+  -- Priority 3: Relics given by friends yesterday since caller last looked
   for v_line in
     select coalesce(pm_from.character_name, 'A friend') || ' gave ' ||
            coalesce(pm_to.character_name, 'a friend') || ' a ' || rg.relic || ' Relic.'
@@ -282,6 +321,8 @@ begin
     where rg.party_id = p_party
       and rg.from_user <> v_me
       and rg.gift_seq > v_seen_seq
+      and coalesce(rg.event_week, v_prev_week) = v_prev_week
+      and coalesce(rg.event_day, v_prev_day) = v_prev_day
     order by rg.gift_seq asc
   loop
     if not (v_line = any(v_lines)) and coalesce(array_length(v_lines, 1), 0) < 5 then
@@ -289,13 +330,15 @@ begin
     end if;
   end loop;
 
-  -- Priority 4: Crown changing hands or new Attribute tier reached by friends not yet seen in chat
+  -- Priority 4: Crown changing hands or new Attribute tier reached by friends yesterday, not yet seen in chat
   for v_line in
     select m.body
     from public.party_messages m
     where m.party_id = p_party
       and m.kind = 'notice'
       and m.id > v_seen_msg_id
+      and coalesce(m.event_week, v_prev_week) = v_prev_week
+      and coalesce(m.event_day, v_prev_day) = v_prev_day
       and (m.body like '% took the crown for %.' or m.body like '%''s % reached %.')
       and (v_my_name = '' or not (m.body like v_my_name || ' took the crown%' or m.body like v_my_name || '''s %'))
     order by m.id asc
@@ -305,13 +348,15 @@ begin
     end if;
   end loop;
 
-  -- Priority 5a: Friends who pressed on on previous days since caller last looked
+  -- Priority 5a: Friends who pressed on yesterday since caller last looked
   for v_line in
     select coalesce(pm.character_name, 'A friend') || ' pressed on.'
     from public.member_days md
     join public.party_members pm on pm.party_id = md.party_id and pm.user_id = md.user_id
     where md.party_id = p_party
       and md.user_id <> v_me
+      and md.week = v_prev_week
+      and md.day = v_prev_day
       and ((md.week - 1) * 7 + (md.day - 1)) < v_today_idx
       and md.press is not null
       and not coalesce((md.press ->> 'left')::boolean, false)
@@ -756,6 +801,15 @@ begin
       end if;
 
       if v_val >= 76 then
+        v_tier_key := 'tier:' || p_user || ':' || v_attr || ':Champion';
+        if not exists (select 1 from public.party_moments where party_id = p_party and moment_key = v_tier_key) then
+          insert into public.party_moments (party_id, moment_key) values (p_party, v_tier_key) on conflict do nothing;
+          insert into public.party_messages (party_id, kind, body)
+          values (p_party, 'notice', v_name || '''s ' || v_attr || ' reached Champion.');
+        end if;
+      end if;
+
+      if v_val >= 101 then
         v_tier_key := 'tier:' || p_user || ':' || v_attr || ':Master';
         if not exists (select 1 from public.party_moments where party_id = p_party and moment_key = v_tier_key) then
           insert into public.party_moments (party_id, moment_key) values (p_party, v_tier_key) on conflict do nothing;
@@ -1356,3 +1410,563 @@ end;
 $$;
 
 revoke execute on function public.g_view(uuid, int, uuid) from public, anon, authenticated;
+
+-- 11. Update roll_notice so Novice pass note uses exact canon copy ("At Apprentice (26), you would catch more.")
+create or replace function public.roll_notice(p_party uuid) returns jsonb
+language plpgsql security definer set search_path = '' as $$
+declare
+  v_week int;
+  v_day int;
+  v_user uuid := auth.uid();
+  v_existing jsonb;
+  v_attrs jsonb;
+  v_class text;
+  v_class_attr text;
+  v_best text;
+  v_top int := -1;
+  v_d20 int;
+  v_bonus int := 0;
+  v_total int;
+  v_pass boolean;
+  v_notice_line jsonb;
+  v_text text;
+  v_novice_note text := null;
+  v_res jsonb;
+begin
+  if v_user is null then raise exception 'not signed in'; end if;
+
+  if not exists (
+    select 1 from public.party_members
+    where party_id = p_party and user_id = v_user and status = 'approved'
+  ) then
+    raise exception 'not in party';
+  end if;
+
+  select t.week, t.day into v_week, v_day from public.party_today(p_party) t;
+  if v_week is null then raise exception 'the story has not started'; end if;
+
+  select notice into v_existing from public.member_days
+  where party_id = p_party and user_id = v_user and week = v_week and day = v_day;
+
+  if v_existing is not null then
+    return v_existing;
+  end if;
+
+  select attrs into v_attrs from public.member_progress where party_id = p_party and user_id = v_user;
+  select class into v_class from public.party_members where party_id = p_party and user_id = v_user;
+  v_class_attr := public.class_attribute(v_class);
+
+  v_notice_line := public.notice_line_for(p_party, v_user, v_week, v_day);
+  if v_notice_line is not null and v_notice_line ? 'attr' then
+    v_best := v_notice_line ->> 'attr';
+  else
+    v_best := coalesce(v_class_attr, 'Intellect');
+  end if;
+
+  v_top := coalesce((v_attrs ->> v_best)::int, 10);
+
+  v_bonus := case
+    when v_top >= 101 then 8
+    when v_top >= 76 then 6
+    when v_top >= 51 then 4
+    when v_top >= 26 then 2
+    else 0
+  end;
+
+  v_d20 := floor(random() * 20 + 1)::int;
+  v_total := v_d20 + v_bonus;
+  v_pass := (v_total >= 4);
+
+  if v_pass then
+    if v_notice_line is not null and coalesce(v_notice_line ->> 'text', '') <> '' then
+      v_text := v_notice_line ->> 'text';
+    else
+      v_text := 'You notice subtle details in your surroundings.';
+    end if;
+    if v_top < 26 then
+      v_novice_note := 'At Apprentice (26), you would catch more.';
+    end if;
+  else
+    v_text := 'Nothing catches your eye.';
+  end if;
+
+  v_res := jsonb_build_object(
+    'attr', v_best,
+    'score', v_top,
+    'd20', v_d20,
+    'bonus', v_bonus,
+    'total', v_total,
+    'dc', 3,
+    'pass', v_pass,
+    'text', v_text,
+    'noviceNote', v_novice_note
+  );
+
+  insert into public.member_days (party_id, user_id, week, day, notice)
+  values (p_party, v_user, v_week, v_day, v_res)
+  on conflict (party_id, user_id, week, day)
+  do update set notice = v_res;
+
+  return v_res;
+end;
+$$;
+
+revoke execute on function public.roll_notice(uuid) from public, anon;
+grant execute on function public.roll_notice(uuid) to authenticated;
+
+-- 12. Update compute_member_record to also include daysPlayedThisWeek and pressClearedThisWeek for accurate current-week badge progress
+create or replace function public.compute_member_record(p_party uuid, p_user uuid)
+returns jsonb language plpgsql security definer set search_path = '' as $$
+declare
+  v_days_played int := 0;
+  v_best_streak int := 0;
+  v_gatherings_attended int := 0;
+  v_fragments_solved int := 0;
+  v_relics_given int := 0;
+  v_times_stepped_up int := 0;
+  v_fragments_matched int := 0;
+  v_battles_won int := 0;
+  v_challenges_cleared int := 0;
+  v_challenges_pressed_on int := 0;
+  v_enemies_defeated int := 0;
+  v_perfect_rolls int := 0;
+  v_curr_week int;
+  v_curr_day int;
+  v_days_this_week int := 0;
+  v_press_cleared_this_week int := 0;
+
+  v_badges text[] := array[]::text[];
+  v_stats jsonb;
+  v_streak int := 0;
+  v_last_idx int := -999;
+  v_day_record record;
+  v_attrs jsonb;
+  v_has_down_to_thread boolean := false;
+  v_has_clean_night boolean := false;
+  v_has_whole_table boolean := false;
+  v_party_size int := 1;
+  v_week_press_max int := 0;
+  v_week_full boolean := false;
+  v_g record;
+  v_round record;
+  v_line record;
+begin
+  select t.week, t.day into v_curr_week, v_curr_day from public.party_today(p_party) t;
+
+  select count(*)::int into v_days_played
+  from public.member_days
+  where party_id = p_party and user_id = p_user and finished_at is not null;
+
+  if v_curr_week is not null then
+    select count(distinct day)::int into v_days_this_week
+    from public.member_days
+    where party_id = p_party and user_id = p_user and week = v_curr_week and finished_at is not null and day between 1 and 6;
+
+    select count(*)::int into v_press_cleared_this_week
+    from public.member_days
+    where party_id = p_party and user_id = p_user and week = v_curr_week
+      and press is not null and (press ->> 'pass')::boolean = true;
+  end if;
+
+  for v_day_record in
+    select (week - 1) * 7 + day as day_idx
+    from public.member_days
+    where party_id = p_party and user_id = p_user and finished_at is not null
+    order by (week - 1) * 7 + day asc
+  loop
+    if v_day_record.day_idx = v_last_idx + 1 then
+      v_streak := v_streak + 1;
+    else
+      v_streak := 1;
+    end if;
+    if v_streak > v_best_streak then
+      v_best_streak := v_streak;
+    end if;
+    v_last_idx := v_day_record.day_idx;
+  end loop;
+  if v_days_played > 0 and v_best_streak = 0 then
+    v_best_streak := 1;
+  end if;
+
+  select count(*)::int into v_gatherings_attended
+  from public.gathering_present
+  where party_id = p_party and user_id = p_user;
+
+  select count(distinct fragment_id)::int into v_fragments_solved
+  from public.fragment_words
+  where party_id = p_party and solved_by = p_user;
+
+  select count(*)::int into v_relics_given
+  from public.relic_gifts
+  where party_id = p_party and from_user = p_user;
+
+  select count(*)::int into v_times_stepped_up
+  from public.gatherings g
+  where g.party_id = p_party
+    and g.state -> 'approach' -> 'vols' ? p_user::text;
+
+  select count(*)::int into v_fragments_matched
+  from public.gatherings g,
+       jsonb_each(coalesce(g.state -> 'match', '{}'::jsonb)) as m(k, v)
+  where g.party_id = p_party
+    and v -> 'right' ? p_user::text;
+
+  select count(*)::int into v_battles_won
+  from public.gatherings g
+  where g.party_id = p_party
+    and g.state -> 'battle' ->> 'outcome' = 'won'
+    and exists (
+      select 1 from public.gathering_present gp
+      where gp.party_id = p_party and gp.week = g.week and gp.user_id = p_user
+    );
+
+  select count(*)::int into v_challenges_cleared
+  from public.member_days
+  where party_id = p_party and user_id = p_user
+    and challenge is not null and (challenge ->> 'pass')::boolean = true;
+
+  select count(*)::int into v_challenges_pressed_on
+  from public.member_days
+  where party_id = p_party and user_id = p_user
+    and press is not null
+    and not coalesce((press ->> 'left')::boolean, false);
+
+  select count(*)::int into v_enemies_defeated
+  from public.member_days
+  where party_id = p_party and user_id = p_user
+    and fight is not null and (fight ->> 'won')::boolean = true;
+
+  for v_g in
+    select g.state -> 'battle' as b
+    from public.gatherings g
+    where g.party_id = p_party and g.state -> 'battle' ->> 'outcome' = 'won'
+  loop
+    if exists (
+      select 1 from jsonb_array_elements(v_g.b -> 'fighters') f
+      where f ->> 'id' = p_user::text and not coalesce((f ->> 'fallen')::boolean, false)
+    ) then
+      v_enemies_defeated := v_enemies_defeated + 1;
+    end if;
+  end loop;
+
+  select count(*)::int into v_perfect_rolls
+  from public.member_days
+  where party_id = p_party and user_id = p_user
+    and (
+      (challenge is not null and (challenge ->> 'd20')::int = 20)
+      or (press is not null and (press ->> 'd20')::int = 20)
+      or (fight is not null and (fight ->> 'playerRoll')::int = 20)
+    );
+
+  select v_perfect_rolls + count(*)::int into v_perfect_rolls
+  from public.gatherings g
+  where g.party_id = p_party
+    and g.state -> 'approach' ->> 'roller' = p_user::text
+    and (g.state -> 'approach' ->> 'roll')::int = 20;
+
+  for v_g in
+    select g.state -> 'battle' as b from public.gatherings g where g.party_id = p_party
+  loop
+    for v_round in
+      select value as r from jsonb_array_elements(coalesce(v_g.b -> 'rounds', '[]'::jsonb))
+    loop
+      for v_line in
+        select value as l from jsonb_array_elements(coalesce(v_round.r -> 'lines' -> (p_user::text), '[]'::jsonb))
+      loop
+        if (v_line.l ->> 'kind') = 'party' and (v_line.l ->> 'roll')::int = 20 then
+          v_perfect_rolls := v_perfect_rolls + 1;
+        end if;
+      end loop;
+    end loop;
+  end loop;
+
+  if v_days_played >= 1 then
+    v_badges := array_append(v_badges, 'first-light');
+  end if;
+
+  select exists (
+    select 1 from (
+      select md.week
+      from public.member_days md
+      where md.party_id = p_party and md.user_id = p_user and md.finished_at is not null and md.day between 1 and 6
+      group by md.week
+      having count(distinct md.day) = 6
+    ) w
+    join public.gathering_present gp on gp.party_id = p_party and gp.week = w.week and gp.user_id = p_user
+  ) into v_week_full;
+  if v_week_full then
+    v_badges := array_append(v_badges, 'whole-week');
+  end if;
+
+  if v_gatherings_attended >= 6 then
+    v_badges := array_append(v_badges, 'long-road');
+  end if;
+
+  select attrs into v_attrs from public.member_progress where party_id = p_party and user_id = p_user;
+  if v_attrs is not null and exists (
+    select 1 from jsonb_each_text(v_attrs)
+    where value ~ '^[0-9]+$' and value::int >= 51
+  ) then
+    v_badges := array_append(v_badges, 'sharpened');
+  end if;
+
+  if v_relics_given >= 1 then
+    v_badges := array_append(v_badges, 'open-hand');
+  end if;
+
+  if exists (
+    select 1 from public.relic_gifts rg
+    join public.member_days md on md.party_id = rg.party_id and md.user_id = rg.to_user
+    where rg.party_id = p_party and rg.from_user = p_user
+      and (
+        (md.challenge is not null and (md.challenge ->> 'pass')::boolean = true and (md.challenge ->> 'relic')::boolean = true and (md.challenge ->> 'net')::int between 1 and 4)
+        or (md.press is not null and (md.press ->> 'pass')::boolean = true and (md.press ->> 'relic')::boolean = true and (md.press ->> 'net')::int between 1 and 4)
+        or (md.fight is not null and (md.fight ->> 'won')::boolean = true and (md.fight ->> 'relic')::boolean = true and coalesce((md.fight ->> 'playerHp')::int, 100) <= 15)
+      )
+  ) then
+    v_badges := array_append(v_badges, 'lifeline');
+  end if;
+
+  select count(*)::int into v_party_size
+  from public.party_members
+  where party_id = p_party and status = 'approved';
+
+  if v_party_size >= 2 then
+    select exists (
+      select 1 from public.member_days
+      where party_id = p_party and finished_at is not null
+      group by week, day
+      having count(distinct user_id) >= v_party_size
+    ) into v_has_whole_table;
+    if v_has_whole_table then
+      v_badges := array_append(v_badges, 'whole-table');
+    end if;
+  end if;
+
+  select exists (
+    select 1 from public.gatherings g
+    where g.party_id = p_party
+      and coalesce((g.state -> 'approach' ->> 'passed')::boolean, false) = true
+      and g.state -> 'battle' ->> 'outcome' = 'won'
+      and not exists (
+        select 1 from jsonb_array_elements(coalesce(g.state -> 'battle' -> 'fighters', '[]'::jsonb)) f
+        where coalesce((f ->> 'fallen')::boolean, false) = true
+      )
+      and coalesce((g.state -> 'ue' ->> 'passed')::boolean, false) = true
+  ) into v_has_clean_night;
+
+  if v_has_clean_night then
+    v_badges := array_append(v_badges, 'clean-night');
+  end if;
+
+  if v_perfect_rolls >= 1 then
+    v_badges := array_append(v_badges, 'perfect');
+  end if;
+
+  select coalesce(max(c), 0) into v_week_press_max
+  from (
+    select count(*) as c
+    from public.member_days
+    where party_id = p_party and user_id = p_user
+      and press is not null and (press ->> 'pass')::boolean = true
+    group by week
+  ) sub;
+
+  if v_week_press_max >= 3 then
+    v_badges := array_append(v_badges, 'never-enough');
+  end if;
+
+  select count(distinct challenge ->> 'attr')::int into v_party_size
+  from public.member_days
+  where party_id = p_party and user_id = p_user
+    and challenge is not null and (challenge ->> 'pass')::boolean = true;
+
+  if v_party_size >= 4 then
+    v_badges := array_append(v_badges, 'many-hands');
+  end if;
+
+  select exists (
+    select 1 from public.member_days
+    where party_id = p_party and user_id = p_user
+      and fight is not null
+      and (fight ->> 'won')::boolean = true
+      and (fight ->> 'playerHp')::int <= 10
+  ) into v_has_down_to_thread;
+
+  if v_has_down_to_thread then
+    v_badges := array_append(v_badges, 'down-to-thread');
+  end if;
+
+  v_stats := jsonb_build_object(
+    'daysPlayed', v_days_played,
+    'bestStreak', v_best_streak,
+    'gatheringsAttended', v_gatherings_attended,
+    'fragmentsSolved', v_fragments_solved,
+    'relicsGiven', v_relics_given,
+    'timesSteppedUp', v_times_stepped_up,
+    'fragmentsMatched', v_fragments_matched,
+    'battlesWon', v_battles_won,
+    'challengesCleared', v_challenges_cleared,
+    'challengesPressedOn', v_challenges_pressed_on,
+    'enemiesDefeated', v_enemies_defeated,
+    'perfectRolls', v_perfect_rolls,
+    'daysPlayedThisWeek', v_days_this_week,
+    'pressClearedThisWeek', v_press_cleared_this_week
+  );
+
+  return jsonb_build_object(
+    'stats', v_stats,
+    'badges', to_jsonb(v_badges)
+  );
+end;
+$$;
+
+revoke execute on function public.compute_member_record(uuid, uuid) from public, anon, authenticated;
+
+-- 13. Require passed Notice roll (member_days.notice ->> 'pass' = true) to hold or lay the Notice piece at the evening fire
+create or replace function public.share_notice(p_party uuid) returns jsonb
+language plpgsql security definer set search_path = '' as $$
+declare v_week int; v_day int; v_line jsonb; v_notice_passed boolean := false;
+begin
+  select o_week, o_day into v_week, v_day from public.my_fire_day(p_party);
+  select coalesce((notice ->> 'pass')::boolean, false) into v_notice_passed
+  from public.member_days
+  where party_id = p_party and user_id = auth.uid() and week = v_week and day = v_day;
+
+  if not coalesce(v_notice_passed, false) then
+    raise exception 'nothing to share';
+  end if;
+
+  v_line := public.notice_line_for(p_party, auth.uid(), v_week, v_day);
+  if v_line is null then raise exception 'nothing to share'; end if;
+  insert into public.fire_shares (party_id, user_id, week, day, attr, body)
+  values (p_party, auth.uid(), v_week, v_day, v_line ->> 'attr', v_line ->> 'text')
+  on conflict (party_id, user_id, week, day) do nothing;
+  return public.fire_shares(p_party);
+end;
+$$;
+
+revoke execute on function public.share_notice(uuid) from public, anon;
+grant execute on function public.share_notice(uuid) to authenticated;
+
+create or replace function public.fire_table(p_party uuid) returns jsonb
+language plpgsql security definer set search_path = '' as $$
+declare v_week int; v_day int; v_me uuid := auth.uid(); v_data jsonb; v_narrated boolean; v_pieces jsonb;
+        v_mine_pin public.fire_pins; v_passed boolean; v_pressed boolean; v_notice_passed boolean; v_notice jsonb; v_hands jsonb := '[]'::jsonb;
+        v_press jsonb; v_prev_w int; v_prev_d int; v_readings jsonb; v_kinds int;
+begin
+  select o_week, o_day into v_week, v_day from public.my_fire_day(p_party);
+  if not exists (select 1 from public.fan_outs where party_id = p_party and user_id = v_me and week = v_week and day = v_day) then
+    raise exception 'not at the fire';
+  end if;
+  v_data := public.campfire_data(p_party, v_week, v_day);
+  v_narrated := coalesce((v_data ->> 'narrated')::boolean, false);
+  perform public.fire_check_clicks(p_party, v_week, v_day);
+  v_pieces := public.fire_pieces(p_party, v_week, v_day);
+  if v_narrated then
+    select coalesce(jsonb_agg(p), '[]'::jsonb) into v_pieces from jsonb_array_elements(v_pieces) p
+    where exists (select 1 from jsonb_array_elements(p -> 'by') b where b ->> 'id' = v_me::text);
+  end if;
+  select coalesce(jsonb_agg(p || jsonb_build_object(
+      'mine', exists (select 1 from jsonb_array_elements(p -> 'by') b where b ->> 'id' = v_me::text),
+      'agree', (select coalesce(jsonb_agg(m.character_name order by r.at), '[]'::jsonb) from public.fire_reactions r
+                join public.party_members m on m.party_id = r.party_id and m.user_id = r.user_id
+                where r.party_id = p_party and r.week = v_week and r.day = v_day and r.target = p ->> 'key' and r.kind = 'agree'),
+      'doubt', (select coalesce(jsonb_agg(m.character_name order by r.at), '[]'::jsonb) from public.fire_reactions r
+                join public.party_members m on m.party_id = r.party_id and m.user_id = r.user_id
+                where r.party_id = p_party and r.week = v_week and r.day = v_day and r.target = p ->> 'key' and r.kind = 'doubt'),
+      'myReaction', (select kind from public.fire_reactions where party_id = p_party and user_id = v_me and week = v_week and day = v_day
+                     and target = p ->> 'key' and kind <> 'none')) order by p ->> 'at'), '[]'::jsonb)
+    into v_pieces from jsonb_array_elements(v_pieces) p;
+
+  if not v_narrated then
+    select coalesce((notice ->> 'pass')::boolean, false),
+           coalesce((challenge ->> 'pass')::boolean, false),
+           coalesce((press ->> 'pass')::boolean, false)
+      into v_notice_passed, v_passed, v_pressed
+      from public.member_days
+     where party_id = p_party and user_id = v_me and week = v_week and day = v_day;
+
+    if coalesce(v_notice_passed, false) then
+      v_notice := public.notice_line_for(p_party, v_me, v_week, v_day);
+      if v_notice is not null and not exists (select 1 from public.fire_shares where party_id = p_party and user_id = v_me and week = v_week and day = v_day) then
+        v_hands := v_hands || jsonb_build_object('kind', 'notice', 'title', 'What you noticed', 'attr', v_notice ->> 'attr', 'text', v_notice ->> 'text');
+      end if;
+    end if;
+
+    if v_passed and public.fire_pass_text(p_party, v_week, v_day) is not null
+       and not exists (select 1 from public.fire_laid where party_id = p_party and user_id = v_me and week = v_week and day = v_day and kind = 'pass') then
+      v_hands := v_hands || jsonb_build_object('kind', 'pass', 'title', 'What you heard, because you passed', 'text', public.fire_pass_text(p_party, v_week, v_day));
+    end if;
+    v_press := public.fire_press_piece(p_party, v_week, v_day);
+    if v_pressed and v_press is not null
+       and not exists (select 1 from public.fire_laid where party_id = p_party and user_id = v_me and week = v_week and day = v_day and kind = 'press') then
+      v_hands := v_hands || jsonb_build_object('kind', 'press', 'title', v_press ->> 'title', 'text', v_press ->> 'text');
+    end if;
+  end if;
+
+  select * into v_mine_pin from public.fire_pins where party_id = p_party and user_id = v_me and week = v_week and day = v_day;
+  if v_mine_pin.user_id is not null and not v_narrated then
+    select coalesce(jsonb_agg(jsonb_build_object('id', fp.user_id, 'name', m.character_name, 'reading', fp.reading, 'line', fp.line,
+        'mine', fp.user_id = v_me,
+        'agree', (select coalesce(jsonb_agg(rm.character_name order by r.at), '[]'::jsonb) from public.fire_reactions r
+                  join public.party_members rm on rm.party_id = r.party_id and rm.user_id = r.user_id
+                  where r.party_id = p_party and r.week = v_week and r.day = v_day and r.target = 'pin:' || fp.user_id and r.kind = 'agree'),
+        'doubt', (select coalesce(jsonb_agg(rm.character_name order by r.at), '[]'::jsonb) from public.fire_reactions r
+                  join public.party_members rm on rm.party_id = r.party_id and rm.user_id = r.user_id
+                  where r.party_id = p_party and r.week = v_week and r.day = v_day and r.target = 'pin:' || fp.user_id and r.kind = 'doubt'),
+        'myReaction', (select kind from public.fire_reactions where party_id = p_party and user_id = v_me and week = v_week and day = v_day
+                       and target = 'pin:' || fp.user_id and kind <> 'none')) order by fp.at), '[]'::jsonb)
+      into v_readings
+    from public.fire_pins fp join public.party_members m on m.party_id = fp.party_id and m.user_id = fp.user_id
+    where fp.party_id = p_party and fp.week = v_week and fp.day = v_day;
+  end if;
+  select count(distinct reading) into v_kinds from public.fire_pins where party_id = p_party and week = v_week and day = v_day;
+
+  if v_day > 1 then v_prev_w := v_week; v_prev_d := v_day - 1;
+  elsif v_week > 1 then v_prev_w := v_week - 1; v_prev_d := 6;
+  end if;
+
+  return jsonb_build_object('week', v_week, 'day', v_day, 'narrated', v_narrated,
+    'evening', (select extract(hour from now() at time zone time_zone) >= 20 from public.parties where id = p_party),
+    'pieces', v_pieces,
+    'hands', v_hands,
+    'clicks', (select coalesce(jsonb_agg(jsonb_build_object('text', (v_data -> 'clicks' -> (k.idx - 1)) ->> 'text',
+                 'names', to_jsonb(k.names), 'solves', coalesce(((v_data -> 'clicks' -> (k.idx - 1)) ->> 'solves')::boolean, false)) order by k.at), '[]'::jsonb)
+               from public.fire_clicks k where k.party_id = p_party and k.week = v_week and k.day = v_day),
+    'puzzle', v_data -> 'puzzle',
+    'thread', case when v_narrated then '[]'::jsonb else (
+      select coalesce(jsonb_agg(t.item order by t.at), '[]'::jsonb) from (
+        select x.at, x.item from (
+          select th.at, jsonb_build_object('kind', th.kind, 'name', m.character_name, 'mine', th.user_id = v_me, 'body', th.body, 'at', th.at) item
+          from public.fire_thread th left join public.party_members m on m.party_id = th.party_id and m.user_id = th.user_id
+          where th.party_id = p_party and th.week = v_week and th.day = v_day
+          union all
+          select f.at, jsonb_build_object('kind', 'laid', 'name', m.character_name, 'mine', f.user_id = v_me, 'body', l ->> 'clueTitle', 'at', f.at)
+          from public.fan_outs f join public.party_members m on m.party_id = f.party_id and m.user_id = f.user_id
+          join lateral jsonb_array_elements(v_data -> 'leads') l on l ->> 'id' = f.lead_id
+          where f.party_id = p_party and f.week = v_week and f.day = v_day
+          union all
+          select s.at, jsonb_build_object('kind', 'laid', 'name', m.character_name, 'mine', s.user_id = v_me, 'body', 'What ' || m.character_name || ' noticed', 'at', s.at)
+          from public.fire_shares s join public.party_members m on m.party_id = s.party_id and m.user_id = s.user_id
+          where s.party_id = p_party and s.week = v_week and s.day = v_day
+          union all
+          select l.at, jsonb_build_object('kind', 'laid', 'name', m.character_name, 'mine', l.user_id = v_me,
+                   'body', case l.kind when 'pass' then 'What the passers heard' else coalesce(public.fire_press_piece(p_party, v_week, v_day) ->> 'title', 'A find') end, 'at', l.at)
+          from public.fire_laid l join public.party_members m on m.party_id = l.party_id and m.user_id = l.user_id
+          where l.party_id = p_party and l.week = v_week and l.day = v_day
+        ) x order by x.at desc limit 200) t) end,
+    'pinned', (select coalesce(jsonb_agg(m.character_name order by fp.at), '[]'::jsonb) from public.fire_pins fp
+               join public.party_members m on m.party_id = fp.party_id and m.user_id = fp.user_id
+               where fp.party_id = p_party and fp.week = v_week and fp.day = v_day and not v_narrated),
+    'readings', v_readings,
+    'leaning', case when v_narrated then null when v_kinds > 1 then 'split'
+                    when v_kinds = 1 and v_mine_pin.user_id is not null
+                         and (select count(*) from public.fire_pins where party_id = p_party and week = v_week and day = v_day) >= 3 then 'same' end,
+    'lastCall', case when v_prev_w is not null then public.fire_call(p_party, v_prev_w, v_prev_d) end);
+end;
+$$;
+
+revoke execute on function public.fire_table(uuid) from public, anon;
+grant execute on function public.fire_table(uuid) to authenticated;
+

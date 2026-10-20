@@ -149,7 +149,7 @@ export function getTierInfo(val: number): { name: string; bonus: number; rate: n
   if (val <= 25) return { name: 'Novice', bonus: 0, rate: 1.0, nextAt: 26, pctInTier: Math.min(100, Math.round((val / 25) * 100)) };
   if (val <= 50) return { name: 'Apprentice', bonus: 2, rate: 1.0, nextAt: 51, pctInTier: Math.min(100, Math.round(((val - 25) / 25) * 100)) };
   if (val <= 75) return { name: 'Adept', bonus: 4, rate: 0.6, nextAt: 76, pctInTier: Math.min(100, Math.round(((val - 50) / 25) * 100)) };
-  if (val <= 100) return { name: 'Expert', bonus: 6, rate: 0.3, nextAt: 101, pctInTier: Math.min(100, Math.round(((val - 75) / 25) * 100)) };
+  if (val <= 100) return { name: 'Champion', bonus: 6, rate: 0.3, nextAt: 101, pctInTier: Math.min(100, Math.round(((val - 75) / 25) * 100)) };
   return { name: 'Master', bonus: 8, rate: 0.1, nextAt: null, pctInTier: 100 };
 }
 
@@ -202,7 +202,7 @@ export function computeBadgeProgress(
     case 'first-light':
       return 'Complete your first chapter.';
     case 'whole-week': {
-      const days = stats.daysPlayed ?? 0;
+      const days = stats.daysPlayedThisWeek ?? Math.min(6, stats.daysPlayed ?? 0);
       return `${Math.min(6, days)} of 6 days played this week.`;
     }
     case 'long-road': {
@@ -228,6 +228,10 @@ export function computeBadgeProgress(
     case 'perfect':
       return 'Roll a natural 20 on a Challenge or an attack.';
     case 'never-enough': {
+      if (typeof stats.pressClearedThisWeek === 'number') {
+        const p = stats.pressClearedThisWeek;
+        return `${p} of 3 Press On roll${p === 1 ? '' : 's'} cleared this week.`;
+      }
       const p = stats.challengesPressedOn ?? 0;
       return `${p} Press On roll${p === 1 ? '' : 's'} taken so far.`;
     }
@@ -258,6 +262,7 @@ export const BADGES_META: BadgeMeta[] = [
 export interface NearMissContext {
   attributes?: Record<AttributeName, number>;
   daysPlayed?: number;
+  daysPlayedThisWeek?: number;
   stats?: Record<string, number>;
   earnedBadgeIds?: string[];
   partyLeads?: Record<string, { isLead: boolean; leadVal?: number; leadFriend?: string }>;
@@ -270,14 +275,20 @@ export interface NearMissContext {
  * "Mei leads Best Streak by one. Play tomorrow to draw level.", "One more Relic given and the crown is yours.").
  */
 export function computeNearMissLine(ctx: NearMissContext): string | null {
-  const { attributes, daysPlayed = 0, stats = {}, earnedBadgeIds = [], partyLeads, hasRelic } = ctx;
+  const { attributes, daysPlayed = 0, daysPlayedThisWeek, stats = {}, earnedBadgeIds = [], partyLeads, hasRelic } = ctx;
 
   // 1. Badge near-misses
-  if (!earnedBadgeIds.includes('whole-week') && (stats.daysPlayed === 6 || daysPlayed === 6)) {
+  const weekDays = daysPlayedThisWeek ?? stats.daysPlayedThisWeek;
+  if (!earnedBadgeIds.includes('whole-week') && (weekDays === 6 || (weekDays === undefined && (stats.daysPlayed === 6 || daysPlayed === 6)))) {
     return 'One more day for A Whole Week.';
   }
-  if (!earnedBadgeIds.includes('long-road') && (stats.daysPlayed === 29 || daysPlayed === 29)) {
-    return 'One more day for The Long Road.';
+  if (!earnedBadgeIds.includes('long-road')) {
+    if (stats.gatheringsAttended === 5) {
+      return 'One more Gathering for The Long Road.';
+    }
+    if (stats.daysPlayed === 29 || daysPlayed === 29) {
+      return 'One more day for The Long Road.';
+    }
   }
 
   // 2. Attribute tier near-misses
@@ -296,6 +307,10 @@ export function computeNearMissLine(ctx: NearMissContext): string | null {
         }
         if (val >= 73 && val < 76) {
           const diff = 76 - val;
+          return `${attr} ${val}: ${diff === 1 ? 'one point' : `${diff} points`} from Champion.`;
+        }
+        if (val >= 98 && val < 101) {
+          const diff = 101 - val;
           return `${attr} ${val}: ${diff === 1 ? 'one point' : `${diff} points`} from Master.`;
         }
       }

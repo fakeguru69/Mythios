@@ -81,6 +81,16 @@ const check = (name, ok) => {
     onlineCampfire.includes("data-hand={h.kind}") && onlineCampfire.includes("h.kind === 'notice'")
   );
 
+  check(
+    'OnlineDay.tsx passes fill(storedNotice.text) to NoticeRollCard so {F1} tokens never leak',
+    onlineDay.includes('fill(storedNotice.text)')
+  );
+
+  check(
+    'ChapterScriptParts.tsx uses canon ROLL · NOTICE button and has zero square brackets in Notice cards',
+    scriptParts.includes('ROLL · NOTICE') && !scriptParts.includes('[ROLL TO NOTICE]') && !scriptParts.includes('[{roll.d20}]')
+  );
+
   // 5. Functional logic check: simulate roll outcome math
   const simulateNoticeRoll = (d20, score) => {
     const bonus = score >= 101 ? 8 : score >= 76 ? 6 : score >= 51 ? 4 : score >= 26 ? 2 : 0;
@@ -90,7 +100,7 @@ const check = (name, ok) => {
       total,
       pass,
       text: pass ? 'Noticed clue' : 'Nothing catches your eye.',
-      noviceNote: pass && score < 26 ? 'A more practised eye would see more here.' : null,
+      noviceNote: pass && score < 26 ? 'At Apprentice (26), you would catch more.' : null,
     };
   };
 
@@ -98,7 +108,7 @@ const check = (name, ok) => {
   check('Novice with roll 3 (total 3) fails against DC 3', !noviceFail.pass && noviceFail.text === 'Nothing catches your eye.');
 
   const novicePass = simulateNoticeRoll(4, 10);
-  check('Novice with roll 4 (total 4) passes and receives novice note', novicePass.pass && novicePass.noviceNote !== null);
+  check('Novice with roll 4 (total 4) passes and receives novice note', novicePass.pass && novicePass.noviceNote === 'At Apprentice (26), you would catch more.');
 
   const apprenticePass = simulateNoticeRoll(2, 28);
   check('Apprentice with roll 2 + bonus 2 (total 4) passes without novice note', apprenticePass.pass && apprenticePass.noviceNote === null);

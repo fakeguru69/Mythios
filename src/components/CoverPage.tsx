@@ -55,7 +55,7 @@ export const CoverPage: React.FC<CoverPageProps> = ({ onGatherFriends, onSignIn 
             6 weeks
           </span>
           <span className="px-2.5 py-1 rounded-md bg-[#2B1E3D] border border-[#5E4585] text-[#C39BF5]">
-            2 to 6 friends
+            3 to 6 friends
           </span>
         </div>
       </div>
