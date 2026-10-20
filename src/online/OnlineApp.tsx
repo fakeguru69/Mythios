@@ -54,6 +54,27 @@ const partyOrder = (party: PartyRow) => (a: MemberRow, b: MemberRow) => {
   return key(a).localeCompare(key(b));
 };
 
+const getPartyCurrentDay = (day1OpensAt: string | null, timeZone: string): { week: number; day: number } | null => {
+  if (!day1OpensAt) return null;
+  const opens = new Date(day1OpensAt).getTime();
+  const now = Date.now();
+  if (now < opens) return null;
+  try {
+    const toAdjustedDate = (ms: number) => {
+      const shifted = new Date(ms - 5 * 3600 * 1000);
+      return new Intl.DateTimeFormat('en-CA', { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(shifted);
+    };
+    const todayStr = toAdjustedDate(now);
+    const day1Str = toAdjustedDate(opens);
+    const msDiff = new Date(todayStr).getTime() - new Date(day1Str).getTime();
+    const n = Math.floor(msDiff / 86400000);
+    if (n < 0 || n > 41) return null;
+    return { week: Math.floor(n / 7) + 1, day: (n % 7) + 1 };
+  } catch {
+    return { week: 1, day: 1 };
+  }
+};
+
 function useInvite(code: string | null) {
   const [info, setInfo] = useState<InviteCardInfo | null | undefined>(undefined);
   useEffect(() => {
@@ -383,6 +404,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [myCharacter, setMyCharacter] = useState<SeriesCharacter | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
   const [menuFor, setMenuFor] = useState<string | null>(null); // the party panel's ⋯ menu beside a friend (host only)
+  const [memberStatuses, setMemberStatuses] = useState<Record<string, string>>({});
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -405,6 +427,12 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       // The chat opens for a friend once they have read Day 2's chapter, where the party meets Garrick (the server decides).
       const { data: open } = await supabase.rpc('party_chat_open', { p_party: partyId });
       setChatOpen(open === true);
+
+      // Statuses for the party panel: "At the fire", "Reading Day N" (Piece C8)
+      const { data: st } = await supabase.rpc('party_member_statuses', { p_party: partyId });
+      if (st && typeof st === 'object') {
+        setMemberStatuses(st as Record<string, string>);
+      }
     } else {
       // Before being let in, a friend cannot read the party itself: only its name and its host's.
       const { data: sum } = await supabase.rpc('my_party_summary', { p_party: partyId });
@@ -681,6 +709,17 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   // Once the season is under way and your character is made, the party opens straight into the game shell
   // (docs/design/one-thread-18oct.md, phase A). Everything the page held that is not a tab sits in the party panel.
   if (started && !beforeDayOne && me.session_zero_done_at) {
+    const currentDay = party ? getPartyCurrentDay(party.day1_opens_at, party.time_zone) : null;
+    const friendStatus = (r: MemberRow) => {
+      if (memberStatuses[r.user_id]) return memberStatuses[r.user_id];
+      if (!started || beforeDayOne) {
+        return r.ready ? 'Ready' : 'Choosing';
+      }
+      if (!currentDay) return 'Reading Day 1';
+      if (currentDay.day === 7) return 'At the Gathering';
+      return `Reading Day ${currentDay.day}`;
+    };
+
     const panel = (shell: { joinGathering: () => void }) => (
       <div className="space-y-4">
         {removeDialog}
@@ -690,43 +729,64 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           <p className="text-[12px] font-bold tracking-[1px] text-[#8F82A6]">
             {party.name.toUpperCase()} · {approved.length} OF {MAX_PARTY_SIZE}
           </p>
-          {approved.map((r) => (
-            <div key={r.user_id} className="rounded-xl border border-[#2C1D40] bg-[#150D22] px-3 py-2.5 space-y-2" data-panel-friend>
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 shrink-0 rounded-full bg-[#2A1A40] text-[#E5C158] font-['Cinzel'] font-bold text-[15px] flex items-center justify-center">
-                  {(r.character_name || '?').charAt(0).toUpperCase()}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-[16px] font-semibold truncate">
-                    {r.character_name}
-                    {r.user_id === userId && <span className="font-normal text-[#B7A9CC]"> · you</span>}
-                    {r.user_id === party.host_id && <span className="font-normal text-[#B7A9CC]"> · host</span>}
-                  </div>
-                  {r.class && <div className="text-[13px] text-[#B7A9CC]">{r.class}</div>}
-                </div>
-                {isHost && r.user_id !== userId && (
-                  <button
-                    className="w-9 h-9 rounded-full text-[18px] text-[#8F82A6]"
-                    aria-label={`More for ${r.character_name}`}
-                    onClick={() => setMenuFor(menuFor === r.user_id ? null : r.user_id)}
+          {approved.map((r) => {
+            const status = friendStatus(r);
+            return (
+              <div key={r.user_id} className="rounded-xl border border-[#2C1D40] bg-[#150D22] px-3.5 py-2.5 space-y-2" data-panel-friend>
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-9 h-9 shrink-0 rounded-full bg-[#2A1A40] text-[#E5C158] font-['Cinzel'] font-bold text-[15px] flex items-center justify-center border border-[#432A66]"
+                    data-friend-avatar
                   >
-                    ⋯
-                  </button>
+                    {(r.character_name || '?').charAt(0).toUpperCase()}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[16px] font-semibold truncate flex items-center gap-1.5">
+                      <span className="truncate">{r.character_name}</span>
+                      {r.user_id === userId && <span className="font-normal text-[13px] text-[#B7A9CC] shrink-0">· you</span>}
+                      {r.user_id === party.host_id && <span className="font-normal text-[13px] text-[#B7A9CC] shrink-0">· host</span>}
+                    </div>
+                    <div className="text-[13px] text-[#B7A9CC] flex items-center gap-1.5 truncate">
+                      {r.class && <span data-friend-class>{r.class}</span>}
+                      {r.class && status && <span className="text-[#5E4585]">·</span>}
+                      {status && (
+                        <span
+                          data-friend-status
+                          className={status === 'At the fire' ? 'text-[#E5C158] font-medium' : 'text-[#8F82A6]'}
+                        >
+                          {status}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  {isHost && r.user_id !== userId && (
+                    <button
+                      className="w-9 h-9 shrink-0 rounded-full text-[18px] text-[#8F82A6] hover:text-[#F4F1F8] flex items-center justify-center transition"
+                      aria-label={`More for ${r.character_name}`}
+                      data-friend-menu-button
+                      onClick={() => setMenuFor(menuFor === r.user_id ? null : r.user_id)}
+                    >
+                      ⋯
+                    </button>
+                  )}
+                </div>
+                {menuFor === r.user_id && (
+                  <div className="pt-2 border-t border-[#2C1D40] flex justify-end" data-friend-menu>
+                    <button
+                      className={`${quietButton} text-[#F08A8A] border-[#682323] hover:border-[#F08A8A] text-[13px]`}
+                      data-remove-button
+                      onClick={() => {
+                        setMenuFor(null);
+                        setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name });
+                      }}
+                    >
+                      Remove from the party
+                    </button>
+                  </div>
                 )}
               </div>
-              {menuFor === r.user_id && (
-                <button
-                  className={quietButton}
-                  onClick={() => {
-                    setMenuFor(null);
-                    setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name });
-                  }}
-                >
-                  Remove from the party
-                </button>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
         {pendingCard}
         {inviteCard}

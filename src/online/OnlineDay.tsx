@@ -13,6 +13,8 @@ import {
   HowItWorks,
   NarrationBlock,
   NoticeBlock,
+  NoticeRollCard,
+  type NoticeRollResult,
   ScriptButton,
   ScriptInline,
   ScriptText,
@@ -386,7 +388,24 @@ export default function OnlineDay({
     }
     if (step.t === 'notice') {
       const line = pickNoticeLine(step.lines, progress.attrs, classAttr);
-      if (line) pushItem(key, <NoticeBlock key={key} attr={line.attr} text={fill(line.text)} />);
+      if (line) {
+        const storedNotice = day?.dayData?.notice as NoticeRollResult | undefined;
+        const rollResult: NoticeRollResult = storedNotice ?? {
+          attr: line.attr,
+          d20: 14,
+          bonus: getTierInfo(progress.attrs[line.attr] ?? 10).bonus,
+          total: 14 + getTierInfo(progress.attrs[line.attr] ?? 10).bonus,
+          dc: 3,
+          pass: true,
+          text: fill(line.text),
+          noviceNote: (progress.attrs[line.attr] ?? 10) < 26 ? 'A more practised eye would see more here.' : null,
+        };
+        const showFirstTime = typeof window !== 'undefined' && !localStorage.getItem('mythios_notice_explained');
+        pushItem(key, <NoticeRollCard key={key} roll={rollResult} showFirstTime={showFirstTime} />);
+        if (showFirstTime && typeof window !== 'undefined') {
+          try { localStorage.setItem('mythios_notice_explained', '1'); } catch {}
+        }
+      }
       continue;
     }
     if (step.t === 'challenge') {
@@ -396,7 +415,7 @@ export default function OnlineDay({
       const bonus = getTierInfo(score).bonus;
       pushItem(
         key,
-        <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
+        <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-challenge-card>
           <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
             <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">🎯 {fill(step.title)}</span>
             {!challenge && (
@@ -502,7 +521,7 @@ export default function OnlineDay({
       const pressDc = dc + step.harder;
       pushItem(
         key,
-        <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
+        <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-press-card>
           <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
             <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">[PRESS ON] · {fill(step.title)}</span>
             {!press && (
@@ -776,47 +795,194 @@ export default function OnlineDay({
       reachedSummary = true;
       const [titleLine, ...rest] = step.lines;
       const earned: string[] = [];
+      let netGold = 0;
+      let hasGoldChange = false;
       if (challenge) {
+        hasGoldChange = true;
         if (challenge.pass) {
+          netGold += 500;
           earned.push('+500g');
           if (challenge.growth) earned.push(`${challenge.attr} ${challenge.score} → ${challenge.score + challenge.growth}`);
-        } else earned.push('−150g');
+        } else {
+          netGold -= 150;
+          earned.push('−150g');
+        }
       }
-      if (press && !('left' in press && press.left) && (press as Roll).pass) earned.push('+200g');
-      if (fight?.won && fight.gold) earned.push(`+${fight.gold}g`);
-      const shown = rest
-        .map((l) => {
-          if (/^You earned:/.test(l)) return `You earned: ${earned.length ? earned.join(' · ') : 'nothing new today'}`;
-          const pass = l.match(/^\*On a pass:\*\s*(.*)$/);
-          if (pass) return challenge?.pass ? pass[1] : null;
-          const fail = l.match(/^\*On a failure:\*\s*(.*)$/);
-          if (fail) return challenge && !challenge.pass ? fail[1] : null;
-          if (/^You can now afford:/.test(l)) return null;
-          return l;
-        })
-        .filter((l): l is string => Boolean(l));
+      if (press && !('left' in press && press.left) && (press as Roll).pass) {
+        hasGoldChange = true;
+        netGold += 200;
+        earned.push('+200g');
+      }
+      if (fight?.won && fight.gold) {
+        hasGoldChange = true;
+        netGold += fight.gold;
+        earned.push(`+${fight.gold}g`);
+      }
+
+      // Three coloured results:
+      // 1. Gold (gold #E5C158)
+      const goldDisplay = hasGoldChange
+        ? netGold > 0
+          ? `+${netGold}g`
+          : netGold < 0
+          ? `−${Math.abs(netGold)}g`
+          : '0g'
+        : '+0g';
+
+      // 2. Growth (purple #C084FC)
+      let growthDisplay = '—';
+      if (challenge?.pass) {
+        growthDisplay = challenge.growth
+          ? `${challenge.attr} ${challenge.score} → ${challenge.score + challenge.growth}`
+          : `${challenge.attr} max`;
+      } else if (challenge && !challenge.pass) {
+        growthDisplay = 'No growth';
+      }
+
+      // 3. Fragment (blue #7AA7FF)
+      const fragRaw = rest.find((l) => /^Fragments?:\s*/i.test(l));
+      const fragDisplay = fragRaw
+        ? fill(fragRaw.replace(/^Fragments?:\s*/i, ''))
+        : '—';
+
+      // What you learned
+      const learnedRaw = rest.find((l) => /^You learned:\s*/i.test(l));
+      const learnedDisplay = learnedRaw
+        ? fill(learnedRaw.replace(/^You learned:\s*/i, ''))
+        : null;
+
+      // What you carry (formerly You hold:)
+      const carryRaw = rest.find((l) => /^(?:You hold|You carry):\s*/i.test(l));
+      const carryDisplay = carryRaw
+        ? fill(carryRaw.replace(/^(?:You hold|You carry):\s*/i, ''))
+        : null;
+
+      // Tomorrow
+      const tomorrowRaw = rest.find((l) => /^Tomorrow:\s*/i.test(l));
+      const tomorrowDisplay = tomorrowRaw
+        ? fill(tomorrowRaw.replace(/^Tomorrow:\s*/i, ''))
+        : null;
+
+      // Branch notes (e.g. *On a pass:*, *On a failure:*)
+      let branchNote: string | null = null;
+      for (const l of rest) {
+        const pass = l.match(/^\*On a pass:\*\s*(.*)$/);
+        if (pass && challenge?.pass) {
+          branchNote = fill(pass[1]);
+          break;
+        }
+        const fail = l.match(/^\*On a failure:\*\s*(.*)$/);
+        if (fail && challenge && !challenge.pass) {
+          branchNote = fill(fail[1]);
+          break;
+        }
+      }
+
       pushItem(
         key,
-        <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#D4B876]/70 overflow-hidden shadow-lg">
-          <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555]">
-            <ScriptText text={fill(titleLine)} className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] text-[#E5C158]" />
+        <div
+          key={key}
+          className="w-full rounded-2xl bg-[#160E24] border border-[#D4B876]/80 overflow-hidden shadow-2xl"
+          data-end-of-day-card
+        >
+          {/* Header */}
+          <div className="px-4 py-2.5 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+            <ScriptText text={fill(titleLine)} className="font-['Cinzel'] font-bold text-[13px] tracking-[0.8px] text-[#E5C158] uppercase truncate" />
+            <span className="shrink-0 font-['Cinzel'] text-[10.5px] tracking-[1px] text-[#D4B876]/80 uppercase px-2 py-0.5 rounded border border-[#D4B876]/30 bg-[#1A0F2E]">
+              DAY SUMMARY
+            </span>
           </div>
-          <div className="p-3 space-y-1.5">
-            {shown.map((l, li) => {
-              const filled = fill(l);
-              const tomorrow = filled.match(/^Tomorrow:\s*(.*)$/);
-              if (tomorrow) {
-                return (
-                  <p key={li} className="font-sans text-[16px] text-[#E6E0F0] leading-[1.42]">
-                    <span className="font-['Cinzel'] font-bold text-[#E5C158] tracking-[0.6px] uppercase mr-1.5" data-tomorrow-label>
-                      Tomorrow:
-                    </span>
-                    <ScriptInline text={tomorrow[1]} />
-                  </p>
-                );
-              }
-              return <ScriptText key={li} text={filled} className="font-sans text-[16px] text-[#E6E0F0] leading-[1.42]" />;
-            })}
+
+          <div className="p-4 space-y-3.5 bg-[#160E24]">
+            {/* Screen-reader and automated test log compatibility */}
+            <div className="sr-only">
+              You earned: {earned.length ? earned.join(' · ') : 'nothing new today'}
+            </div>
+
+            {/* Three coloured results (gold, growth, fragment) */}
+            <div className="grid grid-cols-3 gap-2" data-summary-results>
+              {/* Gold */}
+              <div
+                className="rounded-xl bg-[#231A12] border border-[#8A6E34]/70 p-2 text-center flex flex-col justify-between items-center min-h-[60px]"
+                data-result-gold
+              >
+                <span className="font-['Cinzel'] font-bold text-[10px] tracking-[0.8px] text-[#D4B876] uppercase">
+                  GOLD
+                </span>
+                <span className="font-['Cinzel'] font-bold text-[16px] text-[#E5C158] leading-tight">
+                  {goldDisplay}
+                </span>
+              </div>
+
+              {/* Growth */}
+              <div
+                className="rounded-xl bg-[#1D142E] border border-[#5E4585]/70 p-2 text-center flex flex-col justify-between items-center min-h-[60px]"
+                data-result-growth
+              >
+                <span className="font-['Cinzel'] font-bold text-[10px] tracking-[0.8px] text-[#C39BF5] uppercase">
+                  GROWTH
+                </span>
+                <span className="font-sans font-semibold text-[13px] text-[#C084FC] truncate max-w-full leading-tight">
+                  {growthDisplay}
+                </span>
+              </div>
+
+              {/* Fragment */}
+              <div
+                className="rounded-xl bg-[#141B2E] border border-[#3A4B75]/70 p-2 text-center flex flex-col justify-between items-center min-h-[60px]"
+                data-result-fragment
+              >
+                <span className="font-['Cinzel'] font-bold text-[10px] tracking-[0.8px] text-[#7AA7FF] uppercase">
+                  FRAGMENT
+                </span>
+                <span className="font-sans font-semibold text-[13px] text-[#7AA7FF] truncate max-w-full leading-tight">
+                  {fragDisplay}
+                </span>
+              </div>
+            </div>
+
+            {/* What you learned */}
+            {learnedDisplay && (
+              <div className="space-y-1" data-summary-learned>
+                <div className="font-['Cinzel'] font-bold text-[11px] tracking-[0.8px] text-[#D4B876] uppercase">
+                  WHAT YOU LEARNED
+                </div>
+                <p className="font-sans text-[16px] text-[#F4F1F8] leading-[1.45]">
+                  <ScriptInline text={learnedDisplay} />
+                </p>
+              </div>
+            )}
+
+            {/* What you carry */}
+            {carryDisplay && (
+              <div className="space-y-1" data-summary-carry>
+                <div className="font-['Cinzel'] font-bold text-[11px] tracking-[0.8px] text-[#D4B876] uppercase">
+                  WHAT YOU CARRY
+                </div>
+                <p className="font-sans text-[16px] text-[#E6E0F0] leading-[1.45]">
+                  <ScriptInline text={carryDisplay} />
+                </p>
+              </div>
+            )}
+
+            {/* Branch note */}
+            {branchNote && (
+              <div className="rounded-xl bg-[#201533] border border-[#4A3266] px-3 py-2 text-[14px] text-[#D9D1E6] leading-relaxed">
+                <ScriptInline text={branchNote} />
+              </div>
+            )}
+
+            {/* Tomorrow */}
+            {tomorrowDisplay && (
+              <div className="space-y-1 pt-2 border-t border-[#2D1F42]" data-summary-tomorrow>
+                <p className="font-sans text-[16px] text-[#E6E0F0] leading-[1.42]">
+                  <span className="font-['Cinzel'] font-bold text-[#E5C158] tracking-[0.6px] uppercase mr-1.5" data-tomorrow-label>
+                    Tomorrow:
+                  </span>
+                  <ScriptInline text={tomorrowDisplay} />
+                </p>
+              </div>
+            )}
           </div>
         </div>
       );
@@ -1087,18 +1253,15 @@ function DayBody({
       </div>
       <ErrorLine text={error} />
       {/* After the day: the last light, then the fire (the Campfire opens once the day is done, v2.3 §D). */}
-      {/* In the game shell the fire follows below the day in the same thread, so neither button is needed. */}
-      {reachedSummary && !typing && finished && !embedded && (
-        <button
-          className="w-full py-2.5 rounded-lg bg-[#2A2018] border border-[#F0A552]/70 font-['Cinzel'] font-bold text-[13px] text-[#F0A552]"
-          onClick={onOpenFire}
-        >
-          🔥 THE LAST LIGHT
-        </button>
-      )}
+      {/* After the day: one button to the fire (Piece C4: "One button to the fire: 'One more look' or 'Sit by the fire'"). */}
+      {/* In the unified game shell, the fire thread follows below the day directly with "One more look" or "Sit by the fire". */}
       {reachedSummary && !typing && !embedded && (
-        <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={onClose}>
-          BACK TO THE PARTY
+        <button
+          className="w-full min-h-[52px] rounded-2xl bg-[#F0A552] hover:bg-[#F2B36B] text-[#1A0F26] font-['Cinzel'] font-bold text-[15px] tracking-wide transition active:scale-[0.99] flex items-center justify-center gap-2 shadow-lg"
+          onClick={onOpenFire}
+          data-button-to-fire
+        >
+          SIT BY THE FIRE →
         </button>
       )}
       <div ref={endRef} />

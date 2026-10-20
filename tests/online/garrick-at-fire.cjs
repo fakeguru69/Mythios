@@ -7,12 +7,28 @@
 const { chromium } = require('./playwright.cjs');
 
 let failed = false;
+const fs = require('fs');
+const path = require('path');
+
 const check = (name, ok) => {
   console.log((ok ? 'ok   ' : 'FAIL ') + name);
   if (!ok) failed = true;
 };
 
 (async () => {
+  const root = path.resolve(__dirname, '../..');
+  const fixMig = fs.readFileSync(path.join(root, 'supabase/migrations/0099_garrick_fire_asker_fix.sql'), 'utf8');
+  const handlerTs = fs.readFileSync(path.join(root, 'supabase/functions/garrick/handler.ts'), 'utf8');
+
+  check(
+    '0099_garrick_fire_asker_fix.sql checks p_asked_by in member_days explicitly',
+    fixMig.includes('user_id = p_asked_by') && fixMig.includes('finished_at is not null')
+  );
+  check(
+    'handler.ts checks atFire via garrick_state before privateQuestion routing',
+    /const ctx = await rpc[\s\S]*?garrick_state[\s\S]*?const effectivePlace = atFire \? 'fire' : body\.place/i.test(handlerTs)
+  );
+
   const b = await chromium.launch({ args: [`--proxy-server=${process.env.HTTPS_PROXY}`, '--proxy-bypass-list=localhost;127.0.0.1'] });
   const p = await (await b.newContext({ viewport: { width: 375, height: 900 } })).newPage();
   p.on('pageerror', (e) => console.log('PAGEERROR', e.message));

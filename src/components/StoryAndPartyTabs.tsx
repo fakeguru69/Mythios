@@ -1078,7 +1078,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     const extraReward = step.reward.replace(/^\+?500g\s*/, '');
     const shownBonus = activeTierBonus + (useAttrRelic ? 4 : 0);
     return (
-      <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
+      <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-challenge-card>
         <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
           <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
             🎯 {step.title}
@@ -1224,7 +1224,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     const bonus = getTierInfo(attributes[attr] || 1).bonus + (pressRelic ? 4 : 0);
     const relicsForAttr = relics[attr] || 0;
     return (
-      <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg">
+      <div className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-press-card>
         <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
           <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">
             PRESS ON · {step.title}
@@ -1303,43 +1303,169 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
   const renderSummaryCard = (step: Extract<ScriptStep, { t: 'summary' }>) => {
     const [titleLine, ...rest] = step.lines;
     const earned: string[] = [];
+    let netGold = 0;
+    let hasGoldChange = false;
     if (rollOutcome && !isReplayRoll) {
+      hasGoldChange = true;
       if (rollOutcome.cleared) {
+        netGold += GOLD_CHALLENGE_WIN;
         earned.push(`+${GOLD_CHALLENGE_WIN}g`);
         earned.push(`${rollOutcome.attr} ${rollOutcome.attrPoints} → ${rollOutcome.attrPoints + (rollOutcome.growth ?? 0)}`);
-      } else earned.push(`−${GOLD_CHALLENGE_LOSS}g`);
+      } else {
+        netGold -= GOLD_CHALLENGE_LOSS;
+        earned.push(`−${GOLD_CHALLENGE_LOSS}g`);
+      }
     }
-    if (pressOutcome?.cleared && !pressReplay) earned.push(`+${GOLD_PRESS_ON_WIN}g`);
-    if (fightDone && enemyRemainingHp <= 0 && (dayData.fightReward ?? 0) > 0 && !fightReplay) earned.push(`+${dayData.fightReward}g`);
-    const shown = rest
-      .map((l) => {
-        if (/^You earned:/.test(l)) return `You earned: ${earned.length ? earned.join(' · ') : 'nothing new today'}`;
-        // A line kept only for one branch of the roll.
-        const pass = l.match(/^\*On a pass:\*\s*(.*)$/);
-        if (pass) return rollOutcome?.cleared ? pass[1] : null;
-        const fail = l.match(/^\*On a failure:\*\s*(.*)$/);
-        if (fail) return rollOutcome && !rollOutcome.cleared ? fail[1] : null;
-        // Canon's sample line ("You can now afford…") is an example, not a fixed line.
-        if (/^You can now afford:/.test(l)) return null;
-        return l;
-      })
-      .filter((l): l is string => Boolean(l));
+    if (pressOutcome?.cleared && !pressReplay) {
+      hasGoldChange = true;
+      netGold += GOLD_PRESS_ON_WIN;
+      earned.push(`+${GOLD_PRESS_ON_WIN}g`);
+    }
+    if (fightDone && enemyRemainingHp <= 0 && (dayData.fightReward ?? 0) > 0 && !fightReplay) {
+      hasGoldChange = true;
+      netGold += dayData.fightReward ?? 0;
+      earned.push(`+${dayData.fightReward}g`);
+    }
+
+    const goldDisplay = hasGoldChange
+      ? netGold > 0
+        ? `+${netGold}g`
+        : netGold < 0
+        ? `−${Math.abs(netGold)}g`
+        : '0g'
+      : '+0g';
+
+    let growthDisplay = '—';
+    if (rollOutcome?.cleared && !isReplayRoll) {
+      growthDisplay = rollOutcome.growth
+        ? `${rollOutcome.attr} ${rollOutcome.attrPoints} → ${rollOutcome.attrPoints + rollOutcome.growth}`
+        : `${rollOutcome.attr} max`;
+    } else if (rollOutcome && !rollOutcome.cleared) {
+      growthDisplay = 'No growth';
+    }
+
+    const fragRaw = rest.find((l) => /^Fragments?:\s*/i.test(l));
+    const fragDisplay = fragRaw ? fill(fragRaw.replace(/^Fragments?:\s*/i, '')) : '—';
+
+    const learnedRaw = rest.find((l) => /^You learned:\s*/i.test(l));
+    const learnedDisplay = learnedRaw ? fill(learnedRaw.replace(/^You learned:\s*/i, '')) : null;
+
+    const carryRaw = rest.find((l) => /^(?:You hold|You carry):\s*/i.test(l));
+    const carryDisplay = carryRaw ? fill(carryRaw.replace(/^(?:You hold|You carry):\s*/i, '')) : null;
+
+    const tomorrowRaw = rest.find((l) => /^Tomorrow:\s*/i.test(l));
+    const tomorrowDisplay = tomorrowRaw ? fill(tomorrowRaw.replace(/^Tomorrow:\s*/i, '')) : null;
+
+    let branchNote: string | null = null;
+    for (const l of rest) {
+      const pass = l.match(/^\*On a pass:\*\s*(.*)$/);
+      if (pass && rollOutcome?.cleared) {
+        branchNote = fill(pass[1]);
+        break;
+      }
+      const fail = l.match(/^\*On a failure:\*\s*(.*)$/);
+      if (fail && rollOutcome && !rollOutcome.cleared) {
+        branchNote = fill(fail[1]);
+        break;
+      }
+    }
+
     return (
-      <div className="w-full rounded-xl bg-[#180F29] border border-[#D4B876]/70 overflow-hidden shadow-lg">
-        <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555]">
+      <div
+        className="w-full rounded-2xl bg-[#160E24] border border-[#D4B876]/80 overflow-hidden shadow-2xl"
+        data-end-of-day-card
+      >
+        <div className="px-4 py-2.5 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
           <ScriptText
             text={fill(titleLine)}
-            className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] text-[#E5C158]"
+            className="font-['Cinzel'] font-bold text-[13px] tracking-[0.8px] text-[#E5C158] uppercase truncate"
           />
+          <span className="shrink-0 font-['Cinzel'] text-[10.5px] tracking-[1px] text-[#D4B876]/80 uppercase px-2 py-0.5 rounded border border-[#D4B876]/30 bg-[#1A0F2E]">
+            DAY SUMMARY
+          </span>
         </div>
-        <div className="p-3 space-y-1">
-          {shown.map((l, i) => (
-            <ScriptText
-              key={i}
-              text={fill(l)}
-              className="font-sans text-[14px] text-[#E6E0F0] leading-[1.42]"
-            />
-          ))}
+
+        <div className="p-4 space-y-3.5 bg-[#160E24]">
+          <div className="sr-only">
+            You earned: {earned.length ? earned.join(' · ') : 'nothing new today'}
+          </div>
+
+          <div className="grid grid-cols-3 gap-2" data-summary-results>
+            <div
+              className="rounded-xl bg-[#231A12] border border-[#8A6E34]/70 p-2 text-center flex flex-col justify-between items-center min-h-[60px]"
+              data-result-gold
+            >
+              <span className="font-['Cinzel'] font-bold text-[10px] tracking-[0.8px] text-[#D4B876] uppercase">
+                GOLD
+              </span>
+              <span className="font-['Cinzel'] font-bold text-[16px] text-[#E5C158] leading-tight">
+                {goldDisplay}
+              </span>
+            </div>
+
+            <div
+              className="rounded-xl bg-[#1D142E] border border-[#5E4585]/70 p-2 text-center flex flex-col justify-between items-center min-h-[60px]"
+              data-result-growth
+            >
+              <span className="font-['Cinzel'] font-bold text-[10px] tracking-[0.8px] text-[#C39BF5] uppercase">
+                GROWTH
+              </span>
+              <span className="font-sans font-semibold text-[13px] text-[#C084FC] truncate max-w-full leading-tight">
+                {growthDisplay}
+              </span>
+            </div>
+
+            <div
+              className="rounded-xl bg-[#141B2E] border border-[#3A4B75]/70 p-2 text-center flex flex-col justify-between items-center min-h-[60px]"
+              data-result-fragment
+            >
+              <span className="font-['Cinzel'] font-bold text-[10px] tracking-[0.8px] text-[#7AA7FF] uppercase">
+                FRAGMENT
+              </span>
+              <span className="font-sans font-semibold text-[13px] text-[#7AA7FF] truncate max-w-full leading-tight">
+                {fragDisplay}
+              </span>
+            </div>
+          </div>
+
+          {learnedDisplay && (
+            <div className="space-y-1" data-summary-learned>
+              <div className="font-['Cinzel'] font-bold text-[11px] tracking-[0.8px] text-[#D4B876] uppercase">
+                WHAT YOU LEARNED
+              </div>
+              <p className="font-sans text-[16px] text-[#F4F1F8] leading-[1.45]">
+                <ScriptInline text={learnedDisplay} />
+              </p>
+            </div>
+          )}
+
+          {carryDisplay && (
+            <div className="space-y-1" data-summary-carry>
+              <div className="font-['Cinzel'] font-bold text-[11px] tracking-[0.8px] text-[#D4B876] uppercase">
+                WHAT YOU CARRY
+              </div>
+              <p className="font-sans text-[16px] text-[#E6E0F0] leading-[1.45]">
+                <ScriptInline text={carryDisplay} />
+              </p>
+            </div>
+          )}
+
+          {branchNote && (
+            <div className="rounded-xl bg-[#201533] border border-[#4A3266] px-3 py-2 text-[14px] text-[#D9D1E6] leading-relaxed">
+              <ScriptInline text={branchNote} />
+            </div>
+          )}
+
+          {tomorrowDisplay && (
+            <div className="space-y-1 pt-2 border-t border-[#2D1F42]" data-summary-tomorrow>
+              <p className="font-sans text-[16px] text-[#E6E0F0] leading-[1.42]">
+                <span className="font-['Cinzel'] font-bold text-[#E5C158] tracking-[0.6px] uppercase mr-1.5" data-tomorrow-label>
+                  Tomorrow:
+                </span>
+                <ScriptInline text={tomorrowDisplay} />
+              </p>
+            </div>
+          )}
         </div>
       </div>
     );

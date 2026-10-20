@@ -99,31 +99,38 @@ export const ScriptInline: React.FC<{ text: string }> = ({ text }) => <>{renderI
 /** A canon passage: paragraphs split on blank lines; single line breaks kept. */
 export const ScriptText: React.FC<{ text: string; className?: string }> = ({ text, className }) => (
   <>
-    {text.split(/\n\s*\n/).map((para, pi) => (
-      <p
-        key={pi}
-        className={className ?? 'font-sans text-[16px] text-[#F4F1F8] leading-[1.45]'}
-      >
-        {para.split('\n').map((line, li, arr) => (
-          <React.Fragment key={li}>
-            {renderInline(line, `${pi}-${li}`)}
-            {li < arr.length - 1 && <br />}
-          </React.Fragment>
-        ))}
-      </p>
-    ))}
+    {text.split(/\n\s*\n/).map((para, pi) => {
+      const isLeadIn = para.trim() === '…' || para.trim() === '...';
+      return (
+        <p
+          key={pi}
+          className={className ?? 'font-sans text-[16px] text-[#F4F1F8] leading-[1.45]'}
+          {...(isLeadIn ? { 'data-lead-in': true } : {})}
+        >
+          {para.split('\n').map((line, li, arr) => (
+            <React.Fragment key={li}>
+              {renderInline(line, `${pi}-${li}`)}
+              {li < arr.length - 1 && <br />}
+            </React.Fragment>
+          ))}
+        </p>
+      );
+    })}
   </>
 );
 
 /** MYTHIOS telling the story (phase C1 voice key): 18px sans-serif, white, no italics, no side bar. */
-export const NarrationBlock: React.FC<{ text: string; pull?: boolean }> = ({ text }) => (
-  <div className="space-y-2" data-mythios-story>
-    <ScriptText
-      text={text}
-      className="font-sans text-[18px] text-[#F4F1F8] leading-[1.5]"
-    />
-  </div>
-);
+export const NarrationBlock: React.FC<{ text: string; pull?: boolean }> = ({ text }) => {
+  const isLeadIn = text.trim() === '…' || text.trim() === '...';
+  return (
+    <div className="space-y-2" data-mythios-story {...(isLeadIn ? { 'data-lead-in': true } : {})}>
+      <ScriptText
+        text={text}
+        className={`font-sans text-[18px] text-[#F4F1F8] leading-[1.5] ${isLeadIn ? 'tracking-[2px]' : ''}`}
+      />
+    </div>
+  );
+};
 
 /** How-to lines (phase C1 voice key): a small gold "HOW IT WORKS" strip. */
 export const HowItWorks: React.FC<{ text: string }> = ({ text }) => (
@@ -187,5 +194,56 @@ export const NoticeBlock: React.FC<{ attr: AttributeName; text: string; label?: 
       {label ?? `What you notice · ${attr}`}
     </div>
     <ScriptText text={text} className="font-sans text-[16px] text-[#E8F1FF] leading-[1.45]" />
+  </div>
+);
+
+/** First-time Notice explanation card (Piece C6): explains the notice mechanic once per player. */
+export const FirstTimeNoticeInfo: React.FC<{ attr: AttributeName }> = ({ attr }) => (
+  <div className="rounded-xl bg-[#142036] border border-[#2E4B75] p-3 space-y-1.5" data-first-time-notice>
+    <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#8DB4F5] uppercase">
+      THE NOTICE · {attr.toUpperCase()}, YOUR BEST
+    </div>
+    <div className="font-sans text-[15px] text-[#CBE0FF] leading-[1.45]">
+      Each day you notice one thing others may miss. Your best Attribute gives you the eye for it.
+    </div>
+  </div>
+);
+
+export interface NoticeRollResult {
+  attr: AttributeName;
+  score?: number;
+  d20: number;
+  bonus: number;
+  total: number;
+  dc: number;
+  pass: boolean;
+  text: string;
+  noviceNote?: string | null;
+}
+
+/** The Notice Card with Roll breakdown (Piece C6). */
+export const NoticeRollCard: React.FC<{
+  roll: NoticeRollResult;
+  showFirstTime?: boolean;
+}> = ({ roll, showFirstTime }) => (
+  <div className="space-y-2" data-notice-container>
+    {showFirstTime && <FirstTimeNoticeInfo attr={roll.attr} />}
+    <div className="rounded-xl bg-[#101C30] border border-[#3B669E] p-3.5 space-y-2 shadow-md" data-notice-card>
+      <div className="flex justify-between items-center text-[12px] font-['Cinzel'] font-bold tracking-[1px] uppercase">
+        <span className="text-[#7AA7FF]">WHAT YOU NOTICE · {roll.attr}</span>
+        <span className={roll.pass ? 'text-[#82E6A1]' : 'text-[#E68282]'}>
+          {roll.pass ? 'PASSED' : 'FAILED'} (DC {roll.dc})
+        </span>
+      </div>
+      <div className="text-[13px] font-mono text-[#82A2E6]">
+        Roll: d20 [{roll.d20}] {roll.bonus >= 0 ? `+ ${roll.bonus}` : `- ${Math.abs(roll.bonus)}`} = {roll.total} vs DC {roll.dc}
+      </div>
+      <ScriptText text={roll.text} className="font-sans text-[16px] text-[#E8F1FF] leading-[1.45]" />
+      {roll.pass && roll.noviceNote && (
+        <div className="text-[14px] italic text-[#A2C2F5] pt-1 border-t border-[#233B61]" data-novice-note>
+          {roll.noviceNote}
+        </div>
+      )}
+    </div>
   </div>
 );

@@ -628,13 +628,16 @@ export default function OnlineGathering({
       case 'summary': {
         const [title, ...rest] = e.lines as string[];
         nodes.push(
-          <div key={k} className="w-full rounded-xl bg-[#180F29] border border-[#D4B876]/70 overflow-hidden shadow-lg">
-            <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555]">
-              <ScriptText text={title} className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] text-[#E5C158]" />
+          <div key={k} className="w-full rounded-2xl bg-[#160E24] border border-[#D4B876]/80 overflow-hidden shadow-2xl" data-gathering-summary>
+            <div className="px-4 py-2.5 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+              <ScriptText text={title} className="font-['Cinzel'] font-bold text-[13px] tracking-[0.8px] text-[#E5C158] uppercase truncate" />
+              <span className="shrink-0 font-['Cinzel'] text-[10.5px] tracking-[1px] text-[#D4B876]/80 uppercase px-2 py-0.5 rounded border border-[#D4B876]/30 bg-[#1A0F2E]">
+                GATHERING SUMMARY
+              </span>
             </div>
-            <div className="p-3 space-y-1">
+            <div className="p-4 space-y-2 bg-[#160E24]">
               {rest.map((l, li) => (
-                <ScriptText key={li} text={l} className="font-sans text-[14px] text-[#E6E0F0] leading-[1.42]" />
+                <ScriptText key={li} text={l} className="font-sans text-[16px] text-[#E6E0F0] leading-[1.45]" />
               ))}
             </div>
           </div>

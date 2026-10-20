@@ -84,7 +84,7 @@ export default function Notifications({ compact = false }: { compact?: boolean }
     return (
       <div className="space-y-1.5" data-notifications={state}>
         {state === 'off' && (
-          <button className={goldButton} disabled={busy} onClick={turnOn}>
+          <button className={goldButton} disabled={busy} onClick={turnOn} data-notification-button>
             TURN ON NOTIFICATIONS
           </button>
         )}

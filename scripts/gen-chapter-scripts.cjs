@@ -228,10 +228,62 @@ function buildDay(d) {
     if (blk.t === 'head') {
       const name = blk.text;
       const next = b[i + 1];
-      if (name === 'What you notice' && next?.t === 'quote') { steps.push({ t: 'notice', lines: parseNotice(next.lines) }); i += 2; continue; }
-      if (name === 'Challenge card' && next?.t === 'quote') { steps.push({ t: 'challenge', ...parseChallenge(next.lines, d.week) }); i += 2; continue; }
-      if (name === 'PRESS ON' && next?.t === 'quote') { steps.push({ t: 'press', ...parsePress(next.lines) }); i += 2; continue; }
+
+      function ensureLeadInBeforeCard() {
+        if (steps.length === 0) return;
+        const last = steps[steps.length - 1];
+        if (last.t === 'say') {
+          if (!last.text.trim().endsWith('…') && !last.text.trim().endsWith('...')) {
+            last.text = last.text.trim() + '\n\n…';
+          }
+        } else if (last.t === 'choice') {
+          if (last.branches && last.branches.length > 0) {
+            last.branches.forEach((br) => {
+              if (!br.text.trim().endsWith('…') && !br.text.trim().endsWith('...')) {
+                br.text = br.text.trim() + '\n\n…';
+              }
+            });
+          } else {
+            steps.push({ t: 'say', text: '…' });
+          }
+        } else if (last.t === 'notice') {
+          steps.push({ t: 'say', text: '…' });
+        } else {
+          steps.push({ t: 'say', text: '…' });
+        }
+      }
+
+      function ensureLeadInForPress() {
+        const passStep = [...steps].reverse().find((s) => s.t === 'say' && s.cond?.on === 'challenge' && s.cond?.pass === true);
+        if (passStep) {
+          if (!passStep.text.trim().endsWith('…') && !passStep.text.trim().endsWith('...')) {
+            passStep.text = passStep.text.trim() + '\n\n…';
+          }
+        } else {
+          ensureLeadInBeforeCard();
+        }
+      }
+
+      if (name === 'What you notice' && next?.t === 'quote') {
+        ensureLeadInBeforeCard();
+        steps.push({ t: 'notice', lines: parseNotice(next.lines) });
+        i += 2;
+        continue;
+      }
+      if (name === 'Challenge card' && next?.t === 'quote') {
+        ensureLeadInBeforeCard();
+        steps.push({ t: 'challenge', ...parseChallenge(next.lines, d.week) });
+        i += 2;
+        continue;
+      }
+      if (name === 'PRESS ON' && next?.t === 'quote') {
+        ensureLeadInForPress();
+        steps.push({ t: 'press', ...parsePress(next.lines) });
+        i += 2;
+        continue;
+      }
       if (name === 'Fight card' && next?.t === 'quote') {
+        ensureLeadInBeforeCard();
         const f = parseFight(next.lines);
         const rule = STRIKE_FIRST[key];
         let strikeFirst = { on: 'player' };
@@ -242,7 +294,8 @@ function buildDay(d) {
           else strikeFirst = { on: 'choice', choice: c.id, options: [c.option] };
         }
         steps.push({ t: 'fight', name: f.name, desc: f.desc, firstLines: f.firstLines, strikeFirst });
-        i += 2; continue;
+        i += 2;
+        continue;
       }
       if (name === 'Day summary card' && next?.t === 'quote') {
         const lines = next.lines.map((l) => l.trim()).filter(Boolean);

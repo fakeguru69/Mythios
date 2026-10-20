@@ -29,6 +29,9 @@ const mustAssertFiles = [
   'errors.cjs',
   'garrick-at-fire.cjs',
   'spoiler-hardening.cjs',
+  'party-panel.cjs',
+  'notice-roll.cjs',
+  'cover-page.cjs',
 ];
 
 for (const file of mustAssertFiles) {

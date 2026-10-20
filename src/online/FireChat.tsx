@@ -328,7 +328,7 @@ export function EarlierFire({
   // Last night's talk (the day before this morning), and anything you have said since (including Garrick's answers to your questions).
   const shown = messages.filter((m) => {
     const t = new Date(m.created_at).getTime();
-    return (t >= yesterday && t < cutoff) || (t >= cutoff && (m.author_id === userId || m.reply_to_user === userId));
+    return ((t >= yesterday && t < cutoff) && m.at_fire === true) || (t >= cutoff && (m.author_id === userId || m.reply_to_user === userId));
   });
   const follow = useKeepNewInView(shown.length);
   return (
