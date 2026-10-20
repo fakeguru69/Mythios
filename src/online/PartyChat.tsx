@@ -11,10 +11,11 @@ import { card, ErrorLine, heading, input, note, quietButton } from './ui';
 interface Message {
   id: number;
   author_id: string | null;
-  kind: 'chat' | 'notice';
+  kind: 'chat' | 'notice' | 'nudge';
   speaker?: 'garrick' | null;
   body: string;
   created_at: string;
+  reply_to_user?: string | null;
 }
 
 export default function PartyChat({ partyId, userId, members }: { partyId: string; userId: string; members: MemberRow[] }) {
@@ -125,8 +126,27 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
                 </div>
               </Markable>
             </div>
+          ) : m.kind === 'nudge' ? (
+            <div key={m.id} className="rounded-xl bg-[#231530] border border-[#6B3BA3]/60 px-3.5 py-2.5 my-1 text-center" data-chat-nudge>
+              <div className="font-['Cinzel'] font-bold text-[11px] text-[#C084FC] tracking-[0.8px] uppercase">
+                PRIVATE NUDGE
+              </div>
+              <p className="font-sans text-[15px] text-[#F4F1F8] italic leading-relaxed mt-0.5">
+                {m.body}
+              </p>
+            </div>
           ) : m.kind === 'notice' ? (
-            <p key={m.id} className={`${note} text-center`}>
+            <p
+              key={m.id}
+              className={`text-[14px] text-center py-1 font-sans ${
+                /rolled a natural 20|earned the .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body)
+                  ? 'text-[#E5C158] font-semibold'
+                  : `${note} text-center`
+              }`}
+              data-chat-moment={
+                /rolled a natural 20|earned the .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body) ? 'true' : undefined
+              }
+            >
               {m.body}
             </p>
           ) : (

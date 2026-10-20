@@ -39,11 +39,28 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
   partyLeads,
   leadsCount,
 }) => {
-  // #31: Both explainers are null (hidden) by default so the 4x3 grids stay clean!
   const [selectedStatKey, setSelectedStatKey] = useState<string | null>(null);
   const [selectedBadgeId, setSelectedBadgeId] = useState<string | null>(null);
   const [showShareModal, setShowShareModal] = useState(false);
   const [shareCopied, setShareCopied] = useState(false);
+
+  const firstTimeKey = 'mythios_record_first_time_seen';
+  const [showFirstTimeCard, setShowFirstTimeCard] = useState(() => {
+    try {
+      return !window.localStorage.getItem(firstTimeKey);
+    } catch {
+      return false;
+    }
+  });
+
+  const dismissFirstTimeCard = () => {
+    setShowFirstTimeCard(false);
+    try {
+      window.localStorage.setItem(firstTimeKey, '1');
+    } catch {
+      /* ignore */
+    }
+  };
 
   const classMeta = CLASS_META[characterClass];
   const primaryAttr = classMeta.attribute;
@@ -164,6 +181,41 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
 
   return (
     <div className="flex-1 overflow-y-auto px-3.5 py-3.5 space-y-4 bg-[#0D0714] text-[#F4F1F8]" data-record-tab>
+      {/* First-time explanation card (Piece D3) */}
+      {showFirstTimeCard && (
+        <div
+          className="rounded-2xl bg-[#201332] border border-[#D4B876]/70 p-4 space-y-2.5 shadow-xl"
+          data-record-first-time
+        >
+          <div className="flex items-center justify-between">
+            <div className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] tracking-[0.8px] uppercase">
+              WHY YOUR RECORD MATTERS
+            </div>
+            <button
+              type="button"
+              onClick={dismissFirstTimeCard}
+              className="text-[#B7A9CC] hover:text-[#F4F1F8] text-[16px] px-1 font-bold leading-none"
+              aria-label="Dismiss"
+              data-record-first-time-dismiss
+            >
+              ✕
+            </button>
+          </div>
+          <p className="font-sans text-[14.5px] text-[#F4F1F8] leading-relaxed">
+            Your Attributes are your rolls; the rest is the party's memory of who you were this season; at the end each friend is given a title by it.
+          </p>
+          <div className="flex justify-end pt-1">
+            <button
+              type="button"
+              onClick={dismissFirstTimeCard}
+              className="px-3 py-1 rounded bg-[#3A2555] hover:bg-[#4E3273] text-[12px] font-['Cinzel'] font-bold text-[#E5C158] border border-[#D4B876]/40 transition"
+            >
+              UNDERSTOOD
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* =====================================================================
           SECTION 1 — HERO COLLECTOR CARD BANNER & COLORED ATTRIBUTE BARS (#25, #26)
          ===================================================================== */}

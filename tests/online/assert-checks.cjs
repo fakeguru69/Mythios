@@ -35,6 +35,7 @@ const mustAssertFiles = [
   'fork-changed.cjs',
   'record.cjs',
   'stats-and-badges.cjs',
+  'big-moments-and-chase.cjs',
 ];
 
 for (const file of mustAssertFiles) {

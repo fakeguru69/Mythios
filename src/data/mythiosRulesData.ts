@@ -255,4 +255,79 @@ export const BADGES_META: BadgeMeta[] = [
   { id: 'down-to-thread', labelLines: ['Close', 'Thread'], title: 'Down to a Thread', earned: false, requirement: 'Win a fight with 10 HP or less left.', progressText: 'Win a fight with 10 HP or less left.', iconType: 'heart' },
 ];
 
+export interface NearMissContext {
+  attributes?: Record<AttributeName, number>;
+  daysPlayed?: number;
+  stats?: Record<string, number>;
+  earnedBadgeIds?: string[];
+  partyLeads?: Record<string, { isLead: boolean; leadVal?: number; leadFriend?: string }>;
+  hasRelic?: boolean;
+}
+
+/**
+ * At most one near-miss line on the friend's own end-of-day card, only when close
+ * (Piece D3: "One more day for A Whole Week.", "Charm 48: 3 points from Adept.",
+ * "Mei leads Best Streak by one. Play tomorrow to draw level.", "One more Relic given and the crown is yours.").
+ */
+export function computeNearMissLine(ctx: NearMissContext): string | null {
+  const { attributes, daysPlayed = 0, stats = {}, earnedBadgeIds = [], partyLeads, hasRelic } = ctx;
+
+  // 1. Badge near-misses
+  if (!earnedBadgeIds.includes('whole-week') && (stats.daysPlayed === 6 || daysPlayed === 6)) {
+    return 'One more day for A Whole Week.';
+  }
+  if (!earnedBadgeIds.includes('long-road') && (stats.daysPlayed === 29 || daysPlayed === 29)) {
+    return 'One more day for The Long Road.';
+  }
+
+  // 2. Attribute tier near-misses
+  if (attributes) {
+    const allAttrs: AttributeName[] = ['Might', 'Craft', 'Intellect', 'Charm', 'Agility', 'Aim'];
+    for (const attr of allAttrs) {
+      const val = attributes[attr];
+      if (typeof val === 'number') {
+        if (val >= 23 && val < 26) {
+          const diff = 26 - val;
+          return `${attr} ${val}: ${diff === 1 ? 'one point' : `${diff} points`} from Apprentice.`;
+        }
+        if (val >= 48 && val < 51) {
+          const diff = 51 - val;
+          return `${attr} ${val}: ${diff === 1 ? 'one point' : `${diff} points`} from Adept.`;
+        }
+        if (val >= 73 && val < 76) {
+          const diff = 76 - val;
+          return `${attr} ${val}: ${diff === 1 ? 'one point' : `${diff} points`} from Master.`;
+        }
+      }
+    }
+  }
+
+  // 3. Relics given
+  if (!earnedBadgeIds.includes('open-hand') && (stats.relicsGiven || 0) === 0 && hasRelic) {
+    return 'One more Relic given and Open Hand is yours.';
+  }
+
+  // 4. Crown near-miss (trailing the leader by 1)
+  if (partyLeads) {
+    for (const [key, lead] of Object.entries(partyLeads)) {
+      if (!lead.isLead && typeof lead.leadVal === 'number') {
+        const myVal = stats[key] ?? 0;
+        const diff = lead.leadVal - myVal;
+        if (diff === 1) {
+          if (key === 'relicsGiven') {
+            return 'One more Relic given and the crown is yours.';
+          }
+          const meta = RECORD_STATS_META.find((s) => s.key === key);
+          const statTitle = meta?.fullTitle || key;
+          const friend = lead.leadFriend || 'A friend';
+          return `${friend} leads ${statTitle} by one. Play tomorrow to draw level.`;
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
+
 

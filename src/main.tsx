@@ -10,8 +10,9 @@ const registerInstall = () => {
 };
 
 // Default to OnlineApp in all environments so the AI Studio preview loads the exact same code as Vercel production.
+// When VITE_ONLINE_ONLY=1, the offline demo is excluded so secret season text never enters the public bundle.
 const query = new URLSearchParams(window.location.search);
-if (query.has('demo')) {
+if (query.has('demo') && import.meta.env.VITE_ONLINE_ONLY !== '1') {
   import('./App.tsx').then(({ default: App }) => root.render(<App />));
 } else {
   registerInstall();

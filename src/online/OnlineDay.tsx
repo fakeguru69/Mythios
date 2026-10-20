@@ -1,6 +1,6 @@
 // A weekday, played online (build steps 2 and 3). The chapter comes from the server on its day only, and every roll is
 // the server's (Core Rules §12a). It plays the same canon steps as the demo's Story screen, with the demo's display pieces.
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { supabase, plainError } from './supabaseClient';
 import type { ChapterScript, ScriptCond, ScriptStep, StrikeFirstRule } from '../data/chapterScripts';
 import {
@@ -22,7 +22,7 @@ import {
   TapEcho,
   WhatThisChangedBlock,
 } from '../components/ChapterScriptParts';
-import { challengeSucceedOn, getTierInfo, type AttributeName, EPISODE_NUMBERS, GEAR_TABLE } from '../data/mythiosRulesData';
+import { challengeSucceedOn, getTierInfo, type AttributeName, EPISODE_NUMBERS, GEAR_TABLE, computeNearMissLine } from '../data/mythiosRulesData';
 import { CLASSES } from './onlineText';
 import { tonightLine } from './OnlineGathering';
 import { ErrorLine, goldButton, heading, note, quietButton } from './ui';
@@ -158,11 +158,26 @@ export default function OnlineDay({
   // A late joiner's Day 1 (Core Rules §12a, migration 0072): once it is read to its end, the current day waits for a tap.
   const [nextDay, setNextDay] = useState<{ week: number; day: number } | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
+  const [recordData, setRecordData] = useState<{
+    stats?: Record<string, number>;
+    earnedBadgeIds?: string[];
+    leads?: Record<string, { isLead: boolean; leadVal?: number; leadFriend?: string }>;
+  } | null>(null);
 
   const load = useCallback(async () => {
-    const { data, error: e } = await supabase.rpc('today', { p_party: partyId });
+    const [{ data, error: e }, { data: recData }] = await Promise.all([
+      supabase.rpc('today', { p_party: partyId }),
+      supabase.rpc('my_record', { p_party: partyId }),
+    ]);
     if (e) setError(plainError(e.message));
     else setToday(data as Today);
+    if (recData && typeof recData === 'object') {
+      setRecordData(recData as {
+        stats?: Record<string, number>;
+        earnedBadgeIds?: string[];
+        leads?: Record<string, { isLead: boolean; leadVal?: number; leadFriend?: string }>;
+      });
+    }
   }, [partyId]);
   useEffect(() => {
     load();
@@ -211,6 +226,20 @@ export default function OnlineDay({
   if (!today) return <p className="text-center text-[#B7A9CC]">…</p>;
 
   const { week, day, chapter, progress, mine } = today;
+
+  // At most one near-miss line on the friend's own end-of-day card, only when close (Piece D3)
+  const nearMissLine = useMemo(() => {
+    if (!today) return null;
+    return computeNearMissLine({
+      attributes: today.progress?.attrs,
+      daysPlayed: today.daysPlayed,
+      stats: recordData?.stats,
+      earnedBadgeIds: recordData?.earnedBadgeIds,
+      partyLeads: recordData?.leads,
+      hasRelic: Object.values(today.progress?.relics ?? {}).some((v) => v > 0),
+    });
+  }, [today, recordData]);
+
   const classAttr = (CLASSES.find((c) => c.name === myClass)?.attribute ?? 'Might') as AttributeName;
   // A friend picked by a choice ("POST {F1}"…) takes the {F1} place from then on (isFriendChoice).
   const stake = personalStakeLine(birthplace ?? undefined, grandparent ?? undefined);
@@ -986,6 +1015,17 @@ export default function OnlineDay({
             {branchNote && (
               <div className="rounded-xl bg-[#201533] border border-[#4A3266] px-3 py-2 text-[14px] text-[#D9D1E6] leading-relaxed">
                 <ScriptInline text={branchNote} />
+              </div>
+            )}
+
+            {/* Near miss chase line (Piece D3) */}
+            {nearMissLine && (
+              <div
+                className="rounded-xl bg-[#201533] border border-[#6B3BA3]/60 px-3 py-2 text-[14.5px] text-[#E9D5FF] leading-relaxed flex items-center gap-2"
+                data-summary-near-miss
+              >
+                <span className="text-[#C084FC] text-[16px] shrink-0">✨</span>
+                <span>{nearMissLine}</span>
               </div>
             )}
 

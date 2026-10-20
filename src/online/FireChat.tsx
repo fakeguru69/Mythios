@@ -11,7 +11,7 @@ import { ScriptText } from '../components/ChapterScriptParts';
 export interface ChatMessage {
   id: number;
   author_id: string | null;
-  kind: 'chat' | 'notice';
+  kind: 'chat' | 'notice' | 'nudge';
   speaker?: 'garrick' | null;
   body: string;
   created_at: string;
@@ -136,7 +136,29 @@ export function ChatBubble({
 }) {
   const hold = useRef<number | null>(null);
   if (m.speaker === 'garrick') return <GarrickBubble text={m.body} source="Garrick, in the party chat" />;
-  if (m.kind === 'notice') return <SmallLine>{m.body}</SmallLine>;
+  if (m.kind === 'nudge') {
+    return (
+      <div className="rounded-xl bg-[#231530] border border-[#6B3BA3]/60 px-3.5 py-2.5 my-1 text-center w-full" data-fire-nudge>
+        <div className="font-['Cinzel'] font-bold text-[11px] text-[#C084FC] tracking-[0.8px] uppercase">
+          PRIVATE NUDGE
+        </div>
+        <p className="font-sans text-[15px] text-[#F4F1F8] italic leading-relaxed mt-0.5">
+          {m.body}
+        </p>
+      </div>
+    );
+  }
+  if (m.kind === 'notice') {
+    const isBigMoment = /rolled a natural 20|earned the .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body);
+    return (
+      <p
+        className={`text-[13px] text-center w-full ${isBigMoment ? 'text-[#E5C158] font-semibold' : 'text-[#8B7A9E]'}`}
+        data-chat-moment={isBigMoment ? 'true' : undefined}
+      >
+        {m.body}
+      </p>
+    );
+  }
   const mine = m.author_id === userId;
   const startHold = () => {
     if (mine) return;

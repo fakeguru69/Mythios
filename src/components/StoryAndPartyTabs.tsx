@@ -13,6 +13,7 @@ import {
   calculateAttributeGrowth,
   resolveChallengeRoll,
   challengeSucceedOn,
+  computeNearMissLine,
 } from '../data/mythiosRulesData';
 import {
   GOLD_CHALLENGE_WIN,
@@ -1370,6 +1371,12 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
       }
     }
 
+    const nearMissLine = computeNearMissLine({
+      attributes,
+      daysPlayed: completedDays.length,
+      hasRelic: Object.values(relics ?? {}).some((v) => v > 0),
+    });
+
     return (
       <div
         className="w-full rounded-2xl bg-[#160E24] border border-[#D4B876]/80 overflow-hidden shadow-2xl"
@@ -1453,6 +1460,17 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
           {branchNote && (
             <div className="rounded-xl bg-[#201533] border border-[#4A3266] px-3 py-2 text-[14px] text-[#D9D1E6] leading-relaxed">
               <ScriptInline text={branchNote} />
+            </div>
+          )}
+
+          {/* Near miss chase line (Piece D3) */}
+          {nearMissLine && (
+            <div
+              className="rounded-xl bg-[#201533] border border-[#6B3BA3]/60 px-3 py-2 text-[14.5px] text-[#E9D5FF] leading-relaxed flex items-center gap-2"
+              data-summary-near-miss
+            >
+              <span className="text-[#C084FC] text-[16px] shrink-0">✨</span>
+              <span>{nearMissLine}</span>
             </div>
           )}
 
