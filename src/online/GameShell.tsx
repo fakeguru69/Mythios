@@ -4,7 +4,7 @@
 // chapter, and once it is done the fire below it (Day 7: the Gathering in its place). There is no party page and no
 // way "back to the party": what the party page held that is not a tab now sits in the panel.
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
-import { type MemberRow, type PartyRow } from './supabaseClient';
+import { supabase, type MemberRow, type PartyRow } from './supabaseClient';
 import { useBareShell } from './ui';
 import OnlineDay, { type DayInfo } from './OnlineDay';
 import OnlineCampfire from './OnlineCampfire';
@@ -62,6 +62,30 @@ export default function GameShell({
   // The live Gathering counts a friend as present the moment it is open, so it is mounted only once the friend taps to
   // join (handoff ledger piece 1). A new week starts again from the card.
   const [joined, setJoined] = useState<string | null>(null);
+  const [recordData, setRecordData] = useState<{
+    stats: Record<string, number>;
+    earnedBadgeIds: string[];
+    leads?: Record<string, { isLead: boolean; leadVal?: number; leadFriend?: string }>;
+    leadsCount?: number;
+  } | null>(null);
+
+  const loadRecord = useCallback(async () => {
+    try {
+      const { data, error } = await supabase.rpc('my_record', { p_party: party.id });
+      if (!error && data) {
+        setRecordData(data as any);
+      }
+    } catch {
+      // fallback gracefully
+    }
+  }, [party.id]);
+
+  useEffect(() => {
+    if (tab === 'record') {
+      loadRecord();
+    }
+  }, [tab, loadRecord, storyKey]);
+
   const gatheringKey = info ? `${party.id}:${info.week}` : '';
   const inGathering = Boolean(info?.gathering) && joined === gatheringKey;
   const joinGathering = () => {
@@ -231,7 +255,7 @@ export default function GameShell({
               attributes={info?.attrs ?? { Might: 10, Craft: 10, Intellect: 10, Charm: 10, Agility: 10, Aim: 10 }}
               weaponLevel={info?.weaponLevel ?? 1}
               armorLevel={info?.armorLevel ?? 1}
-              stats={{
+              stats={recordData?.stats ?? {
                 daysPlayed: info?.daysPlayed ?? (info ? (info.week - 1) * 6 + info.day : 1),
                 bestStreak: info?.daysPlayed ?? (info ? (info.week - 1) * 6 + info.day : 1),
                 gatheringsAttended: Math.max(0, (info?.week ?? 1) - 1),
@@ -245,7 +269,9 @@ export default function GameShell({
                 enemiesDefeated: 0,
                 perfectRolls: 0,
               }}
-              earnedBadgeIds={['first-light']}
+              earnedBadgeIds={recordData?.earnedBadgeIds ?? ['first-light']}
+              partyLeads={recordData?.leads}
+              leadsCount={recordData?.leadsCount}
             />
           </div>
         )}

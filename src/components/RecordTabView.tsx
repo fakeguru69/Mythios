@@ -21,6 +21,8 @@ interface RecordTabViewProps {
   armorLevel: number;
   stats: Record<string, number>;
   earnedBadgeIds: string[];
+  partyLeads?: Record<string, { isLead: boolean; leadVal?: number; leadFriend?: string }>;
+  leadsCount?: number;
 }
 
 export const RecordTabView: React.FC<RecordTabViewProps> = ({
@@ -33,6 +35,8 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
   armorLevel,
   stats,
   earnedBadgeIds,
+  partyLeads,
+  leadsCount,
 }) => {
   // #31: Both explainers are null (hidden) by default so the 4x3 grids stay clean!
   const [selectedStatKey, setSelectedStatKey] = useState<string | null>(null);
@@ -316,8 +320,8 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
          ===================================================================== */}
       <div className="space-y-2">
         <div className="flex items-center justify-between px-1">
-          <span className="font-['Cinzel'] font-bold text-[12px] tracking-[1.3px] text-[#D4B876] uppercase">
-            THE RECORD · 12 MILESTONES
+          <span className="font-['Cinzel'] font-bold text-[12px] tracking-[1.3px] text-[#D4B876] uppercase" data-record-heading>
+            RECORD {typeof leadsCount === 'number' && leadsCount > 0 ? `· ${leadsCount} WHERE YOU LEAD THE PARTY` : '· 12 MILESTONES'}
           </span>
           <span className="text-[12px] font-sans text-[#B7A9CC]">
             Tap a number to see what it counts
@@ -329,8 +333,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
           {RECORD_STATS_META.map((stat, idx) => {
             const val = stats[stat.key] ?? 0;
             const isSelected = selectedStatKey === stat.key;
-            // Who leads the party needs every friend's real numbers: it waits for multiplayer (15 Oct).
-            const isPartyLead = false;
+            const isPartyLead = Boolean(partyLeads?.[stat.key]?.isLead);
             const colIdx = idx % 4;
             const rowIdx = Math.floor(idx / 4);
 
@@ -349,7 +352,7 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
               >
                 <div className="flex items-center justify-center gap-0.5">
                   {isPartyLead && (
-                    <span className="text-[11px] leading-none" title="Party Leader">
+                    <span className="text-[11px] leading-none" title="Party Leader" data-crown-lead>
                       👑
                     </span>
                   )}
@@ -380,6 +383,11 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
               <p className="font-sans text-[14.5px] text-[#F4F1F8] mt-0.5 leading-snug">
                 {selectedStat.explainer}
               </p>
+              {partyLeads?.[selectedStat.key] && !partyLeads[selectedStat.key].isLead && partyLeads[selectedStat.key].leadFriend && (
+                <p className="font-sans text-[13px] text-[#D4B876] mt-1.5 italic" data-lead-nudge>
+                  {partyLeads[selectedStat.key].leadFriend} leads with {partyLeads[selectedStat.key].leadVal}. One more and the crown is yours.
+                </p>
+              )}
             </div>
             <button
               onClick={() => setSelectedStatKey(null)}
@@ -473,6 +481,11 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
               <p className="font-sans text-[14.5px] text-[#F4F1F8] mt-1 leading-snug">
                 {selectedBadge.requirement}
               </p>
+              {selectedBadge.progressText && (
+                <p className="font-sans text-[13px] text-[#D4B876] mt-1.5 italic" data-badge-progress>
+                  {selectedBadge.progressText}
+                </p>
+              )}
             </div>
             <button
               onClick={() => setSelectedBadgeId(null)}

@@ -34,6 +34,7 @@ const mustAssertFiles = [
   'cover-page.cjs',
   'fork-changed.cjs',
   'record.cjs',
+  'stats-and-badges.cjs',
 ];
 
 for (const file of mustAssertFiles) {
