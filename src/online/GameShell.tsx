@@ -239,40 +239,39 @@ export default function GameShell({
 
         {tab === 'record' && (
           <div data-pane="record">
-            <RecordTabView
-              characterName={me.character_name ?? 'You'}
-              characterClass={(me.class as ClassName) || 'Warrior'}
-              secondAttr={
-                me.class === 'Warrior' ? 'Craft' :
-                me.class === 'Artificer' ? 'Might' :
-                me.class === 'Sage' ? 'Charm' :
-                me.class === 'Trickster' ? 'Agility' :
-                me.class === 'Assassin' ? 'Aim' :
-                'Intellect'
-              }
-              partyName={party.name}
-              currentWeek={info?.week ?? 1}
-              attributes={info?.attrs ?? { Might: 10, Craft: 10, Intellect: 10, Charm: 10, Agility: 10, Aim: 10 }}
-              weaponLevel={info?.weaponLevel ?? 1}
-              armorLevel={info?.armorLevel ?? 1}
-              stats={recordData?.stats ?? {
-                daysPlayed: info?.daysPlayed ?? (info ? (info.week - 1) * 6 + info.day : 1),
-                bestStreak: info?.daysPlayed ?? (info ? (info.week - 1) * 6 + info.day : 1),
-                gatheringsAttended: Math.max(0, (info?.week ?? 1) - 1),
-                fragmentsSolved: 0,
-                relicsGiven: 0,
-                timesSteppedUp: 0,
-                fragmentsMatched: 0,
-                battlesWon: 0,
-                challengesCleared: 0,
-                challengesPressedOn: 0,
-                enemiesDefeated: 0,
-                perfectRolls: 0,
-              }}
-              earnedBadgeIds={recordData?.earnedBadgeIds ?? ['first-light']}
-              partyLeads={recordData?.leads}
-              leadsCount={recordData?.leadsCount}
-            />
+            {!recordData ? (
+              <div className="py-16 text-center space-y-2" data-record-loading>
+                <div className="font-['Cinzel'] font-bold text-[14px] text-[#D4B876] tracking-[1.2px] uppercase">
+                  Counting the Record…
+                </div>
+                <div className="text-[13px] font-sans text-[#B7A9CC]">
+                  Reading your company's milestones from the road.
+                </div>
+              </div>
+            ) : (
+              <RecordTabView
+                characterName={me.character_name ?? 'You'}
+                characterClass={(me.class as ClassName) || 'Warrior'}
+                secondAttr={
+                  (me.second_attr as AttributeName) ||
+                  (me.class === 'Warrior' ? 'Craft' :
+                   me.class === 'Artificer' ? 'Might' :
+                   me.class === 'Sage' ? 'Charm' :
+                   me.class === 'Trickster' ? 'Agility' :
+                   me.class === 'Assassin' ? 'Aim' :
+                   'Intellect')
+                }
+                partyName={party.name}
+                currentWeek={info?.week ?? 1}
+                attributes={info?.attrs ?? { Might: 10, Craft: 10, Intellect: 10, Charm: 10, Agility: 10, Aim: 10 }}
+                weaponLevel={info?.weaponLevel ?? 1}
+                armorLevel={info?.armorLevel ?? 1}
+                stats={recordData.stats}
+                earnedBadgeIds={recordData.earnedBadgeIds}
+                partyLeads={recordData.leads}
+                leadsCount={recordData.leadsCount}
+              />
+            )}
           </div>
         )}
 

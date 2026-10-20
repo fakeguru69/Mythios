@@ -32,6 +32,14 @@ declare
 begin
   if v_user is null then raise exception 'not signed in'; end if;
 
+  -- Security: Caller must be an approved member of this party
+  if not exists (
+    select 1 from public.party_members
+    where party_id = p_party and user_id = v_user and status = 'approved'
+  ) then
+    raise exception 'not in party';
+  end if;
+
   select t.week, t.day into v_week, v_day from public.party_today(p_party) t;
   if v_week is null then raise exception 'the story has not started'; end if;
 
@@ -46,18 +54,18 @@ begin
   select class into v_class from public.party_members where party_id = p_party and user_id = v_user;
   v_class_attr := public.class_attribute(v_class);
 
-  foreach a in array array['Might', 'Agility', 'Intellect', 'Charm', 'Craft', 'Aim'] loop
-    v := coalesce((v_attrs ->> a)::int, 10);
-    if v > v_top or (v = v_top and a = v_class_attr) then
-      v_top := v;
-      v_best := a;
-    end if;
-  end loop;
+  v_notice_line := public.notice_line_for(p_party, v_user, v_week, v_day);
+  if v_notice_line is not null and v_notice_line ? 'attr' then
+    v_best := v_notice_line ->> 'attr';
+  else
+    v_best := coalesce(v_class_attr, 'Intellect');
+  end if;
 
-  if v_best is null then v_best := coalesce(v_class_attr, 'Intellect'); v_top := 10; end if;
+  v_top := coalesce((v_attrs ->> v_best)::int, 10);
 
+  -- Core Rules §12: Novice 10-25 (+0), Apprentice 26-50 (+2), Adept 51-75 (+4), Champion 76-100 (+6), Master 101+ (+8)
   v_bonus := case
-    when v_top >= 101 then 10
+    when v_top >= 101 then 8
     when v_top >= 76 then 6
     when v_top >= 51 then 4
     when v_top >= 26 then 2

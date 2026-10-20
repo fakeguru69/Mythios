@@ -762,7 +762,7 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
               <span className="text-[#E5C158] font-semibold">Weapon {weapon}</span> − <span className="text-[#FB923C] font-semibold">DEF {e.def}</span>)
             </div>
             <div>
-              Enemy hits on <b className="text-[#FB923C]">{Math.min(20, Math.max(2, armor + 1 - e.atk))}+</b> (Roll +{' '}
+              He hits on <b className="text-[#FB923C]">{Math.min(20, Math.max(2, armor + 1 - e.atk))}+</b> (Roll +{' '}
               <span className="text-[#C084FC] font-semibold">ATK {e.atk}</span> − <span className="text-[#7AA7FF] font-semibold">Armor {armor}</span>)
             </div>
             <div>Damage = Margin × 5 · REWARD: <b className="text-[#E5C158]">{e.reward}g</b> to every friend if the party wins</div>

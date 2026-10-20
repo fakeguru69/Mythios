@@ -8,6 +8,7 @@ import {
   RECORD_STATS_META,
   BADGES_META,
   GEAR_TABLE,
+  computeBadgeProgress,
 } from '../data/mythiosRulesData';
 
 interface RecordTabViewProps {
@@ -383,11 +384,22 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
               <p className="font-sans text-[14.5px] text-[#F4F1F8] mt-0.5 leading-snug">
                 {selectedStat.explainer}
               </p>
-              {partyLeads?.[selectedStat.key] && !partyLeads[selectedStat.key].isLead && partyLeads[selectedStat.key].leadFriend && (
-                <p className="font-sans text-[13px] text-[#D4B876] mt-1.5 italic" data-lead-nudge>
-                  {partyLeads[selectedStat.key].leadFriend} leads with {partyLeads[selectedStat.key].leadVal}. One more and the crown is yours.
-                </p>
-              )}
+              {partyLeads?.[selectedStat.key] && !partyLeads[selectedStat.key].isLead && partyLeads[selectedStat.key].leadFriend && (() => {
+                const userVal = stats[selectedStat.key] ?? 0;
+                const leadVal = partyLeads[selectedStat.key].leadVal ?? userVal;
+                const leadFriend = partyLeads[selectedStat.key].leadFriend;
+                const diff = leadVal - userVal;
+                const nudgeText = diff <= 0
+                  ? `Tied with ${leadFriend} for the lead.`
+                  : diff === 1
+                  ? `${leadFriend} leads with ${leadVal}. One more to tie for the crown.`
+                  : `${leadFriend} leads with ${leadVal}. ${diff} more to tie for the crown.`;
+                return (
+                  <p className="font-sans text-[13px] text-[#D4B876] mt-1.5 italic" data-lead-nudge>
+                    {nudgeText}
+                  </p>
+                );
+              })()}
             </div>
             <button
               onClick={() => setSelectedStatKey(null)}
@@ -481,11 +493,15 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
               <p className="font-sans text-[14.5px] text-[#F4F1F8] mt-1 leading-snug">
                 {selectedBadge.requirement}
               </p>
-              {selectedBadge.progressText && (
-                <p className="font-sans text-[13px] text-[#D4B876] mt-1.5 italic" data-badge-progress>
-                  {selectedBadge.progressText}
-                </p>
-              )}
+              {(() => {
+                const isEarned = earnedBadgeIds.includes(selectedBadge.id);
+                const progressText = computeBadgeProgress(selectedBadge.id, isEarned, stats, attributes);
+                return progressText ? (
+                  <p className="font-sans text-[13px] text-[#D4B876] mt-1.5 italic" data-badge-progress>
+                    {progressText}
+                  </p>
+                ) : null;
+              })()}
             </div>
             <button
               onClick={() => setSelectedBadgeId(null)}

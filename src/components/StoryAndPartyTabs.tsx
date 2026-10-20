@@ -2553,7 +2553,7 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
                       (Roll + Weapon {playerWeapon} − DEF {epMeta.gDef})
                     </div>
                     <div>
-                      Enemy hits on{' '}
+                      He hits on{' '}
                       <span className="text-[#E5C158] font-bold">
                         {Math.min(20, Math.max(2, playerArmor + 1 - epMeta.gAtk))}+
                       </span>{' '}

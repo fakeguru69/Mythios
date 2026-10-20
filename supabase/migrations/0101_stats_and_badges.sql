@@ -117,14 +117,38 @@ begin
     and (coalesce((fight ->> 'won')::boolean, false) = true
          or coalesce((fight ->> 'ehp')::int, 100) <= 0);
 
-  -- 12. Perfect Rolls: Each natural 20 on a Challenge, Press On, Fight, or Notice roll
+  -- Include foes defeated at Gathering Battles where party won and player was not fallen
+  select v_enemies_defeated + count(*)::int into v_enemies_defeated
+  from public.gatherings g
+  where g.party_id = p_party
+    and g.state -> 'battle' ->> 'outcome' = 'won'
+    and exists (
+      select 1 from jsonb_array_elements(coalesce(g.state -> 'battle' -> 'fighters', '[]'::jsonb)) f
+      where f ->> 'id' = p_user::text and not coalesce((f ->> 'fallen')::boolean, false)
+    );
+
+  -- 12. Perfect Rolls: Natural 20s on a Challenge, Press On, or attack roll (NO Notice roll)
   select (
     coalesce((select count(*) from public.member_days where party_id = p_party and user_id = p_user and (challenge ->> 'd20')::int = 20), 0) +
     coalesce((select count(*) from public.member_days where party_id = p_party and user_id = p_user and (press ->> 'd20')::int = 20), 0) +
-    coalesce((select count(*) from public.member_days where party_id = p_party and user_id = p_user and (notice ->> 'd20')::int = 20), 0) +
     coalesce((select count(*) from public.member_days md, jsonb_array_elements(md.fight -> 'rounds') r
               where md.party_id = p_party and md.user_id = p_user and (r ->> 'd20')::int = 20), 0)
   )::int into v_perfect_rolls;
+
+  -- Include Gathering Approach roll if caller was roller and rolled 20
+  select v_perfect_rolls + count(*)::int into v_perfect_rolls
+  from public.gatherings g
+  where g.party_id = p_party
+    and g.state -> 'approach' ->> 'roller' = p_user::text
+    and (g.state -> 'approach' ->> 'roll')::int = 20;
+
+  -- Include Gathering Battle attack 20s
+  select v_perfect_rolls + coalesce(sum(
+    case when (r -> 'lines' -> p_user::text ->> 'roll')::int = 20 then 1 else 0 end
+  ), 0)::int into v_perfect_rolls
+  from public.gatherings g,
+       jsonb_array_elements(coalesce(g.state -> 'battle' -> 'rounds', '[]'::jsonb)) r
+  where g.party_id = p_party;
 
   -- =========================================================================
   -- EVALUATE THE 12 BADGES
@@ -153,12 +177,12 @@ begin
     v_badges := array_append(v_badges, 'long-road');
   end if;
 
-  -- Badge 4: Sharpened (Advance any single Attribute to Adept, 26+ points)
+  -- Badge 4: Sharpened (Advance any single Attribute to Adept, 51+ points, per Core Rules §12)
   select attrs into v_attrs from public.member_progress where party_id = p_party and user_id = p_user;
   if exists (
     select 1
     from jsonb_each_text(coalesce(v_attrs, '{}'::jsonb))
-    where value ~ '^[0-9]+$' and value::int >= 26
+    where value ~ '^[0-9]+$' and value::int >= 51
   ) then
     v_badges := array_append(v_badges, 'sharpened');
   end if;
@@ -168,16 +192,16 @@ begin
     v_badges := array_append(v_badges, 'open-hand');
   end if;
 
-  -- Badge 6: Lifeline (A Relic you gifted to a teammate is used and carries them)
+  -- Badge 6: Lifeline (A Relic you gifted carries a friend: turned a fail into a pass, net margin 1..4)
   if exists (
     select 1 from public.relic_gifts rg
     join public.member_days md on md.party_id = rg.party_id and md.user_id = rg.to_user
     where rg.party_id = p_party and rg.from_user = p_user
       and (
-        (md.challenge is not null and (md.challenge ->> 'pass')::boolean = true and md.challenge ? 'relic')
+        (md.challenge is not null and (md.challenge ->> 'pass')::boolean = true and md.challenge ? 'relic' and (md.challenge ->> 'net')::int between 1 and 4)
         or (md.fight is not null and (md.fight ->> 'won')::boolean = true and md.fight ? 'relic')
       )
-  ) or (v_relics_given >= 2) then
+  ) then
     v_badges := array_append(v_badges, 'lifeline');
   end if;
 
@@ -306,6 +330,14 @@ declare
 begin
   if v_user is null then raise exception 'not signed in'; end if;
 
+  -- Security: Caller must be an approved member of this party
+  if not exists (
+    select 1 from public.party_members
+    where party_id = p_party and user_id = v_user and status = 'approved'
+  ) then
+    raise exception 'not in party';
+  end if;
+
   -- 1. Compute for caller
   v_my_rec := public.compute_member_record(p_party, v_user);
   v_my_stats := v_my_rec -> 'stats';
@@ -366,5 +398,6 @@ begin
 end;
 $$;
 
-revoke execute on function public.compute_member_record, public.my_record from public, anon;
-grant execute on function public.compute_member_record, public.my_record to authenticated;
+revoke execute on function public.compute_member_record(uuid, uuid) from public, anon, authenticated;
+revoke execute on function public.my_record(uuid) from public, anon;
+grant execute on function public.my_record(uuid) to authenticated;

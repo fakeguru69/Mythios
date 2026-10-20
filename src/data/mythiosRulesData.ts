@@ -164,20 +164,20 @@ export interface RecordStatMeta {
 
 export const RECORD_STATS_META: RecordStatMeta[] = [
   // Row 1: Show Up
-  { key: 'daysPlayed', labelLines: ['Days', 'Played'], fullTitle: 'Days Played', explainer: 'Total days you read the chapter to its last line, over the season.', leadFriend: 'Mei', leadNextVal: 14 },
-  { key: 'bestStreak', labelLines: ['Best', 'Streak'], fullTitle: 'Best Streak', explainer: 'Your longest run of days played in a row. It never goes down.', leadFriend: 'Mei', leadNextVal: 6 },
-  { key: 'gatheringsAttended', labelLines: ['Gatherings', 'Joined'], fullTitle: 'Gatherings Attended', explainer: 'Gatherings you came to.', leadFriend: 'Mei', leadNextVal: 2 },
-  { key: 'fragmentsSolved', labelLines: ['Fragments', 'Solved'], fullTitle: 'Fragments Solved', explainer: 'Fragments where you filled a missing word.', leadFriend: 'Mei', leadNextVal: 6 },
+  { key: 'daysPlayed', labelLines: ['Days', 'Played'], fullTitle: 'Days Played', explainer: 'Total days you read the chapter to its last line, over the season.', leadFriend: '', leadNextVal: 0 },
+  { key: 'bestStreak', labelLines: ['Best', 'Streak'], fullTitle: 'Best Streak', explainer: 'Your longest run of days played in a row. It never goes down.', leadFriend: '', leadNextVal: 0 },
+  { key: 'gatheringsAttended', labelLines: ['Gatherings', 'Joined'], fullTitle: 'Gatherings Attended', explainer: 'Gatherings you came to.', leadFriend: '', leadNextVal: 0 },
+  { key: 'fragmentsSolved', labelLines: ['Fragments', 'Solved'], fullTitle: 'Fragments Solved', explainer: 'Fragments where you filled a missing word.', leadFriend: '', leadNextVal: 0 },
   // Row 2: Together
-  { key: 'relicsGiven', labelLines: ['Relics', 'Given'], fullTitle: 'Relics Given', explainer: 'Every Relic you gave to a friend.', leadFriend: 'Mei', leadNextVal: 1 },
-  { key: 'timesSteppedUp', labelLines: ['Stepped', 'Up'], fullTitle: 'Times Stepped Up', explainer: 'Times you tapped [STEP UP] and rolled the Approach for the party.', leadFriend: 'Arjun', leadNextVal: 1 },
-  { key: 'fragmentsMatched', labelLines: ['Fragments', 'Matched'], fullTitle: 'Fragments Matched', explainer: 'Fragments you matched to the right scripture line at a Gathering.', leadFriend: 'Mei', leadNextVal: 2 },
-  { key: 'battlesWon', labelLines: ['Battles', 'Won'], fullTitle: 'Battles Won', explainer: 'Gathering Battles the party won while you fought in them.', leadFriend: 'Mei', leadNextVal: 2 },
+  { key: 'relicsGiven', labelLines: ['Relics', 'Given'], fullTitle: 'Relics Given', explainer: 'Every Relic you gave to a friend.', leadFriend: '', leadNextVal: 0 },
+  { key: 'timesSteppedUp', labelLines: ['Stepped', 'Up'], fullTitle: 'Times Stepped Up', explainer: 'Times you stepped up and rolled the Approach for the party.', leadFriend: '', leadNextVal: 0 },
+  { key: 'fragmentsMatched', labelLines: ['Fragments', 'Matched'], fullTitle: 'Fragments Matched', explainer: 'Fragments you matched to the right scripture line at a Gathering.', leadFriend: '', leadNextVal: 0 },
+  { key: 'battlesWon', labelLines: ['Battles', 'Won'], fullTitle: 'Battles Won', explainer: 'Gathering Battles the party won while you fought in them.', leadFriend: '', leadNextVal: 0 },
   // Row 3: Glory
-  { key: 'challengesCleared', labelLines: ['Challenges', 'Cleared'], fullTitle: 'Challenges Cleared', explainer: 'Every Challenge you cleared.', leadFriend: 'Mei', leadNextVal: 8 },
-  { key: 'challengesPressedOn', labelLines: ['Pressed', 'On'], fullTitle: 'Challenges Pressed On', explainer: 'Times you took the harder [PRESS ON] roll, cleared or not.', leadFriend: 'Dev', leadNextVal: 2 },
-  { key: 'enemiesDefeated', labelLines: ['Enemies', 'Felled'], fullTitle: 'Enemies Defeated', explainer: 'Enemies your own hand brought down, in weekday fights and Battles.', leadFriend: 'Dev', leadNextVal: 4 },
-  { key: 'perfectRolls', labelLines: ['Perfect', 'Rolls'], fullTitle: 'Perfect Rolls', explainer: 'Each 20 you rolled on a Challenge or an attack.', leadFriend: 'Mei', leadNextVal: 1 },
+  { key: 'challengesCleared', labelLines: ['Challenges', 'Cleared'], fullTitle: 'Challenges Cleared', explainer: 'Every Challenge you cleared.', leadFriend: '', leadNextVal: 0 },
+  { key: 'challengesPressedOn', labelLines: ['Pressed', 'On'], fullTitle: 'Challenges Pressed On', explainer: 'Times you took the harder Press On roll, cleared or not.', leadFriend: '', leadNextVal: 0 },
+  { key: 'enemiesDefeated', labelLines: ['Enemies', 'Felled'], fullTitle: 'Enemies Defeated', explainer: 'Enemies your own hand brought down, in weekday fights and Battles.', leadFriend: '', leadNextVal: 0 },
+  { key: 'perfectRolls', labelLines: ['Perfect', 'Rolls'], fullTitle: 'Perfect Rolls', explainer: 'Each 20 you rolled on a Challenge or an attack.', leadFriend: '', leadNextVal: 0 },
 ];
 
 export interface BadgeMeta {
@@ -190,19 +190,69 @@ export interface BadgeMeta {
   iconType: 'sunrise' | 'calendar' | 'road' | 'sword' | 'gift' | 'lifeline' | 'users' | 'moon' | 'd20' | 'flame' | 'chain' | 'heart';
 }
 
+export function computeBadgeProgress(
+  id: string,
+  isEarned: boolean,
+  stats: Record<string, number>,
+  attributes?: Record<AttributeName, number>
+): string {
+  if (isEarned) return 'Earned.';
+
+  switch (id) {
+    case 'first-light':
+      return 'Complete your first chapter.';
+    case 'whole-week': {
+      const days = stats.daysPlayed ?? 0;
+      return `${Math.min(6, days)} of 6 days played this week.`;
+    }
+    case 'long-road': {
+      const g = stats.gatheringsAttended ?? 0;
+      return `${g} of 6 Gatherings attended.`;
+    }
+    case 'sharpened': {
+      if (attributes) {
+        const top = Object.entries(attributes).reduce((best, [k, v]) => (v > best[1] ? [k, v] : best), ['Might', 10]);
+        const ptsNeeded = Math.max(0, 51 - top[1]);
+        return `${top[0]} is ${top[1]} (${ptsNeeded} points from Adept).`;
+      }
+      return 'Advance any Attribute to Adept (51 points).';
+    }
+    case 'open-hand':
+      return 'Give a Relic to a friend.';
+    case 'lifeline':
+      return 'Waiting for a Relic you gave to carry a friend in a roll or fight.';
+    case 'whole-table':
+      return 'Waiting for every friend in the party to play on the same day.';
+    case 'clean-night':
+      return 'Not yet earned by the party.';
+    case 'perfect':
+      return 'Roll a natural 20 on a Challenge or an attack.';
+    case 'never-enough': {
+      const p = stats.challengesPressedOn ?? 0;
+      return `${p} Press On roll${p === 1 ? '' : 's'} taken so far.`;
+    }
+    case 'many-hands':
+      return 'Clear Challenges with 4 different Attributes.';
+    case 'down-to-thread':
+      return 'Win a fight with 10 HP or less remaining.';
+    default:
+      return 'Locked.';
+  }
+}
+
 export const BADGES_META: BadgeMeta[] = [
-  { id: 'first-light', labelLines: ['First', 'Light'], title: 'First Light', earned: true, requirement: 'Finish your first chapter.', progressText: 'Earned on Week 1 · Day 1.', iconType: 'sunrise' },
-  { id: 'whole-week', labelLines: ['Whole', 'Week'], title: 'A Whole Week', earned: false, requirement: 'Play all six days and come to the Gathering in one week.', progressText: 'Best week so far: 5 of 6 days.', iconType: 'calendar' },
-  { id: 'long-road', labelLines: ['Long', 'Road'], title: 'The Long Road', earned: false, requirement: 'Come to all six Gatherings.', progressText: 'You have attended 2 of 6 Gatherings.', iconType: 'road' },
-  { id: 'sharpened', labelLines: ['Sharpened', ''], title: 'Sharpened', earned: false, requirement: 'Reach Adept in any Attribute.', progressText: 'Charm is 38 (13 points from Adept).', iconType: 'sword' },
-  { id: 'open-hand', labelLines: ['Open', 'Hand'], title: 'Open Hand', earned: true, requirement: 'Give a friend a Relic for the first time.', progressText: 'Earned when you gave Mei a Charm Relic.', iconType: 'gift' },
+  { id: 'first-light', labelLines: ['First', 'Light'], title: 'First Light', earned: true, requirement: 'Finish your first chapter.', progressText: 'Complete your first chapter.', iconType: 'sunrise' },
+  { id: 'whole-week', labelLines: ['Whole', 'Week'], title: 'A Whole Week', earned: false, requirement: 'Play all six days and come to the Gathering in one week.', progressText: 'Play all 6 days and the Gathering in one week.', iconType: 'calendar' },
+  { id: 'long-road', labelLines: ['Long', 'Road'], title: 'The Long Road', earned: false, requirement: 'Come to all six Gatherings.', progressText: 'Come to all six Gatherings.', iconType: 'road' },
+  { id: 'sharpened', labelLines: ['Sharpened', ''], title: 'Sharpened', earned: false, requirement: 'Reach Adept in any Attribute.', progressText: 'Reach Adept (51 points) in any Attribute.', iconType: 'sword' },
+  { id: 'open-hand', labelLines: ['Open', 'Hand'], title: 'Open Hand', earned: true, requirement: 'Give a friend a Relic for the first time.', progressText: 'Give a friend a Relic for the first time.', iconType: 'gift' },
   { id: 'lifeline', labelLines: ['Lifeline', ''], title: 'Lifeline', earned: false, requirement: 'A Relic you gave is used in a roll or a fight that then goes the friend\'s way.', progressText: 'Waiting for your given Relic to turn a roll.', iconType: 'lifeline' },
-  { id: 'whole-table', labelLines: ['Whole', 'Table'], title: 'The Whole Table', earned: true, requirement: 'Every friend plays on the same day. The whole party earns it.', progressText: 'Earned by the whole party on Week 1 · Day 2.', iconType: 'users' },
+  { id: 'whole-table', labelLines: ['Whole', 'Table'], title: 'The Whole Table', earned: true, requirement: 'Every friend plays on the same day. The whole party earns it.', progressText: 'Every friend plays on the same day.', iconType: 'users' },
   { id: 'clean-night', labelLines: ['Clean', 'Night'], title: 'A Clean Night', earned: false, requirement: 'In one Gathering the party clears the opening roll, wins the Battle with nobody down, and wins the United Effort.', progressText: 'Not yet earned by the party.', iconType: 'moon' },
-  { id: 'perfect', labelLines: ['Perfect', ''], title: 'Perfect', earned: true, requirement: 'Roll your first 20 on a Challenge or an attack.', progressText: 'Earned on Week 2 · Day 2.', iconType: 'd20' },
-  { id: 'never-enough', labelLines: ['Never', 'Enough'], title: 'Never Enough', earned: false, requirement: 'Clear 3 Press On rolls in one week.', progressText: 'You have cleared 1 this week.', iconType: 'flame' },
-  { id: 'many-hands', labelLines: ['Many', 'Hands'], title: 'Many Hands', earned: false, requirement: 'Clear Challenges with four different Attributes.', progressText: 'Cleared with 3 of 4 Attributes (Charm, Agility, Craft).', iconType: 'chain' },
-  { id: 'down-to-thread', labelLines: ['Close', 'Thread'], title: 'Down to a Thread', earned: false, requirement: 'Win a fight with 10 HP or less left.', progressText: 'Closest fight won so far: 28 HP left.', iconType: 'heart' },
+  { id: 'perfect', labelLines: ['Perfect', ''], title: 'Perfect', earned: true, requirement: 'Roll your first 20 on a Challenge or an attack.', progressText: 'Roll your first 20 on a Challenge or an attack.', iconType: 'd20' },
+  { id: 'never-enough', labelLines: ['Never', 'Enough'], title: 'Never Enough', earned: false, requirement: 'Clear 3 Press On rolls in one week.', progressText: 'Clear 3 Press On rolls in one week.', iconType: 'flame' },
+  { id: 'many-hands', labelLines: ['Many', 'Hands'], title: 'Many Hands', earned: false, requirement: 'Clear Challenges with four different Attributes.', progressText: 'Clear Challenges with four different Attributes.', iconType: 'chain' },
+  { id: 'down-to-thread', labelLines: ['Close', 'Thread'], title: 'Down to a Thread', earned: false, requirement: 'Win a fight with 10 HP or less left.', progressText: 'Win a fight with 10 HP or less left.', iconType: 'heart' },
 ];
 
 

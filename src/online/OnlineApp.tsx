@@ -33,9 +33,10 @@ import PartyChat from './PartyChat';
 import InstallGuide from './InstallGuide';
 import Notifications from './Notifications';
 import GarrickRecap from './GarrickRecap';
+import { GatheringCard } from './OnlineGathering';
 import GameShell from './GameShell';
 import { NotebookProvider } from './Markable';
-import { GatheringCard } from './OnlineGathering';
+import CoverPage from '../components/CoverPage';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
 
 const startQuery = new URLSearchParams(window.location.search);
@@ -1251,47 +1252,14 @@ export default function OnlineApp() {
   else if (session) body = <Home session={session} />;
   else if (joinCode && !wantsSignIn) body = <InviteCard info={info} onJoin={() => setWantsSignIn(true)} />;
   else if (!joinCode && !wantsSignIn) {
-    // The first screen: the Mythios intro, then the shelf (Fake Guru, 16 Oct; review §2 Screen 1's buttons).
     body = (
-      <div className="space-y-5">
-        <div className="space-y-3 pt-2">
-          <p className="font-['Cormorant_Garamond'] text-[21px] leading-snug italic text-[#F4F1F8]">{MYTHIOS_INTRO.opener}</p>
-          <p className={`${heading} text-[17px]`}>{MYTHIOS_INTRO.name}</p>
-          {MYTHIOS_INTRO.lines.map((line) => (
-            <p key={line} className="text-[15px] leading-relaxed text-[#D9D1E6]">
-              {line}
-            </p>
-          ))}
-        </div>
-        {SERIES.map((series) => (
-          <div key={series.id} className={`${card} border-[#D4B876]/50`}>
-            <p className={`${note} tracking-[1px] uppercase`}>A Mythios series</p>
-            <h2 className={`${heading} text-[20px]`}>{series.title}</h2>
-            <p className="text-[15px] italic leading-relaxed">{series.premise}</p>
-            <p className={note}>
-              {series.seasons.map((n) => `Season ${n}`).join(' · ')} · {series.facts}
-            </p>
-          </div>
-        ))}
-        <p className="text-center text-[15px] text-[#E5C158]">{MYTHIOS_INTRO.call}</p>
-        <button className={goldButton} onClick={() => setWantsSignIn(true)}>
-          START A PARTY
-        </button>
-        <button className={`w-full ${quietButton} py-2.5 font-[Cinzel] font-bold`} onClick={() => setWantsSignIn(true)}>
-          I HAVE AN INVITE
-        </button>
-        {/* A friend coming back to their party signs in here (Fake Guru, 18 Oct: "No login button"). */}
-        <button
-          className="w-full text-[14px] text-[#D9D1E6] underline"
-          onClick={() => {
-            setReturning(true);
-            setWantsSignIn(true);
-          }}
-        >
-          Already playing? Sign in
-        </button>
-        <p className="text-center text-[12px] text-[#8B7A9E]">{CREDIT_LINE}</p>
-      </div>
+      <CoverPage
+        onGatherFriends={() => setWantsSignIn(true)}
+        onSignIn={() => {
+          setReturning(true);
+          setWantsSignIn(true);
+        }}
+      />
     );
   } else body = <SignIn returning={returning} />;
 

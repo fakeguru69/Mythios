@@ -14,6 +14,7 @@ import {
   NarrationBlock,
   NoticeBlock,
   NoticeRollCard,
+  NoticeRollActionCard,
   type NoticeRollResult,
   ScriptButton,
   ScriptInline,
@@ -83,6 +84,7 @@ interface Today {
     fight: Fight | null;
     aside: boolean;
     finished_at: string | null;
+    notice?: NoticeRollResult | null;
   };
   daysPlayed: number;
   // The road so far (16 Oct): yesterday's recap for everyone, and each missed day's (Core Rules "Recap").
@@ -395,21 +397,30 @@ export default function OnlineDay({
     if (step.t === 'notice') {
       const line = pickNoticeLine(step.lines, progress.attrs, classAttr);
       if (line) {
-        const storedNotice = today?.notice as NoticeRollResult | undefined;
-        const rollResult: NoticeRollResult = storedNotice ?? {
-          attr: line.attr,
-          d20: 14,
-          bonus: getTierInfo(progress.attrs[line.attr] ?? 10).bonus,
-          total: 14 + getTierInfo(progress.attrs[line.attr] ?? 10).bonus,
-          dc: 3,
-          pass: true,
-          text: fill(line.text),
-          noviceNote: (progress.attrs[line.attr] ?? 10) < 26 ? 'A more practised eye would see more here.' : null,
-        };
+        const storedNotice = (today?.mine?.notice || (today as any)?.notice) as NoticeRollResult | undefined;
         const showFirstTime = typeof window !== 'undefined' && !localStorage.getItem('mythios_notice_explained');
-        pushItem(key, <NoticeRollCard key={key} roll={rollResult} showFirstTime={showFirstTime} />);
-        if (showFirstTime && typeof window !== 'undefined') {
-          try { localStorage.setItem('mythios_notice_explained', '1'); } catch {}
+        if (storedNotice) {
+          pushItem(key, <NoticeRollCard key={key} roll={storedNotice} showFirstTime={showFirstTime} />);
+        } else {
+          const score = progress.attrs[line.attr] ?? 10;
+          const bonus = getTierInfo(score).bonus;
+          pushItem(
+            key,
+            <NoticeRollActionCard
+              key={key}
+              attr={line.attr}
+              bonus={bonus}
+              dc={3}
+              busy={busy}
+              showFirstTime={showFirstTime}
+              onRoll={async () => {
+                if (typeof window !== 'undefined') {
+                  try { localStorage.setItem('mythios_notice_explained', '1'); } catch {}
+                }
+                await call('roll_notice', { p_party: partyId });
+              }}
+            />
+          );
         }
       }
       continue;
@@ -529,7 +540,7 @@ export default function OnlineDay({
         key,
         <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-press-card>
           <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-            <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">[PRESS ON] · {fill(step.title)}</span>
+            <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">PRESS ON · {fill(step.title)}</span>
             {!press && (
               <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] whitespace-nowrap">
                 You succeed on {challengeSucceedOn(pressDc, bonus + (pressArmed ? 4 : 0))}+
