@@ -32,6 +32,7 @@ const mustAssertFiles = [
   'party-panel.cjs',
   'notice-roll.cjs',
   'cover-page.cjs',
+  'fork-changed.cjs',
 ];
 
 for (const file of mustAssertFiles) {

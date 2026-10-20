@@ -19,6 +19,7 @@ import {
   ScriptInline,
   ScriptText,
   TapEcho,
+  WhatThisChangedBlock,
 } from '../components/ChapterScriptParts';
 import { challengeSucceedOn, getTierInfo, type AttributeName, EPISODE_NUMBERS, GEAR_TABLE } from '../data/mythiosRulesData';
 import { CLASSES } from './onlineText';
@@ -88,6 +89,7 @@ interface Today {
   recaps?: { week: number; day: number; recap: string }[];
   missed?: number;
   claims?: string[]; // what earlier Gatherings carry into the weekdays ("G5:united-effort-lost")
+  notice?: NoticeRollResult;
 }
 
 export interface DayInfo {
@@ -339,6 +341,9 @@ export default function OnlineDay({
         if (b && !shown.has(step.branches.indexOf(b))) {
           shown.add(step.branches.indexOf(b));
           pushSay(`${key}-b${opt}`, b.text);
+          if (b.changed) {
+            pushItem(`${key}-c${opt}`, <WhatThisChangedBlock key={`${key}-c${opt}`} text={fill(b.changed)} />, { instant: true, resolved: true });
+          }
         }
       });
       if (picks.length > 0 && step.mode === 'auto') {
@@ -389,7 +394,7 @@ export default function OnlineDay({
     if (step.t === 'notice') {
       const line = pickNoticeLine(step.lines, progress.attrs, classAttr);
       if (line) {
-        const storedNotice = day?.dayData?.notice as NoticeRollResult | undefined;
+        const storedNotice = today?.notice as NoticeRollResult | undefined;
         const rollResult: NoticeRollResult = storedNotice ?? {
           attr: line.attr,
           d20: 14,

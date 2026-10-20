@@ -880,7 +880,7 @@ export default function App() {
                     [
                       {
                         id: 'CHAT',
-                        label: 'CHAT',
+                        label: 'STORY',
                         badge: isPartyFormed ? pinnedClues.length : 0,
                       },
                       { id: 'RECORD', label: 'RECORD', badge: 0 },

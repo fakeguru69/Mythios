@@ -247,3 +247,13 @@ export const NoticeRollCard: React.FC<{
     </div>
   </div>
 );
+
+/** "What this changed" slot (Piece C9): displays the short outcome/effect of a choice or fork. */
+export const WhatThisChangedBlock: React.FC<{ text: string }> = ({ text }) => (
+  <div className="rounded-xl bg-[#211633] border border-[#523A73] p-3 space-y-1 shadow-sm" data-what-this-changed>
+    <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#E5C158] uppercase flex items-center gap-1.5">
+      <span>⚡ WHAT THIS CHANGED</span>
+    </div>
+    <ScriptText text={text} className="font-sans text-[14.5px] text-[#E3D9F2] leading-[1.4]" />
+  </div>
+);

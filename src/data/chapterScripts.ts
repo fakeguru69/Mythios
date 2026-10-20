@@ -25,7 +25,7 @@ export type ScriptStep =
       labels: string[];
       /** pick: only the picked branch · each: pick until every branch is seen · auto: picked, then the rest · flavor: no branches */
       mode: 'pick' | 'each' | 'auto' | 'flavor';
-      branches: { options: number[]; text: string }[];
+      branches: { options: number[]; text: string; changed?: string }[];
     }
   | { t: 'notice'; lines: Partial<Record<AttributeName, { first: string; second?: string }>> }
   | {
