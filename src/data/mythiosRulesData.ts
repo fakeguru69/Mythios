@@ -329,5 +329,30 @@ export function computeNearMissLine(ctx: NearMissContext): string | null {
   return null;
 }
 
+export interface SeasonTitleEntry {
+  userId: string;
+  name: string;
+  class?: string;
+  statKey: string;
+  statLabel: string;
+  val: number;
+  title: string;
+}
+
+export const SEASON_TITLES_META: Record<string, { title: string; statLabel: string }> = {
+  daysPlayed: { title: 'The Steady Feet', statLabel: 'Days Played' },
+  bestStreak: { title: 'The Unbroken', statLabel: 'Best Streak' },
+  gatheringsAttended: { title: 'The Faithful', statLabel: 'Gatherings Attended' },
+  fragmentsSolved: { title: 'The Reader', statLabel: 'Fragments Solved' },
+  relicsGiven: { title: 'The Open Hand', statLabel: 'Relics Given' },
+  timesSteppedUp: { title: 'First Forward', statLabel: 'Times Stepped Up' },
+  fragmentsMatched: { title: 'The Keen Eye', statLabel: 'Fragments Matched' },
+  battlesWon: { title: 'The Wall', statLabel: 'Battles Won' },
+  challengesCleared: { title: 'The Sure Hand', statLabel: 'Challenges Cleared' },
+  challengesPressedOn: { title: 'The Bold', statLabel: 'Challenges Pressed On' },
+  enemiesDefeated: { title: 'The Hunter', statLabel: 'Enemies Defeated' },
+  perfectRolls: { title: 'The Lucky One', statLabel: 'Perfect Rolls' },
+};
+
 
 

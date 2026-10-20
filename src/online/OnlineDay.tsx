@@ -90,6 +90,7 @@ interface Today {
   // The road so far (16 Oct): yesterday's recap for everyone, and each missed day's (Core Rules "Recap").
   recaps?: { week: number; day: number; recap: string }[];
   missed?: number;
+  partyYesterday?: string[];
   claims?: string[]; // what earlier Gatherings carry into the weekdays ("G5:united-effort-lost")
   notice?: NoticeRollResult;
 }
@@ -1072,7 +1073,12 @@ export default function OnlineDay({
       header={header}
       title={`Week ${week} · Day ${day}`}
       heading={chapter.script.heading}
-      roadSoFar={<RoadSoFar recaps={today.recaps} missed={today.missed} fill={roadFill} />}
+      roadSoFar={
+        <>
+          <RoadSoFar recaps={today.recaps} missed={today.missed} fill={roadFill} />
+          <PartyYesterday lines={today.partyYesterday} />
+        </>
+      }
       items={items}
       error={error}
       reachedSummary={reachedSummary}
@@ -1372,3 +1378,23 @@ function RoadSoFar({
     </div>
   );
 }
+
+// "The Party, Yesterday" (Piece D4; Core Rules §8): up to five lines of good news from friends yesterday, omitting anything already seen in the party chat.
+function PartyYesterday({ lines }: { lines?: string[] }) {
+  if (!lines || lines.length === 0) return null;
+  return (
+    <div className="rounded-xl border border-[#D4B876]/40 bg-[#180F29] px-3.5 py-3 space-y-2" data-party-yesterday>
+      <p className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] uppercase text-[#E5C158]">
+        THE PARTY, YESTERDAY
+      </p>
+      <ul className="space-y-1">
+        {lines.slice(0, 5).map((line, idx) => (
+          <li key={idx} className="font-sans text-[15px] text-[#D9D1E6] leading-[1.4]" data-party-yesterday-line>
+            {line}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+

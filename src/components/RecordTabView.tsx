@@ -9,6 +9,7 @@ import {
   BADGES_META,
   GEAR_TABLE,
   computeBadgeProgress,
+  SeasonTitleEntry,
 } from '../data/mythiosRulesData';
 
 interface RecordTabViewProps {
@@ -24,6 +25,9 @@ interface RecordTabViewProps {
   earnedBadgeIds: string[];
   partyLeads?: Record<string, { isLead: boolean; leadVal?: number; leadFriend?: string }>;
   leadsCount?: number;
+  seasonEnded?: boolean;
+  mySeasonTitle?: SeasonTitleEntry | null;
+  seasonTitles?: SeasonTitleEntry[];
 }
 
 export const RecordTabView: React.FC<RecordTabViewProps> = ({
@@ -38,6 +42,9 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
   earnedBadgeIds,
   partyLeads,
   leadsCount,
+  seasonEnded,
+  mySeasonTitle,
+  seasonTitles,
 }) => {
   const [selectedStatKey, setSelectedStatKey] = useState<string | null>(null);
   const [selectedBadgeId, setSelectedBadgeId] = useState<string | null>(null);
@@ -564,6 +571,48 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
           </div>
         )}
       </div>
+
+      {/* =====================================================================
+          SECTION 4 — SEASON TITLES (End of Season Honours, Piece D4)
+         ===================================================================== */}
+      {seasonEnded && seasonTitles && seasonTitles.length > 0 && (
+        <div className="rounded-2xl bg-[#160E24] border border-[#D4B876]/80 overflow-hidden shadow-xl" data-season-titles>
+          <div className="px-4 py-2.5 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+            <span className="font-['Cinzel'] font-bold text-[13px] tracking-[0.8px] text-[#E5C158] uppercase">
+              👑 SEASON TITLES
+            </span>
+            {mySeasonTitle && (
+              <span className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158]" data-my-season-title>
+                {mySeasonTitle.title}
+              </span>
+            )}
+          </div>
+          <div className="p-3.5 space-y-2">
+            {seasonTitles.map((t) => (
+              <div
+                key={t.userId}
+                className="rounded-xl bg-[#130B1F] border border-[#3A2555] px-3.5 py-2 flex items-center justify-between gap-3"
+                data-season-title-row={t.name}
+              >
+                <div className="min-w-0">
+                  <div className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8] truncate">
+                    {t.name}
+                  </div>
+                  <div className="font-sans text-[12.5px] text-[#B7A9CC]">
+                    {t.statLabel}: {t.val}
+                  </div>
+                </div>
+                <div
+                  className="shrink-0 font-['Cinzel'] font-bold text-[13.5px] text-[#E5C158]"
+                  data-season-title={t.title}
+                >
+                  {t.title}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* SHARE RECORD BUTTON */}
       <button

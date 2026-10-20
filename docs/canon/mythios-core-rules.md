@@ -489,17 +489,9 @@ Rules for all of it:
 - Words the player sees are fixed in `mythios-glossary-proposal.md`. **The player's word for the seven-day span is Week** ("Week 2 · Day 3"; decided by TV 5 Oct 2026). "Episode" is our word, in file names and GM notes only.
 - **The twelve numbers sit under one heading, RECORD,** with no row headings (TV, 5 Oct).
 
-**The Chat tab** has a switch at the top, MINE and PARTY, with a dot on whichever has news.
+**One thread** (decided 18 Oct 2026; replaces the old MINE/PARTY switch and ticker). Your day's chapter and the fire's chat sit in a single continuous Story thread: you read and play today's chapter at the top, and once your day is done, tonight's Campfire and party chat open directly below it (before your day is done, you can still read and talk in last night's fire while tonight's talk stays hidden until you finish).
 
-**The ticker** is one line that sits directly under the MINE and PARTY switch. It is a window onto the chat you are not in (decided 4 Oct 2026):
-- **The pill is the record; the ticker is the window.** Every piece of team news is written once, as a pill in the party chat, where it stays. The ticker never carries news of its own.
-- In your own thread it shows the latest thing in the party chat, with that friend's initial beside it. In the party chat it shows your own thread ("Your chapter is ready.", "Your own fight: Round 3.").
-- It shows one line only, the newest, and never stacks or pops up. Tapping it takes you to the other chat.
-- When several things are new, it shows the most important: a help-call, then a notable moment, then result and fragment news, then "Mei and Arjun are talking."
-- It never quotes what a friend said.
-- When nothing is new it says who has played today ("Mei and Dev have played today. Arjun has not.").
-
-**Notable moments** (decided 4 Oct 2026). A notable moment, such as a natural 20, a personal record or a badge earned, is announced in two places: on the ticker, and as a one-line pill in the party chat that names the friend and the deed. It is never sent as a phone notification. Everyday counts (a Challenge passed, a word solved) are not announced beyond the lines already listed here. The notable moments are: a natural 20; a new party best for Fastest Fight or Closest Call; and a badge earned.
+**Big moments in the chat** (decided 18 Oct 2026). Only big moments are announced as one-line notices in the party chat: a natural 20; a badge earned; a crown taken ("Mei took the crown for Best Streak."); and a new Attribute tier reached ("Dev's Charm reached Adept."). Everyday counts are not announced, so the fire's chat stays a place to talk. A lost crown is never announced in public (the friend who lost it gets a private nudge only), and big moments are never sent as phone notifications. ("Fastest Fight" and "Closest Call" party bests are dropped.)
 
 **Two layout rules:** features used every day sit together (the chats, the Seeker Chest); anything that runs across a week has a view that is always open, never only chat scrollback.
 

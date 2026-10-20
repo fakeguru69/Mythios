@@ -67,6 +67,9 @@ export default function GameShell({
     earnedBadgeIds: string[];
     leads?: Record<string, { isLead: boolean; leadVal?: number; leadFriend?: string }>;
     leadsCount?: number;
+    seasonEnded?: boolean;
+    mySeasonTitle?: any;
+    seasonTitles?: any[];
   } | null>(null);
 
   const loadRecord = useCallback(async () => {
@@ -270,6 +273,9 @@ export default function GameShell({
                 earnedBadgeIds={recordData.earnedBadgeIds}
                 partyLeads={recordData.leads}
                 leadsCount={recordData.leadsCount}
+                seasonEnded={recordData.seasonEnded}
+                mySeasonTitle={recordData.mySeasonTitle}
+                seasonTitles={recordData.seasonTitles}
               />
             )}
           </div>

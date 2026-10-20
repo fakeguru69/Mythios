@@ -6,12 +6,17 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase, plainError } from './supabaseClient';
 import { Markable } from './Markable';
 import { NarrationBlock, NoticeBlock, ScriptButton, ScriptInline, ScriptText, TapEcho } from '../components/ChapterScriptParts';
-import { challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
+import { challengeSucceedOn, getTierInfo, type AttributeName, type SeasonTitleEntry } from '../data/mythiosRulesData';
 import { card, ErrorLine, goldButton, heading, input, note, quietButton } from './ui';
 import PartyChat from './PartyChat';
 import type { MemberRow } from './supabaseClient';
 
 type Entry = { i: number; t: string; at: string } & Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+interface WeeksBestData {
+  week: number;
+  lines: { userId: string; name: string; category: string; line: string }[];
+  summary: string | null;
+}
 interface View {
   none?: boolean;
   same?: boolean;
@@ -32,6 +37,8 @@ interface View {
   isHost: boolean;
   n: number | null;
   log: Entry[];
+  weeksBest?: WeeksBestData | null;
+  seasonTitles?: SeasonTitleEntry[];
   progress: { gold: number; attrs: Record<string, number>; relics: Record<string, number>; weapon: number; armor: number } | null;
   /** Opened only after it ended, never having been in it (0072): its recap instead of the night. */
   missed?: boolean;
@@ -246,6 +253,7 @@ export default function OnlineGathering({
             </button>
           )}
         </div>
+        <WeeksBestCard weeksBest={view.weeksBest} />
         <ErrorLine text={error} />
       </div>
     );
@@ -275,6 +283,9 @@ export default function OnlineGathering({
         {tonightLine(view.tonight, view.opensAt, view.timeZone)}
       </div>
     );
+  }
+  if (view.weeksBest && view.weeksBest.lines?.length > 0) {
+    nodes.push(<WeeksBestCard key="g-weeks-best" weeksBest={view.weeksBest} />);
   }
   // The case so far (Fan Out and Campfire proposal §3.4): the week's question and at most three friends' week lines,
   // the most recently updated first; a changed line shows its first day too. Days by number. Never graded.
@@ -681,6 +692,9 @@ export default function OnlineGathering({
             GO ON
           </button>
         ))}
+      {view.week === 6 && view.endedAt && view.seasonTitles && view.seasonTitles.length > 0 && (
+        <SeasonTitlesCard titles={view.seasonTitles} myId={view.me} />
+      )}
       {view.endedAt && embedded && <div data-gathering-ended />}
       {view.endedAt && !embedded && (
         <button className={goldButton} onClick={onClose}>
@@ -1018,3 +1032,79 @@ function GatheringPoll({ partyId, isHost }: { partyId: string; isHost: boolean }
     </div>
   );
 }
+
+// "The Week's Best" (Piece D4; Core Rules §8): read in the Gathering lobby before Beat 1, one true achievement for every friend present.
+function WeeksBestCard({ weeksBest }: { weeksBest?: WeeksBestData | null }) {
+  if (!weeksBest || !weeksBest.lines || weeksBest.lines.length === 0) return null;
+  return (
+    <div className="rounded-2xl bg-[#180F29] border border-[#D4B876]/50 px-3.5 py-3 space-y-2 shadow-lg" data-weeks-best>
+      <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] uppercase text-[#E5C158]">
+        THE WEEK’S BEST
+      </div>
+      {weeksBest.summary && (
+        <p className="font-sans italic text-[16px] text-[#F4F1F8] leading-[1.45]" data-weeks-best-summary>
+          {weeksBest.summary}
+        </p>
+      )}
+      <ul className="space-y-1 pt-0.5">
+        {weeksBest.lines.map((item) => (
+          <li key={item.userId} className="font-sans text-[15px] text-[#D9D1E6] leading-[1.4]" data-weeks-best-line>
+            {item.line}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// Season Titles (Piece D4; Core Rules §8): permanent end-of-season honours for every friend in the party.
+export function SeasonTitlesCard({ titles, myId }: { titles?: SeasonTitleEntry[]; myId?: string }) {
+  if (!titles || titles.length === 0) return null;
+  return (
+    <div className="w-full rounded-2xl bg-[#160E24] border border-[#D4B876]/80 overflow-hidden shadow-2xl" data-season-titles>
+      <div className="px-4 py-2.5 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+        <span className="font-['Cinzel'] font-bold text-[13px] tracking-[0.8px] text-[#E5C158] uppercase">
+          👑 SEASON TITLES
+        </span>
+        <span className="font-['Cinzel'] text-[10.5px] tracking-[1px] text-[#D4B876]/80 uppercase px-2 py-0.5 rounded border border-[#D4B876]/30 bg-[#1A0F2E]">
+          SEASON 1 HONOURS
+        </span>
+      </div>
+      <div className="p-4 space-y-2.5 bg-[#160E24]">
+        <p className="font-sans text-[15px] text-[#B7A9CC] leading-[1.4]">
+          By the Record of the road, each companion is remembered by a title of their own:
+        </p>
+        <div className="space-y-2">
+          {titles.map((t) => {
+            const isMe = myId && t.userId === myId;
+            return (
+              <div
+                key={t.userId}
+                className={`rounded-xl border px-3.5 py-2.5 flex items-center justify-between gap-3 ${
+                  isMe ? 'bg-[#241638] border-[#D4B876]/70' : 'bg-[#130B1F] border-[#3A2555]'
+                }`}
+                data-season-title-row={t.name}
+              >
+                <div className="min-w-0">
+                  <div className="font-['Cinzel'] font-bold text-[15px] text-[#F4F1F8] truncate">
+                    {t.name}{isMe ? ' · you' : ''}
+                  </div>
+                  <div className="font-sans text-[13px] text-[#B7A9CC]">
+                    {t.statLabel}: {t.val}
+                  </div>
+                </div>
+                <div
+                  className="shrink-0 font-['Cinzel'] font-bold text-[14px] text-[#E5C158] tracking-[0.4px]"
+                  data-season-title={t.title}
+                >
+                  {t.title}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+

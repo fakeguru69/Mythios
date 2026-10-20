@@ -29,7 +29,7 @@ A stat that is merely a total is boring. A **Chase Stat** creates hunger:
 ### Objective B: "Bragging Rights" (Social Recognition)
 Bragging in Mythios is **earned in the story, announced to the party, and never requires self-promotion**:
 1. **The Game Brags for You:** Every notable deed produces an instant, server-validated pill in the **Party Chat** (e.g., `"Mei rolled a PERFECT ROLL."`, `"Dev gave Jo a Charm Relic."`).
-2. **The Gathering Lobby ("The Week's Best"):** Before each Sunday Gathering begins, the game reads aloud one premier achievement for **every single friend present**. Nobody is placed last; everyone gets a genuine spotlight in front of the group.
+2. **The Gathering Lobby ("The Week's Best"):** Before each Day 7 Gathering begins, the game reads aloud one premier achievement for **every single friend present**. Nobody is placed last; everyone gets a genuine spotlight in front of the group.
 3. **End-of-Season Titles:** At the campaign’s finale, each friend is awarded an immutable, storied **Season Title** derived from their strongest pursuit (*The Unbroken*, *The Open Hand*, *The Sure Hand*, *The Bold*, *The Hunter*, *The Lucky One*).
 
 ---
@@ -85,7 +85,7 @@ Focuses on consistency, daily ritual, and intellectual contribution to the myste
 |---|---|---|---|
 | **Days Played** | Total days the player opened the chapter and read to its closing Pull over the entire season. | `"Mei has played today."` | The bedrock foundation of async engagement; proves reliability without penalizing missed days. |
 | **Best Streak** | The longest consecutive run of days played. **Never decreases**, even if a day is skipped. | On Chapter Summary: `"Streak: 4 days. Best: 6."` | Classic habit loop; players chase beating their own personal historical best. |
-| **Gatherings Attended** | Number of live Sunday Gathering finales attended in the synchronous lobby. | Displayed in Gathering Lobby: `"Dev has entered."` | Prestige attendance metric for the shared weekly climax. |
+| **Gatherings Attended** | Gatherings you joined (the Gathering is Day 7, and the host picks the start day). | Displayed in Gathering Lobby: `"Dev has entered."` | Prestige attendance metric for the shared weekly climax. |
 | **Fragments Solved** | Number of Seeker Fragment lock-words unjumbled in the Seeker Chest or Campfire (+25g each). | `"Mei solved a word of today's fragment."` | Bragging rights for the party’s puzzle-solvers and codebreakers. |
 
 ---
@@ -95,9 +95,9 @@ Focuses on camaraderie, resource generosity, and shared high-stakes risks.
 
 | Stat | Technical Definition | Live Chat Announcement | Why It’s a Chase Stat |
 |---|---|---|---|
-| **Relics Given** | Total single-use stone charms given away to teammates from your Bag or during a fight. | `"Dev gave Jo a Charm Relic."` | High social currency; proves you invest your personal gold into your friends' survival. |
+| **Relics Given** | Relics given to friends from your Bag or during a fight. | `"Dev gave Jo a Charm Relic."` | High social currency; proves you invest your personal gold into your friends' survival. |
 | **Times Stepped Up** | Times the player tapped `[STEP UP]` to volunteer and take the dangerous opening Gathering roll. | `"Mei stepped up."` | Courage metric; bragging rights for the party's frontline vanguard who shoulders collective risk. |
-| **Fragments Matched** | Weekly scriptures correctly matched to recovered fragments during the Gathering Beat 4 quiz. | `"MATCH. Mei and Jo matched it."` | Lore mastery and deductive accuracy under a live 60-second timer. |
+| **Fragments Matched** | Scripture lines matched at the Gathering's **Match** (60 seconds). | `"MATCH. Mei and Jo matched it."` | Lore mastery and deductive accuracy under a live 60-second timer. |
 | **Battles Won** | Live Gathering Boss Battles won while fighting side-by-side with the company. | `"VICTORY. The Order is driven back."` | Collective military milestone celebrating flawless group coordination. |
 
 ---
@@ -107,7 +107,7 @@ Focuses on martial prowess, boldness under fire, and peak dice excitement.
 
 | Stat | Technical Definition | Live Chat Announcement | Why It’s a Chase Stat |
 |---|---|---|---|
-| **Challenges Cleared** | Landmark obstacle skill checks successfully cleared on the primary roll. | `"Mei cleared today's Challenge."` | Direct measure of attribute competency and tactical relic timing. |
+| **Challenges Cleared** | Challenges passed on the primary roll. | `"Mei cleared today's Challenge."` | Direct measure of attribute competency and tactical relic timing. |
 | **Challenges Pressed On** | Times the player boldly chose the optional, harder road (+4 DC, +200g), **cleared or not**. | `"Mei pressed on."` | The ultimate thrill-seeker stat; rewards bravery and risk appetite regardless of outcome. |
 | **Enemies Defeated** | Foes personally fainted or brought down by the player's own strikes in combat. | `"VICTORY. The sentry falls."` | Combat pride for damage dealers and martial classes. |
 | **Perfect Rolls** | Every natural 20 rolled on a Challenge, skirmish attack, or Gathering strike. | `"★ PERFECT ROLL."` | Unfiltered dopamine; universally cheered and recorded permanently on your record. |
@@ -216,7 +216,7 @@ Because Mythios is asynchronous, friends play at different hours. When a player 
 **The Core Rule:** *Good news only.* It never lists who missed a day or failed a roll; it spotlights teammate heroism.
 
 ### 3. "The Week's Best" (Gathering Lobby Ceremony)
-In the 60-second lobby before Beat 1 of Sunday’s Gathering, MYTHIOS delivers a live spoken/text tribute:
+In the lobby before Beat 1 of the Day 7 Gathering, MYTHIOS delivers a live spoken/text tribute:
 > *"This week: Mei pressed on four times. Dev gave two Relics. Jo solved five fragments. TV cleared every Challenge."*
 
 - Every friend present is celebrated in front of the group.
@@ -286,7 +286,7 @@ The Record tab follows an intentional top-to-bottom visual cadence that groups i
 | **12 Scoreboard Stats** | Chase crowns (`👑`) and lead the party in preferred playstyle | Record Tab + Tap to Explain | Daily incremental growth; friendly async competition |
 | **12 Badges** | Complete the 4x3 medal gallery; unlock whole-party triumphs | Instant Party Chat pill + Badge Case | Clear aspirational milestones to target during weekly play |
 | **"Party, Yesterday"** | Wake up to teammate achievements | Morning sign-in group brief | Immediate social proof and peer accountability each day |
-| **"The Week's Best"** | Live recognition in front of friends | Sunday Gathering lobby announcement | Guarantees high Gathering attendance and collective celebration |
+| **"The Week's Best"** | Live recognition in front of friends | Day 7 Gathering lobby announcement | Guarantees high Gathering attendance and collective celebration |
 | **Season Titles** | Permanent identity and campaign legacy | Finale ceremony + Season Archive | Long-term investment across the full 6-week arc |
 
 ---
