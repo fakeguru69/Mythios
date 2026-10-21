@@ -383,9 +383,14 @@ export default function OnlineDay({
         const b = branchFor(opt);
         if (b && !shown.has(step.branches.indexOf(b))) {
           shown.add(step.branches.indexOf(b));
-          pushSay(`${key}-b${opt}`, b.text);
+          const hasLeadIn = Boolean(b.changed) && /\n\n(?:…|\.\.\.)$/.test(b.text.trim());
+          const bodyText = hasLeadIn ? b.text.trim().replace(/\n\n(?:…|\.\.\.)$/, '') : b.text;
+          pushSay(`${key}-b${opt}`, bodyText);
           if (b.changed) {
             pushItem(`${key}-c${opt}`, <WhatThisChangedBlock key={`${key}-c${opt}`} text={fill(b.changed)} />, { instant: true, resolved: true });
+          }
+          if (hasLeadIn) {
+            pushSay(`${key}-b${opt}-leadin`, '…');
           }
         }
       });
@@ -418,9 +423,9 @@ export default function OnlineDay({
                 label={fill(labels[oi])}
                 disabled={busy}
                 onClick={() => {
-                  // A look that names one of the Challenge's two ways picks that way on the card (as in the demo).
+                  // A fork or look immediately before a Challenge picks which of the Challenge's two Attributes you roll with (Piece E2 Fit fork).
                   const nx = steps[i + 1];
-                  if (step.mode === 'flavor' && nx?.t === 'challenge' && nx.options.length === labels.length) {
+                  if ((step.mode === 'flavor' || step.mode === 'pick') && nx?.t === 'challenge' && nx.options.length === labels.length) {
                     setChosenAttr(nx.options[oi].attr);
                   }
                   call('pick_choice', { p_choice: step.id, p_option: oi });
@@ -477,8 +482,14 @@ export default function OnlineDay({
       continue;
     }
     if (step.t === 'challenge') {
-      const options = step.options;
-      const attr = (challenge?.attr ?? chosenAttr ?? options[0].attr) as AttributeName;
+      const prevStep = i > 0 ? steps[i - 1] : null;
+      const fitPickIdx =
+        prevStep?.t === 'choice' && prevStep.mode === 'pick' && prevStep.labels.length === step.options.length
+          ? (mine.picks[String(prevStep.id)] || [])[0]
+          : undefined;
+      const fitAttr = fitPickIdx !== undefined ? step.options[fitPickIdx]?.attr : undefined;
+      const options = fitAttr ? step.options.filter((o) => o.attr === fitAttr) : step.options;
+      const attr = (challenge?.attr ?? fitAttr ?? chosenAttr ?? options[0].attr) as AttributeName;
       const score = progress.attrs[attr] ?? 10;
       const bonus = getTierInfo(score).bonus;
       pushItem(

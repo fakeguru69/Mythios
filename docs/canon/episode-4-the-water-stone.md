@@ -101,8 +101,6 @@
 
 > Where the burned country gives out, at the last black rock before the grass begins, there is a crack at head height that only someone looking back would see.
 
-`[REACH IN]`
-
 > The rock is warm from the ground beneath it. What is in the crack is cold.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -174,15 +172,11 @@
 
 > Low in the stone of the old ford, where the water runs over it, sits a carved housing.
 
-`[CLOSE YOUR HAND ON IT]`
-
 > It opens as your fingers shut. What is inside is colder than the river.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
 
 > Beyond the ford the road forks. Mei and Jo take the lake road, the one to Reedham. You take the other.
-
-`[READ THE GROUND]`
 
 > Mei and Jo come back to the fork with nothing to tell but sheep.
 >
@@ -219,8 +213,6 @@
 > He digs in his coat, and holds something out on his palm. *"Paid for the water with this. Nobody'll take it off me."*
 >
 > A coin, old and heavy. On one side the king's face has been scraped away to bare metal. The other side, somebody has kept polished.
-
-`[TAKE THE COIN]`
 
 > It sits cold and heavy in your hand, heavier than a coin that size should be.
 >
@@ -328,8 +320,6 @@
 >
 > Beside it is a housing, slick with lake-weed.
 
-`[LAY YOUR PALM ON IT]`
-
 > The lid lifts as if it had been waiting. What is inside is as cold as the water it has sat above for centuries.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -415,8 +405,6 @@
 > Stand where he stood. From here, and from nowhere else in the lane, you can see one window on the shore with a lamp in it.
 
 > In the old market cross, at the centre of the drowned square, is a carved housing, half buried.
-
-`[SCRAPE THE SILT AWAY]`
 
 > The stone lid slides back under your fingers. The silt round it is warm from the day. What lies inside is as cold as the deep water past the last roofs.
 >
@@ -507,8 +495,6 @@
 *If the player loses, one line more:*
 > While it lasted he had the better of you. Your forearm aches where the oar came down across it, and the fog has found its way into your sleeves.
 
-`[SEARCH IT]`
-
 > Two pairs of oar-places, worn bright. A lamp bracket. Stern boards still wet.
 >
 > In the bottom, among the rope, lie pale curls of whittled wood, still fresh. And a tiny hull, half shaped, split down the middle, and thrown away.
@@ -528,8 +514,6 @@
 > It is a ferry. Somebody has been rowing between this island and the drowned village, night after night.
 
 > Among the willow roots is a stone older than the island's soil, and in it a housing the roots have half swallowed.
-
-`[WORK YOUR FINGERS IN]`
 
 > The moment they touch the lid, it opens. The cold that comes out of it is the cold of the lake bed, under all that mud and dark.
 >
@@ -574,8 +558,6 @@
 >
 > The last fragment is on the stair, not hidden at all: wedged in the angle of a step where the water once reached, as if it had waited out the flood.
 
-`[TAKE IT]`
-
 > **A locked Seeker Fragment has been added to your Chest.**
 >
 > That is six.
@@ -591,8 +573,6 @@
 > Nobody suggests waiting for morning.
 >
 > You climb to the bell chamber and kneel on its floor with the six, by one lamp. The wind comes through the empty windows in gusts. Below, the lake slaps at the stones.
-
-`[LAY THEM OUT]`
 
 > They settle, as they have three times before. A map, old and exact. But there is light enough for one pair of eyes, and only while the flame lives.
 >

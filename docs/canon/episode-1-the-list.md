@@ -62,17 +62,29 @@
 
 `[LOOK WHERE HE STOOD]` `[LOOK AT WHAT HE WAS AT]`
 
-*Both are seen; the choice is which comes first.*
+*The player chooses. Both finds are reached, in the order of the choice.*
 
 *Where he stood:*
 > A scrap of parchment in the leaf-mould, half burned. Its scorched edge flakes at your touch and still smells faintly of smoke. It is not writing and it is not a drawing. Somebody laid it over something hard and raised, and rubbed charcoal across it until the shape came through.
 >
 > You turn it to the light and back again. You do not know the shape.
+>
+> It lay face down, just where his feet had been, as if it fell from him when he turned for the trees.
+>
+> Walking back to the wagon you see the rest of it. Your cargo box, slewed half off the tilted wagon bed. The lock is jammed. The scratches round it are fresh, bright in the dull old metal. They are not yours.
+>
+> He was at this before you ever saw him.
 
 *What he was at:*
 > Your cargo box, slewed half off the tilted wagon bed. The lock is jammed. The scratches round it are fresh, bright in the dull old metal. They are not yours.
 >
+> They are all on the one side, and low, where a man would kneel to work and still keep half an eye on the road.
+>
 > He was at this before you ever saw him.
+>
+> You look back to where he stood. Something pale lies in the leaf-mould there: a scrap of parchment, half burned. Its scorched edge flakes at your touch and still smells faintly of smoke. It is not writing and it is not a drawing. Somebody laid it over something hard and raised, and rubbed charcoal across it until the shape came through.
+>
+> You turn it to the light and back again. You do not know the shape.
 
 **What you notice** *(by class, on this first day)*
 > **Might** · He held back. Every blow came a half-beat late.
@@ -107,8 +119,6 @@
 > **The Hollow Wake Inn, on the drove road.**
 
 > You leave the wagon where it lies and walk the last of the dusk down to the crossroads. Where your road meets the drove road an old boundary stone stands half-buried in the verge, weathered past reading. Moss furs its north side. Something in a crack at its foot catches the last of the light.
-
-`[PULL IT OUT]`
 
 > Thin, dense, and cold in a way nothing should be at this time of year. It lies across your palm like a sliver of winter that has forgotten to melt. It is not paper. It has not aged the way paper would.
 >
@@ -156,13 +166,29 @@
 
 > The innkeeper sets down the cups. He sets down one more than there are of you, at the empty end of the table, and goes back behind his bar. He has a cloth over one shoulder. He moves the way a man moves in a room he has crossed ten thousand times, with no hurry in him at all.
 
-`[ASK HIM ABOUT THE LIST]`
+`[ASK HIM ABOUT THE LIST]` `[ASK WHO ELSE HAS BEEN ASKING]`
 
+*Ask him about the list:*
 > You begin to ask. Before you are halfway through he gives you his name, plainly, the way he might give you the price of a room.
 >
 > *"Garrick."*
 >
+> He glances once at the crease in your page — folded small to fit a coat pocket — before he wipes his hands on his cloth.
+>
 > He comes round the end of the bar and looks at the pages for a while, not touching them. Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.
+>
+> *"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen."*
+>
+> He puts it on the table.
+>
+> *"Left this. Hasn't been back in three weeks."*
+
+*Ask who else has been asking:*
+> You ask who else has come in looking for the people at this table. He stops his cloth on the bar and gives you his name first, plainly, the way he might give you the price of a room.
+>
+> *"Garrick."*
+>
+> *"Nobody's asked for you,"* he says, coming round the end of the bar to look at the pages without touching them. *"Only the woman who left them."* Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.
 >
 > *"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen."*
 >
@@ -214,8 +240,22 @@
 
 > On the facing leaf, one line will not give itself up to any of you. It is in some private shorthand, tight as wire. The longer you look at it, the less it says.
 
-`[ASK HIM ABOUT THE LINE NOBODY CAN READ]`
+`[ASK HIM ABOUT THE LINE NOBODY CAN READ]` `[READ THE LETTERS OUT TO HIM]`
 
+*Ask him about the line nobody can read:*
+> You turn the open notebook toward the bar and point to the cramped line at the foot of the leaf. He does not even have to come closer to see which one you mean.
+>
+> He does not look up from the bar.
+>
+> *"That's a rock. Split lightning-wise, about so high. Two hours north."*
+>
+> He goes on wiping.
+>
+> *"She'd sit right there. I doubt she thought I was listening."*
+
+*Read the letters out to him:*
+> You sound out the first three clipped syllables of her shorthand aloud. Behind the bar, his cloth slows for half a beat at the sound of them.
+>
 > He does not look up from the bar.
 >
 > *"That's a rock. Split lightning-wise, about so high. Two hours north."*
@@ -228,14 +268,28 @@
 >
 > It is about a child. Taken, and held somewhere near that rock. No date. Only the place, and the plain sense, in every line of it, that whatever was happening there was not over.
 
-`[ASK HIM TO TAKE YOU THERE]`
+`[ASK HIM TO TAKE YOU THERE]` `[TELL HIM NOBODY ELSE CAN READ HER]`
 
+*Ask him to take you there:*
 > He sets down the glass. In the quiet room it is the loudest thing there is.
 >
 > *"I've a business to run."*
+>
+> You point to the extra cup still sitting untouched at the end of the table, and tell him nobody else alive can read her hand if you find more of it at that rock.
+>
+> A long pause. A log shifts in the grate and throws up a few sparks. He looks at the satchel, and the pages, and each of you in turn.
+>
+> *"...As far as the Widow's Tooth. That's all I'm agreeing to."*
 
-`[TELL HIM NOBODY ELSE CAN READ HER]`
-
+*Tell him nobody else can read her:*
+> You tap the tight wire-thin shorthand on the open leaf and tell him plain: if there is more of her work out by that rock, none of you can read a word of it without him.
+>
+> He sets down the glass. In the quiet room it is the loudest thing there is.
+>
+> *"I've a business to run."*
+>
+> Nobody answers him. You let the open notebook speak for itself on the table between the cups.
+>
 > A long pause. A log shifts in the grate and throws up a few sparks. He looks at the satchel, and the pages, and each of you in turn.
 >
 > *"...As far as the Widow's Tooth. That's all I'm agreeing to."*
@@ -245,8 +299,6 @@
 > The fire has burned down to a red murmur. The extra cup is still at the empty end of the table. Nobody has touched it.
 
 > By the door, an old verse is carved into the beam, so old the wood has grown round the letters. Under it somebody has worked a small hollow into the timber.
-
-`[FEEL INSIDE]`
 
 > Cold enough to feel through the warm wood.
 >
@@ -297,15 +349,15 @@
 
 > There is nobody at the rock. Close to, it is dark with old rain and furred with grey lichen. The wind makes a low, hollow note in the split.
 >
-> There are tracks at its foot: several people, not long ago, and a cart. And low on the stone, half worn away, something has been cut into it.
+> There are tracks at its foot: several people, not long ago, and a cart. The ruts run off toward deep bracken and a thread of smoke beyond; low on the stone, under the overhang, something has been cut into the rock where you would have to crouch with your back to the open ground to read it.
 
 `[GO TO THE MARKING]` `[FOLLOW THE CART-RUTS]`
 
 *The marking (Mei and Dev take the ruts):*
-> You crouch at the stone and put your fingers to the cut lines. They are cold, and gritty under your touch. That is where you are, with your back to the bracken, when the bracken moves.
+> You crouch at the stone and put your fingers to the cut lines. They are cold, and gritty under your touch. In the deepest groove, kept dry by the overhang, a crumb of black charcoal comes away on your thumb. Somebody pressed paper to this stone not many days ago. That is where you are, with your back to the bracken, when the bracken moves.
 
 *The ruts (Mei and Dev take the marking):*
-> The ruts turn off the road toward a line of trees, and a thread of smoke beyond them. You are looking that way, so you see him first: a man lying flat in the bracken, watching the rock.
+> The ruts turn off the road toward a line of trees, and a thread of smoke beyond them. Where the left wheel sank deepest in the peat, a twist of grey reed-thatch has shaken loose from the cart-bed. You are looking that way, so you see him first: a man lying flat in the bracken, watching the rock.
 
 **What you notice**
 > **Might** · The ruts are deep going in and shallow coming out. *The cart left lighter than it came. Or it left something here.*
@@ -345,15 +397,11 @@
 
 > Under the overhang, on a dry shelf out of the wind, something small is lying on its side.
 
-`[PICK IT UP]`
-
 > A carved horse, no longer than your thumb. It is grey with a winter or two of weather. Its edges have gone soft, the way wood does when it has been held a great deal and then not held at all.
 >
 > It is a child's. It has been here a long time.
 
 > There is a crack in the stone under the marking, wide enough for a hand.
-
-`[REACH IN]`
 
 > The same cold. The same weight.
 >
@@ -408,10 +456,10 @@
 `[LOOK FOR FOOTPRINTS]` `[KNOCK NEXT DOOR]`
 
 *Look for footprints:*
-> You crouch by the bucket. The mud there has been trodden by every boot in Fenmark, but over the top of it all runs a line of small prints, quick and light, too short in the stride for any grown man. They go off between the sheds behind the lane, and there you lose them.
+> You crouch by the bucket. The mud there has been trodden by every boot in Fenmark, but over the top of it all runs a line of small prints, quick and light, too short in the stride for any grown man. Where they turn between the sheds, a thread of unhemmed grey wool has caught on a nail at the height of a boy's elbow. They go off between the sheds behind the lane, and there you lose them.
 
 *Knock next door:*
-> The door beside the well opens the width of a hand before your knuckles have finished on it. An eye, a grey braid, a thin hand on the latch. She does not speak, and she does not shut it. Her gaze goes once, quickly, down the lane and back to you.
+> The door beside the well opens the width of a hand before your knuckles have finished on it. An eye, a grey braid, a thin hand on the latch. Behind her in the dim kitchen, a pot of the same boiled barley is still steaming on the hob — she is the one who filled the bowl by the well. She does not speak, and she does not shut it. Her gaze goes once, quickly, down the lane and back to you.
 
 **Challenge card**
 > **FIND WHO LEFT IT**
@@ -439,12 +487,18 @@
 
 *Show him the list:*
 > You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go.
+>
+> *"She was here,"* he whispers, touching the corner of the leaf with one dirty finger. *"The woman with the satchel. Two weeks back. She asked about the split stone, and she had a book of that same paper."*
 
 *Ask who was taken:*
 > You ask him straight out who they took. His chin comes up at that. For three days Fenmark has told him only to keep quiet, and nobody has asked him anything at all.
+>
+> *"Her mother's shut inside with the shutters barred,"* he says, his voice tight. *"They told her if she cried out or went to the road, they'd never bring her back."*
 
 *Say nothing:*
 > You say nothing. You lean on the cold lip of the well and let the quiet be, as if you had the whole afternoon to spend on it. The boy watches you do it. He had braced himself for questions.
+>
+> Because you do not press him, his eyes go where his thoughts are: down the lane to the swinging gate, and then to the third house on the left, where a child's stool still sits under an open shutter.
 
 > For a while he says nothing at all. He looks once down the empty lane. Then it comes out low and fast.
 >
@@ -459,8 +513,6 @@
 > While he talks he hums, without noticing, a rhyme with no tune to speak of. His grandmother's, he says. She sang it here, at the well.
 >
 > You look at the well. Its stone lip is older than every house in the street, green-black and sweating with damp. Worn into it, just where a hand would rest, is a hollow.
-
-`[REACH IN]`
 
 > Your fingers close on something thin and cold. Well-water beads on it and will not soak in.
 >
@@ -479,13 +531,13 @@
 `[STAND WHERE YOU ARE]` `[STEP BACK, HANDS OPEN]` `[PUT YOURSELF IN FRONT OF THE BOY]`
 
 *Stand where you are:*
-> You stay exactly where you are, your feet set on the wet cobbles. The two younger men had expected you to give ground. They glance at the elder, and do not quite know what to do with their hands.
+> You stay exactly where you are, your feet set on the wet cobbles. The two younger men had expected you to give ground. They glance at the elder, and do not quite know what to do with their hands. Close to, you see that neither of them carries so much as a hedging bill at his belt — they came out with bare hands, hoping numbers alone would turn you from the lane.
 
 *Step back, hands open:*
-> You take one slow step back and let them see your empty hands. The nearer of the two young men lets out a breath, and some of the stiffness goes out of the street.
+> You take one slow step back and let them see your empty hands. The nearer of the two young men lets out a breath, and some of the stiffness goes out of the street. As his shoulders drop, his cuff rides up: there is a dark bruise round his wrist, three days old, where a hand gripped him hard when he tried to come out of his door that night.
 
 *Put yourself in front of the boy:*
-> You step across, between the men and the boy. It is a small movement, and every eye in the lane follows it. The elder's face changes. For a moment he looks less like a man guarding his village than a man ashamed of it.
+> You step across, between the men and the boy. It is a small movement, and every eye in the lane follows it. The elder's face changes. For a moment he looks less like a man guarding his village than a man ashamed of it. Behind your shoulder, the boy breathes one thing more before the elder reaches you: *"They didn't bring a lantern. They knew where the step was."*
 
 > Nobody draws. Nobody needs to. The message is plain enough.
 >
@@ -537,18 +589,18 @@
 
 > The camp is an old one: burning-pits long cold, a trade that left years ago. The earth is black to a spade's depth. When the wind stirs it, the whole clearing smells of a fire that went out before you were born. But the path in is worn too clean for that to be all of it.
 >
-> You reach it after dark. At the edge of the clearing stands a shed, with no light in it. You knock. Nobody answers.
+> You reach it after dark. At the edge of the clearing stands a shed, with no light in it. You knock. Nobody answers. If the runner from Fenmark came this way, he had half a day on you; the step and the firepit are right at your feet, while the path in runs back toward the dark trees.
 
 `[LOOK AT THE STEP]` `[LOOK AT THE FIRE]` `[LOOK AT THE PATH]`
 
 *The step:*
-> Swept this morning. Somebody lives here, and is proud enough to sweep.
+> Swept this morning. Somebody lives here, and is proud enough to sweep. Tucked under the threshold stone is a narrow line of dry salt and grey rowan-ash — an old hill-country ward laid down by someone who expects a visitor back. You are still crouched by the door when a blade works into the shutter behind the shed.
 
 *The fire:*
-> Cold on top. Warm underneath, when you push a hand into the ash. Banked, not dead. Somebody means to come back to it.
+> Cold on top. Warm underneath, when you push a hand into the ash. Banked, not dead. Somebody means to come back to it. Set on the flat stone beside the pit is a tin cup of herb-tea with the steam barely off it — she slipped into the trees only minutes before your boots came up the road. You are still kneeling by the ash when a blade works into the shutter behind the shed.
 
 *The path:*
-> Two sets of prints on it, both fresh. A woman's, going out. And over them a man's, coming in, at a run.
+> Two sets of prints on it, both fresh. A woman's, going out. And over them a man's, coming in, at a run. His stride is long and low, and the mud at the turn is still oozing water into the heel-mark.
 >
 > He is here.
 
@@ -588,11 +640,14 @@
 
 `[SHOW HER YOUR EMPTY HANDS]` `[TELL HER WHO YOU JUST DROVE OFF]` `[HOLD OUT THE CARVED HORSE]`
 
-*Empty hands, or the telling:*
-> The axe comes down by inches. Then her eyes go to the carved horse in your other hand, and stop.
+*Show her your empty hands:*
+> The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve — he came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes go to the carved horse in your other hand, and stop.
+
+*Tell her who you just drove off:*
+> The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face — whatever she keeps hidden here, it is under that stone and not in the shed. Then her eyes go to the carved horse in your other hand, and stop.
 
 *The horse:*
-> The axe comes down all at once.
+> The axe comes down all at once. Before she even asks your names, her fingers go to her belt, unfasten a small river-stone charm bound in iron wire — kept since the winter the boy was taken — and press it into your palm as she takes the little horse from you.
 
 > She takes the little horse in both hands. She has to sit.
 >
@@ -619,8 +674,6 @@
 > And it is the same time of year.
 
 > The fire ticks and settles. She says a thing twice while she talks, hardly hearing herself: *"The power that gives is also the power that takes."* She cannot say where she first heard it. Her eyes go, when she says it, to the old dead tree behind the shed, hollow at the foot.
-
-`[REACH INTO THE HOLLOW]`
 
 > Wrapped in something long since rotted to threads. They give way under your fingers with a dry whisper, and what is inside is still cold.
 >
@@ -703,8 +756,6 @@
 
 > Under the waterline, at the foot of the ford-stone, where you would only see it in a low year:
 
-`[REACH DOWN]`
-
 > Cold beyond the cold of the river.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -714,8 +765,6 @@
 > Six of these old scraps in a week, some of them hidden longer than anyone can say, and not one of you has missed one. You have been putting them in your pockets like a child picking up stones.
 >
 > Meira wrote it: *each piece safe alone. Only together do they mean anything.*
-
-`[LAY THEM OUT]`
 
 > You set them side by side on a flat rock, still warm from the noon sun. The river is loud beside you.
 >
@@ -735,8 +784,16 @@
 
 > That night you stop at a roadside inn, a smoky, crowded place of drovers and dogs. A ham hangs in the chimney. Garrick orders for the table. When the cups come he pours one more than there are of you, and sets it at the empty place.
 
-`[ASK WHO IT IS FOR]`
+`[ASK WHO IT IS FOR]` `[LOOK AT THE EXTRA CUP]`
 
+*Ask who it is for:*
+> You ask him quietly who the extra cup is for. He sets the jug down with a small tap on the scarred oak.
+>
+> *"Family habit. We always pour one for whoever can't be with us."*
+
+*Look at the extra cup:*
+> You look down at the extra cup at the corner of the table — poured to the same measure as the rest, where he has set one every night since the Hollow Wake. He catches your eye across the rim of the jug.
+>
 > *"Family habit. We always pour one for whoever can't be with us."*
 
 > Over supper the way has to be got by heart, and there is only one way to do that. There is one map, and there are [N] of you.
@@ -744,10 +801,10 @@
 `[READ IT OUT]` `[LET DEV READ IT]`
 
 *Read it out:*
-> You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark.
+> You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark. Right at the mark, your fingertip catches on a tiny pin-hole punched clean through the old vellum — somebody once pinned this very spot to a board before the map was cut in six.
 
 *Let Dev read it:*
-> You turn the map round and slide it across to Dev, who reads it the way some people read a letter from home: slowly, frowning a little, as if the words might change if they were hurried.
+> You turn the map round and slide it across to Dev, who reads it the way some people read a letter from home: slowly, frowning a little, as if the words might change if they were hurried. Because your own eyes are not on the parchment, you catch a man in a riding-cloak by the chimney stopping with his mug halfway to his mouth when Dev names the bend above the ford.
 
 > It is read out, twice, slowly, so that everybody has it. The room is loud enough that you all lean in close to hear.
 >

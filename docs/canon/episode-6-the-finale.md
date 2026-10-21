@@ -61,8 +61,6 @@
 >
 > They kept it in this room for as long as they lived. In the stone niche where it lay, pressed flat beneath it all that time, is something as thin as a leaf.
 
-`[LIFT IT OUT]`
-
 > It comes away from the stone with a dry whisper, and it is colder than the niche that held it.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -90,8 +88,16 @@
 >
 > It points down. Into the wall itself, toward the long halls under the ramparts where the city's defenders slept.
 
-`[WHERE WOULD ANYONE RUN TO, FROM A CITY LIKE THIS?]` *(optional)*
+`[ASK WHERE ANYONE WOULD RUN TO]` `[TRACE THE ARROW IN THE STONE]`
 
+*Ask where anyone would run to:*
+> You ask aloud where anyone could possibly run to, from a walled city at the end of the world.
+>
+> Garrick is looking out of the slit window, at the hall. *"Somewhere they'd never be found,"* he says.
+
+*Trace the arrow in the stone:*
+> You put a fingertip into the small scratched arrow under the sill — cut with a knife-point, pointing straight down into the thickness of the rampart.
+>
 > Garrick is looking out of the slit window, at the hall. *"Somewhere they'd never be found,"* he says.
 
 > At dusk, far up in the square, a lantern stops beside the Order's board. A watchman is taking up the chalk.
@@ -182,8 +188,6 @@
 >
 > Nobody makes a sound.
 
-`[DO NOT MOVE]`
-
 > The heartbeat comes.
 >
 > It turns. It climbs the stair. You hear it go on up the hill, one step at a time, until you cannot hear it.
@@ -196,8 +200,6 @@
 >
 > In the hearthstone is a housing.
 
-`[PRESS IT WITH YOUR THUMB]`
-
 > It slides out. What is inside is as cold as a hearth that has not seen a fire in centuries.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -207,8 +209,6 @@
 > Every helm is turned to the hall.
 
 > At dusk, back in the wall room, the burnt stick snaps halfway through the stroke.
-
-`[FINISH IT WITH THE STUB]`
 
 > Five.
 
@@ -298,8 +298,6 @@
 
 > The hall's wall goes up out of sight above you.
 
-`[LAY YOUR PALM FLAT ON IT]`
-
 > The stone is warm.
 >
 > Not sun-warm. There has been no sun for days. Something on the other side of this wall is warm, and has been for a very long time.
@@ -353,8 +351,6 @@
 
 > Behind the hall, the city's highest ground runs out into a rise of cracked, bare rock, split and heaved as if something underneath had shifted a long time ago.
 
-`[LOOK FOR THE ONE THAT IS DIFFERENT]`
-
 > A hundred cracks, all of them crooked.
 >
 > And one that runs straight up and down, as if it had been ruled.
@@ -390,8 +386,6 @@
 
 > You go in sideways, one at a time, with the lamp held out ahead. The rock presses cold against your back and your chest. Deep inside, where the last of the grey daylight gives out, a housing is set into the stone.
 
-`[LIFT THE LID]`
-
 > It comes away in your hand, beaded with the crack's cold damp.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -404,8 +398,16 @@
 >
 > The Seekers' ways open only for their own. Every one of them has opened for you, and for nobody else.
 
-`[THEN HOW DID THE ORDER CARRY FOUR STONES INSIDE?]`
+`[ASK HOW THE ORDER CARRIED FOUR STONES IN]` `[LOOK AT THE BLANK ROCK]`
 
+*Ask how the Order carried four stones in:*
+> You ask the question that has been waiting since the stair: if the Seekers' ways open only for their own, how did the Order carry four stones inside?
+>
+> Garrick is looking at the blank rock. *"The Seekers sealed the doors they knew about."*
+
+*Look at the blank rock:*
+> You look from the Seeker housing in your hand to the blank face of the rock at the dead end of the crack, wondering aloud how the Order ever got four stones past a Seeker seal.
+>
 > Garrick is looking at the blank rock. *"The Seekers sealed the doors they knew about."*
 
 `[PLANT]` *(there is another door)*
@@ -499,8 +501,6 @@
 
 > Beside the dark moon, a housing gives at a touch.
 
-`[TAKE IT]`
-
 > It has sat under the open sky for centuries, and it is as cold as the night up here.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -508,8 +508,6 @@
 > The rows are evenly spaced. The bare stone after them is only stone.
 >
 > But you could go on counting.
-
-`[COUNT FORWARD, WITH A FINGERTIP]`
 
 > Full to dark and back, across the blank wall, at the sky-watchers' own spacing. Year on year. Your finger comes all the way round the room.
 >
@@ -607,13 +605,9 @@
 
 > Deep in the crack, at the dead end beside the scored moon, the last fragment is waiting in a cleft at the foot of the blank rock.
 
-`[TAKE IT]`
-
 > **A locked Seeker Fragment has been added to your Chest.**
 >
 > That is six.
-
-`[LAY THEM OUT]`
 
 > They settle, as they have five times before, on a ledge of rock at the dead end, with the lamp held close and whoever else is in the crack pressed in behind you to see. This time the map is short, and simple.
 >

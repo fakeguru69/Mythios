@@ -58,6 +58,7 @@ import {
   ScriptText,
   ScriptTokens,
   TapEcho,
+  WhatThisChangedBlock,
   fillScriptTokens,
   friendChoiceLabels,
   friendsWithPicked,
@@ -1562,6 +1563,9 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
           if (b && !shownBranches.has(step.branches.indexOf(b))) {
             shownBranches.add(step.branches.indexOf(b));
             nodes.push(<NarrationBlock key={`${key}-b${opt}`} text={fill(b.text)} />);
+            if (b.changed) {
+              nodes.push(<WhatThisChangedBlock key={`${key}-chg${opt}`} text={fill(b.changed)} />);
+            }
           }
         };
         picks.forEach((opt) => showPick(opt, true));

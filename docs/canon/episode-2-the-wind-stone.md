@@ -36,8 +36,18 @@
 >
 > *Three more.*
 
-`[ASK HIM WHAT HE KNOWS]`
+`[ASK HIM WHAT HE KNOWS]` `[ASK WHERE HE WOULD START]`
 
+*Ask him what he knows:*
+> You ask him how much of this country he already knew before you ever walked into his inn.
+>
+> He is wiping the soot from a lamp glass with the corner of his cloth, and he doesn't look up.
+>
+> *"I can tell you where the next name on that wall lives. That's where I'd start."*
+
+*Ask where he would start:*
+> You read the second name from the mine wall aloud and ask him which road reaches it before the riders do.
+>
 > He is wiping the soot from a lamp glass with the corner of his cloth, and he doesn't look up.
 >
 > *"I can tell you where the next name on that wall lives. That's where I'd start."*
@@ -71,8 +81,18 @@
 
 > The Widow's Tooth is a day and a half behind you. Garrick agreed to come that far, and no further. He is shouldering a pack.
 
-`[POINT THAT OUT]`
+`[POINT THAT OUT]` `[SAY NOTHING AND WATCH HIM PACK]`
 
+*Point that out:*
+> You remind him, mildly, that the Widow's Tooth was a day and a half back down the road.
+>
+> He settles the strap on his shoulder. *"Worst guests I've ever had. Good tippers, though."*
+>
+> Then he sets off down the road ahead of you, as if it had been his idea.
+
+*Say nothing and watch him pack:*
+> You say nothing at all — only watch him knot his bedroll twice, the way a man knots it when he has another week of road in mind. He catches you looking.
+>
 > He settles the strap on his shoulder. *"Worst guests I've ever had. Good tippers, though."*
 >
 > Then he sets off down the road ahead of you, as if it had been his idea.
@@ -126,8 +146,6 @@
 > You are too late to stop it. But you know which way it turned.
 
 > The beam over his door is older than the house. There is a loose board in it, where he swears nobody has looked in his lifetime.
-
-`[PRISE THE BOARD]`
 
 > Behind it: something thin, and colder than the iron nails beside it.
 >
@@ -241,8 +259,6 @@
 
 > In the wheel-housing, above the footing, where years of spray should have worn anything away:
 
-`[REACH IN]`
-
 > Thin, and dense, and cold in a way that running water should long since have taken out of it.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -341,8 +357,6 @@
 >
 > It would not open for him.
 
-`[SET YOUR HAND TO IT]`
-
 > It gives at once, as if it had been waiting. The air inside is dry and still, and has not moved in a long time. What lies in it is cold.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -427,8 +441,6 @@
 > Somebody laughs, once, before they can stop it. It is the first laugh anyone has had in days.
 
 > You are all flat among the roots at the shaft's mouth, getting your breath back, when your hand finds something in the dark.
-
-`[CLOSE YOUR FINGERS ON IT]`
 
 > Rimed with frost, in the dark.
 >
@@ -522,8 +534,6 @@
 
 > Where he stood to make his signal, the turf is worn through to an old cut stone, with a hollow in it the size of a hand.
 
-`[REACH IN]`
-
 > Cold, under the dew. The lip of the hollow is worn smooth, by hands, over a very long time.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -595,13 +605,9 @@
 
 > Somewhere in the long hours it turns up: not hidden, this time. Lying among the roots at the lip of the shaft, as if it had been dropped there yesterday.
 
-`[PICK IT UP]`
-
 > **A locked Seeker Fragment has been added to your Chest.**
 >
 > That is six.
-
-`[LAY THEM OUT]`
 
 > They move, as the first six did. Each turns a little, and settles against the next. And then they are one thing.
 >
@@ -624,8 +630,6 @@
 `[PLANT]` *(said aloud, in the open: the Order's watchers are closer than anyone knows)*
 
 > The map marks a place two hundred paces along the hill.
-
-`[GO AND PUT YOUR HAND TO IT]`
 
 > A fall of old stone, grown over. Under it, when you have shifted enough of it: a hole. Cold air is breathing out of it.
 >

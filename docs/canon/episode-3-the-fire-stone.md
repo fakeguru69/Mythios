@@ -38,8 +38,24 @@
 >
 > The words are still hanging in the lamplight. Corin is watching you, to see what you will do with them. He holds his bandaged hand in his lap, palm up, the way somebody told him to keep it.
 
-`[KNEEL DOWN TO HIM]`
+`[KNEEL DOWN TO HIM]` `[SIT ON THE STEP BESIDE HIM]`
 
+*Kneel down to him:*
+> You drop to one knee on the stone floor so your eyes are level with his bandaged hand.
+>
+> He thinks hard, the way children do when they know it matters.
+>
+> *"Wren."*
+>
+> *"She said home was always warm. The ground's warm, and the hills are all black, and everything smells like a fire that went out a long time ago. She missed it."*
+>
+> A pause.
+>
+> *"She said they told her she was going home first."*
+
+*Sit on the step beside him:*
+> You sit down on the low mill-step beside him so nobody is standing over him while he speaks.
+>
 > He thinks hard, the way children do when they know it matters.
 >
 > *"Wren."*
@@ -56,9 +72,19 @@
 >
 > *"Ashcombe's a shepherds' village on the edge of the burned country,"* he says. *"A long day west. And above it she's marked a place. The Blackglass."*
 
-`[ASK ABOUT THE FOURTH NAME]` *(optional)*
+`[ASK ABOUT THE FOURTH NAME]` `[LOOK AT THE FOURTH ENTRY]`
 
+*Ask about the fourth name:*
 > Beside the fourth name is a place far to the north.
+>
+> You ask Garrick whether anyone should ride north to warn them now, and he lays two fingers flat on the open ledger leaf.
+>
+> *"One road at a time. The girl's is the one with tracks on it."*
+
+*Look at the fourth entry:*
+> Beside the fourth name is a place far to the north.
+>
+> Your thumb traces the ink of the fourth entry — drier than the third, written before they ever came down to the mill. Garrick watches your hand and shakes his head once.
 >
 > *"One road at a time. The girl's is the one with tracks on it."*
 
@@ -87,8 +113,6 @@
 
 > Below the shaft, in the wet grass, the tracks are plain to anyone who looks.
 
-`[LOOK]`
-
 > One cart, lightly loaded, two hours old at most. Two walkers beside it. And a third set of prints, small, stepping where it is told.
 >
 > They turn west.
@@ -112,8 +136,6 @@
 > Corin tells her your names. He has not forgotten one.
 
 > Where the west road leaves the valley, a wayside shrine stands older than the road: a stub of carved stone with the carving worn off. Somebody has left a sprig of heather at its foot, long since gone brown.
-
-`[FEEL BEHIND IT]`
 
 > Cold as a coin left out in frost.
 >
@@ -227,8 +249,6 @@
 
 > At the edge of the village the pound wall, where the shepherds pen their flocks, is built on older stones than any house in Ashcombe: huge, square-cut, set without mortar. They are as warm as bread. All but one gap.
 
-`[REACH INTO THE GAP]`
-
 > The only cold thing in Ashcombe. Cold enough to ache the fingers.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -305,8 +325,6 @@
 >
 > Beside it, set into the rock as if the glass had cooled around it, is a housing of carved stone: old work, cut with the same care as the lock the dead man could not open, on the path upriver.
 
-`[SET YOUR HAND TO IT]`
-
 > It gives at the first touch. The glass round it holds the sun's warmth; the housing is a cold spot in it, and what is inside is colder still.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -316,8 +334,6 @@
 > Tamsin, at Fenmark, under the Widow's Tooth. Corin, at the mill. Wren, at Ashcombe, under the Blackglass.
 >
 > The places Meira marked and the children in the ledger are one list.
-
-`[WRITE IT IN HER NOTEBOOK]`
 
 > It goes into Meira's notes, under her last entry, in your own hand. Your letters look clumsy under hers.
 
@@ -345,8 +361,18 @@
 
 > In the morning your split boot is whole again: the sole stitched back on, tight and neat, with waxed thread, while you slept. Garrick is winding what is left of the thread back onto its bobbin.
 
-`[THANK HIM]`
+`[THANK HIM]` `[HOLD UP THE MENDED BOOT]`
 
+*Thank him:*
+> You thank him quietly before the others are awake. He doesn't look up from the waxed thread.
+>
+> *"Needed doing."*
+>
+> He tucks the bobbin away inside his coat, and that is the end of it.
+
+*Hold up the mended boot:*
+> You lift the boot and turn the neat cobbler's stitch to the morning light where he can see you testing it.
+>
 > *"Needed doing."*
 >
 > He tucks the bobbin away inside his coat, and that is the end of it.
@@ -385,8 +411,6 @@
 > You are walking point when you stop, and crouch.
 >
 > In one of the hoof-scratches lies a chip of black glass, worn smooth by a thumb.
-
-`[PICK IT UP]`
 
 > You turn it over in your palm. It is no bigger than a fingernail: the kind of thing a child carries for luck.
 >
@@ -439,8 +463,6 @@
 > They had long nights here too. *(Moved 15 Oct 2026, Fake Guru: Phase 6, the die is on the main path; the day's [PRESS ON] is dropped.)*
 >
 > Between the niches, at chest height, is a housing.
-
-`[LAY YOUR HAND ON IT]`
 
 > Its face slides back with a low grate of stone. The ridge has been warm under your hand all day. The cold that comes out of the housing is older than the soot on the ceiling.
 >
@@ -564,8 +586,6 @@
 
 > The hut is newer than what it stands on. Under the hearthstone the footing is older, bigger stonework. Set into it:
 
-`[BRUSH YOUR HAND ACROSS IT]`
-
 > The fire's heat is still in the stone above. What is inside is as cold as well-water.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -629,17 +649,11 @@
 
 > The last fragment is at the cairn's foot: not hidden, only wedged between the lowest stones, where a careless boot would miss it.
 
-`[TAKE IT]`
-
 > **A locked Seeker Fragment has been added to your Chest.**
 >
 > That is six.
 
-`[LAY THEM OUT]`
-
 > They settle, as they have twice before. The wind worries at their edges, and they do not lift. A map, old and exact, with a ridgeline drawn along its top.
-
-`[TURN IT TO THE SKYLINE]`
 
 *If the player saw the country by daylight:*
 > You turn it until the drawn ridges sit on the real ones. They fit. And the place the map ends is the round hill with the crack in its crown. You were looking at it before the map told you.

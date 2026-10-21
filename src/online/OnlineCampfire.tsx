@@ -92,7 +92,7 @@ interface Fire {
 // The fire's table (migration 0092): pieces with who laid them, agree and doubt, the thread, readings after your own pin.
 interface Piece {
   key: string;
-  kind: 'lead' | 'notice' | 'pass' | 'press';
+  kind: 'lead' | 'notice' | 'pass' | 'press' | 'fork';
   title: string;
   text: string | null;
   attr?: AttributeName;
@@ -107,7 +107,7 @@ interface FireTable {
   narrated: boolean;
   evening: boolean;
   pieces: Piece[];
-  hands: { kind: 'notice' | 'pass' | 'press'; title: string; attr?: AttributeName; text: string }[];
+  hands: { kind: string; title: string; attr?: AttributeName; text: string }[];
   thread: { kind: 'say' | 'pinned' | 'changed' | 'click' | 'laid'; name: string | null; mine: boolean | null; body: string; at: string }[];
   pinned: string[];
   readings: { id: string; name: string; reading: Reading; line: string | null; mine: boolean }[] | null;

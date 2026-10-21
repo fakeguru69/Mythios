@@ -25,7 +25,7 @@ export type ScriptStep =
       labels: string[];
       /** pick: only the picked branch · each: pick until every branch is seen · auto: picked, then the rest · flavor: no branches */
       mode: 'pick' | 'each' | 'auto' | 'flavor';
-      branches: { options: number[]; text: string; changed?: string }[];
+      branches: { options: number[]; text: string; changed?: string; roadFind?: { title: string; text: string }; relic?: AttributeName }[];
     }
   | { t: 'notice'; lines: Partial<Record<AttributeName, { first: string; second?: string }>> }
   | {
@@ -106,19 +106,29 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "LOOK WHERE HE STOOD",
           "LOOK AT WHAT HE WAS AT"
         ],
-        "mode": "each",
+        "mode": "pick",
         "branches": [
           {
             "options": [
               0
             ],
-            "text": "A scrap of parchment in the leaf-mould, half burned. Its scorched edge flakes at your touch and still smells faintly of smoke. It is not writing and it is not a drawing. Somebody laid it over something hard and raised, and rubbed charcoal across it until the shape came through.\n\nYou turn it to the light and back again. You do not know the shape.\n\n…"
+            "text": "A scrap of parchment in the leaf-mould, half burned. Its scorched edge flakes at your touch and still smells faintly of smoke. It is not writing and it is not a drawing. Somebody laid it over something hard and raised, and rubbed charcoal across it until the shape came through.\n\nYou turn it to the light and back again. You do not know the shape.\n\nIt lay face down, just where his feet had been, as if it fell from him when he turned for the trees.\n\nWalking back to the wagon you see the rest of it. Your cargo box, slewed half off the tilted wagon bed. The lock is jammed. The scratches round it are fresh, bright in the dull old metal. They are not yours.\n\nHe was at this before you ever saw him.\n\n…",
+            "changed": "You looked where he stood first — the rubbing lay face down where his heel turned for the trees.",
+            "roadFind": {
+              "title": "Face down at his heel",
+              "text": "The half-burned rubbing lay face down in the leaf-mould right where his heel turned for the trees, as if it slipped from his coat as he broke off."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "Your cargo box, slewed half off the tilted wagon bed. The lock is jammed. The scratches round it are fresh, bright in the dull old metal. They are not yours.\n\nHe was at this before you ever saw him.\n\n…"
+            "text": "Your cargo box, slewed half off the tilted wagon bed. The lock is jammed. The scratches round it are fresh, bright in the dull old metal. They are not yours.\n\nThey are all on the one side, and low, where a man would kneel to work and still keep half an eye on the road.\n\nHe was at this before you ever saw him.\n\nYou look back to where he stood. Something pale lies in the leaf-mould there: a scrap of parchment, half burned. Its scorched edge flakes at your touch and still smells faintly of smoke. It is not writing and it is not a drawing. Somebody laid it over something hard and raised, and rubbed charcoal across it until the shape came through.\n\nYou turn it to the light and back again. You do not know the shape.\n\n…",
+            "changed": "You checked the cargo box first — the scratches sit low on one side where he knelt watching the road.",
+            "roadFind": {
+              "title": "Scratches on the road side",
+              "text": "The fresh scratches on your cargo-box lock are all low on the one side, where a man could kneel at the metal and still keep half an eye down the road."
+            }
           }
         ]
       },
@@ -191,10 +201,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "You leave the wagon where it lies and walk the last of the dusk down to the crossroads. Where your road meets the drove road an old boundary stone stands half-buried in the verge, weathered past reading. Moss furs its north side. Something in a crack at its foot catches the last of the light."
       },
       {
-        "t": "act",
-        "label": "PULL IT OUT"
-      },
-      {
         "t": "say",
         "text": "Thin, dense, and cold in a way nothing should be at this time of year. It lies across your palm like a sliver of winter that has forgotten to melt. It is not paper. It has not aged the way paper would.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -233,12 +239,37 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "The innkeeper sets down the cups. He sets down one more than there are of you, at the empty end of the table, and goes back behind his bar. He has a cloth over one shoulder. He moves the way a man moves in a room he has crossed ten thousand times, with no hurry in him at all."
       },
       {
-        "t": "act",
-        "label": "ASK HIM ABOUT THE LIST"
-      },
-      {
-        "t": "say",
-        "text": "You begin to ask. Before you are halfway through he gives you his name, plainly, the way he might give you the price of a room.\n\n*\"Garrick.\"*\n\nHe comes round the end of the bar and looks at the pages for a while, not touching them. Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.\n\n*\"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen.\"*\n\nHe puts it on the table.\n\n*\"Left this. Hasn't been back in three weeks.\"*"
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "ASK HIM ABOUT THE LIST",
+          "ASK WHO ELSE HAS BEEN ASKING"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You begin to ask. Before you are halfway through he gives you his name, plainly, the way he might give you the price of a room.\n\n*\"Garrick.\"*\n\nHe glances once at the crease in your page — folded small to fit a coat pocket — before he wipes his hands on his cloth.\n\nHe comes round the end of the bar and looks at the pages for a while, not touching them. Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.\n\n*\"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen.\"*\n\nHe puts it on the table.\n\n*\"Left this. Hasn't been back in three weeks.\"*",
+            "changed": "You asked about the list first — he glanced at the pocket-fold in your page before bringing out the satchel.",
+            "roadFind": {
+              "title": "The pocket-folded page",
+              "text": "When you asked Garrick about the list, his eyes went once to the tight pocket-fold in your page before he reached under the counter for Meira's satchel."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You ask who else has come in looking for the people at this table. He stops his cloth on the bar and gives you his name first, plainly, the way he might give you the price of a room.\n\n*\"Garrick.\"*\n\n*\"Nobody's asked for you,\"* he says, coming round the end of the bar to look at the pages without touching them. *\"Only the woman who left them.\"* Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.\n\n*\"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen.\"*\n\nHe puts it on the table.\n\n*\"Left this. Hasn't been back in three weeks.\"*",
+            "changed": "You asked who else had come asking — he said nobody had asked for you, only the woman who left the pages.",
+            "roadFind": {
+              "title": "No other callers",
+              "text": "Asked whether anyone else had come looking for the people at your table, Garrick said nobody had asked for you at the Hollow Wake — only the woman who left the pages."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -332,32 +363,74 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "On the facing leaf, one line will not give itself up to any of you. It is in some private shorthand, tight as wire. The longer you look at it, the less it says."
       },
       {
-        "t": "act",
-        "label": "ASK HIM ABOUT THE LINE NOBODY CAN READ"
-      },
-      {
-        "t": "say",
-        "text": "He does not look up from the bar.\n\n*\"That's a rock. Split lightning-wise, about so high. Two hours north.\"*\n\nHe goes on wiping.\n\n*\"She'd sit right there. I doubt she thought I was listening.\"*"
+        "t": "choice",
+        "id": 1,
+        "labels": [
+          "ASK HIM ABOUT THE LINE NOBODY CAN READ",
+          "READ THE LETTERS OUT TO HIM"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You turn the open notebook toward the bar and point to the cramped line at the foot of the leaf. He does not even have to come closer to see which one you mean.\n\nHe does not look up from the bar.\n\n*\"That's a rock. Split lightning-wise, about so high. Two hours north.\"*\n\nHe goes on wiping.\n\n*\"She'd sit right there. I doubt she thought I was listening.\"*",
+            "changed": "You pointed out the cramped shorthand line — he knew which line you meant without coming closer.",
+            "roadFind": {
+              "title": "Known from across the bar",
+              "text": "When you turned the open notebook toward the bar, Garrick knew which cramped line at the foot of the leaf you meant without stepping closer to look."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You sound out the first three clipped syllables of her shorthand aloud. Behind the bar, his cloth slows for half a beat at the sound of them.\n\nHe does not look up from the bar.\n\n*\"That's a rock. Split lightning-wise, about so high. Two hours north.\"*\n\nHe goes on wiping.\n\n*\"She'd sit right there. I doubt she thought I was listening.\"*",
+            "changed": "You sounded out her clipped letters aloud — his cloth slowed on the bar at the sound of them.",
+            "roadFind": {
+              "title": "The pause of the cloth",
+              "text": "When you sounded out the first clipped syllables of Meira's shorthand aloud, Garrick's cloth slowed for half a beat on the bar before he named the split rock."
+            }
+          }
+        ]
       },
       {
         "t": "say",
         "text": "Once you know the place, the rest of the page gives way. It names none of you.\n\nIt is about a child. Taken, and held somewhere near that rock. No date. Only the place, and the plain sense, in every line of it, that whatever was happening there was not over."
       },
       {
-        "t": "act",
-        "label": "ASK HIM TO TAKE YOU THERE"
-      },
-      {
-        "t": "say",
-        "text": "He sets down the glass. In the quiet room it is the loudest thing there is.\n\n*\"I've a business to run.\"*"
-      },
-      {
-        "t": "act",
-        "label": "TELL HIM NOBODY ELSE CAN READ HER"
-      },
-      {
-        "t": "say",
-        "text": "A long pause. A log shifts in the grate and throws up a few sparks. He looks at the satchel, and the pages, and each of you in turn.\n\n*\"...As far as the Widow's Tooth. That's all I'm agreeing to.\"*"
+        "t": "choice",
+        "id": 2,
+        "labels": [
+          "ASK HIM TO TAKE YOU THERE",
+          "TELL HIM NOBODY ELSE CAN READ HER"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "He sets down the glass. In the quiet room it is the loudest thing there is.\n\n*\"I've a business to run.\"*\n\nYou point to the extra cup still sitting untouched at the end of the table, and tell him nobody else alive can read her hand if you find more of it at that rock.\n\nA long pause. A log shifts in the grate and throws up a few sparks. He looks at the satchel, and the pages, and each of you in turn.\n\n*\"...As far as the Widow's Tooth. That's all I'm agreeing to.\"*",
+            "changed": "You asked him to guide you and pointed to the extra cup — he agreed to come as far as the Widow's Tooth.",
+            "roadFind": {
+              "title": "The untouched cup at the end",
+              "text": "When you asked Garrick to take you north and pointed to the untouched extra cup at the end of the table, he looked from the satchel to your faces and agreed to come as far as the Widow's Tooth."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You tap the tight wire-thin shorthand on the open leaf and tell him plain: if there is more of her work out by that rock, none of you can read a word of it without him.\n\nHe sets down the glass. In the quiet room it is the loudest thing there is.\n\n*\"I've a business to run.\"*\n\nNobody answers him. You let the open notebook speak for itself on the table between the cups.\n\nA long pause. A log shifts in the grate and throws up a few sparks. He looks at the satchel, and the pages, and each of you in turn.\n\n*\"...As far as the Widow's Tooth. That's all I'm agreeing to.\"*",
+            "changed": "You let the open notebook make your case — he looked at her shorthand and agreed to come as far as the Widow's Tooth.",
+            "roadFind": {
+              "title": "The open leaf between the cups",
+              "text": "Told that none of you could read another line of Meira's shorthand without him, Garrick looked at the open notebook between the cups and agreed to come as far as the Widow's Tooth."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -366,10 +439,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "By the door, an old verse is carved into the beam, so old the wood has grown round the letters. Under it somebody has worked a small hollow into the timber."
-      },
-      {
-        "t": "act",
-        "label": "FEEL INSIDE"
       },
       {
         "t": "say",
@@ -411,7 +480,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "There is nobody at the rock. Close to, it is dark with old rain and furred with grey lichen. The wind makes a low, hollow note in the split.\n\nThere are tracks at its foot: several people, not long ago, and a cart. And low on the stone, half worn away, something has been cut into it."
+        "text": "There is nobody at the rock. Close to, it is dark with old rain and furred with grey lichen. The wind makes a low, hollow note in the split.\n\nThere are tracks at its foot: several people, not long ago, and a cart. The ruts run off toward deep bracken and a thread of smoke beyond; low on the stone, under the overhang, something has been cut into the rock where you would have to crouch with your back to the open ground to read it."
       },
       {
         "t": "choice",
@@ -426,13 +495,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You crouch at the stone and put your fingers to the cut lines. They are cold, and gritty under your touch. That is where you are, with your back to the bracken, when the bracken moves.\n\n…"
+            "text": "You crouch at the stone and put your fingers to the cut lines. They are cold, and gritty under your touch. In the deepest groove, kept dry by the overhang, a crumb of black charcoal comes away on your thumb. Somebody pressed paper to this stone not many days ago. That is where you are, with your back to the bracken, when the bracken moves.\n\n…",
+            "changed": "You found fresh charcoal in the cut stone · Your back was to the bracken: he strikes first.",
+            "roadFind": {
+              "title": "Charcoal in the cut",
+              "text": "In the deepest groove of the cut stone at the Widow's Tooth, dry under the overhang, a crumb of black charcoal came away on your thumb. Somebody pressed paper to this stone not many days ago."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "The ruts turn off the road toward a line of trees, and a thread of smoke beyond them. You are looking that way, so you see him first: a man lying flat in the bracken, watching the rock.\n\n…"
+            "text": "The ruts turn off the road toward a line of trees, and a thread of smoke beyond them. Where the left wheel sank deepest in the peat, a twist of grey reed-thatch has shaken loose from the cart-bed. You are looking that way, so you see him first: a man lying flat in the bracken, watching the rock.\n\n…",
+            "changed": "You found reed-thatch in the ruts · You spotted him in the bracken: you strike first.",
+            "roadFind": {
+              "title": "Reed-thatch in the ruts",
+              "text": "Where the cart-ruts turned off toward the trees and the smoke, a twist of grey reed-thatch had shaken loose from the cart-bed into the peat."
+            }
           }
         ]
       },
@@ -513,20 +592,12 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Under the overhang, on a dry shelf out of the wind, something small is lying on its side."
       },
       {
-        "t": "act",
-        "label": "PICK IT UP"
-      },
-      {
         "t": "say",
         "text": "A carved horse, no longer than your thumb. It is grey with a winter or two of weather. Its edges have gone soft, the way wood does when it has been held a great deal and then not held at all.\n\nIt is a child's. It has been here a long time."
       },
       {
         "t": "say",
         "text": "There is a crack in the stone under the marking, wide enough for a hand."
-      },
-      {
-        "t": "act",
-        "label": "REACH IN"
       },
       {
         "t": "say",
@@ -608,13 +679,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You crouch by the bucket. The mud there has been trodden by every boot in Fenmark, but over the top of it all runs a line of small prints, quick and light, too short in the stride for any grown man. They go off between the sheds behind the lane, and there you lose them.\n\n…"
+            "text": "You crouch by the bucket. The mud there has been trodden by every boot in Fenmark, but over the top of it all runs a line of small prints, quick and light, too short in the stride for any grown man. Where they turn between the sheds, a thread of unhemmed grey wool has caught on a nail at the height of a boy's elbow. They go off between the sheds behind the lane, and there you lose them.\n\n…",
+            "changed": "You took the back lanes (Agility roll on the Challenge) and found grey wool on the shed nail.",
+            "roadFind": {
+              "title": "Grey wool on the nail",
+              "text": "Where the small footprints turned between the sheds behind the well, a thread of unhemmed grey wool was caught on a nail at the height of a boy's elbow."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "The door beside the well opens the width of a hand before your knuckles have finished on it. An eye, a grey braid, a thin hand on the latch. She does not speak, and she does not shut it. Her gaze goes once, quickly, down the lane and back to you.\n\n…"
+            "text": "The door beside the well opens the width of a hand before your knuckles have finished on it. An eye, a grey braid, a thin hand on the latch. Behind her in the dim kitchen, a pot of the same boiled barley is still steaming on the hob — she is the one who filled the bowl by the well. She does not speak, and she does not shut it. Her gaze goes once, quickly, down the lane and back to you.\n\n…",
+            "changed": "You knocked next door (Charm roll on the Challenge) and saw the neighbour's barley pot.",
+            "roadFind": {
+              "title": "The second barley pot",
+              "text": "Inside the neighbour's half-open door beside the well, a pot of the same boiled barley was still steaming on the hob. Someone in Fenmark was feeding the boy on the quiet."
+            }
           }
         ]
       },
@@ -669,19 +750,34 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go."
+            "text": "You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go.\n\n*\"She was here,\"* he whispers, touching the corner of the leaf with one dirty finger. *\"The woman with the satchel. Two weeks back. She asked about the split stone, and she had a book of that same paper.\"*",
+            "changed": "You showed him Meira's list — he recognized her paper from two weeks ago.",
+            "roadFind": {
+              "title": "The woman with the satchel",
+              "text": "The boy at the well recognized the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark two weeks back, asking about the split stone."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "You ask him straight out who they took. His chin comes up at that. For three days Fenmark has told him only to keep quiet, and nobody has asked him anything at all."
+            "text": "You ask him straight out who they took. His chin comes up at that. For three days Fenmark has told him only to keep quiet, and nobody has asked him anything at all.\n\n*\"Her mother's shut inside with the shutters barred,\"* he says, his voice tight. *\"They told her if she cried out or went to the road, they'd never bring her back.\"*",
+            "changed": "You asked straight out who was taken — you learned how they silenced Tamsin's mother.",
+            "roadFind": {
+              "title": "How they kept Fenmark quiet",
+              "text": "The boy at the well says Tamsin's mother is shut behind barred shutters: the men who took Tamsin warned that if anyone cried out or went to the road, they would never bring her back."
+            }
           },
           {
             "options": [
               2
             ],
-            "text": "You say nothing. You lean on the cold lip of the well and let the quiet be, as if you had the whole afternoon to spend on it. The boy watches you do it. He had braced himself for questions."
+            "text": "You say nothing. You lean on the cold lip of the well and let the quiet be, as if you had the whole afternoon to spend on it. The boy watches you do it. He had braced himself for questions.\n\nBecause you do not press him, his eyes go where his thoughts are: down the lane to the swinging gate, and then to the third house on the left, where a child's stool still sits under an open shutter.",
+            "changed": "You waited in silence — his gaze gave away Tamsin's house and the gate they used.",
+            "roadFind": {
+              "title": "Where the boy looked",
+              "text": "Given silence at the well, the boy looked first to the third house on the left — where a child's stool sits under the open shutter — and then to the swinging gate at the fen end of the lane."
+            }
           }
         ]
       },
@@ -692,10 +788,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "While he talks he hums, without noticing, a rhyme with no tune to speak of. His grandmother's, he says. She sang it here, at the well.\n\nYou look at the well. Its stone lip is older than every house in the street, green-black and sweating with damp. Worn into it, just where a hand would rest, is a hollow."
-      },
-      {
-        "t": "act",
-        "label": "REACH IN"
       },
       {
         "t": "say",
@@ -736,19 +828,34 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You stay exactly where you are, your feet set on the wet cobbles. The two younger men had expected you to give ground. They glance at the elder, and do not quite know what to do with their hands."
+            "text": "You stay exactly where you are, your feet set on the wet cobbles. The two younger men had expected you to give ground. They glance at the elder, and do not quite know what to do with their hands. Close to, you see that neither of them carries so much as a hedging bill at his belt — they came out with bare hands, hoping numbers alone would turn you from the lane.",
+            "changed": "You held your ground — you saw the young men came out unarmed, bluffing to turn you back.",
+            "roadFind": {
+              "title": "Unarmed men",
+              "text": "When you stood your ground at the well, the two younger men had nothing at their belts — not even a hedging bill. Fenmark came out to bluff you away, not to fight."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "You take one slow step back and let them see your empty hands. The nearer of the two young men lets out a breath, and some of the stiffness goes out of the street."
+            "text": "You take one slow step back and let them see your empty hands. The nearer of the two young men lets out a breath, and some of the stiffness goes out of the street. As his shoulders drop, his cuff rides up: there is a dark bruise round his wrist, three days old, where a hand gripped him hard when he tried to come out of his door that night.",
+            "changed": "You stepped back with open hands — you saw the three-day bruise on the young man's wrist.",
+            "roadFind": {
+              "title": "The bruised wrist",
+              "text": "When the nearer young man lowered his guard, his cuff showed a dark bruise round his wrist, three days old — someone held him back when Tamsin was taken."
+            }
           },
           {
             "options": [
               2
             ],
-            "text": "You step across, between the men and the boy. It is a small movement, and every eye in the lane follows it. The elder's face changes. For a moment he looks less like a man guarding his village than a man ashamed of it."
+            "text": "You step across, between the men and the boy. It is a small movement, and every eye in the lane follows it. The elder's face changes. For a moment he looks less like a man guarding his village than a man ashamed of it. Behind your shoulder, the boy breathes one thing more before the elder reaches you: *\"They didn't bring a lantern. They knew where the step was.\"*",
+            "changed": "You stood in front of the boy — he whispered that the men knew the steps of Fenmark in the dark.",
+            "roadFind": {
+              "title": "No lantern in the dark",
+              "text": "From behind your shoulder in the standoff, the boy whispered one detail more: the men who came in the dark carried no lantern, yet knew where every step in the lane was."
+            }
           }
         ]
       },
@@ -787,7 +894,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "The camp is an old one: burning-pits long cold, a trade that left years ago. The earth is black to a spade's depth. When the wind stirs it, the whole clearing smells of a fire that went out before you were born. But the path in is worn too clean for that to be all of it.\n\nYou reach it after dark. At the edge of the clearing stands a shed, with no light in it. You knock. Nobody answers."
+        "text": "The camp is an old one: burning-pits long cold, a trade that left years ago. The earth is black to a spade's depth. When the wind stirs it, the whole clearing smells of a fire that went out before you were born. But the path in is worn too clean for that to be all of it.\n\nYou reach it after dark. At the edge of the clearing stands a shed, with no light in it. You knock. Nobody answers. If the runner from Fenmark came this way, he had half a day on you; the step and the firepit are right at your feet, while the path in runs back toward the dark trees."
       },
       {
         "t": "choice",
@@ -803,19 +910,34 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "Swept this morning. Somebody lives here, and is proud enough to sweep.\n\n…"
+            "text": "Swept this morning. Somebody lives here, and is proud enough to sweep. Tucked under the threshold stone is a narrow line of dry salt and grey rowan-ash — an old hill-country ward laid down by someone who expects a visitor back. You are still crouched by the door when a blade works into the shutter behind the shed.\n\n…",
+            "changed": "You found her rowan-ash ward at the step · You were at the front door: the runner strikes first.",
+            "roadFind": {
+              "title": "Salt and rowan-ash",
+              "text": "Under the swept threshold stone of the charcoal-burner's shed lay a line of dry salt and rowan-ash: an old hill ward laid by someone waiting for a bad visitor to return."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "Cold on top. Warm underneath, when you push a hand into the ash. Banked, not dead. Somebody means to come back to it.\n\n…"
+            "text": "Cold on top. Warm underneath, when you push a hand into the ash. Banked, not dead. Somebody means to come back to it. Set on the flat stone beside the pit is a tin cup of herb-tea with the steam barely off it — she slipped into the trees only minutes before your boots came up the road. You are still kneeling by the ash when a blade works into the shutter behind the shed.\n\n…",
+            "changed": "You found her warm cup by the banked fire · You were at the firepit: the runner strikes first.",
+            "roadFind": {
+              "title": "The warm pannikin",
+              "text": "Beside the banked firepit stood a tin cup of herb-tea barely cool. The woman of the camp slipped into the trees only minutes before you reached the clearing."
+            }
           },
           {
             "options": [
               2
             ],
-            "text": "Two sets of prints on it, both fresh. A woman's, going out. And over them a man's, coming in, at a run.\n\nHe is here.\n\n…"
+            "text": "Two sets of prints on it, both fresh. A woman's, going out. And over them a man's, coming in, at a run. His stride is long and low, and the mud at the turn is still oozing water into the heel-mark.\n\nHe is here.\n\n…",
+            "changed": "You read the fresh prints on the path · You knew he was here: you strike first.",
+            "roadFind": {
+              "title": "Prints at a run",
+              "text": "On the path into the charcoal camp, a man's running prints overlay the woman's outgoing ones, the mud still oozing water into the heel-marks. He reached the clearing just ahead of you."
+            }
           }
         ]
       },
@@ -903,16 +1025,37 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "branches": [
           {
             "options": [
-              0,
+              0
+            ],
+            "text": "The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve — he came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes go to the carved horse in your other hand, and stop.",
+            "changed": "You showed empty hands — you saw the fresh blade-nick on her axe-helve from the trees.",
+            "roadFind": {
+              "title": "The nicked axe-helve",
+              "text": "When the woman at the charcoal camp lowered her axe, the haft showed a fresh white gouge where she had turned a knife-blow in the trees before you arrived."
+            }
+          },
+          {
+            "options": [
               1
             ],
-            "text": "The axe comes down by inches. Then her eyes go to the carved horse in your other hand, and stop."
+            "text": "The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face — whatever she keeps hidden here, it is under that stone and not in the shed. Then her eyes go to the carved horse in your other hand, and stop.",
+            "changed": "You told her who you drove off — her glance gave away the root-cellar stone behind the woodpile.",
+            "roadFind": {
+              "title": "The root-cellar stone",
+              "text": "When told a man had been prizing at her back shutter, the woman glanced once at the flat root-cellar stone behind the woodpile — her real hiding-place is under the woodpile, not inside the shed."
+            }
           },
           {
             "options": [
               2
             ],
-            "text": "The axe comes down all at once."
+            "text": "The axe comes down all at once. Before she even asks your names, her fingers go to her belt, unfasten a small river-stone charm bound in iron wire — kept since the winter the boy was taken — and press it into your palm as she takes the little horse from you.",
+            "changed": "You knew the carved horse was hers and held it out first — she trusted you at once (+1 Might Relic).",
+            "roadFind": {
+              "title": "The carver's charm",
+              "text": "Held out without a word, the carved horse from the Widow's Tooth brought her axe down at once. She pressed an iron-bound river-stone charm into your hand before she sat."
+            },
+            "relic": "Might"
           }
         ]
       },
@@ -931,10 +1074,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "The fire ticks and settles. She says a thing twice while she talks, hardly hearing herself: *\"The power that gives is also the power that takes.\"* She cannot say where she first heard it. Her eyes go, when she says it, to the old dead tree behind the shed, hollow at the foot."
-      },
-      {
-        "t": "act",
-        "label": "REACH INTO THE HOLLOW"
       },
       {
         "t": "say",
@@ -1057,10 +1196,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Under the waterline, at the foot of the ford-stone, where you would only see it in a low year:"
       },
       {
-        "t": "act",
-        "label": "REACH DOWN"
-      },
-      {
         "t": "say",
         "text": "Cold beyond the cold of the river.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -1068,10 +1203,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "That is six.\n\nSix of these old scraps in a week, some of them hidden longer than anyone can say, and not one of you has missed one. You have been putting them in your pockets like a child picking up stones.\n\nMeira wrote it: *each piece safe alone. Only together do they mean anything.*"
-      },
-      {
-        "t": "act",
-        "label": "LAY THEM OUT"
       },
       {
         "t": "say",
@@ -1086,12 +1217,37 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "That night you stop at a roadside inn, a smoky, crowded place of drovers and dogs. A ham hangs in the chimney. Garrick orders for the table. When the cups come he pours one more than there are of you, and sets it at the empty place."
       },
       {
-        "t": "act",
-        "label": "ASK WHO IT IS FOR"
-      },
-      {
-        "t": "say",
-        "text": "*\"Family habit. We always pour one for whoever can't be with us.\"*"
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "ASK WHO IT IS FOR",
+          "LOOK AT THE EXTRA CUP"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You ask him quietly who the extra cup is for. He sets the jug down with a small tap on the scarred oak.\n\n*\"Family habit. We always pour one for whoever can't be with us.\"*",
+            "changed": "You asked who the extra cup was for — he set the jug down and called it a family habit.",
+            "roadFind": {
+              "title": "The tap of the jug",
+              "text": "Asked outright at the roadside inn who the extra cup was for, Garrick set the jug down on the scarred oak with a small tap and called it a family habit."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You look down at the extra cup at the corner of the table — poured to the same measure as the rest, where he has set one every night since the Hollow Wake. He catches your eye across the rim of the jug.\n\n*\"Family habit. We always pour one for whoever can't be with us.\"*",
+            "changed": "You looked at the extra cup poured to the same measure — he caught your eye and called it a family habit.",
+            "roadFind": {
+              "title": "Measured like the rest",
+              "text": "At the roadside inn above the ford, the extra cup at the corner of the table was poured to the exact same measure as the rest before Garrick called it a family habit."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -1099,7 +1255,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "choice",
-        "id": 0,
+        "id": 1,
         "labels": [
           "READ IT OUT",
           "LET {F2} READ IT"
@@ -1110,13 +1266,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark."
+            "text": "You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark. Right at the mark, your fingertip catches on a tiny pin-hole punched clean through the old vellum — somebody once pinned this very spot to a board before the map was cut in six.",
+            "changed": "You read the map out yourself — your fingertip found an old pin-hole punched through the mark.",
+            "roadFind": {
+              "title": "The pin-hole at the mark",
+              "text": "Tracing the assembled map by fingertip over supper, you felt a tiny pin-hole punched right through the mark beyond the ford, from before the map was ever cut in six."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "You turn the map round and slide it across to {F2}, who reads it the way some people read a letter from home: slowly, frowning a little, as if the words might change if they were hurried."
+            "text": "You turn the map round and slide it across to {F2}, who reads it the way some people read a letter from home: slowly, frowning a little, as if the words might change if they were hurried. Because your own eyes are not on the parchment, you catch a man in a riding-cloak by the chimney stopping with his mug halfway to his mouth when {F2} names the bend above the ford.",
+            "changed": "You let {F2} read the map — with your eyes on the room, you caught the courier listening at the mention of the ford.",
+            "roadFind": {
+              "title": "The listening courier",
+              "text": "While your friend read the map aloud in the roadside inn, a man in a riding-cloak by the chimney held his mug still at the mention of the bend above the ford, then paid his bill without taking a bed."
+            }
           }
         ]
       },
@@ -1155,12 +1321,37 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "The mine is quiet again. The hoofbeats are long gone, and only the river is left, loud in the drowned mouth below. Garrick's count is still hanging in the dark.\n\n*Three more.*"
       },
       {
-        "t": "act",
-        "label": "ASK HIM WHAT HE KNOWS"
-      },
-      {
-        "t": "say",
-        "text": "He is wiping the soot from a lamp glass with the corner of his cloth, and he doesn't look up.\n\n*\"I can tell you where the next name on that wall lives. That's where I'd start.\"*"
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "ASK HIM WHAT HE KNOWS",
+          "ASK WHERE HE WOULD START"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You ask him how much of this country he already knew before you ever walked into his inn.\n\nHe is wiping the soot from a lamp glass with the corner of his cloth, and he doesn't look up.\n\n*\"I can tell you where the next name on that wall lives. That's where I'd start.\"*",
+            "changed": "You asked how much he already knew — he kept wiping the lamp glass and offered the second name's road.",
+            "roadFind": {
+              "title": "Soot on the lamp glass",
+              "text": "Asked in the quiet mine how much of this country he already knew, Garrick kept wiping soot from a lamp glass without looking up and said he could tell you where the next name on the wall lived."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You read the second name from the mine wall aloud and ask him which road reaches it before the riders do.\n\nHe is wiping the soot from a lamp glass with the corner of his cloth, and he doesn't look up.\n\n*\"I can tell you where the next name on that wall lives. That's where I'd start.\"*",
+            "changed": "You asked which road reached the second name first — he offered to point the way from the mine wall.",
+            "roadFind": {
+              "title": "The road from the mine wall",
+              "text": "When you read the second name off the mine wall and asked which road reached it first, Garrick said without looking up from his lamp glass that he could tell you where that name lived."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -1168,7 +1359,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "choice",
-        "id": 0,
+        "id": 1,
         "labels": [
           "CROUCH DOWN TO HER",
           "ASK WHAT THE SONG IS",
@@ -1209,12 +1400,37 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "The Widow's Tooth is a day and a half behind you. Garrick agreed to come that far, and no further. He is shouldering a pack."
       },
       {
-        "t": "act",
-        "label": "POINT THAT OUT"
-      },
-      {
-        "t": "say",
-        "text": "He settles the strap on his shoulder. *\"Worst guests I've ever had. Good tippers, though.\"*\n\nThen he sets off down the road ahead of you, as if it had been his idea."
+        "t": "choice",
+        "id": 2,
+        "labels": [
+          "POINT THAT OUT",
+          "SAY NOTHING AND WATCH HIM PACK"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You remind him, mildly, that the Widow's Tooth was a day and a half back down the road.\n\nHe settles the strap on his shoulder. *\"Worst guests I've ever had. Good tippers, though.\"*\n\nThen he sets off down the road ahead of you, as if it had been his idea.",
+            "changed": "You reminded him the Widow's Tooth was behind you — he called you the worst guests he'd ever had and walked ahead.",
+            "roadFind": {
+              "title": "A day and a half past his word",
+              "text": "Reminded on the mill road that the Widow's Tooth was a day and a half behind you, Garrick settled his pack-strap, called you the worst guests he'd ever had, and walked on ahead."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You say nothing at all — only watch him knot his bedroll twice, the way a man knots it when he has another week of road in mind. He catches you looking.\n\nHe settles the strap on his shoulder. *\"Worst guests I've ever had. Good tippers, though.\"*\n\nThen he sets off down the road ahead of you, as if it had been his idea.",
+            "changed": "You watched him knot his bedroll twice for a long road — he caught you looking and walked ahead.",
+            "roadFind": {
+              "title": "The double-knotted bedroll",
+              "text": "Before setting off down the mill road, Garrick knotted his bedroll twice the way a man knots it with another week of road in mind."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -1315,10 +1531,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "The beam over his door is older than the house. There is a loose board in it, where he swears nobody has looked in his lifetime."
-      },
-      {
-        "t": "act",
-        "label": "PRISE THE BOARD"
       },
       {
         "t": "say",
@@ -1509,10 +1721,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "In the wheel-housing, above the footing, where years of spray should have worn anything away:"
       },
       {
-        "t": "act",
-        "label": "REACH IN"
-      },
-      {
         "t": "say",
         "text": "Thin, and dense, and cold in a way that running water should long since have taken out of it.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -1656,10 +1864,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "It is old work, far older than the path, as old as the places your fragments have lain. And it is sealed.\n\nIt would not open for him."
       },
       {
-        "t": "act",
-        "label": "SET YOUR HAND TO IT"
-      },
-      {
         "t": "say",
         "text": "It gives at once, as if it had been waiting. The air inside is dry and still, and has not moved in a long time. What lies in it is cold.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -1777,10 +1981,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "You are all flat among the roots at the shaft's mouth, getting your breath back, when your hand finds something in the dark."
-      },
-      {
-        "t": "act",
-        "label": "CLOSE YOUR FINGERS ON IT"
       },
       {
         "t": "say",
@@ -1934,10 +2134,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Where he stood to make his signal, the turf is worn through to an old cut stone, with a hollow in it the size of a hand."
       },
       {
-        "t": "act",
-        "label": "REACH IN"
-      },
-      {
         "t": "say",
         "text": "Cold, under the dew. The lip of the hollow is worn smooth, by hands, over a very long time.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -2056,17 +2252,9 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Somewhere in the long hours it turns up: not hidden, this time. Lying among the roots at the lip of the shaft, as if it had been dropped there yesterday."
       },
       {
-        "t": "act",
-        "label": "PICK IT UP"
-      },
-      {
         "t": "say",
         "text": "**A locked Seeker Fragment has been added to your Chest.**\n\nThat is six.",
         "fragment": true
-      },
-      {
-        "t": "act",
-        "label": "LAY THEM OUT"
       },
       {
         "t": "say",
@@ -2106,10 +2294,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "The map marks a place two hundred paces along the hill."
-      },
-      {
-        "t": "act",
-        "label": "GO AND PUT YOUR HAND TO IT"
       },
       {
         "t": "say",
@@ -2154,24 +2338,74 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "*Somewhere warm.*\n\nThe words are still hanging in the lamplight. Corin is watching you, to see what you will do with them. He holds his bandaged hand in his lap, palm up, the way somebody told him to keep it."
       },
       {
-        "t": "act",
-        "label": "KNEEL DOWN TO HIM"
-      },
-      {
-        "t": "say",
-        "text": "He thinks hard, the way children do when they know it matters.\n\n*\"Wren.\"*\n\n*\"She said home was always warm. The ground's warm, and the hills are all black, and everything smells like a fire that went out a long time ago. She missed it.\"*\n\nA pause.\n\n*\"She said they told her she was going home first.\"*"
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "KNEEL DOWN TO HIM",
+          "SIT ON THE STEP BESIDE HIM"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You drop to one knee on the stone floor so your eyes are level with his bandaged hand.\n\nHe thinks hard, the way children do when they know it matters.\n\n*\"Wren.\"*\n\n*\"She said home was always warm. The ground's warm, and the hills are all black, and everything smells like a fire that went out a long time ago. She missed it.\"*\n\nA pause.\n\n*\"She said they told her she was going home first.\"*",
+            "changed": "You knelt level with Corin's bandaged hand — he remembered Wren's name and the warm black hills of home.",
+            "roadFind": {
+              "title": "Level with the bandage",
+              "text": "When you knelt on the stone floor level with Corin's bandaged hand, he steadied himself and remembered the girl's name — Wren — and the warm black hills she missed."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You sit down on the low mill-step beside him so nobody is standing over him while he speaks.\n\nHe thinks hard, the way children do when they know it matters.\n\n*\"Wren.\"*\n\n*\"She said home was always warm. The ground's warm, and the hills are all black, and everything smells like a fire that went out a long time ago. She missed it.\"*\n\nA pause.\n\n*\"She said they told her she was going home first.\"*",
+            "changed": "You sat beside Corin on the low step — with nobody standing over him, he told you about Wren and her warm hills.",
+            "roadFind": {
+              "title": "Beside him on the mill-step",
+              "text": "Sitting on the low step beside Corin so nobody stood over him, you heard how Wren talked of the warm ground and black hills of home."
+            }
+          }
+        ]
       },
       {
         "t": "say",
         "text": "The ledger is opened to its newest page, and held flat under the lamp. Four names. Beside the third, in that same small, careful hand: *Wren — Ashcombe.*\n\nIn Meira's satchel the same name turns up in her own neat hand, on her list of children she was worried for. Beside it is a knot of her shorthand. Garrick tilts the page to the light and reads the knot off without a pause.\n\n*\"Ashcombe's a shepherds' village on the edge of the burned country,\"* he says. *\"A long day west. And above it she's marked a place. The Blackglass.\"*"
       },
       {
-        "t": "act",
-        "label": "ASK ABOUT THE FOURTH NAME"
-      },
-      {
-        "t": "say",
-        "text": "Beside the fourth name is a place far to the north.\n\n*\"One road at a time. The girl's is the one with tracks on it.\"*"
+        "t": "choice",
+        "id": 1,
+        "labels": [
+          "ASK ABOUT THE FOURTH NAME",
+          "LOOK AT THE FOURTH ENTRY"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "Beside the fourth name is a place far to the north.\n\nYou ask Garrick whether anyone should ride north to warn them now, and he lays two fingers flat on the open ledger leaf.\n\n*\"One road at a time. The girl's is the one with tracks on it.\"*",
+            "changed": "You asked about warning the fourth child in the north — Garrick laid two fingers on the page to keep you on Wren's trail.",
+            "roadFind": {
+              "title": "Two fingers on the ledger",
+              "text": "When you asked whether someone should ride north to warn the fourth name in the book, Garrick laid two fingers flat on the open page and said Wren's road was the one with tracks on it."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "Beside the fourth name is a place far to the north.\n\nYour thumb traces the ink of the fourth entry — drier than the third, written before they ever came down to the mill. Garrick watches your hand and shakes his head once.\n\n*\"One road at a time. The girl's is the one with tracks on it.\"*",
+            "changed": "You traced the drier ink of the fourth entry — Garrick shook his head and pointed you to Wren's fresh tracks.",
+            "roadFind": {
+              "title": "The drier ink at the fourth name",
+              "text": "Under the lamp, the ink of the fourth entry in the ledger was drier than the third — written before they ever came down to the mill."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -2209,10 +2443,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "Below the shaft, in the wet grass, the tracks are plain to anyone who looks."
-      },
-      {
-        "t": "act",
-        "label": "LOOK"
       },
       {
         "t": "say",
@@ -2258,10 +2488,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "Where the west road leaves the valley, a wayside shrine stands older than the road: a stub of carved stone with the carving worn off. Somebody has left a sprig of heather at its foot, long since gone brown."
-      },
-      {
-        "t": "act",
-        "label": "FEEL BEHIND IT"
       },
       {
         "t": "say",
@@ -2423,10 +2649,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "At the edge of the village the pound wall, where the shepherds pen their flocks, is built on older stones than any house in Ashcombe: huge, square-cut, set without mortar. They are as warm as bread. All but one gap."
       },
       {
-        "t": "act",
-        "label": "REACH INTO THE GAP"
-      },
-      {
         "t": "say",
         "text": "The only cold thing in Ashcombe. Cold enough to ache the fingers.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -2540,10 +2762,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Worn into the glass is a shape you know.\n\nBeside it, set into the rock as if the glass had cooled around it, is a housing of carved stone: old work, cut with the same care as the lock the dead man could not open, on the path upriver."
       },
       {
-        "t": "act",
-        "label": "SET YOUR HAND TO IT"
-      },
-      {
         "t": "say",
         "text": "It gives at the first touch. The glass round it holds the sun's warmth; the housing is a cold spot in it, and what is inside is colder still.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -2551,10 +2769,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "Three children. Three marks.\n\nTamsin, at Fenmark, under the Widow's Tooth. Corin, at the mill. Wren, at Ashcombe, under the Blackglass.\n\nThe places Meira marked and the children in the ledger are one list."
-      },
-      {
-        "t": "act",
-        "label": "WRITE IT IN HER NOTEBOOK"
       },
       {
         "t": "say",
@@ -2587,12 +2801,37 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "In the morning your split boot is whole again: the sole stitched back on, tight and neat, with waxed thread, while you slept. Garrick is winding what is left of the thread back onto its bobbin."
       },
       {
-        "t": "act",
-        "label": "THANK HIM"
-      },
-      {
-        "t": "say",
-        "text": "*\"Needed doing.\"*\n\nHe tucks the bobbin away inside his coat, and that is the end of it."
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "THANK HIM",
+          "HOLD UP THE MENDED BOOT"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You thank him quietly before the others are awake. He doesn't look up from the waxed thread.\n\n*\"Needed doing.\"*\n\nHe tucks the bobbin away inside his coat, and that is the end of it.",
+            "changed": "You thanked him before the others woke — he tucked his waxed thread away without looking up.",
+            "roadFind": {
+              "title": "The waxed thread bobbin",
+              "text": "Thanked in the quiet morning for stitching your split boot sole while you slept, Garrick said only that it needed doing and tucked the waxed thread bobbin inside his coat."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You lift the boot and turn the neat cobbler's stitch to the morning light where he can see you testing it.\n\n*\"Needed doing.\"*\n\nHe tucks the bobbin away inside his coat, and that is the end of it.",
+            "changed": "You tested the neat cobbler's stitch in the morning light — he saw it hold and tucked his bobbin away.",
+            "roadFind": {
+              "title": "The cobbler's stitch",
+              "text": "Held to the morning light beside the Blackglass, the split sole of your boot showed a tight, practiced cobbler's stitch laid in waxed thread while you slept."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -2621,10 +2860,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "The burned country is ridge after ridge of black rock, under a sky that looks paler for it. The soil between the ridges is ash-grey, and crunches like old snow. Dead trees stand bone-white, still upright after nobody knows how long.\n\nNo bird sings out here. By noon your own footsteps are the loudest thing for miles.\n\nYou are walking point when you stop, and crouch.\n\nIn one of the hoof-scratches lies a chip of black glass, worn smooth by a thumb."
-      },
-      {
-        "t": "act",
-        "label": "PICK IT UP"
       },
       {
         "t": "say",
@@ -2722,10 +2957,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "Inside is a room cut from the ridge. Old soot blackens its ceiling, from fires that went out centuries ago. Cut into the walls at sleeping height, facing each other across the floor, is a row of niches, each just long enough for a person to lie in. The air in here is cool, and smells of nothing at all.\n\nFor a moment nobody goes any further in.\n\nWhoever wrote your fragments slept here, walking this same country, a long time ago.\n\nIn a crack in the nearest niche is a single die, carved from bone, its spots worn almost smooth by somebody's fingers.\n\nThey had long nights here too.\n\nBetween the niches, at chest height, is a housing."
-      },
-      {
-        "t": "act",
-        "label": "LAY YOUR HAND ON IT"
       },
       {
         "t": "say",
@@ -2916,10 +3147,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "The hut is newer than what it stands on. Under the hearthstone the footing is older, bigger stonework. Set into it:"
       },
       {
-        "t": "act",
-        "label": "BRUSH YOUR HAND ACROSS IT"
-      },
-      {
         "t": "say",
         "text": "The fire's heat is still in the stone above. What is inside is as cold as well-water.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -3024,25 +3251,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "The last fragment is at the cairn's foot: not hidden, only wedged between the lowest stones, where a careless boot would miss it."
       },
       {
-        "t": "act",
-        "label": "TAKE IT"
-      },
-      {
         "t": "say",
         "text": "**A locked Seeker Fragment has been added to your Chest.**\n\nThat is six.",
         "fragment": true
       },
       {
-        "t": "act",
-        "label": "LAY THEM OUT"
-      },
-      {
         "t": "say",
         "text": "They settle, as they have twice before. The wind worries at their edges, and they do not lift. A map, old and exact, with a ridgeline drawn along its top."
-      },
-      {
-        "t": "act",
-        "label": "TURN IT TO THE SKYLINE"
       },
       {
         "t": "say",
@@ -3271,10 +3486,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Where the burned country gives out, at the last black rock before the grass begins, there is a crack at head height that only someone looking back would see."
       },
       {
-        "t": "act",
-        "label": "REACH IN"
-      },
-      {
         "t": "say",
         "text": "The rock is warm from the ground beneath it. What is in the crack is cold.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -3351,10 +3562,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Low in the stone of the old ford, where the water runs over it, sits a carved housing."
       },
       {
-        "t": "act",
-        "label": "CLOSE YOUR HAND ON IT"
-      },
-      {
         "t": "say",
         "text": "It opens as your fingers shut. What is inside is colder than the river.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -3362,10 +3569,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "Beyond the ford the road forks. {F1} and {F3} take the lake road, the one to Reedham. You take the other."
-      },
-      {
-        "t": "act",
-        "label": "READ THE GROUND"
       },
       {
         "t": "say",
@@ -3444,10 +3647,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "He digs in his coat, and holds something out on his palm. *\"Paid for the water with this. Nobody'll take it off me.\"*\n\nA coin, old and heavy. On one side the king's face has been scraped away to bare metal. The other side, somebody has kept polished."
-      },
-      {
-        "t": "act",
-        "label": "TAKE THE COIN"
       },
       {
         "t": "say",
@@ -3592,10 +3791,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "The tower stands on stones far older than the rest of it. Worn into that rock, just above the waterline, is a shape you know: the mark from the Widow's Tooth, the mill, the Blackglass.\n\nBeside it is a housing, slick with lake-weed."
       },
       {
-        "t": "act",
-        "label": "LAY YOUR PALM ON IT"
-      },
-      {
         "t": "say",
         "text": "The lid lifts as if it had been waiting. What is inside is as cold as the water it has sat above for centuries.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -3718,10 +3913,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "In the old market cross, at the centre of the drowned square, is a carved housing, half buried."
       },
       {
-        "t": "act",
-        "label": "SCRAPE THE SILT AWAY"
-      },
-      {
         "t": "say",
         "text": "The stone lid slides back under your fingers. The silt round it is warm from the day. What lies inside is as cold as the deep water past the last roofs.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -3832,10 +4023,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         }
       },
       {
-        "t": "act",
-        "label": "SEARCH IT"
-      },
-      {
         "t": "say",
         "text": "Two pairs of oar-places, worn bright. A lamp bracket. Stern boards still wet.\n\nIn the bottom, among the rope, lie pale curls of whittled wood, still fresh. And a tiny hull, half shaped, split down the middle, and thrown away.\n\nSomebody small has been sitting here, carving.\n\n…"
       },
@@ -3877,10 +4064,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Among the willow roots is a stone older than the island's soil, and in it a housing the roots have half swallowed."
       },
       {
-        "t": "act",
-        "label": "WORK YOUR FINGERS IN"
-      },
-      {
         "t": "say",
         "text": "The moment they touch the lid, it opens. The cold that comes out of it is the cold of the lake bed, under all that mud and dark.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -3919,10 +4102,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "You row out after the lamp in their own boat, with her skiff on its line behind, keeping the oars as quiet as you can make them. The lake is black, and so is the sky. The water talks softly against the hull.\n\nThe lamp is out long before you reach the tower. When you climb in onto its stair, there is nobody in it.\n\nThe last fragment is on the stair, not hidden at all: wedged in the angle of a step where the water once reached, as if it had waited out the flood."
       },
       {
-        "t": "act",
-        "label": "TAKE IT"
-      },
-      {
         "t": "say",
         "text": "**A locked Seeker Fragment has been added to your Chest.**\n\nThat is six.\n\n…",
         "fragment": true
@@ -3959,10 +4138,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "Nobody suggests waiting for morning.\n\nYou climb to the bell chamber and kneel on its floor with the six, by one lamp. The wind comes through the empty windows in gusts. Below, the lake slaps at the stones."
-      },
-      {
-        "t": "act",
-        "label": "LAY THEM OUT"
       },
       {
         "t": "say",
@@ -4127,12 +4302,37 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         }
       },
       {
-        "t": "act",
-        "label": "ASK GARRICK WHERE A FIFTH WOULD BE"
-      },
-      {
-        "t": "say",
-        "text": "Garrick is looking north, the way the heartbeat comes from.\n\n*\"The fifth wasn't hidden in the hills like the others,\"* he says. *\"Every telling I know ends at Highwall.\"*"
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "ASK GARRICK WHERE A FIFTH WOULD BE",
+          "LOOK NORTH ALONG THE ROAD"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You ask him where a fifth stone would be kept, if someone cut its name out of the boundary rock to hide it.\n\nGarrick is looking north, the way the heartbeat comes from.\n\n*\"The fifth wasn't hidden in the hills like the others,\"* he says. *\"Every telling I know ends at Highwall.\"*",
+            "changed": "You asked where a fifth Stone would be kept — Garrick looked north and named Highwall.",
+            "roadFind": {
+              "title": "Every telling he knows",
+              "text": "Asked by the chiselled waystone where a fifth Stone would be kept, Garrick looked north along the road and said every telling he knew ended at Highwall."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You stand up from the chiselled boundary stone and follow the old road north with your eyes, where the low tremor in the ground comes from.\n\nGarrick is looking north, the way the heartbeat comes from.\n\n*\"The fifth wasn't hidden in the hills like the others,\"* he says. *\"Every telling I know ends at Highwall.\"*",
+            "changed": "You followed the tremor north along the old road — Garrick looked the same way and named Highwall.",
+            "roadFind": {
+              "title": "Where the road points",
+              "text": "Standing up from the waystone to follow the low tremor north along the old road, you found Garrick already watching that horizon before he named Highwall."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -4141,10 +4341,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "In a crack at the waystone's foot, with a rime of frost on it though the day is mild:"
-      },
-      {
-        "t": "act",
-        "label": "TAKE IT"
       },
       {
         "t": "say",
@@ -4189,16 +4385,37 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Drawn up at the head of the rows are the only people you have met all day. A family, come down from the north, with all they own on one cart, and a cow tied behind."
       },
       {
-        "t": "act",
-        "label": "WHAT DID YOU SEE?"
-      },
-      {
-        "t": "say",
-        "text": "The man answers without turning round. *\"The beasts won't settle. Not since the sky turned.\"*\n\nIt is not an army they are running from. It is their own yard. The dogs first, and then the pigs. He has a bandage on his forearm, and the cow is the only animal they have left that will still be led.\n\nA child on the tailboard counts you, with one finger."
-      },
-      {
-        "t": "act",
-        "label": "WALK IN AMONG THEM"
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "ASK WHAT DROVE THEM OUT",
+          "LOOK AT THE BANDAGE ON HIS ARM"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You step to the side of the cart so you do not block the road, and ask him what they saw up north.\n\nThe man answers without turning round. *\"The beasts won't settle. Not since the sky turned.\"*\n\nIt is not an army they are running from. It is their own yard. The dogs first, and then the pigs. He has a bandage on his forearm, and the cow is the only animal they have left that will still be led.\n\nA child on the tailboard counts you, with one finger.",
+            "changed": "You stepped clear of the cart to ask what they saw — the farmer told you their own beasts turned on them.",
+            "roadFind": {
+              "title": "The yard that turned",
+              "text": "When you stepped aside to let the cart breathe and asked what drove the family south, the man said their own dogs and pigs would not settle since the sky turned."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "Your eyes go to the linen wrapped tight round his forearm, spotted dark where teeth — not a blade — caught him through his sleeve. He sees you looking.\n\nThe man answers without turning round. *\"The beasts won't settle. Not since the sky turned.\"*\n\nIt is not an army they are running from. It is their own yard. The dogs first, and then the pigs. He has a bandage on his forearm, and the cow is the only animal they have left that will still be led.\n\nA child on the tailboard counts you, with one finger.",
+            "changed": "You noticed the tooth-spotted linen on his forearm — he told you his own yard turned on them.",
+            "roadFind": {
+              "title": "Teeth through the sleeve",
+              "text": "The linen wrapped tight round the farmer's forearm on the north road was spotted dark where teeth — not a blade — had caught him in his own yard."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -4238,10 +4455,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "At the far end of the rows stands one squared block of stone that is no grave. Its top is a separate slab, fitted like a lid."
       },
       {
-        "t": "act",
-        "label": "LIFT IT"
-      },
-      {
         "t": "say",
         "text": "It comes up with a long grate of stone on stone. The air inside is colder than the evening, and smells of old earth.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -4252,7 +4465,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "choice",
-        "id": 0,
+        "id": 1,
         "labels": [
           "CAMP AT THE HEAD OF THE ROWS",
           "CAMP ON THE OPEN ROAD"
@@ -4287,7 +4500,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         ],
         "strikeFirst": {
           "on": "choice",
-          "choice": 0,
+          "choice": 1,
           "options": [
             1
           ]
@@ -4420,10 +4633,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Garrick passes his flask along the walkway, and waits until the last of you has had some before he takes any himself."
       },
       {
-        "t": "act",
-        "label": "LOOK DOWN AT THE GATE"
-      },
-      {
         "t": "say",
         "text": "From above, you can see its inner side.\n\nIt is barred. The bar is new timber, still pale.\n\nThe iron brackets it lies in are another matter. They are worn smooth, and bright, by more bars than anyone could count."
       },
@@ -4444,10 +4653,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "On the walkway above the gate, where they would have stood shoulder to shoulder, a carved housing is set into the parapet at chest height."
-      },
-      {
-        "t": "act",
-        "label": "PRESS YOUR PALM FLAT TO IT"
       },
       {
         "t": "say",
@@ -4582,10 +4787,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "Set into the wall of a house at the end of that street is a housing, its carving as crisp as the day it was cut."
-      },
-      {
-        "t": "act",
-        "label": "FIND THE PATTERN"
       },
       {
         "t": "say",
@@ -4741,10 +4942,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "In the broken fountain at the edge of the square, facing the hall, a housing sits low in the dry basin."
       },
       {
-        "t": "act",
-        "label": "REACH DOWN TO IT"
-      },
-      {
         "t": "say",
         "text": "It opens like a hand. The basin has been dry for centuries, and still what lies inside is as cold as well water.\n\n**A locked Seeker Fragment has been added to your Chest.**\n\nPart of it can be read as it is: *…where we could watch it, and watch him.*",
         "fragment": true
@@ -4876,25 +5073,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "In a crack across the walkway, just where somebody keeping watch would stand, colder than the stone it lies in:"
       },
       {
-        "t": "act",
-        "label": "TAKE IT"
-      },
-      {
         "t": "say",
         "text": "**A locked Seeker Fragment has been added to your Chest.**\n\nThat is six.",
         "fragment": true
       },
       {
-        "t": "act",
-        "label": "LAY THEM OUT"
-      },
-      {
         "t": "say",
         "text": "They settle, as they have four times before. A map, old and exact.\n\nNobody reads it out."
-      },
-      {
-        "t": "act",
-        "label": "PASS IT ON"
       },
       {
         "t": "say",
@@ -4979,10 +5164,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Morning in the dead city looks like evening anywhere else. The fifth is in a pack, wrapped in cloth, and you can feel the cold of it through the canvas.\n\nThey kept it in this room for as long as they lived. In the stone niche where it lay, pressed flat beneath it all that time, is something as thin as a leaf."
       },
       {
-        "t": "act",
-        "label": "LIFT IT OUT"
-      },
-      {
         "t": "say",
         "text": "It comes away from the stone with a dry whisper, and it is colder than the niche that held it.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -5035,12 +5216,37 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Scratched small into the stone under the slit window, where only someone sitting watch would see it, is an arrow.\n\nIt points down. Into the wall itself, toward the long halls under the ramparts where the city's defenders slept."
       },
       {
-        "t": "act",
-        "label": "WHERE WOULD ANYONE RUN TO, FROM A CITY LIKE THIS?"
-      },
-      {
-        "t": "say",
-        "text": "Garrick is looking out of the slit window, at the hall. *\"Somewhere they'd never be found,\"* he says."
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "ASK WHERE ANYONE WOULD RUN TO",
+          "TRACE THE ARROW IN THE STONE"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You ask aloud where anyone could possibly run to, from a walled city at the end of the world.\n\nGarrick is looking out of the slit window, at the hall. *\"Somewhere they'd never be found,\"* he says.",
+            "changed": "You asked where anyone could run from Highwall — Garrick looked at the hall and said, \"Somewhere they'd never be found.\"",
+            "roadFind": {
+              "title": "A watcher's answer",
+              "text": "Asked where anyone could run to from a walled city at the end of the world, Garrick looked out of the slit window toward the hall and said, \"Somewhere they'd never be found.\""
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You put a fingertip into the small scratched arrow under the sill — cut with a knife-point, pointing straight down into the thickness of the rampart.\n\nGarrick is looking out of the slit window, at the hall. *\"Somewhere they'd never be found,\"* he says.",
+            "changed": "You traced the knife-cut arrow under the sill — it pointed straight down into the thickness of the rampart.",
+            "roadFind": {
+              "title": "Cut with a knife-point",
+              "text": "Under the slit window of the wall room, the small arrow pointing down toward the defenders' barracks was cut deep with a knife-point into the stone sill."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -5162,10 +5368,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Then, on the stair behind you: iron on stone. Slow. One step at a time.\n\nIt stands in the doorway, in armour gone green and black. Its helm is turned to the fallen stone.\n\nNot to you.\n\nNobody makes a sound."
       },
       {
-        "t": "act",
-        "label": "DO NOT MOVE"
-      },
-      {
         "t": "say",
         "text": "The heartbeat comes.\n\nIt turns. It climbs the stair. You hear it go on up the hill, one step at a time, until you cannot hear it."
       },
@@ -5176,10 +5378,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "At the far end, in a small room of its own, the bunks are not in rows. They have been pulled into a rough circle round a cold hearth, as if the people who slept here wanted to be near each other.\n\nIn the hearthstone is a housing."
-      },
-      {
-        "t": "act",
-        "label": "PRESS IT WITH YOUR THUMB"
       },
       {
         "t": "say",
@@ -5193,10 +5391,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "At dusk, back in the wall room, the burnt stick snaps halfway through the stroke."
-      },
-      {
-        "t": "act",
-        "label": "FINISH IT WITH THE STUB"
       },
       {
         "t": "say",
@@ -5365,10 +5559,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "The hall's wall goes up out of sight above you."
       },
       {
-        "t": "act",
-        "label": "LAY YOUR PALM FLAT ON IT"
-      },
-      {
         "t": "say",
         "text": "The stone is warm.\n\nNot sun-warm. There has been no sun for days. Something on the other side of this wall is warm, and has been for a very long time.\n\nThen the heartbeat comes, and you feel it in the stone under your hand before you hear it."
       },
@@ -5413,10 +5603,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "Behind the hall, the city's highest ground runs out into a rise of cracked, bare rock, split and heaved as if something underneath had shifted a long time ago."
-      },
-      {
-        "t": "act",
-        "label": "LOOK FOR THE ONE THAT IS DIFFERENT"
       },
       {
         "t": "say",
@@ -5489,10 +5675,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "You go in sideways, one at a time, with the lamp held out ahead. The rock presses cold against your back and your chest. Deep inside, where the last of the grey daylight gives out, a housing is set into the stone."
       },
       {
-        "t": "act",
-        "label": "LIFT THE LID"
-      },
-      {
         "t": "say",
         "text": "It comes away in your hand, beaded with the crack's cold damp.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -5506,12 +5688,37 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "You stand there getting your breath.\n\nThe Seekers' ways open only for their own. Every one of them has opened for you, and for nobody else."
       },
       {
-        "t": "act",
-        "label": "THEN HOW DID THE ORDER CARRY FOUR STONES INSIDE?"
-      },
-      {
-        "t": "say",
-        "text": "Garrick is looking at the blank rock. *\"The Seekers sealed the doors they knew about.\"*"
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "ASK HOW THE ORDER CARRIED FOUR STONES IN",
+          "LOOK AT THE BLANK ROCK"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You ask the question that has been waiting since the stair: if the Seekers' ways open only for their own, how did the Order carry four stones inside?\n\nGarrick is looking at the blank rock. *\"The Seekers sealed the doors they knew about.\"*",
+            "changed": "You asked how the Order carried four Stones past a Seeker seal — Garrick said the Seekers sealed the doors they knew about.",
+            "roadFind": {
+              "title": "The doors they knew about",
+              "text": "When you asked at the dead end of the crack how the Order carried four Stones inside if Seeker ways open only for their own, Garrick said, \"The Seekers sealed the doors they knew about.\""
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You look from the Seeker housing in your hand to the blank face of the rock at the dead end of the crack, wondering aloud how the Order ever got four stones past a Seeker seal.\n\nGarrick is looking at the blank rock. *\"The Seekers sealed the doors they knew about.\"*",
+            "changed": "You looked from the Seeker housing to the blank rock — Garrick said the Seekers sealed only the doors they knew about.",
+            "roadFind": {
+              "title": "The dead end in the crack",
+              "text": "Looking from the cold Seeker housing to the blank rock and the scored moon beside it, you heard Garrick say that the Seekers sealed the doors they knew about."
+            }
+          }
+        ]
       },
       {
         "t": "say",
@@ -5661,10 +5868,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Beside the dark moon, a housing gives at a touch."
       },
       {
-        "t": "act",
-        "label": "TAKE IT"
-      },
-      {
         "t": "say",
         "text": "It has sat under the open sky for centuries, and it is as cold as the night up here.\n\n**A locked Seeker Fragment has been added to your Chest.**",
         "fragment": true
@@ -5672,10 +5875,6 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "The rows are evenly spaced. The bare stone after them is only stone.\n\nBut you could go on counting."
-      },
-      {
-        "t": "act",
-        "label": "COUNT FORWARD, WITH A FINGERTIP"
       },
       {
         "t": "say",
@@ -5835,17 +6034,9 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Deep in the crack, at the dead end beside the scored moon, the last fragment is waiting in a cleft at the foot of the blank rock."
       },
       {
-        "t": "act",
-        "label": "TAKE IT"
-      },
-      {
         "t": "say",
         "text": "**A locked Seeker Fragment has been added to your Chest.**\n\nThat is six.",
         "fragment": true
-      },
-      {
-        "t": "act",
-        "label": "LAY THEM OUT"
       },
       {
         "t": "say",

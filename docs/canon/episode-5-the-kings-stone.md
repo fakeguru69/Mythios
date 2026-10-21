@@ -85,8 +85,18 @@
 *On a failure:*
 > Nothing comes up that you can read. The stone keeps its word, and you will have to hear it from someone else. Only this much is plain: under the worn part there was a second line, and it did not wear away. Somebody cut it out, stroke by stroke, with a patient knife.
 
-`[ASK GARRICK WHERE A FIFTH WOULD BE]`
+`[ASK GARRICK WHERE A FIFTH WOULD BE]` `[LOOK NORTH ALONG THE ROAD]`
 
+*Ask Garrick where a fifth would be:*
+> You ask him where a fifth stone would be kept, if someone cut its name out of the boundary rock to hide it.
+>
+> Garrick is looking north, the way the heartbeat comes from.
+>
+> *"The fifth wasn't hidden in the hills like the others,"* he says. *"Every telling I know ends at Highwall."*
+
+*Look north along the road:*
+> You stand up from the chiselled boundary stone and follow the old road north with your eyes, where the low tremor in the ground comes from.
+>
 > Garrick is looking north, the way the heartbeat comes from.
 >
 > *"The fifth wasn't hidden in the hills like the others,"* he says. *"Every telling I know ends at Highwall."*
@@ -100,8 +110,6 @@
 > The carter's coin is in your pocket: a king's face, scraped down to bare metal. The line cut out of this stone is the same work. The story you were taught is what was left when the scraping was done.
 
 > In a crack at the waystone's foot, with a rime of frost on it though the day is mild:
-
-`[TAKE IT]`
 
 > The frost crackles under your fingers, and the cold goes straight through to the bones of your hand.
 >
@@ -148,15 +156,25 @@
 
 > Drawn up at the head of the rows are the only people you have met all day. A family, come down from the north, with all they own on one cart, and a cow tied behind.
 
-`[WHAT DID YOU SEE?]`
+`[ASK WHAT DROVE THEM OUT]` `[LOOK AT THE BANDAGE ON HIS ARM]`
 
+*Ask what drove them out:*
+> You step to the side of the cart so you do not block the road, and ask him what they saw up north.
+>
 > The man answers without turning round. *"The beasts won't settle. Not since the sky turned."*
 >
 > It is not an army they are running from. It is their own yard. The dogs first, and then the pigs. He has a bandage on his forearm, and the cow is the only animal they have left that will still be led.
 >
 > A child on the tailboard counts you, with one finger.
 
-`[WALK IN AMONG THEM]`
+*Look at the bandage on his arm:*
+> Your eyes go to the linen wrapped tight round his forearm, spotted dark where teeth — not a blade — caught him through his sleeve. He sees you looking.
+>
+> The man answers without turning round. *"The beasts won't settle. Not since the sky turned."*
+>
+> It is not an army they are running from. It is their own yard. The dogs first, and then the pigs. He has a bandage on his forearm, and the cow is the only animal they have left that will still be led.
+>
+> A child on the tailboard counts you, with one finger.
 
 > Every mound is the same length. A man's length.
 >
@@ -173,8 +191,6 @@
 > **Aim** · The rows run dead straight, and they all point one way. *North. At the city.*
 
 > At the far end of the rows stands one squared block of stone that is no grave. Its top is a separate slab, fitted like a lid.
-
-`[LIFT IT]`
 
 > It comes up with a long grate of stone on stone. The air inside is colder than the evening, and smells of old earth.
 >
@@ -283,8 +299,6 @@
 
 > Garrick passes his flask along the walkway, and waits until the last of you has had some before he takes any himself.
 
-`[LOOK DOWN AT THE GATE]`
-
 > From above, you can see its inner side.
 >
 > It is barred. The bar is new timber, still pale.
@@ -304,8 +318,6 @@
 > Whoever changes the bar has kept every one.
 
 > On the walkway above the gate, where they would have stood shoulder to shoulder, a carved housing is set into the parapet at chest height.
-
-`[PRESS YOUR PALM FLAT TO IT]`
 
 > Its stone face swings inward. The cold that comes out to meet your hand is the cold of high places, of wind on a wall in winter.
 >
@@ -398,8 +410,6 @@
 `[PLANT]` *(the standing soldiers are stirring)*
 
 > Set into the wall of a house at the end of that street is a housing, its carving as crisp as the day it was cut.
-
-`[FIND THE PATTERN]`
 
 > The stone turns on a hidden pin. Inside, the cold has kept as well as the carving.
 >
@@ -506,8 +516,6 @@
 
 > In the broken fountain at the edge of the square, facing the hall, a housing sits low in the dry basin.
 
-`[REACH DOWN TO IT]`
-
 > It opens like a hand. The basin has been dry for centuries, and still what lies inside is as cold as well water.
 >
 > **A locked Seeker Fragment has been added to your Chest.**
@@ -595,19 +603,13 @@
 
 > In a crack across the walkway, just where somebody keeping watch would stand, colder than the stone it lies in:
 
-`[TAKE IT]`
-
 > **A locked Seeker Fragment has been added to your Chest.**
 >
 > That is six.
 
-`[LAY THEM OUT]`
-
 > They settle, as they have four times before. A map, old and exact.
 >
 > Nobody reads it out.
-
-`[PASS IT ON]`
 
 > It goes from hand to hand along the parapet. Each of you looks, and nods, and gives it to the next.
 
