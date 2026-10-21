@@ -303,3 +303,14 @@ export const WhatThisChangedBlock: React.FC<{ text: string }> = ({ text }) => (
     <ScriptText text={text} className="font-sans text-[14.5px] text-[#E3D9F2] leading-[1.4]" />
   </div>
 );
+
+/** A read-back card beside the line where the story answers a previous campfire question (Piece E1). */
+export const ReadBackBlock: React.FC<{ text: string; day?: number }> = ({ text, day }) => (
+  <div className="rounded-xl bg-[#241B10] border border-[#8A5A24] px-3.5 py-2.5 space-y-1 my-2 shadow-sm" data-read-back>
+    <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#E5C158] uppercase">
+      {day === 1 ? 'LAST NIGHT YOU CALLED IT' : day ? `THE FIRE'S CALL · DAY ${day}` : "THE FIRE'S CALL"}
+    </div>
+    <p className="font-sans italic text-[15.5px] text-[#F4E8C8] leading-[1.4]">{text}</p>
+  </div>
+);
+

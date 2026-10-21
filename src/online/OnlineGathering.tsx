@@ -5,7 +5,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase, plainError } from './supabaseClient';
 import { Markable } from './Markable';
-import { NarrationBlock, NoticeBlock, ScriptButton, ScriptInline, ScriptText, TapEcho } from '../components/ChapterScriptParts';
+import { NarrationBlock, NoticeBlock, ReadBackBlock, ScriptButton, ScriptInline, ScriptText, TapEcho } from '../components/ChapterScriptParts';
 import { challengeSucceedOn, getTierInfo, type AttributeName, type SeasonTitleEntry } from '../data/mythiosRulesData';
 import { card, ErrorLine, goldButton, heading, input, note, quietButton } from './ui';
 import PartyChat from './PartyChat';
@@ -38,6 +38,7 @@ interface View {
   n: number | null;
   log: Entry[];
   weeksBest?: WeeksBestData | null;
+  readBacks?: { anchor: string; day?: number; text: string }[];
   seasonTitles?: SeasonTitleEntry[];
   progress: { gold: number; attrs: Record<string, number>; relics: Record<string, number>; weapon: number; armor: number } | null;
   /** Opened only after it ended, never having been in it (0072): its recap instead of the night. */
@@ -319,7 +320,8 @@ export default function OnlineGathering({
           </div>
         );
         break;
-      case 'say':
+      case 'say': {
+        const matchedRb = (view.readBacks ?? []).find((rb) => e.text && e.text.includes(rb.anchor));
         nodes.push(
           e.alone ? (
             <div key={k} className="py-3 text-center">
@@ -331,7 +333,11 @@ export default function OnlineGathering({
             </Markable>
           )
         );
+        if (matchedRb) {
+          nodes.push(<ReadBackBlock key={`${k}-rb`} text={matchedRb.text} day={matchedRb.day} />);
+        }
         break;
+      }
       case 'act':
         if (e.tapped) nodes.push(<TapEcho key={k} label={`${e.by ?? ''} · ${e.label}`} />);
         else if (current(e)) nodes.push(<ScriptButton key={k} label={e.label} disabled={busy} onClick={() => go('tap', { i: e.i })} />);

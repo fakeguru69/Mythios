@@ -37,6 +37,7 @@ const mustAssertFiles = [
   'stats-and-badges.cjs',
   'big-moments-and-chase.cjs',
   'party-yesterday-weeks-best-titles.cjs',
+  'campfire-week1-phase2.cjs',
 ];
 
 for (const file of mustAssertFiles) {

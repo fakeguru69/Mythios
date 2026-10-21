@@ -53,20 +53,20 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
     },
     {
       "id": "1-1-2",
-      "place": "the trees where he went",
+      "place": "his trail, into the trees",
       "actions": [
         {
-          "attr": "Agility",
-          "verb": "go after him into the trees"
+          "attr": "Aim",
+          "verb": "look at his stride"
         },
         {
-          "attr": "Aim",
-          "verb": "pick out his trail in the dusk"
+          "attr": "Agility",
+          "verb": "follow where he broke through"
         }
       ],
-      "clueTitle": "Two sets of boots",
-      "clueText": "Twenty paces in, his prints meet another man's. The two go on together, at a walk.",
-      "leans": "A",
+      "clueTitle": "No hurry",
+      "clueText": "Twenty paces in, his trail slows to a walk and stays one. He was not running from you. He had finished.",
+      "leans": "B",
       "hintFor": 1
     },
     {
@@ -127,20 +127,20 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
     },
     {
       "id": "1-2-3",
-      "place": "the seat that was hers",
+      "place": "the page about the child",
       "actions": [
         {
-          "attr": "Aim",
-          "verb": "sit where she sat and look out"
+          "attr": "Intellect",
+          "verb": "read the page about the child again"
         },
         {
-          "attr": "Agility",
-          "verb": "go from her seat to the nearest door"
+          "attr": "Craft",
+          "verb": "look at how the leaf has worn"
         }
       ],
-      "clueTitle": "The worn end",
-      "clueText": "Her seat is the end of a bench. It is worn pale on one side only: the side nearer the door.",
-      "leans": "both",
+      "clueTitle": "The thumbed leaf",
+      "clueText": "The leaf about the child is softer than any other in the book, and dark at the corner where a thumb would hold it. She came back to it often.",
+      "leans": "B",
       "hintFor": 2
     }
   ],
@@ -239,20 +239,20 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
     },
     {
       "id": "1-4-3",
-      "place": "where the elder's men stood",
+      "place": "the boy, at the gate",
       "actions": [
         {
-          "attr": "Intellect",
-          "verb": "look over the ground where they stood"
+          "attr": "Charm",
+          "verb": "ask the boy how they came"
         },
         {
-          "attr": "Craft",
-          "verb": "pick through what they left in the mud"
+          "attr": "Intellect",
+          "verb": "ask the boy what they passed"
         }
       ],
-      "clueTitle": "Fresh bark",
-      "clueText": "Where the men stood with the elder, curls of fresh bark lie in the mud. Somebody in Fenmark cut a cudgel today.",
-      "leans": "both",
+      "clueTitle": "Past three doors",
+      "clueText": "The boy says they came up the lane in the dark and went past three doors with children behind them. They did not try one.",
+      "leans": "A",
       "hintFor": 1
     }
   ],
@@ -295,20 +295,20 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
     },
     {
       "id": "1-5-3",
-      "place": "the clean path in",
+      "place": "her door",
       "actions": [
         {
-          "attr": "Aim",
-          "verb": "read the path by the firelight"
+          "attr": "Craft",
+          "verb": "look at how her door is barred"
         },
         {
-          "attr": "Intellect",
-          "verb": "count the prints worn into it"
+          "attr": "Aim",
+          "verb": "look the door over by the firelight"
         }
       ],
-      "clueTitle": "One pair of boots",
-      "clueText": "The path in is worn by one pair of small boots, hers, over and over. Under them you find no other prints but tonight's.",
-      "leans": "both",
+      "clueTitle": "The worn bar",
+      "clueText": "The bar on her door has worn its cleats deep and pale. She has barred it every night for a long time.",
+      "leans": "A",
       "hintFor": 1
     }
   ],

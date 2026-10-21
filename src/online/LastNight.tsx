@@ -10,20 +10,24 @@ interface Night {
   forkA: string | null;
   forkB: string | null;
   call: { reading: Reading | null; split: boolean; backers: Partial<Record<Reading, string[]>> } | null;
+  unsolvedClick?: string | null;
 }
 
 const nameList = (xs: string[]) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
 
 export default function LastNight({ partyId, week, day }: { partyId: string; week: number; day: number }) {
   const [line, setLine] = useState<string | null>(null);
+  const [unsolvedLine, setUnsolvedLine] = useState<string | null>(null);
   useEffect(() => {
     setLine(null);
+    setUnsolvedLine(null);
     const prevWeek = day > 1 ? week : week - 1;
     const prevDay = day > 1 ? day - 1 : 6;
     if (prevWeek < 1) return;
     supabase.rpc('casebook', { p_party: partyId, p_week: prevWeek }).then(({ data }) => {
       const night = ((data as { nights?: Night[] } | null)?.nights ?? []).find((n) => n.day === prevDay);
       const c = night?.call;
+      if (night?.unsolvedClick) setUnsolvedLine(night.unsolvedClick);
       if (!night || !c) return;
       const text = (r: Reading) => (r === 'A' ? night.forkA ?? '' : r === 'B' ? night.forkB ?? '' : 'Neither.');
       const by = (r: Reading) => c.backers?.[r] ?? [];
@@ -49,20 +53,25 @@ export default function LastNight({ partyId, week, day }: { partyId: string; wee
   // (handoff ledger piece 5).
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    if (!line) {
+    if (!line && !unsolvedLine) {
       setOpen(false);
       return;
     }
     const id = window.requestAnimationFrame(() => setOpen(true));
     return () => window.cancelAnimationFrame(id);
-  }, [line]);
-  if (!line) return null;
+  }, [line, unsolvedLine]);
+  if (!line && !unsolvedLine) return null;
   return (
     <div className="grid transition-[grid-template-rows] duration-300 ease-out" style={{ gridTemplateRows: open ? '1fr' : '0fr' }} data-last-call-wrap>
       <div className="overflow-hidden">
-        <div className="rounded-2xl bg-[#16233A] border border-[#3E5C8A] px-3 py-2.5 space-y-1" data-last-call>
+        <div className="rounded-2xl bg-[#16233A] border border-[#3E5C8A] px-3 py-2.5 space-y-1.5" data-last-call>
           <div className="font-['Cinzel'] font-bold text-[12px] text-[#9CC2F0] tracking-[1px]">LAST NIGHT</div>
-          <p className="text-[16px] text-[#F4F1F8] leading-[1.4]">{line}</p>
+          {line && <p className="text-[16px] text-[#F4F1F8] leading-[1.4]">{line}</p>}
+          {unsolvedLine && (
+            <div className="pt-2 border-t border-[#3E5C8A]/60 text-[14.5px] text-[#E5C158] leading-[1.4]" data-unsolved-puzzle>
+              <span className="font-semibold text-[#F4F1F8]">What the table would have shown:</span> “{unsolvedLine}”
+            </div>
+          )}
         </div>
       </div>
     </div>

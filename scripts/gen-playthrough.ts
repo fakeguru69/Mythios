@@ -178,7 +178,11 @@ function campfire(week: number, day: number) {
       : `Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: ${f.tone}.`
   ));
   if (f.cupNight) w(gameplay('A cup night:'), quote(CAMPFIRE_STORED_LINES.cupNightStageDirection));
-  w(f.narratedNoGarrick ? gameplay('Opening narration:') : gameplay('Garrick opens:'), quote(f.opener));
+  if (f.narratedSilence) {
+    w(gameplay('Quiet night (silence):'), quote(f.narratedSilence));
+  } else if (f.opener) {
+    w(f.narratedNoGarrick ? gameplay('Opening narration:') : gameplay('Garrick opens:'), quote(f.opener));
+  }
   if (!f.narratedNoGarrick)
     w(gameplay(`If you are the first at the fire: "${CAMPFIRE_STORED_LINES.firstArrivalGreeting}" Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("${fill(CAMPFIRE_STORED_LINES.noticingTemplates.lentRelic)}").`));
   w(gameplay('The board: one card for each lead taken at the last light, with every finder\'s name; a lead nobody took reads "Nobody went to … tonight."'));

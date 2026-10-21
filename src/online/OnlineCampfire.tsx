@@ -82,6 +82,11 @@ interface Fire {
   fragment?: { words: number; text: string | null; solvers: string[]; hintOpen: boolean };
   meaningQuestion?: string | null;
   noticings?: { kind: keyof typeof CAMPFIRE_STORED_LINES.noticingTemplates; name: string }[];
+  questionTitle?: string | null;
+  nudgeIfLaid?: { piece: string; line: string } | null;
+  narratedSilence?: string | null;
+  puzzle?: { q: string; clickText?: string } | null;
+  clicks?: Array<{ a: string; b: string; text: string; solves?: boolean }>;
 }
 
 // The fire's table (migration 0092): pieces with who laid them, agree and doubt, the thread, readings after your own pin.
@@ -106,6 +111,9 @@ interface FireTable {
   thread: { kind: 'say' | 'pinned' | 'changed' | 'click' | 'laid'; name: string | null; mine: boolean | null; body: string; at: string }[];
   pinned: string[];
   readings: { id: string; name: string; reading: Reading; line: string | null; mine: boolean }[] | null;
+  leaning?: 'split' | 'same' | null;
+  puzzle?: { q: string; clickText?: string } | null;
+  clicks?: { text: string; names: string[]; solves: boolean }[];
 }
 
 const signed = (n: number) => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
@@ -370,14 +378,27 @@ export default function OnlineCampfire({
   // Arriving: the cup, his greeting and opener, what he notices (stored lines, v2.3 §B, §C, §I).
   if (fire.cupNight) add(arrival, 'cup', <NarrationMessage text={CAMPFIRE_STORED_LINES.cupNightStageDirection} />);
   if (fire.narrated && fire.opener) add(later(arrival, 1), 'opener', <NarrationMessage text={fire.opener} />);
+  if (garrick && fire.narratedSilence) add(later(arrival, 1), 'silence', <NarrationMessage text={fire.narratedSilence} />);
   if (garrick && fire.firstHere) add(later(arrival, 1), 'greet', <GarrickBubble text={CAMPFIRE_STORED_LINES.firstArrivalGreeting} />);
-  if (garrick && fire.opener) add(later(arrival, 2), 'opener', <GarrickBubble text={fire.opener} />);
+  if (garrick && fire.opener && !fire.narratedSilence) add(later(arrival, 2), 'opener', <GarrickBubble text={fire.opener} />);
   if (garrick)
     (fire.noticings ?? []).forEach((n, i) =>
       sayOnce(`notice-${i}`, CAMPFIRE_STORED_LINES.noticingTemplates[n.kind].replace('{friend}', n.name), later(arrival, 3 + i)).forEach((e, j) =>
         add(e.at, `notice-${i}-${j}`, <GarrickBubble text={e.text} />)
       )
     );
+  if (t?.puzzle) {
+    add(
+      arrival,
+      'puzzle',
+      <div className="rounded-2xl border border-[#8A6E34] bg-[#221708] p-3 space-y-1.5" data-puzzle>
+        <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158] uppercase">
+          TONIGHT&apos;S PUZZLE
+        </div>
+        <p className="font-sans text-[15.5px] text-[#F4E8C8] leading-[1.4]">{t.puzzle.q}</p>
+      </div>
+    );
+  }
   // Your own find at the last light: the roll, the late line, the first-letter hint, the glimpse.
   const my = fire.myFanOut;
   const myLead = fire.board?.find((b) => b.id === my?.lead);
@@ -488,13 +509,26 @@ export default function OnlineCampfire({
   }
 
   // His nudge, once something is on the table (or on arriving); MYTHIOS asks it on a narrated night.
+  const pieceLaid = fire.nudgeIfLaid && pieces.some((p) => p.key === fire.nudgeIfLaid!.piece || p.key.endsWith(fire.nudgeIfLaid!.piece) || p.key.includes(fire.nudgeIfLaid!.piece));
+  const rawNudge = pieceLaid ? fire.nudgeIfLaid!.line : fire.nudge;
+  const activeNudge = rawNudge ? fillShared(rawNudge) : null;
   const firstPieceAt = pieces.map((p) => p.at).filter(Boolean).sort()[0];
   const nudgeAt = later(firstPieceAt && firstPieceAt > arrival ? firstPieceAt : arrival, 5);
-  if (fire.nudge)
-    sayOnce('nudge', fire.nudge, nudgeAt).forEach((e, j) =>
+  if (activeNudge)
+    sayOnce('nudge', activeNudge, nudgeAt).forEach((e, j) =>
       add(e.at, `nudge-${j}`, garrick ? <GarrickBubble text={e.text} /> : <NarrationMessage text={e.text} />)
     );
   if (garrick && fire.callback) sayOnce('callback', fire.callback, later(nudgeAt, 1)).forEach((e, j) => add(e.at, `callback-${j}`, <GarrickBubble text={e.text} />));
+
+  // Garrick reacts when the fire leans or splits (stored lines, v3 §7 and campfire-week1-content-18oct.md §Garrick's new lines):
+  if (garrick && t?.leaning) {
+    const leanLine = t.leaning === 'split'
+      ? "Good. Argue it out. I listen better than I talk."
+      : "Everyone leans the same way. What would it take to be wrong?";
+    sayOnce('leaning', leanLine, later(arrival, 15)).forEach((e, j) =>
+      add(e.at, `leaning-${j}`, <GarrickBubble text={e.text} />)
+    );
+  }
 
   // Words found, and the whole fragment with its meaning question.
   if (frag) {
@@ -578,7 +612,9 @@ export default function OnlineCampfire({
       ) : (
         <>
           <div className="flex justify-between items-center gap-2">
-            <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#F0A552]">TONIGHT'S QUESTION</div>
+            <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#F0A552]">
+              TONIGHT&apos;S QUESTION{fire.questionTitle ? ` · ${fire.questionTitle}` : ''}
+            </div>
             {myPick ? (
               <button className="text-[13px] text-[#CDB594]" onClick={() => setQuestionOpen(false)}>
                 fold ▴

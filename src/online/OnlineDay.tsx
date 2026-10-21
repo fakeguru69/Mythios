@@ -21,6 +21,7 @@ import {
   ScriptText,
   TapEcho,
   WhatThisChangedBlock,
+  ReadBackBlock,
 } from '../components/ChapterScriptParts';
 import { challengeSucceedOn, getTierInfo, type AttributeName, EPISODE_NUMBERS, GEAR_TABLE, computeNearMissLine } from '../data/mythiosRulesData';
 import { CLASSES } from './onlineText';
@@ -317,6 +318,7 @@ export default function OnlineDay({
   const pushItem = (key: string, node: React.ReactNode, opts?: { instant?: boolean; resolved?: boolean }) => {
     items.push({ key, node, instant: opts?.instant, resolved: opts?.resolved });
   };
+  const readBacks: Array<{ anchor: string; day?: number; text: string }> = (today as any)?.readBacks ?? [];
   const pushSay = (keyBase: string, rawText: string, pull?: boolean) => {
     const filled = fill(rawText);
     const paras = filled.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
@@ -328,6 +330,14 @@ export default function OnlineDay({
           <NarrationBlock text={para} pull={pull && pi === paras.length - 1} />
         </Markable>
       );
+      const matchedRb = readBacks.find((rb) => para.includes(rb.anchor));
+      if (matchedRb) {
+        pushItem(
+          `${k}-rb`,
+          <ReadBackBlock key={`${k}-rb`} text={matchedRb.text} day={matchedRb.day} />,
+          { instant: true, resolved: true }
+        );
+      }
     });
   };
   let actIndex = 0;
@@ -436,7 +446,8 @@ export default function OnlineDay({
               key={key}
               roll={{ ...storedNotice, text: fill(storedNotice.text) }}
               showFirstTime={showFirstTime}
-            />
+            />,
+            { instant: true, resolved: true }
           );
         } else {
           const score = progress.attrs[line.attr] ?? 10;

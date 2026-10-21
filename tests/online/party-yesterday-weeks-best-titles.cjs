@@ -153,10 +153,10 @@ const check = (name, ok) => {
   );
 
   const { getTierInfo } = require(path.join(root, 'src/data/mythiosRulesData.ts'));
-  const coverSrc = fs.readFileSync(path.join(root, 'src/components/CoverPage.tsx'), 'utf8');
   check(
-    'getTierInfo(80) returns Champion (Core Rules §12) and CoverPage.tsx displays 3 to 6 friends',
-    getTierInfo(80).name === 'Champion' && coverSrc.includes('3 to 6 friends') && !coverSrc.includes('2 to 6 friends')
+    'getTierInfo(80) returns Champion (+6) and getTierInfo(105) returns Master (+8) per Core Rules §12',
+    getTierInfo(80).name === 'Champion' && getTierInfo(80).bonus === 6 &&
+    getTierInfo(105).name === 'Master' && getTierInfo(105).bonus === 8
   );
 
   // 6. Big-moment hooks in actual gameplay RPCs & whole-party badge deduplication

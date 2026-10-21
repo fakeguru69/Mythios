@@ -33,13 +33,18 @@ export interface CampfireDayEntry {
   narratedNoGarrick: boolean;
   tone: 'wry' | 'quiet';
   cupNight: boolean;
-  opener: string;
+  opener: string | null;
   forkA: string;
   forkB: string;
   callback: string | null;
   riddle: CampfireRiddleEntry | null;
   nudge: string;
   fanOutClue: CampfireFanOutClueInternal;
+  questionTitle?: string;
+  puzzle?: { q: string; clickText?: string } | null;
+  clicks?: Array<{ a: string; b: string; text: string; solves?: boolean; aAttr?: string }>;
+  nudgeIfLaid?: { piece: string; line: string } | null;
+  narratedSilence?: string | null;
 }
 
 export const CUP_NIGHT_IDS: readonly string[] = [
@@ -101,11 +106,14 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "One list, one inn's name. Nothing was taken.",
-    "forkA": "The list is a warning.",
-    "forkB": "The list is an invitation.",
+    "questionTitle": "Who wrote the list?",
+    "forkA": "The man on the road wrote it himself.",
+    "forkB": "Someone else wrote it. He only carried it.",
     "callback": null,
     "riddle": null,
-    "nudge": "{friend:Intellect}, what is odd about a stranger who leaves something behind?",
+    "nudge": "A man who takes nothing, and leaves a list. Who would want you to have it?",
+    "puzzle": null,
+    "clicks": [],
     "fanOutClue": {
       "title": "The even hand",
       "text": "Not one name is crossed out or written over. Every line sits level, and the inn's line is in the same hand as the names.",
@@ -123,20 +131,28 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": true,
     "opener": "You've paid for your rooms and you haven't burned anything down. That's more than most guests manage.",
-    "forkA": "Meira left in a hurry.",
-    "forkB": "Meira left on purpose.",
+    "questionTitle": "The child in Meira's notes: when was that child taken?",
+    "forkA": "Lately. Whatever was happening there is happening now.",
+    "forkB": "Long ago. She was writing about an older taking.",
     "callback": "She hasn't sat in that seat for three weeks. Your pages all reached you on the road within the same few days.",
-    "riddle": {
-      "q": "What has a neck but no head?",
-      "a": "a bottle",
-      "quip": "The inn is full of them. None of them talk.",
-      "accept": [
-        "a bottle",
-        "bottle"
-      ],
-      "maxTries": 3
+    "riddle": null,
+    "nudge": "{friend:Intellect}, the page about the child has no date. What would give it one?",
+    "nudgeIfLaid": {
+      "piece": "1-2-3",
+      "line": "{friend:Intellect}, that leaf. What does it tell you about when she wrote it?"
     },
-    "nudge": "{friend:Craft}, how would you test whether the page is hers?",
+    "puzzle": {
+      "q": "Did Meira leave in a hurry?",
+      "clickText": "She cut those pages one at a time, against a rule, to send them, and she left every slip in her book pinned where it belonged. She did not go in a hurry."
+    },
+    "clicks": [
+      {
+        "a": "1-2-2",
+        "b": "press",
+        "text": "She cut those pages one at a time, against a rule, to send them, and she left every slip in her book pinned where it belonged. She did not go in a hurry.",
+        "solves": true
+      }
+    ],
     "fanOutClue": {
       "title": "Read the stubs",
       "text": "Each stub has a faint straight line scored down it. She cut them against a rule, one at a time, with care. She meant to send them.",
@@ -154,19 +170,24 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "You've not eaten. Sit.",
-    "forkA": "The man in the bracken was guarding the rock.",
-    "forkB": "He was waiting for us.",
+    "questionTitle": "Who was the man in the bracken working for?",
+    "forkA": "The men who took the child.",
+    "forkB": "Fenmark. He was keeping watch for his own village.",
     "callback": "The man on the forest road was carrying her rubbing. The man in the bracken was watching her rock.",
-    "riddle": {
-      "q": "The more you take, the more you leave behind. What am I?",
-      "a": "footsteps",
-      "quip": "There's bracken full of them out there.",
-      "accept": [
-        "footsteps"
-      ],
-      "maxTries": 3
+    "riddle": null,
+    "nudge": "{friend:Agility}, he ran toward the smoke. What lies that way for a man like him?",
+    "puzzle": {
+      "q": "How long has this rock been watched?",
+      "clickText": "Someone has sat over this rock for hours at a time, and walked round it often enough to wear the turf away. It is watched, and it has been for a long while."
     },
-    "nudge": "{friend:Aim}, from his hollow in the bracken, what was he watching?",
+    "clicks": [
+      {
+        "a": "1-3-1",
+        "b": "1-3-2",
+        "text": "Someone has sat over this rock for hours at a time, and walked round it often enough to wear the turf away. It is watched, and it has been for a long while.",
+        "solves": true
+      }
+    ],
     "fanOutClue": {
       "title": "The second ring",
       "text": "In the flattened bracken a flask has left a ring in the dew, and a second ring beside it where he set it down again.",
@@ -183,20 +204,20 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "quiet",
     "cupNight": false,
-    "opener": "A village that won't talk is still talking. Mostly with its shutters.",
-    "forkA": "The village is protecting the girl.",
-    "forkB": "The village is protecting itself.",
+    "opener": null,
+    "narratedSilence": "Garrick sets a bowl in front of each of you, and for once he says nothing at all.",
+    "questionTitle": "Why did they take Tamsin, of all the children in Fenmark?",
+    "forkA": "She was someone in particular. They came for her.",
+    "forkB": "She was the easiest to take.",
     "callback": "The boy says they moved like they'd done it before. The little horse at the rock had sat out a winter or two.",
-    "riddle": {
-      "q": "What breaks the moment you say its name?",
-      "a": "silence",
-      "quip": "Fenmark's had plenty of practice.",
-      "accept": [
-        "silence"
-      ],
-      "maxTries": 3
+    "riddle": null,
+    "nudge": "{friend:Charm}, of all the children in Fenmark, why her?",
+    "nudgeIfLaid": {
+      "piece": "1-4-3",
+      "line": "{friend:Charm}, three doors, and they tried none of them. Why hers?"
     },
-    "nudge": "{friend:Charm}, when Fenmark shut its doors on us, who was it protecting?",
+    "puzzle": null,
+    "clicks": [],
     "fanOutClue": {
       "title": "The leaned bar",
       "text": "The gate at the end of the lane is swinging, but its bar has been lifted and leaned neatly against the post, not thrown down.",
@@ -214,19 +235,24 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "Two winters between two children. Some people count in winters. It's a way of keeping still.",
+    "questionTitle": "Is it the same man, twice, or a way of working?",
     "forkA": "It's the same man, twice.",
     "forkB": "It's a way of working, not one man.",
     "callback": "The road, the rock, and tonight her shutters. Not one of those men has said a word.",
-    "riddle": {
-      "q": "I grow, but I'm not alive. I need air, but I have no lungs. Water kills me. What am I?",
-      "a": "fire",
-      "quip": "Which is why I tend this one myself.",
-      "accept": [
-        "fire"
-      ],
-      "maxTries": 3
+    "riddle": null,
+    "nudge": "{friend:Intellect}, she knows him by a knife. How many men can carry one knife?",
+    "puzzle": {
+      "q": "Has someone tried her house before tonight?",
+      "clickText": "The marks on her back shutter are old and new in the same place, and the bar on her door has worn its cleats deep. Someone has tried her house before tonight, and she has barred it every night for a long time."
     },
-    "nudge": "{friend:Intellect}, two children, two winters apart. One man's habit, or someone's way of working?",
+    "clicks": [
+      {
+        "a": "1-5-2",
+        "b": "1-5-3",
+        "text": "The marks on her back shutter are old and new in the same place, and the bar on her door has worn its cleats deep. Someone has tried her house before tonight, and she has barred it every night for a long time.",
+        "solves": true
+      }
+    ],
     "fanOutClue": {
       "title": "The knife, not the face",
       "text": "She says she never saw his face, only the knife, and it is the knife she knows him by.",
@@ -244,26 +270,30 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": true,
     "opener": "Six pieces, one map. Eat something before you stare at it.",
-    "forkA": "They carried her across the water.",
-    "forkB": "They wanted us to think so.",
+    "questionTitle": "Why are our names on that list?",
+    "forkA": "We are like the children. They want us too.",
+    "forkB": "Meira chose us, to help her find them.",
     "callback": "Meira had this shape on paper before any of you found a piece. Tonight the pieces drew it.",
-    "riddle": {
-      "q": "I have a bed but never sleep, a mouth but never speak. What am I?",
-      "a": "a river",
-      "quip": "The one in front of us says nothing, and I believe it.",
-      "accept": [
-        "a river",
-        "river"
-      ],
-      "maxTries": 3
+    "riddle": null,
+    "nudge": "{friend:Intellect}, that list has been in your pocket all week. Tell the table what you make of it now.",
+    "puzzle": {
+      "q": "Why send the cart one way and the child another?",
+      "clickText": "One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. Anyone who followed the cart was following an empty one."
     },
-    "nudge": "{friend:Intellect}, what do you notice about how the pieces settled?",
+    "clicks": [
+      {
+        "a": "1-6-2",
+        "b": "1-6-3",
+        "text": "One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. Anyone who followed the cart was following an empty one.",
+        "solves": true
+      }
+    ],
     "fanOutClue": {
       "title": "Wade out",
       "text": "Mid-stream, on the upstream side of the ford-stone, a scrape of fresh paint on the rock at the height of a gunwale. There was a boat.",
       "source": "press-on",
       "bearsOnFork": "A",
-      "qaNote": "Existing [PRESS ON] detail. Leans 'carried across the water'."
+      "qaNote": "Existing [PRESS ON] detail. Leans 'carried her across'."
     }
   },
   {
