@@ -251,7 +251,7 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
         }
       ],
       "clueTitle": "Past three doors",
-      "clueText": "The boy says they came up the lane in the dark and went past three doors with children behind them. They did not try one.",
+      "clueText": "The boy says they came up the lane in the dark and went past three doors with children behind them.",
       "leans": "A",
       "hintFor": 1
     }

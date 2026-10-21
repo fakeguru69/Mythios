@@ -25,10 +25,11 @@ An independent check read every line of the first draft against the episode file
 
 This is a narrated night: the party has not met, so there is no Garrick and no click.
 
-**Tonight's question:** *Who wrote the list?*
-- A: The man on the road wrote it himself.
-- B: Someone else wrote it. He only carried it.
-- **Read back the next morning**, at Day 2's "So the list is hers." Each friend sees their own call, since the party had not met: *Last night you called it: someone else wrote it.*
+**Tonight's question:** *A man who takes nothing, and leaves a list. Who would want you to have it?*
+- A: He was sent to put it in your hands.
+- B: You took it off a man who was carrying it somewhere else.
+- **Read back the next morning**, at Day 2's "each of you was set upon on the road, within the same few days, and came away holding a page."
+  *Last night you called it: he was sent to put it in your hands.* (or *Last night you called it: you took it off a man who was carrying it somewhere else.*)
 
 **Tonight's puzzle:** none, since each friend is alone tonight.
 
@@ -58,21 +59,22 @@ Notice lines that bear on it:
 The chapter leaves it open: the page has "No date", but "whatever was happening there was not over".
 
 **Tonight's puzzle:** *Did Meira leave in a hurry?*
-- **Click:** *Every slip pinned* + the [PRESS ON] find ("She meant to send them."). **NEW:** *"She cut those pages one at a time, against a rule, to send them, and she left every slip in her book pinned where it belonged. She did not go in a hurry."*
+- **Click:** *Every slip pinned* + *The thumbed leaf*. **NEW:** *"Every slip still sits where she pinned it, and the page about the child is the one her thumb wore soft. A woman packing in fear does not leave her book in order. She did not go in a hurry."*
 - Canon backs it: she left on purpose with her pages (the finale: "the night she left with those pages").
 
 **The pieces**
 | Piece | Job | Payoff |
 |---|---|---|
 | Every slip pinned (lead 1-2-2, as now) | half of the click; Link to "Scattered on purpose… Only together do they mean anything." | Day 6: the six pieces become one map |
-| [PRESS ON] "She meant to send them." | half of the click; Reveal | the same evening: "So the list is hers." |
-| **NEW** *The thumbed leaf* (replaces "The worn end", lead 1-2-3, which repeated the Aim notice). New place: the page about the child [Intellect: read the page about the child again · Craft: look at how the leaf has worn]. "The leaf about the child is softer than any other in the book, and dark at the corner where a thumb would hold it. She came back to it often." | Tilt B: a page read over a long time | Day 5 |
+| [PRESS ON] "She meant to send them." | stays as its own piece on the table; Reveal | the same evening: "So the list is hers." |
+| **NEW** *The thumbed leaf* (replaces "The worn end", lead 1-2-3). New place: the page about the child [Intellect: read the page about the child again · Craft: look at how the leaf has worn]. "The leaf about the child is softer than any other in the book, and dark at the corner where a thumb would hold it. She came back to it often." | half of the click; Tilt B: a page read over a long time | Day 5 |
 | Bread and a candle (lead 1-2-1, as now) | Link to the season thread *Where is Meira?* | Gathering 4 and the finale |
 
 The Intellect notice, "two inks, years apart", also tilts B.
 
 **Garrick:**
 - **Opener:** as now (*"You've paid for your rooms and you haven't burned anything down. That's more than most guests manage."*).
+- **Stage direction:** Garrick pours one extra tin cup and sets it at the empty place at the edge of the firelight without a word.
 - **Nudge, NEW**, once *The thumbed leaf* is on the table: *"{friend}, that leaf. What does it tell you about when she wrote it?"*
 - **Nudge otherwise:** *"{friend}, the page about the child has no date. What would give it one?"*
 
@@ -80,12 +82,11 @@ The Intellect notice, "two inks, years apart", also tilts B.
 
 ## Day 3 · The Widow's Tooth
 
-**Tonight's question:** *Who was the man in the bracken working for?*
-- This replaces "guarding the rock, or waiting for us", which the story never answers.
-- A: The men who took the child.
-- B: Fenmark. He was keeping watch for his own village.
-- **Read back on Day 4**, at the Pull: "He has half a day on you, and he is heading for the only other person alive who has seen that knife."
-- Tonight it is open: he ran toward Fenmark's smoke, which leans to B.
+**Tonight's question:** *When he ran for the smoke, was he running home?*
+- A: Fenmark is his. He ran back to it.
+- B: Fenmark is on his way. He was not staying.
+- **Read back on Day 4**, at the boy's "He did not stop for anyone. He took the east path," beside the Pull about the woman and the knife.
+- Tonight it is open: he ran toward Fenmark's smoke, which leans to A; a post watched for a long while with no hearth leans to B.
 
 **Tonight's puzzle:** *How long has this rock been watched?*
 - **Click:** *The second ring* + *The worn path*. **NEW:** *"Someone has sat over this rock for hours at a time, and walked round it often enough to wear the turf away. It is watched, and it has been for a long while."*
@@ -107,7 +108,6 @@ The Intellect notice, "two inks, years apart", also tilts B.
 ## Day 4 · Fenmark (a quiet night: no quips, no riddle, no puzzle)
 
 **Tonight's question:** *Why did they take Tamsin, of all the children in Fenmark?*
-- This replaces "the girl or itself", which the chapter answers outright.
 - A: She was someone in particular. They came for her.
 - B: She was the easiest to take.
 - **Read back first at Gathering 1**, at "The first is Tamsin's.", her name scratched on the wall.
@@ -118,7 +118,7 @@ The Intellect notice, "two inks, years apart", also tilts B.
 **The pieces**
 | Piece | Job | Payoff |
 |---|---|---|
-| **NEW** *Past three doors* (replaces "Fresh bark", lead 1-4-3, which spoke to the old question). New place: the boy, at the gate [Charm: ask the boy how they came · Intellect: ask the boy what they passed]. "The boy says they came up the lane in the dark and went past three doors with children behind them. They did not try one." | Reveal; Tilt A | Week 2, Day 2: "collecting particular ones" |
+| **NEW** *Past three doors* (lead 1-4-3). New place: the boy, at the gate [Charm: ask the boy how they came · Intellect: ask the boy what they passed]. "The boy says they came up the lane in the dark and went past three doors with children behind them." | Reveal; Tilt A | Week 2, Day 2: "collecting particular ones" |
 | The leaned bar (lead 1-4-1, as now) | Link to Day 3: the watcher came through ahead of you, yet stopped to lift the bar and lean it neatly. He knows this gate, and he was not in a panic | Day 4: the boy's "A man ran through at first light." |
 | The covered cup (lead 1-4-2, as now) | Link: on this lane, a cup is kept covered for a child | Week 2, Day 1: a carter takes Tamsin home |
 
@@ -126,7 +126,7 @@ The boy's lines in the chapter tilt both ways: "Like they'd done it before" lean
 
 **Garrick, quiet:**
 - **Opener:** no line from him tonight. In its place, **NEW** narration: *Garrick sets a bowl in front of each of you, and for once he says nothing at all.*
-- **Nudge, NEW**, once *Past three doors* is on the table: *"{friend}, three doors, and they tried none of them. Why hers?"*
+- **Nudge, NEW**, once *Past three doors* is on the table: *"{friend}, three doors with children behind them, and they went past. Why hers?"*
 - **Nudge otherwise:** *"{friend}, of all the children in Fenmark, why her?"*
 
 ---
@@ -136,7 +136,7 @@ The boy's lines in the chapter tilt both ways: "Like they'd done it before" lean
 **Tonight's question** (kept): *Is it the same man, twice, or a way of working?*
 - A: It's the same man, twice.
 - B: It's a way of working, not one man.
-- **Read back at Gathering 2**, when the ledger opens, at "The newest pages are in one small, careful hand. The oldest are in other hands."
+- **Read back note:** At Tamsin's knots, the fire hears a turn: practiced hands. It is not the call being answered. At Gathering 2, when the ledger opens, the call is read back in their words beside the many hands: "The newest pages are in one small, careful hand. The oldest are in other hands."
 
 **Tonight's puzzle:** *Has someone tried her house before tonight?*
 - **Click:** *Older marks* + *The worn bar*. **NEW:** *"The marks on her back shutter are old and new in the same place, and the bar on her door has worn its cleats deep. Someone has tried her house before tonight, and she has barred it every night for a long time."*
@@ -146,13 +146,13 @@ The boy's lines in the chapter tilt both ways: "Like they'd done it before" lean
 |---|---|---|
 | The knife, not the face (lead 1-5-1, as now) | Turn: "same man" is her inference from a knife | Gathering 2: the ledger, in many hands |
 | Older marks (lead 1-5-2, as now) | half of the click | tonight |
-| **NEW** *The worn bar* (replaces "One pair of boots", lead 1-5-3, which repeated the Charm notice). New place: her door [Craft: look at how her door is barred · Aim: look the door over by the firelight]. "The bar on her door has worn its cleats deep and pale. She has barred it every night for a long time." | half of the click | tonight |
+| **NEW** *The worn bar* (lead 1-5-3). New place: her door [Craft: look at how her door is barred · Aim: look the door over by the firelight]. "The bar on her door has worn its cleats deep and pale. She has barred it every night for a long time." | half of the click | tonight |
 
 The win line, "A plain kitchen knife. There is nothing curved about it.", tilts B.
 
 **Garrick:**
 - **Opener:** as now.
-- **Nudge, NEW:** *"{friend}, she knows him by a knife. How many men can carry one knife?"*
+- **Nudge, NEW:** *"{friend}, she swore to a knife, and the knife in that camp is a kitchen blade. Which do you trust?"*
 
 ---
 
@@ -162,8 +162,9 @@ The win line, "A plain kitchen knife. There is nothing curved about it.", tilts 
 - A: We are like the children. They want us too.
 - B: Meira chose us, to help her find them.
 - Gathering 1 asks it aloud: "Then why were your names on that list? The wall does not say."
-- **Read back at Gathering 2**, at "You're marked too. Every one of you.": *The fire's case, after Week 1: …*
-- Both readings hold some truth, and the story shows which part.
+- **Two beats for the read-back (neither crowns a winner):**
+  - **Beat 1 (At Gathering 1, at "None of them is yours. The first is Tamsin's"):** The chat hears the wall. Anyone who said "they want us the way they want the children" feels the ground move, but nobody is marked wrong.
+  - **Beat 2 (At Gathering 2, at "You're marked too. Every one of you"):** The week's call is set beside the line, in each friend's words. The story shows which part of A was true, and which part of B.
 
 **Tonight's puzzle:** *Why send the cart one way and the child another?*
 - **Click:** *Up at a run* + *A second man*. **NEW:** *"One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. Anyone who followed the cart was following an empty one."*
@@ -179,6 +180,7 @@ The win line, "A plain kitchen knife. There is nothing curved about it.", tilts 
 
 **Garrick:**
 - **Opener:** as now (*"Six pieces, one map. Eat something before you stare at it."*).
+- **Stage direction:** Garrick pours one extra tin cup and sets it at the empty place at the edge of the firelight without a word.
 - **Nudge, NEW:** *"{friend}, that list has been in your pocket all week. Tell the table what you make of it now."*
 
 ---

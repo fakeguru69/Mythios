@@ -107,9 +107,9 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "One list, one inn's name. Nothing was taken.",
-    "questionTitle": "Who wrote the list?",
-    "forkA": "The man on the road wrote it himself.",
-    "forkB": "Someone else wrote it. He only carried it.",
+    "questionTitle": "Were you meant to have the list?",
+    "forkA": "He was sent to put it in your hands.",
+    "forkB": "You took it off a man carrying it somewhere else.",
     "callback": null,
     "riddle": null,
     "nudge": "A man who takes nothing, and leaves a list. Who would want you to have it?",
@@ -144,13 +144,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Did Meira leave in a hurry?",
-      "clickText": "She cut those pages one at a time, against a rule, to send them, and she left every slip in her book pinned where it belonged. She did not go in a hurry."
+      "clickText": "Every slip still sits where she pinned it, and the page about the child is the one her thumb wore soft. A woman packing in fear does not leave her book in order. She did not go in a hurry."
     },
     "clicks": [
       {
         "a": "1-2-2",
-        "b": "press",
-        "text": "She cut those pages one at a time, against a rule, to send them, and she left every slip in her book pinned where it belonged. She did not go in a hurry.",
+        "b": "1-2-3",
+        "text": "Every slip still sits where she pinned it, and the page about the child is the one her thumb wore soft. A woman packing in fear does not leave her book in order. She did not go in a hurry.",
         "solves": true
       }
     ],
@@ -171,9 +171,9 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "You've not eaten. Sit.",
-    "questionTitle": "Who was the man in the bracken working for?",
-    "forkA": "The men who took the child.",
-    "forkB": "Fenmark. He was keeping watch for his own village.",
+    "questionTitle": "When he ran for the smoke, was he running home?",
+    "forkA": "Fenmark is his.",
+    "forkB": "Fenmark is on his way.",
     "callback": "The man on the forest road was carrying her rubbing. The man in the bracken was watching her rock.",
     "riddle": null,
     "nudge": "{friend:Agility}, he ran toward the smoke. What lies that way for a man like him?",
@@ -215,7 +215,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Charm}, of all the children in Fenmark, why her?",
     "nudgeIfLaid": {
       "piece": "1-4-3",
-      "line": "{friend:Charm}, three doors, and they tried none of them. Why hers?"
+      "line": "{friend:Charm}, three doors, with children behind them. Why hers?"
     },
     "puzzle": null,
     "clicks": [],
@@ -241,7 +241,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "It's a way of working, not one man.",
     "callback": "The road, the rock, and tonight her shutters. Not one of those men has said a word.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, she knows him by a knife. How many men can carry one knife?",
+    "nudge": "{friend:Intellect}, she knows him by a knife, and the knife in that camp is a kitchen blade. Which do you trust?",
     "puzzle": {
       "q": "Has someone tried her house before tonight?",
       "clickText": "The marks on her back shutter are old and new in the same place, and the bar on her door has worn its cleats deep. Someone has tried her house before tonight, and she has barred it every night for a long time."

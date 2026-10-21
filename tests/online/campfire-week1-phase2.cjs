@@ -21,9 +21,9 @@ const onlineGathSrc = fs.readFileSync(path.join(root, 'src', 'online', 'OnlineGa
 const onlineCampSrc = fs.readFileSync(path.join(root, 'src', 'online', 'OnlineCampfire.tsx'), 'utf8');
 
 // 1-6: Week 1 questions in 0105_campfire_week1_data.sql
-check('W1D1 question is "Who wrote the list?"', mig105.includes('"questionTitle":"Who wrote the list?"'));
+check('W1D1 question is "Were you meant to have the list?"', mig105.includes('"questionTitle":"Were you meant to have the list?"'));
 check('W1D2 question is "The child in Meira\'\'s notes: when was that child taken?"', mig105.includes('when was that child taken?'));
-check('W1D3 question is "Who was the man in the bracken working for?"', mig105.includes('"questionTitle":"Who was the man in the bracken working for?"'));
+check('W1D3 question is "When he ran for the smoke, was he running home?"', mig105.includes('When he ran for the smoke, was he running home?'));
 check('W1D4 question is "Why did they take Tamsin, of all the children in Fenmark?"', mig105.includes('"questionTitle":"Why did they take Tamsin, of all the children in Fenmark?"'));
 check('W1D5 question is "Is it the same man, twice, or a way of working?"', mig105.includes('"questionTitle":"Is it the same man, twice, or a way of working?"'));
 check('W1D6 question is "Why are our names on that list?"', mig105.includes('"questionTitle":"Why are our names on that list?"'));
@@ -35,7 +35,7 @@ check('Lead 1-4-3 ("Past three doors") in fanOutLeads.ts and 0105', leadsSrc.inc
 check('Lead 1-5-3 ("The worn bar") in fanOutLeads.ts and 0105', leadsSrc.includes('The worn bar') && mig105.includes('"clueTitle":"The worn bar"'));
 
 // 11-14: 4 puzzles & clicks (D2, D3, D5, D6)
-check('W1D2 puzzle & click (1-2-2 + press)', mig105.includes('Did Meira leave in a hurry?') && mig105.includes('"a":"1-2-2","b":"press"'));
+check('W1D2 puzzle & click (1-2-2 + 1-2-3)', mig105.includes('Did Meira leave in a hurry?') && mig105.includes('"a":"1-2-2","b":"1-2-3"'));
 check('W1D3 puzzle & click (1-3-1 + 1-3-2)', mig105.includes('How long has this rock been watched?') && mig105.includes('"a":"1-3-1","b":"1-3-2"'));
 check('W1D5 puzzle & click (1-5-2 + 1-5-3)', mig105.includes('Has someone tried her house before tonight?') && mig105.includes('"a":"1-5-2","b":"1-5-3"'));
 check('W1D6 puzzle & click (1-6-2 + 1-6-3)', mig105.includes('Why send the cart one way and the child another?') && mig105.includes('"a":"1-6-2","b":"1-6-3"'));
