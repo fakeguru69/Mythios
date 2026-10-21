@@ -736,8 +736,8 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
           "verb": "work out what they loaded"
         }
       ],
-      "clueTitle": "The full cask",
-      "clueText": "Where the cart stood, a cask has pressed a deep ring into the mud. The grass round it is soaked where they topped it up from the stream, right to the brim.",
+      "clueTitle": "The fresh turn",
+      "clueText": "Where the cart stood below the shaft, the ruts cut clean into the turf, turning west onto the old road without a moment's pause.",
       "leans": "B",
       "hintFor": 2
     },

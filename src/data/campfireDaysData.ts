@@ -306,21 +306,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": true,
     "opener": "Beds are in the barn tonight. Pick a corner and take it.",
-    "questionTitle": "A dark cart on an open road. Why pass every farm and take the mill boy?",
-    "forkA": "The mill was the only house they had a map to.",
-    "forkB": "Corin was the only child they came for.",
+    "questionTitle": "The cart passed three sleeping farms in the dark and stopped only at the mill. Why?",
+    "forkA": "Someone was waiting on the road to guide them in.",
+    "forkB": "They had one destination before they ever entered the valley.",
     "callback": "The mine wall put Tamsin's name first and Corin's second. Tamsin heard them say \"the mill boy next\".",
     "riddle": null,
     "nudge": "{friend:Aim}, an old man with two winters of firewood split behind him, watching one road. What was he waiting for?",
     "puzzle": {
       "q": "How did the cart travel in the dark?",
-      "clickText": "The horse never checked in the dark on the way up, and coming down the wheels sank deep under weight. Whoever drove knew the turn, and left with what they came for."
+      "clickText": "The horse never checked at the fork on the way up, and coming down the wheels sank deep into the verge. The cart went up empty and came down laden."
     },
     "clicks": [
       {
         "a": "2-1-1",
         "b": "2-1-3",
-        "text": "The horse never checked in the dark on the way up, and coming down the wheels sank deep under weight. Whoever drove knew the turn, and left with what they came for.",
+        "text": "The horse never checked at the fork on the way up, and coming down the wheels sank deep into the verge. The cart went up empty and came down laden.",
         "solves": true
       }
     ],
@@ -349,13 +349,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Craft}, look at that footing stone again. The wheel is fifty years old, but the mark under it is older than the valley. How long has that mark been waiting?",
     "puzzle": {
       "q": "Did he hesitate once he reached the house?",
-      "clickText": "He checked the paper in his fist once at the door, then walked straight to the child's bed in the dark. He did not search the house. He checked a name, and took him."
+      "clickText": "The mud on the floorboards runs in one unbroken line from the door to the child's bed, and the paper was in his fist before he crossed the threshold. He did not search the house."
     },
     "clicks": [
       {
         "a": "2-2-1",
         "b": "2-2-2",
-        "text": "He checked the paper in his fist once at the door, then walked straight to the child's bed in the dark. He did not search the house. He checked a name, and took him.",
+        "text": "The mud on the floorboards runs in one unbroken line from the door to the child's bed, and the paper was in his fist before he crossed the threshold. He did not search the house.",
         "solves": true
       }
     ],
@@ -377,20 +377,20 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "cupNight": false,
     "opener": "A stranger dead at a lock, and the lock opens for you. Stone doesn't have favorites without a reason.",
     "questionTitle": "The dead man picked at the housing for days. Why did it give under your bare hand?",
-    "forkA": "The housing was waiting for someone carrying Meira's fragments.",
-    "forkB": "The lock didn't answer what you carried. It answered who you are.",
+    "forkA": "The stone woke to the fragments in our pack.",
+    "forkB": "The stone woke to the hand that touched it.",
     "callback": "Corin was asked for by name. Today a lock that wouldn't open for a dead man opened for you.",
     "riddle": null,
     "nudge": "{friend:Intellect}, a dog chained between two rocks four nights ago, fed fresh meat, and a dead man left on the path. Who is keeping that road?",
     "puzzle": {
       "q": "Why didn't anyone rob him?",
-      "clickText": "He worked that stone for days with steel, and died with his silver still in his belt. Whoever killed him didn't want his purse, and the door didn't care about his tools."
+      "clickText": "He worked that stone for days with steel, and his belt is still weighted with coin. The path-keeper stepped over his body for a week and took neither his tools nor his purse."
     },
     "clicks": [
       {
         "a": "2-3-1",
         "b": "2-3-2",
-        "text": "He worked that stone for days with steel, and died with his silver still in his belt. Whoever killed him didn't want his purse, and the door didn't care about his tools.",
+        "text": "He worked that stone for days with steel, and his belt is still weighted with coin. The path-keeper stepped over his body for a week and took neither his tools nor his purse.",
         "solves": true
       }
     ],
@@ -419,13 +419,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Charm}, you saw his hands before they hauled the ladder up. Not a scratch on him yet. What are they waiting for?",
     "puzzle": {
       "q": "Are they panicked or deliberate?",
-      "clickText": "The heads turned at the shout, but the words of the chant never broke, and the second lamp was trimmed without haste. They are not panicking. They are working to an hour."
+      "clickText": "The heads turned when the sentry shouted, but the chant below ran on without a missed syllable, and the lamp at the foot of the ladder burned trimmed and steady. The chamber did not break its routine."
     },
     "clicks": [
       {
         "a": "2-4-1",
         "b": "2-4-3",
-        "text": "The heads turned at the shout, but the words of the chant never broke, and the second lamp was trimmed without haste. They are not panicking. They are working to an hour.",
+        "text": "The heads turned when the sentry shouted, but the chant below ran on without a missed syllable, and the lamp at the foot of the ladder burned trimmed and steady. The chamber did not break its routine.",
         "solves": true
       }
     ],
@@ -454,13 +454,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Intellect}, a scout who fights without a sound, tears his own coat to get free, and flashes a lamp twice toward the dark. Who teaches a man to fight like that?",
     "puzzle": {
       "q": "Were the stones broken or hidden?",
-      "clickText": "The monuments on the hill were shattered with fire and mallet, but the stones in the fold were turned face-inward with deliberate care. Someone came to destroy his name—and someone else hid what they could save."
+      "clickText": "The carved monuments on the ridge were shattered with fire and mallet, but the cut stones in the sheepfold were laid face-inward against each other. Some were broken in anger, and some were hidden with care."
     },
     "clicks": [
       {
         "a": "2-5-2",
         "b": "2-5-3",
-        "text": "The monuments on the hill were shattered with fire and mallet, but the stones in the fold were turned face-inward with deliberate care. Someone came to destroy his name—and someone else hid what they could save.",
+        "text": "The carved monuments on the ridge were shattered with fire and mallet, but the cut stones in the sheepfold were laid face-inward against each other. Some were broken in anger, and some were hidden with care.",
         "solves": true
       }
     ],
@@ -481,21 +481,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "quiet",
     "cupNight": true,
     "opener": "Picks in the deep rock. They're digging toward something that was here before them.",
-    "questionTitle": "The picks started within the hour after we spoke the map aloud. Why are they digging?",
-    "forkA": "They overheard where the shaft leads and are racing us to the chamber.",
-    "forkB": "Their schedule reached its final hour; they were always going to dig tonight.",
+    "questionTitle": "The fragments drew a map to an older room. Why are they digging toward that same room tonight?",
+    "forkA": "They know what is inside that room, and came to take it.",
+    "forkB": "They are digging toward the boy, and do not know the old room exists.",
     "callback": "In the mine, you reached the mark after it was emptied. Tonight they're still digging toward the older room.",
     "riddle": null,
     "nudge": "{friend:Might}, feel that vibration through the turf. Those picks haven't rested once since twilight. How many men are down there swinging iron?",
     "puzzle": {
       "q": "What are the picks searching for?",
-      "clickText": "The picks drive in a single hurried line toward the old shaft, and every basket of earth is sifted through bare fingers. They are not mining stone. They are hunting for an entrance."
+      "clickText": "The pick-strokes fall in one unbroken line toward the deeper stone, and every basket of earth is sifted through bare fingers. They are not clearing rock for a tunnel. They are searching for something small."
     },
     "clicks": [
       {
         "a": "2-6-1",
         "b": "2-6-2",
-        "text": "The picks drive in a single hurried line toward the old shaft, and every basket of earth is sifted through bare fingers. They are not mining stone. They are hunting for an entrance.",
+        "text": "The pick-strokes fall in one unbroken line toward the deeper stone, and every basket of earth is sifted through bare fingers. They are not clearing rock for a tunnel. They are searching for something small.",
         "solves": true
       }
     ],
@@ -516,21 +516,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "Somewhere warm. I'd settle for a warm supper. Eat.",
-    "questionTitle": "Did they take Wren to Ashcombe or beyond it?",
-    "forkA": "To Ashcombe, where her kin live.",
-    "forkB": "Ashcombe is only where they water their beasts on the way to the hills.",
+    "questionTitle": "Corin said they promised Wren she was going home first. Why tell a stolen child that?",
+    "forkA": "A lie to keep a child quiet and docile on the road.",
+    "forkB": "The truth: her home in the burned country is where their work needed her.",
     "callback": "Corin was held a morning's walk from his own mill. Wren was told she was going home first.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, a child's mitten at Corin's belt, and a water cask filled to the brim. Where is that road going?",
+    "nudge": "{friend:Intellect}, a child's mitten tucked in Corin's belt, smelling of sheep. Who gives a mitten to another child in the dark?",
     "puzzle": {
       "q": "Did the cart make ready for a long journey?",
-      "clickText": "They topped their water cask to the very brim and stood looking west toward the ridges before they started. They were preparing for the dry country, not a village visit."
+      "clickText": "The cart below the shaft took the west road without checking, and on the ridge above the runner paused only to watch that same line. They did not search for a trail. They set their faces toward the burned hills and walked."
     },
     "clicks": [
       {
         "a": "3-1-2",
         "b": "3-1-3",
-        "text": "They topped their water cask to the very brim and stood looking west toward the ridges before they started. They were preparing for the dry country, not a village visit.",
+        "text": "The cart below the shaft took the west road without checking, and on the ridge above the runner paused only to watch that same line. They did not search for a trail. They set their faces toward the burned hills and walked.",
         "solves": true
       }
     ],
@@ -552,14 +552,24 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "cupNight": false,
     "opener": null,
     "narratedSilence": "Garrick sits by the hearth with his boots off, watching the embers in silence.",
-    "questionTitle": "Why did Wren go with them without crying out?",
-    "forkA": "They were gentle with her and promised to bring her home.",
-    "forkB": "They threatened her people if she made a sound.",
+    "questionTitle": "The men in grey coats spoke politely and promised she'd only be needed once. Was that courtesy genuine?",
+    "forkA": "Yes: they take what the rite requires, and let the children go.",
+    "forkB": "No: a polite kidnapper is only a kidnapper who hates a scene.",
     "callback": "Tamsin and Corin each came home with one cut palm, bound clean. Wren's taker said they'd only need her the once.",
     "riddle": null,
-    "nudge": "{friend:Charm}, a sheepskin folded like a pillow in the cart, and hooves muffled with sacking. Why both?",
-    "puzzle": null,
-    "clicks": [],
+    "nudge": "{friend:Charm}, chips of black glass set in a row on her windowsill, dusted around with care. Why leave them behind?",
+    "puzzle": {
+      "q": "Did they care for her comfort?",
+      "clickText": "In the empty cart, a sheepskin is folded like a pillow over the boards, while down the street scraps of sacking mark where hooves were muffled. They took great care to ride silent, and equal care that the child did not bruise."
+    },
+    "clicks": [
+      {
+        "a": "3-2-2",
+        "b": "3-2-3",
+        "text": "In the empty cart, a sheepskin is folded like a pillow over the boards, while down the street scraps of sacking mark where hooves were muffled. They took great care to ride silent, and equal care that the child did not bruise.",
+        "solves": true
+      }
+    ],
     "fanOutClue": {
       "title": "The boy at the well",
       "text": "At the well a boy holds his chip out low and quick, then shoves it back into his shirt before you have looked at it properly.",
@@ -577,21 +587,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "Mind your hands on that glass, all of you.",
-    "questionTitle": "Why did the riders pass the Blackglass mark without stopping?",
-    "forkA": "They already had what they needed from this stone.",
-    "forkB": "This stone was never the one they were looking for.",
+    "questionTitle": "Three children live beside three Seeker marks. Why did the riders carry Wren straight past the Blackglass?",
+    "forkA": "They cannot open these ancient housings; they need an older entrance.",
+    "forkB": "The marks are not their goal; they are only the guide-stones to the Kiln.",
     "callback": "At the Widow's Tooth a man lay in the bracken watching the rock. Here the riders went past this one without slowing.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, six horses on the ridge, and not one slowed for the ancient mark. Why?",
+    "nudge": "{friend:Intellect}, Meira's note in the margin: 'Five, the fragment says. Every other record says four.' Why would a scholar write down a number she doubted?",
     "puzzle": {
       "q": "Has anyone touched this housing since the road was made?",
-      "clickText": "The old shepherds' path ends dead at the sunken stones, and the dust on the housing had no mark until your own fingers touched it. The riders did not even dismount here."
+      "clickText": "The old shepherds' path ends dead at the sunken stones, and the fine dust over the housing was undisturbed until your fingers reached it. The riders stayed on the crest and rode past without once looking down."
     },
     "clicks": [
       {
         "a": "3-3-1",
         "b": "3-3-2",
-        "text": "The old shepherds' path ends dead at the sunken stones, and the dust on the housing had no mark until your own fingers touched it. The riders did not even dismount here.",
+        "text": "The old shepherds' path ends dead at the sunken stones, and the fine dust over the housing was undisturbed until your fingers reached it. The riders stayed on the crest and rode past without once looking down.",
         "solves": true
       }
     ],
@@ -611,22 +621,22 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": true,
-    "opener": "She's leaving chips on the trail. Clever girl.",
-    "questionTitle": "Who did Wren leave her glass chips for?",
-    "forkA": "For anyone following to find her.",
-    "forkB": "To mark her own trail so she could find the way back.",
+    "opener": "Whoever slept in these niches had long nights too. Build the fire in the doorway.",
+    "questionTitle": "Wren is dropping glass chips from the saddle of six horses. Have the riders truly not noticed?",
+    "forkA": "They believe a small child is helpless and don't watch her hands.",
+    "forkB": "They see the chips, but know the trail ends where no one can follow.",
     "callback": "Tamsin wasn't asleep; she was counting. Wren is dropping her chips, one by one, on their trail.",
     "riddle": null,
-    "nudge": "{friend:Agility}, tiny scratches on the back of each chip: one, two, three. That's a girl with her wits about her.",
+    "nudge": "{friend:Craft}, a bone die with its spots worn smooth, left in a sleeping niche centuries ago. What kind of soldiers played with that?",
     "puzzle": {
       "q": "Did she drop the chips in haste or with care?",
-      "clickText": "Each chip was set on high bare rock where it would catch the light, and each back is numbered with tiny knife-scratches. She was counting her trail step by step."
+      "clickText": "Each chip was set on high bare rock where the starlight catches it, and the backs are scored with tiny knife-scratches: one, two, three. She is laying a numbered line across the dark."
     },
     "clicks": [
       {
         "a": "3-4-1",
         "b": "3-4-3",
-        "text": "Each chip was set on high bare rock where it would catch the light, and each back is numbered with tiny knife-scratches. She was counting her trail step by step.",
+        "text": "Each chip was set on high bare rock where the starlight catches it, and the backs are scored with tiny knife-scratches: one, two, three. She is laying a numbered line across the dark.",
         "solves": true
       }
     ],
@@ -646,22 +656,22 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "That was an empty hut. Come nearer the fire.",
-    "questionTitle": "Why did they leave the hut in the middle of the night?",
-    "forkA": "They were warned that we were coming up the ridge.",
-    "forkB": "The hour they were waiting for arrived.",
+    "opener": "For the first time all season, they ran. Sit down and breathe.",
+    "questionTitle": "They gave Wren the warm bed by the hearth, yet fled in the night leaving their pot on the fire. What made them run?",
+    "forkA": "Fear: our fire on the ridge showed them they were being hunted.",
+    "forkB": "The hour: the time for waiting expired, and the Kiln must be lit.",
     "callback": "At the mine someone took the time to bind Tamsin's hand in clean linen. Here someone folded one blanket with care, and threw the other down.",
     "riddle": null,
-    "nudge": "{friend:Craft}, one bed neatly made, one water skin dropped in the grass. What made them move?",
+    "nudge": "{friend:Might}, cut deep into the beam over her bed: 'Until the throne rise whole.' Who carves a prayer over a stolen child's pillow?",
     "puzzle": {
       "q": "How quickly did they depart?",
-      "clickText": "Her name on the door was cut with patient double strokes, but by the spring a full water skin lies dropped with its stopper loose. They took their time until a single moment—then moved all at once."
+      "clickText": "By the spring a full water skin lies abandoned where it was dropped, while inside the hut Wren's keepsakes were left undisturbed in their row on the sill. The hurry was sudden, but it began outside the room."
     },
     "clicks": [
       {
-        "a": "3-5-1",
-        "b": "3-5-2",
-        "text": "Her name on the door was cut with patient double strokes, but by the spring a full water skin lies dropped with its stopper loose. They took their time until a single moment—then moved all at once.",
+        "a": "3-5-2",
+        "b": "3-5-3",
+        "text": "By the spring a full water skin lies abandoned where it was dropped, while inside the hut Wren's keepsakes were left undisturbed in their row on the sill. The hurry was sudden, but it began outside the room.",
         "solves": true
       }
     ],
@@ -679,24 +689,24 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "id": "3-6",
     "place": "The cairn",
     "narratedNoGarrick": false,
-    "tone": "wry",
-    "cupNight": false,
-    "opener": "Fire's built up. Sit by it before you decide anything.",
-    "questionTitle": "What is happening inside the Kiln tonight?",
-    "forkA": "A ritual that requires the child's presence.",
-    "forkB": "They are hiding her until the way north opens.",
+    "tone": "quiet",
+    "cupNight": true,
+    "opener": "Poured the last of it. Drink up. The wind has teeth tonight.",
+    "questionTitle": "An hour after we read the map into the wind, a single lamp climbed the Kiln and went inside. Who carried it?",
+    "forkA": "A watcher who heard our voices and went in to warn the others.",
+    "forkB": "The last of the faithful arriving for the ritual, unaware of us.",
     "callback": "Corin said Wren's home was always warm. Tonight the map ends at a hill that breathes warm air.",
     "riddle": null,
-    "nudge": "{friend:Aim}, the lamp climbed the hill and went out inside. What does that crack breathe out?",
+    "nudge": "{friend:Agility}, the knife-edge drops straight to scree on both sides. If we go down in the dark, how do we keep from sliding?",
     "puzzle": {
       "q": "Are the riders still inside the hill?",
-      "clickText": "No horses wait outside, and thin pale smoke rises from the crown where by day the air only shimmered. The men are inside the hill, and the fire in the Kiln has been lit."
+      "clickText": "No horses wait outside in the dark, and from the crown's crack thin pale smoke has begun to rise into the cold air. The lamp has reached the deep chamber, and the hearth is burning."
     },
     "clicks": [
       {
         "a": "3-6-1",
         "b": "3-6-2",
-        "text": "No horses wait outside, and thin pale smoke rises from the crown where by day the air only shimmered. The men are inside the hill, and the fire in the Kiln has been lit.",
+        "text": "No horses wait outside in the dark, and from the crown's crack thin pale smoke has begun to rise into the cold air. The lamp has reached the deep chamber, and the hearth is burning.",
         "solves": true
       }
     ],
