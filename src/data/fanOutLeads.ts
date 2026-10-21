@@ -401,7 +401,7 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
         }
       ],
       "clueTitle": "Past the gate",
-      "clueText": "The ruts run past his gate without a check. By that gate, in plain sight of the lane, a child's wooden horse lies on its side in the grass.",
+      "clueText": "The ruts run past his gate without a check or a pause, straight toward the mill. The cart did not turn its wheels for any other house in the lane.",
       "leans": "B",
       "hintFor": 1
     },

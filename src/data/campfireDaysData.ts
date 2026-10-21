@@ -306,21 +306,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": true,
     "opener": "Beds are in the barn tonight. Pick a corner and take it.",
-    "questionTitle": "Did the takers know this valley before they rode into it?",
-    "forkA": "They were strangers here, guided only by the road.",
-    "forkB": "They knew every turn and every house.",
+    "questionTitle": "A dark cart on an open road. Why pass every farm and take the mill boy?",
+    "forkA": "The mill was the only house they had a map to.",
+    "forkB": "Corin was the only child they came for.",
     "callback": "The mine wall put Tamsin's name first and Corin's second. Tamsin heard them say \"the mill boy next\".",
     "riddle": null,
-    "nudge": "{friend:Aim}, the cart came through in the dark without a lantern. What kind of driver does that?",
+    "nudge": "{friend:Aim}, an old man with two winters of firewood split behind him, watching one road. What was he waiting for?",
     "puzzle": {
       "q": "How did the cart travel in the dark?",
-      "clickText": "The horse never checked or slowed in the pitch dark, yet walked straight past the old man's gate without stopping. The driver knew exactly where he was going, and which house he wanted."
+      "clickText": "The horse never checked in the dark on the way up, and coming down the wheels sank deep under weight. Whoever drove knew the turn, and left with what they came for."
     },
     "clicks": [
       {
         "a": "2-1-1",
-        "b": "2-1-2",
-        "text": "The horse never checked or slowed in the pitch dark, yet walked straight past the old man's gate without stopping. The driver knew exactly where he was going, and which house he wanted.",
+        "b": "2-1-3",
+        "text": "The horse never checked in the dark on the way up, and coming down the wheels sank deep under weight. Whoever drove knew the turn, and left with what they came for.",
         "solves": true
       }
     ],
@@ -340,22 +340,22 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "Asked for by name, and by the night he was born. That's an odd thing to ask for.",
-    "questionTitle": "How did they know which child was Corin?",
-    "forkA": "They carried a written record of who was born here.",
-    "forkB": "Someone who knows the family pointed him out.",
+    "opener": "Asked for by name, and by the night he was born. That's a strange thing to ask for.",
+    "questionTitle": "How did a stranger know the night the boy was born?",
+    "forkA": "From an old record kept somewhere far from here.",
+    "forkB": "Someone from this valley told him.",
     "callback": "In the mine, that shape was a hole, and what sat in it was gone. Here it's cut into the mill's footing.",
     "riddle": null,
-    "nudge": "{friend:Craft}, boot-mud straight to the bed, and a paper in his fist. Where did that paper come from?",
+    "nudge": "{friend:Craft}, look at that footing stone again. The wheel is fifty years old, but the mark under it is older than the valley. How long has that mark been waiting?",
     "puzzle": {
       "q": "Did he hesitate once he reached the house?",
-      "clickText": "He checked the paper in his fist once at the door, then walked straight to the boy's bed without a single wrong turn. He came with a name written down, and knew where that child slept."
+      "clickText": "He checked the paper in his fist once at the door, then walked straight to the child's bed in the dark. He did not search the house. He checked a name, and took him."
     },
     "clicks": [
       {
         "a": "2-2-1",
         "b": "2-2-2",
-        "text": "He checked the paper in his fist once at the door, then walked straight to the boy's bed without a single wrong turn. He came with a name written down, and knew where that child slept.",
+        "text": "He checked the paper in his fist once at the door, then walked straight to the child's bed in the dark. He did not search the house. He checked a name, and took him.",
         "solves": true
       }
     ],
@@ -375,22 +375,22 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "A stranger dead at a lock, and a lock that opened for you. Rooms like that have opinions.",
-    "questionTitle": "Who was the stranger left dead at the housing?",
-    "forkA": "A seeker like us, trying to reach what is inside.",
-    "forkB": "A guard or look-out left to keep people away.",
+    "opener": "A stranger dead at a lock, and the lock opens for you. Stone doesn't have favorites without a reason.",
+    "questionTitle": "The dead man picked at the housing for days. Why did it give under your bare hand?",
+    "forkA": "The housing was waiting for someone carrying Meira's fragments.",
+    "forkB": "The lock didn't answer what you carried. It answered who you are.",
     "callback": "Corin was asked for by name. Today a lock that wouldn't open for a dead man opened for you.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, a purse full of silver on a dead man's belt. Why leave it?",
+    "nudge": "{friend:Intellect}, a dog chained between two rocks four nights ago, fed fresh meat, and a dead man left on the path. Who is keeping that road?",
     "puzzle": {
-      "q": "Did he die on the day he reached the lock?",
-      "clickText": "He came back to that lock day after day with tools, and his purse is still heavy with silver. He was not killed for what he carried, and he was not killed in a hurry."
+      "q": "Why didn't anyone rob him?",
+      "clickText": "He worked that stone for days with steel, and died with his silver still in his belt. Whoever killed him didn't want his purse, and the door didn't care about his tools."
     },
     "clicks": [
       {
         "a": "2-3-1",
         "b": "2-3-2",
-        "text": "He came back to that lock day after day with tools, and his purse is still heavy with silver. He was not killed for what he carried, and he was not killed in a hurry.",
+        "text": "He worked that stone for days with steel, and died with his silver still in his belt. Whoever killed him didn't want his purse, and the door didn't care about his tools.",
         "solves": true
       }
     ],
@@ -410,15 +410,25 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "quiet",
     "cupNight": false,
-    "opener": "Sit down before you fall down.",
-    "questionTitle": "Did our footsteps at the shaft give us away?",
-    "forkA": "They heard the stone tumble down the shaft.",
-    "forkB": "They were waiting for us before we ever reached the lip.",
+    "opener": "Sit down. Keep your voices under the wind.",
+    "questionTitle": "They pulled the ladder, but they didn't run. Why didn't they scatter when we were spotted?",
+    "forkA": "They have too many guards down there to fear four people.",
+    "forkB": "Whatever they are doing to the boy cannot be paused for anything.",
     "callback": "Yesterday a branch swung on the slope with no wind. Today they knew you were at the shaft.",
     "riddle": null,
-    "nudge": "{friend:Charm}, the heads turned below, but the chant ran on. What does that tell you?",
-    "puzzle": null,
-    "clicks": [],
+    "nudge": "{friend:Charm}, you saw his hands before they hauled the ladder up. Not a scratch on him yet. What are they waiting for?",
+    "puzzle": {
+      "q": "Are they panicked or deliberate?",
+      "clickText": "The heads turned at the shout, but the words of the chant never broke, and the second lamp was trimmed without haste. They are not panicking. They are working to an hour."
+    },
+    "clicks": [
+      {
+        "a": "2-4-1",
+        "b": "2-4-3",
+        "text": "The heads turned at the shout, but the words of the chant never broke, and the second lamp was trimmed without haste. They are not panicking. They are working to an hour.",
+        "solves": true
+      }
+    ],
     "fanOutClue": {
       "title": "The second lamp",
       "text": "A second lamp stands lit at the foot of the shaft, filled and trimmed, the same make as the ring in the chamber. Nobody grabbed it in a hurry.",
@@ -435,22 +445,22 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "A small black circle. Somebody wanted a thing forgotten, and somebody else wouldn't let it be.",
-    "questionTitle": "Why was the king's name erased from the stone?",
-    "forkA": "Erased by his enemies, so no one would rally to him.",
-    "forkB": "Erased by his own people, in shame or fear.",
+    "opener": "A circle of black cloth, and a man who fought without a word. Somebody wanted a name forgotten.",
+    "questionTitle": "Meira found every record of him scraped clean. Who erased his name from the world?",
+    "forkA": "His enemies tore his name down to break those who followed him.",
+    "forkB": "His own people hid his name to keep what he did a secret.",
     "callback": "On Day 2 a horn button, on Day 3 a dead stranger. Tonight, a circle.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, why turn a carved stone with its face to the wall?",
+    "nudge": "{friend:Intellect}, a scout who fights without a sound, tears his own coat to get free, and flashes a lamp twice toward the dark. Who teaches a man to fight like that?",
     "puzzle": {
       "q": "Were the stones broken or hidden?",
-      "clickText": "Some stones were shattered with fire and mallet, but the ones in the sheepfold were turned face-inward with care. The people here did not only destroy his name—they hid what they could not bear to lose."
+      "clickText": "The monuments on the hill were shattered with fire and mallet, but the stones in the fold were turned face-inward with deliberate care. Someone came to destroy his name—and someone else hid what they could save."
     },
     "clicks": [
       {
         "a": "2-5-2",
         "b": "2-5-3",
-        "text": "Some stones were shattered with fire and mallet, but the ones in the sheepfold were turned face-inward with care. The people here did not only destroy his name—they hid what they could not bear to lose.",
+        "text": "The monuments on the hill were shattered with fire and mallet, but the stones in the fold were turned face-inward with deliberate care. Someone came to destroy his name—and someone else hid what they could save.",
         "solves": true
       }
     ],
@@ -468,24 +478,24 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "id": "2-6",
     "place": "The lip of the shaft",
     "narratedNoGarrick": false,
-    "tone": "wry",
+    "tone": "quiet",
     "cupNight": true,
-    "opener": "Digging toward an older room. You have to respect the effort.",
-    "questionTitle": "What are they digging for in the deep rock?",
-    "forkA": "To cut a way into the older chamber.",
-    "forkB": "To dig out something buried before the room was made.",
+    "opener": "Picks in the deep rock. They're digging toward something that was here before them.",
+    "questionTitle": "The picks started within the hour after we spoke the map aloud. Why are they digging?",
+    "forkA": "They overheard where the shaft leads and are racing us to the chamber.",
+    "forkB": "Their schedule reached its final hour; they were always going to dig tonight.",
     "callback": "In the mine, you reached the mark after it was emptied. Tonight they're still digging toward the older room.",
     "riddle": null,
-    "nudge": "{friend:Might}, two lamps, a steady line of picks, and baskets sifted by hand. What are they so afraid of missing?",
+    "nudge": "{friend:Might}, feel that vibration through the turf. Those picks haven't rested once since twilight. How many men are down there swinging iron?",
     "puzzle": {
-      "q": "How deep is their digging compared to our old way in?",
-      "clickText": "The pick-strokes drive in a single line toward the old chamber, and every basket of earth is sifted through bare fingers. They are not only clearing rock—they are searching for a specific thing."
+      "q": "What are the picks searching for?",
+      "clickText": "The picks drive in a single hurried line toward the old shaft, and every basket of earth is sifted through bare fingers. They are not mining stone. They are hunting for an entrance."
     },
     "clicks": [
       {
         "a": "2-6-1",
         "b": "2-6-2",
-        "text": "The pick-strokes drive in a single line toward the old chamber, and every basket of earth is sifted through bare fingers. They are not only clearing rock—they are searching for a specific thing.",
+        "text": "The picks drive in a single hurried line toward the old shaft, and every basket of earth is sifted through bare fingers. They are not mining stone. They are hunting for an entrance.",
         "solves": true
       }
     ],
