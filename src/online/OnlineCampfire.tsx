@@ -13,7 +13,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { supabase, plainError, type MemberRow } from './supabaseClient';
 import { NoticeBlock, ScriptText, fillScriptTokens } from '../components/ChapterScriptParts';
 import { ATTRIBUTE_META, challengeSucceedOn, getTierInfo, type AttributeName } from '../data/mythiosRulesData';
-import { CAMPFIRE_STORED_LINES } from '../data/campfireDaysData';
+import { CAMPFIRE_STORED_LINES, CUP_NIGHT_LINES } from '../data/campfireDaysData';
 import { ErrorLine } from './ui';
 import { Markable } from './Markable';
 import {
@@ -374,7 +374,10 @@ export default function OnlineCampfire({
   };
 
   // Arriving: the cup, his greeting and opener, what he notices (stored lines, v2.3 §B, §C, §I).
-  if (fire.cupNight && !fire.narratedSilence) add(arrival, 'cup', <NarrationMessage text={CAMPFIRE_STORED_LINES.cupNightStageDirection} />);
+  if (fire.cupNight && !fire.narratedSilence) {
+    const cupLine = CUP_NIGHT_LINES[`${fire.week}-${fire.day}`] ?? CAMPFIRE_STORED_LINES.cupNightStageDirection;
+    add(arrival, 'cup', <NarrationMessage text={cupLine} />);
+  }
   if (fire.narrated && fire.opener) add(later(arrival, 1), 'opener', <NarrationMessage text={fire.opener} />);
   if (garrick && fire.narratedSilence) add(later(arrival, 1), 'silence', <NarrationMessage text={fire.narratedSilence} />);
   if (garrick && fire.firstHere) add(later(arrival, 1), 'greet', <GarrickBubble text={CAMPFIRE_STORED_LINES.firstArrivalGreeting} />);
@@ -391,6 +394,7 @@ export default function OnlineCampfire({
     const matchesPiece = (target?: string) =>
       Boolean(target && pieces.some((p) => p.key === target || p.key === `lead:${target}`));
     const halfLaid = !hasClicked && Boolean(pair && (matchesPiece(pair.a) !== matchesPiece(pair.b)));
+    const bothLaidByOne = !hasClicked && Boolean(pair && matchesPiece(pair.a) && matchesPiece(pair.b));
     add(
       later(arrival, 2.5),
       'puzzle',
@@ -405,6 +409,11 @@ export default function OnlineCampfire({
         {halfLaid && (
           <p className="text-[13.5px] text-[#CDB594] italic">
             One half of this is on the table. The other half is still in someone&apos;s hands—or out in the dark.
+          </p>
+        )}
+        {bothLaidByOne && (
+          <p className="text-[13.5px] text-[#CDB594] italic">
+            You are holding both halves on the table, and this table needs another pair of eyes.
           </p>
         )}
       </div>
@@ -485,6 +494,9 @@ export default function OnlineCampfire({
     if (m.kind === 'click') {
       const matchedClick = (t?.clicks ?? []).find((c) => c.text === m.body) ?? t?.clicks?.[0];
       const clickNames = matchedClick?.names?.length ? nameList(matchedClick.names) : null;
+      const spokeAfterClick = messages.some(
+        (msg) => msg.created_at > m.at && msg.speaker !== 'garrick' && msg.kind !== 'notice'
+      );
       add(
         m.at,
         `click-${i}`,
@@ -497,7 +509,9 @@ export default function OnlineCampfire({
           </div>
           {garrick && clickNames && (
             <p className="text-[14.5px] text-[#CDB594] italic">
-              “{clickNames} — put those two side by side. Look at what they say together:”
+              {spokeAfterClick
+                ? `“${clickNames} — you put those two side by side and called it before I needed to:”`
+                : `“${clickNames} — put those two side by side. Say what you make of them in the thread, or read what they show together:”`}
             </p>
           )}
           <Markable source="Something clicks, at the fire" text={m.body}>

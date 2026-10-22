@@ -1371,19 +1371,35 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You crouch down in the road until your eyes are level with hers, and the mud soaks cold through your knee. She studies your face for a long moment, very seriously, the way children study a stranger's dog."
+            "text": "You crouch down in the road until your eyes are level with hers, and the mud soaks cold through your knee. She studies your face for a long moment, very seriously, the way children study a stranger's dog.",
+            "changed": "You crouched level with her in the mud — she studied your face before speaking of the mill boy.",
+            "roadFind": {
+              "title": "Mud on your knee",
+              "text": "When you crouched down in the road until your eyes were level with hers, Tamsin studied your face before telling you she had been counting in the dark when a rider named the mill boy."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "You ask her what the song is. She stops humming at once, as if she had been caught at something. *\"It's a counting one,\"* she tells you, as though anybody ought to know that."
+            "text": "You ask her what the song is. She stops humming at once, as if she had been caught at something. *\"It's a counting one,\"* she tells you, as though anybody ought to know that.",
+            "changed": "You asked what the song was — she stopped humming at once and said it was a counting song.",
+            "roadFind": {
+              "title": "The counting song",
+              "text": "Asked what she was humming by the wagon, Tamsin stopped at once and said it was a counting song she had used in the mine while the riders talked about the mill boy."
+            }
           },
           {
             "options": [
               2
             ],
-            "text": "You say nothing. You only wait with her in the road, while the carter shifts on his seat and the horse blows. After a while her good hand finds your sleeve, and holds on to a fold of it."
+            "text": "You say nothing. You only wait with her in the road, while the carter shifts on his seat and the horse blows. After a while her good hand finds your sleeve, and holds on to a fold of it.",
+            "changed": "You waited without pressing her — her good hand took your sleeve on its own, and her trust left you a Charm Relic.",
+            "roadFind": {
+              "title": "Her hand on your sleeve",
+              "text": "When you stood waiting in the road without asking a question, Tamsin took hold of a fold of your sleeve with her unhurt hand and told you what she heard while counting in the dark."
+            },
+            "relic": "Charm"
           }
         ]
       },
@@ -2277,13 +2293,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You keep your voice low and even, and give it line by line, the way you would give the road to a stranger at a crossroads."
+            "text": "You keep your voice low and even, and give it line by line, the way you would give the road to a stranger at a crossroads.",
+            "changed": "You gave the map line by line across the dark — you heard how far even a low voice carried on the still hill.",
+            "roadFind": {
+              "title": "A voice on the still hill",
+              "text": "Giving the map line by line across the dark from the lip of the hill, you heard how far even a low voice carried in the still night air before the hillside woke."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "You pass it to {F3}, who tilts it to the starlight and reads it slowly, stopping at every turn of the way to be sure of it."
+            "text": "You pass it to {F3}, who tilts it to the starlight and reads it slowly, stopping at every turn of the way to be sure of it.",
+            "changed": "You passed the map to {F3} — with your eyes free to watch the hill below, you caught the first stir of lamps in the dark.",
+            "roadFind": {
+              "title": "Starlight on the parchment",
+              "text": "While {F3} tilted the map to the starlight and read each turn aloud for the others along the slope, you had your eyes on the dark hillside when the first lamp stirred below."
+            }
           }
         ]
       },
@@ -2911,13 +2937,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You stay on the hoof-scratches for another mile, and find a third chip, and bring it back. {F1} and {F3} are already at the fall of rock, with their sleeves rolled.\n\n…"
+            "text": "You stay on the hoof-scratches for another mile, and find a third chip, and bring it back. {F1} and {F3} are already at the fall of rock, with their sleeves rolled.\n\n…",
+            "changed": "You stayed on the hoof-scratches another mile — you found the third carved chip yourself before rejoining the doorway.",
+            "roadFind": {
+              "title": "The third chip on the trail",
+              "text": "Following the hoof-scratches a mile past the buried doorway, you found a third twist of shaved wood dropped where the riders never looked back."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "You go to the fall of rock with the others and stand looking at it. {F2} keeps on along the trail, and comes back within the hour with a third chip in hand.\n\n…"
+            "text": "You go to the fall of rock with the others and stand looking at it. {F2} keeps on along the trail, and comes back within the hour with a third chip in hand.\n\n…",
+            "changed": "You went straight to the buried doorway — you had the fall of rock sized up by the time {F2} brought back the third chip.",
+            "roadFind": {
+              "title": "The squared lintel under the fall",
+              "text": "Standing at the ridge doorway while {F2} followed the hoof-scratches ahead, you saw that the buried lintel was squared by hand long before the rockfall covered it."
+            }
           }
         ]
       },
@@ -3017,13 +3053,24 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "The hoof-scratches go the long way, round the head of the fold. You follow them in, in the open. {F2} takes the goat-track that her chips mark, and comes down it with five more in hand."
+            "text": "The hoof-scratches go the long way, round the head of the fold. You follow them in, in the open. {F2} takes the goat-track that her chips mark, and comes down it with five more in hand.",
+            "changed": "You took the riders' open line round the fold — the grey coat on the ridge saw you coming and strikes first.",
+            "roadFind": {
+              "title": "Hoof-scratches round the fold",
+              "text": "The riders' line went the long way round the head of the fold in plain view of the ridge where the grey coat had been left to watch."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "Her chips mark something shorter: a goat-track straight down through the rocks, which nobody on a horse could take. You find five more of them on the way. She walked this part."
+            "text": "Her chips mark something shorter: a goat-track straight down through the rocks, which nobody on a horse could take. You find five more of them on the way. She walked this part.",
+            "changed": "You followed Wren's chips down the goat-track — you come upon the grey coat unseen, strike first, and claim an Agility Relic.",
+            "roadFind": {
+              "title": "Five chips on the goat-track",
+              "text": "Down the steep goat-track where no horse could go, five more twists of shaved wood marked the path Wren walked on her own feet."
+            },
+            "relic": "Agility"
           }
         ]
       },
@@ -3300,13 +3347,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You have to raise your voice over the wind, and you give it one turn at a time: the crack, the cut way, the room below."
+            "text": "You have to raise your voice over the wind, and you give it one turn at a time: the crack, the cut way, the room below.",
+            "changed": "You raised your voice over the ridge wind — the gale carried every turn of the way down the black slope.",
+            "roadFind": {
+              "title": "Words carried down the ridge",
+              "text": "Raising your voice over the wind at the top of the Kiln ridge, you felt the gale take every word of the crack, the cut way, and the room below straight down the dark slope."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "{F1} takes it from you, turns away from the wind to shield it, and reads it out in the steady voice of someone who has decided not to be cold."
+            "text": "{F1} takes it from you, turns away from the wind to shield it, and reads it out in the steady voice of someone who has decided not to be cold.",
+            "changed": "You let {F1} shield the map from the wind and read — watching the dark plain below, you saw the single lamp first.",
+            "roadFind": {
+              "title": "Shielded from the ridge wind",
+              "text": "While {F1} turned her back to the wind to read the map twice for the ones on the slope below, you had your eyes on the black ground where a single lamp began to move toward the Kiln."
+            }
           }
         ]
       },
@@ -3394,13 +3451,24 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "{F2} takes Wren up toward the air. Everyone else stands exactly where they are, and nobody moves a foot."
+            "text": "{F2} takes Wren up toward the air. Everyone else stands exactly where they are, and nobody moves a foot.",
+            "changed": "You stayed to guard the ash while {F2} took Wren up — not a boot moved across the floor before you bent with the lamp.",
+            "roadFind": {
+              "title": "Still boots in the ash",
+              "text": "While {F2} carried Wren up toward the cooler air, everyone else in the Kiln chamber stood motionless where they were so not a single fresh print crossed the ash."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "You take her up to where the air is cooler, and come back down. {F1} has kept every boot off the ash for you."
+            "text": "You take her up to where the air is cooler, and come back down. {F1} has kept every boot off the ash for you.",
+            "changed": "You carried Wren up to the cool air first — {F1} kept every boot off the ash for you, and your care earned an Aim Relic.",
+            "roadFind": {
+              "title": "Cool air at the Kiln mouth",
+              "text": "When you took Wren up to the cooler air first before returning to the chamber floor, {F1} held the room still so every print in the ash waited untouched for your lamp."
+            },
+            "relic": "Aim"
           }
         ]
       },
@@ -4476,13 +4544,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "The mounds break the wind. They also hide whatever is beyond them."
+            "text": "The mounds break the wind. They also hide whatever is beyond them.",
+            "changed": "You camped behind the shelter of the mounds — they broke the wind, but the dogs came over them unseen and strike first.",
+            "roadFind": {
+              "title": "Grass shivering on the mounds",
+              "text": "Camped at the head of the grass-grown rows for shelter from the wind, you saw the turf shiver with the heartbeat at dusk just before the farm dogs came over the mounds."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "Nothing can come at you unseen. Nothing will fail to see you, either."
+            "text": "Nothing can come at you unseen. Nothing will fail to see you, either.",
+            "changed": "You camped on the bare road in the wind — nothing could come at you unseen, so you spot the dogs at dusk and strike first.",
+            "roadFind": {
+              "title": "Collar-leather in the dusk",
+              "text": "From the bare stones of the open road, you saw the farm dogs coming through the dusk with their collars still on before they could close the distance."
+            }
           }
         ]
       },
@@ -4815,19 +4893,35 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "*\"The page under the Kiln told you. They stood his watch.\"*"
+            "text": "*\"The page under the Kiln told you. They stood his watch.\"*",
+            "changed": "You connected the standing stones to the Kiln page — Garrick confirmed they stood his watch, earning an Intellect Relic.",
+            "roadFind": {
+              "title": "They stood his watch",
+              "text": "When you asked on first watch what the standing stones were, Garrick reminded you of the page under the Kiln: \"They stood his watch.\""
+            },
+            "relic": "Intellect"
           },
           {
             "options": [
               1
             ],
-            "text": "*\"Family habit. We always pour one for whoever can't be with us.\"*"
+            "text": "*\"Family habit. We always pour one for whoever can't be with us.\"*",
+            "changed": "You asked who the full cup by the shutter was for — he called it a family habit and spoke of what his family had waited to see.",
+            "roadFind": {
+              "title": "Full by the shutter",
+              "text": "Looking at the full cup standing by the shutter on first watch, Garrick called it a family habit for whoever could not be there and said his family had waited a long time."
+            }
           },
           {
             "options": [
               2
             ],
-            "text": "Neither does he."
+            "text": "Neither does he.",
+            "changed": "You kept watch in silence beside him — looking at the full cup by the shutter, he spoke of his family’s long wait on his own.",
+            "roadFind": {
+              "title": "Quiet by the shutter",
+              "text": "After a long silence beside the full cup at the shutter, Garrick looked at the tin rim and said his family had waited a long time for something he hoped to live to see."
+            }
           }
         ]
       },
@@ -5454,13 +5548,24 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You time it. The man coming on says, *\"Keep the dark,\"* and the man going off answers, *\"It keeps us,\"* and for as long as that takes, neither of them is looking at the square.\n\n…"
+            "text": "You time it. The man coming on says, *\"Keep the dark,\"* and the man going off answers, *\"It keeps us,\"* and for as long as that takes, neither of them is looking at the square.\n\n…",
+            "changed": "You timed the watch-change word for word — you caught the exact beat when neither watchman looks at the square, earning a Craft Relic.",
+            "roadFind": {
+              "title": "Keep the dark",
+              "text": "Timing the watch-change by the square fire, you learned that while the relief says \"Keep the dark\" and the other answers \"It keeps us,\" neither man is looking across the stones."
+            },
+            "relic": "Craft"
           },
           {
             "options": [
               1
             ],
-            "text": "You read it by their firelight. Four strokes left uncrossed. The same as the page in your coat.\n\nThey struck theirs at dusk. So did you.\n\n…"
+            "text": "You read it by their firelight. Four strokes left uncrossed. The same as the page in your coat.\n\nThey struck theirs at dusk. So did you.\n\n…",
+            "changed": "You read their chalked board by firelight — four strokes left uncrossed, matching the page in your coat.",
+            "roadFind": {
+              "title": "Four strokes by firelight",
+              "text": "Read across the square by the watch-fire’s light, the Order’s board showed four chalk strokes left uncrossed — struck at dusk, just like yours."
+            }
           }
         ]
       },

@@ -291,6 +291,29 @@ const FORK_BRANCH_META = {
       text: 'When you read the second name off the mine wall and asked which road reached it first, Garrick said without looking up from his lamp glass that he could tell you where that name lived.',
     },
   },
+  // Fork · W2D1 (The Second Name — Tamsin in the road before the wagon)
+  '2-1:CROUCH DOWN TO HER': {
+    changed: 'You crouched level with her in the mud — she studied your face before speaking of the mill boy.',
+    roadFind: {
+      title: 'Mud on your knee',
+      text: 'When you crouched down in the road until your eyes were level with hers, Tamsin studied your face before telling you she had been counting in the dark when a rider named the mill boy.',
+    },
+  },
+  '2-1:ASK WHAT THE SONG IS': {
+    changed: 'You asked what the song was — she stopped humming at once and said it was a counting song.',
+    roadFind: {
+      title: 'The counting song',
+      text: 'Asked what she was humming by the wagon, Tamsin stopped at once and said it was a counting song she had used in the mine while the riders talked about the mill boy.',
+    },
+  },
+  '2-1:SAY NOTHING. WAIT.': {
+    changed: 'You waited without pressing her — her good hand took your sleeve on its own, and her trust left you a Charm Relic.',
+    roadFind: {
+      title: 'Her hand on your sleeve',
+      text: 'When you stood waiting in the road without asking a question, Tamsin took hold of a fold of your sleeve with her unhurt hand and told you what she heard while counting in the dark.',
+    },
+    relic: 'Charm',
+  },
   // Disguised Fork #6 · W2D1 (The Second Name — Garrick staying past the Widow's Tooth)
   '2-1:POINT THAT OUT': {
     changed: "You reminded him the Widow's Tooth was behind you — he called you the worst guests he'd ever had and walked ahead.",
@@ -304,6 +327,21 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The double-knotted bedroll',
       text: 'Before setting off down the mill road, Garrick knotted his bedroll twice the way a man knots it with another week of road in mind.',
+    },
+  },
+  // Fork · W2D6 (The Hill — reading the map across the dark)
+  '2-6:READ IT OUT': {
+    changed: 'You gave the map line by line across the dark — you heard how far even a low voice carried on the still hill.',
+    roadFind: {
+      title: 'A voice on the still hill',
+      text: 'Giving the map line by line across the dark from the lip of the hill, you heard how far even a low voice carried in the still night air before the hillside woke.',
+    },
+  },
+  '2-6:LET JO READ IT': {
+    changed: 'You passed the map to Jo — with your eyes free to watch the hill below, you caught the first stir of lamps in the dark.',
+    roadFind: {
+      title: 'Starlight on the parchment',
+      text: 'While Jo tilted the map to the starlight and read each turn aloud for the others along the slope, you had your eyes on the dark hillside when the first lamp stirred below.',
     },
   },
   // Disguised Fork #7 · W3D1 (Somewhere Warm — speaking with Corin)
@@ -351,6 +389,68 @@ const FORK_BRANCH_META = {
       text: "Held to the morning light beside the Blackglass, the split sole of your boot showed a tight, practiced cobbler's stitch laid in waxed thread while you slept.",
     },
   },
+  // Fork · W3D4 (The Buried Doorway — keeping to the hoof-scratches vs going to the doorway)
+  '3-4:KEEP TO THE TRAIL': {
+    changed: 'You stayed on the hoof-scratches another mile — you found the third carved chip yourself before rejoining the doorway.',
+    roadFind: {
+      title: 'The third chip on the trail',
+      text: 'Following the hoof-scratches a mile past the buried doorway, you found a third twist of shaved wood dropped where the riders never looked back.',
+    },
+  },
+  '3-4:GO TO THE DOORWAY': {
+    changed: 'You went straight to the buried doorway — you had the fall of rock sized up by the time Dev brought back the third chip.',
+    roadFind: {
+      title: 'The squared lintel under the fall',
+      text: 'Standing at the ridge doorway while Dev followed the hoof-scratches ahead, you saw that the buried lintel was squared by hand long before the rockfall covered it.',
+    },
+  },
+  // Fork · W3D5 (The Spring — the riders' open line vs Wren's goat-track)
+  "3-5:THE RIDERS' LINE": {
+    changed: "You took the riders' open line round the fold — the grey coat on the ridge saw you coming and strikes first.",
+    roadFind: {
+      title: 'Hoof-scratches round the fold',
+      text: "The riders' line went the long way round the head of the fold in plain view of the ridge where the grey coat had been left to watch.",
+    },
+  },
+  "3-5:WREN'S LINE": {
+    changed: "You followed Wren's chips down the goat-track — you come upon the grey coat unseen, strike first, and claim an Agility Relic.",
+    roadFind: {
+      title: 'Five chips on the goat-track',
+      text: 'Down the steep goat-track where no horse could go, five more twists of shaved wood marked the path Wren walked on her own feet.',
+    },
+    relic: 'Agility',
+  },
+  // Fork · W3D6 (The Kiln Ridge — reading the map over the wind)
+  '3-6:READ IT OUT': {
+    changed: 'You raised your voice over the ridge wind — the gale carried every turn of the way down the black slope.',
+    roadFind: {
+      title: 'Words carried down the ridge',
+      text: 'Raising your voice over the wind at the top of the Kiln ridge, you felt the gale take every word of the crack, the cut way, and the room below straight down the dark slope.',
+    },
+  },
+  '3-6:LET MEI READ IT': {
+    changed: 'You let Mei shield the map from the wind and read — watching the dark plain below, you saw the single lamp first.',
+    roadFind: {
+      title: 'Shielded from the ridge wind',
+      text: 'While Mei turned her back to the wind to read the map twice for the ones on the slope below, you had your eyes on the black ground where a single lamp began to move toward the Kiln.',
+    },
+  },
+  // Fork · W4D1 (Not Finished — reading the ash vs taking Wren up to the air first)
+  '4-1:READ THE ASH': {
+    changed: 'You stayed to guard the ash while Dev took Wren up — not a boot moved across the floor before you bent with the lamp.',
+    roadFind: {
+      title: 'Still boots in the ash',
+      text: 'While Dev carried Wren up toward the cooler air, everyone else in the Kiln chamber stood motionless where they were so not a single fresh print crossed the ash.',
+    },
+  },
+  '4-1:TAKE WREN UP FIRST': {
+    changed: 'You carried Wren up to the cool air first — Mei kept every boot off the ash for you, and your care earned an Aim Relic.',
+    roadFind: {
+      title: 'Cool air at the Kiln mouth',
+      text: 'When you took Wren up to the cooler air first before returning to the chamber floor, Mei held the room still so every print in the ash waited untouched for your lamp.',
+    },
+    relic: 'Aim',
+  },
   // Disguised Fork #10 · W5D1 (The Grey Afternoon — the fifth at the waystone)
   '5-1:ASK GARRICK WHERE A FIFTH WOULD BE': {
     changed: 'You asked where a fifth Stone would be kept — Garrick looked north and named Highwall.',
@@ -381,6 +481,44 @@ const FORK_BRANCH_META = {
       text: "The linen wrapped tight round the farmer's forearm on the north road was spotted dark where teeth — not a blade — had caught him in his own yard.",
     },
   },
+  // Fork · W5D2 (The Old Kingdom's Road — camping at the mounds vs on the open road)
+  '5-2:CAMP AT THE HEAD OF THE ROWS': {
+    changed: 'You camped behind the shelter of the mounds — they broke the wind, but the dogs came over them unseen and strike first.',
+    roadFind: {
+      title: 'Grass shivering on the mounds',
+      text: 'Camped at the head of the grass-grown rows for shelter from the wind, you saw the turf shiver with the heartbeat at dusk just before the farm dogs came over the mounds.',
+    },
+  },
+  '5-2:CAMP ON THE OPEN ROAD': {
+    changed: 'You camped on the bare road in the wind — nothing could come at you unseen, so you spot the dogs at dusk and strike first.',
+    roadFind: {
+      title: 'Collar-leather in the dusk',
+      text: 'From the bare stones of the open road, you saw the farm dogs coming through the dusk with their collars still on before they could close the distance.',
+    },
+  },
+  // Fork · W5D4 (First Watch — sitting up with Garrick by the shutter)
+  '5-4:WHAT ARE THEY?': {
+    changed: 'You connected the standing stones to the Kiln page — Garrick confirmed they stood his watch, earning an Intellect Relic.',
+    roadFind: {
+      title: 'They stood his watch',
+      text: 'When you asked on first watch what the standing stones were, Garrick reminded you of the page under the Kiln: "They stood his watch."',
+    },
+    relic: 'Intellect',
+  },
+  '5-4:WHO IS THE CUP FOR?': {
+    changed: 'You asked who the full cup by the shutter was for — he called it a family habit and spoke of what his family had waited to see.',
+    roadFind: {
+      title: 'Full by the shutter',
+      text: 'Looking at the full cup standing by the shutter on first watch, Garrick called it a family habit for whoever could not be there and said his family had waited a long time.',
+    },
+  },
+  '5-4:SAY NOTHING': {
+    changed: 'You kept watch in silence beside him — looking at the full cup by the shutter, he spoke of his family’s long wait on his own.',
+    roadFind: {
+      title: 'Quiet by the shutter',
+      text: 'After a long silence beside the full cup at the shutter, Garrick looked at the tin rim and said his family had waited a long time for something he hoped to live to see.',
+    },
+  },
   // Disguised Fork #12 · W6D1 (Six Nights — the scratched arrow under the slit window)
   '6-1:ASK WHERE ANYONE WOULD RUN TO': {
     changed: 'You asked where anyone could run from Highwall — Garrick looked at the hall and said, "Somewhere they\'d never be found."',
@@ -394,6 +532,22 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'Cut with a knife-point',
       text: "Under the slit window of the wall room, the small arrow pointing down toward the defenders' barracks was cut deep with a knife-point into the stone sill.",
+    },
+  },
+  // Fork · W6D3 (Four Nights — timing the watch vs reading the board before crossing the square)
+  '6-3:THE WATCH': {
+    changed: 'You timed the watch-change word for word — you caught the exact beat when neither watchman looks at the square, earning a Craft Relic.',
+    roadFind: {
+      title: 'Keep the dark',
+      text: 'Timing the watch-change by the square fire, you learned that while the relief says "Keep the dark" and the other answers "It keeps us," neither man is looking across the stones.',
+    },
+    relic: 'Craft',
+  },
+  '6-3:THE BOARD': {
+    changed: 'You read their chalked board by firelight — four strokes left uncrossed, matching the page in your coat.',
+    roadFind: {
+      title: 'Four strokes by firelight',
+      text: 'Read across the square by the watch-fire’s light, the Order’s board showed four chalk strokes left uncrossed — struck at dusk, just like yours.',
     },
   },
   // Disguised Fork #13 · W6D4 (Three Nights — the blank rock at the end of the crack)

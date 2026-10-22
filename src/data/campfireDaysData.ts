@@ -58,6 +58,25 @@ export const CUP_NIGHT_IDS: readonly string[] = [
   '6-6',
 ];
 
+export const CUP_NIGHT_LINES: Readonly<Record<string, string>> = {
+  '1-2':
+    'Garrick pours one extra tin cup and sets it at the empty place at the edge of the firelight without a word.',
+  '1-6':
+    'At the corner of the table, Garrick pours the extra tin cup to the exact same measure as the rest and leaves it at the empty place.',
+  '2-1':
+    'Before he sits by the coals, Garrick sets the extra tin cup at the empty place again, just as he did at the inn.',
+  '2-6':
+    'There is not much left in the flask, but Garrick pours the extra tin cup anyway and sets it on a flat stone at the empty place.',
+  '3-4':
+    'Out in the burned hills, Garrick still sets the extra tin cup on a warm black stone at the empty place before he takes his seat.',
+  '4-2':
+    'By the dark water, Garrick sets the extra tin cup at the empty place and rests two fingers on the rim for a beat before turning to the fire.',
+  '5-4':
+    'Garrick sets the extra tin cup full by the shutter at the empty place — the family habit he has kept every week since the inn.',
+  '6-6':
+    'For the last night before the hall, Garrick pours the extra tin cup and sets it at the empty place where someone has been waited for from the start.',
+};
+
 export const QUIET_DAY_IDS: readonly string[] = [
   '1-4',
   '2-4',

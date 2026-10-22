@@ -163,6 +163,49 @@ const check = (name, ok) => {
     (mig106.match(/security definer set search_path = ''/g) || []).length === 6
   );
 
+  // 8. Weeks 2-6 forks & weekly discernment Relics (0111_weeks_2_to_6_forks_and_ritual.sql)
+  const mig111 = fs.readFileSync(path.join(root, 'supabase/migrations/0111_weeks_2_to_6_forks_and_ritual.sql'), 'utf8');
+  let allSeasonForksCount = 0;
+  let allSeasonBranchesCount = 0;
+  let allSeasonMetaComplete = true;
+  const seasonRelicsByWeek = new Map();
+
+  for (const d of CHAPTER_SCRIPTS) {
+    for (const s of d.steps) {
+      if (s.t === 'choice' && s.mode === 'pick') {
+        allSeasonForksCount += 1;
+        for (const b of s.branches) {
+          allSeasonBranchesCount += 1;
+          if (!b.changed || !b.roadFind || !b.roadFind.title || !b.roadFind.text) {
+            allSeasonMetaComplete = false;
+          }
+          if (b.relic) {
+            seasonRelicsByWeek.set(d.week, (seasonRelicsByWeek.get(d.week) || []).concat(b.relic));
+          }
+        }
+      }
+    }
+  }
+
+  check(
+    'All 30 real forks (66 branches) across Weeks 1-6 have complete `changed` and `roadFind` metadata',
+    allSeasonForksCount === 30 && allSeasonBranchesCount === 66 && allSeasonMetaComplete
+  );
+  check(
+    'Each of Weeks 1-6 awards exactly 1 discernment Relic across all 6 Attributes (Might, Charm, Agility, Aim, Intellect, Craft)',
+    seasonRelicsByWeek.size === 6 &&
+      Array.from(seasonRelicsByWeek.values()).every((arr) => arr.length === 1) &&
+      new Set(Array.from(seasonRelicsByWeek.values()).map((arr) => arr[0])).size === 6
+  );
+  check(
+    '0111_weeks_2_to_6_forks_and_ritual.sql syncs Weeks 2-6 chapters with fork metadata',
+    mig111.includes("insert into public.chapters") && mig111.includes('roadFind') && !/Malakor/i.test(mig111)
+  );
+  check(
+    'OnlineCampfire.tsx includes CUP_NIGHT_LINES progression and solo-holder pair notice in [data-puzzle]',
+    fireSrc.includes('CUP_NIGHT_LINES') && fireSrc.includes('this table needs another pair of eyes')
+  );
+
   console.log('fork-changed.cjs test completed');
   process.exit(failed ? 1 : 0);
 })();
