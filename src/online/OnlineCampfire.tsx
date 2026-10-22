@@ -116,7 +116,6 @@ interface FireTable {
   clicks?: { text: string; names: string[]; solves: boolean }[];
 }
 
-const signed = (n: number) => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
 // "Mei thinks the list is a warning." A sentence's first word drops its capital unless it is a name.
 const LOWER_STARTS = new Set(['The', 'He', "It's", 'They', "They're", 'Now', 'Home', 'We', 'It', 'Someone', 'One', 'Their', 'There', 'Upriver']);
 export const asClause = (s: string) => {
@@ -165,7 +164,6 @@ export default function OnlineCampfire({
   const [busy, setBusy] = useState(false);
   const [looking, setLooking] = useState(false); // "One more look" chosen
   const [reporting, setReporting] = useState<ChatMessage | null>(null);
-  const [meaningDraft, setMeaningDraft] = useState<string | null>(null);
   const [questionOpen, setQuestionOpen] = useState(false); // after your pick, the pinned strip folds to one line
 
   // The newest answer wins (handoff ledger piece 5): every request takes a number, and an answer that arrives after a
@@ -394,12 +392,12 @@ export default function OnlineCampfire({
       Boolean(target && pieces.some((p) => p.key === target || p.key === `lead:${target}`));
     const halfLaid = !hasClicked && Boolean(pair && (matchesPiece(pair.a) !== matchesPiece(pair.b)));
     add(
-      arrival,
+      later(arrival, 2.5),
       'puzzle',
-      <div className="rounded-2xl border border-[#8A6E34] bg-[#221708] p-3 space-y-1.5" data-puzzle>
+      <div className="rounded-2xl border border-[#5C3A1C] bg-[#1F140C] p-3 space-y-1.5" data-puzzle>
         <div className="flex items-center justify-between gap-2">
-          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158] uppercase">
-            TONIGHT&apos;S PUZZLE
+          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#F0A552] uppercase">
+            {garrick ? 'GARRICK · ON THE TABLE' : 'ON THE TABLE'}
           </div>
           {hasClicked && <span className="text-[12px] font-semibold text-[#6FD39A]">Pieced together</span>}
         </div>
@@ -412,7 +410,7 @@ export default function OnlineCampfire({
       </div>
     );
   }
-  // Your own find at the last light: the roll, the late line, the first-letter hint, the glimpse.
+  // Your own find at the last light: what it took, the first-letter hint, the glimpse (no daytime dice arithmetic at the fire).
   const my = fire.myFanOut;
   const myLead = fire.board?.find((b) => b.id === my?.lead);
   const myGlimpse = fire.board?.find((b) => b.id === my?.glimpse);
@@ -422,14 +420,14 @@ export default function OnlineCampfire({
       'myfind',
       <div className="rounded-2xl border border-[#3A2555] bg-[#180F29] p-3 space-y-1.5" data-my-find>
         <div className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">The last light · {myLead.place}</div>
-        <p className="font-mono text-[14px] text-[#D8CEE8]">
-          🎲 {my.roll.d20} + {my.roll.attr} {my.roll.score} (+{my.roll.bonus}) − DC {my.roll.dc} = {signed(my.roll.net)}{' '}
-          <span className={my.roll.pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}>{my.roll.pass ? 'PASSED' : 'FAILED'}</span>
-        </p>
-        {!my.roll.pass && my.lateLine && <ScriptText text={my.lateLine} className="text-[16px] text-[#D9D1E6]" />}
+        {my.roll.pass ? (
+          <p className="text-[15.5px] text-[#D9D1E6]">You found what you went looking for before the light went.</p>
+        ) : (
+          my.lateLine && <ScriptText text={my.lateLine} className="text-[16px] text-[#D9D1E6]" />
+        )}
         {my.letter && frag?.hintOpen && (
           <p className="text-[15px] text-[#6FD39A]">
-            Word {my.hint} of today's fragment starts with “{my.letter}”.
+            Word {my.hint} of today&apos;s fragment starts with “{my.letter}”.
           </p>
         )}
         {myGlimpse && <p className="text-[15px] text-[#B7A9CC]">On the way back, the last of the light shows you one more place: {myGlimpse.place}.</p>}
@@ -493,12 +491,17 @@ export default function OnlineCampfire({
         <div className="rounded-2xl border border-[#8A6E34] bg-[#2A2010] p-3 space-y-1.5" data-click>
           <div className="flex justify-between items-baseline gap-2">
             <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158]">
-              MYTHIOS · SOMETHING CLICKS
+              {garrick ? 'GARRICK · SETTING THE TWO TOGETHER' : 'SOMETHING CLICKS'}
             </div>
             {clickNames && <div className="text-[12.5px] text-[#CDB594]">{clickNames}</div>}
           </div>
+          {garrick && clickNames && (
+            <p className="text-[14.5px] text-[#CDB594] italic">
+              “{clickNames} — put those two side by side. Look at what they say together:”
+            </p>
+          )}
           <Markable source="Something clicks, at the fire" text={m.body}>
-            <ScriptText text={m.body} className="font-sans text-[18px] leading-[1.5] text-[#F4E8C8]" />
+            <ScriptText text={m.body} className="font-sans text-[17.5px] leading-[1.5] text-[#F4E8C8]" />
           </Markable>
         </div>
       );
@@ -532,15 +535,29 @@ export default function OnlineCampfire({
   }
 
   // His nudge, once something is on the table (or on arriving); MYTHIOS asks it on a narrated night.
-  const pieceLaid = fire.nudgeIfLaid && pieces.some((p) => p.key === fire.nudgeIfLaid!.piece || p.key.endsWith(fire.nudgeIfLaid!.piece) || p.key.includes(fire.nudgeIfLaid!.piece));
-  const rawNudge = pieceLaid ? fire.nudgeIfLaid!.line : fire.nudge;
-  const activeNudge = rawNudge ? fillShared(rawNudge) : null;
+  // If the special third piece (nudgeIfLaid) is also on the table, Garrick asks that follow-up in addition to his main nudge rather than erasing it.
   const firstPieceAt = pieces.map((p) => p.at).filter(Boolean).sort()[0];
   const nudgeAt = later(firstPieceAt && firstPieceAt > arrival ? firstPieceAt : arrival, 5);
-  if (activeNudge)
-    sayOnce('nudge', activeNudge, nudgeAt).forEach((e, j) =>
+  const baseNudge = fire.nudge ? fillShared(fire.nudge) : null;
+  if (baseNudge)
+    sayOnce('nudge', baseNudge, nudgeAt).forEach((e, j) =>
       add(e.at, `nudge-${j}`, garrick ? <GarrickBubble text={e.text} /> : <NarrationMessage text={e.text} />)
     );
+  const matchedLaidPiece = fire.nudgeIfLaid
+    ? pieces.find(
+        (p) =>
+          p.key === fire.nudgeIfLaid!.piece ||
+          p.key.endsWith(fire.nudgeIfLaid!.piece) ||
+          p.key.includes(fire.nudgeIfLaid!.piece)
+      )
+    : undefined;
+  if (matchedLaidPiece && fire.nudgeIfLaid?.line) {
+    const laidNudgeText = fillShared(fire.nudgeIfLaid.line);
+    const laidNudgeAt = later(matchedLaidPiece.at && matchedLaidPiece.at > nudgeAt ? matchedLaidPiece.at : nudgeAt, 2);
+    sayOnce('nudge-laid', laidNudgeText, laidNudgeAt).forEach((e, j) =>
+      add(e.at, `nudge-laid-${j}`, garrick ? <GarrickBubble text={e.text} /> : <NarrationMessage text={e.text} />)
+    );
+  }
   if (garrick && fire.callback) sayOnce('callback', fire.callback, later(nudgeAt, 1)).forEach((e, j) => add(e.at, `callback-${j}`, <GarrickBubble text={e.text} />));
 
   // Garrick reacts when the fire leans or splits (stored lines, v3 §7 and campfire-week1-content-18oct.md §Garrick's new lines):
@@ -553,54 +570,31 @@ export default function OnlineCampfire({
     );
   }
 
-  // Words found, and the whole fragment with its meaning question.
+  // Words found, and the whole fragment read aloud with its open question in the stream.
   if (frag) {
-    // "X found a missing word" is the party's own notice, shown at the moment it was posted (see the messages above), so
-    // the fire adds no second line for it. The whole fragment is placed when its last word was found. A solitary night
-    // (Week 1 Day 1) says nothing of the others.
     const wordTimes = together
       ? messages.filter((m) => m.kind === 'notice' && isWordNoticeFor(m.body, fire.week, fire.day)).map((m) => new Date(m.created_at).getTime())
       : [];
     const fragAt = wordTimes.length ? new Date(Math.max(...wordTimes) + 5).toISOString() : later(arrival, 20);
     if (fragDone) {
-      const myMeaning = notes.find((n) => n.kind === 'meaning' && n.mine)?.body ?? '';
-      const draft = meaningDraft ?? myMeaning;
       add(
         fragAt,
         'fragment',
         <div className="rounded-2xl border border-[#5E4585] bg-[#1A1226] p-3 space-y-2" data-fragment-card>
-          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#C39BF5]">TODAY'S FRAGMENT IS WHOLE</div>
+          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#C39BF5]">
+            {garrick ? 'GARRICK READS THE FRAGMENT' : 'TODAY’S FRAGMENT IS WHOLE'}
+          </div>
           <p className="font-['Cormorant_Garamond',serif] font-semibold italic text-[19px] leading-[1.45] text-[#F4F1F8]">“{frag.text}”</p>
           {fire.meaningQuestion && (
             <>
               <ScriptText text={fire.meaningQuestion} className="text-[16px] text-[#E6E0F0]" />
               {notes
-                .filter((n) => n.kind === 'meaning' && !n.mine && !fire.narrated)
+                .filter((n) => n.kind === 'meaning' && !fire.narrated)
                 .map((n) => (
-                  <p key={n.name} className="text-[15px]">
-                    <span className="font-semibold text-[#C39BF5]">{n.name}:</span> {n.body}
+                  <p key={`${n.name}-${n.body}`} className="text-[15px]">
+                    <span className="font-semibold text-[#C39BF5]">{n.mine ? 'You' : n.name}:</span> {n.body}
                   </p>
                 ))}
-              <div className="flex gap-2">
-                <input
-                  className="flex-1 min-w-0 h-11 rounded-xl bg-[#0F0A18] border border-[#3A2555] px-3 text-[16px] text-[#F4F1F8] placeholder:text-[#6F6385]"
-                  maxLength={200}
-                  placeholder="What do you think it means?"
-                  value={draft}
-                  onChange={(e) => setMeaningDraft(e.target.value)}
-                  aria-label="What do you think it means?"
-                />
-                <button
-                  disabled={busy || !draft.trim() || draft === myMeaning}
-                  onClick={async () => {
-                    const ok = await call('leave_note', { p_kind: 'meaning', p_body: draft });
-                    if (ok) setMeaningDraft(null);
-                  }}
-                  className="shrink-0 h-11 px-4 rounded-xl border border-[#5E4585] text-[#D9D1E6] font-semibold disabled:opacity-40"
-                >
-                  {myMeaning ? 'Change' : 'Say it'}
-                </button>
-              </div>
             </>
           )}
         </div>
@@ -614,36 +608,43 @@ export default function OnlineCampfire({
 
   items.sort((a, b) => new Date(a.at).getTime() - new Date(b.at).getTime());
 
-  // ---- Tonight's question, pinned: before your pick, nothing of the others' (pin before peek); after, who said what. ----
+  // ---- Tonight's question, at the foot of the stream: before your pick, nothing of the others' (pin before peek); after, who said what. ----
   const myPick = fire.myPin?.reading ?? null;
   const readings = t?.readings ?? [];
   const pickedBy = (r: Reading) => readings.filter((x) => x.reading === r).map((x) => (x.mine ? 'you' : x.name));
   const folded = Boolean(myPick) && !questionOpen;
   const question = (
     <section
-      className={`sticky top-[116px] z-10 rounded-2xl border px-3 py-2.5 space-y-2 bg-[#1F140C] ${
+      className={`rounded-2xl border px-3 py-2.5 space-y-2 bg-[#1F140C] ${
         myPick ? 'border-[#8A5A24]' : 'border-[#F0A552] shadow-[0_0_14px_rgba(240,165,82,0.35)]'
       }`}
       data-question
     >
       {folded ? (
         <button className="w-full text-left flex items-center gap-2" onClick={() => setQuestionOpen(true)} aria-expanded={false} data-question-folded>
-          <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#F0A552] shrink-0">TONIGHT</span>
+          <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#F0A552] shrink-0">YOUR CALL</span>
           <span className="flex-1 min-w-0 truncate text-[15px] text-[#F4E8C8]">{readingText(myPick!)}</span>
           <span className="shrink-0 text-[13px] text-[#CDB594]">change ▾</span>
         </button>
       ) : (
         <>
-          <div className="flex justify-between items-center gap-2">
-            <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#F0A552]">
-              TONIGHT&apos;S QUESTION{fire.questionTitle ? ` · ${fire.questionTitle}` : ''}
+          <div className="flex justify-between items-start gap-2">
+            <div className="space-y-0.5">
+              <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1.5px] text-[#F0A552] uppercase">
+                {garrick ? 'GARRICK ASKS THE TABLE' : 'TONIGHT’S QUESTION'}
+              </div>
+              {fire.questionTitle && (
+                <div className="font-sans font-semibold text-[15.5px] text-[#F4E8C8] leading-snug">
+                  {fire.questionTitle}
+                </div>
+              )}
             </div>
             {myPick ? (
-              <button className="text-[13px] text-[#CDB594]" onClick={() => setQuestionOpen(false)}>
+              <button className="shrink-0 text-[13px] text-[#CDB594]" onClick={() => setQuestionOpen(false)}>
                 fold ▴
               </button>
             ) : (
-              <div className="text-[12px] text-[#CDB594]">{together ? "pick to see the others'" : 'choose one'}</div>
+              <div className="shrink-0 text-[12px] text-[#CDB594]">{together ? "pick to see the others'" : 'choose one'}</div>
             )}
           </div>
           <div className="space-y-1.5">
@@ -673,7 +674,7 @@ export default function OnlineCampfire({
               );
             })}
           </div>
-          {myPick && <p className="text-[13px] text-[#CDB594]">{together ? 'You can change it until dawn. The fire\'s call is made then.' : 'You can change it until dawn.'}</p>}
+          {myPick && <p className="text-[13px] text-[#CDB594]">{together ? "You can change it until dawn. The fire's call is made then." : 'You can change it until dawn.'}</p>}
           {!myPick && together && (t?.pinned ?? []).length > 0 && (
             <p className="text-[13px] text-[#CDB594]">
               {nameList(t!.pinned)} {t!.pinned.length === 1 ? 'has' : 'have'} made a call.
@@ -708,13 +709,13 @@ export default function OnlineCampfire({
         </div>
       )}
 
-      {question}
-
       <div className="space-y-3" data-stream>
         {items.map((it) => (
           <React.Fragment key={it.key}>{it.node}</React.Fragment>
         ))}
       </div>
+
+      {question}
       {reporting && <ReportBox m={reporting} onDone={() => setReporting(null)} />}
       <ErrorLine text={error} />
 

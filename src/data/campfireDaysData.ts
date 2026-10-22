@@ -287,7 +287,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Intellect}, that list has been in your pocket all week. Tell the table what you make of it now.",
     "nudgeIfLaid": {
       "piece": "1-6-1",
-      "line": "{friend:Aim}, woollen threads on a thorn at a child's height, away from the ruts. Someone carried her along the bank."
+      "line": "{friend:Aim}, those threads are at a child's height, and they are not in the ruts. Who was walking where the cart was not?"
     },
     "puzzle": {
       "q": "Why send the cart one way and the child another?",
@@ -329,7 +329,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
       "line": "{friend:Agility}, those ruts at the upriver turn sank deeper coming down than going up. What weight did the cart take out of this valley?"
     },
     "puzzle": {
-      "q": "How did the cart travel in the dark?",
+      "q": "Did anyone have to lead that horse, or did it already know the door?",
       "clickText": "In full dark and with no lamp, the horse took the fork at a steady walk, and the wheels never checked at any other house in the lane. Either the horse knew the mill road, or someone walked ahead of it."
     },
     "clicks": [
@@ -365,7 +365,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Craft}, look at that footing stone again. The wheel is fifty years old, but the mark under it is older than the valley. How long has that mark been waiting?",
     "nudgeIfLaid": {
       "piece": "2-2-3",
-      "line": "{friend:Craft}, grass cropped short in a wide half-circle where the cart stood. That horse stood tethered in the yard a long while before anyone went inside."
+      "line": "{friend:Craft}, grass cropped short in a wide half-circle where the cart stood. How long was that horse tethered in the yard before anyone went inside?"
     },
     "puzzle": {
       "q": "Did he hesitate once he reached the house?",
@@ -404,7 +404,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Intellect}, a dog chained between two rocks four nights ago, fed fresh meat, and a dead man left on the path. Who is keeping that road?",
     "nudgeIfLaid": {
       "piece": "2-3-3",
-      "line": "{friend:Might}, clean water and fresh meat set behind that dog. Whoever keeps this path was here today."
+      "line": "{friend:Might}, clean water and fresh meat set behind that dog. How long ago was the path-keeper standing where you stood?"
     },
     "puzzle": {
       "q": "Why didn't anyone rob him?",
@@ -444,7 +444,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Charm}, you saw his hands before they hauled the ladder up. Not a scratch on him yet. What are they waiting for?",
     "nudgeIfLaid": {
       "piece": "2-4-3",
-      "line": "{friend:Intellect}, the heads turned when the shout went up, yet the chant never broke. They will not stop for us."
+      "line": "{friend:Intellect}, the heads turned when the shout went up, yet the chant never broke. What matters more to them than four strangers at the lip?"
     },
     "puzzle": null,
     "clicks": [],
@@ -473,7 +473,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Intellect}, a scout who fights without a sound, tears his own coat to get free, and flashes a lamp twice toward the dark. Who teaches a man to fight like that?",
     "nudgeIfLaid": {
       "piece": "2-5-1",
-      "line": "{friend:Craft}, chisel scars weathered grey where an entire face of stone was ground flat. That took days of open work."
+      "line": "{friend:Craft}, chisel scars weathered grey where an entire face of stone was ground flat. Who had the days and the leave to do that in the open?"
     },
     "puzzle": {
       "q": "Were the stones broken or hidden?",
@@ -512,7 +512,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Might}, feel that rhythm through the turf. Those picks are driving straight toward the old room under the lamps. What do they think is waiting in it?",
     "nudgeIfLaid": {
       "piece": "2-6-3",
-      "line": "{friend:Agility}, thick dust on the first step down and no print in it but yours. Nobody has gone in by the Seekers' stair since it was sealed."
+      "line": "{friend:Agility}, thick dust on the first step down and no print in it but yours. If they haven't found this stair, how are they trying to reach that room?"
     },
     "puzzle": {
       "q": "What are the picks searching for?",
@@ -542,7 +542,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "Somewhere warm. I'd settle for a warm supper. Eat.",
+    "opener": "They told a stolen child she was going home. Eat while you work out whether that was kindness.",
     "questionTitle": "Corin said they promised Wren she was going home first. Why tell a stolen child that?",
     "forkA": "A lie to keep a child quiet and docile on the road.",
     "forkB": "The truth: her home in the burned country is where their work needed her.",
@@ -551,7 +551,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Intellect}, a child's mitten tucked in Corin's belt, smelling of sheep. Who gives a mitten to another child in the dark?",
     "nudgeIfLaid": {
       "piece": "3-1-1",
-      "line": "{friend:Charm}, a grey woollen mitten in Corin's belt that isn't his. She gave him something to remember her by in the dark."
+      "line": "{friend:Charm}, a grey woollen mitten in Corin's belt that isn't his. Why leave one mitten with a boy she barely knew?"
     },
     "puzzle": {
       "q": "Did the cart make ready for a long journey?",
@@ -591,7 +591,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Charm}, chips of black glass set in a row on her windowsill, dusted around with care. Why leave them behind?",
     "nudgeIfLaid": {
       "piece": "3-2-3",
-      "line": "{friend:Craft}, sacking tied over the hooves to quiet them on the stones. Polite words at the door, and muffled horses in the street."
+      "line": "{friend:Craft}, sacking tied over the hooves to quiet them on the stones. If they came in peace, who were they hiding the horses from?"
     },
     "puzzle": null,
     "clicks": [],
@@ -620,7 +620,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Intellect}, Meira's note in the margin: 'Five, the fragment says. Every other record says four.' Why would a scholar write down a number she doubted?",
     "nudgeIfLaid": {
       "piece": "3-3-3",
-      "line": "{friend:Aim}, from the lip of the glass you can see straight down to Ashcombe's well. Anyone standing here watches the whole village."
+      "line": "{friend:Aim}, from the lip of the glass you can see straight down to Ashcombe's well. Who was watching whom from this ridge?"
     },
     "puzzle": {
       "q": "Has anyone touched this housing since the road was made?",
@@ -659,7 +659,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Craft}, each glass chip set on high bare rock beside the tallest dead tree, and scratched on the back in order. Why number a trail unless she expects us to read it?",
     "nudgeIfLaid": {
       "piece": "3-4-2",
-      "line": "{friend:Aim}, every chip dropped beside the tallest dead tree in sight, each visible from the last. She was sighting her own line as she rode."
+      "line": "{friend:Aim}, every chip dropped beside the tallest dead tree in sight, each visible from the last. How did a child on a horse sight a line like that?"
     },
     "puzzle": {
       "q": "Did she drop the chips in haste or with care?",
@@ -698,7 +698,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Might}, cut deep into the beam over her bed: 'Until the throne rise whole.' Who carves a prayer over a stolen child's pillow?",
     "nudgeIfLaid": {
       "piece": "3-5-1",
-      "line": "{friend:Craft}, each letter of her name cut twice into the doorframe. She wanted that mark to outlast the hut."
+      "line": "{friend:Craft}, each letter of her name cut twice into the doorframe. How long was she left alone in that room with a blade?"
     },
     "puzzle": {
       "q": "How quickly did they depart?",
@@ -737,7 +737,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Agility}, one lamp went into that hill an hour after we spoke the map, and now smoke is rising from the crown. Did our voices call them in, or was the fire already laid?",
     "nudgeIfLaid": {
       "piece": "3-6-3",
-      "line": "{friend:Agility}, loose scree on both sides of the knife-edge now the light has gone. Whoever climbed that hill tonight knew every stone by heart."
+      "line": "{friend:Agility}, loose scree on both sides of the knife-edge now the light has gone. How many times has that lamp climbed this ridge in the dark?"
     },
     "puzzle": {
       "q": "Are the riders still inside the hill?",
@@ -773,7 +773,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "They had us at their mercy and were under orders not to harm us.",
     "callback": "Every one of them you've fought has run at the first gap. Tonight one stood among you with a blade and cut only rope.",
     "riddle": null,
-    "nudge": "{friend:Craft}, cut rope ends all clean on the same side, a finger's width from the knot. Someone stepped out of that passage with a steady blade.",
+    "nudge": "{friend:Craft}, cut rope ends all clean on the same side, a finger's width from the knot. Why cut the prisoner loose in the dark and leave your throats untouched?",
     "nudgeIfLaid": {
       "piece": "4-1-2",
       "line": "{friend:Aim}, he knelt three paces from that dark passage mouth the whole time. Did he choose that spot himself?"
@@ -852,10 +852,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "Someone else who had not reached Reedham yet: they have been waiting for us.",
     "callback": "In Ashcombe a baby born when the moon goes out is given a chip of black glass. In Reedham every window is lit for one.",
     "riddle": null,
-    "nudge": "{friend:Craft}, eight notches cut in her doorpost wood, and a boat heavier than her skiff touching the shingle by night.",
+    "nudge": "{friend:Craft}, eight notches cut in her doorpost wood, and a boat heavier than her skiff touching the shingle by night. Why keep him on the lake for eight nights without leaving?",
     "nudgeIfLaid": {
       "piece": "4-3-3",
-      "line": "{friend:Aim}, weed scraped clean off the lowest sill facing Reedham. Someone sat in that dark tower watching the village before we ever arrived."
+      "line": "{friend:Aim}, weed scraped clean off the lowest sill facing Reedham. How long has someone been sitting in that dark tower watching the shore?"
     },
     "puzzle": null,
     "clicks": [],
@@ -881,10 +881,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "Letting a specific bloodline from the old songs near — 'moon-blood' may mean more than the birth-mark.",
     "callback": "At the ford, Tamsin's small prints stopped at the water. Today Joss's stop at the edge of deep water.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, she copied 'the marked' on one page and 'moon-blood' on another, then crossed out her second line in the margin until the nib tore through.",
+    "nudge": "{friend:Intellect}, she copied 'the marked' on one page and 'moon-blood' on another, then crossed out her second line in the margin until the nib tore through. What thought frightened her enough to scratch it through the paper?",
     "nudgeIfLaid": {
       "piece": "4-4-1",
-      "line": "{friend:Craft}, the same iron lamp-hooks in the drowned windows below the water as in Reedham's windows tonight. The village moved up the bank, and kept the old watch."
+      "line": "{friend:Craft}, the same iron lamp-hooks in the drowned windows below the water as in Reedham's windows tonight. How old is the watch this village keeps?"
     },
     "puzzle": {
       "q": "Was Meira sure of her own note on 'moon-blood'?",
@@ -920,10 +920,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "They know we took their boat on the island today and are setting a watch for us at the tower.",
     "callback": "At the Widow's Tooth a little carved horse was left behind. Today, in their boat, a little carved hull was thrown away.",
     "riddle": null,
-    "nudge": "{friend:Aim}, three willow cuts—one grey, one brown, one white—and tonight a single lamp moving out toward the tower.",
+    "nudge": "{friend:Aim}, three willow cuts—one grey, one brown, one white—and tonight a single lamp moving out toward the tower. Why row to an empty stone tower on the third night?",
     "nudgeIfLaid": {
       "piece": "4-5-2",
-      "line": "{friend:Craft}, a dry blanket folded small under the stern seat, out of the spray. They are keeping the boy warm while they wait."
+      "line": "{friend:Craft}, a dry blanket folded small under the stern seat, out of the spray. Why take such care of a boy they mean to use?"
     },
     "puzzle": {
       "q": "How has Joss been kept on the reed island?",
@@ -960,10 +960,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "They were keeping watch on the shore road and hid under the wall when they heard our oars.",
     "callback": "Yesterday you took their boat. Tonight someone took your words.",
     "riddle": null,
-    "nudge": "{friend:Aim}, water rings spreading under the stones while our oars were already still, and a brief light out toward the island. Someone was down there before us.",
+    "nudge": "{friend:Aim}, water rings spreading under the stones while our oars were already still, and a brief light out toward the island. Why wait in the dark under an empty tower until we spoke?",
     "nudgeIfLaid": {
       "piece": "4-6-2",
-      "line": "{friend:Aim}, one brief light low on the water toward the island, then dark again. Whoever was under our wall signalled across the lake."
+      "line": "{friend:Aim}, one brief light low on the water toward the island, then dark again. Who was waiting out there for that signal?"
     },
     "puzzle": null,
     "clicks": [],
@@ -992,7 +992,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Intellect}, the miles left standing on the stone, and the second line under Highwall cut away to the last letter. Whose name sat under the city's?",
     "nudgeIfLaid": {
       "piece": "5-1-3",
-      "line": "{friend:Charm}, every window in Reedham lit at midday as if the dark moon were tonight. The whole village felt that first beat."
+      "line": "{friend:Charm}, every window in Reedham lit at midday as if the dark moon were tonight. What did that village feel in the water before we left?"
     },
     "puzzle": {
       "q": "Was the waystone only a road marker, or part of the Seekers' trail?",
@@ -1031,7 +1031,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "nudge": "{friend:Might}, one deep bite that held without tearing, and tracks that scattered the moment the beat died. What drove those dogs?",
     "nudgeIfLaid": {
       "piece": "5-2-2",
-      "line": "{friend:Craft}, teeth sunk deep once and held without tearing. That dog wasn't feeding—it was holding him in place."
+      "line": "{friend:Craft}, teeth sunk deep once and held without tearing. Why would a starving hound hold a man in place instead of feeding?"
     },
     "puzzle": {
       "q": "Were the dogs hunting for themselves?",
@@ -1067,10 +1067,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "Wardens left behind on the Seekers' wall — barring the gate to keep what is inside from getting out.",
     "callback": "Upriver, somebody kept a hidden path clear and a dog on new iron. Here somebody keeps a new bar on an old gate.",
     "riddle": null,
-    "nudge": "{friend:Craft}, a broken stair knocked out with hammers long ago, and a fresh timber bar below. Somebody wants only one way in.",
+    "nudge": "{friend:Craft}, a broken stair knocked out with hammers long ago, and a fresh timber bar below. Who is keeping that gate shut from the inside?",
     "nudgeIfLaid": {
       "piece": "5-3-3",
-      "line": "{friend:Craft}, the gatehouse stair knocked out with hammers long ago, while the timber bar below is fresh. Whoever bars that gate never meant to climb the wall."
+      "line": "{friend:Craft}, the gatehouse stair knocked out with hammers long ago, while the timber bar below is fresh. Why bar the gate below and break the stair to the wall?"
     },
     "puzzle": {
       "q": "Was the gate barred long ago and left, or is someone tending it now?",
@@ -1107,10 +1107,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "Yes — the heartbeat from the hall is beginning to stir them inside their armour.",
     "callback": "On the road, when the beat stopped, the dogs stopped where they stood. These soldiers stopped mid-stride, and never started again.",
     "riddle": null,
-    "nudge": "{friend:Aim}, unbroken dust round every boot, and one sound of iron on stone after we barred the door.",
+    "nudge": "{friend:Aim}, unbroken dust round every boot, and one sound of iron on stone after we barred the door. Did our eyes play tricks in the dusk, or did something move?",
     "nudgeIfLaid": {
       "piece": "5-4-2",
-      "line": "{friend:Agility}, one scrape of iron on stone after the door was barred, and then silence. Something in that street shifted when the beat came."
+      "line": "{friend:Agility}, one scrape of iron on stone after the door was barred, and then silence. Which way did that helm turn when the beat came?"
     },
     "puzzle": null,
     "clicks": [],
@@ -1175,10 +1175,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "Finding the fifth here is only half the task — it will have to be taken to his hall.",
     "callback": "Every map before tonight was read out loud. Tonight it went hand to hand, and nobody heard.",
     "riddle": null,
-    "nudge": "{friend:Aim}, two shallow dips worn into the parapet where elbows rested, facing straight up at the hall.",
+    "nudge": "{friend:Aim}, two shallow dips worn into the parapet where elbows rested, facing straight up at the hall. What happens when we open the room under that watch-post tonight?",
     "nudgeIfLaid": {
       "piece": "5-6-2",
-      "line": "{friend:Craft}, two shallow dips worn into the stone parapet where elbows rested for years, facing the hall. Someone stood guard over this hidden room until the end."
+      "line": "{friend:Craft}, two shallow dips worn into the stone parapet where elbows rested for years, facing the hall. Who stood that watch over the hidden room, and what were they waiting to see?"
     },
     "puzzle": {
       "q": "How did the room stay hidden from the Order for centuries?",
@@ -1221,13 +1221,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "What was kept in the stone niche before you opened the room?",
-      "clickText": "Years of candle-soot blacken the back of the niche facing the inner wall, while tonight no lantern from the square reaches through the slit. For generations a hidden light burned behind the Stone in this room; tonight the niche is cold and the Stone is in your hands."
+      "clickText": "Years of candle-soot blacken the back of the niche facing the inner wall, while tonight no lantern from the square reaches through the slit. For generations a hidden light burned behind the wall in this room; tonight the niche is cold."
     },
     "clicks": [
       {
         "a": "6-1-1",
         "b": "6-1-3",
-        "text": "Years of candle-soot blacken the back of the niche facing the inner wall, while tonight no lantern from the square reaches through the slit. For generations a hidden light burned behind the Stone in this room; tonight the niche is cold and the Stone is in your hands.",
+        "text": "Years of candle-soot blacken the back of the niche facing the inner wall, while tonight no lantern from the square reaches through the slit. For generations a hidden light burned behind the wall in this room; tonight the niche is cold.",
         "solves": true
       }
     ],
@@ -1254,10 +1254,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "They are still carrying out their last order from the night the barracks emptied: form ranks at the hall.",
     "callback": "Last week you couldn't be sure a helm had turned toward you. Today one stood in your doorway and looked at the fallen stone instead.",
     "riddle": null,
-    "nudge": "{friend:Agility}, empty spear-racks swept clean, bowls never filled, and every iron boot in the city stepping once when the beat comes.",
+    "nudge": "{friend:Agility}, empty spear-racks swept clean, bowls never filled, and every iron boot in the city stepping once when the beat comes. Is it the heartbeat pulling them, or their last order?",
     "nudgeIfLaid": {
       "piece": "6-2-3",
-      "line": "{friend:Craft}, bowls set out along the kitchen board and a ladle in the cold pot, never filled. Whatever called that garrison out of the barracks didn't let them finish supper."
+      "line": "{friend:Craft}, bowls set out along the kitchen board and a ladle in the cold pot, never filled. What call pulls a whole garrison from the table before the ladle touches a bowl?"
     },
     "puzzle": null,
     "clicks": [],
@@ -1283,10 +1283,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "The Stones are still outside with the faithful, waiting to be carried in on the dark moon.",
     "callback": "The soldiers are three streets nearer the hall. Round the Order's fire there are twice as many as before.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, clean robes folded on top of their road-packs outside, and warmth in the stone wall only from knee-height down.",
+    "nudge": "{friend:Intellect}, clean robes folded on top of their road-packs outside, and warmth in the stone wall only from knee-height down. Are the four Stones already inside that hall, or still outside with the camp?",
     "nudgeIfLaid": {
       "piece": "6-3-2",
-      "line": "{friend:Aim}, road-packs still unrolled by their fire, with clean robes folded on top of every one. They didn't ride here for a fight—they came dressed for a ceremony."
+      "line": "{friend:Aim}, road-packs still unrolled by their fire, with clean robes folded on top of every one. Do men pack like that for a battle, or for a rite?"
     },
     "puzzle": {
       "q": "Where is the heat in the hall's wall coming from?",
@@ -1316,16 +1316,16 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "That hill was steeper than it looked. Sit.",
+    "opener": "One soldier facing out while a whole city faces in, and the rock behind him beating like a chest. Sit.",
     "questionTitle": "Every other soldier in Highwall faces the hall. Why has this one stood in the mouth of the Seekers' crack since the war ended, facing out?",
     "forkA": "The Seekers left it to bar their own secret passage after they sealed the hall and walked out.",
     "forkB": "It was keeping the king's last watch — guarding the back of his throne against anyone coming down the hill.",
     "callback": "Upriver, a dog on a chain kept the hidden path. Today a soldier stood in the crack with its back to the hall.",
     "riddle": null,
-    "nudge": "{friend:Craft}, two hollows worn into solid stone by iron boots, and the heartbeat louder right behind the blank rock than anywhere else.",
+    "nudge": "{friend:Craft}, two hollows worn into solid stone by iron boots, and the heartbeat louder right behind the blank rock than anywhere else. Whose watch was that soldier keeping in the crack?",
     "nudgeIfLaid": {
       "piece": "6-4-3",
-      "line": "{friend:Charm}, put your ear to that blank rock and the heartbeat is louder than anywhere in the crack. The throne is right on the other side of that stone."
+      "line": "{friend:Charm}, the beat is louder with your ear on that stone than anywhere in the crack. What is the wall between you and?"
     },
     "puzzle": {
       "q": "How long had the sentinel stood in the mouth of the crack?",
@@ -1361,10 +1361,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "For the king: they were his own watchers, reckoning the return of the dark moon before the city fell.",
     "callback": "The Order's board has counted down for generations. The sky-watchers' wall, counted forward, lands on the same night.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, every row spaced a finger's width apart for generations, and slates on the floor scratched with long sums begun again.",
+    "nudge": "{friend:Intellect}, every row spaced a finger's width apart for generations, and slates on the floor scratched with long sums begun again. Who were those sky-watchers counting the dark moons for?",
     "nudgeIfLaid": {
       "piece": "6-5-1",
-      "line": "{friend:Intellect}, every moon spaced a finger's width from the last around the whole room. Measure the blank wall by that same thumb, and it counts straight to tomorrow night."
+      "line": "{friend:Intellect}, every moon spaced a finger's width from the last around the whole room. If you measure the blank stone by that same thumb, what night does the count land on?"
     },
     "puzzle": {
       "q": "What were the sky-watchers doing in the days before the wall went blank?",
@@ -1400,10 +1400,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "It finishes what the four Stones and the marching garrison are waiting for — waking him whole.",
     "callback": "Six nights ago you had a hidden room. Tonight you have one stroke left.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, grit swept in a quarter-circle where the stone door swings inward, and every helm on the hill turned toward the hall.",
+    "nudge": "{friend:Intellect}, grit swept in a quarter-circle where the stone door swings inward, and every helm on the hill turned toward the hall. When we carry the fifth through that door tomorrow night, will it bind him or wake him?",
     "nudgeIfLaid": {
       "piece": "6-6-3",
-      "line": "{friend:Agility}, every post from the gate-tower to the crossroads stands empty tonight, with only pale boot-marks in the dust. Nothing is left behind us."
+      "line": "{friend:Agility}, every post from the gate-tower to the crossroads stands empty tonight, with only pale boot-marks in the dust. Where has the whole city gathered?"
     },
     "puzzle": {
       "q": "Will the dead garrison see you when the blank rock opens?",
