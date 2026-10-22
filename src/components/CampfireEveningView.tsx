@@ -824,9 +824,13 @@ export const CampfireEveningView: React.FC<CampfireEveningViewProps> = ({
             </p>
           )}
 
-          {/* Canonical Stored Opener */}
+          {/* Canonical Stored Opener or Narrated Silence */}
           <p className="font-['Cormorant_Garamond'] font-medium text-[19.5px] text-[#F4F1F8] leading-[1.5]">
-            {dayEntry.narratedNoGarrick ? dayEntry.opener : `“${dayEntry.opener}”`}
+            {dayEntry.opener === null
+              ? dayEntry.narratedSilence
+              : dayEntry.narratedNoGarrick
+                ? dayEntry.opener
+                : `“${dayEntry.opener}”`}
           </p>
 
           {/* Max 2 True Noticing Templates */}

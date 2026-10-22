@@ -376,7 +376,7 @@ export default function OnlineCampfire({
   };
 
   // Arriving: the cup, his greeting and opener, what he notices (stored lines, v2.3 §B, §C, §I).
-  if (fire.cupNight) add(arrival, 'cup', <NarrationMessage text={CAMPFIRE_STORED_LINES.cupNightStageDirection} />);
+  if (fire.cupNight && !fire.narratedSilence) add(arrival, 'cup', <NarrationMessage text={CAMPFIRE_STORED_LINES.cupNightStageDirection} />);
   if (fire.narrated && fire.opener) add(later(arrival, 1), 'opener', <NarrationMessage text={fire.opener} />);
   if (garrick && fire.narratedSilence) add(later(arrival, 1), 'silence', <NarrationMessage text={fire.narratedSilence} />);
   if (garrick && fire.firstHere) add(later(arrival, 1), 'greet', <GarrickBubble text={CAMPFIRE_STORED_LINES.firstArrivalGreeting} />);

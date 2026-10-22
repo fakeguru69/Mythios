@@ -1,11 +1,13 @@
-// Checks Campfire v3 Phase 2 content across Weeks 2 through 6 (Piece E4).
+// Checks Campfire v3 Phase 2 content across Weeks 2 through 6 (Piece E4) and Supabase SQL migration sync.
+const fs = require('fs');
+const path = require('path');
 const { CAMPFIRE_DAYS_DATA, runCampfireV22Verifier, CUP_NIGHT_IDS, QUIET_DAY_IDS } = require('../../src/data/campfireDaysData.ts');
 
 let failed = false;
-function check(name, ok) {
+const check = (name, ok) => {
   console.log((ok ? 'ok   ' : 'FAIL ') + name);
   if (!ok) failed = true;
-}
+};
 
 // 1. Overall QA verifier
 const qa = runCampfireV22Verifier();
@@ -49,24 +51,34 @@ check('All 6 quiet nights in Weeks 2-6 have puzzle: null and empty clicks', quie
 check('All 24 non-quiet nights in Weeks 2-6 have a puzzle with q and clickText', puzzlesCount === 24);
 check('All 24 non-quiet nights in Weeks 2-6 have at least one click pair', clicksCount >= 24);
 
-// Check that all clicks reference valid lead/press pieces
+// Check that all clicks reference valid lead/press pieces (and never require [PRESS ON])
 let allClickPiecesValid = true;
 for (const d of w2to6) {
   if (d.clicks) {
     for (const c of d.clicks) {
-      if (!c.a || !c.b || !c.text) allClickPiecesValid = false;
+      if (!c.a || !c.b || !c.text || c.a === 'press' || c.b === 'press') allClickPiecesValid = false;
     }
   }
 }
-check('All clicks have non-empty a, b, and text', allClickPiecesValid);
+check('All clicks have non-empty a, b, and text, and zero [PRESS ON] dependencies', allClickPiecesValid);
 
 // Riddles removed from Campfire v3
 const zeroRiddles = w2to6.every((d) => d.riddle === null);
 check('All 30 days in Weeks 2-6 have riddle: null (riddles dropped in v3)', zeroRiddles);
 
+// 3. Verify supabase/migrations/0108_campfire_weeks_2_to_6.sql sync
+const migPath = path.join(__dirname, '..', '..', 'supabase', 'migrations', '0108_campfire_weeks_2_to_6.sql');
+const migSql = fs.readFileSync(migPath, 'utf8');
+const allQuestionsInSql = w2to6.every((d) => migSql.includes(d.questionTitle.replace(/'/g, "''")));
+check('All 30 Weeks 2-6 questionTitles are synced into 0108_campfire_weeks_2_to_6.sql', allQuestionsInSql);
+check('0108_campfire_weeks_2_to_6.sql updates fire_check_clicks with lead: prefix support', migSql.includes("'lead:' || (c ->> 'a')"));
+check('0108_campfire_weeks_2_to_6.sql updates party_read_backs and gathering_read_backs for Weeks 1-6', migSql.includes('create or replace function public.party_read_backs') && migSql.includes('create or replace function public.gathering_read_backs'));
+check('Zero QA/secret leaks (Malakor, bearsOnFork, qaNote) in 0108_campfire_weeks_2_to_6.sql', !/Malakor|bearsOnFork|qaNote/.test(migSql));
+
 if (failed) {
   console.error('Some checks failed.');
   process.exit(1);
 } else {
-  console.log('campfire-weeks-2-to-6.cjs test passed all checks');
+  console.log('campfire-weeks-2-to-6.cjs test passed all 19 checks');
+  process.exit(0);
 }

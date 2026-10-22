@@ -330,14 +330,14 @@ export default function OnlineDay({
           <NarrationBlock text={para} pull={pull && pi === paras.length - 1} />
         </Markable>
       );
-      const matchedRb = readBacks.find((rb) => para.includes(rb.anchor));
-      if (matchedRb) {
+      const matchedRbs = readBacks.filter((rb) => para.includes(rb.anchor));
+      matchedRbs.forEach((matchedRb, rbi) => {
         pushItem(
-          `${k}-rb`,
-          <ReadBackBlock key={`${k}-rb`} text={matchedRb.text} day={matchedRb.day} />,
+          `${k}-rb-${rbi}`,
+          <ReadBackBlock key={`${k}-rb-${rbi}`} text={matchedRb.text} day={matchedRb.day} />,
           { instant: true, resolved: true }
         );
-      }
+      });
     });
   };
   let actIndex = 0;

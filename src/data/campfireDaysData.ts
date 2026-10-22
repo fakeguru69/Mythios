@@ -417,18 +417,8 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "callback": "Yesterday a branch swung on the slope with no wind. Today they knew you were at the shaft.",
     "riddle": null,
     "nudge": "{friend:Charm}, you saw his hands before they hauled the ladder up. Not a scratch on him yet. What are they waiting for?",
-    "puzzle": {
-      "q": "Are they panicked or deliberate?",
-      "clickText": "The heads turned when the sentry shouted, but the chant below ran on without a missed syllable, and the lamp at the foot of the ladder burned trimmed and steady. The chamber did not break its routine."
-    },
-    "clicks": [
-      {
-        "a": "2-4-1",
-        "b": "2-4-3",
-        "text": "The heads turned when the sentry shouted, but the chant below ran on without a missed syllable, and the lamp at the foot of the ladder burned trimmed and steady. The chamber did not break its routine.",
-        "solves": true
-      }
-    ],
+    "puzzle": null,
+    "clicks": [],
     "fanOutClue": {
       "title": "The second lamp",
       "text": "A second lamp stands lit at the foot of the shaft, filled and trimmed, the same make as the ring in the chamber. Nobody grabbed it in a hurry.",
@@ -478,7 +468,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "id": "2-6",
     "place": "The lip of the shaft",
     "narratedNoGarrick": false,
-    "tone": "quiet",
+    "tone": "wry",
     "cupNight": true,
     "opener": "Picks in the deep rock. They're digging toward something that was here before them.",
     "questionTitle": "The fragments drew a map to an older room. Why are they digging toward that same room tonight?",
@@ -558,18 +548,8 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "callback": "Tamsin and Corin each came home with one cut palm, bound clean. Wren's taker said they'd only need her the once.",
     "riddle": null,
     "nudge": "{friend:Charm}, chips of black glass set in a row on her windowsill, dusted around with care. Why leave them behind?",
-    "puzzle": {
-      "q": "Did they care for her comfort?",
-      "clickText": "In the empty cart, a sheepskin is folded like a pillow over the boards, while down the street scraps of sacking mark where hooves were muffled. They took great care to ride silent, and equal care that the child did not bruise."
-    },
-    "clicks": [
-      {
-        "a": "3-2-2",
-        "b": "3-2-3",
-        "text": "In the empty cart, a sheepskin is folded like a pillow over the boards, while down the street scraps of sacking mark where hooves were muffled. They took great care to ride silent, and equal care that the child did not bruise.",
-        "solves": true
-      }
-    ],
+    "puzzle": null,
+    "clicks": [],
     "fanOutClue": {
       "title": "The boy at the well",
       "text": "At the well a boy holds his chip out low and quick, then shoves it back into his shirt before you have looked at it properly.",
@@ -689,9 +669,9 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "id": "3-6",
     "place": "The cairn",
     "narratedNoGarrick": false,
-    "tone": "quiet",
-    "cupNight": true,
-    "opener": "Poured the last of it. Drink up. The wind has teeth tonight.",
+    "tone": "wry",
+    "cupNight": false,
+    "opener": "Fire's built up. Sit by it before you decide anything.",
     "questionTitle": "An hour after we read the map into the wind, a single lamp climbed the Kiln and went inside. Who carried it?",
     "forkA": "A watcher who heard our voices and went in to warn the others.",
     "forkB": "The last of the faithful arriving for the ritual, unaware of us.",
@@ -804,18 +784,8 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "callback": "In Ashcombe a baby born when the moon goes out is given a chip of black glass. In Reedham every window is lit for one.",
     "riddle": null,
     "nudge": "{friend:Craft}, eight notches cut in her doorpost wood, and a boat heavier than her skiff touching the shingle by night.",
-    "puzzle": {
-      "q": "What has been moving on the Stillwater after dark?",
-      "clickText": "Every evening just after dusk the fisherman hears oars on the water, and the fresh keel-mark on the shingle was pressed by a boat far heavier than her skiff. A crew has been rowing across this lake night after night."
-    },
-    "clicks": [
-      {
-        "a": "4-3-1",
-        "b": "4-3-2",
-        "text": "Every evening just after dusk the fisherman hears oars on the water, and the fresh keel-mark on the shingle was pressed by a boat far heavier than her skiff. A crew has been rowing across this lake night after night.",
-        "solves": true
-      }
-    ],
+    "puzzle": null,
+    "clicks": [],
     "fanOutClue": {
       "title": "The oars at dusk",
       "text": "On the shingle the fisherman says he hears oars out on the lake every night, at the same hour, just after dusk. He has never gone to look.",
@@ -910,18 +880,8 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "callback": "Yesterday you took their boat. Tonight someone took your words.",
     "riddle": null,
     "nudge": "{friend:Aim}, water rings spreading under the stones while our oars were already still, and a brief light out toward the island. Someone was down there before us.",
-    "puzzle": {
-      "q": "Was the boat under the tower alone on the lake?",
-      "clickText": "Water rings were already spreading under the tower wall before our oars stopped, and a brief light answered out toward the reed island. A hidden boat lay beneath the stones and signaled across the dark before pulling for the drowned village."
-    },
-    "clicks": [
-      {
-        "a": "4-6-1",
-        "b": "4-6-2",
-        "text": "Water rings were already spreading under the tower wall before our oars stopped, and a brief light answered out toward the reed island. A hidden boat lay beneath the stones and signaled across the dark before pulling for the drowned village.",
-        "solves": true
-      }
-    ],
+    "puzzle": null,
+    "clicks": [],
     "fanOutClue": {
       "title": "The rings",
       "text": "As you tie up at the tower, rings are already spreading from the dark under its wall, and your oars have been still for a minute.",
@@ -1140,21 +1100,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "Quiet's good in a hole in a wall. I'll take it.",
-    "questionTitle": "Did the watchman at the board see our shadow in the slit?",
-    "forkA": "Yes, he marked the wall room and will send searchers.",
-    "forkB": "No, he was looking at the rampart out of old habit.",
+    "questionTitle": "The searchers walked past our door twice and found nothing, yet the watchman at the board still looked down at the wall at dusk. Why?",
+    "forkA": "He still believes someone is hiding in the wall; the Order has not given up the search.",
+    "forkB": "He is only checking that the rampart stays dark before he strikes the night's chalk.",
     "callback": "At dusk you crossed the wall and nobody heard. By the end of the night a watchman was looking straight at your window.",
     "riddle": null,
-    "nudge": "{friend:Aim}, he looked straight at the wall before he struck the board. Did he see us, or was he looking at the stone?",
+    "nudge": "{friend:Aim}, he paused with the chalk in his hand and looked down the hill at the wall before he struck the board. Was he hunting a light, or keeping a routine?",
     "puzzle": {
-      "q": "Could any candle inside the wall be seen from the square?",
-      "clickText": "The niche faces away from the slit and its soot is ancient; no light has been lit in this chamber tonight. Whatever the watchman looked toward, he saw no flame."
+      "q": "Could a candle inside the niche ever show through the slit?",
+      "clickText": "The stone niche faces the inner wall away from the slit, and its only candle-soot is centuries old. Even when the Seekers kept a light behind the Stone, no flame could ever show in the square."
     },
     "clicks": [
       {
         "a": "6-1-1",
         "b": "6-1-3",
-        "text": "The niche faces away from the slit and its soot is ancient; no light has been lit in this chamber tonight. Whatever the watchman looked toward, he saw no flame.",
+        "text": "The stone niche faces the inner wall away from the slit, and its only candle-soot is centuries old. Even when the Seekers kept a light behind the Stone, no flame could ever show in the square.",
         "solves": true
       }
     ],
@@ -1176,12 +1136,12 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "cupNight": false,
     "opener": null,
     "narratedSilence": "Garrick rests his head against the cold masonry, listening to the hollow thud of the earth below in silence.",
-    "questionTitle": "Where are the garrison's spears?",
-    "forkA": "Carried up to the hall for the waking.",
-    "forkB": "Confiscated long ago when the city fell.",
+    "questionTitle": "When the ceiling came down, a hollowed soldier stood in our doorway, looked at the fallen stone, and walked on toward the hall at the heartbeat. What is moving the dead garrison across Highwall?",
+    "forkA": "The waking heart inside the hall is drawing every soldier back to the place where he fell.",
+    "forkB": "They are still carrying out their last order from the night the barracks emptied: form ranks at the hall.",
     "callback": "Last week you couldn't be sure a helm had turned toward you. Today one stood in your doorway and looked at the fallen stone instead.",
     "riddle": null,
-    "nudge": "{friend:Agility}, empty racks swept clean, and bowls set out that were never filled. When did they leave?",
+    "nudge": "{friend:Agility}, empty spear-racks swept clean, bowls never filled, and every iron boot in the city stepping once when the beat comes.",
     "puzzle": null,
     "clicks": [],
     "fanOutClue": {
@@ -1201,21 +1161,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "The hall's warm from within. More faithful arriving. What's missing is a door.",
-    "questionTitle": "How are the robed faithful entering the sealed hall?",
-    "forkA": "There is a hidden passage through the rock.",
-    "forkB": "The great bronze doors open for them at dusk.",
+    "questionTitle": "The hall's stone wall is warm from the floor up behind sealed bronze doors, while new arrivals stack clean robes by their fire outside. Has the Order already set the four Stones inside, or are they still waiting outside for the last night?",
+    "forkA": "The four Stones are already set around him on the floor inside, warming the stone.",
+    "forkB": "The Stones are still outside with the faithful, waiting to be carried in on the dark moon.",
     "callback": "The soldiers are three streets nearer the hall. Round the Order's fire there are twice as many as before.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, clean robes in their packs, and not a footprint across the threshold of the bronze doors. Where did they go?",
+    "nudge": "{friend:Intellect}, clean robes folded on top of their road-packs outside, and warmth in the stone wall only from knee-height down.",
     "puzzle": {
-      "q": "Have the main doors been unsealed?",
-      "clickText": "The dust along the threshold of the great doors has not been disturbed by a single breath, yet new men arrive with clean robes ready for the ceremony. They are entering through another way."
+      "q": "Where is the heat in the hall's wall coming from?",
+      "clickText": "An unbroken bank of dust lies across the seam of the bronze doors, and the stone wall is warm only from knee-height down. The front doors have never opened, and whatever is warming the hall lies flat on the floor inside."
     },
     "clicks": [
       {
         "a": "6-3-1",
-        "b": "6-3-2",
-        "text": "The dust along the threshold of the great doors has not been disturbed by a single breath, yet new men arrive with clean robes ready for the ceremony. They are entering through another way.",
+        "b": "6-3-3",
+        "text": "An unbroken bank of dust lies across the seam of the bronze doors, and the stone wall is warm only from knee-height down. The front doors have never opened, and whatever is warming the hall lies flat on the floor inside.",
         "solves": true
       }
     ],
@@ -1236,21 +1196,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "That hill was steeper than it looked. Sit.",
-    "questionTitle": "Who posted the sentinel inside the rock fissure?",
-    "forkA": "The Seekers, to guard their secret entrance.",
-    "forkB": "The Order, to prevent anyone reaching the back of the hall.",
+    "questionTitle": "Every other soldier in Highwall faces the hall. Why has this one stood in the mouth of the Seekers' crack since the war ended, facing out?",
+    "forkA": "The Seekers left it to bar their own secret passage after they sealed the hall and walked out.",
+    "forkB": "It was keeping the king's last watch — guarding the back of his throne against anyone coming down the hill.",
     "callback": "Upriver, a dog on a chain kept the hidden path. Today a soldier stood in the crack with its back to the hall.",
     "riddle": null,
-    "nudge": "{friend:Craft}, two hollows worn into solid stone by iron boots. That soldier was put there to stay.",
+    "nudge": "{friend:Craft}, two hollows worn into solid stone by iron boots, and the heartbeat louder right behind the blank rock than anywhere else.",
     "puzzle": {
-      "q": "How long has this sentinel guarded the cleft?",
-      "clickText": "The grit past the soldier was smooth until your own boots scuffed it, but the rock under its iron soles is worn deep into two foot-hollows. It has stood sentinel there since the war ended."
+      "q": "How long had the sentinel stood in the mouth of the crack?",
+      "clickText": "The grit behind the soldier lay smooth and untouched until your boots marked it, while the rock under its iron soles is worn into two shallow hollows. Nobody has passed down this crack since the war ended, and that soldier never left its post."
     },
     "clicks": [
       {
         "a": "6-4-1",
         "b": "6-4-2",
-        "text": "The grit past the soldier was smooth until your own boots scuffed it, but the rock under its iron soles is worn deep into two foot-hollows. It has stood sentinel there since the war ended.",
+        "text": "The grit behind the soldier lay smooth and untouched until your boots marked it, while the rock under its iron soles is worn into two shallow hollows. Nobody has passed down this crack since the war ended, and that soldier never left its post.",
         "solves": true
       }
     ],
@@ -1271,21 +1231,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "Two nights. Eat while there's something to eat.",
-    "questionTitle": "Did the sky-watchers foresee the night of the waking?",
-    "forkA": "Their calculations predicted the exact dark moon centuries in advance.",
-    "forkB": "Their records ended abruptly when the city fell, and the date is a coincidence.",
+    "questionTitle": "The sky-watchers' wall stops on the dark moon the night he fell, with a Seeker housing set beside the last cut. Who were the sky-watchers reckoning that cycle for?",
+    "forkA": "For the Seekers: they marked the cycle so their descendants could count the blank wall and know the hour.",
+    "forkB": "For the king: they were his own watchers, reckoning the return of the dark moon before the city fell.",
     "callback": "The Order's board has counted down for generations. The sky-watchers' wall, counted forward, lands on the same night.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, slates with sums scratched out and begun again. What were they struggling to count?",
+    "nudge": "{friend:Intellect}, every row spaced a finger's width apart for generations, and slates on the floor scratched with long sums begun again.",
     "puzzle": {
-      "q": "How did their astronomical calculations conclude?",
-      "clickText": "Every moon on the wall was measured with exact discipline, but the slates on the floor are covered in frantic revisions and repeated sums. In the final days, their calculations were slipping away from them."
+      "q": "What were the sky-watchers doing in the days before the wall went blank?",
+      "clickText": "The last rows of moons were chiselled in a rough hurry without missing a single night, while the slates on the floor are covered in long sums crossed through and begun again. They were racing to reckon a distant date before the last night came."
     },
     "clicks": [
       {
-        "a": "6-5-1",
-        "b": "6-5-2",
-        "text": "Every moon on the wall was measured with exact discipline, but the slates on the floor are covered in frantic revisions and repeated sums. In the final days, their calculations were slipping away from them.",
+        "a": "6-5-2",
+        "b": "6-5-3",
+        "text": "The last rows of moons were chiselled in a rough hurry without missing a single night, while the slates on the floor are covered in long sums crossed through and begun again. They were racing to reckon a distant date before the last night came.",
         "solves": true
       }
     ],
@@ -1306,21 +1266,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": true,
     "opener": "Last night of the count. Eat what you like.",
-    "questionTitle": "When the rock opens tomorrow, will the fifth Stone save the kingdom or doom it?",
-    "forkA": "It will bind the waking king and finish the Seekers' work.",
-    "forkB": "It is the missing piece the Order needs to complete the waking.",
+    "questionTitle": "Tomorrow night the Seekers' door opens for our blood, and we carry the fifth Stone into the hall where the four are waiting. What happens when the fifth is brought to him?",
+    "forkA": "It finishes what the Seekers began — binding him in his sleep before the four Stones can wake him.",
+    "forkB": "It finishes what the four Stones began — waking him whole, because the fifth is the piece the Order lacked.",
     "callback": "Six nights ago you had a hidden room. Tonight you have one stroke left.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, every helm turned to the hall, and the streets behind us empty. Tomorrow night, we walk in.",
+    "nudge": "{friend:Intellect}, grit swept in a quarter-circle where the stone door swings inward, and every helm on the hill turned toward the hall.",
     "puzzle": {
-      "q": "Is the way ahead clear of guards for tomorrow night?",
-      "clickText": "Every post across the lower streets has been abandoned, and every armoured helm on the hill is turned toward the hall. The entire city is converging on one room."
+      "q": "Where is the city's garrison tonight?",
+      "clickText": "Every post across the lower streets stands empty now, and every helm on the hill is turned toward the hall. Nothing is left guarding the walls; the entire city is converging on one room."
     },
     "clicks": [
       {
         "a": "6-6-1",
         "b": "6-6-3",
-        "text": "Every post across the lower streets has been abandoned, and every armoured helm on the hill is turned toward the hall. The entire city is converging on one room.",
+        "text": "Every post across the lower streets stands empty now, and every helm on the hill is turned toward the hall. Nothing is left guarding the walls; the entire city is converging on one room.",
         "solves": true
       }
     ],

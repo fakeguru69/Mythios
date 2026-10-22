@@ -40,16 +40,16 @@ begin
       v_text := 'Last night you called it: You took it off a man carrying it somewhere else.';
     end if;
     v_out := jsonb_build_array(jsonb_build_object(
-      'anchor', 'set upon on the road',
+      'anchor', 'So the list is hers.',
       'day', 1,
       'text', v_text
     ));
   elsif p_week = 1 and p_day = 4 then
     v_d3 := public.fire_call(p_party, 1, 3);
     if v_d3 ->> 'reading' = 'A' then
-      v_text := 'The fires call on Day 3: Fenmark is his.';
+      v_text := 'The fire''s call on Day 3: Fenmark is his.';
     elsif v_d3 ->> 'reading' = 'B' then
-      v_text := 'The fires call on Day 3: Fenmark is on his way.';
+      v_text := 'The fire''s call on Day 3: Fenmark is on his way.';
     elsif coalesce((v_d3 ->> 'split')::boolean, false) then
       v_text := 'The fire was split on Day 3.';
     else
@@ -63,9 +63,9 @@ begin
   elsif p_week = 1 and p_day = 5 then
     v_d2 := public.fire_call(p_party, 1, 2);
     if v_d2 ->> 'reading' = 'A' then
-      v_text := 'The fires call on Day 2: Lately. Whatever was happening there is happening now.';
+      v_text := 'The fire''s call on Day 2: Lately. Whatever was happening there is happening now.';
     elsif v_d2 ->> 'reading' = 'B' then
-      v_text := 'The fires call on Day 2: Long ago. She was writing about an older taking.';
+      v_text := 'The fire''s call on Day 2: Long ago. She was writing about an older taking.';
     elsif coalesce((v_d2 ->> 'split')::boolean, false) then
       v_text := 'The fire was split on Day 2.';
     else

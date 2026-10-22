@@ -321,7 +321,7 @@ export default function OnlineGathering({
         );
         break;
       case 'say': {
-        const matchedRb = (view.readBacks ?? []).find((rb) => e.text && e.text.includes(rb.anchor));
+        const matchedRbs = (view.readBacks ?? []).filter((rb) => e.text && e.text.includes(rb.anchor));
         nodes.push(
           e.alone ? (
             <div key={k} className="py-3 text-center">
@@ -333,9 +333,9 @@ export default function OnlineGathering({
             </Markable>
           )
         );
-        if (matchedRb) {
-          nodes.push(<ReadBackBlock key={`${k}-rb`} text={matchedRb.text} day={matchedRb.day} />);
-        }
+        matchedRbs.forEach((matchedRb, rbi) => {
+          nodes.push(<ReadBackBlock key={`${k}-rb-${rbi}`} text={matchedRb.text} day={matchedRb.day} />);
+        });
         break;
       }
       case 'act':
