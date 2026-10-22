@@ -727,21 +727,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "Count yourselves. I will, too.",
-    "questionTitle": "Did someone inside the room help cut the prisoner loose?",
-    "forkA": "Yes, an accomplice was waiting in the shadows.",
-    "forkB": "No, he had a blade palmed and worked his own bonds.",
+    "questionTitle": "Someone stood among us in the dark with a bare blade, yet cut only rope. Why spare us?",
+    "forkA": "A lone rescuer couldn't risk a fight in the dark without losing the prisoner.",
+    "forkB": "They had us at their mercy and were under orders not to harm us.",
     "callback": "Every one of them you've fought has run at the first gap. Tonight one stood among you with a blade and cut only rope.",
     "riddle": null,
-    "nudge": "{friend:Craft}, cut rope ends all clean on the same side. That wasn't a man sawing at his own wrists.",
+    "nudge": "{friend:Craft}, cut rope ends all clean on the same side, a finger's width from the knot. Someone stepped out of that passage with a steady blade.",
     "puzzle": {
-      "q": "Was someone waiting in the side passage?",
-      "clickText": "The passage smells of a freshly snuffed wick, and every rope was severed by a blade cutting from the same outside angle. Someone was waiting in the dark with steel ready."
+      "q": "How did the prisoner get free in the dark?",
+      "clickText": "A lamp was just snuffed inside the side passage, and every rope was severed cleanly on the same side a finger's width from the knot. A second person stepped out of the passage in the dark and cut him loose."
     },
     "clicks": [
       {
         "a": "4-1-1",
         "b": "4-1-3",
-        "text": "The passage smells of a freshly snuffed wick, and every rope was severed by a blade cutting from the same outside angle. Someone was waiting in the dark with steel ready.",
+        "text": "A lamp was just snuffed inside the side passage, and every rope was severed cleanly on the same side a finger's width from the knot. A second person stepped out of the passage in the dark and cut him loose.",
         "solves": true
       }
     ],
@@ -749,7 +749,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
       "title": "Follow them",
       "text": "They end where the ash gives out and the rock turns to bare black glass. No prints come in. Whoever cut him loose came over the glass and was waiting.",
       "source": "press-on",
-      "bearsOnFork": "A",
+      "bearsOnFork": "both",
       "qaNote": "Existing [PRESS ON] detail."
     }
   },
@@ -762,21 +762,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": true,
     "opener": "Cold road. Put your hands round that cup.",
-    "questionTitle": "Why did four riders carry a cart along the open highway?",
-    "forkA": "They were daring anyone to challenge them.",
-    "forkB": "They were escorting something too heavy or fragile for rough paths.",
+    "questionTitle": "Four armed riders guarded one small box from the Kiln, riding away from the lake. Why guard that box harder than the boy?",
+    "forkA": "The box holds what they actually came for; the child only wakes it.",
+    "forkB": "The cart was an open-road decoy meant to draw our eyes off the lake.",
     "callback": "The carter's coin has the king's face scraped off. Meira wrote that every record of him had been scraped clean.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, swords across their laps and eyes never leaving the cart-bed. What was under that canvas?",
+    "nudge": "{friend:Intellect}, bare swords across their saddles and eyes never leaving a single small box in the cart-bed. Why ride like that in broad daylight?",
     "puzzle": {
-      "q": "How did the riders conduct themselves through the settlements?",
-      "clickText": "They rode with drawn swords across their laps in broad daylight, yet not one rider looked at the road or the bystanders. Every eye was locked on what was inside that cart."
+      "q": "How did the four riders guard the cart through the settlements?",
+      "clickText": "They rode with bare blades across their saddles in broad daylight, never speaking and never once looking at the road or the lake. Every eye stayed locked on the single small box in the cart-bed."
     },
     "clicks": [
       {
         "a": "4-2-1",
         "b": "4-2-2",
-        "text": "They rode with drawn swords across their laps in broad daylight, yet not one rider looked at the road or the bystanders. Every eye was locked on what was inside that cart.",
+        "text": "They rode with bare blades across their saddles in broad daylight, never speaking and never once looking at the road or the lake. Every eye stayed locked on the single small box in the cart-bed.",
         "solves": true
       }
     ],
@@ -798,19 +798,29 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "cupNight": false,
     "opener": null,
     "narratedSilence": "Garrick sits by the window looking out over the water, his arms folded in the quiet room.",
-    "questionTitle": "Why do oars cross the lake to the tower every night at dusk?",
-    "forkA": "Taking food and supplies to a guarded prisoner.",
-    "forkB": "Watching for the dark-moon hour when the water drops.",
+    "questionTitle": "They took Joss eight nights ago — before we even reached the Kiln — and have kept him on the water ever since. What are they waiting for?",
+    "forkA": "A night or a water-level that hasn't come yet to reach the drowned chamber.",
+    "forkB": "Someone else who had not reached Reedham yet: they have been waiting for us.",
     "callback": "In Ashcombe a baby born when the moon goes out is given a chip of black glass. In Reedham every window is lit for one.",
     "riddle": null,
-    "nudge": "{friend:Craft}, oil drops leading to one door on the shingle, and oars at dusk every night. Who is keeping watch on whom?",
-    "puzzle": null,
-    "clicks": [],
+    "nudge": "{friend:Craft}, eight notches cut in her doorpost wood, and a boat heavier than her skiff touching the shingle by night.",
+    "puzzle": {
+      "q": "What has been moving on the Stillwater after dark?",
+      "clickText": "Every evening just after dusk the fisherman hears oars on the water, and the fresh keel-mark on the shingle was pressed by a boat far heavier than her skiff. A crew has been rowing across this lake night after night."
+    },
+    "clicks": [
+      {
+        "a": "4-3-1",
+        "b": "4-3-2",
+        "text": "Every evening just after dusk the fisherman hears oars on the water, and the fresh keel-mark on the shingle was pressed by a boat far heavier than her skiff. A crew has been rowing across this lake night after night.",
+        "solves": true
+      }
+    ],
     "fanOutClue": {
       "title": "The oars at dusk",
       "text": "On the shingle the fisherman says he hears oars out on the lake every night, at the same hour, just after dusk. He has never gone to look.",
       "source": "new",
-      "bearsOnFork": "A",
+      "bearsOnFork": "both",
       "qaNote": "Approved 15 Oct."
     }
   },
@@ -822,22 +832,22 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "Meira had a gloss for it: 'the old songs' word for the marked.' She was careful with her words.",
-    "questionTitle": "What does 'moon-blood' mean in Meira's notes?",
-    "forkA": "Children born during an eclipse or dark moon.",
-    "forkB": "An ancient bloodline that has carried down through the valleys.",
+    "opener": "Drowned roofs under the keel, and a page of Meira's notes that survived the ash. Let's hear what you found.",
+    "questionTitle": "Meira's note says 'moon-blood' is the old word for the marked, and the fragment warns against letting it near. What is the fragment warning against?",
+    "forkA": "Letting a marked child's blood touch the Stones — the Order is doing what the Seekers feared.",
+    "forkB": "Letting a specific bloodline from the old songs near — 'moon-blood' may mean more than the birth-mark.",
     "callback": "At the ford, Tamsin's small prints stopped at the water. Today Joss's stop at the edge of deep water.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, she started a second line in the margin, then crossed it out so hard the nib went through. What did she realize?",
+    "nudge": "{friend:Intellect}, she copied 'the marked' on one page and 'moon-blood' on another, then crossed out her second line in the margin until the nib tore through.",
     "puzzle": {
-      "q": "Did Meira treat 'the marked' and 'moon-blood' as the same thing?",
-      "clickText": "Meira copied 'the marked' and 'moon-blood' from two separate sources centuries apart, then struck her own comparison out until the paper tore. Even she realized they were not the same thing."
+      "q": "Was Meira sure of her own note on 'moon-blood'?",
+      "clickText": "Meira copied 'the marked' and 'moon-blood' from two separate old records, and under her gloss she began a second thought before scratching it out through the paper. She had a second thought she never finished."
     },
     "clicks": [
       {
         "a": "4-4-2",
         "b": "4-4-3",
-        "text": "Meira copied 'the marked' and 'moon-blood' from two separate sources centuries apart, then struck her own comparison out until the paper tore. Even she realized they were not the same thing.",
+        "text": "Meira copied 'the marked' and 'moon-blood' from two separate old records, and under her gloss she began a second thought before scratching it out through the paper. She had a second thought she never finished.",
         "solves": true
       }
     ],
@@ -858,21 +868,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "Pale curls of whittled wood. Somebody's still carving.",
-    "questionTitle": "Why do they let Joss carve while they hold him?",
-    "forkA": "To keep his hands busy so he doesn't try to escape.",
-    "forkB": "His carving has something to do with the stones or the water.",
+    "questionTitle": "They ferry Joss between the island and the drowned streets by night, yet tonight a lamp is crossing to the empty tower. Why the tower tonight?",
+    "forkA": "They shift their watch-post across the lake so no one on shore can fix where the boy is held.",
+    "forkB": "They know we took their boat on the island today and are setting a watch for us at the tower.",
     "callback": "At the Widow's Tooth a little carved horse was left behind. Today, in their boat, a little carved hull was thrown away.",
     "riddle": null,
-    "nudge": "{friend:Aim}, three willow cuts—one grey, one brown, one white. Three days he sat there whittling.",
+    "nudge": "{friend:Aim}, three willow cuts—one grey, one brown, one white—and tonight a single lamp moving out toward the tower.",
     "puzzle": {
-      "q": "How long was he kept on that reed island?",
-      "clickText": "The willow has had fresh shoots cut three days running, and the shavings in the bilge were carved without haste. He was held on that island for days, unhurried and unharmed."
+      "q": "How has Joss been kept on the reed island?",
+      "clickText": "The willow has had fresh shoots cut three days running, and the long shavings in the boat's bilge were carved without haste. They have kept him dry and unharmed on the island by day while moving him across the lake by night."
     },
     "clicks": [
       {
         "a": "4-5-1",
         "b": "4-5-3",
-        "text": "The willow has had fresh shoots cut three days running, and the shavings in the bilge were carved without haste. He was held on that island for days, unhurried and unharmed.",
+        "text": "The willow has had fresh shoots cut three days running, and the long shavings in the boat's bilge were carved without haste. They have kept him dry and unharmed on the island by day while moving him across the lake by night.",
         "solves": true
       }
     ],
@@ -880,7 +890,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
       "title": "Long curls",
       "text": "Every curl in the bottom of the boat is long and unbroken, and all of them are fresh. Nobody hurried him.",
       "source": "new",
-      "bearsOnFork": "B",
+      "bearsOnFork": "both",
       "qaNote": "Approved 15 Oct."
     }
   },
@@ -894,19 +904,29 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "cupNight": false,
     "opener": null,
     "narratedSilence": "Garrick stands in the doorway looking out into the mist where the water laps at the wall.",
-    "questionTitle": "Was the boat under the tower waiting for us or for them?",
-    "forkA": "An Order patrol guarding the flooded causeway.",
-    "forkB": "A watcher posted to see who answered the call.",
+    "questionTitle": "A boat lay in the black water right under the tower wall while the map was read aloud. Why was it waiting under an empty tower?",
+    "forkA": "They posted a listener at the tower waiting for us to assemble the map and speak the way aloud.",
+    "forkB": "They were keeping watch on the shore road and hid under the wall when they heard our oars.",
     "callback": "Yesterday you took their boat. Tonight someone took your words.",
     "riddle": null,
-    "nudge": "{friend:Aim}, water rings spreading under the stones while our oars were already still. Someone was down there before us.",
-    "puzzle": null,
-    "clicks": [],
+    "nudge": "{friend:Aim}, water rings spreading under the stones while our oars were already still, and a brief light out toward the island. Someone was down there before us.",
+    "puzzle": {
+      "q": "Was the boat under the tower alone on the lake?",
+      "clickText": "Water rings were already spreading under the tower wall before our oars stopped, and a brief light answered out toward the reed island. A hidden boat lay beneath the stones and signaled across the dark before pulling for the drowned village."
+    },
+    "clicks": [
+      {
+        "a": "4-6-1",
+        "b": "4-6-2",
+        "text": "Water rings were already spreading under the tower wall before our oars stopped, and a brief light answered out toward the reed island. A hidden boat lay beneath the stones and signaled across the dark before pulling for the drowned village.",
+        "solves": true
+      }
+    ],
     "fanOutClue": {
       "title": "The rings",
       "text": "As you tie up at the tower, rings are already spreading from the dark under its wall, and your oars have been still for a minute.",
       "source": "new",
-      "bearsOnFork": "B",
+      "bearsOnFork": "A",
       "qaNote": "Approved 15 Oct."
     }
   },
@@ -919,21 +939,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "North, then. That's a long road for tired boots.",
-    "questionTitle": "Why was the fifth name chiselled out of the waystone?",
-    "forkA": "To hide the existence of a fifth Stone altogether.",
-    "forkB": "Because the fifth Stone was taken by someone who broke from the rest.",
+    "questionTitle": "The Seekers scattered four Stones to the far corners of the land, yet left the fifth at Highwall. Why keep it in the dead city?",
+    "forkA": "They kept the fifth at Highwall to stand guard over him where he fell.",
+    "forkB": "The fifth could not be carried away from Highwall without waking him.",
     "callback": "Meira looked for a fifth and never found one. Today, on the road north, somebody had cut a line out of a stone.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, four names weathered by rain, and the fifth cut away clean. Who had the chisel?",
+    "nudge": "{friend:Intellect}, the miles left standing on the stone, and the second line under Highwall cut away to the last letter. Whose name sat under the city's?",
     "puzzle": {
-      "q": "Was the fifth Stone's hiding place cold like the others?",
-      "clickText": "The name was cut out with crisp chisel strokes, yet the crack at the waystone's foot retains the same unnatural rime you felt at every Seeker shrine. The place was real, even if its name was expunged."
+      "q": "Was the waystone only a road marker, or part of the Seekers' trail?",
+      "clickText": "The line under HIGHWALL was chiselled clean away like the king's face on the coin, and the crack at the stone's foot holds the same unnatural cold as every Seeker housing. The road marker was defaced, and the Seekers set their first sign in its foot."
     },
     "clicks": [
       {
         "a": "5-1-1",
         "b": "5-1-2",
-        "text": "The name was cut out with crisp chisel strokes, yet the crack at the waystone's foot retains the same unnatural rime you felt at every Seeker shrine. The place was real, even if its name was expunged.",
+        "text": "The line under HIGHWALL was chiselled clean away like the king's face on the coin, and the crack at the stone's foot holds the same unnatural cold as every Seeker housing. The road marker was defaced, and the Seekers set their first sign in its foot.",
         "solves": true
       }
     ],
@@ -941,7 +961,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
       "title": "The crisp edge",
       "text": "Frost has eaten the old carving, but the edges of the cut-out line are crisp. Not one letter of it is left.",
       "source": "new",
-      "bearsOnFork": "B",
+      "bearsOnFork": "both",
       "qaNote": "Approved 15 Oct."
     }
   },
@@ -954,21 +974,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "The grass on a war grave shouldn't shiver. I'd say that's the heartbeat.",
-    "questionTitle": "What is driving the wild beasts against the travellers?",
-    "forkA": "The heartbeat from the north maddens them with fear.",
-    "forkB": "They are drawn to the blood of the marked children.",
+    "questionTitle": "The heartbeat comes from Highwall for a few slow strokes at dusk and dawn, then stops. What is keeping him from waking outright?",
+    "forkA": "The four Stones have only thinned his sleep; it takes a certain night for him to wake.",
+    "forkB": "The fifth Stone is still in Highwall, holding the last of the Seekers' lock shut.",
     "callback": "On the Stillwater the birds went quiet at the first beat. Tonight the dogs came with it.",
     "riddle": null,
-    "nudge": "{friend:Might}, one bite through the linen, and tracks that scattered the moment the beat died. What did those beasts hear?",
+    "nudge": "{friend:Might}, one deep bite that held without tearing, and tracks that scattered the moment the beat died. What drove those dogs?",
     "puzzle": {
-      "q": "How did the pack behave when the tremor passed?",
-      "clickText": "When the subterranean beat sounded, the hounds froze in unison; the moment it ceased, they broke into wild scatter. They are not hunting under a master's will—they are terrified out of their wits."
+      "q": "Were the dogs hunting for themselves?",
+      "clickText": "The dogs came in a straight line from the north while the ground beat, froze mid-stride the instant the beat stopped, and scattered every way after. The beat drove them while it lasted, and let them go when it stopped."
     },
     "clicks": [
       {
         "a": "5-2-1",
         "b": "5-2-3",
-        "text": "When the subterranean beat sounded, the hounds froze in unison; the moment it ceased, they broke into wild scatter. They are not hunting under a master's will—they are terrified out of their wits.",
+        "text": "The dogs came in a straight line from the north while the ground beat, froze mid-stride the instant the beat stopped, and scattered every way after. The beat drove them while it lasted, and let them go when it stopped.",
         "solves": true
       }
     ],
@@ -976,7 +996,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
       "title": "Heads down",
       "text": "When the beat stops, every dog stops with it, heads down, mid-stride. Not one runs away, and not one comes on.",
       "source": "new",
-      "bearsOnFork": "both",
+      "bearsOnFork": "A",
       "qaNote": "Approved 15 Oct."
     }
   },
@@ -988,22 +1008,22 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "A bar of new timber in brackets worn bright. Somebody's been barring this gate for centuries, and the wood's new.",
-    "questionTitle": "Why is there a new timber bar on an ancient ruined gate?",
-    "forkA": "The Order barred it to keep intruders from entering Highwall.",
-    "forkB": "The people inside barred it to keep whatever is waking from getting out.",
+    "opener": "High on the wall, and not a breath of green in the whole city. Sit down out of the wind.",
+    "questionTitle": "Highwall's gate is barred from the inside with fresh timber in brackets worn bright by centuries of bars. Who is keeping it shut?",
+    "forkA": "The Order — keeping the dead city shut so no outsider disturbs their watch on the hall.",
+    "forkB": "Wardens left behind on the Seekers' wall — barring the gate to keep what is inside from getting out.",
     "callback": "Upriver, somebody kept a hidden path clear and a dog on new iron. Here somebody keeps a new bar on an old gate.",
     "riddle": null,
-    "nudge": "{friend:Craft}, fresh wood in old iron brackets. Somebody went to the trouble of felling an ash tree to bar that gate.",
+    "nudge": "{friend:Craft}, a broken stair knocked out with hammers long ago, and a fresh timber bar below. Somebody wants only one way in.",
     "puzzle": {
-      "q": "How recently was this gateway fortified?",
-      "clickText": "The timber bar was hewn within days, its cut ends still bright white, and a single narrow path has been trodden from it up into the city. Highwall has seen fresh boots this very week."
+      "q": "Was the gate barred long ago and left, or is someone tending it now?",
+      "clickText": "The timber bar was felled and squared within the last few days, and a single narrow path is trodden in the dust from the gatehouse straight up toward the smoke. Whoever tends the fire below the hall comes down to bar this gate."
     },
     "clicks": [
       {
         "a": "5-3-1",
         "b": "5-3-2",
-        "text": "The timber bar was hewn within days, its cut ends still bright white, and a single narrow path has been trodden from it up into the city. Highwall has seen fresh boots this very week.",
+        "text": "The timber bar was felled and squared within the last few days, and a single narrow path is trodden in the dust from the gatehouse straight up toward the smoke. Whoever tends the fire below the hall comes down to bar this gate.",
         "solves": true
       }
     ],
@@ -1024,13 +1044,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "quiet",
     "cupNight": true,
     "opener": null,
-    "narratedSilence": "Garrick sets the extra cup on the cobbles by the empty doorway and leans against the doorpost in the dark.",
-    "questionTitle": "Are the armoured figures in the streets alive or dead?",
-    "forkA": "Statues or corpses frozen by an ancient ward.",
-    "forkB": "Sentinels waiting for the final night of the count.",
+    "narratedSilence": "Garrick wipes the dust from the cups with his sleeve, pours one more than there are of you, and sets the last at the empty place by the shuttered window facing up the hill. \"Family habit. We always pour one for whoever can't be with us.\"",
+    "questionTitle": "Their boots have not stirred the dust in centuries, yet at dusk a helm seemed to turn and metal scraped on stone. Are the standing soldiers waking?",
+    "forkA": "No — they were frozen where they stood when he fell, and the dusk light played tricks on us.",
+    "forkB": "Yes — the heartbeat from the hall is beginning to stir them inside their armour.",
     "callback": "On the road, when the beat stopped, the dogs stopped where they stood. These soldiers stopped mid-stride, and never started again.",
     "riddle": null,
-    "nudge": "{friend:Aim}, left foot forward on every single one, and not a print in the dust round their boots. What stopped them mid-stride?",
+    "nudge": "{friend:Aim}, unbroken dust round every boot, and one sound of iron on stone after we barred the door.",
     "puzzle": null,
     "clicks": [],
     "fanOutClue": {
@@ -1050,21 +1070,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "One chalk stroke each dusk. Somebody's counting.",
-    "questionTitle": "What happens when the tally on the wall reaches zero?",
-    "forkA": "The doors of the great hall unlock.",
-    "forkB": "The king opens his eyes.",
+    "questionTitle": "The Order has camped facing the sealed doors for generations, crossing off one stroke each dusk. What are they counting to?",
+    "forkA": "A fixed night on the calendar that they have known from the beginning.",
+    "forkB": "A sign from inside the hall as the heartbeat grows strong enough to break the seal.",
     "callback": "At Reedham they kept Joss eight nights, waiting for something. Here they strike off one night every dusk.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, one hand drew every stroke on that board. How long has he been standing at that chalk?",
+    "nudge": "{friend:Intellect}, every stroke on that board drawn in the same square hand, and every head lifting when the beat comes. What ends when the count ends?",
     "puzzle": {
-      "q": "Who is keeping the vigil around the fire?",
-      "clickText": "Every mark on the tally was drawn by the same steady hand, and every robed head turns as one when the underground tremor pulses. They are not waiting in doubt—they are counting down to a certainty."
+      "q": "Is this camp a newly arrived war-band or a permanent post?",
+      "clickText": "The chalk strokes on the board have been gone over in the same hand until the wood is grooved, and extra bedrolls lie rolled and tied around the hearth for men on post. This camp is a permanent watch kept by a regular relief."
     },
     "clicks": [
       {
         "a": "5-5-1",
-        "b": "5-5-2",
-        "text": "Every mark on the tally was drawn by the same steady hand, and every robed head turns as one when the underground tremor pulses. They are not waiting in doubt—they are counting down to a certainty.",
+        "b": "5-5-3",
+        "text": "The chalk strokes on the board have been gone over in the same hand until the wood is grooved, and extra bedrolls lie rolled and tied around the hearth for men on post. This camp is a permanent watch kept by a regular relief.",
         "solves": true
       }
     ],
@@ -1085,21 +1105,21 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "A slit window, a hidden room, a night nobody heard you.",
-    "questionTitle": "Why was this secret chamber hollowed into the rampart?",
-    "forkA": "To shelter the fifth Stone where no one could see it.",
-    "forkB": "To keep a perpetual watch on the doors of the hall.",
+    "questionTitle": "The fifth Stone lies inside the wall beneath our feet, and we carry the mark in our blood. What happens when we open that room tonight?",
+    "forkA": "Our blood will wake the fifth right here in the wall and end his waking.",
+    "forkB": "Finding the fifth here is only half the task — it will have to be taken to his hall.",
     "callback": "Every map before tonight was read out loud. Tonight it went hand to hand, and nobody heard.",
     "riddle": null,
-    "nudge": "{friend:Aim}, two smooth hollows where elbows rested, looking straight across at the king's threshold. Who stood there?",
+    "nudge": "{friend:Aim}, two shallow dips worn into the parapet where elbows rested, facing straight up at the hall.",
     "puzzle": {
-      "q": "Was this chamber meant for hiding or observing?",
-      "clickText": "From outside, the slit is hidden unless you lean over the abyss; but inside, the sill is worn smooth by a watcher's elbows facing the hall. The room was built to observe."
+      "q": "How did the room stay hidden from the Order for centuries?",
+      "clickText": "The walkway here was built a full stride wider on the city side, and the slit window is set so low in the stone face that it cannot be seen from the square. Anyone not standing on this parapet would take the wall for solid rock."
     },
     "clicks": [
       {
         "a": "5-6-1",
-        "b": "5-6-2",
-        "text": "From outside, the slit is hidden unless you lean over the abyss; but inside, the sill is worn smooth by a watcher's elbows facing the hall. The room was built to observe.",
+        "b": "5-6-3",
+        "text": "The walkway here was built a full stride wider on the city side, and the slit window is set so low in the stone face that it cannot be seen from the square. Anyone not standing on this parapet would take the wall for solid rock.",
         "solves": true
       }
     ],

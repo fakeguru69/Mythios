@@ -1173,19 +1173,19 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
     },
     {
       "id": "4-3-2",
-      "place": "the lane up from the water",
+      "place": "the fresh keel-marks on the shingle",
       "actions": [
         {
-          "attr": "Aim",
-          "verb": "walk the lane up from the shingle"
+          "attr": "Craft",
+          "verb": "measure the groove against her skiff's keel"
         },
         {
           "attr": "Intellect",
-          "verb": "look at every door you pass"
+          "verb": "read how deep the bow bit into the wet stones"
         }
       ],
-      "clueTitle": "One door",
-      "clueText": "Small dark spots of lamp-oil stain the stones of the lane, a pace apart. They go up to her door and back, and to no other door.",
+      "clueTitle": "Heavier than her skiff",
+      "clueText": "The fresh keel-marks beside her skiff are wider and cut twice as deep into the shingle. Whatever boat touched shore here was carrying four or five people, not one.",
       "leans": "B",
       "hintFor": 2
     },
@@ -1203,7 +1203,7 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
         }
       ],
       "clueTitle": "A cleared sill",
-      "clueText": "On the tower's lowest sill, on the side facing Reedham, the weed is scraped away in a patch the size of a seat. From there you can see her window.",
+      "clueText": "On the tower's lowest sill, on the side facing the shore road, the weed is scraped away in a patch the size of a seat. Someone has sat here in the dark looking back toward Reedham.",
       "leans": "both",
       "hintFor": 1
     }
@@ -1448,7 +1448,7 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
       ],
       "clueTitle": "Heads down",
       "clueText": "When the beat stops, every dog stops with it, heads down, mid-stride. Not one runs away, and not one comes on.",
-      "leans": "both",
+      "leans": "A",
       "hintFor": 1
     },
     {
@@ -1466,7 +1466,7 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
       ],
       "clueTitle": "One bite",
       "clueText": "Under the bandage is a single bite, deep and clean. The teeth went in once and held, and nothing tore.",
-      "leans": "A",
+      "leans": "both",
       "hintFor": 1
     },
     {
@@ -1522,7 +1522,7 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
       ],
       "clueTitle": "Still white",
       "clueText": "The bar's cut end is still white, and the axe-marks are sharp. It was put up within the last few days.",
-      "leans": "B",
+      "leans": "both",
       "hintFor": 2
     },
     {
@@ -1540,7 +1540,7 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
       ],
       "clueTitle": "Knocked out",
       "clueText": "The missing steps lie at the stair's foot in big, square pieces. Every break shows the bite of a hammer, weathered smooth.",
-      "leans": "both",
+      "leans": "B",
       "hintFor": 1
     }
   ],
