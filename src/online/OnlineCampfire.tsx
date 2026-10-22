@@ -388,14 +388,27 @@ export default function OnlineCampfire({
       )
     );
   if (t?.puzzle) {
+    const hasClicked = (t.clicks?.length ?? 0) > 0 || (t.thread ?? []).some((m) => m.kind === 'click');
+    const pair = fire.clicks?.[0];
+    const matchesPiece = (target?: string) =>
+      Boolean(target && pieces.some((p) => p.key === target || p.key === `lead:${target}`));
+    const halfLaid = !hasClicked && Boolean(pair && (matchesPiece(pair.a) !== matchesPiece(pair.b)));
     add(
       arrival,
       'puzzle',
       <div className="rounded-2xl border border-[#8A6E34] bg-[#221708] p-3 space-y-1.5" data-puzzle>
-        <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158] uppercase">
-          TONIGHT&apos;S PUZZLE
+        <div className="flex items-center justify-between gap-2">
+          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158] uppercase">
+            TONIGHT&apos;S PUZZLE
+          </div>
+          {hasClicked && <span className="text-[12px] font-semibold text-[#6FD39A]">Pieced together</span>}
         </div>
         <p className="font-sans text-[15.5px] text-[#F4E8C8] leading-[1.4]">{t.puzzle.q}</p>
+        {halfLaid && (
+          <p className="text-[13.5px] text-[#CDB594] italic">
+            One half of this is on the table. The other half is still in someone&apos;s hands—or out in the dark.
+          </p>
+        )}
       </div>
     );
   }
@@ -471,15 +484,25 @@ export default function OnlineCampfire({
   // The fire's own events: pins, changed sides, clicks, and lines said at the old fire.
   (t?.thread ?? []).forEach((m, i) => {
     if (m.kind === 'laid') return; // shown as the piece's card
-    if (m.kind === 'click')
+    if (m.kind === 'click') {
+      const matchedClick = (t?.clicks ?? []).find((c) => c.text === m.body) ?? t?.clicks?.[0];
+      const clickNames = matchedClick?.names?.length ? nameList(matchedClick.names) : null;
       add(
         m.at,
         `click-${i}`,
-        <div className="rounded-2xl border border-[#8A6E34] bg-[#2A2010] p-3 space-y-1" data-click>
-          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158]">MYTHIOS · SOMETHING CLICKS</div>
-          <ScriptText text={m.body} className="font-sans text-[18px] leading-[1.5] text-[#F4E8C8]" />
+        <div className="rounded-2xl border border-[#8A6E34] bg-[#2A2010] p-3 space-y-1.5" data-click>
+          <div className="flex justify-between items-baseline gap-2">
+            <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158]">
+              MYTHIOS · SOMETHING CLICKS
+            </div>
+            {clickNames && <div className="text-[12.5px] text-[#CDB594]">{clickNames}</div>}
+          </div>
+          <Markable source="Something clicks, at the fire" text={m.body}>
+            <ScriptText text={m.body} className="font-sans text-[18px] leading-[1.5] text-[#F4E8C8]" />
+          </Markable>
         </div>
       );
+    }
     else if (m.kind === 'say')
       add(
         m.at,
@@ -696,10 +719,31 @@ export default function OnlineCampfire({
       <ErrorLine text={error} />
 
       {together ? (
-        <Composer
-          placeholder="Say something at the fire"
-          glow={hands.length > 0}
-          onSent={follow}
+        <>
+          {hands.length > 0 && (
+            <div
+              className="rounded-2xl border border-[#8A6E34] bg-[#24190B] px-3 py-2.5 flex items-center justify-between gap-2.5"
+              data-hand-bar
+            >
+              <div className="min-w-0 flex-1">
+                <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#E5C158] uppercase">
+                  In your hands{hands.length > 1 ? ` (${hands.length})` : ''}
+                </div>
+                <div className="truncate text-[14.5px] text-[#F4E8C8]">{hands[0].title}</div>
+              </div>
+              <button
+                disabled={busy}
+                onClick={() => callTable('fire_lay', { p_kind: hands[0].kind })}
+                className="shrink-0 h-9 px-3.5 rounded-xl bg-[#D4B876] font-bold text-[14px] text-[#130B1F] disabled:opacity-50"
+              >
+                Lay on the table
+              </button>
+            </div>
+          )}
+          <Composer
+            placeholder="Say something at the fire"
+            glow={hands.length > 0}
+            onSent={follow}
           onSend={async (text) => {
             const e = await sendChat(partyId, text, true);
             if (!e) reloadChat();
@@ -742,7 +786,8 @@ export default function OnlineCampfire({
               </button>
             </>
           )}
-        />
+          />
+        </>
       ) : null /* Day 1's fire is solitary and says nothing of the others (Fake Guru, 18 Oct: "keep it solitary, don't mention others"). */}
     </div>
   );

@@ -408,9 +408,9 @@ export const BagTabView: React.FC<BagTabViewProps> = ({
           <div className="pt-2 space-y-2.5">
             <div className="flex items-center justify-between px-0.5">
               <span className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876] uppercase">
-                📜 Clues
+                📜 Found Along the Road
               </span>
-              <span className="text-[11.5px] font-sans text-[#B7A9CC]">What you hold</span>
+              <span className="text-[11.5px] font-sans text-[#B7A9CC]">Carried in your pack</span>
             </div>
             {(() => {
               const held = CHAPTER_SCRIPTS.filter(

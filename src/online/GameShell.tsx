@@ -12,6 +12,7 @@ import OnlineGathering, { GatheringCard } from './OnlineGathering';
 import OnlineChest from './OnlineChest';
 import OnlineCasebook from './OnlineCasebook';
 import OnlineStore from './OnlineStore';
+import { OnlineFoundShelf, OnlineVersesShelf } from './OnlineBagShelves';
 import { EarlierFire, partyDayStart } from './FireChat';
 import LastNight from './LastNight';
 import { NotebookProvider } from './Markable';
@@ -282,39 +283,46 @@ export default function GameShell({
         )}
 
         {tab === 'bag' && (
-          <div className="space-y-4" data-pane="bag">
-            {/* The Bag's four shelves (Fake Guru, 18 Oct). */}
-            <div className="grid grid-cols-2 gap-2" role="tablist">
-              {BAG_SHELVES.map(([k, label]) => (
-                <button
-                  key={k}
-                  role="tab"
-                  aria-selected={bagView === k}
-                  onClick={() => setBagView(k)}
-                  className={`rounded-full px-3 py-2 text-[14px] font-semibold border ${
-                    bagView === k ? 'bg-[#D4B876] text-[#1A0F26] border-[#D4B876]' : 'text-[#B7A9CC] border-[#3A2555]'
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
+          <NotebookProvider partyId={party.id}>
+            <div className="space-y-4" data-pane="bag">
+              {/* The Bag's four shelves (Fake Guru, 18 Oct). */}
+              <div className="grid grid-cols-2 gap-2" role="tablist">
+                {BAG_SHELVES.map(([k, label]) => (
+                  <button
+                    key={k}
+                    role="tab"
+                    aria-selected={bagView === k}
+                    onClick={() => setBagView(k)}
+                    data-bag-shelf-tab={k}
+                    className={`rounded-full px-3 py-2 text-[14px] font-semibold border ${
+                      bagView === k ? 'bg-[#D4B876] text-[#1A0F26] border-[#D4B876]' : 'text-[#B7A9CC] border-[#3A2555]'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              {bagView === 'chest' && <OnlineChest partyId={party.id} onClose={() => undefined} embedded onChanged={() => setStoryKey((k) => k + 1)} />}
+              {bagView === 'verses' && (
+                <OnlineVersesShelf
+                  partyId={party.id}
+                  friends={friends.map((r) => r.character_name)}
+                  partySize={approved.length}
+                  reloadKey={storyKey}
+                />
+              )}
+              {bagView === 'found' && (
+                <OnlineFoundShelf
+                  partyId={party.id}
+                  friends={friends.filter((r) => r.session_zero_done_at).map((r) => ({ id: r.user_id, name: r.character_name }))}
+                  partySize={approved.length}
+                  reloadKey={storyKey}
+                  onChanged={() => setStoryKey((k) => k + 1)}
+                />
+              )}
+              {bagView === 'journal' && <OnlineCasebook partyId={party.id} onClose={() => undefined} embedded />}
             </div>
-            {bagView === 'chest' && <OnlineChest partyId={party.id} onClose={() => undefined} embedded onChanged={() => setStoryKey((k) => k + 1)} />}
-            {bagView === 'verses' && (
-              <div className="rounded-2xl border border-[#3A2555] bg-[#180F29] p-4 space-y-2" data-shelf="verses">
-                <h2 className="font-['Cinzel'] font-bold text-[17px] text-[#E5C158]">The Dark Moon Verses</h2>
-                <p className="text-[16px] text-[#D9D1E6]">The first verse is read at the Gathering.</p>
-              </div>
-            )}
-            {bagView === 'found' && (
-              <div className="rounded-2xl border border-[#3A2555] bg-[#180F29] p-4 space-y-2" data-shelf="found">
-                <h2 className="font-['Cinzel'] font-bold text-[17px] text-[#E5C158]">Found Along the Road</h2>
-                <p className="text-[16px] text-[#D9D1E6]">The things you carry and the clues you find on the road are kept here.</p>
-                <p className="text-[14px] text-[#8B7A9E]">Your Relics are kept in the Store for now.</p>
-              </div>
-            )}
-            {bagView === 'journal' && <OnlineCasebook partyId={party.id} onClose={() => undefined} embedded />}
-          </div>
+          </NotebookProvider>
         )}
 
         {tab === 'store' && (
