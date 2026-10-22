@@ -689,21 +689,42 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   );
 
   const partyList = (
-    <ul className="space-y-1.5">
-      {approved.map((r) => (
-        <li key={r.user_id} className="flex items-center justify-between gap-2">
-          <span className="text-[15px]">
-            {r.user_id === userId ? 'You' : r.character_name}
-            {r.user_id === party.host_id ? ' (host)' : ''}
-            <span className="text-[#B7A9CC]"> — {r.ready ? 'ready' : 'choosing'}</span>
-          </span>
-          {isHost && r.user_id !== userId && (
-            <button className={quietButton} onClick={() => setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name })}>
-              Remove
-            </button>
-          )}
-        </li>
-      ))}
+    <ul className="space-y-2">
+      {approved.map((r) => {
+        const isYou = r.user_id === userId;
+        const isPartyHost = r.user_id === party.host_id;
+        return (
+          <li
+            key={r.user_id}
+            className={`flex items-center justify-between gap-2.5 p-2.5 rounded-xl border ${
+              isYou ? 'border-[#5A3886] bg-gradient-to-r from-[#201235] to-[#160D25]' : 'border-[#2C1D40] bg-[#140C20]'
+            }`}
+          >
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="w-8 h-8 shrink-0 rounded-full bg-[#2A1A40] text-[#E5C158] font-['Cinzel'] font-bold text-[14px] flex items-center justify-center border border-[#432A66]">
+                {(r.character_name || '?').charAt(0).toUpperCase()}
+              </div>
+              <div className="min-w-0">
+                <div className="text-[15px] truncate">
+                  <span className="font-semibold text-[#F4F1F8]">{isYou ? 'You' : r.character_name}</span>
+                  {isPartyHost && <span className="text-[#D4B876] text-[12px] font-normal"> (host)</span>}
+                  <span className={r.ready ? 'text-[#D4B876] font-medium' : 'text-[#8F82A6]'}>
+                    {' '}— {r.ready ? 'ready' : 'choosing'}
+                  </span>
+                </div>
+              </div>
+            </div>
+            {isHost && r.user_id !== userId && (
+              <button
+                className={`${quietButton} text-[12px] py-1 px-2.5 text-[#F08A8A] border-[#5A2525] hover:border-[#F08A8A]`}
+                onClick={() => setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name })}
+              >
+                Remove
+              </button>
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 
@@ -722,92 +743,165 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
     };
 
     const panel = (shell: { joinGathering: () => void }) => (
-      <div className="space-y-4">
+      <div className="space-y-6">
         {removeDialog}
         {leaveDialog}
-        <Notifications compact />
-        <div className="space-y-2">
-          <p className="text-[12px] font-bold tracking-[1px] text-[#8F82A6]">
-            {party.name.toUpperCase()} · {approved.length} OF {MAX_PARTY_SIZE}
-          </p>
-          {approved.map((r) => {
-            const status = friendStatus(r);
-            return (
-              <div key={r.user_id} className="rounded-xl border border-[#2C1D40] bg-[#150D22] px-3.5 py-2.5 space-y-2" data-panel-friend>
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-9 h-9 shrink-0 rounded-full bg-[#2A1A40] text-[#E5C158] font-['Cinzel'] font-bold text-[15px] flex items-center justify-center border border-[#432A66]"
-                    data-friend-avatar
-                  >
-                    {(r.character_name || '?').charAt(0).toUpperCase()}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-[16px] font-semibold truncate flex items-center gap-1.5">
-                      <span className="truncate">{r.character_name}</span>
-                      {r.user_id === userId && <span className="font-normal text-[13px] text-[#B7A9CC] shrink-0">· you</span>}
-                      {r.user_id === party.host_id && <span className="font-normal text-[13px] text-[#B7A9CC] shrink-0">· host</span>}
-                    </div>
-                    <div className="text-[13px] text-[#B7A9CC] flex items-center gap-1.5 truncate">
-                      {r.class && <span data-friend-class>{r.class}</span>}
-                      {r.class && status && <span className="text-[#5E4585]">·</span>}
-                      {status && (
-                        <span
-                          data-friend-status
-                          className={status === 'At the fire' ? 'text-[#E5C158] font-medium' : 'text-[#8F82A6]'}
-                        >
-                          {status}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  {isHost && r.user_id !== userId && (
-                    <button
-                      className="w-9 h-9 shrink-0 rounded-full text-[18px] text-[#8F82A6] hover:text-[#F4F1F8] flex items-center justify-center transition"
-                      aria-label={`More for ${r.character_name}`}
-                      data-friend-menu-button
-                      onClick={() => setMenuFor(menuFor === r.user_id ? null : r.user_id)}
+
+        {/* ══════════ 1. THE FELLOWSHIP ══════════ */}
+        <section className="space-y-3">
+          <div className="flex items-center justify-between pb-1.5 border-b border-[#2C1D40]">
+            <div>
+              <p className="text-[10px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
+                The Fellowship
+              </p>
+              <h2 className="text-[15px] font-['Cinzel'] font-bold text-[#F4F1F8] tracking-wide">
+                {party.name.toUpperCase()}
+              </h2>
+            </div>
+            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#2A1A40] text-[#D4B876] border border-[#432A66]">
+              {approved.length} OF {MAX_PARTY_SIZE}
+            </span>
+          </div>
+
+          <div className="space-y-2">
+            {approved.map((r) => {
+              const status = friendStatus(r);
+              const isYou = r.user_id === userId;
+              const isMemberHost = r.user_id === party.host_id;
+              return (
+                <div
+                  key={r.user_id}
+                  className={`rounded-xl border ${
+                    isYou
+                      ? 'border-[#5A3886] bg-gradient-to-r from-[#1F1235] to-[#150D24]'
+                      : 'border-[#2C1D40] bg-[#150D22]'
+                  } px-3.5 py-2.5 space-y-2 transition`}
+                  data-panel-friend
+                >
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="w-9 h-9 shrink-0 rounded-full bg-[#2A1A40] text-[#E5C158] font-['Cinzel'] font-bold text-[15px] flex items-center justify-center border border-[#432A66]"
+                      data-friend-avatar
                     >
-                      ⋯
-                    </button>
+                      {(r.character_name || '?').charAt(0).toUpperCase()}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-[15px] font-semibold truncate flex items-center gap-1.5">
+                        <span className="truncate text-[#F4F1F8]">{r.character_name}</span>
+                        {isYou && (
+                          <span className="font-medium text-[11px] px-1.5 py-0.2 rounded bg-[#3A2555] text-[#D4B876] shrink-0">
+                            you
+                          </span>
+                        )}
+                        {isMemberHost && (
+                          <span className="font-normal text-[11px] text-[#B7A9CC] shrink-0">
+                            · host
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-[12px] text-[#B7A9CC] flex items-center gap-1.5 truncate">
+                        {r.class && (
+                          <span data-friend-class className="font-medium text-[#D4B876]">
+                            {r.class}
+                          </span>
+                        )}
+                        {r.class && status && <span className="text-[#5E4585]">·</span>}
+                        {status && (
+                          <span
+                            data-friend-status
+                            className={status === 'At the fire' ? 'text-[#E5C158] font-medium' : 'text-[#8F82A6]'}
+                          >
+                            {status}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    {isHost && r.user_id !== userId && (
+                      <button
+                        className="w-9 h-9 shrink-0 rounded-full text-[18px] text-[#8F82A6] hover:text-[#F4F1F8] flex items-center justify-center transition"
+                        aria-label={`More for ${r.character_name}`}
+                        data-friend-menu-button
+                        onClick={() => setMenuFor(menuFor === r.user_id ? null : r.user_id)}
+                      >
+                        ⋯
+                      </button>
+                    )}
+                  </div>
+                  {menuFor === r.user_id && (
+                    <div className="pt-2 border-t border-[#2C1D40] flex justify-end" data-friend-menu>
+                      <button
+                        className={`${quietButton} text-[#F08A8A] border-[#682323] hover:border-[#F08A8A] text-[13px]`}
+                        data-remove-button
+                        onClick={() => {
+                          setMenuFor(null);
+                          setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name });
+                        }}
+                      >
+                        Remove from the party
+                      </button>
+                    </div>
                   )}
                 </div>
-                {menuFor === r.user_id && (
-                  <div className="pt-2 border-t border-[#2C1D40] flex justify-end" data-friend-menu>
-                    <button
-                      className={`${quietButton} text-[#F08A8A] border-[#682323] hover:border-[#F08A8A] text-[13px]`}
-                      data-remove-button
-                      onClick={() => {
-                        setMenuFor(null);
-                        setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name });
-                      }}
-                    >
-                      Remove from the party
-                    </button>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-        {pendingCard}
-        {inviteCard}
-        <GatheringCard partyId={party.id} isHost={isHost} timeZone={party.time_zone} onOpen={shell.joinGathering} />
-        <GarrickRecap
-          partyId={party.id}
-          partySize={approved.length}
-          friends={approved.filter((r) => r.user_id !== userId).map((r) => r.character_name ?? '')}
-        />
-        <div className="rounded-xl border border-[#2C1D40] overflow-hidden text-[15px]">
-          <div className="flex justify-between gap-3 px-3 py-3 border-b border-[#2C1D40]">
-            <span className="text-[#B7A9CC]">Party clock</span>
-            <span className="text-right">{timeZoneLabel(party.time_zone)}</span>
+              );
+            })}
           </div>
-        </div>
-        {nameCard}
-        <ErrorLine text={error} />
-        <button className={`w-full ${quietButton} py-2.5`} onClick={onBack}>
-          ← Your stories
-        </button>
+
+          {pendingCard}
+          {inviteCard}
+        </section>
+
+        {/* ══════════ 2. CHRONICLES OF THE ROAD (Story & Gatherings) ══════════ */}
+        <section className="space-y-3">
+          <div className="flex items-center justify-between pb-1.5 border-b border-[#2C1D40]">
+            <div>
+              <p className="text-[10px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
+                Story & Lore
+              </p>
+              <h3 className="text-[14px] font-['Cinzel'] font-bold text-[#F4F1F8]">
+                Chronicles of the Road
+              </h3>
+            </div>
+          </div>
+          <GatheringCard partyId={party.id} isHost={isHost} timeZone={party.time_zone} onOpen={shell.joinGathering} />
+          <GarrickRecap
+            partyId={party.id}
+            partySize={approved.length}
+            friends={approved.filter((r) => r.user_id !== userId).map((r) => r.character_name ?? '')}
+          />
+        </section>
+
+        {/* ══════════ 3. CAMPFIRE & EXPEDITION SETTINGS ══════════ */}
+        <section className="space-y-3">
+          <div className="flex items-center justify-between pb-1.5 border-b border-[#2C1D40]">
+            <div>
+              <p className="text-[10px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
+                Campfire
+              </p>
+              <h3 className="text-[14px] font-['Cinzel'] font-bold text-[#F4F1F8]">
+                Party & Character Settings
+              </h3>
+            </div>
+          </div>
+
+          <Notifications compact />
+
+          <div className="rounded-xl border border-[#2C1D40] bg-[#160D23] overflow-hidden text-[14px]">
+            <div className="flex justify-between items-center px-3.5 py-3 border-b border-[#2C1D40]/60">
+              <span className="text-[#B7A9CC] flex items-center gap-2">
+                <span className="text-[15px]">⏱</span> Party clock
+              </span>
+              <span className="text-right font-medium text-[#F4F1F8]">{timeZoneLabel(party.time_zone)}</span>
+            </div>
+          </div>
+
+          {nameCard}
+
+          <ErrorLine text={error} />
+
+          <button className={`w-full ${quietButton} py-2.5 font-['Cinzel'] tracking-wide`} onClick={onBack}>
+            ← Your stories
+          </button>
+        </section>
       </div>
     );
     return <GameShell party={party} userId={userId} me={me} approved={approved} members={members} chatOpen={chatOpen} panel={panel} />;
@@ -847,25 +941,54 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         </Confirm>
       )}
 
-      {/* Screen 6 (a friend) or Screen 4 (the host): the waiting room. */}
+      {/* Host call-to-action if character not created yet */}
+      {isHost && !me.session_zero_done_at && (
+        <div className={`${card} border-[#E5C158]/50 bg-gradient-to-b from-[#2B1B44] to-[#1A102A]`}>
+          <div className="flex items-center gap-2.5">
+            <span className="text-[20px]">🗡️</span>
+            <div>
+              <p className="text-[10px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">First Step</p>
+              <h3 className={`${heading} text-[15px]`}>Your character comes first</h3>
+            </div>
+          </div>
+          <p className="text-[15px]">Your own character comes first.</p>
+          <button className={goldButton} onClick={() => setDoingSessionZero(true)}>
+            BEGIN
+          </button>
+        </div>
+      )}
+
+      {/* Screen 6 (a friend) or Screen 4 (the host): the waiting room / fellowship roster */}
       <div className={card}>
-        {isHost ? (
-          <h2 className={`${heading} text-[18px]`}>Your party</h2>
-        ) : (
-          <>
-            {!started && <h2 className={`${heading} text-[18px]`}>You're ready.</h2>}
-            <h3 className={`${heading} text-[15px]`}>The party</h3>
-          </>
-        )}
-        <p className={note}>
-          {party.name} · {seriesTitle(party.series_id)} · Season {party.season_number}
-        </p>
+        <div className="space-y-1">
+          <p className="text-[10px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
+            The Fellowship
+          </p>
+          {isHost ? (
+            <h2 className={`${heading} text-[18px]`}>Your party</h2>
+          ) : (
+            <>
+              {!started && <h2 className={`${heading} text-[18px]`}>You're ready.</h2>}
+              <h3 className={`${heading} text-[15px]`}>The party</h3>
+            </>
+          )}
+          <p className={note}>
+            {party.name} · {seriesTitle(party.series_id)} · Season {party.season_number}
+          </p>
+        </div>
+
         {partyList}
+
         {!isHost && (
-          <p className="text-[15px] pt-1">{!started ? `The road opens when ${host} says so.` : beforeDayOne ? doorLine : ''}</p>
+          <p className="text-[14px] text-[#B7A9CC] pt-1">
+            {!started ? `The road opens when ${host} says so.` : beforeDayOne ? doorLine : ''}
+          </p>
         )}
-        {isHost && started && beforeDayOne && <p className="text-[15px] pt-1">{doorLine}</p>}
+        {isHost && started && beforeDayOne && <p className="text-[14px] text-[#B7A9CC] pt-1">{doorLine}</p>}
       </div>
+
+      {pendingCard}
+      {inviteCard}
 
       {/* Notifications on this phone: the 8:00am line, the Day 4 poll, the Gathering's time and its reminder (0069). */}
       {started && me.session_zero_done_at && <Notifications />}
@@ -886,18 +1009,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         </NotebookProvider>
       )}
 
-      {isHost && !me.session_zero_done_at && (
-        <div className={card}>
-          <p className="text-[15px]">Your own character comes first.</p>
-          <button className={goldButton} onClick={() => setDoingSessionZero(true)}>
-            BEGIN
-          </button>
-        </div>
-      )}
-
-      {pendingCard}
-      {inviteCard}
-
+      {/* Expedition & Clock Settings */}
       {isHost && (
         <div className={card}>
           <div className="flex items-center justify-between gap-2">
