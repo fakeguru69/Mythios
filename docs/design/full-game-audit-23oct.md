@@ -40,6 +40,10 @@ His week 6 confession matches the road. He never promised he was not one of them
 
 **Suggested life stories walk into the plot.** `SessionZero.tsx` offers birthplaces Ashcombe, Fenmark, Highwall, The Reeds, Oldford, and heritage chips *Grandmother Meira*, *Grandfather Corin*, *A carved horse*. Meira is the missing scholar. Corin is a child you have not met. Highwall is the dead city in week 5. A player who taps "Grandmother Meira" on night zero either spoils the name or spends six weeks waiting for a grandmother who is a stranger. Replace the chips with things that are not in the plot: a ferry town, a grandmother's unfinished scarf, a name the player types. The two optional questions are good. The suggestions are not.
 
+**The fail button sometimes lies, and the next sentence tells the truth anyway.** Week 1, the ford (`chapterScripts.ts`): if you fail READ THE WATERLINE, the text says you will never know how she came to the water, and the fail prose is only "He lifted something." The next shared line still says she was carried into the river. The morning recap uses the success version. A fail that the story immediately overrules teaches the player that the roll was theatre. Either the shared line stays "lifted something" until someone walks the bank tonight, or the fail text must not promise ignorance.
+
+**One fan-out fights the chapter.** Week 1, the far bank: the day says there is not one print over there. Lead `1-6-1` then hangs woollen threads on a thorn at a child's height on that same bank. Threads without prints can be true (someone was carried, not walking), but the day has to have left room for it. Right now it reads as a mistake. Add one clause to the day: the mud takes a boot, and it does not take a knee. Then the threads are the carry, not a contradiction.
+
 **One campfire line still counts the party as four.** Week 2, the shaft: *What matters more to them than four strangers at the lip?* Four shards is lore. Four strangers is the party, and the party is two to six. Say *strangers at the lip*.
 
 **Small parties are handled in the chapters and forgotten at the fire.** `smallPartyLines.ts` shortens lines that name Mei, Dev, and Jo when the party is smaller. The fire does not. Cup lines, "four torn pages," and the shaft line assume a full table. A party of two should hear one empty cup, not a speech about four guests.
@@ -133,7 +137,13 @@ What does not change is the discovery. You always find the fragment. You always 
 
 Attribute notices are the other half of agency, and they are the right half. Each day, Might, Charm, Aim and the rest each see a different physical thing (`notice` steps in `chapterScripts.ts`). That is information asymmetry, and it is the only reason a Sage and an Archer have different news at the fire. It only works if each player is shown **their** notice and not the whole set. The day screen rolls one notice. Good. Do not "helpfully" show all six. The fire is where the others are heard.
 
-Approach choices inside a scene (which door, which question) mostly converge. They are voice, not fork. That is acceptable once or twice a week. It is not acceptable as the only choice on thirty-six days.
+Approach choices inside a scene mostly converge. Three of them are fake in a way the player can feel:
+
+- **Week 5, the wall.** The buttons offer to post a different friend as lookout. The next paragraph always has the same friend crouch and the same friend come last. Delete the buttons, or actually swap who watches.
+- **Week 6, day 1.** The arrow is read before the choice. Both buttons then get the same line from Garrick. Hold "it points down" for the person who traces it.
+- **Week 5, the waystone.** A failed rubbing is supposed to leave the stone unreadable. The next line still has Garrick name Highwall. On a failure he should name the road only. The city can wait for the fire.
+
+They are voice, not fork, on most other days. That is acceptable once or twice a week. It is not acceptable as the only choice on thirty-six days, and it is not acceptable when the button's promise is broken by the next sentence. The ford in week 1 is the clearest case, above.
 
 One concrete rule, applied to the three thin days:
 
@@ -274,7 +284,7 @@ Where it goes dry:
 - **Repeated lateness,** already noted.
 - **Garrick's lesser host lines,** mostly gone. The ones that remain should be cut on sight if they could be said at any inn. *Give me a minute,* on the tower stair, is perfect because he is old and the stair was long. *Sit* is not, unless the day is in the sentence before it.
 
-**Names in the sentence.** I looked for the old bug of a capital *The* glued on in the middle of a line (*at The boundary stone*). The chapter text now says places the way a person would. Do not reintroduce a highlighter that capitalises the label. On a phone, a place or a person can take a slightly warmer colour the first time it matters that day. After that it is just English. Relics should not be coloured like loot. They are objects in a pocket.
+**Names in the sentence.** The chapters themselves do not glue a capital *The* into the middle of a line. The fire does, by pasting the place label on the end of a sentence. `campfireDaysData.ts` and `OnlineCampfire.tsx` build "passed today's Challenge at ${place}", and the place is stored as "The Hollow Wake Inn." The player reads *You passed today's Challenge at The Hollow Wake Inn.* Same for the Widow's Tooth and the Low Ford. Lowercase the article when a place is dropped into a sentence: *at the Hollow Wake Inn*, *on the forest road*. Do not highlight the label. On a phone, a place or a person can take a slightly warmer colour the first time it matters that day. After that it is just English. Relics should not be coloured like loot. They are objects in a pocket.
 
 Before:
 
@@ -313,9 +323,9 @@ The fragment toast is the worst seam. The stone gives. The sentence is already t
 
 **Session Zero** asks for a name, a way of fighting, a second skill, and two optional facts. The class list is clear. Two problems. The role names already say "Seeker scholar" for the Sage, before the player has earned that word; call the Sage a reader of old marks. And the suggested grandparents, above. The stakes in the mystery are one sentence: *Before the week is out, it will be your business.* That is enough onboarding. Do not add a lore essay. Do add, after the name, one line in Garrick's voice, even though they have not met him: *Get some sleep. The road does not wait on a late start.* Then stop.
 
-**The party screen.** After the latest pass, story and chores are easier to tell apart than they were: the road is the thing in front of you, and invites and settings are not dressed as chapters. The test I would still apply on a phone, cold, at 8am: can you see, without scrolling, (a) today's question, (b) whether you have walked yet, (c) who is already at the fire. If any of those three is behind a tab, it is wrong. The day's question should be the title of the day, the way the scripts already name it (*who is this man, and what does he want with me?*). Not a menu label.
+**The party screen.** Story and chores are easier to tell apart than they were: the road is in front of you, and invites are not dressed as chapters. The day's actual question (*who is this man, and what does he want with me?*) is in the script and is **not shown** on the story screen. It appears later, at the fire, or buried in the journal. At 8am the player should see that question as the title of the day. Waiting is also buried: you learn who is at the fire by opening the party name, not from the page you are reading. "The others are already a day further down the road" (`OnlineDay.tsx`) is the honest version of that. Match it at the fire: *Two leads are still out. Yours is not the missing half,* or *You are the missing half.*
 
-**Waiting.** The game is good at telling you a friend has arrived, in the notification copy. It is bad at telling you, on the screen, what you are waiting *for*. "The others are already a day further down the road" is a real sentence (`OnlineDay.tsx`). Match that honesty at the fire: *Two leads are still out. Yours is not the missing half,* or *You are the missing half.*
+**Session Zero is a character sheet with a good first sentence.** Name, calling, second strength, birthplace, grandparent, then a page of weapon, armor, and gold. Six taps before the road. The premise is enough: children are missing, and before the week is out it will be your business. Cut the sheet's ceremony titles (THE LEDGER, YOUR CALLING) or the player will think they have joined a menu. And do not offer Highwall, Grandmother Meira, or Grandfather Corin as chips. Those names are the plot.
 
 ---
 
