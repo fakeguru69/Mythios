@@ -25,7 +25,7 @@ export type ScriptStep =
       labels: string[];
       /** pick: only the picked branch · each: pick until every branch is seen · auto: picked, then the rest · flavor: no branches */
       mode: 'pick' | 'each' | 'auto' | 'flavor';
-      branches: { options: number[]; text: string; changed?: string; roadFind?: { title: string; text: string }; relic?: AttributeName }[];
+      branches: { options: number[]; text: string; changed?: string; roadFind?: { title: string; text: string; lost?: string }; relic?: AttributeName }[];
     }
   | { t: 'notice'; lines: Partial<Record<AttributeName, { first: string; second?: string }>> }
   | {
@@ -1867,7 +1867,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You read the wheel-marks along the open bank, so the Challenge asked for Craft. Somebody on the slope watched you do it, and tomorrow the shaft is one harder.",
             "roadFind": {
               "title": "The bite on the grey slab",
-              "text": "At the grey slab upriver the iron tyre of the cart has bitten pale into the rock, pulling to the left, the way it pulled at the ford."
+              "text": "At the grey slab upriver the iron tyre of the cart has bitten pale into the rock, pulling to the left, the way it pulled at the ford.",
+              "lost": "The cart's iron tyre bit pale into a grey slab upriver, pulling left. In the noisy climb after, you lost track of which slab it was."
             }
           },
           {
@@ -1878,7 +1879,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You went through the thorn, slow and hidden, so the Challenge asked for Agility, and nobody on the slope saw you.",
             "roadFind": {
               "title": "Wool on the thorn",
-              "text": "In the cut and tied thorn above the river, at the height of a boy's shoulder, a few threads of undyed wool are caught on a spine."
+              "text": "In the cut and tied thorn above the river, at the height of a boy's shoulder, a few threads of undyed wool are caught on a spine.",
+              "lost": "There was undyed wool on the thorn, at a boy's height. It tore away in your scramble up the path, and you came out with only scratches to show for it."
             }
           }
         ]
@@ -2043,7 +2045,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You went down on the beat of their voices, so the Challenge asked for Agility.",
             "roadFind": {
               "title": "The beat of their words",
-              "text": "At the top of the shaft you moved on the beat of their voices: the same few words, said together, over and over, like people who mean to have them by heart."
+              "text": "At the top of the shaft you moved on the beat of their voices: the same few words, said together, over and over, like people who mean to have them by heart.",
+              "lost": "They were saying the same few words over and over, together. You were seen before you could hold on to a single one of them."
             }
           },
           {
@@ -2054,7 +2057,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You went down in their hooded coat, so the Challenge asked for Charm. Somebody below will miss it, and the night at the lip is one harder.",
             "roadFind": {
               "title": "The coat on the peg",
-              "text": "A hooded coat hung on a peg at the top of the shaft: cut for a big man, damp at the shoulders, its hem caked with the pale clay of the cart-lane."
+              "text": "A hooded coat hung on a peg at the top of the shaft: cut for a big man, damp at the shoulders, its hem caked with the pale clay of the cart-lane.",
+              "lost": "There was a hooded coat on a peg at the shaft-top, its hem caked with the cart-lane's clay. You left it in the roots when you were driven back."
             }
           }
         ]
@@ -3229,23 +3233,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
               0
             ],
             "text": "The hoof-scratches go the long way, round the head of the fold. You follow them in, in the open. {F2} takes the goat-track that her chips mark, and comes down it with five more in hand.",
-            "changed": "You took the riders' open line round the fold — the grey coat on the ridge saw you coming and strikes first.",
+            "changed": "You took the riders' open line round the fold. Where their horses slowed for the rise, one of them had dropped something worth keeping: an Agility Relic. But the grey coat on the ridge saw you coming, and strikes first.",
             "roadFind": {
               "title": "Hoof-scratches round the fold",
               "text": "The riders' line went the long way round the head of the fold in plain view of the ridge where the grey coat had been left to watch."
-            }
+            },
+            "relic": "Agility"
           },
           {
             "options": [
               1
             ],
             "text": "Her chips mark something shorter: a goat-track straight down through the rocks, which nobody on a horse could take. You find five more of them on the way. She walked this part.",
-            "changed": "You followed Wren's chips down the goat-track — you come upon the grey coat unseen, strike first, and claim an Agility Relic.",
+            "changed": "You followed Wren's chips down the goat-track, and came upon the grey coat unseen: you strike first.",
             "roadFind": {
               "title": "Five chips on the goat-track",
               "text": "Down the steep goat-track where no horse could go, five more chips of black glass marked the path Wren walked on her own feet."
-            },
-            "relic": "Agility"
+            }
           }
         ]
       },
@@ -3627,7 +3631,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
               0
             ],
             "text": "{F2} takes Wren up toward the air. Everyone else stands exactly where they are, and nobody moves a foot.",
-            "changed": "You stayed to guard the ash while {F2} took Wren up — not a boot moved across the floor before you bent with the lamp.",
+            "changed": "You stayed to guard the ash while {F2} took Wren up, and not a boot moved across the floor before you bent to it with the lamp.",
             "roadFind": {
               "title": "Still boots in the ash",
               "text": "While {F2} carried Wren up toward the cooler air, everyone else in the Kiln chamber stood motionless where they were so not a single fresh print crossed the ash."
@@ -3638,7 +3642,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
               1
             ],
             "text": "You take her up to where the air is cooler, and come back down. {F1} has kept every boot off the ash for you.",
-            "changed": "You carried Wren up to the cool air first — {F1} kept every boot off the ash for you, and your care earned an Aim Relic.",
+            "changed": "You carried Wren up to the cool air first, and your care earned an Aim Relic. {F1} kept every boot off the ash, but the lamp burned low while you were gone: the Challenge is one harder.",
             "roadFind": {
               "title": "Cool air at the Kiln mouth",
               "text": "When you took Wren up to the cooler air first before returning to the chamber floor, {F1} held the room still so every print in the ash waited untouched for your lamp."
@@ -3680,7 +3684,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "your own prints are over his, and only the direction is left"
+        "fail": "your own prints are over his, and only the direction is left",
+        "harderIf": {
+          "key": "4-1:took:0:1",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** The lamp burned low while you were up the passage with her, and you come back to the ash by a smaller flame."
+        }
       },
       {
         "t": "say",
@@ -4050,7 +4060,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You patched her skiff before you put out, so the Challenge asked for Craft.",
             "roadFind": {
               "title": "The shirt in the plank",
-              "text": "The rag stuffed into the sprung plank of her skiff is a boy's shirt, washed thin, too small now for anybody in that house."
+              "text": "The rag stuffed into the sprung plank of her skiff is a boy's shirt, washed thin, too small now for anybody in that house.",
+              "lost": "The rag in her skiff's sprung plank was a boy's shirt. It worked loose a quarter of the way out, and the lake took it."
             }
           },
           {
@@ -4061,7 +4072,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You rowed her hard, so the Challenge asked for Might, and you came in early enough to see the tie-mark. Your arms will feel it tomorrow: the lowest lane is one harder.",
             "roadFind": {
               "title": "The tie-mark on the step",
-              "text": "On the drowned tower's lowest step the weed is scraped away in one place, where a boat's rope has been tied, and tied often."
+              "text": "On the drowned tower's lowest step the weed is scraped away in one place, where a boat's rope has been tied, and tied often.",
+              "lost": "There was a tie-mark in the weed of the drowned tower's lowest step. You came in bailing, and by the time the boat was still you could not find it again."
             }
           }
         ]
@@ -4201,7 +4213,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You kept the lamp shuttered, so the Challenge asked for Agility, and nobody on the lake saw you.",
             "roadFind": {
               "title": "A light on the island",
-              "text": "From the dark of the lowest lane, a light showed once on the reed island and went out, as if somebody had opened a door and thought better of it."
+              "text": "From the dark of the lowest lane, a light showed once on the reed island and went out, as if somebody had opened a door and thought better of it.",
+              "lost": "A light showed once on the reed island, you are almost sure of it. Then you were in the water to the waist, and when you looked again there was nothing."
             }
           },
           {
@@ -4212,7 +4225,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You lit the lamp, so the Challenge asked for Aim. A light moving in the drowned streets can be seen from the lake: tomorrow's fog is one harder.",
             "roadFind": {
               "title": "Barefoot",
-              "text": "By lamplight, the small prints in Old Reedham's lowest lane show the round of a heel and five toes: the boy was walked through the drowned streets barefoot."
+              "text": "By lamplight, the small prints in Old Reedham's lowest lane show the round of a heel and five toes: the boy was walked through the drowned streets barefoot.",
+              "lost": "By lamplight the small prints in the lowest lane looked bare. Then the lamp went into the water with you, before anyone else could see them."
             }
           }
         ]
@@ -4536,7 +4550,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You walled the lamp in with your coats, so the Challenge asked for Craft, and the tower's windows stayed dark from the shore.",
             "roadFind": {
               "title": "A light walled in",
-              "text": "In the drowned tower's bell-chamber you read the map by a lamp walled in with coats and packs and shoulders, so close that it lit only the six pieces and the hands that held them."
+              "text": "In the drowned tower's bell-chamber you read the map by a lamp walled in with coats and packs and shoulders, so close that it lit only the six pieces and the hands that held them.",
+              "lost": "The coats kept the light off the tower's windows, until the flame went out halfway and had to be struck again in the open."
             }
           },
           {
@@ -4547,7 +4562,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You struck the spark under the sill, so the Challenge asked for Aim, and in its first flash you saw the water move.",
             "roadFind": {
               "title": "A ring on the water",
-              "text": "In the first flash of the spark under the bell-chamber's sill, the black water at the tower's foot rippled once, in a ring, with no wind on it."
+              "text": "In the first flash of the spark under the bell-chamber's sill, the black water at the tower's foot rippled once, in a ring, with no wind on it.",
+              "lost": "In the spark's first flash you thought the black water moved below the tower. The flame went out halfway, and nobody else had seen it."
             }
           }
         ]
@@ -5031,7 +5047,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You took the broken stair, so the Challenge asked for Aim.",
             "roadFind": {
               "title": "A stair nothing grows on",
-              "text": "Highwall's broken stair is the city's own pale stone, and not one step of it bears a mark of weather: no lichen, no moss, not a stain."
+              "text": "Highwall's broken stair is the city's own pale stone, and not one step of it bears a mark of weather: no lichen, no moss, not a stain.",
+              "lost": "Nothing has ever grown on Highwall's broken stair. You climbed the last of it in the dusk, by feel, and saw very little else."
             }
           },
           {
@@ -5042,7 +5059,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You forced the gate-tower's door, so the Challenge asked for Might. The scream of its hinges went out over the city: tomorrow's street is one harder.",
             "roadFind": {
               "title": "The guard-room",
-              "text": "Behind Highwall's rusted gate-tower door is a guard-room: a table, two stools, and dust lying thick and even on both."
+              "text": "Behind Highwall's rusted gate-tower door is a guard-room: a table, two stools, and dust lying thick and even on both.",
+              "lost": "The gate-tower door gave at last as the light went. The guard-room behind it was too dark to show more than a table and two stools."
             }
           }
         ]
@@ -5274,23 +5292,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
               0
             ],
             "text": "*\"The page under the Kiln told you. They stood his watch.\"*",
-            "changed": "You connected the standing stones to the Kiln page — Garrick confirmed they stood his watch, earning an Intellect Relic.",
+            "changed": "You asked what the standing stones were, and Garrick put you in mind of the page under the Kiln.",
             "roadFind": {
               "title": "They stood his watch",
               "text": "When you asked on first watch what the standing stones were, Garrick reminded you of the page under the Kiln: \"They stood his watch.\""
-            },
-            "relic": "Intellect"
+            }
           },
           {
             "options": [
               1
             ],
             "text": "*\"Family habit. We always pour one for whoever can't be with us.\"*",
-            "changed": "You asked who the full cup by the shutter was for — he called it a family habit and spoke of what his family had waited to see.",
+            "changed": "You asked who the full cup by the shutter was for. He called it a family habit, and spoke of what his family had waited to see. Asking the question nobody else thought to ask earned you an Intellect Relic.",
             "roadFind": {
               "title": "Full by the shutter",
               "text": "Looking at the full cup standing by the shutter on first watch, Garrick called it a family habit for whoever could not be there and said his family had waited a long time."
-            }
+            },
+            "relic": "Intellect"
           },
           {
             "options": [
@@ -5358,7 +5376,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You crept in close to their fire, so the Challenge asked for Agility. You left a print by their woodpile: tomorrow's walk is one harder.",
             "roadFind": {
               "title": "The humming stopped",
-              "text": "Close to the Order's fire below the hall, somebody was humming a few slow bars under their breath, until a hand was laid on their arm and the humming stopped."
+              "text": "Close to the Order's fire below the hall, somebody was humming a few slow bars under their breath, until a hand was laid on their arm and the humming stopped.",
+              "lost": "Somebody at the Order's fire was humming. Then a stone skittered under your boot, and you lay with your face in the dust until long after it stopped."
             }
           },
           {
@@ -5369,7 +5388,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You stayed in the rubble, so the Challenge asked for Aim.",
             "roadFind": {
               "title": "The whole camp at once",
-              "text": "From the rubble at the square's edge: a house with its roof gone, a woodpile stacked to the eaves against it, shapes round a fire, and one standing alone at the wall, facing the hall."
+              "text": "From the rubble at the square's edge: a house with its roof gone, a woodpile stacked to the eaves against it, shapes round a fire, and one standing alone at the wall, facing the hall.",
+              "lost": "From the rubble you had the whole camp in view, until a lantern swung your way and you put your face to the stones."
             }
           }
         ]
@@ -5868,7 +5888,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You put your back to the beam, so the Challenge asked for Might.",
             "roadFind": {
               "title": "Names on the beam",
-              "text": "The underside of the fallen beam in the defenders' barracks is cut all over with names, rows of them in many hands, scratched in with knife-points from the bunks below."
+              "text": "The underside of the fallen beam in the defenders' barracks is cut all over with names, rows of them in many hands, scratched in with knife-points from the bunks below.",
+              "lost": "There were names cut into the underside of the barracks beam. The ceiling came down with it, and the dust took them before you could read one."
             }
           },
           {
@@ -5879,7 +5900,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You took the quiet way through the fall, so the Challenge asked for Craft.",
             "roadFind": {
               "title": "The cup left behind",
-              "text": "Pressed flat under the barracks' fallen ceiling: an iron cup with a ring of old wine dried black inside it, set down on the last night and never taken up again."
+              "text": "Pressed flat under the barracks' fallen ceiling: an iron cup with a ring of old wine dried black inside it, set down on the last night and never taken up again.",
+              "lost": "Halfway through the fall there was an iron cup pressed flat under the stone. Then the ceiling came down, and it lies under a great deal more stone now."
             }
           }
         ]
@@ -6009,23 +6031,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
               0
             ],
             "text": "You time it. The man coming on says, *\"Keep the dark,\"* and the man going off answers, *\"It keeps us,\"* and for as long as that takes, neither of them is looking at the square.\n\n…",
-            "changed": "You timed the watch-change word for word — you caught the exact beat when neither watchman looks at the square, earning a Craft Relic.",
+            "changed": "You timed the watch-change word for word, and caught the beat when neither watchman looks at the square.",
             "roadFind": {
               "title": "Keep the dark",
               "text": "Timing the watch-change by the square fire, you learned that while the relief says \"Keep the dark\" and the other answers \"It keeps us,\" neither man is looking across the stones."
-            },
-            "relic": "Craft"
+            }
           },
           {
             "options": [
               1
             ],
             "text": "You read it by their firelight. Four strokes left uncrossed. The same as the page in your coat.\n\nThey struck theirs at dusk. So did you.\n\n…",
-            "changed": "You read their chalked board by firelight — four strokes left uncrossed, matching the page in your coat.",
+            "changed": "You read their chalked board by firelight: four strokes left uncrossed, matching the page in your coat. Reading what they keep, and not only what they say, earned you a Craft Relic.",
             "roadFind": {
               "title": "Four strokes by firelight",
-              "text": "Read across the square by the watch-fire’s light, the Order’s board showed four chalk strokes left uncrossed — struck at dusk, just like yours."
-            }
+              "text": "Read across the square by the watch-fire’s light, the Order’s board showed four chalk strokes left uncrossed, struck at dusk, just like yours."
+            },
+            "relic": "Craft"
           }
         ]
       },
@@ -6388,7 +6410,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You read the wall from the floor, so the Challenge asked for Craft.",
             "roadFind": {
               "title": "Not one night missing",
-              "text": "On the sky-watchers' wall every moon is cut to the same depth by the same kind of tool, year on year, and in all those years not one night is missing."
+              "text": "On the sky-watchers' wall every moon is cut to the same depth by the same kind of tool, year on year, and in all those years not one night is missing.",
+              "lost": "Every moon on the sky-watchers' wall is cut to the same depth. You read them by lamplight for hours, until the rows ran together."
             }
           },
           {
@@ -6399,7 +6422,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You climbed the watchers' ledges, so the Challenge asked for Might.",
             "roadFind": {
               "title": "The square from the ledges",
-              "text": "From the sky-watchers' highest ledges, through the moon-tower's open roof, you can see straight down into the great square and the Order's fire burning red in it."
+              "text": "From the sky-watchers' highest ledges, through the moon-tower's open roof, you can see straight down into the great square and the Order's fire burning red in it.",
+              "lost": "From the top ledges you could see down into the great square. Your lamp burned there half the night, and the square looked back."
             }
           }
         ]
@@ -6569,7 +6593,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You walked in step with the dead, so the Challenge asked for Agility.",
             "roadFind": {
               "title": "No breath",
-              "text": "Walking in step between the ranks of the dead, with the cold coming off the iron on both sides, you heard nothing under the tramp of their feet: not one of them breathes."
+              "text": "Walking in step between the ranks of the dead, with the cold coming off the iron on both sides, you heard nothing under the tramp of their feet: not one of them breathes.",
+              "lost": "You walked in step with the dead until the gap closed and a shoulder of iron took you in the chest. Whether any of them breathed, you could not say."
             }
           },
           {
@@ -6580,7 +6605,8 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You shouldered through the thinnest ranks, so the Challenge asked for Might.",
             "roadFind": {
               "title": "Rust and a bruise",
-              "text": "You came out of the walking ranks with green rust smeared down your coat, and a bruise coming up on your arm in the shape of a hand."
+              "text": "You came out of the walking ranks with green rust smeared down your coat, and a bruise coming up on your arm in the shape of a hand.",
+              "lost": "You came out of the ranks with rust down your coat and a bruise in the shape of a hand, and one helm turned your way behind you."
             }
           }
         ]

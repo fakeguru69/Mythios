@@ -876,13 +876,11 @@ Clue found, "Knocked out":
 
 *⚙ Then the card "What this changed":*
 
-> You connected the standing stones to the Kiln page — Garrick confirmed they stood his watch, earning an Intellect Relic.
+> You asked what the standing stones were, and Garrick put you in mind of the page under the Kiln.
 
 *⚙ This road's own find, "They stood his watch" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
 > When you asked on first watch what the standing stones were, Garrick reminded you of the page under the Kiln: "They stood his watch."
-
-*⚙ The careful reading of this fork also gives a Intellect Relic (at most one road a week does).*
 
 *⚙ If you pick [WHO IS THE CUP FOR?]:*
 
@@ -890,11 +888,13 @@ Clue found, "Knocked out":
 
 *⚙ Then the card "What this changed":*
 
-> You asked who the full cup by the shutter was for — he called it a family habit and spoke of what his family had waited to see.
+> You asked who the full cup by the shutter was for. He called it a family habit, and spoke of what his family had waited to see. Asking the question nobody else thought to ask earned you an Intellect Relic.
 
 *⚙ This road's own find, "Full by the shutter" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
 > Looking at the full cup standing by the shutter on first watch, Garrick called it a family habit for whoever could not be there and said his family had waited a long time.
+
+*⚙ The careful reading of this fork also gives a Intellect Relic (at most one road a week does).*
 
 *⚙ If you pick [SAY NOTHING]:*
 
@@ -2233,13 +2233,11 @@ Clue found, "Bowls never filled":
 
 *⚙ Then the card "What this changed":*
 
-> You timed the watch-change word for word — you caught the exact beat when neither watchman looks at the square, earning a Craft Relic.
+> You timed the watch-change word for word, and caught the beat when neither watchman looks at the square.
 
 *⚙ This road's own find, "Keep the dark" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
 > Timing the watch-change by the square fire, you learned that while the relief says "Keep the dark" and the other answers "It keeps us," neither man is looking across the stones.
-
-*⚙ The careful reading of this fork also gives a Craft Relic (at most one road a week does).*
 
 *⚙ If you pick [THE BOARD]:*
 
@@ -2251,11 +2249,13 @@ Clue found, "Bowls never filled":
 
 *⚙ Then the card "What this changed":*
 
-> You read their chalked board by firelight — four strokes left uncrossed, matching the page in your coat.
+> You read their chalked board by firelight: four strokes left uncrossed, matching the page in your coat. Reading what they keep, and not only what they say, earned you a Craft Relic.
 
 *⚙ This road's own find, "Four strokes by firelight" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> Read across the square by the watch-fire’s light, the Order’s board showed four chalk strokes left uncrossed — struck at dusk, just like yours.
+> Read across the square by the watch-fire’s light, the Order’s board showed four chalk strokes left uncrossed, struck at dusk, just like yours.
+
+*⚙ The careful reading of this fork also gives a Craft Relic (at most one road a week does).*
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 

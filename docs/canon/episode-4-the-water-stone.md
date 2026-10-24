@@ -68,6 +68,8 @@
 > **Intellect** · work it outward from the ropes: where he knelt, where he must have turned · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: your own prints are over his, and only the direction is left
+>
+> *If you took TAKE WREN UP FIRST:* **One harder.** The lamp burned low while you were up the passage with her, and you come back to the ash by a smaller flame.
 
 *On a pass:*
 > Heel, then toe. Evenly spaced. He did not run.

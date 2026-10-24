@@ -1071,11 +1071,13 @@ Clue found, "Scratched on the back":
 
 *⚙ Then the card "What this changed":*
 
-> You took the riders' open line round the fold — the grey coat on the ridge saw you coming and strikes first.
+> You took the riders' open line round the fold. Where their horses slowed for the rise, one of them had dropped something worth keeping: an Agility Relic. But the grey coat on the ridge saw you coming, and strikes first.
 
 *⚙ This road's own find, "Hoof-scratches round the fold" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
 > The riders' line went the long way round the head of the fold in plain view of the ridge where the grey coat had been left to watch.
+
+*⚙ The careful reading of this fork also gives a Agility Relic (at most one road a week does).*
 
 *⚙ If you pick [WREN'S LINE]:*
 
@@ -1083,13 +1085,11 @@ Clue found, "Scratched on the back":
 
 *⚙ Then the card "What this changed":*
 
-> You followed Wren's chips down the goat-track — you come upon the grey coat unseen, strike first, and claim an Agility Relic.
+> You followed Wren's chips down the goat-track, and came upon the grey coat unseen: you strike first.
 
 *⚙ This road's own find, "Five chips on the goat-track" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
 > Down the steep goat-track where no horse could go, five more chips of black glass marked the path Wren walked on her own feet.
-
-*⚙ The careful reading of this fork also gives a Agility Relic (at most one road a week does).*
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -1866,7 +1866,7 @@ Clue found, "No way down in the dark":
 
 *⚙ Then the card "What this changed":*
 
-> You stayed to guard the ash while Dev took Wren up — not a boot moved across the floor before you bent with the lamp.
+> You stayed to guard the ash while Dev took Wren up, and not a boot moved across the floor before you bent to it with the lamp.
 
 *⚙ This road's own find, "Still boots in the ash" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1878,7 +1878,7 @@ Clue found, "No way down in the dark":
 
 *⚙ Then the card "What this changed":*
 
-> You carried Wren up to the cool air first — Mei kept every boot off the ash for you, and your care earned an Aim Relic.
+> You carried Wren up to the cool air first, and your care earned an Aim Relic. Mei kept every boot off the ash, but the lamp burned low while you were gone: the Challenge is one harder.
 
 *⚙ This road's own find, "Cool air at the Kiln mouth" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1903,6 +1903,8 @@ Clue found, "No way down in the dark":
 > One careless step, and it says nothing.
 
 *⚙ Pick one: Aim (pick his prints out from your own, by one lamp), or Intellect (work it outward from the ropes: where he knelt, where he must have turned). Roll d20 + that Attribute's tier bonus against DC 8: a Novice (+0) succeeds on 9+. Pass: +500g, and the Attribute grows. Fail: your own prints are over his, and only the direction is left, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 4-1:took:0:1, the card is 1 harder, and says: **One harder.** The lamp burned low while you were up the passage with her, and you come back to the ash by a smaller flame.*
 
 *⚙ If you passed the Challenge:*
 

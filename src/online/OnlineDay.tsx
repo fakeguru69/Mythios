@@ -309,6 +309,8 @@ export default function OnlineDay({
   const dc = chapter.meta.dc + harder;
   const challenge = mine.challenge;
   const press = mine.press;
+  // The day has a pass piece for the fire (fire_pass_text: the "On a pass" passages).
+  const passPiece = steps.some((st) => st.t === 'say' && st.cond?.on === 'challenge' && st.cond.pass);
   const fight = mine.fight;
   const fightDone = Boolean(fight?.done);
   const fightWon = Boolean(fight?.won);
@@ -640,6 +642,10 @@ export default function OnlineDay({
           </div>
           <div className="p-2.5 space-y-2">
             <ScriptText text={fill(`${step.detail.charAt(0).toUpperCase()}${step.detail.slice(1)}. ${step.reward}.`)} className="font-sans text-[16px] text-[#E6E0F0] leading-[1.42]" />
+            {/* Phase 3 (24 Oct): a failed press costs a piece, not gold (fire_lay, migration 0124). */}
+            {!press && passPiece && (
+              <p className="text-[14px] text-[#B7A9CC]">If it fails, what you heard on your pass will not reach the table at the fire tonight.</p>
+            )}
             {!press ? (
               <>
                 {held(challenge.attr) > 0 && (
@@ -676,6 +682,9 @@ export default function OnlineDay({
                 <p className={`font-['Cinzel'] font-bold text-[13px] ${(press as Roll).pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
                   {(press as Roll).pass ? 'PASSED · +200g' : 'FAILED'}
                 </p>
+                {!(press as Roll).pass && passPiece && (
+                  <p className="text-[14px] text-[#B7A9CC]">What you heard on your pass slipped away in the trying. It will not reach the table tonight.</p>
+                )}
               </div>
             )}
           </div>

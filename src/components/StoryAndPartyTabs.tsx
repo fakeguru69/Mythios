@@ -443,7 +443,7 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
     }
   };
 
-  // [PRESS ON] (Core Rules §3): 4 harder, on the same Attribute; +200g on a pass, no growth, a miss costs nothing.
+  // [PRESS ON] (Core Rules §3): 4 harder, on the same Attribute; +200g on a pass, no growth, a miss costs nothing here (online it costs the day's pass piece at the fire: 0124).
   const claimReward = (key: string) => {
     const ok = onClaimReward(key);
     setClaimResults((p) => ({ ...p, [key]: ok }));

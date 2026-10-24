@@ -80,7 +80,7 @@ A word only needs to be learned once, at the moment it happens, by MYTHIOS, in o
 |---|---|---|
 | Challenge, roll | Day 1 | (Already in the tutorial.) |
 | Fight | Day 1 | (Already in the tutorial.) |
-| [PRESS ON] | First time offered | "Press on? It is harder. If you fail, you lose nothing." (already decided in the rules) |
+| [PRESS ON] | First time offered | "Press on? It is harder. If you fail, you lose nothing." (already decided in the rules; online since 24 Oct the card says instead: "If it fails, what you heard on your pass will not reach the table at the fire tonight.") |
 | [LOOK CLOSER] | Gathering 1 | "Look closer, if you like. It is a roll, and a miss costs nothing." |
 | Battle | Gathering 1 | "This is a Battle. All of you fight at once, and it ends when the last enemy falls." |
 | United Effort | Gathering 1 | "This is a United Effort. One job, and you take it in turns." |
