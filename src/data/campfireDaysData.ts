@@ -101,6 +101,16 @@ export const CAMPFIRE_STORED_LINES = {
     "Sleep. I'll mind the fire.",
     'Same fire tomorrow?',
   ],
+  // His goodnights, a set for each week (24 Oct, Phase 2 part 7: four lines rotated across 36 nights had worn thin).
+  // Week 5's nights from Day 4 have no fire to mind, so its lines never mention one.
+  closersByWeek: {
+    1: ['Enough for one day. The stairs creak on the left; keep to the right.', "Off to bed, the lot of you. I'll bank the fire.", "Same table tomorrow. I'll keep it."],
+    2: ["Sleep. The coals will keep, and so will the valley.", 'Off to your blankets. The mill wheel talks all night; let it.', 'Enough for one day. Boots off, all of you.'],
+    3: ["Sleep. I'll mind the fire, and it'll mind me.", "Ash in your hair and soot on your hands. Wash in the morning; sleep now.", "Enough for one day. The hills will still be burnt tomorrow."],
+    4: ["Off to bed. The water's loud tonight; it says nothing new.", 'Sleep dry while you can, the lot of you.', 'Enough for one day. I have the first watch.'],
+    5: ['Sleep. Stone makes a hard bed, but it keeps the wind off.', "Enough for one day. I'll sit up a while.", 'Off to your blankets, the lot of you. Quietly.'],
+    6: ["Sleep, if it comes. I'll be here.", 'Enough for one day. There are not many left.', "Off you go. I'll keep the count tonight."],
+  } as Record<number, string[]>,
   firstArrivalGreeting: "You're first. Pull up a log.",
   messageInABottlePrompt: 'Leave one for the others. It goes on the board.',
   catchUpTemplate: '{friend} thinks {reading}.',
@@ -150,7 +160,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": true,
-    "opener": "Strangers with torn pages in their hands, and an empty chair upstairs. Pull up to the hearth.",
+    "opener": "You've paid for your rooms and you haven't burned anything down. That's more than most guests manage.",
     "questionTitle": "The child in Meira's notes: when was that child taken?",
     "forkA": "Lately. Whatever was happening there is happening now.",
     "forkB": "Long ago. She was writing about an older taking.",
@@ -163,13 +173,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Did Meira leave in a hurry?",
-      "clickText": "Every slip still sits where she pinned it, and the page about the child is the one her thumb wore soft. A woman packing in fear does not leave her book in order. She did not go in a hurry."
+      "clickText": "Every slip in her book is pinned where it belongs, and the leaf about the child is worn soft at the corner by a thumb that came back to it again and again. Nobody wears a page that soft in a week. She had been carrying that child for a long time."
     },
     "clicks": [
       {
         "a": "1-2-2",
         "b": "1-2-3",
-        "text": "Every slip still sits where she pinned it, and the page about the child is the one her thumb wore soft. A woman packing in fear does not leave her book in order. She did not go in a hurry.",
+        "text": "Every slip in her book is pinned where it belongs, and the leaf about the child is worn soft at the corner by a thumb that came back to it again and again. Nobody wears a page that soft in a week. She had been carrying that child for a long time.",
         "solves": true
       }
     ],
@@ -202,13 +212,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "How long has this rock been watched?",
-      "clickText": "Someone has sat over this rock for hours at a time, and walked round it often enough to wear the turf away. It is watched, and it has been for a long while."
+      "clickText": "He sat over this rock long enough to set his flask down twice, and walked round it often enough to wear the turf to bare earth. A man does not keep watch like that at his own back door. He was posted here, from somewhere else."
     },
     "clicks": [
       {
         "a": "1-3-1",
         "b": "1-3-2",
-        "text": "Someone has sat over this rock for hours at a time, and walked round it often enough to wear the turf away. It is watched, and it has been for a long while.",
+        "text": "He sat over this rock long enough to set his flask down twice, and walked round it often enough to wear the turf to bare earth. A man does not keep watch like that at his own back door. He was posted here, from somewhere else.",
         "solves": true
       }
     ],
@@ -271,13 +281,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Has someone tried her house before tonight?",
-      "clickText": "The marks on her back shutter are old and new in the same place, and the bar on her door has worn its cleats deep. Someone has tried her house before tonight, and she has barred it every night for a long time."
+      "clickText": "Under his fresh marks on her shutter are older ones, worked in at the very same place, where the bar sits, and the bar has worn its cleats pale with years of nights. Someone came at this house the same way long before tonight. It is not a man's whim. It is a way of working, learned and used again."
     },
     "clicks": [
       {
         "a": "1-5-2",
         "b": "1-5-3",
-        "text": "The marks on her back shutter are old and new in the same place, and the bar on her door has worn its cleats deep. Someone has tried her house before tonight, and she has barred it every night for a long time.",
+        "text": "Under his fresh marks on her shutter are older ones, worked in at the very same place, where the bar sits, and the bar has worn its cleats pale with years of nights. Someone came at this house the same way long before tonight. It is not a man's whim. It is a way of working, learned and used again.",
         "solves": true
       }
     ],
@@ -310,13 +320,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Why send the cart one way and the child another?",
-      "clickText": "One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. Anyone who followed the cart was following an empty one."
+      "clickText": "One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. They were expecting to be followed, and by now you know who was on the road behind them."
     },
     "clicks": [
       {
         "a": "1-6-2",
         "b": "1-6-3",
-        "text": "One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. Anyone who followed the cart was following an empty one.",
+        "text": "One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. They were expecting to be followed, and by now you know who was on the road behind them.",
         "solves": true
       }
     ],
@@ -349,13 +359,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Did anyone have to lead that horse, or did it already know the door?",
-      "clickText": "In full dark and with no lamp, the horse took the fork at a steady walk, and the wheels never checked at any other house in the lane. Either the horse knew the mill road, or someone walked ahead of it."
+      "clickText": "In full dark and with no lamp, the horse took the mill lane at a steady walk, and the wheels never checked at any other gate. Nobody was choosing among houses that night. The mill was chosen before the cart ever came over the hill."
     },
     "clicks": [
       {
         "a": "2-1-1",
         "b": "2-1-2",
-        "text": "In full dark and with no lamp, the horse took the fork at a steady walk, and the wheels never checked at any other house in the lane. Either the horse knew the mill road, or someone walked ahead of it.",
+        "text": "In full dark and with no lamp, the horse took the mill lane at a steady walk, and the wheels never checked at any other gate. Nobody was choosing among houses that night. The mill was chosen before the cart ever came over the hill.",
         "solves": true
       }
     ],
@@ -388,13 +398,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Did he hesitate once he reached the house?",
-      "clickText": "The mud on the floorboards runs in one unbroken line from the door to the child's bed, and the paper was in his fist before he crossed the threshold. He did not search the house."
+      "clickText": "He had the boy's name on a folded paper before he crossed the threshold, and his mud runs from the door to the bed and back without a single turn. He asked nobody in this house anything. It was written down for him somewhere else, and long before."
     },
     "clicks": [
       {
         "a": "2-2-1",
         "b": "2-2-2",
-        "text": "The mud on the floorboards runs in one unbroken line from the door to the child's bed, and the paper was in his fist before he crossed the threshold. He did not search the house.",
+        "text": "He had the boy's name on a folded paper before he crossed the threshold, and his mud runs from the door to the bed and back without a single turn. He asked nobody in this house anything. It was written down for him somewhere else, and long before.",
         "solves": true
       }
     ],
@@ -427,13 +437,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Why didn't anyone rob him?",
-      "clickText": "He worked that stone for days with steel, and his belt is still weighted with coin. The path-keeper stepped over his body for a week and took neither his tools nor his purse."
+      "clickText": "He worked that stone with steel for days, and it never gave; your bare hand opened it at the first touch. Whatever it answers to, it was never iron, and never coin: nobody even troubled to take his purse."
     },
     "clicks": [
       {
         "a": "2-3-1",
         "b": "2-3-2",
-        "text": "He worked that stone for days with steel, and his belt is still weighted with coin. The path-keeper stepped over his body for a week and took neither his tools nor his purse.",
+        "text": "He worked that stone with steel for days, and it never gave; your bare hand opened it at the first touch. Whatever it answers to, it was never iron, and never coin: nobody even troubled to take his purse.",
         "solves": true
       }
     ],
@@ -496,13 +506,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Were the stones broken or hidden?",
-      "clickText": "The carved monuments on the ridge were shattered with fire and mallet, but the cut stones in the sheepfold were laid face-inward against each other. Some were broken in anger, and some were hidden with care."
+      "clickText": "Up on the ridge the carved stones were broken with fire and mallet, while down in the sheepfold others were laid face to face, where nobody would ever read them. One hand tore his name down in anger. Another hid it with care."
     },
     "clicks": [
       {
         "a": "2-5-2",
         "b": "2-5-3",
-        "text": "The carved monuments on the ridge were shattered with fire and mallet, but the cut stones in the sheepfold were laid face-inward against each other. Some were broken in anger, and some were hidden with care.",
+        "text": "Up on the ridge the carved stones were broken with fire and mallet, while down in the sheepfold others were laid face to face, where nobody would ever read them. One hand tore his name down in anger. Another hid it with care.",
         "solves": true
       }
     ],
@@ -522,7 +532,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": true,
-    "opener": "Picks in the deep rock. They're digging toward something that was here before them.",
+    "opener": "Digging toward an older room. You have to respect the effort.",
     "questionTitle": "The fragments drew a map to an older room. Why are they digging toward that same room tonight?",
     "forkA": "They know what is inside that room, and came to take it.",
     "forkB": "They are digging toward the boy, and do not know the old room exists.",
@@ -535,13 +545,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "What are the picks searching for?",
-      "clickText": "The pick-strokes fall in one unbroken line toward the deeper stone, and every basket of earth is sifted through bare fingers. They are not clearing rock for a tunnel. They are searching for something small."
+      "clickText": "Every pick-stroke lands a little nearer the deep stone, and every basket of earth is sifted through bare fingers before it is thrown aside. Nobody digs like that to reach a boy. They are looking for something small, and they know roughly where it lies."
     },
     "clicks": [
       {
         "a": "2-6-1",
         "b": "2-6-2",
-        "text": "The pick-strokes fall in one unbroken line toward the deeper stone, and every basket of earth is sifted through bare fingers. They are not clearing rock for a tunnel. They are searching for something small.",
+        "text": "Every pick-stroke lands a little nearer the deep stone, and every basket of earth is sifted through bare fingers before it is thrown aside. Nobody digs like that to reach a boy. They are looking for something small, and they know roughly where it lies.",
         "solves": true
       }
     ],
@@ -574,13 +584,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Did the cart make ready for a long journey?",
-      "clickText": "The cart below the shaft took the west road without checking, and on the ridge above the runner paused only to watch that same line. They did not search for a trail. They set their faces toward the burned hills and walked."
+      "clickText": "The cart took the west road below the shaft without a moment's check, and the runner on the shoulder stopped only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born."
     },
     "clicks": [
       {
         "a": "3-1-2",
         "b": "3-1-3",
-        "text": "The cart below the shaft took the west road without checking, and on the ridge above the runner paused only to watch that same line. They did not search for a trail. They set their faces toward the burned hills and walked.",
+        "text": "The cart took the west road below the shaft without a moment's check, and the runner on the shoulder stopped only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born.",
         "solves": true
       }
     ],
@@ -643,13 +653,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Has anyone touched this housing since the road was made?",
-      "clickText": "The old shepherds' path ends dead at the sunken stones, and the fine dust over the housing was undisturbed until your fingers reached it. The riders stayed on the crest and rode past without once looking down."
+      "clickText": "The old shepherds' path stops dead at the sunken stones, and the dust on the housing was untouched until your own fingers marked it. Nobody has laid a hand on this mark in years, and the riders went past without once looking down. Either it is not what they want, or it is not a door they can open."
     },
     "clicks": [
       {
         "a": "3-3-1",
         "b": "3-3-2",
-        "text": "The old shepherds' path ends dead at the sunken stones, and the fine dust over the housing was undisturbed until your fingers reached it. The riders stayed on the crest and rode past without once looking down.",
+        "text": "The old shepherds' path stops dead at the sunken stones, and the dust on the housing was untouched until your own fingers marked it. Nobody has laid a hand on this mark in years, and the riders went past without once looking down. Either it is not what they want, or it is not a door they can open.",
         "solves": true
       }
     ],
@@ -669,7 +679,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": true,
-    "opener": "Whoever slept in these niches had long nights too. Build the fire in the doorway.",
+    "opener": "She's leaving chips on the trail. Clever girl.",
     "questionTitle": "Wren is dropping glass chips from the saddle of six horses. Have the riders truly not noticed?",
     "forkA": "They believe a small child is helpless and don't watch her hands.",
     "forkB": "They see the chips, but know the trail ends where no one can follow.",
@@ -682,13 +692,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Did she drop the chips in haste or with care?",
-      "clickText": "Each chip was set on high bare rock where the starlight catches it, and the backs are scored with tiny knife-scratches: one, two, three. She is laying a numbered line across the dark."
+      "clickText": "Each chip was set on high bare rock where the starlight catches it, and the backs are scored one, two and three. That is not a frightened child letting things fall. She is laying a line on purpose, right under their noses, and nobody has stopped her."
     },
     "clicks": [
       {
         "a": "3-4-1",
         "b": "3-4-3",
-        "text": "Each chip was set on high bare rock where the starlight catches it, and the backs are scored with tiny knife-scratches: one, two, three. She is laying a numbered line across the dark.",
+        "text": "Each chip was set on high bare rock where the starlight catches it, and the backs are scored one, two and three. That is not a frightened child letting things fall. She is laying a line on purpose, right under their noses, and nobody has stopped her.",
         "solves": true
       }
     ],
@@ -760,13 +770,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Are the riders still inside the hill?",
-      "clickText": "No horses wait outside in the dark, and from the crown's crack thin pale smoke has begun to rise into the cold air. The lamp has reached the deep chamber, and the hearth is burning."
+      "clickText": "No horses wait at the foot of the Kiln, and soon after the lamp went in, thin pale smoke began to rise from the crack. Whoever carried that lamp did not go in to raise an alarm. They went in to light something."
     },
     "clicks": [
       {
         "a": "3-6-1",
         "b": "3-6-2",
-        "text": "No horses wait outside in the dark, and from the crown's crack thin pale smoke has begun to rise into the cold air. The lamp has reached the deep chamber, and the hearth is burning.",
+        "text": "No horses wait at the foot of the Kiln, and soon after the lamp went in, thin pale smoke began to rise from the crack. Whoever carried that lamp did not go in to raise an alarm. They went in to light something.",
         "solves": true
       }
     ],
@@ -799,13 +809,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "How did the prisoner get free in the dark?",
-      "clickText": "A lamp was just snuffed inside the side passage, and every rope was severed cleanly on the same side a finger's width from the knot. A second person stepped out of the passage in the dark and cut him loose."
+      "clickText": "A lamp was snuffed inside the side passage moments before, and every rope was cut on the same side, a finger's width from the knot. Someone waited there in the dark with a blade ready, and took the time to cut only rope. That is not a frightened rescuer. That is somebody who had been told what not to touch."
     },
     "clicks": [
       {
         "a": "4-1-1",
         "b": "4-1-3",
-        "text": "A lamp was just snuffed inside the side passage, and every rope was severed cleanly on the same side a finger's width from the knot. A second person stepped out of the passage in the dark and cut him loose.",
+        "text": "A lamp was snuffed inside the side passage moments before, and every rope was cut on the same side, a finger's width from the knot. Someone waited there in the dark with a blade ready, and took the time to cut only rope. That is not a frightened rescuer. That is somebody who had been told what not to touch.",
         "solves": true
       }
     ],
@@ -838,13 +848,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Were the four riders trying to hide their journey north?",
-      "clickText": "They rode the ford in broad daylight with bare blades across their saddles, and kept to the open road past every hut when the ridge sheep-path would have hidden them. They were either daring anyone to stop them, or making sure the cart was seen."
+      "clickText": "They rode the ford in broad daylight with their blades bare across their saddles, and kept to the open road past every hut when the ridge path would have hidden them. Four armed men do not show themselves like that over something cheap. Whatever is in that box, they would rather be seen than lose it."
     },
     "clicks": [
       {
         "a": "4-2-2",
         "b": "4-2-3",
-        "text": "They rode the ford in broad daylight with bare blades across their saddles, and kept to the open road past every hut when the ridge sheep-path would have hidden them. They were either daring anyone to stop them, or making sure the cart was seen.",
+        "text": "They rode the ford in broad daylight with their blades bare across their saddles, and kept to the open road past every hut when the ridge path would have hidden them. Four armed men do not show themselves like that over something cheap. Whatever is in that box, they would rather be seen than lose it.",
         "solves": true
       }
     ],
@@ -907,13 +917,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Was Meira sure of her own note on 'moon-blood'?",
-      "clickText": "Meira copied 'the marked' and 'moon-blood' from two separate old records, and under her gloss she began a second thought before scratching it out through the paper. She had a second thought she never finished."
+      "clickText": "Meira copied 'the marked' and 'moon-blood' from two different records, and the two words never sit in the same line. Under her note she began a second thought, then scratched it out until the nib tore the page. She was no longer sure they meant the same blood."
     },
     "clicks": [
       {
         "a": "4-4-2",
         "b": "4-4-3",
-        "text": "Meira copied 'the marked' and 'moon-blood' from two separate old records, and under her gloss she began a second thought before scratching it out through the paper. She had a second thought she never finished.",
+        "text": "Meira copied 'the marked' and 'moon-blood' from two different records, and the two words never sit in the same line. Under her note she began a second thought, then scratched it out until the nib tore the page. She was no longer sure they meant the same blood.",
         "solves": true
       }
     ],
@@ -946,13 +956,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "How has Joss been kept on the reed island?",
-      "clickText": "The willow has had fresh shoots cut three days running, and the long shavings in the boat's bilge were carved without haste. They have kept him dry and unharmed on the island by day while moving him across the lake by night."
+      "clickText": "Three willow shoots cut three days running, one still white, and long shavings in the boat curled without haste. Somebody has sat out on that island day after day with the boy kept close and dry. They are not hiding him from the shore. They are waiting, and they are in no hurry at all."
     },
     "clicks": [
       {
         "a": "4-5-1",
         "b": "4-5-3",
-        "text": "The willow has had fresh shoots cut three days running, and the long shavings in the boat's bilge were carved without haste. They have kept him dry and unharmed on the island by day while moving him across the lake by night.",
+        "text": "Three willow shoots cut three days running, one still white, and long shavings in the boat curled without haste. Somebody has sat out on that island day after day with the boy kept close and dry. They are not hiding him from the shore. They are waiting, and they are in no hurry at all.",
         "solves": true
       }
     ],
@@ -1015,13 +1025,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Was the waystone only a road marker, or part of the Seekers' trail?",
-      "clickText": "The line under HIGHWALL was chiselled clean away like the king's face on the coin, and the crack at the stone's foot holds the same unnatural cold as every Seeker housing. The road marker was defaced, and the Seekers set their first sign in its foot."
+      "clickText": "The line under HIGHWALL was cut away as cleanly as the king's face from the coin, and in the stone's foot sits the same unnatural cold as every Seeker housing since the forest road. Someone scraped the road's word for the city, and the Seekers set their own sign beneath it, pointing in. Whatever they left in Highwall, they meant it to be found by the right hands."
     },
     "clicks": [
       {
         "a": "5-1-1",
         "b": "5-1-2",
-        "text": "The line under HIGHWALL was chiselled clean away like the king's face on the coin, and the crack at the stone's foot holds the same unnatural cold as every Seeker housing. The road marker was defaced, and the Seekers set their first sign in its foot.",
+        "text": "The line under HIGHWALL was cut away as cleanly as the king's face from the coin, and in the stone's foot sits the same unnatural cold as every Seeker housing since the forest road. Someone scraped the road's word for the city, and the Seekers set their own sign beneath it, pointing in. Whatever they left in Highwall, they meant it to be found by the right hands.",
         "solves": true
       }
     ],
@@ -1054,13 +1064,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Were the dogs hunting for themselves?",
-      "clickText": "The dogs came in a straight line from the north while the ground beat, froze mid-stride the instant the beat stopped, and scattered every way after. The beat drove them while it lasted, and let them go when it stopped."
+      "clickText": "The dogs came in a straight line from the north while the ground beat, froze mid-stride the moment it stopped, and scattered every way after. Whatever wakes in Highwall can only do it in strokes, at dusk and at dawn, and then it lets go. It is waiting for something before it can do more."
     },
     "clicks": [
       {
         "a": "5-2-1",
         "b": "5-2-3",
-        "text": "The dogs came in a straight line from the north while the ground beat, froze mid-stride the instant the beat stopped, and scattered every way after. The beat drove them while it lasted, and let them go when it stopped.",
+        "text": "The dogs came in a straight line from the north while the ground beat, froze mid-stride the moment it stopped, and scattered every way after. Whatever wakes in Highwall can only do it in strokes, at dusk and at dawn, and then it lets go. It is waiting for something before it can do more.",
         "solves": true
       }
     ],
@@ -1080,7 +1090,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "High on the wall, and not a breath of green in the whole city. Sit down out of the wind.",
+    "opener": "A bar of new timber in brackets worn bright. Somebody's been barring this gate for centuries, and the wood's new.",
     "questionTitle": "Highwall's gate is barred from the inside with fresh timber in brackets worn bright by centuries of bars. Who is keeping it shut?",
     "forkA": "The Order — keeping the dead city shut so no outsider disturbs their watch on the hall.",
     "forkB": "Wardens left behind on the Seekers' wall — barring the gate to keep what is inside from getting out.",
@@ -1201,13 +1211,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "How did the room stay hidden from the Order for centuries?",
-      "clickText": "The walkway here was built a full stride wider on the city side, and the slit window is set so low in the stone face that it cannot be seen from the square. Anyone not standing on this parapet would take the wall for solid rock."
+      "clickText": "The walk here was built a full stride wider on the city side, and the slit is set so low in the face that nobody in the square could ever see it. The Seekers did not build an altar in this wall. They built a hiding place, for something meant to be kept, and carried on."
     },
     "clicks": [
       {
         "a": "5-6-1",
         "b": "5-6-3",
-        "text": "The walkway here was built a full stride wider on the city side, and the slit window is set so low in the stone face that it cannot be seen from the square. Anyone not standing on this parapet would take the wall for solid rock.",
+        "text": "The walk here was built a full stride wider on the city side, and the slit is set so low in the face that nobody in the square could ever see it. The Seekers did not build an altar in this wall. They built a hiding place, for something meant to be kept, and carried on.",
         "solves": true
       }
     ],
@@ -1240,13 +1250,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "What was kept in the stone niche before you opened the room?",
-      "clickText": "Years of candle-soot blacken the back of the niche, set deep and low beneath the slit, while tonight no lantern from the square reaches through it. For generations a hidden light burned behind the wall in this room; tonight the niche is cold."
+      "clickText": "Years of candle-soot blacken the back of the niche, set deep and low beneath the slit, where no lantern from the square could ever reach. For generations a light burned in this room unseen. From the board, a dark wall has always looked exactly like this one, and tonight it still does."
     },
     "clicks": [
       {
         "a": "6-1-1",
         "b": "6-1-3",
-        "text": "Years of candle-soot blacken the back of the niche, set deep and low beneath the slit, while tonight no lantern from the square reaches through it. For generations a hidden light burned behind the wall in this room; tonight the niche is cold.",
+        "text": "Years of candle-soot blacken the back of the niche, set deep and low beneath the slit, where no lantern from the square could ever reach. For generations a light burned in this room unseen. From the board, a dark wall has always looked exactly like this one, and tonight it still does.",
         "solves": true
       }
     ],
@@ -1297,7 +1307,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "tone": "wry",
     "cupNight": false,
     "opener": "Warm walls, and more faithful at the gate by the hour. Eat something. It will be a long night.",
-    "questionTitle": "The hall's stone wall is warm from the floor up behind sealed bronze doors, while new arrivals stack clean robes by their fire outside. Has the Order already set the four Stones inside, or are they still waiting outside for the last night?",
+    "questionTitle": "The hall's wall is warm from the floor up, and the faithful stack clean robes by their fire. Are the four Stones already inside, or still waiting out here for the last night?",
     "forkA": "The four Stones are already set around him on the floor inside, warming the stone.",
     "forkB": "The Stones are still outside with the faithful, waiting to be carried in on the dark moon.",
     "callback": "The soldiers are three streets nearer the hall. Round the Order's fire there are twice as many as before.",
@@ -1309,13 +1319,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Where is the heat in the hall's wall coming from?",
-      "clickText": "An unbroken bank of dust lies across the seam of the bronze doors, and the stone wall is warm only from knee-height down. The front doors have never opened, and whatever is warming the hall lies flat on the floor inside."
+      "clickText": "An unbroken bank of dust lies across the seam of the great doors, and the wall is warm only from the knee down. Nothing has gone in by the front in a very long time, yet something lies on the floor inside, giving off heat. The four are already in there, and they went in by another way."
     },
     "clicks": [
       {
         "a": "6-3-1",
         "b": "6-3-3",
-        "text": "An unbroken bank of dust lies across the seam of the bronze doors, and the stone wall is warm only from knee-height down. The front doors have never opened, and whatever is warming the hall lies flat on the floor inside.",
+        "text": "An unbroken bank of dust lies across the seam of the great doors, and the wall is warm only from the knee down. Nothing has gone in by the front in a very long time, yet something lies on the floor inside, giving off heat. The four are already in there, and they went in by another way.",
         "solves": true
       }
     ],
@@ -1387,13 +1397,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "What were the sky-watchers doing in the days before the wall went blank?",
-      "clickText": "The last rows of moons were chiselled in a rough hurry without missing a single night, while the slates on the floor are covered in long sums crossed through and begun again. They were racing to reckon a distant date before the last night came."
+      "clickText": "The last rows of moons were chiselled in a rough hurry without missing a single night, while the slates on the floor are thick with long sums, crossed through and begun again. They were racing to reckon one far-off night before their own last one came, for someone who would need to know it."
     },
     "clicks": [
       {
         "a": "6-5-2",
         "b": "6-5-3",
-        "text": "The last rows of moons were chiselled in a rough hurry without missing a single night, while the slates on the floor are covered in long sums crossed through and begun again. They were racing to reckon a distant date before the last night came.",
+        "text": "The last rows of moons were chiselled in a rough hurry without missing a single night, while the slates on the floor are thick with long sums, crossed through and begun again. They were racing to reckon one far-off night before their own last one came, for someone who would need to know it.",
         "solves": true
       }
     ],
@@ -1416,7 +1426,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "opener": "Last night of the count. Eat what you like.",
     "questionTitle": "Tomorrow night the Seekers' door opens for our blood, and we carry the fifth Stone into the hall where the four are waiting. What happens when the fifth is brought to him?",
     "forkA": "It finishes what the Seekers built their hidden door for — binding him before the four Stones can wake him.",
-    "forkB": "It finishes what the four Stones and the marching garrison are waiting for — waking him whole.",
+    "forkB": "It finishes what the four Stones and the marching garrison have been waiting for.",
     "callback": "Six nights ago you had a hidden room. Tonight you have one stroke left.",
     "riddle": null,
     "nudge": "{friend:Intellect}, grit swept in a quarter-circle where the stone door swings inward, and every helm on the hill turned toward the hall. When we carry the fifth through that door tomorrow night, will it bind him or wake him?",

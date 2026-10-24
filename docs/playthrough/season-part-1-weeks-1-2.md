@@ -556,7 +556,7 @@ Clue found, "The thumbed leaf":
 
 *⚙ Garrick opens:*
 
-> Strangers with torn pages in their hands, and an empty chair upstairs. Pull up to the hearth.
+> You've paid for your rooms and you haven't burned anything down. That's more than most guests manage.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -566,7 +566,7 @@ Clue found, "The thumbed leaf":
 
 *⚙ "Every slip pinned" with "The thumbed leaf" (this one answers tonight's question):*
 
-> Every slip still sits where she pinned it, and the page about the child is the one her thumb wore soft. A woman packing in fear does not leave her book in order. She did not go in a hurry.
+> Every slip in her book is pinned where it belongs, and the leaf about the child is worn soft at the corner by a thumb that came back to it again and again. Nobody wears a page that soft in a week. She had been carrying that child for a long time.
 
 *⚙ When "1-2-3" is laid, Garrick adds:*
 
@@ -801,7 +801,7 @@ Clue found, "The notched stick":
 
 *⚙ "The second ring" with "The worn path" (this one answers tonight's question):*
 
-> Someone has sat over this rock for hours at a time, and walked round it often enough to wear the turf away. It is watched, and it has been for a long while.
+> He sat over this rock long enough to set his flask down twice, and walked round it often enough to wear the turf to bare earth. A man does not keep watch like that at his own back door. He was posted here, from somewhere else.
 
 *⚙ When "1-3-3" is laid, Garrick adds:*
 
@@ -1432,7 +1432,7 @@ Clue found, "The worn bar":
 
 *⚙ "Older marks" with "The worn bar" (this one answers tonight's question):*
 
-> The marks on her back shutter are old and new in the same place, and the bar on her door has worn its cleats deep. Someone has tried her house before tonight, and she has barred it every night for a long time.
+> Under his fresh marks on her shutter are older ones, worked in at the very same place, where the bar sits, and the bar has worn its cleats pale with years of nights. Someone came at this house the same way long before tonight. It is not a man's whim. It is a way of working, learned and used again.
 
 *⚙ When "1-5-1" is laid, Garrick adds:*
 
@@ -1716,7 +1716,7 @@ Clue found, "A second man":
 
 *⚙ "Up at a run" with "A second man" (this one answers tonight's question):*
 
-> One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. Anyone who followed the cart was following an empty one.
+> One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. They were expecting to be followed, and by now you know who was on the road behind them.
 
 *⚙ When "1-6-1" is laid, Garrick adds:*
 
@@ -2285,7 +2285,7 @@ Clue found, "Deeper coming down":
 
 *⚙ "The steady horse" with "Past the gate" (this one answers tonight's question):*
 
-> In full dark and with no lamp, the horse took the fork at a steady walk, and the wheels never checked at any other house in the lane. Either the horse knew the mill road, or someone walked ahead of it.
+> In full dark and with no lamp, the horse took the mill lane at a steady walk, and the wheels never checked at any other gate. Nobody was choosing among houses that night. The mill was chosen before the cart ever came over the hill.
 
 *⚙ When "2-1-3" is laid, Garrick adds:*
 
@@ -2511,7 +2511,7 @@ Clue found, "The cropped grass":
 
 *⚙ "The paper in his fist" with "Straight to the bed" (this one answers tonight's question):*
 
-> The mud on the floorboards runs in one unbroken line from the door to the child's bed, and the paper was in his fist before he crossed the threshold. He did not search the house.
+> He had the boy's name on a folded paper before he crossed the threshold, and his mud runs from the door to the bed and back without a single turn. He asked nobody in this house anything. It was written down for him somewhere else, and long before.
 
 *⚙ When "2-2-3" is laid, Garrick adds:*
 
@@ -2727,7 +2727,7 @@ Clue found, "The full pail":
 
 *⚙ "The scratches" with "Silver in his purse" (this one answers tonight's question):*
 
-> He worked that stone for days with steel, and his belt is still weighted with coin. The path-keeper stepped over his body for a week and took neither his tools nor his purse.
+> He worked that stone with steel for days, and it never gave; your bare hand opened it at the first touch. Whatever it answers to, it was never iron, and never coin: nobody even troubled to take his purse.
 
 *⚙ When "2-3-3" is laid, Garrick adds:*
 
@@ -3114,7 +3114,7 @@ Clue found, "Faces turned in":
 
 *⚙ "Burned chips" with "Faces turned in" (this one answers tonight's question):*
 
-> The carved monuments on the ridge were shattered with fire and mallet, but the cut stones in the sheepfold were laid face-inward against each other. Some were broken in anger, and some were hidden with care.
+> Up on the ridge the carved stones were broken with fire and mallet, while down in the sheepfold others were laid face to face, where nobody would ever read them. One hand tore his name down in anger. Another hid it with care.
 
 *⚙ When "2-5-1" is laid, Garrick adds:*
 
@@ -3338,7 +3338,7 @@ Clue found, "Your own print":
 
 *⚙ Garrick opens:*
 
-> Picks in the deep rock. They're digging toward something that was here before them.
+> Digging toward an older room. You have to respect the effort.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -3348,7 +3348,7 @@ Clue found, "Your own print":
 
 *⚙ "One line" with "Sifted by hand" (this one answers tonight's question):*
 
-> The pick-strokes fall in one unbroken line toward the deeper stone, and every basket of earth is sifted through bare fingers. They are not clearing rock for a tunnel. They are searching for something small.
+> Every pick-stroke lands a little nearer the deep stone, and every basket of earth is sifted through bare fingers before it is thrown aside. Nobody digs like that to reach a boy. They are looking for something small, and they know roughly where it lies.
 
 *⚙ When "2-6-3" is laid, Garrick adds:*
 

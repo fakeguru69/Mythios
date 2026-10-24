@@ -415,10 +415,14 @@ export default function OnlineCampfire({
           </div>
           {hasClicked && <span className="text-[12px] font-semibold text-[#6FD39A]">Pieced together</span>}
         </div>
-        <p className="font-sans text-[15.5px] text-[#F4E8C8] leading-[1.4]">{t.puzzle.q}</p>
+        {/* One question a night (Phase 2, 24 Oct): this card no longer asks a second question of its own; it points the
+            pieces at tonight's question. */}
+        <p className="font-sans text-[15.5px] text-[#F4E8C8] leading-[1.4]">
+          Two of tonight&apos;s finds belong together. Laid side by side, they bear on tonight&apos;s question.
+        </p>
         {halfLaid && (
           <p className="text-[13.5px] text-[#CDB594] italic">
-            One half of this is on the table. The other half is still in someone&apos;s hands—or out in the dark.
+            One half of this is on the table. The other is still in someone&apos;s hands, or out in the dark.
           </p>
         )}
         {bothLaidByOne && (
@@ -596,7 +600,9 @@ export default function OnlineCampfire({
       )
     : undefined;
   if (matchedLaidPiece && fire.nudgeIfLaid?.line) {
-    const laidNudgeText = fillShared(fire.nudgeIfLaid.line);
+    // Phase 2 part 7 (24 Oct): the follow-up is said to the friend who laid that piece, not to whoever is best at an Attribute.
+    const layer = (matchedLaidPiece as { by?: { name?: string }[] }).by?.[0]?.name;
+    const laidNudgeText = fillShared(layer ? fire.nudgeIfLaid.line.replace(/\{friend:[A-Za-z]+\}/g, layer) : fire.nudgeIfLaid.line);
     const laidNudgeAt = later(matchedLaidPiece.at && matchedLaidPiece.at > nudgeAt ? matchedLaidPiece.at : nudgeAt, 2);
     sayOnce('nudge-laid', laidNudgeText, laidNudgeAt).forEach((e, j) =>
       add(e.at, `nudge-laid-${j}`, garrick ? <GarrickBubble text={e.text} /> : <NarrationMessage text={e.text} />)
@@ -648,7 +654,7 @@ export default function OnlineCampfire({
 
   // His closer, from 8:00pm (stored, v2.3 step 7).
   if (garrick && t?.evening)
-    sayOnce('closer', pick(CAMPFIRE_STORED_LINES.closers, seed), new Date().toISOString()).forEach((e, j) => add(e.at, `closer-${j}`, <GarrickBubble text={e.text} />));
+    sayOnce('closer', pick(CAMPFIRE_STORED_LINES.closersByWeek[fire.week] ?? CAMPFIRE_STORED_LINES.closers, seed), new Date().toISOString()).forEach((e, j) => add(e.at, `closer-${j}`, <GarrickBubble text={e.text} />));
 
   items.sort((a, b) => new Date(a.at).getTime() - new Date(b.at).getTime());
 

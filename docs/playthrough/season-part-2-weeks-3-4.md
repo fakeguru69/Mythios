@@ -276,7 +276,7 @@ Clue found, "Facing west":
 
 *⚙ "The fresh turn" with "Facing west" (this one answers tonight's question):*
 
-> The cart below the shaft took the west road without checking, and on the ridge above the runner paused only to watch that same line. They did not search for a trail. They set their faces toward the burned hills and walked.
+> The cart took the west road below the shaft without a moment's check, and the runner on the shoulder stopped only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born.
 
 *⚙ When "3-1-1" is laid, Garrick adds:*
 
@@ -736,7 +736,7 @@ Clue found, "The view down":
 
 *⚙ "The row of stones" with "Only your hand" (this one answers tonight's question):*
 
-> The old shepherds' path ends dead at the sunken stones, and the fine dust over the housing was undisturbed until your fingers reached it. The riders stayed on the crest and rode past without once looking down.
+> The old shepherds' path stops dead at the sunken stones, and the dust on the housing was untouched until your own fingers marked it. Nobody has laid a hand on this mark in years, and the riders went past without once looking down. Either it is not what they want, or it is not a door they can open.
 
 *⚙ When "3-3-3" is laid, Garrick adds:*
 
@@ -955,7 +955,7 @@ Clue found, "Scratched on the back":
 
 *⚙ Garrick opens:*
 
-> Whoever slept in these niches had long nights too. Build the fire in the doorway.
+> She's leaving chips on the trail. Clever girl.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -965,7 +965,7 @@ Clue found, "Scratched on the back":
 
 *⚙ "On the bare rock" with "Scratched on the back" (this one answers tonight's question):*
 
-> Each chip was set on high bare rock where the starlight catches it, and the backs are scored with tiny knife-scratches: one, two, three. She is laying a numbered line across the dark.
+> Each chip was set on high bare rock where the starlight catches it, and the backs are scored one, two and three. That is not a frightened child letting things fall. She is laying a line on purpose, right under their noses, and nobody has stopped her.
 
 *⚙ When "3-4-2" is laid, Garrick adds:*
 
@@ -1442,7 +1442,7 @@ Clue found, "No way down in the dark":
 
 *⚙ "No horses" with "Smoke from the crack" (this one answers tonight's question):*
 
-> No horses wait outside in the dark, and from the crown's crack thin pale smoke has begun to rise into the cold air. The lamp has reached the deep chamber, and the hearth is burning.
+> No horses wait at the foot of the Kiln, and soon after the lamp went in, thin pale smoke began to rise from the crack. Whoever carried that lamp did not go in to raise an alarm. They went in to light something.
 
 *⚙ When "3-6-3" is laid, Garrick adds:*
 
@@ -1992,7 +1992,7 @@ Clue found, "The same side":
 
 *⚙ "The snuffed wick" with "The same side" (this one answers tonight's question):*
 
-> A lamp was just snuffed inside the side passage, and every rope was severed cleanly on the same side a finger's width from the knot. A second person stepped out of the passage in the dark and cut him loose.
+> A lamp was snuffed inside the side passage moments before, and every rope was cut on the same side, a finger's width from the knot. Someone waited there in the dark with a blade ready, and took the time to cut only rope. That is not a frightened rescuer. That is somebody who had been told what not to touch.
 
 *⚙ When "4-1-2" is laid, Garrick adds:*
 
@@ -2211,7 +2211,7 @@ Clue found, "The open road":
 
 *⚙ "Blades bare" with "The open road" (this one answers tonight's question):*
 
-> They rode the ford in broad daylight with bare blades across their saddles, and kept to the open road past every hut when the ridge sheep-path would have hidden them. They were either daring anyone to stop them, or making sure the cart was seen.
+> They rode the ford in broad daylight with their blades bare across their saddles, and kept to the open road past every hut when the ridge path would have hidden them. Four armed men do not show themselves like that over something cheap. Whatever is in that box, they would rather be seen than lose it.
 
 *⚙ When "4-2-1" is laid, Garrick adds:*
 
@@ -2612,7 +2612,7 @@ Clue found, "The scratched line":
 
 *⚙ "Two records" with "The scratched line" (this one answers tonight's question):*
 
-> Meira copied 'the marked' and 'moon-blood' from two separate old records, and under her gloss she began a second thought before scratching it out through the paper. She had a second thought she never finished.
+> Meira copied 'the marked' and 'moon-blood' from two different records, and the two words never sit in the same line. Under her note she began a second thought, then scratched it out until the nib tore the page. She was no longer sure they meant the same blood.
 
 *⚙ When "4-4-1" is laid, Garrick adds:*
 
@@ -2829,7 +2829,7 @@ Clue found, "Three shoots":
 
 *⚙ "Long curls" with "Three shoots" (this one answers tonight's question):*
 
-> The willow has had fresh shoots cut three days running, and the long shavings in the boat's bilge were carved without haste. They have kept him dry and unharmed on the island by day while moving him across the lake by night.
+> Three willow shoots cut three days running, one still white, and long shavings in the boat curled without haste. Somebody has sat out on that island day after day with the boy kept close and dry. They are not hiding him from the shore. They are waiting, and they are in no hurry at all.
 
 *⚙ When "4-5-2" is laid, Garrick adds:*
 
