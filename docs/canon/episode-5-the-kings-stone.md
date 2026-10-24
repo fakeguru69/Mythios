@@ -281,6 +281,19 @@
 > **Craft** · The gate-tower door is iron, and rusted into its frame. *The hinges are on your side.*
 > **Aim** · High up, above the terraces, one grey thread stands in the grey air. *It is not cloud.*
 
+
+> There are two ways up. The broken stair climbs the inside of the gate-tower in pieces, a step here and a gap there. Or there is the gate-tower's iron door, rusted into its frame, with its hinges on your side.
+
+`[TAKE THE BROKEN STAIR]` `[FORCE THE TOWER DOOR]`
+
+*The player chooses.*
+
+*The broken stair:*
+> You go up it from the foot, reading every step before you trust it. The stone is the same pale stone as the city, and not one step of it has a mark of weather on it: no lichen, no moss, not a stain. Nothing has ever grown here, not even on a stair.
+
+*The tower door:*
+> You set your shoulders to the iron and heave, and the rust lets go all at once with a scream of hinges that goes out over the dead city and does not come back. Inside is a guard-room: a table, two stools, and dust lying thick and even on both.
+
 **Challenge card**
 > **THE WALL**
 > The gate will not open. The wall can still be climbed.
@@ -342,6 +355,7 @@
 
 **Designer's notes**
 - **Played beats:** a notice line, the Challenge, a free look, an optional press, an act. One roll, or two if pressed.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** a real choice before the Challenge: the broken stair (Aim; nothing has ever grown on it) or the tower door (Might; the guard-room in its dust, and the scream of the hinges makes Day 4's Challenge one harder).
 - **The party:** the friends are on the wall with you; nobody is named today.
 - **Changed from the current script:** the fall that cost HP is gone (carried costs are retired); the bar and the smoke are new (approved fact 16); the Seekers' fragment about the wall is no longer re-quoted.
 - **The press detail** (the old bars, kept) is new.
@@ -382,6 +396,8 @@
 > **Intellect** · work out what you are looking at, and where it is safe to tread · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: you lose your nerve, or your footing, and go the long way round
+>
+> *If you took FORCE THE TOWER DOOR on Day 3:* **One harder.** The scream of the gate-tower's hinges went out over the whole dead city yesterday, and whoever keeps the gate barred has been listening for you since.
 
 *On a pass:*
 > You walk the whole street between them, close enough to smell the old iron. Nothing happens.
@@ -452,6 +468,7 @@
 
 **Designer's notes**
 - **Played beats:** a notice line, the Challenge, an optional press, an act, a Talk. One roll, or two if pressed.
+- **Phase 3, 24 Oct:** one harder if the tower door was forced on Day 3.
 - **The party:** the friends are in the street with you; nobody is named today.
 - **Changed from the current script:** a failure now takes the long way round; "He walks last" names Garrick; the watch with Garrick is the player's own, with three buttons.
 - **The press detail** (they all stopped on the same step) is new.
@@ -471,6 +488,18 @@
 > The last terrace ends in a square, and the hall fills the sky above it: a great pale building on the city's highest ground, its doors taller than houses, and shut. The heartbeat comes from behind them.
 >
 > And in the shell of a house across the square, a fire is burning.
+
+> You can creep in close, from rubble to rubble, near enough to hear what is said at that fire. Or you can stay where you are, flat in the ruin at the square's edge, and read the whole camp from a distance.
+
+`[CREEP IN CLOSE]` `[STAY IN THE RUBBLE]`
+
+*The player chooses.*
+
+*Creep in close:*
+> You go in on your elbows, a rubble-heap at a time, until the warmth of their fire is on your face. Somebody at it is humming under their breath, a few bars of something slow. A hand is laid on the hummer's arm, and the humming stops.
+
+*Stay in the rubble:*
+> You stay where you are, flat in the cold ruin at the square's edge, and take the whole camp in at once: the house with its roof gone, the woodpile stacked to the eaves against it, the shapes round the fire, and the one standing at the wall, alone, facing the hall.
 
 **Challenge card**
 > **THE FIRE IN THE SQUARE**
@@ -539,6 +568,7 @@
 
 **Designer's notes**
 - **Played beats:** the Challenge, a notice line, an act. One roll.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** a real choice before the Challenge: creep in close (Agility; the humming hushed) or stay in the rubble (Aim; the whole camp at once). Creeping close leaves a print by their woodpile: Day 6's Challenge is one harder.
 - **The party:** the friends are in the rubble with you; nobody is named today.
 - **Changed from the current script:** the change of watch and the count are now what a pass buys. On a failure the player still learns who they are and that they are counting.
 - **The count:** nine before this evening's stroke, eight after it. The next stroke is the late one at the end of Gathering 5 (the same night as Day 6), which leaves the seven that Gathering 5 and Week 6 count from. *(Corrected 5 Oct: the summary card first said nine.)*
@@ -592,6 +622,8 @@
 > **Charm** · upright, at a watchman's pace, like someone who belongs on a wall · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: a lantern lifts, and you finish the crossing on your belly
+>
+> *If you took CREEP IN CLOSE on Day 5:* **One harder.** Somebody at the fire found the print of an elbow in the ash by their woodpile this morning, and the watch on the wall is walking further tonight.
 
 *On a pass:*
 > The hand drops. You cross, forty paces of open stone, and nothing in the square so much as turns.
@@ -640,6 +672,7 @@
 
 **Designer's notes**
 - **Played beats:** a Choice of lookout, a notice line, the Challenge, three acts. One roll.
+- **Phase 3, 24 Oct:** one harder if you crept in close to their fire on Day 5.
 - **The party:** the friend the player posts keeps the watch; the map passes through every friend's hands. Nobody speaks, and tonight that is the point.
 - **Changed from the current script:** today there is no play at all. Now the crossing is rolled, the lookout is chosen, and the map is passed in silence (approved fact 17; TV's decision of 4 Oct).
 - **The last fragment is not quoted.** Gathering 5 turns on its words, and its lock words are *fell* and *joined*.

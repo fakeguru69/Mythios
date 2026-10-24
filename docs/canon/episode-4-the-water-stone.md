@@ -170,6 +170,20 @@
 *If the player loses, one line more:*
 > Quick as it was, one of them has had you face down in the ford for the worst of it. You come up streaming and coughing, with river grit in your teeth, and the cold of it stays in your boots all afternoon.
 
+> They are thin to the bone, all three, and none of them has a coat fit for the north road. Your packs hold tomorrow's bread, and not much more.
+
+`[GIVE THEM YOUR BREAD]` `[SEND THEM ON THEIR WAY]`
+
+*The player chooses.*
+
+*Give them your bread:*
+> They eat it in the shallows, without a word, the way a man eats who has stopped expecting to. When it is gone the oldest of them wipes his mouth on his wrist and remembers one thing more.
+>
+> *"The one at the back rode with a hand on that cart the whole way over the ford. Like it might float off."*
+
+*Send them on their way:*
+> You point them up the river, and they go, wet to the knees and slow. At the bend the last of them looks back once at your packs, the way a man looks at a thing he means to come back for.
+
 > Low in the stone of the old ford, where the water runs over it, sits a carved housing.
 
 > It opens as your fingers shut. What is inside is colder than the river.
@@ -241,6 +255,7 @@
 
 **Designer's notes**
 - **Played beats:** the fight, an act, a free look, a notice line, the Challenge, an act. One roll.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** a real choice after the fight: give the hungry men your bread (they remember the hand kept on the cart; Day 3's Challenge is one harder, rowed on an empty stomach) or send them on their way.
 - **The party:** Mei and Jo walk the other fork.
 - **Changed from the current script:** the thieves (approved fact 24) open the day and give the first word of the riders; the party finds the fork itself before the carter speaks; the carter has moved from the ford to the fork.
 - **One change from the ladder:** it had a failed roll lose "the detail of what the riders carried". Gathering 4's table question shows the carter's box on the screen, so the box cannot be lost. A failure now costs the hour, as in the current script.
@@ -300,6 +315,20 @@
 
 > She takes you down to the shingle herself, and puts the skiff's rope into your hand. The tower Meira marked stands out in the water, waiting.
 
+> The sprung plank will let the lake in whatever you do. You can patch her properly before you put out, and lose the best of the calm. Or you can put out now, and row hard enough to beat the leak to the tower.
+
+`[PATCH HER FIRST]` `[ROW HARD]`
+
+*The player chooses.*
+
+*Patch her first:*
+> You turn her over on the shingle and pull the old rag out of the plank to stuff it again. It comes out in one piece, and it is not a rag. It is a boy's shirt, washed thin, too small now for anybody in that house.
+>
+> You put it back as carefully as you can, and pack it tighter.
+
+*Row hard:*
+> You put out at once, and lean on the oars until your back burns. You come in under the tower early, while the light is still flat on the water, and see what a slower boat would have missed: on its lowest step the weed is scraped away in one place, where a rope has been tied, and tied often.
+
 **Challenge card**
 > **HER SKIFF**
 > It leaks, and the wind is getting up off the lake.
@@ -307,9 +336,11 @@
 > **Might** · row her hard, and beat the leak there · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: you get there soaked, and bailing
+>
+> *If you took GIVE THEM YOUR BREAD on Day 2:* **One harder.** The bread went to the men at the ford, and you put out across the Stillwater on an empty stomach.
 
 *On a pass:*
-> The patch holds, near enough, and the strokes come long and even. You bring her in under the tower with the bilge still shallow and the wind rising at your back.
+> The rag in the plank holds, near enough, and the strokes come long and even. You bring her in under the tower with the bilge still shallow and the wind rising at your back.
 
 *On a failure:*
 > The rag works loose a quarter of the way out, and the lake comes in round your boots faster than it can be thrown back. You arrive soaked and bailing. But you arrive.
@@ -341,6 +372,7 @@
 
 **Designer's notes**
 - **Played beats:** a Choice of what to look at, a notice line, the Challenge, an act. One roll.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** a real choice before the Challenge (Grok's): patch her first (Craft; the rag is a boy's shirt) or row hard (Might; the tie-mark on the tower's step, and Day 4's Challenge is one harder). One harder here if the bread went to the men at the ford.
 - **The party:** the friends are in the room and in the skiff; nobody is named today.
 - **Changed from the current script:** this was the season's fourth talk with a grieving relative. She now says one line, and the rest is found: the boats, the lamp, the notches. The line "You know what they want his blood for" is cut; the day's turn is the count.
 - **The grandmother:** her one line is the approved text. Her lines about the lamp are now told for the fisherman, without giving him new words.
@@ -376,6 +408,18 @@
 >
 > And between them, smaller ones.
 
+> The light is nearly gone. You can follow them as they are, by what is left of the dusk and the feel of the stones underfoot. Or you can light the lamp, and see them properly, and be a light moving in the drowned streets for anyone out on the lake to see.
+
+`[KEEP TO THE DARK]` `[LIGHT THE LAMP]`
+
+*The player chooses.*
+
+*Keep to the dark:*
+> You leave the lamp shuttered and go by feel and by the last grey of the sky. Out past the last roofs, on the low black line of the reed island, a light shows once, and goes out, as if somebody had opened a door and thought better of it.
+
+*Light the lamp:*
+> The flame comes up yellow and close, and the lane jumps out of the dark around you. In its light the small prints are plain: the round of a heel, the marks of five toes. He was walked through here barefoot.
+
 `[PLANT]` *(Joss was walked through here)*
 
 **Challenge card**
@@ -385,9 +429,11 @@
 > **Aim** · pick them out by lamplight, stone by stone, and call the line · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: you go into the water, and the lamp goes with you
+>
+> *If you took ROW HARD on Day 3:* **One harder.** Your arms are still shaking from rowing her hard across the Stillwater yesterday, and the weed will not hold still under your boots.
 
 *On a pass:*
-> Stone by stone, with the lamp held low and the weed sliding under your boots, you follow them down the lane to the edge of the deep water, where they stop.
+> Stone by stone, with the weed sliding under your boots, you follow them down the lane to the edge of the deep water, where they stop.
 
 *On a failure:*
 > You lose them twice. Then a drowned cobble turns under your foot, and you are in to the waist, with the lamp gone out in your fist. Dev finds the last of them by feel: at the edge of the deep water, where they stop.
@@ -438,6 +484,7 @@
 
 **Designer's notes**
 - **Played beats:** a notice line, the Challenge, an optional press, an act. One roll, or two if pressed.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** a real choice before the Challenge: keep to the dark (Agility; a light shows once on the reed island) or light the lamp (Aim; he was walked through barefoot, and the island sees it, so Day 5's Challenge is one harder). One harder here after rowing hard on Day 3.
 - **The party:** Dev finds the last prints on a failure.
 - **Changed from the current script:** a failure no longer costs a cut shin (carried costs are retired); Meira's page is read by the player, not by "whoever is carrying the satchel".
 - **One change from the ladder, and from the current script:** both quoted the fragment's line in full from Meira's copy. Its two lock words are *woke* and *near* (were *woke* and *wake* until 15 Oct 2026), so quoting it would open the lock for nothing. The line is now not quoted. The player learns the word and that the fragment is a warning; solving the fragment says what the warning is.
@@ -463,6 +510,8 @@
 > **Craft** · rig a trailing line off the stern, and keep her true by it · `[ROLL]`
 > REWARD: +500g · **and you strike first**
 > IF YOU FAIL: you row in a circle, and **he strikes first**
+>
+> *If you took LIGHT THE LAMP on Day 4:* **One harder.** Somebody on the reed island saw a lamp moving in the drowned streets last night, and has been listening for oars since first light.
 
 *On a pass:*
 > The reeds close round the bow with a dry hiss. You come in behind the island, where they are thickest, and nothing on it has heard you.
@@ -538,6 +587,7 @@
 
 **Designer's notes**
 - **Played beats:** the Challenge, which decides how the fight opens; the fight; an act; a notice line; an act. One roll.
+- **Phase 3, 24 Oct:** one harder if the lamp was lit in the lowest lane on Day 4.
 - **The party:** the friends are at the oars; nobody is named today.
 - **Changed from the current script:** the boat was empty and the day repeated Day 4. Now a man minds it, the party takes it, and what is in it is the answer. The cold ashes are gone.
 - **The boat is used tomorrow night:** Gathering 4 opens "in the boat you took from them", and its floor notice line is a curl of whittled wood.
@@ -578,6 +628,19 @@
 >
 > Mei bends to read. The flame is yours to keep.
 
+
+> There is one lamp, and four empty windows, and the wind coming through all of them. You can wall it in with what you carry, coats and packs and bodies, and read by a light that cannot be seen from the shore. Or you can get down in the lee of the sill and strike it where the gusts cannot reach, and trust your hand.
+
+`[SHELTER IT WITH YOUR COATS]` `[STRIKE IT IN THE LEE OF THE SILL]`
+
+*The player chooses.*
+
+*Shelter it with your coats:*
+> You make a wall of coats and packs and shoulders round the lamp, so close that the flame lights only the six pieces and the hands holding them. From the shore, the tower's windows stay dark.
+
+*Strike it in the lee of the sill:*
+> You get down under the sill, out of the wind, and strike. In the first white flash of the spark, through the window above you, you see the black water at the tower's foot ripple once, in a ring, with no wind on it.
+
 **Challenge card**
 > **THE FLAME**
 > One lamp, four empty windows, and the wind.
@@ -616,7 +679,8 @@
 
 
 **Designer's notes**
-- **Played beats:** an act, a notice line, an act, the Challenge. One roll.
+- **Played beats:** an act, a notice line, an act, a choice, the Challenge. One roll.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** a real choice before the Challenge: shelter the lamp with your coats (Craft; the windows stay dark from the shore) or strike it in the lee of the sill (Aim; the ring on the water below, the listener's first sign). The Gathering needs the listener either way, so neither road changes tomorrow.
 - **The party:** Mei reads the map out while the player keeps the flame. She is named for an act; the words of the map are the narrator's.
 - **Changed from the current script:** today there is no play at all. Now the flame is rolled. The day follows straight on from the lamp seen last evening, so "the last fragment takes all day to find" is cut.
 - **Why reading aloud is the danger this week:** a failure makes the party say it twice, louder. Either way it is heard.

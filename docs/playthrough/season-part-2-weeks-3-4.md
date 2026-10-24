@@ -416,6 +416,44 @@ Clue found, "Facing west":
 
 > If Wren was in that cart, she passed within a mile of her own door.
 
+> Up the street her mother's door is shut again. The boy has gone back to his board, and does not look at you. What he gave you, he gave you and nobody else.
+
+*⚙ A choice: [TELL HER MOTHER] or [KEEP THE BOY'S SECRET]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [TELL HER MOTHER]:*
+
+> You go back up the street and knock, and this time the door opens at once. You tell her all of it: the cart without lamps, the empty bed of it at the foot of the black road, the horses going up.
+>
+> She does not weep. She stands very straight in her doorway, and her voice carries down the street, as she means it to.
+>
+> *"Then she's near. She'll be leaving them something. She always leaves something."*
+>
+> All along the street, shutters that were closed are open a crack.
+
+*⚙ Then the card "What this changed":*
+
+> You told Wren's mother what the boy saw. The whole street heard her, and the talk will go up the black road before you.
+
+*⚙ This road's own find, "Her mother's answer" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Told that a cart without lamps went up the black road last night, Wren's mother did not weep. "Then she's near. She'll be leaving them something. She always leaves something."
+
+*⚙ If you pick [KEEP THE BOY'S SECRET]:*
+
+> You say nothing. You walk back past her door with it, and her lamp is lit behind the shutter, and she is in there alone with a daughter she thinks is two weeks gone.
+>
+> At the well the boy lifts his eyes once from his board, and then lowers them. Nobody else in Ashcombe saw him speak to you.
+
+*⚙ Then the card "What this changed":*
+
+> You kept the boy's secret. Her mother still does not know, and nobody in Ashcombe is talking about you tonight.
+
+*⚙ This road's own find, "The cart without lamps" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> The boy at the well whispered it: a cart came through Ashcombe last night without lamps, was left empty at the foot of the black road, and whoever was in it went on up on horses.
+
+*⚙ Whatever you picked, every player reads this:*
+
 > Garrick knows the black road. *"Where it forks, the shepherds take the left,"* he says, and when he catches somebody looking at him, he nods up at the black hills. *"My family's been in these hills longer than the roads have."*
 
 > At the edge of the village the pound wall, where the shepherds pen their flocks, is built on older stones than any house in Ashcombe: huge, square-cut, set without mortar. They are as warm as bread. All but one gap.
@@ -571,6 +609,8 @@ Clue found, "Sacking on the stones":
 > It is slick as ice, and as warm as skin.
 
 *⚙ Pick one: Agility (straight over, and fast), or Aim (pick out the safe line from the edge, and take it slowly). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: you go down hard, and slide, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 3-2:took:1:0, the card is 1 harder, and says: **One harder.** Ashcombe was up half the night talking about the strangers and the cart, and somebody carried the talk up the black road before you.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2070,6 +2110,38 @@ Clue found, "The same side":
 
 *⚙ Either way, every player reads this:*
 
+> They are thin to the bone, all three, and none of them has a coat fit for the north road. Your packs hold tomorrow's bread, and not much more.
+
+*⚙ A choice: [GIVE THEM YOUR BREAD] or [SEND THEM ON THEIR WAY]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [GIVE THEM YOUR BREAD]:*
+
+> They eat it in the shallows, without a word, the way a man eats who has stopped expecting to. When it is gone the oldest of them wipes his mouth on his wrist and remembers one thing more.
+>
+> *"The one at the back rode with a hand on that cart the whole way over the ford. Like it might float off."*
+
+*⚙ Then the card "What this changed":*
+
+> You gave the men at the ford your bread. They remembered one thing more, and you row tomorrow on an empty stomach: the skiff is one harder.
+
+*⚙ This road's own find, "A hand on the cart" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Fed, the oldest of the hungry men at the ford remembered that the rider at the back kept a hand on the little closed cart the whole way over, as if it might float off.
+
+*⚙ If you pick [SEND THEM ON THEIR WAY]:*
+
+> You point them up the river, and they go, wet to the knees and slow. At the bend the last of them looks back once at your packs, the way a man looks at a thing he means to come back for.
+
+*⚙ Then the card "What this changed":*
+
+> You sent the hungry men up the river with nothing. At the bend the last of them looked back at your packs.
+
+*⚙ This road's own find, "The look back" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Sent on their way, the three hungry men from the ford went up the river slow, and at the bend the last of them looked back once at your packs.
+
+*⚙ Whatever you picked, every player reads this:*
+
 > Low in the stone of the old ford, where the water runs over it, sits a carved housing.
 
 *⚙ The fragment moment:*
@@ -2316,8 +2388,42 @@ Clue found, "The open road":
 - **Aim:** From her door you can see down the lane, over the shingle, to the tower in the water. *(Apprentice and up:)* And from the tower, this window.
 
 > She takes you down to the shingle herself, and puts the skiff's rope into your hand. The tower Meira marked stands out in the water, waiting.
+
+> The sprung plank will let the lake in whatever you do. You can patch her properly before you put out, and lose the best of the calm. Or you can put out now, and row hard enough to beat the leak to the tower.
+
+*⚙ A choice: [PATCH HER FIRST] or [ROW HARD]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [PATCH HER FIRST]:*
+
+> You turn her over on the shingle and pull the old rag out of the plank to stuff it again. It comes out in one piece, and it is not a rag. It is a boy's shirt, washed thin, too small now for anybody in that house.
+>
+> You put it back as carefully as you can, and pack it tighter.
 >
 > …
+
+*⚙ Then the card "What this changed":*
+
+> You patched her skiff before you put out, so the Challenge asked for Craft.
+
+*⚙ This road's own find, "The shirt in the plank" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> The rag stuffed into the sprung plank of her skiff is a boy's shirt, washed thin, too small now for anybody in that house.
+
+*⚙ If you pick [ROW HARD]:*
+
+> You put out at once, and lean on the oars until your back burns. You come in under the tower early, while the light is still flat on the water, and see what a slower boat would have missed: on its lowest step the weed is scraped away in one place, where a rope has been tied, and tied often.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You rowed her hard, so the Challenge asked for Might, and you came in early enough to see the tie-mark. Your arms will feel it tomorrow: the lowest lane is one harder.
+
+*⚙ This road's own find, "The tie-mark on the step" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> On the drowned tower's lowest step the weed is scraped away in one place, where a boat's rope has been tied, and tied often.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: HER SKIFF**
 
@@ -2325,9 +2431,11 @@ Clue found, "The open road":
 
 *⚙ Pick one: Craft (patch her first, and row her dry), or Might (row her hard, and beat the leak there). Roll d20 + that Attribute's tier bonus against DC 8: a Novice (+0) succeeds on 9+. Pass: +500g, and the Attribute grows. Fail: you get there soaked, and bailing, and −150g. An Attribute Relic adds +4.*
 
+*⚙ If 4-2:took:0:0, the card is 1 harder, and says: **One harder.** The bread went to the men at the ford, and you put out across the Stillwater on an empty stomach.*
+
 *⚙ If you passed the Challenge:*
 
-> The patch holds, near enough, and the strokes come long and even. You bring her in under the tower with the bilge still shallow and the wind rising at your back.
+> The rag in the plank holds, near enough, and the strokes come long and even. You bring her in under the tower with the bilge still shallow and the wind rising at your back.
 
 *⚙ If you failed the Challenge:*
 
@@ -2489,8 +2597,40 @@ Clue found, "A cleared sill":
 > In the mud of the lowest lane there are footprints, a few days old. Grown men's boots.
 >
 > And between them, smaller ones.
+
+> The light is nearly gone. You can follow them as they are, by what is left of the dusk and the feel of the stones underfoot. Or you can light the lamp, and see them properly, and be a light moving in the drowned streets for anyone out on the lake to see.
+
+*⚙ A choice: [KEEP TO THE DARK] or [LIGHT THE LAMP]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [KEEP TO THE DARK]:*
+
+> You leave the lamp shuttered and go by feel and by the last grey of the sky. Out past the last roofs, on the low black line of the reed island, a light shows once, and goes out, as if somebody had opened a door and thought better of it.
 >
 > …
+
+*⚙ Then the card "What this changed":*
+
+> You kept the lamp shuttered, so the Challenge asked for Agility, and nobody on the lake saw you.
+
+*⚙ This road's own find, "A light on the island" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> From the dark of the lowest lane, a light showed once on the reed island and went out, as if somebody had opened a door and thought better of it.
+
+*⚙ If you pick [LIGHT THE LAMP]:*
+
+> The flame comes up yellow and close, and the lane jumps out of the dark around you. In its light the small prints are plain: the round of a heel, the marks of five toes. He was walked through here barefoot.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You lit the lamp, so the Challenge asked for Aim. A light moving in the drowned streets can be seen from the lake: tomorrow's fog is one harder.
+
+*⚙ This road's own find, "Barefoot" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> By lamplight, the small prints in Old Reedham's lowest lane show the round of a heel and five toes: the boy was walked through the drowned streets barefoot.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: THE LOWEST LANE**
 
@@ -2498,9 +2638,11 @@ Clue found, "A cleared sill":
 
 *⚙ Pick one: Agility (follow them across the cobbles without going in), or Aim (pick them out by lamplight, stone by stone, and call the line). Roll d20 + that Attribute's tier bonus against DC 8: a Novice (+0) succeeds on 9+. Pass: +500g, and the Attribute grows. Fail: you go into the water, and the lamp goes with you, and −150g. An Attribute Relic adds +4.*
 
+*⚙ If 4-3:took:1:1, the card is 1 harder, and says: **One harder.** Your arms are still shaking from rowing her hard across the Stillwater yesterday, and the weed will not hold still under your boots.*
+
 *⚙ If you passed the Challenge:*
 
-> Stone by stone, with the lamp held low and the weed sliding under your boots, you follow them down the lane to the edge of the deep water, where they stop.
+> Stone by stone, with the weed sliding under your boots, you follow them down the lane to the edge of the deep water, where they stop.
 >
 > …
 
@@ -2673,6 +2815,8 @@ Clue found, "The scratched line":
 > A mile of white water, and one grey shadow in it.
 
 *⚙ Pick one: Aim (hold your line on the tower, for as long as you can see it), or Craft (rig a trailing line off the stern, and keep her true by it). Roll d20 + that Attribute's tier bonus against DC 8: a Novice (+0) succeeds on 9+. Pass: +500g · **and you strike first**, and the Attribute grows. Fail: you row in a circle, and **he strikes first**, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 4-4:took:0:1, the card is 1 harder, and says: **One harder.** Somebody on the reed island saw a lamp moving in the drowned streets last night, and has been listening for oars since first light.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2916,8 +3060,40 @@ Clue found, "Three shoots":
 > They settle, as they have three times before. A map, old and exact. But there is light enough for one pair of eyes, and only while the flame lives.
 >
 > Mei bends to read. The flame is yours to keep.
+
+> There is one lamp, and four empty windows, and the wind coming through all of them. You can wall it in with what you carry, coats and packs and bodies, and read by a light that cannot be seen from the shore. Or you can get down in the lee of the sill and strike it where the gusts cannot reach, and trust your hand.
+
+*⚙ A choice: [SHELTER IT WITH YOUR COATS] or [STRIKE IT IN THE LEE OF THE SILL]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [SHELTER IT WITH YOUR COATS]:*
+
+> You make a wall of coats and packs and shoulders round the lamp, so close that the flame lights only the six pieces and the hands holding them. From the shore, the tower's windows stay dark.
 >
 > …
+
+*⚙ Then the card "What this changed":*
+
+> You walled the lamp in with your coats, so the Challenge asked for Craft, and the tower's windows stayed dark from the shore.
+
+*⚙ This road's own find, "A light walled in" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> In the drowned tower's bell-chamber you read the map by a lamp walled in with coats and packs and shoulders, so close that it lit only the six pieces and the hands that held them.
+
+*⚙ If you pick [STRIKE IT IN THE LEE OF THE SILL]:*
+
+> You get down under the sill, out of the wind, and strike. In the first white flash of the spark, through the window above you, you see the black water at the tower's foot ripple once, in a ring, with no wind on it.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You struck the spark under the sill, so the Challenge asked for Aim, and in its first flash you saw the water move.
+
+*⚙ This road's own find, "A ring on the water" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> In the first flash of the spark under the bell-chamber's sill, the black water at the tower's foot rippled once, in a ring, with no wind on it.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: THE FLAME**
 
