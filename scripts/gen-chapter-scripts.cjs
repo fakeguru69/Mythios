@@ -358,6 +358,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The bite on the grey slab',
       text: 'At the grey slab upriver the iron tyre of the cart has bitten pale into the rock, pulling to the left, the way it pulled at the ford.',
+      lost: 'The cart\'s iron tyre bit pale into a grey slab upriver, pulling left. In the noisy climb after, you lost track of which slab it was.',
     },
   },
   '2-3:GO THROUGH THE THORN': {
@@ -365,6 +366,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'Wool on the thorn',
       text: "In the cut and tied thorn above the river, at the height of a boy's shoulder, a few threads of undyed wool are caught on a spine.",
+      lost: 'There was undyed wool on the thorn, at a boy\'s height. It tore away in your scramble up the path, and you came out with only scratches to show for it.',
     },
   },
   // Phase 3 · W2D4 (The shaft)
@@ -373,6 +375,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The beat of their words',
       text: 'At the top of the shaft you moved on the beat of their voices: the same few words, said together, over and over, like people who mean to have them by heart.',
+      lost: 'They were saying the same few words over and over, together. You were seen before you could hold on to a single one of them.',
     },
   },
   '2-4:PUT ON THE HOODED COAT': {
@@ -380,6 +383,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The coat on the peg',
       text: 'A hooded coat hung on a peg at the top of the shaft: cut for a big man, damp at the shoulders, its hem caked with the pale clay of the cart-lane.',
+      lost: 'There was a hooded coat on a peg at the shaft-top, its hem caked with the cart-lane\'s clay. You left it in the roots when you were driven back.',
     },
   },
   // W2D5 (The hillside by night): the night's two ways
@@ -432,6 +436,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The shirt in the plank',
       text: 'The rag stuffed into the sprung plank of her skiff is a boy\'s shirt, washed thin, too small now for anybody in that house.',
+      lost: 'The rag in her skiff\'s sprung plank was a boy\'s shirt. It worked loose a quarter of the way out, and the lake took it.',
     },
   },
   '4-3:ROW HARD': {
@@ -439,6 +444,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The tie-mark on the step',
       text: 'On the drowned tower\'s lowest step the weed is scraped away in one place, where a boat\'s rope has been tied, and tied often.',
+      lost: 'There was a tie-mark in the weed of the drowned tower\'s lowest step. You came in bailing, and by the time the boat was still you could not find it again.',
     },
   },
   '4-4:KEEP TO THE DARK': {
@@ -446,6 +452,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'A light on the island',
       text: 'From the dark of the lowest lane, a light showed once on the reed island and went out, as if somebody had opened a door and thought better of it.',
+      lost: 'A light showed once on the reed island, you are almost sure of it. Then you were in the water to the waist, and when you looked again there was nothing.',
     },
   },
   '4-4:LIGHT THE LAMP': {
@@ -453,6 +460,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'Barefoot',
       text: 'By lamplight, the small prints in Old Reedham\'s lowest lane show the round of a heel and five toes: the boy was walked through the drowned streets barefoot.',
+      lost: 'By lamplight the small prints in the lowest lane looked bare. Then the lamp went into the water with you, before anyone else could see them.',
     },
   },
   // Phase 3 · W4D6, W5D3, W5D5, W6D2, W6D5, W6D6: the way the Challenge is met
@@ -461,6 +469,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'A light walled in',
       text: 'In the drowned tower\'s bell-chamber you read the map by a lamp walled in with coats and packs and shoulders, so close that it lit only the six pieces and the hands that held them.',
+      lost: 'The coats kept the light off the tower\'s windows, until the flame went out halfway and had to be struck again in the open.',
     },
   },
   '4-6:STRIKE IT IN THE LEE OF THE SILL': {
@@ -468,6 +477,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'A ring on the water',
       text: 'In the first flash of the spark under the bell-chamber\'s sill, the black water at the tower\'s foot rippled once, in a ring, with no wind on it.',
+      lost: 'In the spark\'s first flash you thought the black water moved below the tower. The flame went out halfway, and nobody else had seen it.',
     },
   },
   '5-3:TAKE THE BROKEN STAIR': {
@@ -475,6 +485,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'A stair nothing grows on',
       text: 'Highwall\'s broken stair is the city\'s own pale stone, and not one step of it bears a mark of weather: no lichen, no moss, not a stain.',
+      lost: 'Nothing has ever grown on Highwall\'s broken stair. You climbed the last of it in the dusk, by feel, and saw very little else.',
     },
   },
   '5-3:FORCE THE TOWER DOOR': {
@@ -482,6 +493,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The guard-room',
       text: 'Behind Highwall\'s rusted gate-tower door is a guard-room: a table, two stools, and dust lying thick and even on both.',
+      lost: 'The gate-tower door gave at last as the light went. The guard-room behind it was too dark to show more than a table and two stools.',
     },
   },
   '5-5:CREEP IN CLOSE': {
@@ -489,6 +501,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The humming stopped',
       text: 'Close to the Order\'s fire below the hall, somebody was humming a few slow bars under their breath, until a hand was laid on their arm and the humming stopped.',
+      lost: 'Somebody at the Order\'s fire was humming. Then a stone skittered under your boot, and you lay with your face in the dust until long after it stopped.',
     },
   },
   '5-5:STAY IN THE RUBBLE': {
@@ -496,6 +509,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The whole camp at once',
       text: 'From the rubble at the square\'s edge: a house with its roof gone, a woodpile stacked to the eaves against it, shapes round a fire, and one standing alone at the wall, facing the hall.',
+      lost: 'From the rubble you had the whole camp in view, until a lantern swung your way and you put your face to the stones.',
     },
   },
   '6-2:PUT YOUR BACK TO THE BEAM': {
@@ -503,6 +517,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'Names on the beam',
       text: 'The underside of the fallen beam in the defenders\' barracks is cut all over with names, rows of them in many hands, scratched in with knife-points from the bunks below.',
+      lost: 'There were names cut into the underside of the barracks beam. The ceiling came down with it, and the dust took them before you could read one.',
     },
   },
   '6-2:FIND THE QUIET WAY': {
@@ -510,6 +525,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The cup left behind',
       text: 'Pressed flat under the barracks\' fallen ceiling: an iron cup with a ring of old wine dried black inside it, set down on the last night and never taken up again.',
+      lost: 'Halfway through the fall there was an iron cup pressed flat under the stone. Then the ceiling came down, and it lies under a great deal more stone now.',
     },
   },
   '6-5:READ THE CUTS FROM THE FLOOR': {
@@ -517,6 +533,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'Not one night missing',
       text: 'On the sky-watchers\' wall every moon is cut to the same depth by the same kind of tool, year on year, and in all those years not one night is missing.',
+      lost: 'Every moon on the sky-watchers\' wall is cut to the same depth. You read them by lamplight for hours, until the rows ran together.',
     },
   },
   '6-5:CLIMB THE WATCHERS\' LEDGES': {
@@ -524,6 +541,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'The square from the ledges',
       text: 'From the sky-watchers\' highest ledges, through the moon-tower\'s open roof, you can see straight down into the great square and the Order\'s fire burning red in it.',
+      lost: 'From the top ledges you could see down into the great square. Your lamp burned there half the night, and the square looked back.',
     },
   },
   '6-6:WALK IN STEP WITH THEM': {
@@ -531,6 +549,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'No breath',
       text: 'Walking in step between the ranks of the dead, with the cold coming off the iron on both sides, you heard nothing under the tramp of their feet: not one of them breathes.',
+      lost: 'You walked in step with the dead until the gap closed and a shoulder of iron took you in the chest. Whether any of them breathed, you could not say.',
     },
   },
   '6-6:SHOULDER THROUGH': {
@@ -538,6 +557,7 @@ const FORK_BRANCH_META = {
     roadFind: {
       title: 'Rust and a bruise',
       text: 'You came out of the walking ranks with green rust smeared down your coat, and a bruise coming up on your arm in the shape of a hand.',
+      lost: 'You came out of the ranks with rust down your coat and a bruise in the shape of a hand, and one helm turned your way behind you.',
     },
   },
   '2-6:READ IT OUT': {
@@ -616,19 +636,19 @@ const FORK_BRANCH_META = {
   },
   // Fork · W3D5 (The Spring — the riders' open line vs Wren's goat-track)
   "3-5:THE RIDERS' LINE": {
-    changed: "You took the riders' open line round the fold — the grey coat on the ridge saw you coming and strikes first.",
+    changed: "You took the riders' open line round the fold. Where their horses slowed for the rise, one of them had dropped something worth keeping: an Agility Relic. But the grey coat on the ridge saw you coming, and strikes first.",
     roadFind: {
       title: 'Hoof-scratches round the fold',
       text: "The riders' line went the long way round the head of the fold in plain view of the ridge where the grey coat had been left to watch.",
     },
+    relic: 'Agility',
   },
   "3-5:WREN'S LINE": {
-    changed: "You followed Wren's chips down the goat-track — you come upon the grey coat unseen, strike first, and claim an Agility Relic.",
+    changed: "You followed Wren's chips down the goat-track, and came upon the grey coat unseen: you strike first.",
     roadFind: {
       title: 'Five chips on the goat-track',
       text: 'Down the steep goat-track where no horse could go, five more chips of black glass marked the path Wren walked on her own feet.',
     },
-    relic: 'Agility',
   },
   // Fork · W3D6 (The Kiln Ridge — reading the map over the wind)
   '3-6:READ IT OUT': {
@@ -647,14 +667,14 @@ const FORK_BRANCH_META = {
   },
   // Fork · W4D1 (Not Finished — reading the ash vs taking Wren up to the air first)
   '4-1:READ THE ASH': {
-    changed: 'You stayed to guard the ash while Dev took Wren up — not a boot moved across the floor before you bent with the lamp.',
+    changed: 'You stayed to guard the ash while Dev took Wren up, and not a boot moved across the floor before you bent to it with the lamp.',
     roadFind: {
       title: 'Still boots in the ash',
       text: 'While Dev carried Wren up toward the cooler air, everyone else in the Kiln chamber stood motionless where they were so not a single fresh print crossed the ash.',
     },
   },
   '4-1:TAKE WREN UP FIRST': {
-    changed: 'You carried Wren up to the cool air first — Mei kept every boot off the ash for you, and your care earned an Aim Relic.',
+    changed: 'You carried Wren up to the cool air first, and your care earned an Aim Relic. Mei kept every boot off the ash, but the lamp burned low while you were gone: the Challenge is one harder.',
     roadFind: {
       title: 'Cool air at the Kiln mouth',
       text: 'When you took Wren up to the cooler air first before returning to the chamber floor, Mei held the room still so every print in the ash waited untouched for your lamp.',
@@ -708,19 +728,19 @@ const FORK_BRANCH_META = {
   },
   // Fork · W5D4 (First Watch — sitting up with Garrick by the shutter)
   '5-4:WHAT ARE THEY?': {
-    changed: 'You connected the standing stones to the Kiln page — Garrick confirmed they stood his watch, earning an Intellect Relic.',
+    changed: 'You asked what the standing stones were, and Garrick put you in mind of the page under the Kiln.',
     roadFind: {
       title: 'They stood his watch',
       text: 'When you asked on first watch what the standing stones were, Garrick reminded you of the page under the Kiln: "They stood his watch."',
     },
-    relic: 'Intellect',
   },
   '5-4:WHO IS THE CUP FOR?': {
-    changed: 'You asked who the full cup by the shutter was for — he called it a family habit and spoke of what his family had waited to see.',
+    changed: 'You asked who the full cup by the shutter was for. He called it a family habit, and spoke of what his family had waited to see. Asking the question nobody else thought to ask earned you an Intellect Relic.',
     roadFind: {
       title: 'Full by the shutter',
       text: 'Looking at the full cup standing by the shutter on first watch, Garrick called it a family habit for whoever could not be there and said his family had waited a long time.',
     },
+    relic: 'Intellect',
   },
   '5-4:SAY NOTHING': {
     changed: 'You kept watch in silence beside him — looking at the full cup by the shutter, he spoke of his family’s long wait on his own.',
@@ -746,19 +766,19 @@ const FORK_BRANCH_META = {
   },
   // Fork · W6D3 (Four Nights — timing the watch vs reading the board before crossing the square)
   '6-3:THE WATCH': {
-    changed: 'You timed the watch-change word for word — you caught the exact beat when neither watchman looks at the square, earning a Craft Relic.',
+    changed: 'You timed the watch-change word for word, and caught the beat when neither watchman looks at the square.',
     roadFind: {
       title: 'Keep the dark',
       text: 'Timing the watch-change by the square fire, you learned that while the relief says "Keep the dark" and the other answers "It keeps us," neither man is looking across the stones.',
     },
-    relic: 'Craft',
   },
   '6-3:THE BOARD': {
-    changed: 'You read their chalked board by firelight — four strokes left uncrossed, matching the page in your coat.',
+    changed: 'You read their chalked board by firelight: four strokes left uncrossed, matching the page in your coat. Reading what they keep, and not only what they say, earned you a Craft Relic.',
     roadFind: {
       title: 'Four strokes by firelight',
-      text: 'Read across the square by the watch-fire’s light, the Order’s board showed four chalk strokes left uncrossed — struck at dusk, just like yours.',
+      text: 'Read across the square by the watch-fire’s light, the Order’s board showed four chalk strokes left uncrossed, struck at dusk, just like yours.',
     },
+    relic: 'Craft',
   },
   // Disguised Fork #13 · W6D4 (Three Nights — the blank rock at the end of the crack)
   '6-4:ASK HOW THE ORDER CARRIED FOUR STONES IN': {
@@ -1073,6 +1093,8 @@ function buildDay(d) {
               branchObj.roadFind = {
                 title: tokens(meta.roadFind.title),
                 text: tokens(meta.roadFind.text),
+                // After a failed Challenge the fact stays and the evidence does not (Phase 3, 24 Oct; fire_fork_pieces_for).
+                ...(meta.roadFind.lost ? { lost: tokens(meta.roadFind.lost) } : {}),
               };
             }
             if (meta?.relic) branchObj.relic = meta.relic;
@@ -1141,7 +1163,7 @@ export type ScriptStep =
       labels: string[];
       /** pick: only the picked branch · each: pick until every branch is seen · auto: picked, then the rest · flavor: no branches */
       mode: 'pick' | 'each' | 'auto' | 'flavor';
-      branches: { options: number[]; text: string; changed?: string; roadFind?: { title: string; text: string }; relic?: AttributeName }[];
+      branches: { options: number[]; text: string; changed?: string; roadFind?: { title: string; text: string; lost?: string }; relic?: AttributeName }[];
     }
   | { t: 'notice'; lines: Partial<Record<AttributeName, { first: string; second?: string }>> }
   | {
