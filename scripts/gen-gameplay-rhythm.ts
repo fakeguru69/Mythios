@@ -86,13 +86,14 @@ w(`**Averages over the 36 chapters:** ${Math.round(avg('words'))} words, ${avg('
 // The evening: the last light and the Campfire.
 w(
   '## The evening (every weekday after the chapter)',
-  'The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or go straight to the fire. Then the Campfire, one screen.',
+  'The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or sit by the fire. Then the fire: one chat under the finished day (18 Oct), with a text box at the foot.',
 );
 lines.push('| Day | Leads | Garrick\'s stored lines (words) | Things to tap or write at the fire |', '|---|---|---|---|');
 for (const d of CAMPFIRE_DAYS_DATA) {
   const leads = (APPROVED_FAN_OUT_LEADS[`${d.week}-${d.day}`] || []).length;
-  const gw = words(d.opener ?? '') + words(d.callback ?? '') + words(d.nudge ?? '') + (d.riddle ? words(d.riddle.q) + words(d.riddle.quip) : 0);
-  const forms = ['tonight\'s question (pin A / B / neither / own line)', 'the fragment\'s meaning pin', 'the case so far (editable line)', d.riddle ? 'the riddle (3 tries)' : '', 'an open question', 'a message in a bottle'].filter(Boolean);
+  const gw = words(d.opener ?? '') + words(d.callback ?? '') + words(d.nudge ?? '');
+  // The riddle and the message in a bottle were cut on 18 Oct; the case so far moved to the Bag's casebook.
+  const forms = ['tonight\'s question (pin A / B / neither; changeable until dawn)', 'the fragment\'s meaning question', 'lay a clue on the table (+)', 'Agree / Doubt on a friend\'s clue', 'talk in the chat', ...(d.clicks?.length ? [`${d.clicks.length} click${d.clicks.length > 1 ? 's' : ''} to find`] : [])];
   lines.push(`| W${d.week}D${d.day} | ${leads} | ${gw} | ${forms.length}: ${forms.join('; ')} |`);
 }
 lines.push('');

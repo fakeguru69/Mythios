@@ -93,8 +93,8 @@ function chapter(week: number, day: number) {
       choices[st.id] = st.labels;
       const how = {
         pick: 'Pick one; only the picked branch plays.',
-        each: 'Pick in any order until every branch has been seen.',
-        auto: 'Pick one; it plays, then the others follow.',
+        each: 'One option is shown at a time (never side by side, Fake Guru 18 Oct); each opens the next until all have been seen.',
+        auto: 'One option is shown at a time; each plays, then the next is offered.',
         flavor: 'Pick one; the choice colours the moment, the story is the same.',
       }[st.mode];
       w(gameplay(`A choice: ${st.labels.map((l) => `[${fill(l)}]`).join(' or ')}. ${how}`));
@@ -102,10 +102,13 @@ function chapter(week: number, day: number) {
       for (const b of st.branches) {
         w(gameplay(`If you pick ${b.options.map((o) => `[${fill(st.labels[o])}]`).join(' or ')}:`));
         w(quote(b.text));
+        if (b.changed) w(gameplay('Then the card "What this changed":'), quote(b.changed));
+        if (b.roadFind) w(gameplay(`This road's own find, "${fill(b.roadFind.title)}" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):`), quote(b.roadFind.text));
+        if (b.relic) w(gameplay(`The careful reading of this fork also gives a ${b.relic} Relic (at most one road a week does).`));
       }
       if (st.mode === 'pick' && st.branches.length) branchOpen = 'Whatever you picked, every player reads this:';
     } else if (st.t === 'notice') {
-      w(gameplay('Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).'));
+      w(gameplay('Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build\'s line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.'));
       for (const [attr, l] of Object.entries(st.lines)) {
         if (!l) continue;
         w(`- **${attr}:** ${fill(l.first)}${l.second ? ` *(Apprentice and up:)* ${fill(l.second)}` : ''}`);
@@ -173,9 +176,12 @@ function campfire(week: number, day: number) {
   if (!f) return;
   w(`### The Campfire: ${fill(f.place)}`);
   w(gameplay(
+    'The fire opens only after you finish the day\'s chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight\'s question, then one stream in time order (Garrick\'s stored lines, the friends\' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.'
+  ));
+  w(gameplay(
     f.narratedNoGarrick
-      ? 'Garrick is not here tonight: MYTHIOS narrates the fire.'
-      : `Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: ${f.tone}.`
+      ? 'Garrick is not here tonight: MYTHIOS narrates the fire. This first night is solitary: nothing of the other friends is shown.'
+      : `Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: ${f.tone}.`
   ));
   if (f.cupNight) w(gameplay('A cup night:'), quote(CAMPFIRE_STORED_LINES.cupNightStageDirection));
   if (f.narratedSilence) {
@@ -184,27 +190,27 @@ function campfire(week: number, day: number) {
     w(f.narratedNoGarrick ? gameplay('Opening narration:') : gameplay('Garrick opens:'), quote(f.opener));
   }
   if (!f.narratedNoGarrick)
-    w(gameplay(`If you are the first at the fire: "${CAMPFIRE_STORED_LINES.firstArrivalGreeting}" Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("${fill(CAMPFIRE_STORED_LINES.noticingTemplates.lentRelic)}").`));
-  w(gameplay('The board: one card for each lead taken at the last light, with every finder\'s name; a lead nobody took reads "Nobody went to … tonight."'));
-  w(gameplay('Today\'s fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:'));
+    w(gameplay(`If you are the first at the fire: "${CAMPFIRE_STORED_LINES.firstArrivalGreeting}" Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("${fill(CAMPFIRE_STORED_LINES.noticingTemplates.lentRelic)}").`));
+  w(gameplay('Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder\'s name; friends tap Agree or Doubt.'));
+  if (f.clicks?.length) {
+    w(gameplay('Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:'));
+    const leadName = (id: string) => { const l = (APPROVED_FAN_OUT_LEADS[`${week}-${day}`] ?? []).find((x) => x.id === id); return l ? `"${fill(l.clueTitle)}"` : id; };
+    for (const c of f.clicks) w(gameplay(`${leadName(c.a)} with ${leadName(c.b)}${c.solves ? ' (this one answers tonight\'s question)' : ''}:`), quote(fill(c.text)));
+  }
+  if (f.nudgeIfLaid) w(gameplay(`When "${f.nudgeIfLaid.piece}" is laid, Garrick adds:`), quote(fill(f.nudgeIfLaid.line)));
+  w(gameplay('Today\'s fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:'));
   const mq = FRAGMENT_MEANING_QUESTIONS[`${week}-${day}`];
   if (mq) w(quote(mq));
-  w('**Tonight\'s question**');
+  w(`**Tonight's question${f.questionTitle ? `: ${fill(f.questionTitle)}` : ''}**`);
+  if (f.puzzle?.q) w(quote(fill(f.puzzle.q)));
   if (f.nudge) w(f.narratedNoGarrick ? gameplay('Narration:') : gameplay('Garrick:'), quote(f.nudge));
   if (f.callback) w(gameplay('Then he recalls:'), quote(f.callback));
-  w(gameplay('Each friend pins one reading, then may see the others\' (names shown, never a count or a winner), and may add their own line:'));
+  w(gameplay('Each friend pins one reading (changeable until dawn), and only then sees the others\' (names shown, never a count or a winner). The party\'s call is read back the next morning as "Last night the fire called it…":'));
   w(`- A: ${fill(f.forkA)}`, `- B: ${fill(f.forkB)}`, '- Neither.');
   out.push('');
-  if (f.riddle) {
-    w(gameplay(`The riddle (shared by the party, three tries each${f.tone === 'quiet' ? '; on a quiet night it is only asked if someone wants it' : ''}):`));
-    w(quote(f.riddle.q), gameplay(`Answer: ${f.riddle.a}. His line when it is solved:`), quote(f.riddle.quip));
-  }
-  w(gameplay(`The case so far: each friend keeps one line answering the week's question, "${WEEK_QUESTIONS[week]}", read back at the Gathering's opening. Also: an open question to leave for the party.`));
-  w(gameplay(
-    f.narratedNoGarrick
-      ? 'Leaving the fire: the Pull again.'
-      : `Leaving the fire: Garrick's goodnight (one of: ${CAMPFIRE_STORED_LINES.closers.map((c) => `"${c}"`).join(', ')}), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.`
-  ));
+  w(gameplay(`The case so far (the week's question, "${WEEK_QUESTIONS[week]}") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.`));
+  if (!f.narratedNoGarrick)
+    w(gameplay(`From 8:00pm, Garrick's goodnight (one of: ${CAMPFIRE_STORED_LINES.closers.map((c) => `"${c}"`).join(', ')}).`));
 }
 
 const gatheringCond = (c?: GatheringCond) => {
@@ -327,14 +333,14 @@ w(
   '## How the game plays (the rules in brief)',
   '- **The app and the party.** *Tales of the Dark Moon* is a story game in a chat app for a fixed party of 2 to 6 real friends, over 6 weeks. A storyteller called MYTHIOS tells it from stored text. Each friend plays one character, under their own name, with one of six classes (Warrior, Artificer, Sage, Trickster, Assassin, Archer).',
   '- **A week** is six weekdays (Days 1 to 6), each played alone in about 8 to 12 minutes, then a live Gathering on Day 7, played together. A day opens at 5:00am party time.',
-  '- **Places:** your own thread (the day\'s chapter, private questions to Garrick), the party chat (one result line per friend, Garrick\'s morning line, talk, the Gathering), and the tabs: Record (your numbers), Bag (Relics, Seeker Chest, Dark Moon Verses), Store (gear and Relics).',
+  '- **The screen:** a one-screen cover, then four tabs, STORY · RECORD · BAG · STORE, under a top bar (series, party, day, gold). STORY is one thread from morning to night: the recap, "The Party, Yesterday", Garrick\'s morning line, the chapter (arriving message by message), the end-of-day card, then the fire (the party\'s chat) once your chapter is finished. RECORD: twelve numbers that only go up, twelve badges, the next step for each. BAG: the Seeker Chest, the Dark Moon Verses, Found Along the Road, the Journal (the fire\'s nights, your margin notes), Relics. Tapping the party name opens the party panel. On Day 7 the Gathering is played in the same thread, after a tap to join.',
   `- **Attributes:** Might, Craft, Intellect, Charm, Agility, Aim, each in a tier: Novice 1–25 (+0), Apprentice 26–50 (+2), Adept 51–75 (+4), Expert 76–100 (+6), Master 101+ (+8).`,
   `- **A Challenge:** pick one of two Attributes the card offers, roll d20 + its tier bonus − the DC; 1 or more passes, a tie fails. Weekday DC by week: ${EPISODE_NUMBERS.map((e) => e.weekdayDC).join(', ')}. The card says "You succeed on X+". Pass: +${GOLD.GOLD_CHALLENGE_WIN}g and the Attribute grows. Fail: −${GOLD.GOLD_CHALLENGE_LOSS}g, and a worse branch of the scene. Both branches reach the same plot. [PRESS ON], on some days after a pass: 4 harder, +${GOLD.GOLD_PRESS_ON_WIN}g and one extra detail.`,
   '- **Fights:** 100 HP each side, one tap a round, damage = the hit\'s margin × 5. Gear on two tracks (Weapon 14–18, Armor 27–31, Levels 1–5) bought in the Store. Nobody dies: at 0 HP, "DEFEATED.", and the story goes on.',
   `- **Relics** (${GOLD.GOLD_RELIC_COST}g): an Attribute Relic gives +4 on one roll; a Combat Relic gives +1 Weapon and +1 Armor for one fight. Relics can be given to friends; gold cannot.`,
   `- **The Seeker Fragment:** each day a short old text with two missing words appears in every friend's Seeker Chest; each word is a jumble of letters to unscramble (+${GOLD.GOLD_FRAGMENT_WORD_SOLVED}g a word). Six fragments make the week's map, which helps at the Gathering.`,
-  '- **Garrick**, the innkeeper who travels with the party, is in the party chat: he answers when a message names him, from stored lines (AI small talk only about the road, food and weather, filtered). He never lies, promises or predicts. He can also be asked privately in your own thread and at the fire.',
-  '- **After the chapter:** the last light (one optional lead and a clue), then the Campfire (shared notes, tonight\'s question, the riddle), then bed.',
+  '- **Garrick**, the innkeeper who travels with the party, is met in Week 1 Day 2\'s chapter. From then on he answers in the party\'s chat when a message names him, from stored lines (AI small talk only about the road, food and weather, filtered, and never at the fire). He never lies, promises or predicts.',
+  '- **After the chapter:** the fire: one more look at the last light (one optional lead and a clue) or sit down, then the party\'s chat around tonight\'s question, the clues laid on the table, the clicks, and the fragment.',
   '- **The Gathering:** the Approach (a group vote, one friend rolls), the Battle (everyone fights their own enemy at once), Notice and [LOOK CLOSER], the United Effort (one shared job, turns), the Lore Reveal with Match and Ask, the Twist, the Cliffhanger.',
   '- **Each new day opens with "the road so far":** a short recap of yesterday (and of any day a friend missed).'
 );

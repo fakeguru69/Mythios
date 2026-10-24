@@ -1,6 +1,6 @@
 # Tales of the Dark Moon: the season as a player plays it, part 3 of 3 (Weeks 5 and 6)
 
-Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own data by `scripts/gen-playthrough.ts` (2026-10-17). **Do not publish: it holds the season's story.**
+Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own data by `scripts/gen-playthrough.ts` (2026-10-24). **Do not publish: it holds the season's story.**
 
 **How to read it.** Quoted text (`>`) is exactly what the player reads. Lines in *⚙ italics* describe the gameplay: what the screen offers, the rule, the numbers. Where the story branches, every branch is given, each labelled. The party is a sample of four: you, Mei, Dev and Arjun (the game fills in the real friends' names and the party's size).
 
@@ -10,7 +10,7 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 - **A week** is six weekdays (Days 1 to 6), each played alone in about 8 to 12 minutes, then a live Gathering on Day 7, played together. A day opens at 5:00am party time.
 
-- **Places:** your own thread (the day's chapter, private questions to Garrick), the party chat (one result line per friend, Garrick's morning line, talk, the Gathering), and the tabs: Record (your numbers), Bag (Relics, Seeker Chest, Dark Moon Verses), Store (gear and Relics).
+- **The screen:** a one-screen cover, then four tabs, STORY · RECORD · BAG · STORE, under a top bar (series, party, day, gold). STORY is one thread from morning to night: the recap, "The Party, Yesterday", Garrick's morning line, the chapter (arriving message by message), the end-of-day card, then the fire (the party's chat) once your chapter is finished. RECORD: twelve numbers that only go up, twelve badges, the next step for each. BAG: the Seeker Chest, the Dark Moon Verses, Found Along the Road, the Journal (the fire's nights, your margin notes), Relics. Tapping the party name opens the party panel. On Day 7 the Gathering is played in the same thread, after a tap to join.
 
 - **Attributes:** Might, Craft, Intellect, Charm, Agility, Aim, each in a tier: Novice 1–25 (+0), Apprentice 26–50 (+2), Adept 51–75 (+4), Expert 76–100 (+6), Master 101+ (+8).
 
@@ -22,9 +22,9 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 - **The Seeker Fragment:** each day a short old text with two missing words appears in every friend's Seeker Chest; each word is a jumble of letters to unscramble (+25g a word). Six fragments make the week's map, which helps at the Gathering.
 
-- **Garrick**, the innkeeper who travels with the party, is in the party chat: he answers when a message names him, from stored lines (AI small talk only about the road, food and weather, filtered). He never lies, promises or predicts. He can also be asked privately in your own thread and at the fire.
+- **Garrick**, the innkeeper who travels with the party, is met in Week 1 Day 2's chapter. From then on he answers in the party's chat when a message names him, from stored lines (AI small talk only about the road, food and weather, filtered, and never at the fire). He never lies, promises or predicts.
 
-- **After the chapter:** the last light (one optional lead and a clue), then the Campfire (shared notes, tonight's question, the riddle), then bed.
+- **After the chapter:** the fire: one more look at the last light (one optional lead and a clue) or sit down, then the party's chat around tonight's question, the clues laid on the table, the clicks, and the fragment.
 
 - **The Gathering:** the Approach (a group vote, one friend rolls), the Battle (everyone fights their own enemy at once), Notice and [LOOK CLOSER], the United Effort (one shared job, turns), the Lore Reveal with Match and Ask, the Twist, the Cliffhanger.
 
@@ -57,8 +57,10 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 > She does not put him down. She carries him up the shingle the way she must have carried him when he was two, with his feet knocking against her knees, and he lets her.
 >
 > At the top of the lane he twists round in her arms and holds the little boat up over her shoulder, high, so that all of you can see he still has it.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** She lifts him clear of the gunwale as if he weighed nothing. *(Apprentice and up:)* She has not been strong enough for that in years.
 
@@ -81,6 +83,8 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 > Meira never found a fifth place. Every record she had said four.
 
 > In the afternoon you walk up through the village to where the north road leaves it. At its head stands a waystone older than Reedham, grey with lichen, its carving worn to nothing.
+>
+> …
 
 **CHALLENGE: THE WAYSTONE**
 
@@ -106,11 +110,41 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Either way, every player reads this:*
 
-*⚙ A button: [ASK GARRICK WHERE A FIFTH WOULD BE]*
+*⚙ A choice: [ASK GARRICK WHERE A FIFTH WOULD BE] or [LOOK NORTH ALONG THE ROAD]. Pick one; only the picked branch plays.*
 
+*⚙ If you pick [ASK GARRICK WHERE A FIFTH WOULD BE]:*
+
+> You ask him where a fifth stone would be kept, if someone cut its name out of the boundary rock to hide it.
+>
 > Garrick is looking north, the way the heartbeat comes from.
 >
 > *"The fifth wasn't hidden in the hills like the others,"* he says. *"Every telling I know ends at Highwall."*
+
+*⚙ Then the card "What this changed":*
+
+> You asked where a fifth Stone would be kept — Garrick looked north and named Highwall.
+
+*⚙ This road's own find, "Every telling he knows" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Asked by the chiselled waystone where a fifth Stone would be kept, Garrick looked north along the road and said every telling he knew ended at Highwall.
+
+*⚙ If you pick [LOOK NORTH ALONG THE ROAD]:*
+
+> You stand up from the chiselled boundary stone and follow the old road north with your eyes, where the low tremor in the ground comes from.
+>
+> Garrick is looking north, the way the heartbeat comes from.
+>
+> *"The fifth wasn't hidden in the hills like the others,"* he says. *"Every telling I know ends at Highwall."*
+
+*⚙ Then the card "What this changed":*
+
+> You followed the tremor north along the old road — Garrick looked the same way and named Highwall.
+
+*⚙ This road's own find, "Where the road points" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Standing up from the waystone to follow the low tremor north along the old road, you found Garrick already watching that horizon before he named Highwall.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > Highwall. You all learned it as children: the old capital, where the Grey Host broke of a fever in its own camp, and the city was spared by luck.
 >
@@ -119,8 +153,6 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 > The carter's coin is in your pocket: a king's face, scraped down to bare metal. The line cut out of this stone is the same work. The story you were taught is what was left when the scraping was done.
 
 > In a crack at the waystone's foot, with a rime of frost on it though the day is mild:
-
-*⚙ A button: [TAKE IT]*
 
 *⚙ The fragment moment:*
 
@@ -183,49 +215,55 @@ Clue found, "Every window lit":
 
 ### The Campfire: Reedham, and the waystone
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: wry.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
 
 *⚙ Garrick opens:*
 
 > North, then. That's a long road for tired boots.
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-> *"Then it began to take."* Take what, and from whom?
+*⚙ "The crisp edge" with "The rime stays" (this one answers tonight's question):*
 
-**Tonight's question**
+> The line under HIGHWALL was chiselled clean away like the king's face on the coin, and the crack at the stone's foot holds the same unnatural cold as every Seeker housing. The road marker was defaced, and the Seekers set their first sign in its foot.
+
+*⚙ When "5-1-3" is laid, Garrick adds:*
+
+> [the friend at the fire best at Charm], every window in Reedham lit at midday as if the dark moon were tonight. What did that village feel in the water before we left?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"He gave us the war. Then it began to take."* When did they realize the man they followed was no longer the man they knew?
+
+**Tonight's question: The Seekers scattered four Stones to the far corners of the land, yet left the fifth at Highwall. Why keep it in the dead city?**
+
+> Was the waystone only a road marker, or part of the Seekers' trail?
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Intellect], what would a dead city hide?
+> [the friend at the fire best at Intellect], the miles left standing on the stone, and the second line under Highwall cut away to the last letter. Whose name sat under the city's?
 
 *⚙ Then he recalls:*
 
 > Meira looked for a fifth and never found one. Today, on the road north, somebody had cut a line out of a stone.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: The fifth is a Stone like the others.
+- A: They kept the fifth at Highwall to stand guard over him where he fell.
 
-- B: The fifth is something different.
+- B: The fifth could not be carried away from Highwall without waking him.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each):*
+*⚙ The case so far (the week's question, "What will it take for the fifth to end this?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What goes on for miles but never moves?
-
-*⚙ Answer: a road. His line when it is solved:*
-
-> North, and mind your boots.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will it take for the fifth to end this?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 5, Day 2
 
@@ -255,23 +293,55 @@ Clue found, "Every window lit":
 
 > Drawn up at the head of the rows are the only people you have met all day. A family, come down from the north, with all they own on one cart, and a cow tied behind.
 
-*⚙ A button: [WHAT DID YOU SEE?]*
+*⚙ A choice: [ASK WHAT DROVE THEM OUT] or [LOOK AT THE BANDAGE ON HIS ARM]. Pick one; only the picked branch plays.*
 
+*⚙ If you pick [ASK WHAT DROVE THEM OUT]:*
+
+> You step to the side of the cart so you do not block the road, and ask him what they saw up north.
+>
 > The man answers without turning round. *"The beasts won't settle. Not since the sky turned."*
 >
 > It is not an army they are running from. It is their own yard. The dogs first, and then the pigs. He has a bandage on his forearm, and the cow is the only animal they have left that will still be led.
 >
 > A child on the tailboard counts you, with one finger.
 
-*⚙ A button: [WALK IN AMONG THEM]*
+*⚙ Then the card "What this changed":*
+
+> You stepped clear of the cart to ask what they saw — the farmer told you their own beasts turned on them.
+
+*⚙ This road's own find, "The yard that turned" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> When you stepped aside to let the cart breathe and asked what drove the family south, the man said their own dogs and pigs would not settle since the sky turned.
+
+*⚙ If you pick [LOOK AT THE BANDAGE ON HIS ARM]:*
+
+> Your eyes go to the linen wrapped tight round his forearm, spotted dark where teeth — not a blade — caught him through his sleeve. He sees you looking.
+>
+> The man answers without turning round. *"The beasts won't settle. Not since the sky turned."*
+>
+> It is not an army they are running from. It is their own yard. The dogs first, and then the pigs. He has a bandage on his forearm, and the cow is the only animal they have left that will still be led.
+>
+> A child on the tailboard counts you, with one finger.
+
+*⚙ Then the card "What this changed":*
+
+> You noticed the tooth-spotted linen on his forearm — he told you his own yard turned on them.
+
+*⚙ This road's own find, "Teeth through the sleeve" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> The linen wrapped tight round the farmer's forearm on the north road was spotted dark where teeth — not a blade — had caught him in his own yard.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > Every mound is the same length. A man's length.
 >
 > They are graves. Hundreds, dug in straight rows, the way soldiers bury soldiers: the ones who fell in the war, before the last night on the wall.
 >
 > Among them, one is new. The turf was cut this week and laid back badly, by people with no time to do better.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** The new grave is shallow. *(Apprentice and up:)* Whoever dug it could not stay to dig deeper.
 
@@ -287,8 +357,6 @@ Clue found, "Every window lit":
 
 > At the far end of the rows stands one squared block of stone that is no grave. Its top is a separate slab, fitted like a lid.
 
-*⚙ A button: [LIFT IT]*
-
 *⚙ The fragment moment:*
 
 > It comes up with a long grate of stone on stone. The air inside is colder than the evening, and smells of old earth.
@@ -303,9 +371,25 @@ Clue found, "Every window lit":
 
 > The mounds break the wind. They also hide whatever is beyond them.
 
+*⚙ Then the card "What this changed":*
+
+> You camped behind the shelter of the mounds — they broke the wind, but the dogs came over them unseen and strike first.
+
+*⚙ This road's own find, "Grass shivering on the mounds" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Camped at the head of the grass-grown rows for shelter from the wind, you saw the turf shiver with the heartbeat at dusk just before the farm dogs came over the mounds.
+
 *⚙ If you pick [CAMP ON THE OPEN ROAD]:*
 
 > Nothing can come at you unseen. Nothing will fail to see you, either.
+
+*⚙ Then the card "What this changed":*
+
+> You camped on the bare road in the wind — nothing could come at you unseen, so you spot the dogs at dusk and strike first.
+
+*⚙ This road's own find, "Collar-leather in the dusk" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> From the bare stones of the open road, you saw the farm dogs coming through the dusk with their collars still on before they could close the distance.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -314,6 +398,8 @@ Clue found, "Every window lit":
 > The grass on the graves shivers with it, row after row, like the hide of a horse. The cow screams and throws herself against her rope.
 >
 > And out of the dusk come the dogs.
+>
+> …
 
 **FIGHT: WHAT WAS A FARM DOG**
 
@@ -399,49 +485,55 @@ Clue found, "Scattered":
 
 ### The Campfire: The old kingdom's road
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: wry.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
 
 *⚙ Garrick opens:*
 
 > The grass on a war grave shouldn't shiver. I'd say that's the heartbeat.
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-> *"That is why it had to be us."* Had to be them, for what?
+*⚙ "Heads down" with "Scattered" (this one answers tonight's question):*
 
-**Tonight's question**
+> The dogs came in a straight line from the north while the ground beat, froze mid-stride the instant the beat stopped, and scattered every way after. The beat drove them while it lasted, and let them go when it stopped.
+
+*⚙ When "5-2-2" is laid, Garrick adds:*
+
+> [the friend at the fire best at Craft], teeth sunk deep once and held without tearing. Why would a starving hound hold a man in place instead of feeding?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"That is why it had to be us."* Why could only his closest five be the ones to turn the key?
+
+**Tonight's question: The heartbeat comes from Highwall for a few slow strokes at dusk and dawn, then stops. What is keeping him from waking outright?**
+
+> Were the dogs hunting for themselves?
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Might], you stood over the cart. Did the beat call those dogs, or only madden them?
+> [the friend at the fire best at Might], one deep bite that held without tearing, and tracks that scattered the moment the beat died. What drove those dogs?
 
 *⚙ Then he recalls:*
 
 > On the Stillwater the birds went quiet at the first beat. Tonight the dogs came with it.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: The beat calls them north.
+- A: The four Stones have only thinned his sleep; it takes a certain night for him to wake.
 
-- B: The beat only maddens them.
+- B: The fifth Stone is still in Highwall, holding the last of the Seekers' lock shut.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each):*
+*⚙ The case so far (the week's question, "What will it take for the fifth to end this?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What bends in the wind but never breaks?
-
-*⚙ Answer: grass. His line when it is solved:*
-
-> Not this lot.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will it take for the fifth to end this?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 5, Day 3
 
@@ -472,8 +564,10 @@ Clue found, "Scattered":
 > This is the wall the Seekers held that night.
 >
 > The gate is shut.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** The gate's timbers have not sagged a finger's width. *(Apprentice and up:)* Something on the far side is holding them up.
 
@@ -487,6 +581,8 @@ Clue found, "Scattered":
 
 - **Aim:** High up, above the terraces, one grey thread stands in the grey air. *(Apprentice and up:)* It is not cloud.
 
+> …
+
 **CHALLENGE: THE WALL**
 
 > The gate will not open. The wall can still be climbed.
@@ -498,6 +594,8 @@ Clue found, "Scattered":
 > You are up in minutes, with the afternoon still in hand.
 >
 > There is light enough to follow one street all the way up to the hall. Something is standing in it: a dozen dark shapes, spaced out down the middle of the road like posts.
+>
+> …
 
 *⚙ If you failed the Challenge:*
 
@@ -506,8 +604,6 @@ Clue found, "Scattered":
 *⚙ Either way, every player reads this:*
 
 > Garrick passes his flask along the walkway, and waits until the last of you has had some before he takes any himself.
-
-*⚙ A button: [LOOK DOWN AT THE GATE]*
 
 > From above, you can see its inner side.
 >
@@ -528,8 +624,6 @@ Clue found, "Scattered":
 *⚙ Either way, every player reads this:*
 
 > On the walkway above the gate, where they would have stood shoulder to shoulder, a carved housing is set into the parapet at chest height.
-
-*⚙ A button: [PRESS YOUR PALM FLAT TO IT]*
 
 *⚙ The fragment moment:*
 
@@ -594,49 +688,55 @@ Clue found, "Knocked out":
 
 ### The Campfire: The herald's gate
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: wry.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
 
 *⚙ Garrick opens:*
 
-> A bar of new timber in brackets worn bright. Somebody's been barring this gate for centuries, and the wood's new.
+> High on the wall, and not a breath of green in the whole city. Sit down out of the wind.
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-> *"None of us gave to the fifth."* Why give to four and not to the fifth?
+*⚙ "One trodden path" with "Still white" (this one answers tonight's question):*
 
-**Tonight's question**
+> The timber bar was felled and squared within the last few days, and a single narrow path is trodden in the dust from the gatehouse straight up toward the smoke. Whoever tends the fire below the hall comes down to bar this gate.
+
+*⚙ When "5-3-3" is laid, Garrick adds:*
+
+> [the friend at the fire best at Craft], the gatehouse stair knocked out with hammers long ago, while the timber bar below is fresh. Why bar the gate below and break the stair to the wall?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"None of us gave to the fifth."* If none of the five gave to the fifth Stone, whose was it?
+
+**Tonight's question: Highwall's gate is barred from the inside with fresh timber in brackets worn bright by centuries of bars. Who is keeping it shut?**
+
+> Was the gate barred long ago and left, or is someone tending it now?
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Craft], new wood in brackets worn bright. Who keeps barring this gate?
+> [the friend at the fire best at Craft], a broken stair knocked out with hammers long ago, and a fresh timber bar below. Who is keeping that gate shut from the inside?
 
 *⚙ Then he recalls:*
 
 > Upriver, somebody kept a hidden path clear and a dog on new iron. Here somebody keeps a new bar on an old gate.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: The bar keeps the world out.
+- A: The Order — keeping the dead city shut so no outsider disturbs their watch on the hall.
 
-- B: The bar keeps something in.
+- B: Wardens left behind on the Seekers' wall — barring the gate to keep what is inside from getting out.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each):*
+*⚙ The case so far (the week's question, "What will it take for the fifth to end this?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> The more of me there is, the less you see. What am I?
-
-*⚙ Answer: darkness. His line when it is solved:*
-
-> The city has plenty.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will it take for the fifth to end this?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 5, Day 4
 
@@ -665,8 +765,10 @@ Clue found, "Knocked out":
 > They stand where they are, mid-stride, in armour so old that it has gone green and black. A dozen of them, strung out up the street, as if a company had been marching to his hall on the night he fell, and simply stopped.
 >
 > Their faces are hidden behind their helms. None of them moves.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** That armour should have fallen in on itself long ago. *(Apprentice and up:)* Something inside it is still holding it up.
 
@@ -680,6 +782,8 @@ Clue found, "Knocked out":
 
 - **Aim:** Every one of them is looking the same way. *(Apprentice and up:)* Up the hill, at the hall.
 
+> …
+
 **CHALLENGE: THE STREET OF SOLDIERS**
 
 > It is the short way. It is between them.
@@ -689,6 +793,8 @@ Clue found, "Knocked out":
 *⚙ If you passed the Challenge:*
 
 > You walk the whole street between them, close enough to smell the old iron. Nothing happens.
+>
+> …
 
 *⚙ If you failed the Challenge:*
 
@@ -716,8 +822,6 @@ Clue found, "Knocked out":
 
 > Set into the wall of a house at the end of that street is a housing, its carving as crisp as the day it was cut.
 
-*⚙ A button: [FIND THE PATTERN]*
-
 *⚙ The fragment moment:*
 
 > The stone turns on a hidden pin. Inside, the cold has kept as well as the carving.
@@ -736,13 +840,39 @@ Clue found, "Knocked out":
 
 > *"The page under the Kiln told you. They stood his watch."*
 
+*⚙ Then the card "What this changed":*
+
+> You connected the standing stones to the Kiln page — Garrick confirmed they stood his watch, earning an Intellect Relic.
+
+*⚙ This road's own find, "They stood his watch" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> When you asked on first watch what the standing stones were, Garrick reminded you of the page under the Kiln: "They stood his watch."
+
+*⚙ The careful reading of this fork also gives a Intellect Relic (at most one road a week does).*
+
 *⚙ If you pick [WHO IS THE CUP FOR?]:*
 
 > *"Family habit. We always pour one for whoever can't be with us."*
 
+*⚙ Then the card "What this changed":*
+
+> You asked who the full cup by the shutter was for — he called it a family habit and spoke of what his family had waited to see.
+
+*⚙ This road's own find, "Full by the shutter" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Looking at the full cup standing by the shutter on first watch, Garrick called it a family habit for whoever could not be there and said his family had waited a long time.
+
 *⚙ If you pick [SAY NOTHING]:*
 
 > Neither does he.
+
+*⚙ Then the card "What this changed":*
+
+> You kept watch in silence beside him — looking at the full cup by the shutter, he spoke of his family’s long wait on his own.
+
+*⚙ This road's own find, "Quiet by the shutter" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> After a long silence beside the full cup at the shutter, Garrick looked at the tin rim and said his family had waited a long time for something he hoped to live to see.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -800,53 +930,51 @@ Clue found, "No two alike":
 
 ### The Campfire: The dead streets
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: quiet.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: quiet.*
 
 *⚙ A cup night:*
 
 > Garrick pours one extra tin cup and sets it at the empty place at the edge of the firelight without a word.
 
-*⚙ Garrick opens:*
+*⚙ Quiet night (silence):*
 
-> Nobody's kept a fire here for us. Keep this one small.
+> Garrick wipes the dust from the cups with his sleeve, pours one more than there are of you, and sets the last at the empty place by the shuttered window facing up the hill. "Family habit. We always pour one for whoever can't be with us."
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ When "5-4-2" is laid, Garrick adds:*
 
-> *"We could not bring ourselves to break them."* Why not?
+> [the friend at the fire best at Agility], one scrape of iron on stone after the door was barred, and then silence. Which way did that helm turn when the beat came?
 
-**Tonight's question**
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"We left them standing."* Why leave an entire army standing in the streets instead of laying them to rest?
+
+**Tonight's question: Their boots have not stirred the dust in centuries, yet at dusk a helm seemed to turn and metal scraped on stone. Are the standing soldiers waking?**
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Aim], did one of those helms turn, or did the dusk play tricks?
+> [the friend at the fire best at Aim], unbroken dust round every boot, and one sound of iron on stone after we barred the door. Did our eyes play tricks in the dusk, or did something move?
 
 *⚙ Then he recalls:*
 
 > On the road, when the beat stopped, the dogs stopped where they stood. These soldiers stopped mid-stride, and never started again.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: The soldiers are only standing.
+- A: No — the dust around every boot is unbroken, and their crooked helms only looked turned in the dusk.
 
-- B: One helm has turned.
+- B: Yes — the heartbeat from the hall is beginning to stir them inside their armour.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each; on a quiet night it is only asked if someone wants it):*
+*⚙ The case so far (the week's question, "What will it take for the fifth to end this?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What turns but never leaves its post?
-
-*⚙ Answer: a weathervane. His line when it is solved:*
-
-> The wind decides. Mostly.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will it take for the fifth to end this?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 5, Day 5
 
@@ -871,6 +999,8 @@ Clue found, "No two alike":
 > The last terrace ends in a square, and the hall fills the sky above it: a great pale building on the city's highest ground, its doors taller than houses, and shut. The heartbeat comes from behind them.
 >
 > And in the shell of a house across the square, a fire is burning.
+>
+> …
 
 **CHALLENGE: THE FIRE IN THE SQUARE**
 
@@ -901,8 +1031,10 @@ Clue found, "No two alike":
 > Hooded figures: four, five, more. The Order. They have made their camp facing the doors, as if they had been here all their lives.
 >
 > Some of them have.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** There is a woodpile against that house, stacked to the eaves. *(Apprentice and up:)* In a city where nothing grows. They carry it in.
 
@@ -921,8 +1053,6 @@ Clue found, "No two alike":
 > They are not laying siege to him. They are keeping count.
 
 > In the broken fountain at the edge of the square, facing the hall, a housing sits low in the dry basin.
-
-*⚙ A button: [REACH DOWN TO IT]*
 
 *⚙ The fragment moment:*
 
@@ -987,49 +1117,55 @@ Clue found, "More bedrolls":
 
 ### The Campfire: Below the hall
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: wry.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
 
 *⚙ Garrick opens:*
 
 > One chalk stroke each dusk. Somebody's counting.
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-> *"Where we could watch it, and watch him."* Why keep the two so close?
+*⚙ "One hand" with "Every head lifts" (this one answers tonight's question):*
 
-**Tonight's question**
+> Every stroke on the board—the crossed ones and the seven still to cross—was drawn from the start in the same square hand, and at dusk every head lifts together with the beat. The count was fixed before the watch began, and the hall beneath them is keeping the same time.
+
+*⚙ When "5-5-3" is laid, Garrick adds:*
+
+> [the friend at the fire best at Agility], extra bedrolls rolled tight by the fire while the square is quiet. Where is the rest of that watch tonight?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"Where we could watch it, and watch him."* Were they watching to keep him in, or waiting for the night the seal would fail?
+
+**Tonight's question: The Order has camped facing the sealed doors for generations, crossing off one stroke each dusk. What are they counting to?**
+
+> Are they keeping a blind vigil, or counting down to a known hour?
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Intellect], what ends when the count ends?
+> [the friend at the fire best at Intellect], every stroke on that board drawn in the same square hand, and every head lifting when the beat comes. What ends when the count ends?
 
 *⚙ Then he recalls:*
 
 > At Reedham they kept Joss eight nights, waiting for something. Here they strike off one night every dusk.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: Their count began when the Stones drank.
+- A: A fixed night on the calendar that they have known from the beginning.
 
-- B: Their count was set long ago.
+- B: A sign from inside the hall as the heartbeat grows strong enough to break the seal.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each):*
+*⚙ The case so far (the week's question, "What will it take for the fifth to end this?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What burns shorter every night but is never cut?
-
-*⚙ Answer: a candle. His line when it is solved:*
-
-> Fires and candles, same trade.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will it take for the fifth to end this?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 5, Day 6
 
@@ -1062,8 +1198,10 @@ Clue found, "More bedrolls":
 *⚙ One button per friend in the party; the lines after it name the friend you picked.*
 
 > Mei crouches at the corner of the gate-tower, with the whole square in view, and one hand raised where you can see it.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** The parapet on the city side is waist-high and a yard thick. *(Apprentice and up:)* The wall under you is thicker than any wall needs to be.
 
@@ -1084,6 +1222,8 @@ Clue found, "More bedrolls":
 > *"It keeps us."*
 >
 > The watch is changing. Now.
+>
+> …
 
 **CHALLENGE: THE OPEN WALK**
 
@@ -1105,21 +1245,15 @@ Clue found, "More bedrolls":
 
 > In a crack across the walkway, just where somebody keeping watch would stand, colder than the stone it lies in:
 
-*⚙ A button: [TAKE IT]*
-
 *⚙ The fragment moment:*
 
 > **A locked Seeker Fragment has been added to your Chest.**
 >
 > That is six.
 
-*⚙ A button: [LAY THEM OUT]*
-
 > They settle, as they have four times before. A map, old and exact.
 >
 > Nobody reads it out.
-
-*⚙ A button: [PASS IT ON]*
 
 > It goes from hand to hand along the parapet. Each of you looks, and nods, and gives it to the next.
 
@@ -1188,49 +1322,55 @@ Clue found, "A stride wider":
 
 ### The Campfire: The wall again
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: wry.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
 
 *⚙ Garrick opens:*
 
 > A slit window, a hidden room, a night nobody heard you.
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-> *"Where he fell, under the dark moon, the five were joined."* Why there, and why that night?
+*⚙ "The narrow slit" with "A stride wider" (this one answers tonight's question):*
 
-**Tonight's question**
+> The walkway here was built a full stride wider on the city side, and the slit window is set so low in the stone face that it cannot be seen from the square. Anyone not standing on this parapet would take the wall for solid rock.
+
+*⚙ When "5-6-2" is laid, Garrick adds:*
+
+> [the friend at the fire best at Craft], two shallow dips worn into the stone parapet where elbows rested for years, facing the hall. Who stood that watch over the hidden room, and what were they waiting to see?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"The five were joined."* Did joining the five Stones end the war, or only pause it?
+
+**Tonight's question: The fifth Stone lies inside the wall beneath our feet, and we carry the mark in our blood. What happens when we open that room tonight?**
+
+> How did the room stay hidden from the Order for centuries?
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Aim], what can you see through one slit?
+> [the friend at the fire best at Aim], two shallow dips worn into the parapet where elbows rested, facing straight up at the hall. What happens when we open the room under that watch-post tonight?
 
 *⚙ Then he recalls:*
 
 > Every map before tonight was read out loud. Tonight it went hand to hand, and nobody heard.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: The room was built to hide the fifth.
+- A: Our blood will wake the fifth right here in the wall and end his waking.
 
-- B: The room was built to watch the hall.
+- B: Finding the fifth here is only half the task — it will have to be taken to his hall.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each):*
+*⚙ The case so far (the week's question, "What will it take for the fifth to end this?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What gets bigger the more you take away?
-
-*⚙ Answer: a hole. His line when it is solved:*
-
-> A room hollowed out of a wall is one.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will it take for the fifth to end this?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 5, Day 7: the Gathering
 
@@ -1562,8 +1702,10 @@ Clue found, "A stride wider":
 > Twice, boots scrape right past the room's hidden door.
 >
 > Twice, they walk on.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** The hidden door is one slab, a hand thick, hung so that a child could swing it. *(Apprentice and up:)* It was made to be shut in a hurry, and held.
 
@@ -1581,8 +1723,6 @@ Clue found, "A stride wider":
 >
 > They kept it in this room for as long as they lived. In the stone niche where it lay, pressed flat beneath it all that time, is something as thin as a leaf.
 
-*⚙ A button: [LIFT IT OUT]*
-
 *⚙ The fragment moment:*
 
 > It comes away from the stone with a dry whisper, and it is colder than the niche that held it.
@@ -1590,6 +1730,8 @@ Clue found, "A stride wider":
 > **A locked Seeker Fragment has been added to your Chest.**
 
 > They lived in this room. If the Seekers left a way into his hall, the first step of it would be here.
+>
+> …
 
 **CHALLENGE: THE ROOM THEY KEPT**
 
@@ -1615,9 +1757,37 @@ Clue found, "A stride wider":
 >
 > It points down. Into the wall itself, toward the long halls under the ramparts where the city's defenders slept.
 
-*⚙ A button: [WHERE WOULD ANYONE RUN TO, FROM A CITY LIKE THIS?]*
+*⚙ A choice: [ASK WHERE ANYONE WOULD RUN TO] or [TRACE THE ARROW IN THE STONE]. Pick one; only the picked branch plays.*
 
+*⚙ If you pick [ASK WHERE ANYONE WOULD RUN TO]:*
+
+> You ask aloud where anyone could possibly run to, from a walled city at the end of the world.
+>
 > Garrick is looking out of the slit window, at the hall. *"Somewhere they'd never be found,"* he says.
+
+*⚙ Then the card "What this changed":*
+
+> You asked where anyone could run from Highwall — Garrick looked at the hall and said, "Somewhere they'd never be found."
+
+*⚙ This road's own find, "A watcher's answer" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Asked where anyone could run to from a walled city at the end of the world, Garrick looked out of the slit window toward the hall and said, "Somewhere they'd never be found."
+
+*⚙ If you pick [TRACE THE ARROW IN THE STONE]:*
+
+> You put a fingertip into the small scratched arrow under the sill — cut with a knife-point, pointing straight down into the thickness of the rampart.
+>
+> Garrick is looking out of the slit window, at the hall. *"Somewhere they'd never be found,"* he says.
+
+*⚙ Then the card "What this changed":*
+
+> You traced the knife-cut arrow under the sill — it pointed straight down into the thickness of the rampart.
+
+*⚙ This road's own find, "Cut with a knife-point" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Under the slit window of the wall room, the small arrow pointing down toward the defenders' barracks was cut deep with a knife-point into the stone sill.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > At dusk, far up in the square, a lantern stops beside the Order's board. A watchman is taking up the chalk.
 >
@@ -1688,49 +1858,55 @@ Clue found, "The old soot":
 
 ### The Campfire: The wall room (Six nights)
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: wry.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
 
 *⚙ Garrick opens:*
 
 > Quiet's good in a hole in a wall. I'll take it.
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-> *"We let them go."* Why spare anyone, on a night like that?
+*⚙ "No light inside" with "The old soot" (this one answers tonight's question):*
 
-**Tonight's question**
+> Years of candle-soot blacken the back of the niche facing the inner wall, while tonight no lantern from the square reaches through the slit. For generations a hidden light burned behind the wall in this room; tonight the niche is cold.
+
+*⚙ When "6-1-2" is laid, Garrick adds:*
+
+> [the friend at the fire best at Aim], he stopped with the chalk in his hand and looked straight down at the wall before he struck the board. Was he looking for us, or checking his post?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"We let them go."* Was sparing those who still loved him mercy, or the mistake that brought us here?
+
+**Tonight's question: The searchers walked past our door twice and found nothing, yet the watchman at the board still looked down at the wall at dusk. Why?**
+
+> What was kept in the stone niche before you opened the room?
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Aim], an arrow under the window, pointing down. What does it want us to find?
+> [the friend at the fire best at Aim], he paused with the chalk in his hand and looked down the hill at the wall before he struck the board. Was he hunting a light, or keeping a routine?
 
 *⚙ Then he recalls:*
 
 > At dusk you crossed the wall and nobody heard. By the end of the night a watchman was looking straight at your window.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: They think the light was nothing.
+- A: He still believes someone is hiding in the wall; the Order has not given up the search.
 
-- B: They know someone's in the wall.
+- B: He is only checking that the rampart stays dark before he strikes the night's chalk.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each):*
+*⚙ The case so far (the week's question, "What will the fifth do in his hall?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What can fill a room and take no space?
-
-*⚙ Answer: light. His line when it is solved:*
-
-> A little of it, please.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will the fifth do in his hall?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 6, Day 2
 
@@ -1753,8 +1929,10 @@ Clue found, "The old soot":
 > You go out by the gate-tower in the grey morning, and down to the crossroads where the rest of the soldiers stood, mid-stride, for longer than anyone has been alive.
 >
 > The street is empty.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** A dozen men in iron walked out of this street, and not a cobble is chipped. *(Apprentice and up:)* They went carefully.
 
@@ -1771,6 +1949,8 @@ Clue found, "The old soot":
 > The defenders' barracks are long, low halls cut into the back of the city wall: rows of stone bunks, racks where spears once stood, a kitchen whose fire went out on the war's last night. The air smells of cold stone and very old smoke.
 >
 > The far end is blocked. A beam has come down, and half the ceiling with it.
+>
+> …
 
 **CHALLENGE: THE COLLAPSE**
 
@@ -1796,8 +1976,6 @@ Clue found, "The old soot":
 >
 > Nobody makes a sound.
 
-*⚙ A button: [DO NOT MOVE]*
-
 > The heartbeat comes.
 >
 > It turns. It climbs the stair. You hear it go on up the hill, one step at a time, until you cannot hear it.
@@ -1807,8 +1985,6 @@ Clue found, "The old soot":
 > At the far end, in a small room of its own, the bunks are not in rows. They have been pulled into a rough circle round a cold hearth, as if the people who slept here wanted to be near each other.
 >
 > In the hearthstone is a housing.
-
-*⚙ A button: [PRESS IT WITH YOUR THUMB]*
 
 *⚙ The fragment moment:*
 
@@ -1821,8 +1997,6 @@ Clue found, "The old soot":
 > Every helm is turned to the hall.
 
 > At dusk, back in the wall room, the burnt stick snaps halfway through the stroke.
-
-*⚙ A button: [FINISH IT WITH THE STUB]*
 
 > Five.
 
@@ -1877,49 +2051,47 @@ Clue found, "Bowls never filled":
 
 ### The Campfire: The barracks under the wall (Five nights)
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: quiet.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
 
-*⚙ Garrick opens:*
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: quiet.*
 
-> The dead move when nobody watches, and they passed you by. Sit down a minute.
+*⚙ Quiet night (silence):*
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+> Garrick rests his head against the cold masonry, listening to the hollow thud of the earth below in silence.
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-> *"That is how we found the shards."* How could a mark help anyone find one?
+*⚙ When "6-2-3" is laid, Garrick adds:*
 
-**Tonight's question**
+> [the friend at the fire best at Craft], bowls set out along the kitchen board and a ladle in the cold pot, never filled. What call pulls a whole garrison from the table before the ladle touches a bowl?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"That is how we found the shards."* If they had to hunt the shards down one by one, who scattered them?
+
+**Tonight's question: When the ceiling came down, a hollowed soldier stood in our doorway, looked at the fallen stone, and walked on toward the hall at the heartbeat. What is moving the dead garrison across Highwall?**
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Agility], the dead passed us by on their way up. Called, or on guard?
+> [the friend at the fire best at Agility], empty spear-racks swept clean, bowls never filled, and every iron boot in the city stepping once when the beat comes. Is it the heartbeat pulling them, or their last order?
 
 *⚙ Then he recalls:*
 
 > Last week you couldn't be sure a helm had turned toward you. Today one stood in your doorway and looked at the fallen stone instead.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: They go up to the hall to answer a call.
+- A: The waking heart inside the hall is drawing every soldier back to the place where he fell.
 
-- B: They go up to guard it.
+- B: They are still carrying out their last order from the night the barracks emptied: form ranks at the hall.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each; on a quiet night it is only asked if someone wants it):*
+*⚙ The case so far (the week's question, "What will the fifth do in his hall?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What can you hold but never see, and the more you hold it the less you speak?
-
-*⚙ Answer: your breath. His line when it is solved:*
-
-> Hold yours.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will the fifth do in his hall?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 6, Day 3
 
@@ -1956,14 +2128,36 @@ Clue found, "Bowls never filled":
 *⚙ If you pick [THE WATCH]:*
 
 > You time it. The man coming on says, *"Keep the dark,"* and the man going off answers, *"It keeps us,"* and for as long as that takes, neither of them is looking at the square.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You timed the watch-change word for word — you caught the exact beat when neither watchman looks at the square, earning a Craft Relic.
+
+*⚙ This road's own find, "Keep the dark" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Timing the watch-change by the square fire, you learned that while the relief says "Keep the dark" and the other answers "It keeps us," neither man is looking across the stones.
+
+*⚙ The careful reading of this fork also gives a Craft Relic (at most one road a week does).*
 
 *⚙ If you pick [THE BOARD]:*
 
 > You read it by their firelight. Four strokes left uncrossed. The same as the page in your coat.
 >
 > They struck theirs at dusk. So did you.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Then the card "What this changed":*
+
+> You read their chalked board by firelight — four strokes left uncrossed, matching the page in your coat.
+
+*⚙ This road's own find, "Four strokes by firelight" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Read across the square by the watch-fire’s light, the Order’s board showed four chalk strokes left uncrossed — struck at dusk, just like yours.
+
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** The doors are taller than houses, and there is no bar, no chain, no lock on them. *(Apprentice and up:)* Nothing that a strong arm could break.
 
@@ -1979,6 +2173,8 @@ Clue found, "Bowls never filled":
 
 *⚙ Whatever you picked, every player reads this:*
 
+> …
+
 **CHALLENGE: THE SQUARE**
 
 > Sixty paces to the hall's wall, past the fire.
@@ -1990,6 +2186,8 @@ Clue found, "Bowls never filled":
 *⚙ If you passed the Challenge:*
 
 > You are across, and in the lee of the hall's great wall, unseen.
+>
+> …
 
 *⚙ If you failed the Challenge:*
 
@@ -2012,8 +2210,6 @@ Clue found, "Bowls never filled":
 *⚙ Either way, every player reads this:*
 
 > The hall's wall goes up out of sight above you.
-
-*⚙ A button: [LAY YOUR PALM FLAT ON IT]*
 
 > The stone is warm.
 >
@@ -2086,49 +2282,55 @@ Clue found, "Warm low down":
 
 ### The Campfire: The great square (Four nights)
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: wry.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
 
 *⚙ Garrick opens:*
 
 > The hall's warm from within. More faithful arriving. What's missing is a door.
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-> *"None of us could bear to lift him."* What kept them from lifting him?
+*⚙ "The unbroken drift" with "Warm low down" (this one answers tonight's question):*
 
-**Tonight's question**
+> An unbroken bank of dust lies across the seam of the bronze doors, and the stone wall is warm only from knee-height down. The front doors have never opened, and whatever is warming the hall lies flat on the floor inside.
+
+*⚙ When "6-3-2" is laid, Garrick adds:*
+
+> [the friend at the fire best at Aim], road-packs still unrolled by their fire, with clean robes folded on top of every one. Do men pack like that for a battle, or for a rite?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"None of us could bear to lift him."* Even at the end, why could they not bring themselves to touch him?
+
+**Tonight's question: The hall's stone wall is warm from the floor up behind sealed bronze doors, while new arrivals stack clean robes by their fire outside. Has the Order already set the four Stones inside, or are they still waiting outside for the last night?**
+
+> Where is the heat in the hall's wall coming from?
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Intellect], where would the Seekers have left a door?
+> [the friend at the fire best at Intellect], clean robes folded on top of their road-packs outside, and warmth in the stone wall only from knee-height down. Are the four Stones already inside that hall, or still outside with the camp?
 
 *⚙ Then he recalls:*
 
 > The soldiers are three streets nearer the hall. Round the Order's fire there are twice as many as before.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: There is no way in at the front.
+- A: The four Stones are already set around him on the floor inside, warming the stone.
 
-- B: There is, and it isn't ours.
+- B: The Stones are still outside with the faithful, waiting to be carried in on the dark moon.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each):*
+*⚙ The case so far (the week's question, "What will the fifth do in his hall?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What is warm in the cold but has no fire?
-
-*⚙ Answer: a blanket. His line when it is solved:*
-
-> Bring one.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will the fifth do in his hall?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 6, Day 4
 
@@ -2152,13 +2354,13 @@ Clue found, "Warm low down":
 
 > Behind the hall, the city's highest ground runs out into a rise of cracked, bare rock, split and heaved as if something underneath had shifted a long time ago.
 
-*⚙ A button: [LOOK FOR THE ONE THAT IS DIFFERENT]*
-
 > A hundred cracks, all of them crooked.
 >
 > And one that runs straight up and down, as if it had been ruled.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** The rock has closed in on that crack over the years. *(Apprentice and up:)* It is healing shut. It was cut, once, wide enough for a pack.
 
@@ -2177,6 +2379,8 @@ Clue found, "Warm low down":
 > Every one of them in this city faces the hall. This one has its back to it.
 >
 > It is facing you.
+>
+> …
 
 **FIGHT: THE ONE IN THE CRACK**
 
@@ -2198,8 +2402,6 @@ Clue found, "Warm low down":
 
 > You go in sideways, one at a time, with the lamp held out ahead. The rock presses cold against your back and your chest. Deep inside, where the last of the grey daylight gives out, a housing is set into the stone.
 
-*⚙ A button: [LIFT THE LID]*
-
 *⚙ The fragment moment:*
 
 > It comes away in your hand, beaded with the crack's cold damp.
@@ -2214,9 +2416,37 @@ Clue found, "Warm low down":
 >
 > The Seekers' ways open only for their own. Every one of them has opened for you, and for nobody else.
 
-*⚙ A button: [THEN HOW DID THE ORDER CARRY FOUR STONES INSIDE?]*
+*⚙ A choice: [ASK HOW THE ORDER CARRIED FOUR STONES IN] or [LOOK AT THE BLANK ROCK]. Pick one; only the picked branch plays.*
 
+*⚙ If you pick [ASK HOW THE ORDER CARRIED FOUR STONES IN]:*
+
+> You ask the question that has been waiting since the stair: if the Seekers' ways open only for their own, how did the Order carry four stones inside?
+>
 > Garrick is looking at the blank rock. *"The Seekers sealed the doors they knew about."*
+
+*⚙ Then the card "What this changed":*
+
+> You asked how the Order carried four Stones past a Seeker seal — Garrick said the Seekers sealed the doors they knew about.
+
+*⚙ This road's own find, "The doors they knew about" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> When you asked at the dead end of the crack how the Order carried four Stones inside if Seeker ways open only for their own, Garrick said, "The Seekers sealed the doors they knew about."
+
+*⚙ If you pick [LOOK AT THE BLANK ROCK]:*
+
+> You look from the Seeker housing in your hand to the blank face of the rock at the dead end of the crack, wondering aloud how the Order ever got four stones past a Seeker seal.
+>
+> Garrick is looking at the blank rock. *"The Seekers sealed the doors they knew about."*
+
+*⚙ Then the card "What this changed":*
+
+> You looked from the Seeker housing to the blank rock — Garrick said the Seekers sealed only the doors they knew about.
+
+*⚙ This road's own find, "The dead end in the crack" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Looking from the cold Seeker housing to the blank rock and the scored moon beside it, you heard Garrick say that the Seekers sealed the doors they knew about.
+
+*⚙ Whatever you picked, every player reads this:*
 
 > There is another door. And the Order has it.
 
@@ -2277,49 +2507,55 @@ Clue found, "Louder here":
 
 ### The Campfire: The hill behind the hall (Three nights)
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: wry.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
 
 *⚙ Garrick opens:*
 
-> That hill was steeper than it looked. Sit.
+> One soldier facing out while a whole city faces in, and the rock behind him beating like a chest. Sit.
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-> *"Forgive us for leaving it at all."* Why would leaving a way in need forgiving?
+*⚙ "The untouched grit" with "Two hollows" (this one answers tonight's question):*
 
-**Tonight's question**
+> The grit behind the soldier lay smooth and untouched until your boots marked it, while the rock under its iron soles is worn into two shallow hollows. Nobody has passed down this crack since the war ended, and that soldier never left its post.
+
+*⚙ When "6-4-3" is laid, Garrick adds:*
+
+> [the friend at the fire best at Charm], the beat is louder with your ear on that stone than anywhere in the crack. What is the wall between you and?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"Forgive us for leaving it at all."* Why leave a way back into a room they hoped would stay shut forever?
+
+**Tonight's question: Every other soldier in Highwall faces the hall. Why has this one stood in the mouth of the Seekers' crack since the war ended, facing out?**
+
+> How long had the sentinel stood in the mouth of the crack?
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Craft], nobody has walked that crack before us. Why keep a soldier at it?
+> [the friend at the fire best at Craft], two hollows worn into solid stone by iron boots, and the heartbeat louder right behind the blank rock than anywhere else. Whose watch was that soldier keeping in the crack?
 
 *⚙ Then he recalls:*
 
 > Upriver, a dog on a chain kept the hidden path. Today a soldier stood in the crack with its back to the hall.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: The rock waits for the dark moon.
+- A: The Seekers left it to bar their own secret passage after they sealed the hall and walked out.
 
-- B: The rock will open for us now.
+- B: It was keeping the king's last watch — guarding the back of his throne against anyone coming down the hill.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each):*
+*⚙ The case so far (the week's question, "What will the fifth do in his hall?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What changes shape but is never touched?
-
-*⚙ Answer: the moon. His line when it is solved:*
-
-> It keeps its own hours.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will the fifth do in his hall?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 6, Day 5
 
@@ -2348,8 +2584,10 @@ Clue found, "Louder here":
 > Garrick reaches the top a long minute after everyone else, and sits down on the top step with his back to the wall. *"Give me a minute."*
 >
 > He waves you on into the room with the back of his hand.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** The rows run higher than anyone could reach from the floor. *(Apprentice and up:)* The watchers cut ledges in the wall for their own feet.
 
@@ -2363,6 +2601,8 @@ Clue found, "Louder here":
 
 - **Aim:** Follow the rows round, and they stop. *(Apprentice and up:)* After that, the stone is bare, all the way back to the door.
 
+> …
+
 **CHALLENGE: THE SKY-WATCHERS' WALL**
 
 > Thousands of moons. One of them is not like the others.
@@ -2374,6 +2614,8 @@ Clue found, "Louder here":
 *⚙ If you passed the Challenge:*
 
 > You find it at once, by daylight, with no lamp lit.
+>
+> …
 
 *⚙ If you failed the Challenge:*
 
@@ -2401,8 +2643,6 @@ Clue found, "Louder here":
 
 > Beside the dark moon, a housing gives at a touch.
 
-*⚙ A button: [TAKE IT]*
-
 *⚙ The fragment moment:*
 
 > It has sat under the open sky for centuries, and it is as cold as the night up here.
@@ -2412,8 +2652,6 @@ Clue found, "Louder here":
 > The rows are evenly spaced. The bare stone after them is only stone.
 >
 > But you could go on counting.
-
-*⚙ A button: [COUNT FORWARD, WITH A FINGERTIP]*
 
 > Full to dark and back, across the blank wall, at the sky-watchers' own spacing. Year on year. Your finger comes all the way round the room.
 >
@@ -2480,49 +2718,55 @@ Clue found, "Cut in a hurry":
 
 ### The Campfire: The moon-tower (Two nights)
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: wry.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
 
 *⚙ Garrick opens:*
 
 > Two nights. Eat while there's something to eat.
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-> *"Be there when it does."* Be there to do what?
+*⚙ "Sums begun again" with "Cut in a hurry" (this one answers tonight's question):*
 
-**Tonight's question**
+> The last rows of moons were chiselled in a rough hurry without missing a single night, while the slates on the floor are covered in long sums crossed through and begun again. They were racing to reckon a distant date before the last night came.
+
+*⚙ When "6-5-1" is laid, Garrick adds:*
+
+> [the friend at the fire best at Intellect], every moon spaced a finger's width from the last around the whole room. If you measure the blank stone by that same thumb, what night does the count land on?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"Be there when it does."* Did the Seekers trust their descendants to hold the lock, or to end it?
+
+**Tonight's question: The sky-watchers' wall stops on the dark moon the night he fell, with a Seeker housing set beside the last cut. Who were the sky-watchers reckoning that cycle for?**
+
+> What were the sky-watchers doing in the days before the wall went blank?
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Intellect], the sky-watchers' record stops on one night. Why that night?
+> [the friend at the fire best at Intellect], every row spaced a finger's width apart for generations, and slates on the floor scratched with long sums begun again. Who were those sky-watchers counting the dark moons for?
 
 *⚙ Then he recalls:*
 
 > The Order's board has counted down for generations. The sky-watchers' wall, counted forward, lands on the same night.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: The Seekers chose the dark moon.
+- A: For the Seekers: they marked the cycle so their descendants could count the blank wall and know the hour.
 
-- B: The dark moon came by chance.
+- B: For the king: they were his own watchers, reckoning the return of the dark moon before the city fell.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each):*
+*⚙ The case so far (the week's question, "What will the fifth do in his hall?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What is taken every night and returned at dawn?
-
-*⚙ Answer: sleep. His line when it is solved:*
-
-> Get some.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will the fifth do in his hall?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 6, Day 6
 
@@ -2549,8 +2793,10 @@ Clue found, "Cut in a hurry":
 > They are not standing.
 >
 > They are walking: slowly, stiffly, all the same way. Up the hill, to the hall.
+>
+> …
 
-*⚙ Your build notices: you see the line for your highest Attribute (from Apprentice on, with its second sentence; at the fire a friend may share it).*
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** They do not go round what is in their way. *(Apprentice and up:)* A cart, a fallen door: they walk through it.
 
@@ -2563,6 +2809,8 @@ Clue found, "Cut in a hurry":
 - **Craft:** Iron on stone, in time. *(Apprentice and up:)* It covers every other sound in the street. It would cover yours.
 
 - **Aim:** At the top of the street, where the hill begins, one of them has stopped. *(Apprentice and up:)* It is not facing the hall.
+
+> …
 
 **CHALLENGE: THE STREET**
 
@@ -2585,6 +2833,8 @@ Clue found, "Cut in a hurry":
 *⚙ Either way, every player reads this:*
 
 > At the mouth of the crack, one soldier has stopped walking, and turned round.
+>
+> …
 
 **FIGHT: THE ONE THAT TURNED**
 
@@ -2616,15 +2866,11 @@ Clue found, "Cut in a hurry":
 
 > Deep in the crack, at the dead end beside the scored moon, the last fragment is waiting in a cleft at the foot of the blank rock.
 
-*⚙ A button: [TAKE IT]*
-
 *⚙ The fragment moment:*
 
 > **A locked Seeker Fragment has been added to your Chest.**
 >
 > That is six.
-
-*⚙ A button: [LAY THEM OUT]*
 
 > They settle, as they have five times before, on a ledge of rock at the dead end, with the lamp held close and whoever else is in the crack pressed in behind you to see. This time the map is short, and simple.
 >
@@ -2705,7 +2951,9 @@ Clue found, "Every post empty":
 
 ### The Campfire: The crack in the hill (One night)
 
-*⚙ Garrick is at the fire. He says at most eight stored lines to one friend (no AI here). Tone tonight: wry.*
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
 
 *⚙ A cup night:*
 
@@ -2715,43 +2963,47 @@ Clue found, "Every post empty":
 
 > Last night of the count. Eat what you like.
 
-*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."), at most two. He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
-*⚙ The board: one card for each lead taken at the last light, with every finder's name; a lead nobody took reads "Nobody went to … tonight."*
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
-*⚙ Today's fragment: once its two words are found (in the Seeker Chest), it is read out here, then a meaning question to pin an answer to:*
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-> *"Finish what we could not."* What did the Seekers leave unfinished?
+*⚙ "Every helm to the hall" with "The swept fan" (this one answers tonight's question):*
 
-**Tonight's question**
+> At the foot of the blank rock the grit is swept in a quarter-circle where a hidden door swings toward you, and outside the crack every helm on the hill is turned toward the hall's great doors. When the Seekers' door opens tomorrow night, the entire garrison will have its back to you.
+
+*⚙ When "6-6-3" is laid, Garrick adds:*
+
+> [the friend at the fire best at Agility], every post from the gate-tower to the crossroads stands empty tonight, with only pale boot-marks in the dust. Where has the whole city gathered?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"Finish what we could not."* What could five who loved him not bring themselves to do?
+
+**Tonight's question: Tomorrow night the Seekers' door opens for our blood, and we carry the fifth Stone into the hall where the four are waiting. What happens when the fifth is brought to him?**
+
+> Will the dead garrison see you when the blank rock opens?
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Intellect], not one of the dead turned its head. What do they know that we don't?
+> [the friend at the fire best at Intellect], grit swept in a quarter-circle where the stone door swings inward, and every helm on the hill turned toward the hall. When we carry the fifth through that door tomorrow night, will it bind him or wake him?
 
 *⚙ Then he recalls:*
 
 > Six nights ago you had a hidden room. Tonight you have one stroke left.
 
-*⚙ Each friend pins one reading, then may see the others' (names shown, never a count or a winner), and may add their own line:*
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: We open the rock tomorrow night.
+- A: It finishes what the Seekers built their hidden door for — binding him before the four Stones can wake him.
 
-- B: The door is not ours to open tomorrow.
+- B: It finishes what the four Stones and the marching garrison are waiting for — waking him whole.
 
 - Neither.
 
-*⚙ The riddle (shared by the party, three tries each):*
+*⚙ The case so far (the week's question, "What will the fifth do in his hall?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
 
-> What gets better when you share it and worse when you keep it?
-
-*⚙ Answer: a story. His line when it is solved:*
-
-> Tell one.
-
-*⚙ The case so far: each friend keeps one line answering the week's question, "What will the fifth do in his hall?", read back at the Gathering's opening. Also: an open question to leave for the party.*
-
-*⚙ Leaving the fire: Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?"), "What we did today" (one line per friend, only for what they really did), then the Pull again, and a message in a bottle for whoever comes next.*
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
 
 ## Week 6, Day 7: the Gathering
 
