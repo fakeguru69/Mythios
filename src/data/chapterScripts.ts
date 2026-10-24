@@ -1600,25 +1600,63 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "It hangs by one nail. It was broken from outside, with a single push, by somebody who did not need to try twice."
+            "text": "It hangs by one nail. It was broken from outside, with a single push, by somebody who did not need to try twice.",
+            "changed": "You went to the latch yourself: one nail left, and one push from outside, by somebody who did not need to try twice.",
+            "roadFind": {
+              "title": "The bent nail",
+              "text": "The last nail holding the mill's latch is bent flat into the wood, inward: one push from outside, by somebody who did not need to try again."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "Ruts in, and ruts out, four nights old. One cart. It did not turn round in the yard. Somebody led the horse about by its head, so as not to make a sound."
+            "text": "Ruts in, and ruts out, four nights old. One cart. It did not turn round in the yard. Somebody led the horse about by its head, so as not to make a sound.",
+            "changed": "You read the lane yourself: the horse walked beside the ruts, led by its head, all the way in and all the way out.",
+            "roadFind": {
+              "title": "The led horse",
+              "text": "In the mill lane the horse's prints walk beside the ruts, never ahead of them: somebody led it by the head, in and out, so that it would make no sound."
+            }
           },
           {
             "options": [
               2
             ],
-            "text": "The stone under the wheel-housing is far older than the mill built on it. Worn almost smooth into its face is a shape you know: the one on the burned rubbing. The one at the Widow's Tooth."
+            "text": "The stone under the wheel-housing is far older than the mill built on it. Worn almost smooth into its face is a shape you know: the one on the burned rubbing. The one at the Widow's Tooth.",
+            "changed": "You knelt at the old stone under the wheel, and the miller's wife came out to find your hands on it. The Challenge was one harder.",
+            "roadFind": {
+              "title": "The mark under the wheel",
+              "text": "Worn almost smooth into the old stone under the mill wheel is the mark from the burned rubbing, the same one cut into the Widow's Tooth."
+            }
           }
         ]
       },
       {
         "t": "say",
-        "text": "{F1} is still crouched in the lane. {F2} has the rubbing held flat against the footing, and is not moving."
+        "text": "{F1} is still crouched in the lane. {F2} has the rubbing held flat against the footing, and is not moving.",
+        "cond": {
+          "on": "claim",
+          "key": "2-2:took:0:0",
+          "has": true
+        }
+      },
+      {
+        "t": "say",
+        "text": "{F1} is still at the door, turning the bent nail over and over between finger and thumb. {F2} has the rubbing held flat against the footing, and is not moving.",
+        "cond": {
+          "on": "claim",
+          "key": "2-2:took:0:1",
+          "has": true
+        }
+      },
+      {
+        "t": "say",
+        "text": "{F1} is still crouched in the lane. {F2} is standing at the door with the broken latch in one hand, looking at the house, not at the latch.",
+        "cond": {
+          "on": "claim",
+          "key": "2-2:took:0:2",
+          "has": true
+        }
       },
       {
         "t": "say",
@@ -1672,7 +1710,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "she stops talking, and it costs you the morning"
+        "fail": "she stops talking, and it costs you the morning",
+        "harderIf": {
+          "key": "2-2:took:0:2",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** She came out of her door to find your hands on the old stone under her house, and she has not yet decided what that means."
+        }
       },
       {
         "t": "say",
@@ -1804,7 +1848,40 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "…"
+        "text": "There are two ways to find where it went. The cart's own marks run along the open bank, where anyone on the slope above could watch you read them. Or there is the thorn, slow and wet and hidden, where somebody has been cutting a way and tying it back."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "READ THE WHEEL-MARKS",
+          "GO THROUGH THE THORN"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You work along the bank bent double, in plain sight of the hill, reading scuffs on wet stone. At the grey slab the iron tyre has bitten pale into the rock, pulling to the left, the way it pulled at the ford.\n\n…",
+            "changed": "You read the wheel-marks along the open bank, so the Challenge asked for Craft. Somebody on the slope watched you do it, and tomorrow the shaft is one harder.",
+            "roadFind": {
+              "title": "The bite on the grey slab",
+              "text": "At the grey slab upriver the iron tyre of the cart has bitten pale into the rock, pulling to the left, the way it pulled at the ford."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You go in on your knees where the thorn was cut back and tied. It is slow, and it is wet, and nobody on the slope could see you if they tried. At the height of a boy's shoulder, a few threads of undyed wool are caught on a spine.\n\n…",
+            "changed": "You went through the thorn, slow and hidden, so the Challenge asked for Agility, and nobody on the slope saw you.",
+            "roadFind": {
+              "title": "Wool on the thorn",
+              "text": "In the cut and tied thorn above the river, at the height of a boy's shoulder, a few threads of undyed wool are caught on a spine."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",
@@ -1947,7 +2024,40 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "…"
+        "text": "There are two ways down that ladder. Their voices come up in a slow, steady beat, loud enough to cover a creak if you move with them. And on a peg driven into the timbering hangs a hooded coat, left there by somebody who went down warm and will want it again on the way up."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "GO DOWN UNDER THE VOICES",
+          "PUT ON THE HOODED COAT"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You lie at the top and count until you have the beat of it: the same few words, said together, over and over, like people who mean to have them by heart. You move on the words, and you stop dead on the silences.\n\n…",
+            "changed": "You went down on the beat of their voices, so the Challenge asked for Agility.",
+            "roadFind": {
+              "title": "The beat of their words",
+              "text": "At the top of the shaft you moved on the beat of their voices: the same few words, said together, over and over, like people who mean to have them by heart."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "It is cut for a big man, and it is heavy, and damp at the shoulders, and it smells of tallow and of somebody else. The hem is caked with the pale clay of the cart-lane. You pull the hood down over your face and put your foot on the first rung as if you had done it every night of your life.\n\n…",
+            "changed": "You went down in their hooded coat, so the Challenge asked for Charm. Somebody below will miss it, and the night at the lip is one harder.",
+            "roadFind": {
+              "title": "The coat on the peg",
+              "text": "A hooded coat hung on a peg at the top of the shaft: cut for a big man, damp at the shoulders, its hem caked with the pale clay of the cart-lane."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",
@@ -1964,7 +2074,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "you are seen from the top, and you see almost nothing"
+        "fail": "you are seen from the top, and you see almost nothing",
+        "harderIf": {
+          "key": "2-3:took:0:0",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** Somebody on the slope watched you read the wheel-marks along the open bank yesterday, and the one at the foot of the ladder is not alone today."
+        }
       },
       {
         "t": "say",
@@ -2046,13 +2162,23 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You quarter it until your legs give out. Bracken. Scree. A sheepfold, fallen in. There is no second door."
+            "text": "You quarter it until your legs give out. Bracken. Scree. A sheepfold, fallen in. There is no second door.",
+            "changed": "You walked the hill, so you saw him first.",
+            "roadFind": {
+              "title": "No second door",
+              "text": "You quartered the whole hillside after dark: bracken, scree, a sheepfold fallen in. There is no second way into the hill."
+            }
           },
           {
             "options": [
               1
             ],
-            "text": "By the last of the light, in a margin, pressed hard into the paper:\n\n*\"Not one of these fragments names him. Neither does anything else I can find — every record of him scraped clean. Whoever he was, someone wanted him forgotten.\"*"
+            "text": "By the last of the light, in a margin, pressed hard into the paper:\n\n*\"Not one of these fragments names him. Neither does anything else I can find — every record of him scraped clean. Whoever he was, someone wanted him forgotten.\"*",
+            "changed": "You were at the lamp with her pages, so he saw you first.",
+            "roadFind": {
+              "title": "Meira's margin",
+              "text": "Pressed hard into a margin of Meira's pages: not one fragment names him, and every record of him has been scraped clean."
+            }
           }
         ]
       },
@@ -2231,7 +2357,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "you know only that there are many, and that they are busy"
+        "fail": "you know only that there are many, and that they are busy",
+        "harderIf": {
+          "key": "2-4:took:0:1",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** Somebody below came up the ladder for a coat that was not on its peg, and since then the two at the foot of the shaft have kept their lamps turned up toward the lip."
+        }
       },
       {
         "t": "say",

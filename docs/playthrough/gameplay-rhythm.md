@@ -16,9 +16,9 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W1D5 | 778 | 6 | 2 | 0 | 429w | 3.9 min | 115w ◆CHOICE 121w ⚔FIGHT 113w ◆CHOICE 429w |
 | W1D6 | 761 | 5 | 2 | 0 | 295w | 3.6 min | 134w 🎲CHALLENGE 47w ?PRESS ON 295w ◆CHOICE 64w ◆CHOICE 221w |
 | W2D1 | 848 | 5 | 3 | 0 | 373w | 4.0 min | 32w ◆CHOICE 106w ◆CHOICE 167w ◆CHOICE 170w 🎲CHALLENGE 373w |
-| W2D2 | 552 | 4 | 0 | 0 | 187w | 2.7 min | 64w ▸tap 187w 🎲CHALLENGE 128w ?PRESS ON 173w |
-| W2D3 | 502 | 7 | 0 | 0 | 283w | 2.8 min | 119w 🎲CHALLENGE 100w ⚔FIGHT 283w |
-| W2D4 | 451 | 2 | 0 | 0 | 347w | 2.1 min | 104w 🎲CHALLENGE 347w |
+| W2D2 | 532 | 4 | 0 | 0 | 173w | 2.6 min | 64w ▸tap 167w 🎲CHALLENGE 128w ?PRESS ON 173w |
+| W2D3 | 594 | 8 | 1 | 0 | 283w | 3.3 min | 155w ◆CHOICE 56w 🎲CHALLENGE 100w ⚔FIGHT 283w |
+| W2D4 | 551 | 3 | 1 | 0 | 347w | 2.6 min | 141w ◆CHOICE 63w 🎲CHALLENGE 347w |
 | W2D5 | 515 | 6 | 0 | 0 | 290w | 2.8 min | 36w ▸tap 189w ⚔FIGHT 290w |
 | W2D6 | 523 | 4 | 1 | 0 | 263w | 2.5 min | 76w 🎲CHALLENGE 42w ?PRESS ON 142w ◆CHOICE 263w |
 | W3D1 | 725 | 7 | 2 | 0 | 402w | 3.8 min | 40w ◆CHOICE 173w ◆CHOICE 110w ⚔FIGHT 402w |
@@ -46,7 +46,7 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W6D5 | 421 | 4 | 0 | 0 | 157w | 2.1 min | 157w 🎲CHALLENGE 42w ?PRESS ON 122w ▸tap 100w |
 | W6D6 | 537 | 9 | 0 | 0 | 251w | 3.1 min | 84w 🎲CHALLENGE 46w ⚔FIGHT 251w ▸tap 156w |
 
-**Averages over the 36 chapters:** 605 words, 4.9 taps, about 3.0 minutes for the chapter alone (the last light and the Campfire come after).
+**Averages over the 36 chapters:** 610 words, 4.9 taps, about 3.0 minutes for the chapter alone (the last light and the Campfire come after).
 
 ## The evening (every weekday after the chapter)
 The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or sit by the fire. Then the fire: one chat under the finished day (18 Oct), with a text box at the foot.

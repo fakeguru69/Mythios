@@ -201,7 +201,14 @@
 *The wheel's footing:*
 > The stone under the wheel-housing is far older than the mill built on it. Worn almost smooth into its face is a shape you know: the one on the burned rubbing. The one at the Widow's Tooth.
 
+*If you took THE LATCH:*
 > Mei is still crouched in the lane. Dev has the rubbing held flat against the footing, and is not moving.
+
+*If you took THE LANE:*
+> Mei is still at the door, turning the bent nail over and over between finger and thumb. Dev has the rubbing held flat against the footing, and is not moving.
+
+*If you took THE WHEEL'S FOOTING:*
+> Mei is still crouched in the lane. Dev is standing at the door with the broken latch in one hand, looking at the house, not at the latch.
 
 > A woman is standing in the mill door. She has been watching you since you came into the yard. There is flour worked deep into the creases of her hands: old flour, from before.
 
@@ -220,6 +227,8 @@
 > **Intellect** · notice what she is not saying, and ask for exactly that · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: she stops talking, and it costs you the morning
+>
+> *If you took THE WHEEL'S FOOTING:* **One harder.** She came out of her door to find your hands on the old stone under her house, and she has not yet decided what that means.
 
 > When she speaks at last, it is to the yard, not to you.
 >
@@ -281,6 +290,7 @@
 **Designer's notes**
 - **Played beats:** a Choice of what to examine, a notice line, the Challenge, an optional press, an act. One roll, or two if pressed.
 - **The party:** Mei reads the lane and Dev lays the rubbing on the footing (whichever the player did not choose); Jo mends the latch on a failure.
+- **Phase 3, 24 Oct (Fake Guru: "continue … automatically"; to be read by him):** the road you look at yourself is your own find for the fire, and where your friends stand afterwards follows it. Kneeling at the footing makes the Challenge one harder: she comes out to find a stranger's hands on the stone under her house.
 - **Changed from the current script:** the player examines the mill before anyone speaks; the mark is found by a friend's hand or the player's own; the old line "Nobody says it, but everyone's thinking of the fragment from the well" is cut (this week's Gathering makes that link by play). The broken latch was the old optional extra; it is now part of the day.
 - **The miller's wife:** both lines are the approved ones, word for word.
 - **The press detail** ties this cart to Week 1's (the pulling wheel is in Week 1 Day 6). It is extra.
@@ -310,6 +320,18 @@
 > **Charm** · In the one patch of mud, a child's shoe-print, pointing uphill. *He walked this part.*
 > **Craft** · The left wheel pulled. *It left the bank at the grey slab.*
 > **Aim** · High on the slope there is a line where the bracken lies the wrong way. *A path, seen from the side.*
+
+> There are two ways to find where it went. The cart's own marks run along the open bank, where anyone on the slope above could watch you read them. Or there is the thorn, slow and wet and hidden, where somebody has been cutting a way and tying it back.
+
+`[READ THE WHEEL-MARKS]` `[GO THROUGH THE THORN]`
+
+*The player chooses.*
+
+*The wheel-marks:*
+> You work along the bank bent double, in plain sight of the hill, reading scuffs on wet stone. At the grey slab the iron tyre has bitten pale into the rock, pulling to the left, the way it pulled at the ford.
+
+*The thorn:*
+> You go in on your knees where the thorn was cut back and tied. It is slow, and it is wet, and nobody on the slope could see you if they tried. At the height of a boy's shoulder, a few threads of undyed wool are caught on a spine.
 
 **Challenge card**
 > **WHERE THE TRACKS STOP**
@@ -378,6 +400,7 @@
 **Designer's notes**
 - **Played beats:** a notice line, the Challenge, the fight, an act. Two paid beats: the roll decides who strikes first.
 - **The party:** Mei and Jo drag the player through on a lost fight.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** a real road before the Challenge. The wheel-marks set the Challenge to Craft and are read in the open: the slope sees you, and Day 4's Challenge is one harder. The thorn sets it to Agility, is hidden, and finds the boy's wool.
 - **Changed from the current script:** the dog and its fight are new (ladder, new fact). The friend's line "That's not an ordinary lock…" is cut; the game shows the carving and stops. The pull no longer asks who else is hunting these.
 - **Two details added so the scene holds together:** the chain's staple is new (the dog was posted four nights ago, which is how a man got this far a week ago); and nobody has moved the body (the people who keep this path step over him).
 - **The dog is not killed.** Win or lose, it ends lying down.
@@ -406,6 +429,18 @@
 > **Craft** · The shaft is old. The timbering is this year's. *Somebody found it, and opened it again.*
 > **Aim** · Straight down: a lamp, a patch of floor, and the edge of something that is not floor. *A foot. Small, and bare.*
 
+> There are two ways down that ladder. Their voices come up in a slow, steady beat, loud enough to cover a creak if you move with them. And on a peg driven into the timbering hangs a hooded coat, left there by somebody who went down warm and will want it again on the way up.
+
+`[GO DOWN UNDER THE VOICES]` `[PUT ON THE HOODED COAT]`
+
+*The player chooses.*
+
+*Under the voices:*
+> You lie at the top and count until you have the beat of it: the same few words, said together, over and over, like people who mean to have them by heart. You move on the words, and you stop dead on the silences.
+
+*The hooded coat:*
+> It is cut for a big man, and it is heavy, and damp at the shoulders, and it smells of tallow and of somebody else. The hem is caked with the pale clay of the cart-lane. You pull the hood down over your face and put your foot on the first rung as if you had done it every night of your life.
+
 **Challenge card**
 > **DOWN THE SHAFT**
 > One ladder. Whatever is down there, you will see it for as long as you are not seen.
@@ -413,6 +448,8 @@
 > **Charm** · go down as if you belong, past the one posted at its foot · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: you are seen from the top, and you see almost nothing
+>
+> *If you took READ THE WHEEL-MARKS on Day 3:* **One harder.** Somebody on the slope watched you read the wheel-marks along the open bank yesterday, and the one at the foot of the ladder is not alone today.
 
 *On a pass:*
 > You are halfway down before anyone looks up, and for the length of three breaths you see all of it. The air coming up past you is warm, and smells of tallow and wet stone.
@@ -461,6 +498,7 @@
 **Designer's notes**
 - **Played beats:** a notice line, the Challenge, an act. One roll. What the player sees depends on it.
 - **The party:** everyone is driven back up together.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** a real road before the Challenge. Going down under the voices sets it to Agility; the hooded coat sets it to Charm, and the coat is missed: Day 6's Challenge is one harder. One harder here if the wheel-marks were read on Day 3.
 - **Changed from the current script:** a pass now buys the whole picture (their number, the boy, his unmarked hands); a failure leaves only a child's crying. The day draws no conclusion about who these people are. The words "robed", "ritual" and "faith" are not used; "hooded" is.
 - **Garrick:** one existing line.
 - **This day's fragment** is now the one found in the roots at the shaft's mouth. (In the old script that place held the next day's.)
@@ -586,6 +624,8 @@
 > **Might** · haul yourself up to the crack above the lamp, and look down into it · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: you know only that there are many, and that they are busy
+>
+> *If you took PUT ON THE HOODED COAT on Day 4:* **One harder.** Somebody below came up the ladder for a coat that was not on its peg, and since then the two at the foot of the shaft have kept their lamps turned up toward the lip.
 
 *On a pass:*
 > Shape by shape, you place them as they cross the light. You have them: a knot of them at the lamps, a steady file beyond, all going the same way. And one who does not move at all, and is small.

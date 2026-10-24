@@ -330,6 +330,73 @@ const FORK_BRANCH_META = {
     },
   },
   // Fork · W2D6 (The Hill — reading the map across the dark)
+  // Phase 3 · W2D2 (The mill): the road you look at yourself
+  "2-2:THE LATCH": {
+    changed: 'You went to the latch yourself: one nail left, and one push from outside, by somebody who did not need to try twice.',
+    roadFind: {
+      title: 'The bent nail',
+      text: "The last nail holding the mill's latch is bent flat into the wood, inward: one push from outside, by somebody who did not need to try again.",
+    },
+  },
+  "2-2:THE LANE": {
+    changed: 'You read the lane yourself: the horse walked beside the ruts, led by its head, all the way in and all the way out.',
+    roadFind: {
+      title: 'The led horse',
+      text: "In the mill lane the horse's prints walk beside the ruts, never ahead of them: somebody led it by the head, in and out, so that it would make no sound.",
+    },
+  },
+  "2-2:THE WHEEL'S FOOTING": {
+    changed: "You knelt at the old stone under the wheel, and the miller's wife came out to find your hands on it. The Challenge was one harder.",
+    roadFind: {
+      title: 'The mark under the wheel',
+      text: "Worn almost smooth into the old stone under the mill wheel is the mark from the burned rubbing, the same one cut into the Widow's Tooth.",
+    },
+  },
+  // Phase 3 · W2D3 (Upriver)
+  '2-3:READ THE WHEEL-MARKS': {
+    changed: 'You read the wheel-marks along the open bank, so the Challenge asked for Craft. Somebody on the slope watched you do it, and tomorrow the shaft is one harder.',
+    roadFind: {
+      title: 'The bite on the grey slab',
+      text: 'At the grey slab upriver the iron tyre of the cart has bitten pale into the rock, pulling to the left, the way it pulled at the ford.',
+    },
+  },
+  '2-3:GO THROUGH THE THORN': {
+    changed: 'You went through the thorn, slow and hidden, so the Challenge asked for Agility, and nobody on the slope saw you.',
+    roadFind: {
+      title: 'Wool on the thorn',
+      text: "In the cut and tied thorn above the river, at the height of a boy's shoulder, a few threads of undyed wool are caught on a spine.",
+    },
+  },
+  // Phase 3 · W2D4 (The shaft)
+  '2-4:GO DOWN UNDER THE VOICES': {
+    changed: 'You went down on the beat of their voices, so the Challenge asked for Agility.',
+    roadFind: {
+      title: 'The beat of their words',
+      text: 'At the top of the shaft you moved on the beat of their voices: the same few words, said together, over and over, like people who mean to have them by heart.',
+    },
+  },
+  '2-4:PUT ON THE HOODED COAT': {
+    changed: 'You went down in their hooded coat, so the Challenge asked for Charm. Somebody below will miss it, and the night at the lip is one harder.',
+    roadFind: {
+      title: 'The coat on the peg',
+      text: 'A hooded coat hung on a peg at the top of the shaft: cut for a big man, damp at the shoulders, its hem caked with the pale clay of the cart-lane.',
+    },
+  },
+  // W2D5 (The hillside by night): the night's two ways
+  '2-5:WALK THE HILL': {
+    changed: 'You walked the hill, so you saw him first.',
+    roadFind: {
+      title: 'No second door',
+      text: 'You quartered the whole hillside after dark: bracken, scree, a sheepfold fallen in. There is no second way into the hill.',
+    },
+  },
+  "2-5:READ MEIRA'S PAGES": {
+    changed: 'You were at the lamp with her pages, so he saw you first.',
+    roadFind: {
+      title: "Meira's margin",
+      text: "Pressed hard into a margin of Meira's pages: not one fragment names him, and every record of him has been scraped clean.",
+    },
+  },
   '2-6:READ IT OUT': {
     changed: 'You gave the map line by line across the dark — you heard how far even a low voice carried on the still hill.',
     roadFind: {
@@ -608,6 +675,20 @@ function quoteText(lines) {
 
 const norm = (s) => s.toUpperCase().replace(/[^A-Z' ]/g, '').trim();
 
+// Roads taken (Phase 3, 24 Oct): every choice's options, so a later passage or Challenge can turn on the road the
+// player took ("*If you took THE LANE on Day 2:*"; without "on Day N", today). The server gives the same key from the
+// player's own picks (party_claims: "2-2:took:0:1" = Week 2 Day 2, choice 0, option 1).
+const TOOK = {};
+function tookKey(text, week, day) {
+  const m = text.replace(/^\*|\*$/g, '').replace(/:\*?$/, '').replace(/:$/, '').trim()
+    .match(/^If you (did not take|took) (.+?)(?: on Day (\d))?$/);
+  if (!m) return undefined;
+  const at = `${week}-${m[3] || day}`;
+  const k = TOOK[`${at}:${norm(m[2])}`];
+  if (!k) throw new Error(`W${week}D${day}: no road "${m[2]}" on Day ${m[3] || day}`);
+  return { key: k, has: m[1] === 'took' };
+}
+
 function branchOptions(label, buttons) {
   const key = label.replace(/^\*|\*$/g, '').replace(/:\*?$/, '').replace(/:$/, '').trim();
   const alias = BRANCH_ALIAS[key];
@@ -638,7 +719,7 @@ function parseNotice(lines) {
   return out;
 }
 
-function parseChallenge(lines, week) {
+function parseChallenge(lines, week, day) {
   const c = { title: '', desc: '', options: [], reward: '', fail: '' };
   lines.forEach((l, i) => {
     const t = l.trim();
@@ -657,6 +738,11 @@ function parseChallenge(lines, week) {
     if (lostAt) {
       if (!by(lostAt[2])) throw new Error(`harder card without "**One/Two harder.**": ${t}`);
       return (c.harderIf = { key: `G${lostAt[1]}:united-effort-lost`, has: true, by: by(lostAt[2]), line: tokens(lostAt[2]) });
+    }
+    const tookOn = t.match(/^(\*If you (?:did not take|took) [^*]+:\*)\s*(.*)$/);
+    if (tookOn) {
+      if (!by(tookOn[2])) throw new Error(`harder card without "**One/Two harder.**": ${t}`);
+      return (c.harderIf = { ...tookKey(tookOn[1], week, day), by: by(tookOn[2]), line: tokens(tookOn[2]) });
     }
     const failedOn = t.match(/^\*If you failed the Challenge on Day (\d):\*\s*(.*)$/);
     if (failedOn) {
@@ -717,7 +803,8 @@ function buildDay(d) {
       const q = blk.text.match(/^\*Question:\s*(.+?)\*$/);
       if (q) { question = tokens(q[1]); i++; continue; }
       const inline = blk.text.match(/^\*([^*]+):\*\s+(.+)$/);
-      const cond = labelCond(blk.text);
+      const took = tookKey(blk.text, d.week, d.day);
+      const cond = took ? { on: 'claim', ...took } : labelCond(blk.text);
       if (inline && cond !== undefined) {
         const s = inline[2].trim();
         steps.push({ t: 'say', text: tokens(s[0].toUpperCase() + s.slice(1)), ...(cond ? { cond } : {}) });
@@ -774,7 +861,7 @@ function buildDay(d) {
       }
       if (name === 'Challenge card' && next?.t === 'quote') {
         ensureLeadInBeforeCard();
-        steps.push({ t: 'challenge', ...parseChallenge(next.lines, d.week) });
+        steps.push({ t: 'challenge', ...parseChallenge(next.lines, d.week, d.day) });
         i += 2;
         continue;
       }
@@ -824,6 +911,8 @@ function buildDay(d) {
           const note = nb.text.replace(/^\*|\*$/g, '');
           const m = CHOICE_MODE.find(([re]) => re.test(note));
           if (m) { mode = m[1]; j++; continue; }
+          // "*If you took THE LANE:*" is a passage for the road taken, not one of this choice's branches.
+          if (/^If you (took|did not take) /.test(note)) break;
           const opts = branchOptions(nb.text, labels);
           if (opts.length && b[j + 1]?.t === 'quote') {
             // A branch runs over several passages only when another branch follows it.
@@ -850,7 +939,10 @@ function buildDay(d) {
         }
         break;
       }
-      labels.forEach((l, oi) => (lastChoiceByLabel[l] = { id, option: oi }));
+      labels.forEach((l, oi) => {
+        lastChoiceByLabel[l] = { id, option: oi };
+        TOOK[`${key}:${norm(l)}`] = `${key}:took:${id}:${oi}`;
+      });
       if (branches.length) {
         const covered = new Set(branches.flatMap((x) => x.options));
         labels.forEach((l, oi) => { if (!covered.has(oi)) warnings.push(`W${d.week}D${d.day} option without a branch: ${l}`); });

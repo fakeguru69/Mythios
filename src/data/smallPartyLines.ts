@@ -42,6 +42,15 @@ export const SMALL_PARTY_LINES: SmallPartyLine[] = [
     full: '{F1} is still crouched in the lane. {F2} has the rubbing held flat against the footing, and is not moving.',
     byFriends: { 1: '{F1} is still crouched in the lane, the rubbing held flat against the footing, not moving.' },
   },
+  // W2D2, after the lane or the footing (Phase 3, 24 Oct)
+  {
+    full: '{F1} is still at the door, turning the bent nail over and over between finger and thumb. {F2} has the rubbing held flat against the footing, and is not moving.',
+    byFriends: { 1: '{F1} has the rubbing held flat against the footing, and is not moving.' },
+  },
+  {
+    full: '{F1} is still crouched in the lane. {F2} is standing at the door with the broken latch in one hand, looking at the house, not at the latch.',
+    byFriends: { 1: '{F1} is still crouched in the lane, reading the ruts.' },
+  },
   // W2D3 (episode-2:296)
   {
     full: 'until {F1} and {F3} drag you through by the collar.',
