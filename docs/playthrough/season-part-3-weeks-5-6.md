@@ -231,7 +231,7 @@ Clue found, "Every window lit":
 
 *⚙ "The crisp edge" with "The rime stays" (this one answers tonight's question):*
 
-> The line under HIGHWALL was chiselled clean away like the king's face on the coin, and the crack at the stone's foot holds the same unnatural cold as every Seeker housing. The road marker was defaced, and the Seekers set their first sign in its foot.
+> The line under HIGHWALL was cut away as cleanly as the king's face from the coin, and in the stone's foot sits the same unnatural cold as every Seeker housing since the forest road. Someone scraped the road's word for the city, and the Seekers set their own sign beneath it, pointing in. Whatever they left in Highwall, they meant it to be found by the right hands.
 
 *⚙ When "5-1-3" is laid, Garrick adds:*
 
@@ -501,7 +501,7 @@ Clue found, "Scattered":
 
 *⚙ "Heads down" with "Scattered" (this one answers tonight's question):*
 
-> The dogs came in a straight line from the north while the ground beat, froze mid-stride the instant the beat stopped, and scattered every way after. The beat drove them while it lasted, and let them go when it stopped.
+> The dogs came in a straight line from the north while the ground beat, froze mid-stride the moment it stopped, and scattered every way after. Whatever wakes in Highwall can only do it in strokes, at dusk and at dawn, and then it lets go. It is waiting for something before it can do more.
 
 *⚙ When "5-2-2" is laid, Garrick adds:*
 
@@ -694,7 +694,7 @@ Clue found, "Knocked out":
 
 *⚙ Garrick opens:*
 
-> High on the wall, and not a breath of green in the whole city. Sit down out of the wind.
+> A bar of new timber in brackets worn bright. Somebody's been barring this gate for centuries, and the wood's new.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -1338,7 +1338,7 @@ Clue found, "A stride wider":
 
 *⚙ "The narrow slit" with "A stride wider" (this one answers tonight's question):*
 
-> The walkway here was built a full stride wider on the city side, and the slit window is set so low in the stone face that it cannot be seen from the square. Anyone not standing on this parapet would take the wall for solid rock.
+> The walk here was built a full stride wider on the city side, and the slit is set so low in the face that nobody in the square could ever see it. The Seekers did not build an altar in this wall. They built a hiding place, for something meant to be kept, and carried on.
 
 *⚙ When "5-6-2" is laid, Garrick adds:*
 
@@ -1874,7 +1874,7 @@ Clue found, "The old soot":
 
 *⚙ "No light inside" with "The old soot" (this one answers tonight's question):*
 
-> Years of candle-soot blacken the back of the niche, set deep and low beneath the slit, while tonight no lantern from the square reaches through it. For generations a hidden light burned behind the wall in this room; tonight the niche is cold.
+> Years of candle-soot blacken the back of the niche, set deep and low beneath the slit, where no lantern from the square could ever reach. For generations a light burned in this room unseen. From the board, a dark wall has always looked exactly like this one, and tonight it still does.
 
 *⚙ When "6-1-2" is laid, Garrick adds:*
 
@@ -2298,7 +2298,7 @@ Clue found, "Warm low down":
 
 *⚙ "The unbroken drift" with "Warm low down" (this one answers tonight's question):*
 
-> An unbroken bank of dust lies across the seam of the bronze doors, and the stone wall is warm only from knee-height down. The front doors have never opened, and whatever is warming the hall lies flat on the floor inside.
+> An unbroken bank of dust lies across the seam of the great doors, and the wall is warm only from the knee down. Nothing has gone in by the front in a very long time, yet something lies on the floor inside, giving off heat. The four are already in there, and they went in by another way.
 
 *⚙ When "6-3-2" is laid, Garrick adds:*
 
@@ -2308,7 +2308,7 @@ Clue found, "Warm low down":
 
 > *"None of us could bear to lift him."* Even at the end, why could they not bring themselves to touch him?
 
-**Tonight's question: The hall's stone wall is warm from the floor up behind sealed bronze doors, while new arrivals stack clean robes by their fire outside. Has the Order already set the four Stones inside, or are they still waiting outside for the last night?**
+**Tonight's question: The hall's wall is warm from the floor up, and the faithful stack clean robes by their fire. Are the four Stones already inside, or still waiting out here for the last night?**
 
 > Where is the heat in the hall's wall coming from?
 
@@ -2734,7 +2734,7 @@ Clue found, "Cut in a hurry":
 
 *⚙ "Sums begun again" with "Cut in a hurry" (this one answers tonight's question):*
 
-> The last rows of moons were chiselled in a rough hurry without missing a single night, while the slates on the floor are covered in long sums crossed through and begun again. They were racing to reckon a distant date before the last night came.
+> The last rows of moons were chiselled in a rough hurry without missing a single night, while the slates on the floor are thick with long sums, crossed through and begun again. They were racing to reckon one far-off night before their own last one came, for someone who would need to know it.
 
 *⚙ When "6-5-1" is laid, Garrick adds:*
 
@@ -2997,7 +2997,7 @@ Clue found, "Every post empty":
 
 - A: It finishes what the Seekers built their hidden door for — binding him before the four Stones can wake him.
 
-- B: It finishes what the four Stones and the marching garrison are waiting for — waking him whole.
+- B: It finishes what the four Stones and the marching garrison have been waiting for.
 
 - Neither.
 
