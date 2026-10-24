@@ -38,6 +38,7 @@ import GameShell from './GameShell';
 import { NotebookProvider } from './Markable';
 import CoverPage from '../components/CoverPage';
 import { Shell, ErrorLine, card, input, goldButton, quietButton, heading, note } from './ui';
+import { alertParty, onAlertLink } from './alertLink';
 
 const startQuery = new URLSearchParams(window.location.search);
 const inviteLink = (code: string) => `${window.location.origin}/?join=${code}`;
@@ -1101,6 +1102,12 @@ function Home({ session }: { session: Session }) {
     setRows(list);
     // With one party, signing in goes straight into it (phase A, docs/design/one-thread-18oct.md); once only, so
     // "Your stories" still reaches the shelf.
+    // A tapped notification opens the party it is about (alertLink.ts).
+    const alerted = alertParty();
+    if (!autoOpened.current && alerted && list.some((r) => r.party_id === alerted && r.status === 'approved')) {
+      autoOpened.current = true;
+      setOpenParty(alerted);
+    }
     if (!autoOpened.current && !startQuery.get('join') && list.length === 1 && list[0].status === 'approved') {
       autoOpened.current = true;
       setOpenParty(list[0].party_id);
@@ -1111,6 +1118,17 @@ function Home({ session }: { session: Session }) {
   useEffect(() => {
     load();
   }, [load]);
+
+  // A notification tapped while the game is open (alertLink.ts): open the party it is about, if it is one of ours.
+  const rowsRef = useRef(rows);
+  rowsRef.current = rows;
+  useEffect(
+    () =>
+      onAlertLink((link) => {
+        if (rowsRef.current.some((r) => r.party_id === link.party && r.status === 'approved')) setOpenParty(link.party);
+      }),
+    []
+  );
 
   // Google sign-ins are asked the name question once (review §1 Screen 3).
   if (!nameChosen) {
@@ -1136,6 +1154,7 @@ function Home({ session }: { session: Session }) {
   if (openParty) {
     return (
       <PartyPage
+        key={openParty}
         partyId={openParty}
         userId={userId}
         onBack={() => {

@@ -31,7 +31,14 @@ async function rpc(env: NotifyEnv, fn: string, args: Record<string, unknown> = {
   return data;
 }
 
-type Row = { id: number; endpoint: string; p256dh: string; auth: string; title: string; body: string; tag: string };
+type Row = { id: number; endpoint: string; p256dh: string; auth: string; title: string; body: string; tag: string; party_id?: string | null };
+
+// Where tapping the alert leads (24 Oct): the party it is about, and the screen, named by the alert's tag
+// (pwa/sw.js opens it; src/online/alertLink.ts reads it).
+export function alertUrl(r: Pick<Row, 'tag' | 'party_id'>): string {
+  if (!r.party_id) return '/';
+  return `/?online=1&party=${encodeURIComponent(r.party_id)}&go=${encodeURIComponent(r.tag || 'day')}`;
+}
 
 // The key pair, made here the first time and kept only on the server (migration 0070).
 async function vapidKeys(env: NotifyEnv, webpush: WebPushLib) {
@@ -47,7 +54,13 @@ async function vapidKeys(env: NotifyEnv, webpush: WebPushLib) {
 export async function runNotify(env: NotifyEnv, webpush: WebPushLib): Promise<{ due: number; sent: number; gone: number; failed: number }> {
   const keys = await vapidKeys(env, webpush);
   const due = (await rpc(env, 'notify_due')) ?? 0;
-  const rows: Row[] = (await rpc(env, 'push_batch')) ?? [];
+  // push_batch_for_links (migration 0113) adds the party; the older push_batch is the fallback.
+  let rows: Row[];
+  try {
+    rows = (await rpc(env, 'push_batch_for_links')) ?? [];
+  } catch {
+    rows = (await rpc(env, 'push_batch')) ?? [];
+  }
   if (!rows.length) {
     await rpc(env, 'push_done', { p_ids: [], p_gone: [] });
     return { due, sent: 0, gone: 0, failed: 0 };
@@ -60,7 +73,7 @@ export async function runNotify(env: NotifyEnv, webpush: WebPushLib): Promise<{ 
     try {
       await webpush.sendNotification(
         { endpoint: r.endpoint, keys: { p256dh: r.p256dh, auth: r.auth } },
-        JSON.stringify({ title: r.title, body: r.body, tag: r.tag }),
+        JSON.stringify({ title: r.title, body: r.body, tag: r.tag, url: alertUrl(r) }),
         { TTL: 6 * 3600 }
       );
       done.add(r.id);
