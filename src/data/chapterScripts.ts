@@ -262,7 +262,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               1
             ],
-            "text": "You ask who else has come in looking for the people at this table. He stops his cloth on the bar and gives you his name first, plainly, the way he might give you the price of a room.\n\n*\"Garrick.\"*\n\n*\"Nobody's asked for you,\"* he says, coming round the end of the bar to look at the pages without touching them. *\"Only the woman who left them.\"* Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.\n\n*\"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen.\"*\n\nHe puts it on the table.\n\n*\"Left this. Hasn't been back in three weeks.\"*",
+            "text": "You ask who else has come in looking for the people at this table. He stops his cloth on the bar and gives you his name first, plainly, the way he might give you the price of a room.\n\n*\"Garrick.\"*\n\n*\"Nobody's asked for you,\"* he says, coming round the end of the bar to look at the pages without touching them. Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.\n\n*\"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen.\"*\n\nHe puts it on the table.\n\n*\"Left this. Hasn't been back in three weeks.\"*",
             "changed": "You asked who else had come asking — he said nobody had asked for you, only the woman who left the pages.",
             "roadFind": {
               "title": "No other callers",
@@ -680,7 +680,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
               0
             ],
             "text": "You crouch by the bucket. The mud there has been trodden by every boot in Fenmark, but over the top of it all runs a line of small prints, quick and light, too short in the stride for any grown man. Where they turn between the sheds, a thread of unhemmed grey wool has caught on a nail at the height of a boy's elbow. They go off between the sheds behind the lane, and there you lose them.\n\n…",
-            "changed": "You took the back lanes (Agility roll on the Challenge) and found grey wool on the shed nail.",
+            "changed": "You took the back lanes, so the Challenge asks for Agility, and you found grey wool on the shed nail.",
             "roadFind": {
               "title": "Grey wool on the nail",
               "text": "Where the small footprints turned between the sheds behind the well, a thread of unhemmed grey wool was caught on a nail at the height of a boy's elbow."
@@ -691,7 +691,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
               1
             ],
             "text": "The door beside the well opens the width of a hand before your knuckles have finished on it. An eye, a grey braid, a thin hand on the latch. Behind her in the dim kitchen, a pot of the same boiled barley is still steaming on the hob — she is the one who filled the bowl by the well. She does not speak, and she does not shut it. Her gaze goes once, quickly, down the lane and back to you.\n\n…",
-            "changed": "You knocked next door (Charm roll on the Challenge) and saw the neighbour's barley pot.",
+            "changed": "You knocked next door, so the Challenge asks for Charm, and you saw the neighbour's barley pot.",
             "roadFind": {
               "title": "The second barley pot",
               "text": "Inside the neighbour's half-open door beside the well, a pot of the same boiled barley was still steaming on the hob. Someone in Fenmark was feeding the boy on the quiet."
@@ -751,10 +751,10 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
               0
             ],
             "text": "You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go.\n\n*\"She was here,\"* he whispers, touching the corner of the leaf with one dirty finger. *\"The woman with the satchel. Two weeks back. She asked about the split stone, and she had a book of that same paper.\"*",
-            "changed": "You showed him Meira's list — he recognized her paper from two weeks ago.",
+            "changed": "You showed him Meira's list — he recognised her paper from two weeks ago.",
             "roadFind": {
               "title": "The woman with the satchel",
-              "text": "The boy at the well recognized the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark two weeks back, asking about the split stone."
+              "text": "The boy at the well recognised the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark two weeks back, asking about the split stone."
             }
           },
           {
@@ -1050,7 +1050,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
               2
             ],
             "text": "The axe comes down all at once. Before she even asks your names, her fingers go to her belt, unfasten a small river-stone charm bound in iron wire — kept since the winter the boy was taken — and press it into your palm as she takes the little horse from you.",
-            "changed": "You knew the carved horse was hers and held it out first — she trusted you at once (+1 Might Relic).",
+            "changed": "You knew the carved horse was hers and held it out first — she trusted you at once, and pressed a Might Relic into your hand.",
             "roadFind": {
               "title": "The carver's charm",
               "text": "Held out without a word, the carved horse from the Widow's Tooth brought her axe down at once. She pressed an iron-bound river-stone charm into your hand before she sat."

@@ -2,8 +2,10 @@
 
 Phase 0, step 5 of the make-it-great plan. Each line below breaks a rule you set: words a player sees before the story
 reaches them, story names offered as the player's own, a count of four in a party of any size, out-of-game talk,
-American spelling, or brackets in prose. **Nothing here has been changed yet.** Each row has a suggested replacement.
-Answer by number: "yes" takes the suggestion, or write your own words.
+American spelling, or brackets in prose. **Decided 24 Oct** (Fake Guru: "use your judgement and proceed accordingly"): rows 1 to 16 and 18 as suggested
+(migration `0116`, the data files, the canon copies, the play-through regenerated); **row 17 kept as it is** (Meira has
+been *gone from the inn* three weeks, so passing through Fenmark two weeks back fits canon and tells her route); rows
+19 to 21 take option (a): 19 in `0116`, 20 and 21 in the pieces that follow (see the handoff ledger).
 
 Also waiting at the end: three game decisions from steps 3 and 4.
 
@@ -12,7 +14,7 @@ Also waiting at the end: three game decisions from steps 3 and 4.
 | # | Now | Why it breaks a rule | Suggested |
 |---|---|---|---|
 | 1 | Character name chips: **Kael**, Ren, Vael, Bran, Sira, **Rowan** | Kael and Rowan are cut lore (CLAUDE.md §8: "Oakhaven, Rowan, Kael … all cut") | Ren, Vael, Bran, Sira, **Edda**, **Tobin** (in no canon file) |
-| 2 | Birthplace chips: Ashcombe, **Fenmark**, **Highwall**, **The Reeds**, Oldford | Fenmark is Week 1's village, Ashcombe a Week 3 and 4 place, The Reeds a canon place, and Highwall may not be said before Week 5 Day 1. A player born in the story's places breaks it. | Oldford, **a farm in the hills**, **a river town**, **a road-house on the high road** (plain descriptions, no new lore) |
+| 2 | Birthplace chips: Ashcombe, **Fenmark**, **Highwall**, **The Reeds**, Oldford | Fenmark is Week 1's village, Ashcombe a Week 3 and 4 place, The Reeds a canon place, and Highwall may not be said before Week 5 Day 1. A player born in the story's places breaks it. | Oldford, **Thornby**, **Brackwater**, **Kettlecross** (in no canon file; a name, because the line on Meira's list reads "Beside yours, in the same neat hand: …") |
 | 3 | Grandparent chips: **Grandmother Meira**, **Grandfather Corin**, **A carved horse**, An iron signet | Meira is the woman whose list starts the story; Corin is a canon character (in 17 files); the carved horse is the object Week 1 Day 5 turns on | **Grandmother Wenna**, **Grandfather Aldric**, **A bone-handled knife**, An iron signet (none in canon) |
 | 4 | The box's example text: "e.g. Grandmother Meira, a carved horse..." | the same | "e.g. Grandmother Wenna, an iron signet…" |
 

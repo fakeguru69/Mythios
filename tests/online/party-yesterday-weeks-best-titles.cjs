@@ -101,7 +101,7 @@ const check = (name, ok) => {
   const canonicalTitles = [
     ['daysPlayed', 'The Steady Feet'],
     ['bestStreak', 'The Unbroken'],
-    ['gatheringsAttended', 'The Faithful'],
+    ['gatheringsAttended', 'The Steadfast'],
     ['fragmentsSolved', 'The Reader'],
     ['relicsGiven', 'The Open Hand'],
     ['timesSteppedUp', 'First Forward'],

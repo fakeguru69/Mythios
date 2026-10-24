@@ -230,7 +230,7 @@ export function computeBadgeProgress(
     case 'never-enough': {
       if (typeof stats.pressClearedThisWeek === 'number') {
         const p = stats.pressClearedThisWeek;
-        return `${p} of 3 Press On roll${p === 1 ? '' : 's'} cleared this week.`;
+        return `${p} of 2 Press On roll${p === 1 ? '' : 's'} cleared this week.`;
       }
       const p = stats.challengesPressedOn ?? 0;
       return `${p} Press On roll${p === 1 ? '' : 's'} taken so far.`;
@@ -254,7 +254,7 @@ export const BADGES_META: BadgeMeta[] = [
   { id: 'whole-table', labelLines: ['Whole', 'Table'], title: 'The Whole Table', earned: true, requirement: 'Every friend plays on the same day. The whole party earns it.', progressText: 'Every friend plays on the same day.', iconType: 'users' },
   { id: 'clean-night', labelLines: ['Clean', 'Night'], title: 'A Clean Night', earned: false, requirement: 'In one Gathering the party clears the opening roll, wins the Battle with nobody down, and wins the United Effort.', progressText: 'Not yet earned by the party.', iconType: 'moon' },
   { id: 'perfect', labelLines: ['Perfect', ''], title: 'Perfect', earned: true, requirement: 'Roll your first 20 on a Challenge or an attack.', progressText: 'Roll your first 20 on a Challenge or an attack.', iconType: 'd20' },
-  { id: 'never-enough', labelLines: ['Never', 'Enough'], title: 'Never Enough', earned: false, requirement: 'Clear 3 Press On rolls in one week.', progressText: 'Clear 3 Press On rolls in one week.', iconType: 'flame' },
+  { id: 'never-enough', labelLines: ['Never', 'Enough'], title: 'Never Enough', earned: false, requirement: 'Clear Press On twice in one week.', progressText: 'Clear Press On twice in one week.', iconType: 'flame' },
   { id: 'many-hands', labelLines: ['Many', 'Hands'], title: 'Many Hands', earned: false, requirement: 'Clear Challenges with four different Attributes.', progressText: 'Clear Challenges with four different Attributes.', iconType: 'chain' },
   { id: 'down-to-thread', labelLines: ['Close', 'Thread'], title: 'Down to a Thread', earned: false, requirement: 'Win a fight with 10 HP or less left.', progressText: 'Win a fight with 10 HP or less left.', iconType: 'heart' },
 ];
@@ -391,7 +391,7 @@ export interface SeasonTitleEntry {
 export const SEASON_TITLES_META: Record<string, { title: string; statLabel: string }> = {
   daysPlayed: { title: 'The Steady Feet', statLabel: 'Days Played' },
   bestStreak: { title: 'The Unbroken', statLabel: 'Best Streak' },
-  gatheringsAttended: { title: 'The Faithful', statLabel: 'Gatherings Attended' },
+  gatheringsAttended: { title: 'The Steadfast', statLabel: 'Gatherings Attended' },
   fragmentsSolved: { title: 'The Reader', statLabel: 'Fragments Solved' },
   relicsGiven: { title: 'The Open Hand', statLabel: 'Relics Given' },
   timesSteppedUp: { title: 'First Forward', statLabel: 'Times Stepped Up' },

@@ -77,7 +77,7 @@ A badge is a medal that turns up when something worth telling happens. Nobody ha
 | Badge | Given when | The game says |
 |---|---|---|
 | **Perfect** | You roll your first 20. | "BADGE: Perfect." |
-| **Never Enough** | You clear three [PRESS ON] rolls in one week. | "BADGE: Never Enough." |
+| **Never Enough** | You clear [PRESS ON] twice in one week (24 Oct: was three, but no week has more than two [PRESS ON] days). | "BADGE: Never Enough." |
 | **Many Hands** | You clear Challenges with four different Attributes. | "BADGE: Many Hands." |
 | **Down to a Thread** | You win a fight with 10 HP or less left. | "BADGE: Down to a Thread. Mei won with 4 HP." |
 
@@ -138,7 +138,7 @@ It is the bragging moment at the start of each Gathering. While the friends arri
 
 Why it works: every friend is named, so everyone gets a moment; nobody is last, because each gets their own best stat (if two friends would get the same one, the second gets their next best); and it takes twenty seconds, with everyone in the room at once, so nobody has to open a page to see it.
 
-At the **end of the season** the same idea gives each friend one **Season Title** for their best stat: Steady Feet (Days Played), The Unbroken (Best Streak), The Faithful (Gatherings Attended), The Reader (Fragments Solved), The Open Hand (Relics Given), First Forward (Times Stepped Up), The Keen Eye (Fragments Matched), The Wall (Battles Won), The Sure Hand (Challenges Cleared), The Bold (Challenges Pressed On), The Hunter (Enemies Defeated), The Lucky One (Perfect Rolls).
+At the **end of the season** the same idea gives each friend one **Season Title** for their best stat: Steady Feet (Days Played), The Unbroken (Best Streak), The Steadfast (Gatherings Attended; renamed from "The Faithful" on 24 Oct, the Order's own name for itself), The Reader (Fragments Solved), The Open Hand (Relics Given), First Forward (Times Stepped Up), The Keen Eye (Fragments Matched), The Wall (Battles Won), The Sure Hand (Challenges Cleared), The Bold (Challenges Pressed On), The Hunter (Enemies Defeated), The Lucky One (Perfect Rolls).
 
 **The party's board** (one view, always open): Gatherings with everyone present · Whole Table days · United Efforts won · Matches with everyone right.
 

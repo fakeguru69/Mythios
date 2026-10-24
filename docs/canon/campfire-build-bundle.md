@@ -355,7 +355,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 
 ## WEEK 6
 
-**6-1 · The wall room (Six nights)**
+**6-1 · The wall room, six nights left**
 - Opener: "Quiet's good in a hole in a wall. I'll take it."
 - Fork: A "They think the light was nothing." / B "They know someone's in the wall."
 - Fan Out clue (leans B; new): Not a candle burns in the room. Every lantern you can see from the slit is out in the square, and none of them reaches in.
@@ -363,7 +363,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Riddle: *What can fill a room and take no space?* A: light. Garrick: "A little of it, please."
 - Nudge: `{friend:Aim}`, an arrow under the window, pointing down. What does it want us to find?
 
-**6-2 · The barracks under the wall (Five nights)**
+**6-2 · The barracks under the wall, five nights left**
 - Opener: "The dead move when nobody watches, and they passed you by. Sit down a minute."
 - Fork: A "They go up to the hall to answer a call." / B "They go up to guard it."
 - Fan Out clue (leans B; new): The spear-racks along the wall are empty, and the dust under every one is swept clean in the same short arc.
@@ -371,7 +371,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Riddle: *What can you hold but never see, and the more you hold it the less you speak?* A: your breath. Garrick: "Hold yours."
 - Nudge: `{friend:Agility}`, the dead passed us by on their way up. Called, or on guard?
 
-**6-3 · The great square (Four nights)**
+**6-3 · The great square, four nights left**
 - Opener: "The hall's warm from within. More faithful arriving. What's missing is a door."
 - Fork: A "There is no way in at the front." / B "There is, and it isn't ours."
 - Fan Out clue (leans both; press-on): Eleven watchmen. Six have road-dust to the knee and packs not yet unrolled. They did not send for men to hunt you; these were already coming for the night.
@@ -379,7 +379,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Riddle: *What is warm in the cold but has no fire?* A: a blanket. Garrick: "Bring one."
 - Nudge: `{friend:Intellect}`, where would the Seekers have left a door?
 
-**6-4 · The hill behind the hall (Three nights)**
+**6-4 · The hill behind the hall, three nights left**
 - Opener: "That hill was steeper than it looked. Sit."
 - Fork: A "The rock waits for the dark moon." / B "The rock will open for us now."
 - Fan Out clue (leans A; new): Past where the soldier stood, the grit on the crack's floor lies smooth and untouched. Your boots are the first marks in it.
@@ -387,7 +387,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Riddle: *What changes shape but is never touched?* A: the moon. Garrick: "It keeps its own hours."
 - Nudge: `{friend:Craft}`, nobody has walked that crack before us. Why keep a soldier at it?
 
-**6-5 · The moon-tower (Two nights)**
+**6-5 · The moon-tower, two nights left**
 - Opener: "Two nights. Eat while there's something to eat."
 - Fork: A "The Seekers chose the dark moon." / B "The dark moon came by chance."
 - Fan Out clue (leans both; press-on): On the ledge under the last moon, a chisel is lying where it was put down, the mallet beside it. Nobody came back for them.
@@ -395,7 +395,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Riddle: *What is taken every night and returned at dawn?* A: sleep. Garrick: "Get some."
 - Nudge: `{friend:Intellect}`, the sky-watchers' record stops on one night. Why that night?
 
-**6-6 · The crack in the hill (One night)**
+**6-6 · The crack in the hill, one night left**
 - Opener: "Last night of the count. Eat what you like."
 - Fork: A "We open the rock tomorrow night." / B "The door is not ours to open tomorrow."
 - Fan Out clue (leans B; new): From the crack's mouth you can see the whole street climbing toward you. Every helm in it is turned to the hall, not one to the hill.
@@ -1539,7 +1539,7 @@ From the crack's mouth you can see the whole street climbing toward you. Every h
   {
    "week": 6,
    "day": 1,
-   "place": "The wall room (Six nights)",
+   "place": "The wall room, six nights left",
    "id": "6-1",
    "narratedNoGarrick": false,
    "tone": "wry",
@@ -1569,7 +1569,7 @@ From the crack's mouth you can see the whole street climbing toward you. Every h
   {
    "week": 6,
    "day": 2,
-   "place": "The barracks under the wall (Five nights)",
+   "place": "The barracks under the wall, five nights left",
    "id": "6-2",
    "narratedNoGarrick": false,
    "tone": "quiet",
@@ -1600,7 +1600,7 @@ From the crack's mouth you can see the whole street climbing toward you. Every h
   {
    "week": 6,
    "day": 3,
-   "place": "The great square (Four nights)",
+   "place": "The great square, four nights left",
    "id": "6-3",
    "narratedNoGarrick": false,
    "tone": "wry",
@@ -1631,7 +1631,7 @@ From the crack's mouth you can see the whole street climbing toward you. Every h
   {
    "week": 6,
    "day": 4,
-   "place": "The hill behind the hall (Three nights)",
+   "place": "The hill behind the hall, three nights left",
    "id": "6-4",
    "narratedNoGarrick": false,
    "tone": "wry",
@@ -1662,7 +1662,7 @@ From the crack's mouth you can see the whole street climbing toward you. Every h
   {
    "week": 6,
    "day": 5,
-   "place": "The moon-tower (Two nights)",
+   "place": "The moon-tower, two nights left",
    "id": "6-5",
    "narratedNoGarrick": false,
    "tone": "wry",
@@ -1692,7 +1692,7 @@ From the crack's mouth you can see the whole street climbing toward you. Every h
   {
    "week": 6,
    "day": 6,
-   "place": "The crack in the hill (One night)",
+   "place": "The crack in the hill, one night left",
    "id": "6-6",
    "narratedNoGarrick": false,
    "tone": "wry",

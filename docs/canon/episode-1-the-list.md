@@ -188,7 +188,7 @@
 >
 > *"Garrick."*
 >
-> *"Nobody's asked for you,"* he says, coming round the end of the bar to look at the pages without touching them. *"Only the woman who left them."* Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.
+> *"Nobody's asked for you,"* he says, coming round the end of the bar to look at the pages without touching them. Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.
 >
 > *"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen."*
 >

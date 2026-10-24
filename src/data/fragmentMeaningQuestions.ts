@@ -28,7 +28,7 @@ export const FRAGMENT_MEANING_QUESTIONS: Record<string, string> = {
   "4-4": "*\"If it is ever let near.\"* The line says do not let it near. Near to what, and who is it warning?",
   "4-5": "*\"Pray no one ever learns it is also a door.\"* Why build a lock that can still be opened like a door?",
   "4-6": "*\"We never asked what that would make them.\"* What debt did the five pass down to children they would never meet?",
-  "5-1": "*\"He gave us the war. Then it began to take.\"* When did they realize the man they followed was no longer the man they knew?",
+  "5-1": "*\"He gave us the war. Then it began to take.\"* When did they realise the man they followed was no longer the man they knew?",
   "5-2": "*\"That is why it had to be us.\"* Why could only his closest five be the ones to turn the key?",
   "5-3": "*\"None of us gave to the fifth.\"* If none of the five gave to the fifth Stone, whose was it?",
   "5-4": "*\"We left them standing.\"* Why leave an entire army standing in the streets instead of laying them to rest?",

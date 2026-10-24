@@ -181,8 +181,8 @@ Badges are **milestone medals** awarded when something extraordinary occurs. The
 #### Row 3: GLORY (Audacity & Clutch Moments)
 9. **Perfect** *(Individual)*: Roll your first natural 20 on a Challenge or combat strike.  
    *Chat:* `"BADGE: Perfect. A natural twenty."`
-10. **Never Enough** *(Individual)*: Clear three optional `[PRESS ON]` rolls within a single week.  
-    *Chat:* `"BADGE: Never Enough. Dev cleared three Press On rolls this week."`
+10. **Never Enough** *(Individual)*: Clear `[PRESS ON]` twice within a single week (24 Oct: was three; no week has more than two).  
+    *Chat:* `"BADGE: Never Enough. Dev cleared Press On twice this week."`
 11. **Many Hands** *(Individual)*: Clear weekday Challenges using at least four different Attributes.  
     *Chat:* `"BADGE: Many Hands. Versatility proven across four disciplines."`
 12. **Down to a Thread** *(Individual)*: Win an enemy fight with 10 HP or less remaining.  
@@ -229,7 +229,7 @@ At the conclusion of Week 6, each adventurer is permanently crowned with their d
 |---|---|
 | Most Days Played | **The Steady Feet** |
 | Longest Unbroken Streak | **The Unbroken** |
-| Most Gatherings Attended | **The Faithful** |
+| Most Gatherings Attended | **The Steadfast** |
 | Most Fragments Solved | **The Reader** |
 | Most Relics Gifted | **The Open Hand** |
 | Most Times Stepped Up | **First Forward** |

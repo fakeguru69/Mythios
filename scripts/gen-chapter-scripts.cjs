@@ -144,14 +144,14 @@ const FORK_BRANCH_META = {
   },
   // Fork 2 · W1D4 (Fenmark well — Fit: picks Challenge Attribute)
   '1-4:LOOK FOR FOOTPRINTS': {
-    changed: 'You took the back lanes (Agility roll on the Challenge) and found grey wool on the shed nail.',
+    changed: 'You took the back lanes, so the Challenge asks for Agility, and you found grey wool on the shed nail.',
     roadFind: {
       title: 'Grey wool on the nail',
       text: "Where the small footprints turned between the sheds behind the well, a thread of unhemmed grey wool was caught on a nail at the height of a boy's elbow.",
     },
   },
   '1-4:KNOCK NEXT DOOR': {
-    changed: "You knocked next door (Charm roll on the Challenge) and saw the neighbour's barley pot.",
+    changed: "You knocked next door, so the Challenge asks for Charm, and you saw the neighbour's barley pot.",
     roadFind: {
       title: 'The second barley pot',
       text: "Inside the neighbour's half-open door beside the well, a pot of the same boiled barley was still steaming on the hob. Someone in Fenmark was feeding the boy on the quiet.",
@@ -159,10 +159,10 @@ const FORK_BRANCH_META = {
   },
   // Fork 3 · W1D4 (Opening the boy at the well)
   '1-4:SHOW HIM THE LIST': {
-    changed: "You showed him Meira's list — he recognized her paper from two weeks ago.",
+    changed: "You showed him Meira's list — he recognised her paper from two weeks ago.",
     roadFind: {
       title: 'The woman with the satchel',
-      text: "The boy at the well recognized the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark two weeks back, asking about the split stone.",
+      text: "The boy at the well recognised the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark two weeks back, asking about the split stone.",
     },
   },
   '1-4:ASK WHO WAS TAKEN': {
@@ -239,7 +239,7 @@ const FORK_BRANCH_META = {
     },
   },
   '1-5:HOLD OUT THE CARVED HORSE': {
-    changed: 'You knew the carved horse was hers and held it out first — she trusted you at once (+1 Might Relic).',
+    changed: 'You knew the carved horse was hers and held it out first — she trusted you at once, and pressed a Might Relic into your hand.',
     relic: 'Might',
     roadFind: {
       title: "The carver's charm",
