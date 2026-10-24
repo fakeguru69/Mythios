@@ -493,7 +493,11 @@ export default function OnlineCampfire({
     if (m.kind === 'laid') return; // shown as the piece's card
     if (m.kind === 'click') {
       const matchedClick = (t?.clicks ?? []).find((c) => c.text === m.body) ?? t?.clicks?.[0];
-      const clickNames = matchedClick?.names?.length ? nameList(matchedClick.names) : null;
+      // 0118: in a party of one or two, Garrick brings the half nobody laid; the click then carries his name.
+      const broughtByGarrick = (matchedClick?.names ?? []).includes('Garrick');
+      const clickNames = matchedClick?.names?.length
+        ? nameList(broughtByGarrick ? matchedClick.names.filter((n) => n !== 'Garrick') : matchedClick.names)
+        : null;
       const spokeAfterClick = messages.some(
         (msg) => msg.created_at > m.at && msg.speaker !== 'garrick' && msg.kind !== 'notice'
       );
@@ -503,11 +507,16 @@ export default function OnlineCampfire({
         <div className="rounded-2xl border border-[#8A6E34] bg-[#2A2010] p-3 space-y-1.5" data-click>
           <div className="flex justify-between items-baseline gap-2">
             <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158]">
-              {garrick ? 'GARRICK · SETTING THE TWO TOGETHER' : 'SOMETHING CLICKS'}
+              {broughtByGarrick ? 'GARRICK · THE PIECE NOBODY BROUGHT' : garrick ? 'GARRICK · SETTING THE TWO TOGETHER' : 'SOMETHING CLICKS'}
             </div>
             {clickNames && <div className="text-[12.5px] text-[#CDB594]">{clickNames}</div>}
           </div>
-          {garrick && clickNames && (
+          {broughtByGarrick && (
+            <p className="text-[14.5px] text-[#CDB594] italic" data-click-garrick>
+              “Nobody went where this was lying tonight, so I went myself. Set it beside yours, and see what the two of them say.”
+            </p>
+          )}
+          {!broughtByGarrick && garrick && clickNames && (
             <p className="text-[14.5px] text-[#CDB594] italic">
               {spokeAfterClick
                 ? `“${clickNames} — you put those two side by side and called it before I needed to:”`
