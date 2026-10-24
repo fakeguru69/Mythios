@@ -168,9 +168,9 @@ All six support the finale — and all six are deliberately oblique. None may le
 | 4 · 6 | We made our **children** the only key. We never **asked** what that would make them. | H L C D I R E N · D E K S A |
 | 5 · 1 | He **gave** us the war. Then it began to **take**. | V A G E · K T E A |
 | 5 · 2 | We had **fought** **beside** every one of them. That is why it had to be us. | O T H F U G · S D B E E I |
-| 5 · 3 | Four of us gave to the four. **None** of us gave to the **fifth**. | E O N N · I F F H T |
+| 5 · 3 | Four of us gave to the four. **None** of us **gave** to the fifth. | E O N N · V E A G *(24 Oct: was FIFTH, a lock word three times)* |
 | 5 · 4 | When he fell, the **soldiers** who had been nearest him stopped where they were, mid-stride. We could not bring ourselves to break them. We left them **standing**. | I D S E S R O L · T I S G N N D A |
-| 5 · 5 | We **kept** the **fifth** where we could watch it, and watch him. | E P T K · T I H F F |
+| 5 · 5 | We **kept** the fifth where we could **watch** it, and watch him. | E P T K · T C H A W *(24 Oct: was FIFTH)* |
 | 5 · 6 | Where he **fell**, under the dark moon, the five were **joined**. | E F L L · I D E N J O |
 | 6 · 1 | His **household** ran the night we came to the hall. We let them go. They were only **servants**. | L S H H O O E U D · R S V A N E T S |
 | 6 · 2 | We were **marked**, every one of us. That is how we found the **shards**. | D A K R M E · H A R S D S |

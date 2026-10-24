@@ -59,6 +59,10 @@ function labelCond(text, week) {
   if (/^If Dev fell/.test(t)) return { on: 'ue', won: false };
   // Gathering 5: the older hand's frame line is shown only when the Verse is read from the page (roll-call lost).
   if (/^If it is read from the page/.test(t)) return { on: 'ue', won: false };
+  // Gathering 2: Corin points to the ledger in the room only if the room was held (lost, he hands it over outside).
+  if (/^If the room was held/.test(t)) return { on: 'ue', won: true };
+  // Gathering 4: with no captive to question (job lost), he still says one thing at the sight of Meira's pen.
+  if (/^If he could not be questioned/.test(t)) return { on: 'ue', won: false };
   if (/^If most give/.test(t) || /^Tear the page/.test(t)) return { on: 'pick', option: 0 };
   if (/^If most hold back/.test(t) || /^Break the ring/.test(t)) return { on: 'pick', option: 1 };
   // Gathering 6: the hold-back line in the second twist (the fifth's pick), and the act's third branch

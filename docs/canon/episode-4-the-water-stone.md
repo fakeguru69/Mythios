@@ -899,6 +899,10 @@
 >
 > The pen goes into the satchel, with the rest of her.
 
+*If he could not be questioned:*
+
+> At the sight of the pen the man from the water stirs, and says one thing before his eyes close again. *"On the road. The night she left."*
+
 ### The torn page
 
 > Under where the pen lay, one last page, burned black along one edge, the rest of it torn clean through. The top lines are in the Order's hand. The rest is set apart, in the older hand you first saw in the Order's scripture under the mill hill: the hand the Order itself calls older than its name.

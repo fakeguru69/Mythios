@@ -17,7 +17,7 @@ export const FRAGMENT_MEANING_QUESTIONS: Record<string, string> = {
   "2-5": "*\"Not one of us who would not have died for him.\"* He walked among them the morning after, and not one of them says what he looked like. What are they leaving out?",
   "2-6": "*\"Morning came. The enemy did not.\"* What kind of victory leaves the victors afraid of the morning?",
   "3-1": "*\"Then they stopped being ours.\"* When a weapon stops belonging to the hands that made it, who does it belong to?",
-  "3-2": "*\"Remember that, when you hear where else we stood.\"* What else did the five have to stand and watch before the end?",
+  "3-2": "*\"Remember that, when you hear where else we stood.\"* What else did they have to stand and watch before the end?",
   "3-3": "*\"He only never told us the price.\"* Did he hide the price to spare them, or because they would have refused him?",
   "3-4": "*\"We locked with what we are.\"* What could \"what we are\" mean, if not stone or iron?",
   "3-5": "*\"That is why kingdoms fear them.\"* Why would a kingdom fear a quiet line of families after the war was won?",

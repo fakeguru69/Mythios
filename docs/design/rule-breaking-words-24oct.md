@@ -3,8 +3,8 @@
 Phase 0, step 5 of the make-it-great plan. Each line below breaks a rule you set: words a player sees before the story
 reaches them, story names offered as the player's own, a count of four in a party of any size, out-of-game talk,
 American spelling, or brackets in prose. **Decided 24 Oct** (Fake Guru: "use your judgement and proceed accordingly"): rows 1 to 16 and 18 as suggested
-(migration `0116`, the data files, the canon copies, the play-through regenerated); **row 17 kept as it is** (Meira has
-been *gone from the inn* three weeks, so passing through Fenmark two weeks back fits canon and tells her route); rows
+(migration `0116`, the data files, the canon copies, the play-through regenerated); **row 17 was first kept, wrongly** (canon has her killed on the road the night she left, so she could not pass
+through Fenmark after; fixed in Phase 1 as "before the frosts", `docs/design/phase1-continuity-24oct.md` row 7); rows
 19 to 21 take option (a): 19 in `0116`, 20 and 21 in the pieces that follow (see the handoff ledger).
 
 Also waiting at the end: three game decisions from steps 3 and 4.

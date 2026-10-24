@@ -498,7 +498,7 @@ Clue found, "Sacking on the stones":
 
 *⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
 
-> *"Remember that, when you hear where else we stood."* What else did the five have to stand and watch before the end?
+> *"Remember that, when you hear where else we stood."* What else did they have to stand and watch before the end?
 
 **Tonight's question: The men in grey coats spoke politely and promised she'd only be needed once. Was that courtesy genuine?**
 
@@ -762,7 +762,7 @@ Clue found, "The view down":
 
 - A: They cannot open these ancient housings; they need an older entrance.
 
-- B: The marks are not their goal; they are only the guide-stones to the Kiln.
+- B: The marks are not their goal; they are only the guide-stones to the place they are making for.
 
 - Neither.
 
@@ -1047,7 +1047,7 @@ Clue found, "Scratched on the back":
 
 *⚙ This road's own find, "Five chips on the goat-track" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> Down the steep goat-track where no horse could go, five more twists of shaved wood marked the path Wren walked on her own feet.
+> Down the steep goat-track where no horse could go, five more chips of black glass marked the path Wren walked on her own feet.
 
 *⚙ The careful reading of this fork also gives a Agility Relic (at most one road a week does).*
 
@@ -1206,7 +1206,7 @@ Clue found, "The gap in the row":
 
 *⚙ Garrick opens:*
 
-> For the first time since this began, they ran. Sit down and breathe.
+> They ran this time, and left their supper on the fire. Sit down and get your breath. They'll be needing theirs.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -1216,7 +1216,7 @@ Clue found, "The gap in the row":
 
 *⚙ "The dropped skin" with "The gap in the row" (this one answers tonight's question):*
 
-> By the spring a full water skin lies abandoned where it was dropped, while inside the hut Wren's keepsakes were left undisturbed in their row on the sill. The hurry was sudden, but it began outside the room.
+> By the spring a water skin lies half full where it was dropped; inside, by the pallet, one keepsake is gone from its row, and the dust where it lay is clean. She had time to take one thing. The hurry began outside.
 
 *⚙ When "3-5-1" is laid, Garrick adds:*
 
@@ -1226,7 +1226,7 @@ Clue found, "The gap in the row":
 
 > *"That is why kingdoms fear them."* Why would a kingdom fear a quiet line of families after the war was won?
 
-**Tonight's question: They gave Wren the warm bed by the hearth, yet fled in the night leaving their pot on the fire. What made them run?**
+**Tonight's question: They gave Wren the warm bed by the hearth, yet left at a run this morning, with the pot still on the fire. What made them run?**
 
 > How quickly did they depart?
 
@@ -1242,7 +1242,7 @@ Clue found, "The gap in the row":
 
 - A: Fear: our fire on the ridge showed them they were being hunted.
 
-- B: The hour: the time for waiting expired, and the Kiln must be lit.
+- B: The hour: their waiting was over, and wherever they are taking her, it had to be now.
 
 - Neither.
 
@@ -2602,7 +2602,7 @@ Clue found, "The scratched line":
 
 *⚙ Garrick opens:*
 
-> Drowned roofs under the keel, and a page of Meira's notes that survived the ash. Let's hear what you found.
+> Drowned streets, and a page of Meira's with one line scratched out. Let's hear what you found.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -2636,7 +2636,7 @@ Clue found, "The scratched line":
 
 *⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: Letting a marked child's blood touch the Stones — the Order is doing what the Seekers feared.
+- A: Letting a marked child's blood touch the stones in the housings — the Order is doing what the Seekers feared.
 
 - B: Letting a specific bloodline from the old songs near — 'moon-blood' may mean more than the birth-mark.
 
@@ -3317,6 +3317,10 @@ Clue found, "The lamp on the shingle":
 > Her satchel is opened, the way you would open the door of an empty room. Her hand is on every page. Every trail you have followed since the forest road, she walked first. And somewhere on a road, someone took this pen out of her hand, and she did not come back for it.
 >
 > The pen goes into the satchel, with the rest of her.
+
+*⚙ If the United Effort was lost:*
+
+> At the sight of the pen the man from the water stirs, and says one thing before his eyes close again. *"On the road. The night she left."*
 
 *⚙ Only if the United Effort was won:*
 

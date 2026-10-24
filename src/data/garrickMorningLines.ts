@@ -60,7 +60,7 @@ export const GARRICK_MORNING_LINES: { week: number; day: number; line: string }[
   { week: 5, day: 4, line:
     'This city is so quiet you can hear the dust settle on the windowsills. Soft boots and low voices today, and stay where I can see you. A place this empty makes a man want to whistle, so I\'d thank you all to stop me if I start.' },
   { week: 5, day: 5, line:
-    'There\'s broth left from last night\'s fire, small as it was, and I\'ve kept it warm in the embers. Drink it slowly. It\'s the best thing in this city, and I say that as the man who made it.' },
+    'There\'s broth left, cold, from the pot I carried up. Cold broth is still broth. Drink it slowly. It\'s the best thing in this city, and I say that as the man who made it.' },
   { week: 5, day: 6, line:
     'Back to the wall this morning, the long way round. Stay together, and count heads at every corner. This city has too many corners, and not one decent inn among them.' },
 

@@ -189,7 +189,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "Smoke over the valley, and a man who bolted the moment he saw you. Sit and catch your breath.",
+    "opener": "Smoke over the valley, and a man who'd sooner fight you than be seen by you. Sit and catch your breath.",
     "questionTitle": "When he ran for the smoke, was he running home?",
     "forkA": "Fenmark is his.",
     "forkB": "Fenmark is on his way.",
@@ -633,7 +633,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "opener": "Mind your hands on that glass, all of you.",
     "questionTitle": "Three children live beside three Seeker marks. Why did the riders carry Wren straight past the Blackglass?",
     "forkA": "They cannot open these ancient housings; they need an older entrance.",
-    "forkB": "The marks are not their goal; they are only the guide-stones to the Kiln.",
+    "forkB": "The marks are not their goal; they are only the guide-stones to the place they are making for.",
     "callback": "At the Widow's Tooth a man lay in the bracken watching the rock. Here the riders went past this one without slowing.",
     "riddle": null,
     "nudge": "{friend:Intellect}, Meira's note in the margin: 'Five, the fragment says. Every other record says four.' Why would a scholar write down a number she doubted?",
@@ -708,10 +708,10 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "For the first time since this began, they ran. Sit down and breathe.",
-    "questionTitle": "They gave Wren the warm bed by the hearth, yet fled in the night leaving their pot on the fire. What made them run?",
+    "opener": "They ran this time, and left their supper on the fire. Sit down and get your breath. They'll be needing theirs.",
+    "questionTitle": "They gave Wren the warm bed by the hearth, yet left at a run this morning, with the pot still on the fire. What made them run?",
     "forkA": "Fear: our fire on the ridge showed them they were being hunted.",
-    "forkB": "The hour: the time for waiting expired, and the Kiln must be lit.",
+    "forkB": "The hour: their waiting was over, and wherever they are taking her, it had to be now.",
     "callback": "At the mine someone took the time to bind Tamsin's hand in clean linen. Here someone folded one blanket with care, and threw the other down.",
     "riddle": null,
     "nudge": "{friend:Might}, cut deep into the beam over her bed: 'Until the throne rise whole.' Who carves a prayer over a stolen child's pillow?",
@@ -721,13 +721,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "How quickly did they depart?",
-      "clickText": "By the spring a full water skin lies abandoned where it was dropped, while inside the hut Wren's keepsakes were left undisturbed in their row on the sill. The hurry was sudden, but it began outside the room."
+      "clickText": "By the spring a water skin lies half full where it was dropped; inside, by the pallet, one keepsake is gone from its row, and the dust where it lay is clean. She had time to take one thing. The hurry began outside."
     },
     "clicks": [
       {
         "a": "3-5-2",
         "b": "3-5-3",
-        "text": "By the spring a full water skin lies abandoned where it was dropped, while inside the hut Wren's keepsakes were left undisturbed in their row on the sill. The hurry was sudden, but it began outside the room.",
+        "text": "By the spring a water skin lies half full where it was dropped; inside, by the pallet, one keepsake is gone from its row, and the dust where it lay is clean. She had time to take one thing. The hurry began outside.",
         "solves": true
       }
     ],
@@ -894,9 +894,9 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "Drowned roofs under the keel, and a page of Meira's notes that survived the ash. Let's hear what you found.",
+    "opener": "Drowned streets, and a page of Meira's with one line scratched out. Let's hear what you found.",
     "questionTitle": "Meira's note says 'moon-blood' is the old word for the marked, and the fragment warns against letting it near. What is the fragment warning against?",
-    "forkA": "Letting a marked child's blood touch the Stones — the Order is doing what the Seekers feared.",
+    "forkA": "Letting a marked child's blood touch the stones in the housings — the Order is doing what the Seekers feared.",
     "forkB": "Letting a specific bloodline from the old songs near — 'moon-blood' may mean more than the birth-mark.",
     "callback": "At the ford, Tamsin's small prints stopped at the water. Today Joss's stop at the edge of deep water.",
     "riddle": null,
@@ -1162,13 +1162,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Are they keeping a blind vigil, or counting down to a known hour?",
-      "clickText": "Every stroke on the board—the crossed ones and the seven still to cross—was drawn from the start in the same square hand, and at dusk every head lifts together with the beat. The count was fixed before the watch began, and the hall beneath them is keeping the same time."
+      "clickText": "Every stroke on the board—the crossed ones and the eight still to cross—was drawn from the start in the same square hand, and at dusk every head lifts together with the beat. The count was fixed before the watch began, and the hall beneath them is keeping the same time."
     },
     "clicks": [
       {
         "a": "5-5-1",
         "b": "5-5-2",
-        "text": "Every stroke on the board—the crossed ones and the seven still to cross—was drawn from the start in the same square hand, and at dusk every head lifts together with the beat. The count was fixed before the watch began, and the hall beneath them is keeping the same time.",
+        "text": "Every stroke on the board—the crossed ones and the eight still to cross—was drawn from the start in the same square hand, and at dusk every head lifts together with the beat. The count was fixed before the watch began, and the hall beneath them is keeping the same time.",
         "solves": true
       }
     ],
@@ -1240,13 +1240,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "What was kept in the stone niche before you opened the room?",
-      "clickText": "Years of candle-soot blacken the back of the niche facing the inner wall, while tonight no lantern from the square reaches through the slit. For generations a hidden light burned behind the wall in this room; tonight the niche is cold."
+      "clickText": "Years of candle-soot blacken the back of the niche, set deep and low beneath the slit, while tonight no lantern from the square reaches through it. For generations a hidden light burned behind the wall in this room; tonight the niche is cold."
     },
     "clicks": [
       {
         "a": "6-1-1",
         "b": "6-1-3",
-        "text": "Years of candle-soot blacken the back of the niche facing the inner wall, while tonight no lantern from the square reaches through the slit. For generations a hidden light burned behind the wall in this room; tonight the niche is cold.",
+        "text": "Years of candle-soot blacken the back of the niche, set deep and low beneath the slit, while tonight no lantern from the square reaches through it. For generations a hidden light burned behind the wall in this room; tonight the niche is cold.",
         "solves": true
       }
     ],
@@ -1296,7 +1296,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": false,
     "tone": "wry",
     "cupNight": false,
-    "opener": "The hall's warm from within. More faithful arriving. What's missing is a door.",
+    "opener": "Warm walls, and more faithful at the gate by the hour. Eat something. It will be a long night.",
     "questionTitle": "The hall's stone wall is warm from the floor up behind sealed bronze doors, while new arrivals stack clean robes by their fire outside. Has the Order already set the four Stones inside, or are they still waiting outside for the last night?",
     "forkA": "The four Stones are already set around him on the floor inside, warming the stone.",
     "forkB": "The Stones are still outside with the faithful, waiting to be carried in on the dark moon.",
@@ -1426,13 +1426,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Will the dead garrison see you when the blank rock opens?",
-      "clickText": "At the foot of the blank rock the grit is swept in a quarter-circle where a hidden door swings toward you, and outside the crack every helm on the hill is turned toward the hall's great doors. When the Seekers' door opens tomorrow night, the entire garrison will have its back to you."
+      "clickText": "At the foot of the blank rock the grit lies swept in a clean quarter-circle where the rock meets the ground, and outside the crack every helm on the hill is turned toward the hall's great doors. When the Seekers' door opens tomorrow night, the entire garrison will have its back to you."
     },
     "clicks": [
       {
         "a": "6-6-1",
         "b": "6-6-2",
-        "text": "At the foot of the blank rock the grit is swept in a quarter-circle where a hidden door swings toward you, and outside the crack every helm on the hill is turned toward the hall's great doors. When the Seekers' door opens tomorrow night, the entire garrison will have its back to you.",
+        "text": "At the foot of the blank rock the grit lies swept in a clean quarter-circle where the rock meets the ground, and outside the crack every helm on the hill is turned toward the hall's great doors. When the Seekers' door opens tomorrow night, the entire garrison will have its back to you.",
         "solves": true
       }
     ],

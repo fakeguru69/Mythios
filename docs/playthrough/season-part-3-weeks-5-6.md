@@ -654,9 +654,9 @@ Clue found, "Scattered":
 
 *⚙ Waiting in every friend's Seeker Chest from the morning; solved whenever you like, usually after the chapter or at the fire.*
 
-*⚙ Found at: The gate walkway. Two words to unscramble: [E O N N] and [I F F H T].*
+*⚙ Found at: The gate walkway. Two words to unscramble: [E O N N] and [V E A G].*
 
-> Four of us gave to the four. _____ of us gave to the _____.
+> Four of us gave to the four. _____ of us _____ to the fifth.
 
 *⚙ Solved:*
 
@@ -982,7 +982,7 @@ Clue found, "No two alike":
 
 *⚙ Garrick posts one line for the party:*
 
-> There's broth left from last night's fire, small as it was, and I've kept it warm in the embers. Drink it slowly. It's the best thing in this city, and I say that as the man who made it.
+> There's broth left, cold, from the pot I carried up. Cold broth is still broth. Drink it slowly. It's the best thing in this city, and I say that as the man who made it.
 
 ### The road so far
 
@@ -1083,9 +1083,9 @@ Clue found, "No two alike":
 
 *⚙ Waiting in every friend's Seeker Chest from the morning; solved whenever you like, usually after the chapter or at the fire.*
 
-*⚙ Found at: The broken fountain. Two words to unscramble: [E P T K] and [T I H F F].*
+*⚙ Found at: The broken fountain. Two words to unscramble: [E P T K] and [T C H A W].*
 
-> We _____ the _____ where we could watch it, and watch him.
+> We _____ the fifth where we could _____ it, and watch him.
 
 *⚙ Solved:*
 
@@ -1133,7 +1133,7 @@ Clue found, "More bedrolls":
 
 *⚙ "One hand" with "Every head lifts" (this one answers tonight's question):*
 
-> Every stroke on the board—the crossed ones and the seven still to cross—was drawn from the start in the same square hand, and at dusk every head lifts together with the beat. The count was fixed before the watch began, and the hall beneath them is keeping the same time.
+> Every stroke on the board—the crossed ones and the eight still to cross—was drawn from the start in the same square hand, and at dusk every head lifts together with the beat. The count was fixed before the watch began, and the hall beneath them is keeping the same time.
 
 *⚙ When "5-5-3" is laid, Garrick adds:*
 
@@ -1683,7 +1683,7 @@ Clue found, "A stride wider":
 
 *⚙ Opens the day in your thread: yesterday's recap.*
 
-> That night the Order's watchmen saw your lamps at the foot of the wall and came down the hill. The king's soldiers came with them in their green-black armour, walking at last. When it was over, one watchman lay dying with a page in his fist. It told how the Seekers laid the king down. They did not kill him. They turned his own gift back on him and laid on him the Undying Sleep, and the soldiers nearest him stood on to keep his watch. Of the fifth Stone, the older hand said only, “The fifth drinks deep of moon-blood, and of no other.” In the hidden room you found the fifth, the first Stone you have ever held. Your blood, which had woken the other four, did nothing to it. Garrick bound your cut palms in the same white linen you have seen on every child you saved. The Seekers' last fragment gave the reason, “Where he fell, under the dark moon, the five were joined.” Not here, and not yet. The watchman's second page counted the nights to that dark moon, and seven were left. Garrick looked at the half moon and said, “We're early.” Then a fresh watchman struck the board late, and looked straight down the hill at your window.
+> That night the Order's watchmen saw your lamps at the foot of the wall and came down the hill. The king's soldiers came with them in their green-black armour, walking at last. When it was over, one watchman lay dying with a page in his fist. It told how the Seekers laid the king down. They did not kill him. They turned his own gift back on him and laid on him the Undying Sleep, and the soldiers nearest him stood on to keep his watch. Of the fifth Stone, the older hand said only, “The fifth drinks deep of moon-blood, and of no other.” In the hidden room you found the fifth, the first Stone you have ever held. Your blood, which had opened every Seeker door from the forest road on, did nothing to it. Garrick bound your cut palms in the same white linen you have seen on every child you saved. The Seekers' last fragment gave the reason, “Where he fell, under the dark moon, the five were joined.” Not here, and not yet. The watchman's second page counted the nights to that dark moon, and seven were left. Garrick looked at the half moon and said, “We're early.” Then a fresh watchman struck the board late, and looked straight down the hill at your window.
 
 ### Your thread: the chapter, "Six nights"
 
@@ -1803,7 +1803,7 @@ Clue found, "A stride wider":
 
 > Garrick watches the stroke go on. *"I kept a tally behind my bar for years,"* he says. *"Most of it was who owed me."*
 
-> It is a long wall, and from the square every slit in it looks the same. In all its centuries here the Order has never known this room was there. It still does not.
+> It is a long wall, and from the square every slit in it looks the same. In all its centuries here, the watch on the hill has never known this room was there. Nothing it does tonight says it knows now.
 >
 > You have a safe room in the enemy's city.
 
@@ -1852,7 +1852,7 @@ Clue found, "One look down the hill":
 
 Clue found, "The old soot":
 
-> The back of the stone niche is blackened in one small round patch, the way a candle marks stone over years. The niche faces the inner wall, away from the slit.
+> The back of the stone niche is blackened in one small round patch, the way a candle marks stone over years. The niche sits deep and low beneath the slit, where no eye on the square could see a flame.
 
 *⚙ On a failed roll, the clue still comes, with: "You go over the same ground twice before you see it."*
 
@@ -1874,7 +1874,7 @@ Clue found, "The old soot":
 
 *⚙ "No light inside" with "The old soot" (this one answers tonight's question):*
 
-> Years of candle-soot blacken the back of the niche facing the inner wall, while tonight no lantern from the square reaches through the slit. For generations a hidden light burned behind the wall in this room; tonight the niche is cold.
+> Years of candle-soot blacken the back of the niche, set deep and low beneath the slit, while tonight no lantern from the square reaches through it. For generations a hidden light burned behind the wall in this room; tonight the niche is cold.
 
 *⚙ When "6-1-2" is laid, Garrick adds:*
 
@@ -2288,7 +2288,7 @@ Clue found, "Warm low down":
 
 *⚙ Garrick opens:*
 
-> The hall's warm from within. More faithful arriving. What's missing is a door.
+> Warm walls, and more faithful at the gate by the hour. Eat something. It will be a long night.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -2971,7 +2971,7 @@ Clue found, "Every post empty":
 
 *⚙ "Every helm to the hall" with "The swept fan" (this one answers tonight's question):*
 
-> At the foot of the blank rock the grit is swept in a quarter-circle where a hidden door swings toward you, and outside the crack every helm on the hill is turned toward the hall's great doors. When the Seekers' door opens tomorrow night, the entire garrison will have its back to you.
+> At the foot of the blank rock the grit lies swept in a clean quarter-circle where the rock meets the ground, and outside the crack every helm on the hill is turned toward the hall's great doors. When the Seekers' door opens tomorrow night, the entire garrison will have its back to you.
 
 *⚙ When "6-6-3" is laid, Garrick adds:*
 

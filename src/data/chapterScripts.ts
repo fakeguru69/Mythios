@@ -750,22 +750,22 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go.\n\n*\"She was here,\"* he whispers, touching the corner of the leaf with one dirty finger. *\"The woman with the satchel. Two weeks back. She asked about the split stone, and she had a book of that same paper.\"*",
-            "changed": "You showed him Meira's list — he recognised her paper from two weeks ago.",
+            "text": "You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go.\n\n*\"She was here,\"* he whispers, touching the corner of the leaf with one dirty finger. *\"The woman with the satchel. Before the frosts. She asked about the split stone, and she had a book of that same paper.\"*",
+            "changed": "You showed him Meira's list, and he knew her paper: the woman with the satchel had passed through, before the frosts.",
             "roadFind": {
               "title": "The woman with the satchel",
-              "text": "The boy at the well recognised the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark two weeks back, asking about the split stone."
+              "text": "The boy at the well recognised the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark before the frosts, asking about the split stone."
             }
           },
           {
             "options": [
               1
             ],
-            "text": "You ask him straight out who they took. His chin comes up at that. For three days Fenmark has told him only to keep quiet, and nobody has asked him anything at all.\n\n*\"Her mother's shut inside with the shutters barred,\"* he says, his voice tight. *\"They told her if she cried out or went to the road, they'd never bring her back.\"*",
-            "changed": "You asked straight out who was taken — you learned how they silenced Tamsin's mother.",
+            "text": "You ask him straight out who they took. His chin comes up at that. For three days Fenmark has told him only to keep quiet, and nobody has asked him anything at all.\n\n*\"Her mother's shut inside and won't come to the door,\"* he says, his voice tight. *\"They told her if she cried out or went to the road, they'd never bring her back.\"*",
+            "changed": "You asked who was taken, and learned how they keep her mother quiet.",
             "roadFind": {
               "title": "How they kept Fenmark quiet",
-              "text": "The boy at the well says Tamsin's mother is shut behind barred shutters: the men who took Tamsin warned that if anyone cried out or went to the road, they would never bring her back."
+              "text": "The boy at the well says the taken girl's mother is shut inside and won't come to the door: the men who took the child warned that if anyone cried out or went to the road, they would never bring her back."
             }
           },
           {
@@ -783,7 +783,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "For a while he says nothing at all. He looks once down the empty lane. Then it comes out low and fast.\n\n*\"Three nights ago. They came in the dark with no torches. They did not knock anything over. They did not say anything they did not have to. Like they'd done it before.\"*\n\n*\"They took Tamsin. She's nine. She was counting when they carried her out. She counts when she's frightened.\"*\n\nHe swallows.\n\n*\"One of them had a knife I'd never seen the like of. Curved. Black handle. He saw me at the window. He did not even walk faster. He just said they'd know if I talked.\"*"
+        "text": "Then he stops, and for a while there is only the gate knocking on its post. He looks once down the empty lane. Then it comes out low and fast.\n\n*\"Three nights ago. They came in the dark with no torches. They did not knock anything over. They did not say anything they did not have to. Like they'd done it before.\"*\n\n*\"They took Tamsin. She's nine. She was counting when they carried her out. She counts when she's frightened.\"*\n\nHe swallows.\n\n*\"One of them had a knife I'd never seen the like of. Curved. Black handle. He saw me at the window. He did not even walk faster. He just said they'd know if I talked.\"*"
       },
       {
         "t": "say",
@@ -1266,7 +1266,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark. Right at the mark, your fingertip catches on a tiny pin-hole punched clean through the old vellum — somebody once pinned this very spot to a board before the map was cut in six.",
+            "text": "You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark. Right at the mark, your fingertip catches on a tiny hole punched clean through the old vellum, as if somebody, long ago, had pinned this one spot to a wall and looked at it for a long time.",
             "changed": "You read the map out yourself — your fingertip found an old pin-hole punched through the mark.",
             "roadFind": {
               "title": "The pin-hole at the mark",
@@ -3068,7 +3068,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You followed Wren's chips down the goat-track — you come upon the grey coat unseen, strike first, and claim an Agility Relic.",
             "roadFind": {
               "title": "Five chips on the goat-track",
-              "text": "Down the steep goat-track where no horse could go, five more twists of shaved wood marked the path Wren walked on her own feet."
+              "text": "Down the steep goat-track where no horse could go, five more chips of black glass marked the path Wren walked on her own feet."
             },
             "relic": "Agility"
           }
@@ -5360,7 +5360,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "It is a long wall, and from the square every slit in it looks the same. In all its centuries here the Order has never known this room was there. It still does not.\n\nYou have a safe room in the enemy's city."
+        "text": "It is a long wall, and from the square every slit in it looks the same. In all its centuries here, the watch on the hill has never known this room was there. Nothing it does tonight says it knows now.\n\nYou have a safe room in the enemy's city."
       },
       {
         "t": "say",

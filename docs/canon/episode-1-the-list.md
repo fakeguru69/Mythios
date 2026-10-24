@@ -488,19 +488,19 @@
 *Show him the list:*
 > You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go.
 >
-> *"She was here,"* he whispers, touching the corner of the leaf with one dirty finger. *"The woman with the satchel. Two weeks back. She asked about the split stone, and she had a book of that same paper."*
+> *"She was here,"* he whispers, touching the corner of the leaf with one dirty finger. *"The woman with the satchel. Before the frosts. She asked about the split stone, and she had a book of that same paper."*
 
 *Ask who was taken:*
 > You ask him straight out who they took. His chin comes up at that. For three days Fenmark has told him only to keep quiet, and nobody has asked him anything at all.
 >
-> *"Her mother's shut inside with the shutters barred,"* he says, his voice tight. *"They told her if she cried out or went to the road, they'd never bring her back."*
+> *"Her mother's shut inside and won't come to the door,"* he says, his voice tight. *"They told her if she cried out or went to the road, they'd never bring her back."*
 
 *Say nothing:*
 > You say nothing. You lean on the cold lip of the well and let the quiet be, as if you had the whole afternoon to spend on it. The boy watches you do it. He had braced himself for questions.
 >
 > Because you do not press him, his eyes go where his thoughts are: down the lane to the swinging gate, and then to the third house on the left, where a child's stool still sits under an open shutter.
 
-> For a while he says nothing at all. He looks once down the empty lane. Then it comes out low and fast.
+> Then he stops, and for a while there is only the gate knocking on its post. He looks once down the empty lane. Then it comes out low and fast.
 >
 > *"Three nights ago. They came in the dark with no torches. They did not knock anything over. They did not say anything they did not have to. Like they'd done it before."*
 >
@@ -801,7 +801,7 @@
 `[READ IT OUT]` `[LET DEV READ IT]`
 
 *Read it out:*
-> You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark. Right at the mark, your fingertip catches on a tiny pin-hole punched clean through the old vellum — somebody once pinned this very spot to a board before the map was cut in six.
+> You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark. Right at the mark, your fingertip catches on a tiny hole punched clean through the old vellum, as if somebody, long ago, had pinned this one spot to a wall and looked at it for a long time.
 
 *Let Dev read it:*
 > You turn the map round and slide it across to Dev, who reads it the way some people read a letter from home: slowly, frowning a little, as if the words might change if they were hurried. Because your own eyes are not on the parchment, you catch a man in a riding-cloak by the chimney stopping with his mug halfway to his mouth when Dev names the bend above the ford.
@@ -960,7 +960,7 @@
 **The Drop reaches 0**
 > Dev comes up out of the hole all at once, and you all go down together on the stone, gasping. You go round by the wall after that, one at a time, where the stone carries the boards.
 >
-> Behind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door. Cold air breathes round its edges from a room beyond. It takes all of you, and it goes up in one heave. The room beyond has not been walked in: the dust lies as it fell.
+> Behind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door. Cold air breathes round its edges from a room beyond. It takes all of you, and it goes up in one heave. Beyond it the dust lies as it fell, everywhere but one narrow line, a footstep wide, that runs from a crack in the far wall to the wall in front of you and back again.
 
 **Dev's HP reaches 0**
 > The last board goes, and Dev goes with it. The dark takes the sound.

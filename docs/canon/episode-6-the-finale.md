@@ -116,7 +116,7 @@
 
 `[PLANT]` *(the Order does not know where you are)* *(Moved 15 Oct 2026, Fake Guru: the answer now comes at dusk, so the day's Challenge is played not knowing; Phase 6.)*
 
-> It is a long wall, and from the square every slit in it looks the same. In all its centuries here the Order has never known this room was there. It still does not.
+> It is a long wall, and from the square every slit in it looks the same. In all its centuries here, the watch on the hill has never known this room was there. Nothing it does tonight says it knows now.
 >
 > You have a safe room in the enemy's city.
 
