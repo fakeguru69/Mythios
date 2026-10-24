@@ -397,6 +397,149 @@ const FORK_BRANCH_META = {
       text: "Pressed hard into a margin of Meira's pages: not one fragment names him, and every record of him has been scraped clean.",
     },
   },
+  // Phase 3 · W3D2 (Ashcombe): the boy's whisper
+  '3-2:TELL HER MOTHER': {
+    changed: 'You told Wren\'s mother what the boy saw. The whole street heard her, and the talk will go up the black road before you.',
+    roadFind: {
+      title: 'Her mother\'s answer',
+      text: 'Told that a cart without lamps went up the black road last night, Wren\'s mother did not weep. "Then she\'s near. She\'ll be leaving them something. She always leaves something."',
+    },
+  },
+  '3-2:KEEP THE BOY\'S SECRET': {
+    changed: 'You kept the boy\'s secret. Her mother still does not know, and nobody in Ashcombe is talking about you tonight.',
+    roadFind: {
+      title: 'The cart without lamps',
+      text: 'The boy at the well whispered it: a cart came through Ashcombe last night without lamps, was left empty at the foot of the black road, and whoever was in it went on up on horses.',
+    },
+  },
+  // Phase 3 · W4D2 to D4 (the north road, Reedham, Old Reedham)
+  '4-2:GIVE THEM YOUR BREAD': {
+    changed: 'You gave the men at the ford your bread. They remembered one thing more, and you row tomorrow on an empty stomach: the skiff is one harder.',
+    roadFind: {
+      title: 'A hand on the cart',
+      text: 'Fed, the oldest of the hungry men at the ford remembered that the rider at the back kept a hand on the little closed cart the whole way over, as if it might float off.',
+    },
+  },
+  '4-2:SEND THEM ON THEIR WAY': {
+    changed: 'You sent the hungry men up the river with nothing. At the bend the last of them looked back at your packs.',
+    roadFind: {
+      title: 'The look back',
+      text: 'Sent on their way, the three hungry men from the ford went up the river slow, and at the bend the last of them looked back once at your packs.',
+    },
+  },
+  '4-3:PATCH HER FIRST': {
+    changed: 'You patched her skiff before you put out, so the Challenge asked for Craft.',
+    roadFind: {
+      title: 'The shirt in the plank',
+      text: 'The rag stuffed into the sprung plank of her skiff is a boy\'s shirt, washed thin, too small now for anybody in that house.',
+    },
+  },
+  '4-3:ROW HARD': {
+    changed: 'You rowed her hard, so the Challenge asked for Might, and you came in early enough to see the tie-mark. Your arms will feel it tomorrow: the lowest lane is one harder.',
+    roadFind: {
+      title: 'The tie-mark on the step',
+      text: 'On the drowned tower\'s lowest step the weed is scraped away in one place, where a boat\'s rope has been tied, and tied often.',
+    },
+  },
+  '4-4:KEEP TO THE DARK': {
+    changed: 'You kept the lamp shuttered, so the Challenge asked for Agility, and nobody on the lake saw you.',
+    roadFind: {
+      title: 'A light on the island',
+      text: 'From the dark of the lowest lane, a light showed once on the reed island and went out, as if somebody had opened a door and thought better of it.',
+    },
+  },
+  '4-4:LIGHT THE LAMP': {
+    changed: 'You lit the lamp, so the Challenge asked for Aim. A light moving in the drowned streets can be seen from the lake: tomorrow\'s fog is one harder.',
+    roadFind: {
+      title: 'Barefoot',
+      text: 'By lamplight, the small prints in Old Reedham\'s lowest lane show the round of a heel and five toes: the boy was walked through the drowned streets barefoot.',
+    },
+  },
+  // Phase 3 · W4D6, W5D3, W5D5, W6D2, W6D5, W6D6: the way the Challenge is met
+  '4-6:SHELTER IT WITH YOUR COATS': {
+    changed: 'You walled the lamp in with your coats, so the Challenge asked for Craft, and the tower\'s windows stayed dark from the shore.',
+    roadFind: {
+      title: 'A light walled in',
+      text: 'In the drowned tower\'s bell-chamber you read the map by a lamp walled in with coats and packs and shoulders, so close that it lit only the six pieces and the hands that held them.',
+    },
+  },
+  '4-6:STRIKE IT IN THE LEE OF THE SILL': {
+    changed: 'You struck the spark under the sill, so the Challenge asked for Aim, and in its first flash you saw the water move.',
+    roadFind: {
+      title: 'A ring on the water',
+      text: 'In the first flash of the spark under the bell-chamber\'s sill, the black water at the tower\'s foot rippled once, in a ring, with no wind on it.',
+    },
+  },
+  '5-3:TAKE THE BROKEN STAIR': {
+    changed: 'You took the broken stair, so the Challenge asked for Aim.',
+    roadFind: {
+      title: 'A stair nothing grows on',
+      text: 'Highwall\'s broken stair is the city\'s own pale stone, and not one step of it bears a mark of weather: no lichen, no moss, not a stain.',
+    },
+  },
+  '5-3:FORCE THE TOWER DOOR': {
+    changed: 'You forced the gate-tower\'s door, so the Challenge asked for Might. The scream of its hinges went out over the city: tomorrow\'s street is one harder.',
+    roadFind: {
+      title: 'The guard-room',
+      text: 'Behind Highwall\'s rusted gate-tower door is a guard-room: a table, two stools, and dust lying thick and even on both.',
+    },
+  },
+  '5-5:CREEP IN CLOSE': {
+    changed: 'You crept in close to their fire, so the Challenge asked for Agility. You left a print by their woodpile: tomorrow\'s walk is one harder.',
+    roadFind: {
+      title: 'The humming stopped',
+      text: 'Close to the Order\'s fire below the hall, somebody was humming a few slow bars under their breath, until a hand was laid on their arm and the humming stopped.',
+    },
+  },
+  '5-5:STAY IN THE RUBBLE': {
+    changed: 'You stayed in the rubble, so the Challenge asked for Aim.',
+    roadFind: {
+      title: 'The whole camp at once',
+      text: 'From the rubble at the square\'s edge: a house with its roof gone, a woodpile stacked to the eaves against it, shapes round a fire, and one standing alone at the wall, facing the hall.',
+    },
+  },
+  '6-2:PUT YOUR BACK TO THE BEAM': {
+    changed: 'You put your back to the beam, so the Challenge asked for Might.',
+    roadFind: {
+      title: 'Names on the beam',
+      text: 'The underside of the fallen beam in the defenders\' barracks is cut all over with names, rows of them in many hands, scratched in with knife-points from the bunks below.',
+    },
+  },
+  '6-2:FIND THE QUIET WAY': {
+    changed: 'You took the quiet way through the fall, so the Challenge asked for Craft.',
+    roadFind: {
+      title: 'The cup left behind',
+      text: 'Pressed flat under the barracks\' fallen ceiling: an iron cup with a ring of old wine dried black inside it, set down on the last night and never taken up again.',
+    },
+  },
+  '6-5:READ THE CUTS FROM THE FLOOR': {
+    changed: 'You read the wall from the floor, so the Challenge asked for Craft.',
+    roadFind: {
+      title: 'Not one night missing',
+      text: 'On the sky-watchers\' wall every moon is cut to the same depth by the same kind of tool, year on year, and in all those years not one night is missing.',
+    },
+  },
+  '6-5:CLIMB THE WATCHERS\' LEDGES': {
+    changed: 'You climbed the watchers\' ledges, so the Challenge asked for Might.',
+    roadFind: {
+      title: 'The square from the ledges',
+      text: 'From the sky-watchers\' highest ledges, through the moon-tower\'s open roof, you can see straight down into the great square and the Order\'s fire burning red in it.',
+    },
+  },
+  '6-6:WALK IN STEP WITH THEM': {
+    changed: 'You walked in step with the dead, so the Challenge asked for Agility.',
+    roadFind: {
+      title: 'No breath',
+      text: 'Walking in step between the ranks of the dead, with the cold coming off the iron on both sides, you heard nothing under the tramp of their feet: not one of them breathes.',
+    },
+  },
+  '6-6:SHOULDER THROUGH': {
+    changed: 'You shouldered through the thinnest ranks, so the Challenge asked for Might.',
+    roadFind: {
+      title: 'Rust and a bruise',
+      text: 'You came out of the walking ranks with green rust smeared down your coat, and a bruise coming up on your arm in the shape of a hand.',
+    },
+  },
   '2-6:READ IT OUT': {
     changed: 'You gave the map line by line across the dark — you heard how far even a low voice carried on the still hill.',
     roadFind: {

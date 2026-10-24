@@ -2800,6 +2800,43 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
+        "text": "Up the street her mother's door is shut again. The boy has gone back to his board, and does not look at you. What he gave you, he gave you and nobody else."
+      },
+      {
+        "t": "choice",
+        "id": 1,
+        "labels": [
+          "TELL HER MOTHER",
+          "KEEP THE BOY'S SECRET"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You go back up the street and knock, and this time the door opens at once. You tell her all of it: the cart without lamps, the empty bed of it at the foot of the black road, the horses going up.\n\nShe does not weep. She stands very straight in her doorway, and her voice carries down the street, as she means it to.\n\n*\"Then she's near. She'll be leaving them something. She always leaves something.\"*\n\nAll along the street, shutters that were closed are open a crack.",
+            "changed": "You told Wren's mother what the boy saw. The whole street heard her, and the talk will go up the black road before you.",
+            "roadFind": {
+              "title": "Her mother's answer",
+              "text": "Told that a cart without lamps went up the black road last night, Wren's mother did not weep. \"Then she's near. She'll be leaving them something. She always leaves something.\""
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You say nothing. You walk back past her door with it, and her lamp is lit behind the shutter, and she is in there alone with a daughter she thinks is two weeks gone.\n\nAt the well the boy lifts his eyes once from his board, and then lowers them. Nobody else in Ashcombe saw him speak to you.",
+            "changed": "You kept the boy's secret. Her mother still does not know, and nobody in Ashcombe is talking about you tonight.",
+            "roadFind": {
+              "title": "The cart without lamps",
+              "text": "The boy at the well whispered it: a cart came through Ashcombe last night without lamps, was left empty at the foot of the black road, and whoever was in it went on up on horses."
+            }
+          }
+        ]
+      },
+      {
+        "t": "say",
         "text": "Garrick knows the black road. *\"Where it forks, the shepherds take the left,\"* he says, and when he catches somebody looking at him, he nods up at the black hills. *\"My family's been in these hills longer than the roads have.\"*"
       },
       {
@@ -2893,7 +2930,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "you go down hard, and slide"
+        "fail": "you go down hard, and slide",
+        "harderIf": {
+          "key": "3-2:took:1:0",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** Ashcombe was up half the night talking about the strangers and the cart, and somebody carried the talk up the black road before you."
+        }
       },
       {
         "t": "say",
@@ -3759,6 +3802,43 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
+        "text": "They are thin to the bone, all three, and none of them has a coat fit for the north road. Your packs hold tomorrow's bread, and not much more."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "GIVE THEM YOUR BREAD",
+          "SEND THEM ON THEIR WAY"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "They eat it in the shallows, without a word, the way a man eats who has stopped expecting to. When it is gone the oldest of them wipes his mouth on his wrist and remembers one thing more.\n\n*\"The one at the back rode with a hand on that cart the whole way over the ford. Like it might float off.\"*",
+            "changed": "You gave the men at the ford your bread. They remembered one thing more, and you row tomorrow on an empty stomach: the skiff is one harder.",
+            "roadFind": {
+              "title": "A hand on the cart",
+              "text": "Fed, the oldest of the hungry men at the ford remembered that the rider at the back kept a hand on the little closed cart the whole way over, as if it might float off."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You point them up the river, and they go, wet to the knees and slow. At the bend the last of them looks back once at your packs, the way a man looks at a thing he means to come back for.",
+            "changed": "You sent the hungry men up the river with nothing. At the bend the last of them looked back at your packs.",
+            "roadFind": {
+              "title": "The look back",
+              "text": "Sent on their way, the three hungry men from the ford went up the river slow, and at the bend the last of them looked back once at your packs."
+            }
+          }
+        ]
+      },
+      {
+        "t": "say",
         "text": "Low in the stone of the old ford, where the water runs over it, sits a carved housing."
       },
       {
@@ -3947,7 +4027,44 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "She takes you down to the shingle herself, and puts the skiff's rope into your hand. The tower Meira marked stands out in the water, waiting.\n\n…"
+        "text": "She takes you down to the shingle herself, and puts the skiff's rope into your hand. The tower Meira marked stands out in the water, waiting."
+      },
+      {
+        "t": "say",
+        "text": "The sprung plank will let the lake in whatever you do. You can patch her properly before you put out, and lose the best of the calm. Or you can put out now, and row hard enough to beat the leak to the tower."
+      },
+      {
+        "t": "choice",
+        "id": 1,
+        "labels": [
+          "PATCH HER FIRST",
+          "ROW HARD"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You turn her over on the shingle and pull the old rag out of the plank to stuff it again. It comes out in one piece, and it is not a rag. It is a boy's shirt, washed thin, too small now for anybody in that house.\n\nYou put it back as carefully as you can, and pack it tighter.\n\n…",
+            "changed": "You patched her skiff before you put out, so the Challenge asked for Craft.",
+            "roadFind": {
+              "title": "The shirt in the plank",
+              "text": "The rag stuffed into the sprung plank of her skiff is a boy's shirt, washed thin, too small now for anybody in that house."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You put out at once, and lean on the oars until your back burns. You come in under the tower early, while the light is still flat on the water, and see what a slower boat would have missed: on its lowest step the weed is scraped away in one place, where a rope has been tied, and tied often.\n\n…",
+            "changed": "You rowed her hard, so the Challenge asked for Might, and you came in early enough to see the tie-mark. Your arms will feel it tomorrow: the lowest lane is one harder.",
+            "roadFind": {
+              "title": "The tie-mark on the step",
+              "text": "On the drowned tower's lowest step the weed is scraped away in one place, where a boat's rope has been tied, and tied often."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",
@@ -3964,11 +4081,17 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "you get there soaked, and bailing"
+        "fail": "you get there soaked, and bailing",
+        "harderIf": {
+          "key": "4-2:took:0:0",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** The bread went to the men at the ford, and you put out across the Stillwater on an empty stomach."
+        }
       },
       {
         "t": "say",
-        "text": "The patch holds, near enough, and the strokes come long and even. You bring her in under the tower with the bilge still shallow and the wind rising at your back.",
+        "text": "The rag in the plank holds, near enough, and the strokes come long and even. You bring her in under the tower with the bilge still shallow and the wind rising at your back.",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -4055,7 +4178,44 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "It takes the whole day to work down through the streets, house by silted house. By the time you reach the lowest lane the light is going.\n\nIn the mud of the lowest lane there are footprints, a few days old. Grown men's boots.\n\nAnd between them, smaller ones.\n\n…"
+        "text": "It takes the whole day to work down through the streets, house by silted house. By the time you reach the lowest lane the light is going.\n\nIn the mud of the lowest lane there are footprints, a few days old. Grown men's boots.\n\nAnd between them, smaller ones."
+      },
+      {
+        "t": "say",
+        "text": "The light is nearly gone. You can follow them as they are, by what is left of the dusk and the feel of the stones underfoot. Or you can light the lamp, and see them properly, and be a light moving in the drowned streets for anyone out on the lake to see."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "KEEP TO THE DARK",
+          "LIGHT THE LAMP"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You leave the lamp shuttered and go by feel and by the last grey of the sky. Out past the last roofs, on the low black line of the reed island, a light shows once, and goes out, as if somebody had opened a door and thought better of it.\n\n…",
+            "changed": "You kept the lamp shuttered, so the Challenge asked for Agility, and nobody on the lake saw you.",
+            "roadFind": {
+              "title": "A light on the island",
+              "text": "From the dark of the lowest lane, a light showed once on the reed island and went out, as if somebody had opened a door and thought better of it."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "The flame comes up yellow and close, and the lane jumps out of the dark around you. In its light the small prints are plain: the round of a heel, the marks of five toes. He was walked through here barefoot.\n\n…",
+            "changed": "You lit the lamp, so the Challenge asked for Aim. A light moving in the drowned streets can be seen from the lake: tomorrow's fog is one harder.",
+            "roadFind": {
+              "title": "Barefoot",
+              "text": "By lamplight, the small prints in Old Reedham's lowest lane show the round of a heel and five toes: the boy was walked through the drowned streets barefoot."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",
@@ -4072,11 +4232,17 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "you go into the water, and the lamp goes with you"
+        "fail": "you go into the water, and the lamp goes with you",
+        "harderIf": {
+          "key": "4-3:took:1:1",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** Your arms are still shaking from rowing her hard across the Stillwater yesterday, and the weed will not hold still under your boots."
+        }
       },
       {
         "t": "say",
-        "text": "Stone by stone, with the lamp held low and the weed sliding under your boots, you follow them down the lane to the edge of the deep water, where they stop.\n\n…",
+        "text": "Stone by stone, with the weed sliding under your boots, you follow them down the lane to the edge of the deep water, where they stop.\n\n…",
         "cond": {
           "on": "challenge",
           "pass": true
@@ -4168,7 +4334,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g · **and you strike first**",
-        "fail": "you row in a circle, and **he strikes first**"
+        "fail": "you row in a circle, and **he strikes first**",
+        "harderIf": {
+          "key": "4-4:took:0:1",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** Somebody on the reed island saw a lamp moving in the drowned streets last night, and has been listening for oars since first light."
+        }
       },
       {
         "t": "say",
@@ -4341,7 +4513,44 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "They settle, as they have three times before. A map, old and exact. But there is light enough for one pair of eyes, and only while the flame lives.\n\n{F1} bends to read. The flame is yours to keep.\n\n…"
+        "text": "They settle, as they have three times before. A map, old and exact. But there is light enough for one pair of eyes, and only while the flame lives.\n\n{F1} bends to read. The flame is yours to keep."
+      },
+      {
+        "t": "say",
+        "text": "There is one lamp, and four empty windows, and the wind coming through all of them. You can wall it in with what you carry, coats and packs and bodies, and read by a light that cannot be seen from the shore. Or you can get down in the lee of the sill and strike it where the gusts cannot reach, and trust your hand."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "SHELTER IT WITH YOUR COATS",
+          "STRIKE IT IN THE LEE OF THE SILL"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You make a wall of coats and packs and shoulders round the lamp, so close that the flame lights only the six pieces and the hands holding them. From the shore, the tower's windows stay dark.\n\n…",
+            "changed": "You walled the lamp in with your coats, so the Challenge asked for Craft, and the tower's windows stayed dark from the shore.",
+            "roadFind": {
+              "title": "A light walled in",
+              "text": "In the drowned tower's bell-chamber you read the map by a lamp walled in with coats and packs and shoulders, so close that it lit only the six pieces and the hands that held them."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You get down under the sill, out of the wind, and strike. In the first white flash of the spark, through the window above you, you see the black water at the tower's foot ripple once, in a ring, with no wind on it.\n\n…",
+            "changed": "You struck the spark under the sill, so the Challenge asked for Aim, and in its first flash you saw the water move.",
+            "roadFind": {
+              "title": "A ring on the water",
+              "text": "In the first flash of the spark under the bell-chamber's sill, the black water at the tower's foot rippled once, in a ring, with no wind on it."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",
@@ -4803,7 +5012,40 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "…"
+        "text": "There are two ways up. The broken stair climbs the inside of the gate-tower in pieces, a step here and a gap there. Or there is the gate-tower's iron door, rusted into its frame, with its hinges on your side."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "TAKE THE BROKEN STAIR",
+          "FORCE THE TOWER DOOR"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You go up it from the foot, reading every step before you trust it. The stone is the same pale stone as the city, and not one step of it has a mark of weather on it: no lichen, no moss, not a stain. Nothing has ever grown here, not even on a stair.\n\n…",
+            "changed": "You took the broken stair, so the Challenge asked for Aim.",
+            "roadFind": {
+              "title": "A stair nothing grows on",
+              "text": "Highwall's broken stair is the city's own pale stone, and not one step of it bears a mark of weather: no lichen, no moss, not a stain."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You set your shoulders to the iron and heave, and the rust lets go all at once with a scream of hinges that goes out over the dead city and does not come back. Inside is a guard-room: a table, two stools, and dust lying thick and even on both.\n\n…",
+            "changed": "You forced the gate-tower's door, so the Challenge asked for Might. The scream of its hinges went out over the city: tomorrow's street is one harder.",
+            "roadFind": {
+              "title": "The guard-room",
+              "text": "Behind Highwall's rusted gate-tower door is a guard-room: a table, two stools, and dust lying thick and even on both."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",
@@ -4954,7 +5196,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "you lose your nerve, or your footing, and go the long way round"
+        "fail": "you lose your nerve, or your footing, and go the long way round",
+        "harderIf": {
+          "key": "5-3:took:0:1",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** The scream of the gate-tower's hinges went out over the whole dead city yesterday, and whoever keeps the gate barred has been listening for you since."
+        }
       },
       {
         "t": "say",
@@ -5087,7 +5335,44 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
     "steps": [
       {
         "t": "say",
-        "text": "By afternoon the streets have climbed as high as they go, and for the first time in Highwall you smell woodsmoke.\n\nThe last terrace ends in a square, and the hall fills the sky above it: a great pale building on the city's highest ground, its doors taller than houses, and shut. The heartbeat comes from behind them.\n\nAnd in the shell of a house across the square, a fire is burning.\n\n…"
+        "text": "By afternoon the streets have climbed as high as they go, and for the first time in Highwall you smell woodsmoke.\n\nThe last terrace ends in a square, and the hall fills the sky above it: a great pale building on the city's highest ground, its doors taller than houses, and shut. The heartbeat comes from behind them.\n\nAnd in the shell of a house across the square, a fire is burning."
+      },
+      {
+        "t": "say",
+        "text": "You can creep in close, from rubble to rubble, near enough to hear what is said at that fire. Or you can stay where you are, flat in the ruin at the square's edge, and read the whole camp from a distance."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "CREEP IN CLOSE",
+          "STAY IN THE RUBBLE"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You go in on your elbows, a rubble-heap at a time, until the warmth of their fire is on your face. Somebody at it is humming under their breath, a few bars of something slow. A hand is laid on the hummer's arm, and the humming stops.\n\n…",
+            "changed": "You crept in close to their fire, so the Challenge asked for Agility. You left a print by their woodpile: tomorrow's walk is one harder.",
+            "roadFind": {
+              "title": "The humming stopped",
+              "text": "Close to the Order's fire below the hall, somebody was humming a few slow bars under their breath, until a hand was laid on their arm and the humming stopped."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You stay where you are, flat in the cold ruin at the square's edge, and take the whole camp in at once: the house with its roof gone, the woodpile stacked to the eaves against it, the shapes round the fire, and the one standing at the wall, alone, facing the hall.\n\n…",
+            "changed": "You stayed in the rubble, so the Challenge asked for Aim.",
+            "roadFind": {
+              "title": "The whole camp at once",
+              "text": "From the rubble at the square's edge: a house with its roof gone, a woodpile stacked to the eaves against it, shapes round a fire, and one standing alone at the wall, facing the hall."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",
@@ -5272,7 +5557,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "a lantern lifts, and you finish the crossing on your belly"
+        "fail": "a lantern lifts, and you finish the crossing on your belly",
+        "harderIf": {
+          "key": "5-5:took:0:0",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** Somebody at the fire found the print of an elbow in the ash by their woodpile this morning, and the watch on the wall is walking further tonight."
+        }
       },
       {
         "t": "say",
@@ -5554,7 +5845,44 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The defenders' barracks are long, low halls cut into the back of the city wall: rows of stone bunks, racks where spears once stood, a kitchen whose fire went out on the war's last night. The air smells of cold stone and very old smoke.\n\nThe far end is blocked. A beam has come down, and half the ceiling with it.\n\n…"
+        "text": "The defenders' barracks are long, low halls cut into the back of the city wall: rows of stone bunks, racks where spears once stood, a kitchen whose fire went out on the war's last night. The air smells of cold stone and very old smoke.\n\nThe far end is blocked. A beam has come down, and half the ceiling with it."
+      },
+      {
+        "t": "say",
+        "text": "You can set your back to the beam and lift, and let the stone fall where it likes. Or you can look for the quiet way through, the gap the fall left, and take it slowly."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "PUT YOUR BACK TO THE BEAM",
+          "FIND THE QUIET WAY"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You get your shoulders under it. Before it moves you see its underside, an arm's length from your face: it is cut all over with names, rows of them, in many hands, scratched in with knife-points by people lying on their backs in the bunks below. Then you lift.\n\n…",
+            "changed": "You put your back to the beam, so the Challenge asked for Might.",
+            "roadFind": {
+              "title": "Names on the beam",
+              "text": "The underside of the fallen beam in the defenders' barracks is cut all over with names, rows of them in many hands, scratched in with knife-points from the bunks below."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You go into the gap on your knees, feeling for each stone before you trust it. Halfway through, pressed flat under the fallen ceiling, there is an iron cup with a ring of old wine dried black inside it, where somebody set it down on the last night and never came back for it.\n\n…",
+            "changed": "You took the quiet way through the fall, so the Challenge asked for Craft.",
+            "roadFind": {
+              "title": "The cup left behind",
+              "text": "Pressed flat under the barracks' fallen ceiling: an iron cup with a ring of old wine dried black inside it, set down on the last night and never taken up again."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",
@@ -6041,7 +6369,40 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "…"
+        "text": "You can read the wall from the floor, by the cut of each moon, one row at a time. Or you can climb the ledges the watchers cut for their own feet, up to the highest rows, under the open roof."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "READ THE CUTS FROM THE FLOOR",
+          "CLIMB THE WATCHERS' LEDGES"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You go along the wall with your fingertips, row by row. Every moon is cut to the same depth by the same kind of tool, year on year, and in all those years not one night is missing.\n\n…",
+            "changed": "You read the wall from the floor, so the Challenge asked for Craft.",
+            "roadFind": {
+              "title": "Not one night missing",
+              "text": "On the sky-watchers' wall every moon is cut to the same depth by the same kind of tool, year on year, and in all those years not one night is missing."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You climb the watchers' own footholds to the top rows. From up there, through the open roof, you can see straight down into the great square, and the Order's fire burning red in the shell of its house.\n\n…",
+            "changed": "You climbed the watchers' ledges, so the Challenge asked for Might.",
+            "roadFind": {
+              "title": "The square from the ledges",
+              "text": "From the sky-watchers' highest ledges, through the moon-tower's open roof, you can see straight down into the great square and the Order's fire burning red in it."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",
@@ -6189,7 +6550,40 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "…"
+        "text": "There are gaps between the ranks, and the gaps move at the soldiers' own slow pace. You can walk in one, in step with the dead. Or you can go in where the ranks are thinnest, and shoulder your way across."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "WALK IN STEP WITH THEM",
+          "SHOULDER THROUGH"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You step into a gap and walk with them, matching their tread, the cold coming off the iron on both sides of you. Under the tramp of their feet there is no other sound at all. Not one of them is breathing.\n\n…",
+            "changed": "You walked in step with the dead, so the Challenge asked for Agility.",
+            "roadFind": {
+              "title": "No breath",
+              "text": "Walking in step between the ranks of the dead, with the cold coming off the iron on both sides, you heard nothing under the tramp of their feet: not one of them breathes."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You put your head down and go in where the ranks are thinnest. Iron knocks you left and right. You come out the other side with green rust smeared down your coat, and a bruise coming up on your arm in the shape of a hand.\n\n…",
+            "changed": "You shouldered through the thinnest ranks, so the Challenge asked for Might.",
+            "roadFind": {
+              "title": "Rust and a bruise",
+              "text": "You came out of the walking ranks with green rust smeared down your coat, and a bruise coming up on your arm in the shape of a hand."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",

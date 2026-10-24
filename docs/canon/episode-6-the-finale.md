@@ -166,6 +166,18 @@
 >
 > The far end is blocked. A beam has come down, and half the ceiling with it.
 
+> You can set your back to the beam and lift, and let the stone fall where it likes. Or you can look for the quiet way through, the gap the fall left, and take it slowly.
+
+`[PUT YOUR BACK TO THE BEAM]` `[FIND THE QUIET WAY]`
+
+*The player chooses.*
+
+*The beam:*
+> You get your shoulders under it. Before it moves you see its underside, an arm's length from your face: it is cut all over with names, rows of them, in many hands, scratched in with knife-points by people lying on their backs in the bunks below. Then you lift.
+
+*The quiet way:*
+> You go into the gap on your knees, feeling for each stone before you trust it. Halfway through, pressed flat under the fallen ceiling, there is an iron cup with a ring of old wine dried black inside it, where somebody set it down on the last night and never came back for it.
+
 **Challenge card**
 > **THE COLLAPSE**
 > There is a room beyond it.
@@ -225,6 +237,7 @@
 
 **Designer's notes**
 - **Played beats:** a notice line, the Challenge, a held breath (one button), an act, the stroke. One roll.
+- **Phase 3, 24 Oct (to be read by Fake Guru, Grok's choice):** before the Challenge, the beam (Might; the names cut on its underside) or the quiet way (Craft; the cup left on the last night). A failed Challenge already makes Day 3 harder, so the roads leave finds only.
 - **The party:** the friends are in the hall with you; nobody is named today.
 - **Changed from the current script:** the soldier on the stair is new (approved fact 18). It comes whether the roll passes or fails; a failure is only louder. The stone across the back that cost HP is gone.
 - **The fragment is not quoted** (lock words *marked*, *shards*).
@@ -468,6 +481,18 @@
 > **Craft** · Every moon is cut to the same depth, by the same kind of tool. *All but one.*
 > **Aim** · Follow the rows round, and they stop. *After that, the stone is bare, all the way back to the door.*
 
+> You can read the wall from the floor, by the cut of each moon, one row at a time. Or you can climb the ledges the watchers cut for their own feet, up to the highest rows, under the open roof.
+
+`[READ THE CUTS FROM THE FLOOR]` `[CLIMB THE WATCHERS' LEDGES]`
+
+*The player chooses.*
+
+*The cuts:*
+> You go along the wall with your fingertips, row by row. Every moon is cut to the same depth by the same kind of tool, year on year, and in all those years not one night is missing.
+
+*The ledges:*
+> You climb the watchers' own footholds to the top rows. From up there, through the open roof, you can see straight down into the great square, and the Order's fire burning red in the shell of its house.
+
 **Challenge card**
 > **THE SKY-WATCHERS' WALL**
 > Thousands of moons. One of them is not like the others.
@@ -536,6 +561,7 @@
 
 **Designer's notes**
 - **Played beats:** a notice line, the Challenge, an optional press, an act, the count (the player's own), the stroke. One roll, or two if pressed.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** before the Challenge, read the cuts from the floor (Craft) or climb the ledges (Might; the Order's fire seen through the roof). Finds only: Day 6 is already made harder by a failure here.
 - **The party:** the friends are in the round room with you; nobody is named today.
 - **Changed from the current script:** the record now stops (approved fact 20), and the player counts forward by hand to the hour. The line "Be there when it does" is no longer quoted.
 - **One change to the fragment locks:** Garrick's approved line, "It always comes back," says one of this fragment's two lock words (*always*). The second lock word is changed to ***there***, so his line gives nothing away. The fragment's text does not change.
@@ -568,6 +594,18 @@
 > **Charm** · They are a company again. *Whatever else has gone, that has not.*
 > **Craft** · Iron on stone, in time. *It covers every other sound in the street. It would cover yours.*
 > **Aim** · At the top of the street, where the hill begins, one of them has stopped. *It is not facing the hall.*
+
+> There are gaps between the ranks, and the gaps move at the soldiers' own slow pace. You can walk in one, in step with the dead. Or you can go in where the ranks are thinnest, and shoulder your way across.
+
+`[WALK IN STEP WITH THEM]` `[SHOULDER THROUGH]`
+
+*The player chooses.*
+
+*In step with them:*
+> You step into a gap and walk with them, matching their tread, the cold coming off the iron on both sides of you. Under the tramp of their feet there is no other sound at all. Not one of them is breathing.
+
+*Shoulder through:*
+> You put your head down and go in where the ranks are thinnest. Iron knocks you left and right. You come out the other side with green rust smeared down your coat, and a bruise coming up on your arm in the shape of a hand.
 
 **Challenge card**
 > **THE STREET**
@@ -650,6 +688,7 @@
 
 **Designer's notes**
 - **Played beats:** a notice line, the Challenge, which decides how the fight opens; the fight; two acts; the stroke. One roll.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** before the Challenge, walk in step with them (Agility; none of them breathes) or shoulder through (Might; rust and a bruise). Finds only.
 - **The party:** the friends cross with you; nobody is named today.
 - **Changed from the current script:** today there is no play at all. Now the street is crossed on the season's last weekday roll, and one soldier turns (approved fact 25). Its card no longer says "The hardest yet.": its DC is the same as the days before it, unless a failed Day 5 makes it one harder (17 Oct).
 - **The last fragment is not quoted** (lock words *ours*, *finish*). Gathering 6 turns on it.

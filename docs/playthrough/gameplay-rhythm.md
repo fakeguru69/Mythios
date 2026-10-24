@@ -22,31 +22,31 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W2D5 | 515 | 6 | 0 | 0 | 290w | 2.8 min | 36w ▸tap 189w ⚔FIGHT 290w |
 | W2D6 | 523 | 4 | 1 | 0 | 263w | 2.5 min | 76w 🎲CHALLENGE 42w ?PRESS ON 142w ◆CHOICE 263w |
 | W3D1 | 725 | 7 | 2 | 0 | 402w | 3.8 min | 40w ◆CHOICE 173w ◆CHOICE 110w ⚔FIGHT 402w |
-| W3D2 | 780 | 5 | 0 | 0 | 570w | 3.7 min | 159w 🎲CHALLENGE 51w ▸tap 570w |
+| W3D2 | 902 | 6 | 1 | 0 | 361w | 4.3 min | 159w 🎲CHALLENGE 51w ▸tap 361w ◆CHOICE 331w |
 | W3D3 | 619 | 4 | 1 | 0 | 274w | 3.0 min | 116w 🎲CHALLENGE 274w ?PRESS ON 126w ◆CHOICE 103w |
 | W3D4 | 584 | 3 | 1 | 0 | 374w | 2.7 min | 166w ◆CHOICE 44w 🎲CHALLENGE 374w |
 | W3D5 | 607 | 9 | 1 | 0 | 358w | 3.4 min | 70w ◆CHOICE 91w ⚔FIGHT 88w ▸tap 358w |
 | W3D6 | 537 | 3 | 1 | 0 | 225w | 2.5 min | 94w 🎲CHALLENGE 225w ◆CHOICE 218w |
 | W4D1 | 647 | 4 | 1 | 0 | 454w | 3.1 min | 89w ◆CHOICE 26w 🎲CHALLENGE 78w ?PRESS ON 454w |
-| W4D2 | 611 | 7 | 0 | 0 | 321w | 3.3 min | 77w ⚔FIGHT 213w 🎲CHALLENGE 321w |
-| W4D3 | 653 | 4 | 0 | 0 | 273w | 3.1 min | 232w ▸tap 148w 🎲CHALLENGE 273w |
-| W4D4 | 475 | 3 | 0 | 0 | 263w | 2.3 min | 167w 🎲CHALLENGE 45w ?PRESS ON 263w |
+| W4D2 | 701 | 8 | 1 | 0 | 321w | 3.7 min | 77w ⚔FIGHT 102w ◆CHOICE 201w 🎲CHALLENGE 321w |
+| W4D3 | 760 | 5 | 1 | 0 | 276w | 3.6 min | 232w ▸tap 180w ◆CHOICE 72w 🎲CHALLENGE 276w |
+| W4D4 | 573 | 4 | 1 | 0 | 263w | 2.8 min | 211w ◆CHOICE 59w 🎲CHALLENGE 40w ?PRESS ON 263w |
 | W4D5 | 498 | 7 | 0 | 0 | 346w | 2.8 min | 69w 🎲CHALLENGE 83w ⚔FIGHT 346w |
-| W4D6 | 415 | 2 | 0 | 0 | 216w | 1.9 min | 216w 🎲CHALLENGE 199w |
+| W4D6 | 516 | 3 | 1 | 0 | 272w | 2.4 min | 272w ◆CHOICE 45w 🎲CHALLENGE 199w |
 | W5D1 | 708 | 3 | 1 | 0 | 331w | 3.3 min | 331w 🎲CHALLENGE 58w ◆CHOICE 319w |
 | W5D2 | 636 | 8 | 2 | 0 | 237w | 3.5 min | 141w ◆CHOICE 237w ◆CHOICE 68w ⚔FIGHT 190w |
-| W5D3 | 517 | 3 | 0 | 0 | 236w | 2.4 min | 173w 🎲CHALLENGE 108w ?PRESS ON 236w |
+| W5D3 | 611 | 4 | 1 | 0 | 236w | 2.9 min | 201w ◆CHOICE 66w 🎲CHALLENGE 108w ?PRESS ON 236w |
 | W5D4 | 445 | 4 | 1 | 0 | 168w | 2.2 min | 140w 🎲CHALLENGE 17w ?PRESS ON 168w ◆CHOICE 120w |
-| W5D5 | 442 | 2 | 0 | 0 | 364w | 2.1 min | 78w 🎲CHALLENGE 364w |
+| W5D5 | 531 | 3 | 1 | 0 | 364w | 2.5 min | 114w ◆CHOICE 53w 🎲CHALLENGE 364w |
 | W5D6 | 518 | 3 | 0 | 1 | 352w | 2.5 min | 78w ◇flavour 88w 🎲CHALLENGE 352w |
 | W6D1 | 576 | 4 | 1 | 0 | 253w | 2.8 min | 253w 🎲CHALLENGE 60w ◆CHOICE 79w ▸tap 184w |
-| W6D2 | 471 | 2 | 0 | 0 | 349w | 2.2 min | 122w 🎲CHALLENGE 349w |
+| W6D2 | 556 | 3 | 1 | 0 | 349w | 2.6 min | 151w ◆CHOICE 56w 🎲CHALLENGE 349w |
 | W6D3 | 456 | 5 | 1 | 0 | 273w | 2.3 min | 41w ▸tap 43w ◆CHOICE 70w 🎲CHALLENGE 29w ?PRESS ON 273w |
 | W6D4 | 472 | 8 | 1 | 0 | 156w | 2.8 min | 151w ⚔FIGHT 156w ◆CHOICE 80w ▸tap 85w |
-| W6D5 | 421 | 4 | 0 | 0 | 157w | 2.1 min | 157w 🎲CHALLENGE 42w ?PRESS ON 122w ▸tap 100w |
-| W6D6 | 537 | 9 | 0 | 0 | 251w | 3.1 min | 84w 🎲CHALLENGE 46w ⚔FIGHT 251w ▸tap 156w |
+| W6D5 | 500 | 5 | 1 | 0 | 186w | 2.5 min | 186w ◆CHOICE 50w 🎲CHALLENGE 42w ?PRESS ON 122w ▸tap 100w |
+| W6D6 | 620 | 10 | 1 | 0 | 251w | 3.6 min | 115w ◆CHOICE 52w 🎲CHALLENGE 46w ⚔FIGHT 251w ▸tap 156w |
 
-**Averages over the 36 chapters:** 610 words, 4.9 taps, about 3.0 minutes for the chapter alone (the last light and the Campfire come after).
+**Averages over the 36 chapters:** 636 words, 5.2 taps, about 3.2 minutes for the chapter alone (the last light and the Campfire come after).
 
 ## The evening (every weekday after the chapter)
 The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or sit by the fire. Then the fire: one chat under the finished day (18 Oct), with a text box at the foot.

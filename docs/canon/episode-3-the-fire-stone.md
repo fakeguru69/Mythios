@@ -243,6 +243,26 @@
 
 > If Wren was in that cart, she passed within a mile of her own door.
 
+> Up the street her mother's door is shut again. The boy has gone back to his board, and does not look at you. What he gave you, he gave you and nobody else.
+
+`[TELL HER MOTHER]` `[KEEP THE BOY'S SECRET]`
+
+*The player chooses.*
+
+*Tell her mother:*
+> You go back up the street and knock, and this time the door opens at once. You tell her all of it: the cart without lamps, the empty bed of it at the foot of the black road, the horses going up.
+>
+> She does not weep. She stands very straight in her doorway, and her voice carries down the street, as she means it to.
+>
+> *"Then she's near. She'll be leaving them something. She always leaves something."*
+>
+> All along the street, shutters that were closed are open a crack.
+
+*Keep the boy's secret:*
+> You say nothing. You walk back past her door with it, and her lamp is lit behind the shutter, and she is in there alone with a daughter she thinks is two weeks gone.
+>
+> At the well the boy lifts his eyes once from his board, and then lowers them. Nobody else in Ashcombe saw him speak to you.
+
 > Garrick knows the black road. *"Where it forks, the shepherds take the left,"* he says, and when he catches somebody looking at him, he nods up at the black hills. *"My family's been in these hills longer than the roads have."*
 
 `[PLANT]` *(an "old ties" line; one of three he says whatever the party asks)*
@@ -268,7 +288,8 @@
 
 
 **Designer's notes**
-- **Played beats:** a notice line, the Challenge, a Talk of three questions, an act. One roll.
+- **Played beats:** a notice line, the Challenge, a Talk of three questions, a choice, an act. One roll.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** a real choice after the boy's whisper. Telling her mother is the kind road: she says Wren will be leaving something (Day 4's chips), and the whole street hears, so Day 3's Challenge is one harder. Keeping the boy's secret costs nothing tomorrow, and leaves her alone with it.
 - **The party:** the friends are with you in the street; nobody is named today.
 - **Changed from the current script:** the mother's account is asked for in three questions, in the player's own order; the neighbour who overheard is now the boy at the well (he was the old optional extra), and what he saw is told without giving him lines.
 - **The mother:** every line is the approved text, word for word.
@@ -306,6 +327,8 @@
 > **Aim** · pick out the safe line from the edge, and take it slowly · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: you go down hard, and slide
+>
+> *If you took TELL HER MOTHER on Day 2:* **One harder.** Ashcombe was up half the night talking about the strangers and the cart, and somebody carried the talk up the black road before you.
 
 *On a pass:*
 > You reach the far side clean, without once putting a hand to the glass. All the way over, a dark shape walks upside down beneath your boots: your own, in the black.

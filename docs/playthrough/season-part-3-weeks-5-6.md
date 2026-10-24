@@ -581,7 +581,39 @@ Clue found, "Scattered":
 
 - **Aim:** High up, above the terraces, one grey thread stands in the grey air. *(Apprentice and up:)* It is not cloud.
 
+> There are two ways up. The broken stair climbs the inside of the gate-tower in pieces, a step here and a gap there. Or there is the gate-tower's iron door, rusted into its frame, with its hinges on your side.
+
+*⚙ A choice: [TAKE THE BROKEN STAIR] or [FORCE THE TOWER DOOR]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [TAKE THE BROKEN STAIR]:*
+
+> You go up it from the foot, reading every step before you trust it. The stone is the same pale stone as the city, and not one step of it has a mark of weather on it: no lichen, no moss, not a stain. Nothing has ever grown here, not even on a stair.
+>
 > …
+
+*⚙ Then the card "What this changed":*
+
+> You took the broken stair, so the Challenge asked for Aim.
+
+*⚙ This road's own find, "A stair nothing grows on" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Highwall's broken stair is the city's own pale stone, and not one step of it bears a mark of weather: no lichen, no moss, not a stain.
+
+*⚙ If you pick [FORCE THE TOWER DOOR]:*
+
+> You set your shoulders to the iron and heave, and the rust lets go all at once with a scream of hinges that goes out over the dead city and does not come back. Inside is a guard-room: a table, two stools, and dust lying thick and even on both.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You forced the gate-tower's door, so the Challenge asked for Might. The scream of its hinges went out over the city: tomorrow's street is one harder.
+
+*⚙ This road's own find, "The guard-room" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Behind Highwall's rusted gate-tower door is a guard-room: a table, two stools, and dust lying thick and even on both.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: THE WALL**
 
@@ -789,6 +821,8 @@ Clue found, "Knocked out":
 > It is the short way. It is between them.
 
 *⚙ Pick one: Agility (slip through without touching one), or Intellect (work out what you are looking at, and where it is safe to tread). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: you lose your nerve, or your footing, and go the long way round, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 5-3:took:0:1, the card is 1 harder, and says: **One harder.** The scream of the gate-tower's hinges went out over the whole dead city yesterday, and whoever keeps the gate barred has been listening for you since.*
 
 *⚙ If you passed the Challenge:*
 
@@ -999,8 +1033,40 @@ Clue found, "No two alike":
 > The last terrace ends in a square, and the hall fills the sky above it: a great pale building on the city's highest ground, its doors taller than houses, and shut. The heartbeat comes from behind them.
 >
 > And in the shell of a house across the square, a fire is burning.
+
+> You can creep in close, from rubble to rubble, near enough to hear what is said at that fire. Or you can stay where you are, flat in the ruin at the square's edge, and read the whole camp from a distance.
+
+*⚙ A choice: [CREEP IN CLOSE] or [STAY IN THE RUBBLE]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [CREEP IN CLOSE]:*
+
+> You go in on your elbows, a rubble-heap at a time, until the warmth of their fire is on your face. Somebody at it is humming under their breath, a few bars of something slow. A hand is laid on the hummer's arm, and the humming stops.
 >
 > …
+
+*⚙ Then the card "What this changed":*
+
+> You crept in close to their fire, so the Challenge asked for Agility. You left a print by their woodpile: tomorrow's walk is one harder.
+
+*⚙ This road's own find, "The humming stopped" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Close to the Order's fire below the hall, somebody was humming a few slow bars under their breath, until a hand was laid on their arm and the humming stopped.
+
+*⚙ If you pick [STAY IN THE RUBBLE]:*
+
+> You stay where you are, flat in the cold ruin at the square's edge, and take the whole camp in at once: the house with its roof gone, the woodpile stacked to the eaves against it, the shapes round the fire, and the one standing at the wall, alone, facing the hall.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You stayed in the rubble, so the Challenge asked for Aim.
+
+*⚙ This road's own find, "The whole camp at once" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> From the rubble at the square's edge: a house with its roof gone, a woodpile stacked to the eaves against it, shapes round a fire, and one standing alone at the wall, facing the hall.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: THE FIRE IN THE SQUARE**
 
@@ -1230,6 +1296,8 @@ Clue found, "More bedrolls":
 > Forty paces, while the watch changes above you in the square.
 
 *⚙ Pick one: Agility (low and fast, when the hand drops), or Charm (upright, at a watchman's pace, like someone who belongs on a wall). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: a lantern lifts, and you finish the crossing on your belly, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 5-5:took:0:0, the card is 1 harder, and says: **One harder.** Somebody at the fire found the print of an elbow in the ash by their woodpile this morning, and the watch on the wall is walking further tonight.*
 
 *⚙ If you passed the Challenge:*
 
@@ -1949,8 +2017,40 @@ Clue found, "The old soot":
 > The defenders' barracks are long, low halls cut into the back of the city wall: rows of stone bunks, racks where spears once stood, a kitchen whose fire went out on the war's last night. The air smells of cold stone and very old smoke.
 >
 > The far end is blocked. A beam has come down, and half the ceiling with it.
+
+> You can set your back to the beam and lift, and let the stone fall where it likes. Or you can look for the quiet way through, the gap the fall left, and take it slowly.
+
+*⚙ A choice: [PUT YOUR BACK TO THE BEAM] or [FIND THE QUIET WAY]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [PUT YOUR BACK TO THE BEAM]:*
+
+> You get your shoulders under it. Before it moves you see its underside, an arm's length from your face: it is cut all over with names, rows of them, in many hands, scratched in with knife-points by people lying on their backs in the bunks below. Then you lift.
 >
 > …
+
+*⚙ Then the card "What this changed":*
+
+> You put your back to the beam, so the Challenge asked for Might.
+
+*⚙ This road's own find, "Names on the beam" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> The underside of the fallen beam in the defenders' barracks is cut all over with names, rows of them in many hands, scratched in with knife-points from the bunks below.
+
+*⚙ If you pick [FIND THE QUIET WAY]:*
+
+> You go into the gap on your knees, feeling for each stone before you trust it. Halfway through, pressed flat under the fallen ceiling, there is an iron cup with a ring of old wine dried black inside it, where somebody set it down on the last night and never came back for it.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You took the quiet way through the fall, so the Challenge asked for Craft.
+
+*⚙ This road's own find, "The cup left behind" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Pressed flat under the barracks' fallen ceiling: an iron cup with a ring of old wine dried black inside it, set down on the last night and never taken up again.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: THE COLLAPSE**
 
@@ -2601,7 +2701,39 @@ Clue found, "Louder here":
 
 - **Aim:** Follow the rows round, and they stop. *(Apprentice and up:)* After that, the stone is bare, all the way back to the door.
 
+> You can read the wall from the floor, by the cut of each moon, one row at a time. Or you can climb the ledges the watchers cut for their own feet, up to the highest rows, under the open roof.
+
+*⚙ A choice: [READ THE CUTS FROM THE FLOOR] or [CLIMB THE WATCHERS' LEDGES]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [READ THE CUTS FROM THE FLOOR]:*
+
+> You go along the wall with your fingertips, row by row. Every moon is cut to the same depth by the same kind of tool, year on year, and in all those years not one night is missing.
+>
 > …
+
+*⚙ Then the card "What this changed":*
+
+> You read the wall from the floor, so the Challenge asked for Craft.
+
+*⚙ This road's own find, "Not one night missing" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> On the sky-watchers' wall every moon is cut to the same depth by the same kind of tool, year on year, and in all those years not one night is missing.
+
+*⚙ If you pick [CLIMB THE WATCHERS' LEDGES]:*
+
+> You climb the watchers' own footholds to the top rows. From up there, through the open roof, you can see straight down into the great square, and the Order's fire burning red in the shell of its house.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You climbed the watchers' ledges, so the Challenge asked for Might.
+
+*⚙ This road's own find, "The square from the ledges" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> From the sky-watchers' highest ledges, through the moon-tower's open roof, you can see straight down into the great square and the Order's fire burning red in it.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: THE SKY-WATCHERS' WALL**
 
@@ -2810,7 +2942,39 @@ Clue found, "Cut in a hurry":
 
 - **Aim:** At the top of the street, where the hill begins, one of them has stopped. *(Apprentice and up:)* It is not facing the hall.
 
+> There are gaps between the ranks, and the gaps move at the soldiers' own slow pace. You can walk in one, in step with the dead. Or you can go in where the ranks are thinnest, and shoulder your way across.
+
+*⚙ A choice: [WALK IN STEP WITH THEM] or [SHOULDER THROUGH]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [WALK IN STEP WITH THEM]:*
+
+> You step into a gap and walk with them, matching their tread, the cold coming off the iron on both sides of you. Under the tramp of their feet there is no other sound at all. Not one of them is breathing.
+>
 > …
+
+*⚙ Then the card "What this changed":*
+
+> You walked in step with the dead, so the Challenge asked for Agility.
+
+*⚙ This road's own find, "No breath" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Walking in step between the ranks of the dead, with the cold coming off the iron on both sides, you heard nothing under the tramp of their feet: not one of them breathes.
+
+*⚙ If you pick [SHOULDER THROUGH]:*
+
+> You put your head down and go in where the ranks are thinnest. Iron knocks you left and right. You come out the other side with green rust smeared down your coat, and a bruise coming up on your arm in the shape of a hand.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You shouldered through the thinnest ranks, so the Challenge asked for Might.
+
+*⚙ This road's own find, "Rust and a bruise" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> You came out of the walking ranks with green rust smeared down your coat, and a bruise coming up on your arm in the shape of a hand.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: THE STREET**
 
