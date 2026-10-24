@@ -215,6 +215,20 @@ export default function OnlineDay({
     setBusy(false);
   };
 
+  // At most one near-miss line on the friend's own end-of-day card, only when close (Piece D3). Above the early returns: a hook after them
+  // crashes the screen the moment the day loads ("Rendered more hooks").
+  const nearMissLine = useMemo(() => {
+    if (!today) return null;
+    return computeNearMissLine({
+      attributes: today.progress?.attrs,
+      daysPlayed: today.daysPlayed,
+      stats: recordData?.stats,
+      earnedBadgeIds: recordData?.earnedBadgeIds,
+      partyLeads: recordData?.leads,
+      hasRelic: Object.values(today.progress?.relics ?? {}).some((v) => v > 0),
+    });
+  }, [today, recordData]);
+
   if (error && !today) {
     return (
       <div className="space-y-3">
@@ -228,19 +242,6 @@ export default function OnlineDay({
   if (!today) return <p className="text-center text-[#B7A9CC]">…</p>;
 
   const { week, day, chapter, progress, mine } = today;
-
-  // At most one near-miss line on the friend's own end-of-day card, only when close (Piece D3)
-  const nearMissLine = useMemo(() => {
-    if (!today) return null;
-    return computeNearMissLine({
-      attributes: today.progress?.attrs,
-      daysPlayed: today.daysPlayed,
-      stats: recordData?.stats,
-      earnedBadgeIds: recordData?.earnedBadgeIds,
-      partyLeads: recordData?.leads,
-      hasRelic: Object.values(today.progress?.relics ?? {}).some((v) => v > 0),
-    });
-  }, [today, recordData]);
 
   const classAttr = (CLASSES.find((c) => c.name === myClass)?.attribute ?? 'Might') as AttributeName;
   // A friend picked by a choice ("POST {F1}"…) takes the {F1} place from then on (isFriendChoice).
