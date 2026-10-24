@@ -35,6 +35,8 @@ interface Lead {
   id: string;
   place: string;
   actions: { attr: AttributeName; verb: string }[];
+  /** Friends who have already walked this lead tonight (0120), so the party can spread out. */
+  walkedBy?: string[];
 }
 interface Member {
   id: string;
@@ -165,6 +167,9 @@ export default function OnlineCampfire({
   const [looking, setLooking] = useState(false); // "One more look" chosen
   const [reporting, setReporting] = useState<ChatMessage | null>(null);
   const [questionOpen, setQuestionOpen] = useState(false); // after your pick, the pinned strip folds to one line
+  // A click waits for the friends (Phase 2, 24 Oct): its answer shows once someone at the fire has said what the two
+  // pieces mean, or when this friend chooses to read it.
+  const [readClicks, setReadClicks] = useState<Record<string, boolean>>({});
 
   // The newest answer wins (handoff ledger piece 5): every request takes a number, and an answer that arrives after a
   // newer request began, or after one of your own taps was answered, is dropped, so a slow poll never puts old news back.
@@ -280,6 +285,11 @@ export default function OnlineCampfire({
             {(fire.leads ?? []).map((lead) => (
               <div key={lead.id} className="p-3 rounded-2xl bg-[#180F29] border border-[#3A2555] space-y-2">
                 <div className="font-['Cinzel'] font-bold text-[15px] text-[#F4F1F8]">{lead.place}</div>
+                {(lead.walkedBy?.length ?? 0) > 0 && (
+                  <div className="text-[14px] text-[#B7A9CC] italic" data-lead-walked>
+                    {nameList(lead.walkedBy!)} went this way already tonight.
+                  </div>
+                )}
                 <div className="grid grid-cols-2 gap-2">
                   {lead.actions.map((a) => {
                     const score = attrs[a.attr] ?? 10;
@@ -520,12 +530,23 @@ export default function OnlineCampfire({
             <p className="text-[14.5px] text-[#CDB594] italic">
               {spokeAfterClick
                 ? `“${clickNames} — you put those two side by side and called it before I needed to:”`
-                : `“${clickNames} — put those two side by side. Say what you make of them in the thread, or read what they show together:”`}
+                : `“${clickNames}, put those two together. What do they tell you?”`}
             </p>
           )}
-          <Markable source="Something clicks, at the fire" text={m.body}>
-            <ScriptText text={m.body} className="font-sans text-[17.5px] leading-[1.5] text-[#F4E8C8]" />
-          </Markable>
+          {spokeAfterClick || readClicks[m.body] ? (
+            <Markable source="Something clicks, at the fire" text={m.body}>
+              <ScriptText text={m.body} className="font-sans text-[17.5px] leading-[1.5] text-[#F4E8C8]" />
+            </Markable>
+          ) : (
+            <button
+              type="button"
+              data-click-read
+              onClick={() => setReadClicks((r) => ({ ...r, [m.body]: true }))}
+              className="text-[14px] text-[#E5C158] underline underline-offset-4"
+            >
+              Read what the two of them show
+            </button>
+          )}
         </div>
       );
     }
