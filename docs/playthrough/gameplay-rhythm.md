@@ -21,7 +21,7 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W2D4 | 551 | 3 | 1 | 0 | 347w | 2.6 min | 141w ◆CHOICE 63w 🎲CHALLENGE 347w |
 | W2D5 | 515 | 6 | 0 | 0 | 290w | 2.8 min | 36w ▸tap 189w ⚔FIGHT 290w |
 | W2D6 | 523 | 4 | 1 | 0 | 263w | 2.5 min | 76w 🎲CHALLENGE 42w ?PRESS ON 142w ◆CHOICE 263w |
-| W3D1 | 725 | 7 | 2 | 0 | 402w | 3.8 min | 40w ◆CHOICE 173w ◆CHOICE 110w ⚔FIGHT 402w |
+| W3D1 | 772 | 7 | 2 | 0 | 419w | 4.0 min | 40w ◆CHOICE 173w ◆CHOICE 140w ⚔FIGHT 419w |
 | W3D2 | 902 | 6 | 1 | 0 | 361w | 4.3 min | 159w 🎲CHALLENGE 51w ▸tap 361w ◆CHOICE 331w |
 | W3D3 | 619 | 4 | 1 | 0 | 274w | 3.0 min | 116w 🎲CHALLENGE 274w ?PRESS ON 126w ◆CHOICE 103w |
 | W3D4 | 584 | 3 | 1 | 0 | 374w | 2.7 min | 166w ◆CHOICE 44w 🎲CHALLENGE 374w |
@@ -31,7 +31,7 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W4D2 | 701 | 8 | 1 | 0 | 321w | 3.7 min | 77w ⚔FIGHT 102w ◆CHOICE 201w 🎲CHALLENGE 321w |
 | W4D3 | 760 | 5 | 1 | 0 | 276w | 3.6 min | 232w ▸tap 180w ◆CHOICE 72w 🎲CHALLENGE 276w |
 | W4D4 | 573 | 4 | 1 | 0 | 263w | 2.8 min | 211w ◆CHOICE 59w 🎲CHALLENGE 40w ?PRESS ON 263w |
-| W4D5 | 498 | 7 | 0 | 0 | 346w | 2.8 min | 69w 🎲CHALLENGE 83w ⚔FIGHT 346w |
+| W4D5 | 539 | 7 | 0 | 0 | 387w | 3.0 min | 69w 🎲CHALLENGE 83w ⚔FIGHT 387w |
 | W4D6 | 516 | 3 | 1 | 0 | 272w | 2.4 min | 272w ◆CHOICE 45w 🎲CHALLENGE 199w |
 | W5D1 | 708 | 3 | 1 | 0 | 331w | 3.3 min | 331w 🎲CHALLENGE 58w ◆CHOICE 319w |
 | W5D2 | 636 | 8 | 2 | 0 | 237w | 3.5 min | 141w ◆CHOICE 237w ◆CHOICE 68w ⚔FIGHT 190w |
@@ -46,7 +46,7 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W6D5 | 500 | 5 | 1 | 0 | 186w | 2.5 min | 186w ◆CHOICE 50w 🎲CHALLENGE 42w ?PRESS ON 122w ▸tap 100w |
 | W6D6 | 620 | 10 | 1 | 0 | 251w | 3.6 min | 115w ◆CHOICE 52w 🎲CHALLENGE 46w ⚔FIGHT 251w ▸tap 156w |
 
-**Averages over the 36 chapters:** 636 words, 5.2 taps, about 3.2 minutes for the chapter alone (the last light and the Campfire come after).
+**Averages over the 36 chapters:** 639 words, 5.2 taps, about 3.2 minutes for the chapter alone (the last light and the Campfire come after).
 
 ## The evening (every weekday after the chapter)
 The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or sit by the fire. Then the fire: one chat under the finished day (18 Oct), with a text box at the foot.

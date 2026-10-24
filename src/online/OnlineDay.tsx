@@ -705,7 +705,7 @@ export default function OnlineDay({
       if (today.daysPlayed === 0 && rounds.length === 0) {
         pushItem(
           `${key}-first`,
-          <HowItWorks key={`${key}-first`} text="Your first fight. You and he take turns. A roll decides each blow." />
+          <HowItWorks key={`${key}-first`} text="Your first fight. You and your enemy take turns. A roll decides each blow." />
         );
       }
       const bar = (label: string, hp: number, colour: string, labelColour: string) => (

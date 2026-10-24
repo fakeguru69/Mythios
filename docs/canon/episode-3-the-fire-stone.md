@@ -92,24 +92,24 @@
 >
 > Then something comes up out of the hill behind you.
 >
-> One of them. Alone, hood back, with a blade.
+> The dog from the path. It is off its chain now, and a length of bright new links drags from its collar through the wet grass. It does not bark. It has been taught not to.
 
 **Fight card**
-> **THE ONE WHO CAME UP AFTER YOU**
-> He does not say what he wants.
+> **THE DOG OFF ITS CHAIN**
+> Somebody let it loose, and sent it up after you.
 > REWARD: 300g
 > `[FIGHT]`
 
 *Win or lose:*
-> He does not say a word. He breaks away over the shoulder of the hill and is gone, the way the others have gone: the first gap, and no sound.
+> It comes at you twice, and the second time something goes out of it. It backs away to the length of its trailing chain and lies down in the wet grass with its sides heaving, between you and the shoulder of the hill.
 >
-> For a few breaths you can hear him on the scree below, quick and sure-footed in the half-light. Then there is only the wind in the wet grass.
+> Up on the shoulder, for one breath, a man is standing against the grey: hood back, quite still, watching. Then he turns west, and is gone.
 
 *If the player won, one line more:*
-> He leaves the hill with a limp he did not bring to it.
+> It does not get up again until you are well past it. Its eyes follow you all the way.
 
 *If the player loses, one line more:*
-> You are left sitting in that wet grass, one sleeve torn from cuff to elbow, waiting for the hillside to stop tilting.
+> You are left sitting in that wet grass, one sleeve torn from cuff to elbow by its teeth, waiting for the hillside to stop tilting.
 
 > Below the shaft, in the wet grass, the tracks are plain to anyone who looks.
 
@@ -155,6 +155,7 @@
 
 **Designer's notes**
 - **Played beats:** a Talk, an optional question to Garrick, the fight, a free look, a notice line, an act. No roll; the fight is the paid beat.
+- **Phase 3, 24 Oct (Fake Guru: "a", docs/design/phase3-silent-fights-24oct.md):** the fight at the shaft's mouth is no longer another silent man who runs. It is the dog from Week 2's path, let off its chain and sent up after you; it ends lying down, as it did on the path. A hooded man watches from the shoulder of the hill and turns west. Same pay, same enemy numbers.
 - **The party:** Dev carries Corin down the valley.
 - **Changed from the current script:** the friend's question to Corin is a button; the choice between ledger and satchel is cut; the tracks are a free look, not a roll; the closing paragraph that explained what the Order wants is cut.
 - **One change from the ladder:** it has "one of the fallen figures gets up" in the old room. Since the new Gathering 2 can end with the party driven out of that room, the fight now happens at the mouth of the old shaft, where it works either way.
