@@ -302,7 +302,7 @@ Inside a Gathering Battle a loss reads `DEFEATED. You are down for this Battle. 
 *(Rewritten 4 Oct 2026, approved by TVMen. The old rule, one hard roll by one friend helped by Relics, is retired: §14.)*
 
 - **One job the whole party does together, told as a story in the party chat.** Every Gathering has one. The six jobs, with every line, are in `mythios-united-effort-stories.md`.
-- **Two things each start at 100:** the thing in the way, and the thing the party stands to lose. Each is named by the scene (The Pin · His Breath). Where the thing at risk is a friend, it is that friend's HP.
+- **Two things each start at 100** (plus 20 for every friend taking part past four: 120 for five, 140 for six, so that everyone gets a roll; decided 24 Oct; 60 for a friend alone): the thing in the way, and the thing the party stands to lose. Each is named by the scene (The Pin · His Breath). Where the thing at risk is a friend, it is that friend's HP.
 - **One friend at a time rolls an ordinary Challenge** in the night's Attribute, against the episode's **weekday DC**, on the usual Challenge card.
 - **A SUCCESS rolls damage against the thing in the way. A FAIL rolls damage against the thing the party stands to lose.** Damage is 10 + a d20.
 - After every roll MYTHIOS posts the result, the damage, one line of story, and the hand-on.

@@ -365,9 +365,10 @@ export interface UnitedEffortState {
   outcome: 'ongoing' | 'won' | 'lost';
 }
 
-/** Both things start at 100; 60 for a friend alone. */
+/** Both things start at 100, plus 20 for every friend past four (24 Oct, so in a party of five or six everyone gets a
+ *  roll); 60 for a friend alone. */
 export function startUnitedEffort(partySize: number): UnitedEffortState {
-  const start = partySize <= 1 ? 60 : 100;
+  const start = partySize <= 1 ? 60 : 100 + 20 * Math.max(0, partySize - 4);
   return { start, way: start, risk: start, goneThisCircuit: [], rolls: [], outcome: 'ongoing' };
 }
 
