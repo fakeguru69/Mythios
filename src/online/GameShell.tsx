@@ -18,6 +18,7 @@ import LastNight from './LastNight';
 import { NotebookProvider } from './Markable';
 import { RecordTabView } from '../components/RecordTabView';
 import { ATTRIBUTE_META, CLASS_META, GEAR_TABLE, getTierInfo, type AttributeName, type ClassName } from '../data/mythiosRulesData';
+import { alertOpensPanel, onAlertLink, takeAlertScreen } from './alertLink';
 
 type Tab = 'story' | 'record' | 'bag' | 'store';
 const TABS: { key: Tab; label: string }[] = [
@@ -140,6 +141,28 @@ export default function GameShell({
       window.removeEventListener('focus', back);
     };
   }, [party.time_zone]);
+  // A tapped notification about this party opens the screen it is about (alertLink.ts): the poll and the Gathering's
+  // time are in the panel; anything else is the story, with the fire alerts taken to the foot of the thread.
+  const showRef = useRef(show);
+  showRef.current = show;
+  useEffect(() => {
+    const open = (go: string | null) => {
+      if (!go) return;
+      if (alertOpensPanel(go)) {
+        setPanelOpen(true);
+        return;
+      }
+      setPanelOpen(false);
+      showRef.current('story');
+      if (go.startsWith('fire')) {
+        window.setTimeout(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' }), 400);
+      }
+    };
+    open(takeAlertScreen(party.id));
+    return onAlertLink((link) => {
+      if (link.party === party.id) open(takeAlertScreen(party.id));
+    });
+  }, [party.id]);
   useEffect(() => {
     if (!panelOpen) return;
     const close = (e: KeyboardEvent) => e.key === 'Escape' && setPanelOpen(false);

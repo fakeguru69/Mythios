@@ -17,6 +17,8 @@ export interface ChatMessage {
   created_at: string;
   at_fire?: boolean;
   reply_to_user?: string | null;
+  /** Garrick's morning line (5:00am): shown to everyone from the moment it is up (migration 0113). */
+  morning?: boolean;
 }
 
 /** Keep new lines in view (handoff ledger piece 3): when the stream grows and the friend is at the foot of the page, the
@@ -348,9 +350,14 @@ export function EarlierFire({
   const cutoff = new Date(partyDayStart(timeZone)).getTime();
   const yesterday = cutoff - 86400000;
   // Last night's talk (the day before this morning), and anything you have said since (including Garrick's answers to your questions).
+  const lastNight = messages.filter((m) => {
+    const t = new Date(m.created_at).getTime();
+    return t >= yesterday && t < cutoff && m.at_fire === true;
+  });
+  // This morning: Garrick's morning line, and anything you have said since (with his answers to you).
   const shown = messages.filter((m) => {
     const t = new Date(m.created_at).getTime();
-    return ((t >= yesterday && t < cutoff) && m.at_fire === true) || (t >= cutoff && (m.author_id === userId || m.reply_to_user === userId));
+    return lastNight.includes(m) || (t >= cutoff && (m.morning === true || m.author_id === userId || m.reply_to_user === userId));
   });
   const follow = useKeepNewInView(shown.length);
   return (
@@ -360,7 +367,7 @@ export function EarlierFire({
         <span>LAST NIGHT AT THE FIRE</span>
         <div className="flex-1 h-px bg-[#2C1D40]" />
       </div>
-      {shown.length === 0 && <SmallLine>Nothing was said at the fire last night.</SmallLine>}
+      {lastNight.length === 0 && <SmallLine>Nothing was said at the fire last night.</SmallLine>}
       {shown.map((m) => (
         <ChatBubble key={m.id} m={m} userId={userId} members={members} onReport={setReporting} />
       ))}

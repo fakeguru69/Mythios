@@ -101,3 +101,5 @@ Garrick's server function runs locally too: `npx tsx tests/online/local-garrick.
 
 ## Data checks (no browser)
 - `npx tsx tests/data/check-small-party-lines.ts`: every short-party line still matches the chapters, and no sentence names two friends without a short version. Run it after regenerating `chapterScripts.ts`.
+
+**Notification links and the morning line** (`tests/online/alert-links.cjs [party id]`, Phase 0.2): the local copy, the party moved to a weekday from Day 3 that host@ has not finished, with that day's morning line up. Checks that a tapped alert opens the right party and screen (opened fresh, and while the game is open) and that the morning line shows before the day is done.

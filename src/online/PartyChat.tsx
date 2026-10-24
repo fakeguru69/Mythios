@@ -59,7 +59,16 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
         load();
       })
       .subscribe();
+    // The chat is read through the server's function (piece 7), which the live feed cannot see past, so new lines are
+    // also fetched every ten seconds while the page is in front, and at once when it comes back to the front.
+    const tick = window.setInterval(() => {
+      if (document.visibilityState === 'visible') load();
+    }, 10000);
+    const back = () => document.visibilityState === 'visible' && load();
+    document.addEventListener('visibilitychange', back);
     return () => {
+      window.clearInterval(tick);
+      document.removeEventListener('visibilitychange', back);
       supabase.removeChannel(channel);
     };
   }, [partyId, load]);
