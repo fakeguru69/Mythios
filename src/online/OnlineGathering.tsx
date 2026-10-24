@@ -397,13 +397,20 @@ export default function OnlineGathering({
         if (e.mode === 'chosen') {
           // Gathering 6's act: the friend the light let go of chooses, after thirty seconds for the others to talk.
           const from = secondsTo(e.chooseFrom);
-          if (!e.chosenIsMe) {
+          // 24 Oct (0115): if the chosen friend has left the night when their time runs out, any friend still here may
+          // choose for them, and the first tap stands.
+          if (!e.chosenIsMe && !e.openToAll) {
             nodes.push(<p key={k} className="text-[14px] text-[#B7A9CC] italic">It is {e.chosen}'s to choose.</p>);
-          } else if (from > 0) {
+          } else if (e.chosenIsMe && from > 0) {
             nodes.push(<p key={k} className="text-[14px] text-[#B7A9CC] italic">Listen to them. In {from}s it is yours to choose.</p>);
           } else {
             nodes.push(
               <div key={k} className="space-y-1.5">
+                {!e.chosenIsMe && (
+                  <p className="text-[14px] text-[#B7A9CC] italic" data-g="act-open">
+                    {e.chosen} has gone quiet. Any of you may choose for them now, and the first choice stands.
+                  </p>
+                )}
                 {options.map((o, oi) => (
                   <button key={oi} type="button" data-g="choice" disabled={busy} onClick={() => go('pick', { i: e.i, o: oi })}
                     className="w-full text-left p-2.5 rounded-xl bg-[#2A1B40] hover:bg-[#3A2555] border border-[#D4B876] text-[#F4F1F8]">
