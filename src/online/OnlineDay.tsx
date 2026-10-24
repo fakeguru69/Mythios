@@ -23,7 +23,7 @@ import {
   WhatThisChangedBlock,
   ReadBackBlock,
 } from '../components/ChapterScriptParts';
-import { challengeSucceedOn, getTierInfo, type AttributeName, EPISODE_NUMBERS, GEAR_TABLE, computeNearMissLine } from '../data/mythiosRulesData';
+import { challengeSucceedOn, getTierInfo, type AttributeName, EPISODE_NUMBERS, GEAR_TABLE, computeNearMissLine, OPEN_HAND_LINE } from '../data/mythiosRulesData';
 import { CLASSES } from './onlineText';
 import { tonightLine } from './OnlineGathering';
 import { ErrorLine, goldButton, heading, note, quietButton } from './ui';
@@ -111,6 +111,25 @@ export interface DayInfo {
 // An enemy's card title ("A MAN ON THE ROAD") inside a sentence: "A man on the road".
 const sentenceCase = (t: string) => (t === t.toUpperCase() ? t.charAt(0) + t.slice(1).toLowerCase() : t);
 const signed = (n: number) => (n >= 0 ? `+${n}` : `−${Math.abs(n)}`);
+
+// The Open Hand nudge shows at most once a week (24 Oct): the day it was first shown is kept per party and week, and
+// it may show again only on that same day.
+const openHandKey = (party: string, week: number) => `mythios-open-hand-${party}-${week}`;
+function openHandAllowed(party: string, week: number, day: number): boolean {
+  try {
+    const shown = window.localStorage.getItem(openHandKey(party, week));
+    return shown === null || shown === String(day);
+  } catch {
+    return true;
+  }
+}
+function markOpenHandShown(party: string, week: number, day: number) {
+  try {
+    if (window.localStorage.getItem(openHandKey(party, week)) === null) window.localStorage.setItem(openHandKey(party, week), String(day));
+  } catch {
+    /* storage unavailable: the line may show again */
+  }
+}
 
 export default function OnlineDay({
   partyId,
@@ -226,8 +245,12 @@ export default function OnlineDay({
       earnedBadgeIds: recordData?.earnedBadgeIds,
       partyLeads: recordData?.leads,
       hasRelic: Object.values(today.progress?.relics ?? {}).some((v) => v > 0),
+      openHandAllowed: openHandAllowed(partyId, today.week, today.day),
     });
-  }, [today, recordData]);
+  }, [today, recordData, partyId]);
+  useEffect(() => {
+    if (today && nearMissLine === OPEN_HAND_LINE) markOpenHandShown(partyId, today.week, today.day);
+  }, [nearMissLine, today, partyId]);
 
   if (error && !today) {
     return (
