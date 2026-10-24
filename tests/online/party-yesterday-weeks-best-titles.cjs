@@ -154,8 +154,8 @@ const check = (name, ok) => {
 
   const { getTierInfo } = require(path.join(root, 'src/data/mythiosRulesData.ts'));
   check(
-    'getTierInfo(80) returns Champion (+6) and getTierInfo(105) returns Master (+8) per Core Rules §12',
-    getTierInfo(80).name === 'Champion' && getTierInfo(80).bonus === 6 &&
+    'getTierInfo(80) returns Expert (+6) and getTierInfo(105) returns Master (+8) per Core Rules §12',
+    getTierInfo(80).name === 'Expert' && getTierInfo(80).bonus === 6 &&
     getTierInfo(105).name === 'Master' && getTierInfo(105).bonus === 8
   );
 

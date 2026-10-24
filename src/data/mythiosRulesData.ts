@@ -149,7 +149,7 @@ export function getTierInfo(val: number): { name: string; bonus: number; rate: n
   if (val <= 25) return { name: 'Novice', bonus: 0, rate: 1.0, nextAt: 26, pctInTier: Math.min(100, Math.round((val / 25) * 100)) };
   if (val <= 50) return { name: 'Apprentice', bonus: 2, rate: 1.0, nextAt: 51, pctInTier: Math.min(100, Math.round(((val - 25) / 25) * 100)) };
   if (val <= 75) return { name: 'Adept', bonus: 4, rate: 0.6, nextAt: 76, pctInTier: Math.min(100, Math.round(((val - 50) / 25) * 100)) };
-  if (val <= 100) return { name: 'Champion', bonus: 6, rate: 0.3, nextAt: 101, pctInTier: Math.min(100, Math.round(((val - 75) / 25) * 100)) };
+  if (val <= 100) return { name: 'Expert', bonus: 6, rate: 0.3, nextAt: 101, pctInTier: Math.min(100, Math.round(((val - 75) / 25) * 100)) };
   return { name: 'Master', bonus: 8, rate: 0.1, nextAt: null, pctInTier: 100 };
 }
 
@@ -267,15 +267,47 @@ export interface NearMissContext {
   earnedBadgeIds?: string[];
   partyLeads?: Record<string, { isLead: boolean; leadVal?: number; leadFriend?: string }>;
   hasRelic?: boolean;
+  /** The Open Hand line shows at most once a week (24 Oct): false once it has been shown on an earlier day this week. */
+  openHandAllowed?: boolean;
 }
+
+/** How a friend one behind draws level, said for each number: only what can really raise it (24 Oct; the server's
+ *  private crown nudge in check_member_big_moments uses the same words). A Perfect Roll is luck: no line. */
+export function drawLevelLine(key: string): string | null {
+  switch (key) {
+    case 'daysPlayed':
+    case 'bestStreak':
+      return 'Play tomorrow to draw level.';
+    case 'challengesCleared':
+      return "Clear tomorrow's Challenge to draw level.";
+    case 'challengesPressedOn':
+      return 'Press on the next time the road allows it, and you draw level.';
+    case 'enemiesDefeated':
+      return 'Win your next fight to draw level.';
+    case 'fragmentsSolved':
+      return 'Solve the next missing word first to draw level.';
+    case 'relicsGiven':
+      return 'Give a friend a Relic to draw level.';
+    case 'gatheringsAttended':
+    case 'battlesWon':
+    case 'fragmentsMatched':
+    case 'timesSteppedUp':
+      return 'The Gathering is the place to draw level.';
+    default:
+      return null;
+  }
+}
+
+export const OPEN_HAND_LINE = 'One more Relic given and Open Hand is yours.';
 
 /**
  * At most one near-miss line on the friend's own end-of-day card, only when close
  * (Piece D3: "One more day for A Whole Week.", "Charm 48: 3 points from Adept.",
  * "Mei leads Best Streak by one. Play tomorrow to draw level.", "One more Relic given and the crown is yours.").
+ * Each number has its own way to draw level (drawLevelLine); the Open Hand line shows at most once a week.
  */
 export function computeNearMissLine(ctx: NearMissContext): string | null {
-  const { attributes, daysPlayed = 0, daysPlayedThisWeek, stats = {}, earnedBadgeIds = [], partyLeads, hasRelic } = ctx;
+  const { attributes, daysPlayed = 0, daysPlayedThisWeek, stats = {}, earnedBadgeIds = [], partyLeads, hasRelic, openHandAllowed = true } = ctx;
 
   // 1. Badge near-misses
   const weekDays = daysPlayedThisWeek ?? stats.daysPlayedThisWeek;
@@ -307,7 +339,7 @@ export function computeNearMissLine(ctx: NearMissContext): string | null {
         }
         if (val >= 73 && val < 76) {
           const diff = 76 - val;
-          return `${attr} ${val}: ${diff === 1 ? 'one point' : `${diff} points`} from Champion.`;
+          return `${attr} ${val}: ${diff === 1 ? 'one point' : `${diff} points`} from Expert.`;
         }
         if (val >= 98 && val < 101) {
           const diff = 101 - val;
@@ -318,8 +350,8 @@ export function computeNearMissLine(ctx: NearMissContext): string | null {
   }
 
   // 3. Relics given
-  if (!earnedBadgeIds.includes('open-hand') && (stats.relicsGiven || 0) === 0 && hasRelic) {
-    return 'One more Relic given and Open Hand is yours.';
+  if (openHandAllowed && !earnedBadgeIds.includes('open-hand') && (stats.relicsGiven || 0) === 0 && hasRelic) {
+    return OPEN_HAND_LINE;
   }
 
   // 4. Crown near-miss (trailing the leader by 1)
@@ -332,10 +364,12 @@ export function computeNearMissLine(ctx: NearMissContext): string | null {
           if (key === 'relicsGiven') {
             return 'One more Relic given and the crown is yours.';
           }
+          const how = drawLevelLine(key);
+          if (!how) continue;
           const meta = RECORD_STATS_META.find((s) => s.key === key);
           const statTitle = meta?.fullTitle || key;
           const friend = lead.leadFriend || 'A friend';
-          return `${friend} leads ${statTitle} by one. Play tomorrow to draw level.`;
+          return `${friend} leads ${statTitle} by one. ${how}`;
         }
       }
     }
