@@ -743,7 +743,7 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
     },
     {
       "id": "3-1-3",
-      "place": "the shoulder of the hill he ran over",
+      "place": "the shoulder of the hill where he stood",
       "actions": [
         {
           "attr": "Agility",
@@ -751,7 +751,7 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
         },
         {
           "attr": "Aim",
-          "verb": "follow his line from the shaft mouth"
+          "verb": "pick out where he stood, from the shaft mouth"
         }
       ],
       "clueTitle": "Facing west",

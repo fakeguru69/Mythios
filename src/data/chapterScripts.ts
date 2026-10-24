@@ -2571,12 +2571,12 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The night wears down. By the grey before dawn you are all out at the mouth of the old shaft, with Corin half asleep against somebody's shoulder and the hillside wet and colourless round you.\n\nThen something comes up out of the hill behind you.\n\nOne of them. Alone, hood back, with a blade.\n\n…"
+        "text": "The night wears down. By the grey before dawn you are all out at the mouth of the old shaft, with Corin half asleep against somebody's shoulder and the hillside wet and colourless round you.\n\nThen something comes up out of the hill behind you.\n\nThe dog from the path. It is off its chain now, and a length of bright new links drags from its collar through the wet grass. It does not bark. It has been taught not to.\n\n…"
       },
       {
         "t": "fight",
-        "name": "THE ONE WHO CAME UP AFTER YOU",
-        "desc": "He does not say what he wants.",
+        "name": "THE DOG OFF ITS CHAIN",
+        "desc": "Somebody let it loose, and sent it up after you.",
         "firstLines": null,
         "strikeFirst": {
           "on": "player"
@@ -2584,11 +2584,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "He does not say a word. He breaks away over the shoulder of the hill and is gone, the way the others have gone: the first gap, and no sound.\n\nFor a few breaths you can hear him on the scree below, quick and sure-footed in the half-light. Then there is only the wind in the wet grass."
+        "text": "It comes at you twice, and the second time something goes out of it. It backs away to the length of its trailing chain and lies down in the wet grass with its sides heaving, between you and the shoulder of the hill.\n\nUp on the shoulder, for one breath, a man is standing against the grey: hood back, quite still, watching. Then he turns west, and is gone."
       },
       {
         "t": "say",
-        "text": "He leaves the hill with a limp he did not bring to it.",
+        "text": "It does not get up again until you are well past it. Its eyes follow you all the way.",
         "cond": {
           "on": "fight",
           "won": true
@@ -2596,7 +2596,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You are left sitting in that wet grass, one sleeve torn from cuff to elbow, waiting for the hillside to stop tilting.",
+        "text": "You are left sitting in that wet grass, one sleeve torn from cuff to elbow by its teeth, waiting for the hillside to stop tilting.",
         "cond": {
           "on": "fight",
           "won": false
@@ -4390,7 +4390,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "He does not go for the boat. He goes into the reeds, and then into the water, and the fog closes over the place.\n\nFor a while you can hear him swimming, slow and steady, somewhere out in the white. Then you cannot.\n\nThe boat is yours. Her skiff goes on a line behind it."
+        "text": "He does not go for the boat. At the edge of the reeds he stops, and says three words, not to you but out into the fog, the way a man says a thing he has said every night of his life:\n\n*\"Keep the dark.\"*\n\nNobody answers him. He goes into the reeds, and then into the water, and the fog closes over the place.\n\nFor a while you can hear him swimming, slow and steady, somewhere out in the white. Then you cannot.\n\nThe boat is yours. Her skiff goes on a line behind it."
       },
       {
         "t": "say",

@@ -584,13 +584,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Did the cart make ready for a long journey?",
-      "clickText": "The cart took the west road below the shaft without a moment's check, and the runner on the shoulder stopped only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born."
+      "clickText": "The cart took the west road below the shaft without a moment's check, and the man on the shoulder stood only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born."
     },
     "clicks": [
       {
         "a": "3-1-2",
         "b": "3-1-3",
-        "text": "The cart took the west road below the shaft without a moment's check, and the runner on the shoulder stopped only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born.",
+        "text": "The cart took the west road below the shaft without a moment's check, and the man on the shoulder stood only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born.",
         "solves": true
       }
     ],

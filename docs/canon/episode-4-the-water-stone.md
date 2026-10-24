@@ -534,7 +534,11 @@
 > `[FIGHT]`
 
 *Win or lose:*
-> He does not go for the boat. He goes into the reeds, and then into the water, and the fog closes over the place.
+> He does not go for the boat. At the edge of the reeds he stops, and says three words, not to you but out into the fog, the way a man says a thing he has said every night of his life:
+>
+> *"Keep the dark."*
+>
+> Nobody answers him. He goes into the reeds, and then into the water, and the fog closes over the place.
 >
 > For a while you can hear him swimming, slow and steady, somewhere out in the white. Then you cannot.
 >
@@ -589,7 +593,7 @@
 
 **Designer's notes**
 - **Played beats:** the Challenge, which decides how the fight opens; the fight; an act; a notice line; an act. One roll.
-- **Phase 3, 24 Oct:** one harder if the lamp was lit in the lowest lane on Day 4.
+- **Phase 3, 24 Oct:** one harder if the lamp was lit in the lowest lane on Day 4. The man with the boat is no longer silent (Fake Guru: "a"): he says the Order's watchword, "Keep the dark.", into the fog. The watchmen trade it in Week 5, and the faithful say it to Garrick at the finale.
 - **The party:** the friends are at the oars; nobody is named today.
 - **Changed from the current script:** the boat was empty and the day repeated Day 4. Now a man minds it, the party takes it, and what is in it is the answer. The cold ashes are gone.
 - **The boat is used tomorrow night:** Gathering 4 opens "in the boat you took from them", and its floor notice line is a curl of whittled wood.

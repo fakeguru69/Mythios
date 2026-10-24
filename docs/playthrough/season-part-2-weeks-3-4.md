@@ -144,27 +144,27 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 >
 > Then something comes up out of the hill behind you.
 >
-> One of them. Alone, hood back, with a blade.
+> The dog from the path. It is off its chain now, and a length of bright new links drags from its collar through the wet grass. It does not bark. It has been taught not to.
 >
 > …
 
-**FIGHT: THE ONE WHO CAME UP AFTER YOU**
+**FIGHT: THE DOG OFF ITS CHAIN**
 
-> He does not say what he wants.
+> Somebody let it loose, and sent it up after you.
 
 *⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
-> He does not say a word. He breaks away over the shoulder of the hill and is gone, the way the others have gone: the first gap, and no sound.
+> It comes at you twice, and the second time something goes out of it. It backs away to the length of its trailing chain and lies down in the wet grass with its sides heaving, between you and the shoulder of the hill.
 >
-> For a few breaths you can hear him on the scree below, quick and sure-footed in the half-light. Then there is only the wind in the wet grass.
+> Up on the shoulder, for one breath, a man is standing against the grey: hood back, quite still, watching. Then he turns west, and is gone.
 
 *⚙ If you won the fight:*
 
-> He leaves the hill with a limp he did not bring to it.
+> It does not get up again until you are well past it. Its eyes follow you all the way.
 
 *⚙ If you lost the fight:*
 
-> You are left sitting in that wet grass, one sleeve torn from cuff to elbow, waiting for the hillside to stop tilting.
+> You are left sitting in that wet grass, one sleeve torn from cuff to elbow by its teeth, waiting for the hillside to stop tilting.
 
 *⚙ Either way, every player reads this:*
 
@@ -250,7 +250,7 @@ Clue found, "The fresh turn":
 
 > Where the cart stood below the shaft, the ruts cut clean into the turf, turning west onto the old road without a moment's pause.
 
-**Lead: the shoulder of the hill he ran over**: Agility (go up the shoulder after him), or Aim (follow his line from the shaft mouth)
+**Lead: the shoulder of the hill where he stood**: Agility (go up the shoulder after him), or Aim (pick out where he stood, from the shaft mouth)
 
 Clue found, "Facing west":
 
@@ -276,7 +276,7 @@ Clue found, "Facing west":
 
 *⚙ "The fresh turn" with "Facing west" (this one answers tonight's question):*
 
-> The cart took the west road below the shaft without a moment's check, and the runner on the shoulder stopped only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born.
+> The cart took the west road below the shaft without a moment's check, and the man on the shoulder stood only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born.
 
 *⚙ When "3-1-1" is laid, Garrick adds:*
 
@@ -322,7 +322,7 @@ Clue found, "Facing west":
 
 *⚙ Opens the day in your thread: yesterday's recap.*
 
-> Corin remembered the girl who was held with him. Her name was Wren, her home was always warm, and they told her she was going home first. The ledger and Meira's list both named her village, Ashcombe, on the edge of the burned country, a long day west. Before dawn one of them came up out of the hill alone, fought you without a word and fled, and below the shaft a cart and a child's small prints turned west. You carried Corin home to the mill, and he told his mother every one of your names. Why would anyone take a stolen child back to where she was born?
+> Corin remembered the girl who was held with him. Her name was Wren, her home was always warm, and they told her she was going home first. The ledger and Meira's list both named her village, Ashcombe, on the edge of the burned country, a long day west. Before dawn the dog from the path came up out of the hill after you, off its chain, while a hooded man watched from the shoulder of the hill and turned west, and below the shaft a cart and a child's small prints turned west. You carried Corin home to the mill, and he told his mother every one of your names. Why would anyone take a stolen child back to where she was born?
 
 ### Your thread: the chapter, "Ashcombe"
 
@@ -2854,7 +2854,11 @@ Clue found, "The scratched line":
 
 *⚙ Either way, every player reads this:*
 
-> He does not go for the boat. He goes into the reeds, and then into the water, and the fog closes over the place.
+> He does not go for the boat. At the edge of the reeds he stops, and says three words, not to you but out into the fog, the way a man says a thing he has said every night of his life:
+>
+> *"Keep the dark."*
+>
+> Nobody answers him. He goes into the reeds, and then into the water, and the fog closes over the place.
 >
 > For a while you can hear him swimming, slow and steady, somewhere out in the white. Then you cannot.
 >
