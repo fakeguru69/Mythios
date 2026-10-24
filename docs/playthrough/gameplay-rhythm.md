@@ -9,86 +9,86 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 
 | Day | Words | Taps | Real choices | Flavour choices | Longest read before a tap | Read time | Strip |
 |---|---|---|---|---|---|---|---|
-| W1D1 | 663 | 9 | 0 | 0 | 168w | 3.6 min | 130w ⚔FIGHT 72w ▸tap 136w 🎲CHALLENGE 157w ▸tap 168w |
-| W1D2 | 947 | 8 | 0 | 0 | 227w | 4.7 min | 227w ▸tap 188w 🎲CHALLENGE 45w ?PRESS ON 77w ▸tap 85w ▸tap 21w ▸tap 126w ▸tap 178w |
-| W1D3 | 667 | 7 | 1 | 0 | 206w | 3.5 min | 206w ◆CHOICE 78w ⚔FIGHT 198w ▸tap 67w ▸tap 118w |
-| W1D4 | 936 | 6 | 3 | 0 | 341w | 4.5 min | 152w ◆CHOICE 76w 🎲CHALLENGE 78w ◆CHOICE 215w ▸tap 74w ◆CHOICE 341w |
-| W1D5 | 658 | 7 | 2 | 0 | 255w | 3.5 min | 80w ◆CHOICE 73w ⚔FIGHT 113w ◆CHOICE 255w ▸tap 137w |
-| W1D6 | 697 | 7 | 1 | 0 | 185w | 3.5 min | 132w 🎲CHALLENGE 46w ?PRESS ON 38w ▸tap 72w ▸tap 185w ▸tap 41w ◆CHOICE 183w |
-| W2D1 | 810 | 6 | 1 | 0 | 193w | 3.9 min | 32w ▸tap 88w ◆CHOICE 167w ▸tap 150w 🎲CHALLENGE 193w ▸tap 180w |
-| W2D2 | 549 | 5 | 0 | 0 | 185w | 2.7 min | 64w ▸tap 185w 🎲CHALLENGE 127w ?PRESS ON 15w ▸tap 158w |
-| W2D3 | 499 | 8 | 0 | 0 | 143w | 2.9 min | 117w 🎲CHALLENGE 99w ⚔FIGHT 140w ▸tap 143w |
-| W2D4 | 449 | 3 | 0 | 0 | 223w | 2.2 min | 102w 🎲CHALLENGE 223w ▸tap 124w |
-| W2D5 | 513 | 7 | 0 | 0 | 187w | 2.9 min | 36w ▸tap 187w ⚔FIGHT 169w ▸tap 121w |
-| W2D6 | 520 | 7 | 1 | 0 | 206w | 2.7 min | 74w 🎲CHALLENGE 41w ?PRESS ON 30w ▸tap 13w ▸tap 99w ◆CHOICE 57w ▸tap 206w |
-| W3D1 | 682 | 9 | 0 | 0 | 215w | 3.7 min | 40w ▸tap 155w ▸tap 86w ⚔FIGHT 86w ▸tap 215w ▸tap 100w |
-| W3D2 | 778 | 6 | 0 | 0 | 409w | 3.8 min | 157w 🎲CHALLENGE 51w ▸tap 409w ▸tap 161w |
-| W3D3 | 599 | 6 | 0 | 0 | 157w | 3.0 min | 114w 🎲CHALLENGE 157w ▸tap 73w ▸tap 43w ?PRESS ON 126w ▸tap 86w |
-| W3D4 | 582 | 5 | 1 | 0 | 228w | 2.9 min | 82w ▸tap 83w ◆CHOICE 43w 🎲CHALLENGE 146w ▸tap 228w |
-| W3D5 | 603 | 10 | 1 | 0 | 240w | 3.5 min | 70w ◆CHOICE 90w ⚔FIGHT 88w ▸tap 240w ▸tap 115w |
-| W3D6 | 535 | 6 | 1 | 0 | 218w | 2.7 min | 92w 🎲CHALLENGE 89w ▸tap 13w ▸tap 30w ▸tap 93w ◆CHOICE 218w |
-| W4D1 | 645 | 5 | 1 | 0 | 365w | 3.1 min | 88w ◆CHOICE 26w 🎲CHALLENGE 77w ?PRESS ON 89w ▸tap 365w |
-| W4D2 | 608 | 10 | 0 | 0 | 200w | 3.5 min | 76w ⚔FIGHT 91w ▸tap 45w ▸tap 75w 🎲CHALLENGE 121w ▸tap 200w |
-| W4D3 | 650 | 5 | 0 | 0 | 232w | 3.2 min | 232w ▸tap 145w 🎲CHALLENGE 106w ▸tap 167w |
-| W4D4 | 472 | 4 | 0 | 0 | 245w | 2.3 min | 165w 🎲CHALLENGE 44w ?PRESS ON 18w ▸tap 245w |
-| W4D5 | 495 | 9 | 0 | 0 | 168w | 2.9 min | 68w 🎲CHALLENGE 82w ⚔FIGHT 73w ▸tap 104w ▸tap 168w |
-| W4D6 | 413 | 4 | 0 | 0 | 199w | 2.1 min | 96w ▸tap 71w ▸tap 47w 🎲CHALLENGE 199w |
-| W5D1 | 683 | 4 | 0 | 0 | 329w | 3.2 min | 329w 🎲CHALLENGE 58w ▸tap 124w ▸tap 172w |
-| W5D2 | 611 | 10 | 1 | 0 | 190w | 3.5 min | 141w ▸tap 68w ▸tap 100w ▸tap 45w ◆CHOICE 67w ⚔FIGHT 190w |
-| W5D3 | 514 | 5 | 0 | 0 | 211w | 2.6 min | 171w 🎲CHALLENGE 67w ▸tap 40w ?PRESS ON 25w ▸tap 211w |
-| W5D4 | 442 | 5 | 1 | 0 | 138w | 2.3 min | 138w 🎲CHALLENGE 16w ?PRESS ON 64w ▸tap 104w ◆CHOICE 120w |
-| W5D5 | 440 | 3 | 0 | 0 | 197w | 2.1 min | 77w 🎲CHALLENGE 166w ▸tap 197w |
-| W5D6 | 516 | 6 | 0 | 1 | 255w | 2.6 min | 78w ◇flavour 86w 🎲CHALLENGE 67w ▸tap 13w ▸tap 17w ▸tap 255w |
-| W6D1 | 548 | 5 | 0 | 0 | 189w | 2.7 min | 189w ▸tap 62w 🎲CHALLENGE 60w ▸tap 60w ▸tap 177w |
-| W6D2 | 469 | 5 | 0 | 0 | 120w | 2.4 min | 120w 🎲CHALLENGE 51w ▸tap 115w ▸tap 76w ▸tap 107w |
-| W6D3 | 453 | 6 | 1 | 0 | 263w | 2.4 min | 41w ▸tap 43w ◆CHOICE 68w 🎲CHALLENGE 28w ?PRESS ON 10w ▸tap 263w |
-| W6D4 | 442 | 10 | 0 | 0 | 85w | 2.8 min | 65w ▸tap 84w ⚔FIGHT 83w ▸tap 73w ▸tap 52w ▸tap 85w |
-| W6D5 | 418 | 6 | 0 | 0 | 155w | 2.2 min | 155w 🎲CHALLENGE 41w ?PRESS ON 10w ▸tap 48w ▸tap 64w ▸tap 100w |
-| W6D6 | 534 | 11 | 0 | 0 | 169w | 3.3 min | 82w 🎲CHALLENGE 45w ⚔FIGHT 69w ▸tap 13w ▸tap 169w ▸tap 156w |
+| W1D1 | 699 | 7 | 1 | 0 | 325w | 3.6 min | 131w ⚔FIGHT 72w ◆CHOICE 171w 🎲CHALLENGE 325w |
+| W1D2 | 1044 | 6 | 3 | 0 | 359w | 4.9 min | 227w ◆CHOICE 216w 🎲CHALLENGE 46w ?PRESS ON 77w ◆CHOICE 119w ◆CHOICE 359w |
+| W1D3 | 727 | 5 | 1 | 0 | 383w | 3.6 min | 235w ◆CHOICE 109w ⚔FIGHT 383w |
+| W1D4 | 1034 | 5 | 3 | 0 | 375w | 4.8 min | 153w ◆CHOICE 101w 🎲CHALLENGE 78w ◆CHOICE 327w ◆CHOICE 375w |
+| W1D5 | 778 | 6 | 2 | 0 | 429w | 3.9 min | 115w ◆CHOICE 121w ⚔FIGHT 113w ◆CHOICE 429w |
+| W1D6 | 757 | 5 | 2 | 0 | 295w | 3.6 min | 134w 🎲CHALLENGE 47w ?PRESS ON 295w ◆CHOICE 64w ◆CHOICE 217w |
+| W2D1 | 848 | 5 | 3 | 0 | 373w | 4.0 min | 32w ◆CHOICE 106w ◆CHOICE 167w ◆CHOICE 170w 🎲CHALLENGE 373w |
+| W2D2 | 552 | 4 | 0 | 0 | 187w | 2.7 min | 64w ▸tap 187w 🎲CHALLENGE 128w ?PRESS ON 173w |
+| W2D3 | 502 | 7 | 0 | 0 | 283w | 2.8 min | 119w 🎲CHALLENGE 100w ⚔FIGHT 283w |
+| W2D4 | 451 | 2 | 0 | 0 | 347w | 2.1 min | 104w 🎲CHALLENGE 347w |
+| W2D5 | 515 | 6 | 0 | 0 | 290w | 2.8 min | 36w ▸tap 189w ⚔FIGHT 290w |
+| W2D6 | 523 | 4 | 1 | 0 | 263w | 2.5 min | 76w 🎲CHALLENGE 42w ?PRESS ON 142w ◆CHOICE 263w |
+| W3D1 | 725 | 7 | 2 | 0 | 402w | 3.8 min | 40w ◆CHOICE 173w ◆CHOICE 110w ⚔FIGHT 402w |
+| W3D2 | 780 | 5 | 0 | 0 | 570w | 3.7 min | 159w 🎲CHALLENGE 51w ▸tap 570w |
+| W3D3 | 619 | 4 | 1 | 0 | 274w | 3.0 min | 116w 🎲CHALLENGE 274w ?PRESS ON 126w ◆CHOICE 103w |
+| W3D4 | 584 | 3 | 1 | 0 | 374w | 2.7 min | 166w ◆CHOICE 44w 🎲CHALLENGE 374w |
+| W3D5 | 607 | 9 | 1 | 0 | 358w | 3.4 min | 70w ◆CHOICE 91w ⚔FIGHT 88w ▸tap 358w |
+| W3D6 | 537 | 3 | 1 | 0 | 225w | 2.5 min | 94w 🎲CHALLENGE 225w ◆CHOICE 218w |
+| W4D1 | 647 | 4 | 1 | 0 | 454w | 3.1 min | 89w ◆CHOICE 26w 🎲CHALLENGE 78w ?PRESS ON 454w |
+| W4D2 | 611 | 7 | 0 | 0 | 321w | 3.3 min | 77w ⚔FIGHT 213w 🎲CHALLENGE 321w |
+| W4D3 | 653 | 4 | 0 | 0 | 273w | 3.1 min | 232w ▸tap 148w 🎲CHALLENGE 273w |
+| W4D4 | 475 | 3 | 0 | 0 | 263w | 2.3 min | 167w 🎲CHALLENGE 45w ?PRESS ON 263w |
+| W4D5 | 498 | 7 | 0 | 0 | 346w | 2.8 min | 69w 🎲CHALLENGE 83w ⚔FIGHT 346w |
+| W4D6 | 415 | 2 | 0 | 0 | 216w | 1.9 min | 216w 🎲CHALLENGE 199w |
+| W5D1 | 708 | 3 | 1 | 0 | 331w | 3.3 min | 331w 🎲CHALLENGE 58w ◆CHOICE 319w |
+| W5D2 | 636 | 8 | 2 | 0 | 237w | 3.5 min | 141w ◆CHOICE 237w ◆CHOICE 68w ⚔FIGHT 190w |
+| W5D3 | 517 | 3 | 0 | 0 | 236w | 2.4 min | 173w 🎲CHALLENGE 108w ?PRESS ON 236w |
+| W5D4 | 445 | 4 | 1 | 0 | 168w | 2.2 min | 140w 🎲CHALLENGE 17w ?PRESS ON 168w ◆CHOICE 120w |
+| W5D5 | 442 | 2 | 0 | 0 | 364w | 2.1 min | 78w 🎲CHALLENGE 364w |
+| W5D6 | 518 | 3 | 0 | 1 | 352w | 2.5 min | 78w ◇flavour 88w 🎲CHALLENGE 352w |
+| W6D1 | 569 | 4 | 1 | 0 | 253w | 2.7 min | 253w 🎲CHALLENGE 60w ◆CHOICE 79w ▸tap 177w |
+| W6D2 | 471 | 2 | 0 | 0 | 349w | 2.2 min | 122w 🎲CHALLENGE 349w |
+| W6D3 | 456 | 5 | 1 | 0 | 273w | 2.3 min | 41w ▸tap 43w ◆CHOICE 70w 🎲CHALLENGE 29w ?PRESS ON 273w |
+| W6D4 | 472 | 8 | 1 | 0 | 156w | 2.8 min | 151w ⚔FIGHT 156w ◆CHOICE 80w ▸tap 85w |
+| W6D5 | 421 | 4 | 0 | 0 | 157w | 2.1 min | 157w 🎲CHALLENGE 42w ?PRESS ON 122w ▸tap 100w |
+| W6D6 | 537 | 9 | 0 | 0 | 251w | 3.1 min | 84w 🎲CHALLENGE 46w ⚔FIGHT 251w ▸tap 156w |
 
-**Averages over the 36 chapters:** 584 words, 6.5 taps, about 3.0 minutes for the chapter alone (the last light and the Campfire come after).
+**Averages over the 36 chapters:** 605 words, 4.9 taps, about 3.0 minutes for the chapter alone (the last light and the Campfire come after).
 
 ## The evening (every weekday after the chapter)
-The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or go straight to the fire. Then the Campfire, one screen.
+The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or sit by the fire. Then the fire: one chat under the finished day (18 Oct), with a text box at the foot.
 
 | Day | Leads | Garrick's stored lines (words) | Things to tap or write at the fire |
 |---|---|---|---|
-| W1D1 | 3 | 19 | 5: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); an open question; a message in a bottle |
-| W1D2 | 3 | 66 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W1D3 | 3 | 53 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W1D4 | 3 | 60 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W1D5 | 3 | 75 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W1D6 | 3 | 66 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W2D1 | 3 | 66 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W2D2 | 3 | 64 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W2D3 | 3 | 67 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W2D4 | 3 | 51 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W2D5 | 3 | 53 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W2D6 | 3 | 60 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W3D1 | 3 | 56 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W3D2 | 3 | 57 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W3D3 | 3 | 68 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W3D4 | 3 | 55 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W3D5 | 3 | 61 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W3D6 | 3 | 54 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W4D1 | 3 | 56 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W4D2 | 3 | 53 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W4D3 | 3 | 62 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W4D4 | 3 | 68 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W4D5 | 3 | 58 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W4D6 | 3 | 44 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W5D1 | 3 | 52 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W5D2 | 3 | 57 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W5D3 | 3 | 72 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W5D4 | 3 | 56 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W5D5 | 3 | 46 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W5D6 | 3 | 53 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W6D1 | 3 | 63 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W6D2 | 3 | 73 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W6D3 | 3 | 53 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W6D4 | 3 | 57 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W6D5 | 3 | 48 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
-| W6D6 | 3 | 54 | 6: tonight's question (pin A / B / neither / own line); the fragment's meaning pin; the case so far (editable line); the riddle (3 tries); an open question; a message in a bottle |
+| W1D1 | 3 | 24 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
+| W1D2 | 3 | 51 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W1D3 | 3 | 53 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W1D4 | 3 | 32 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
+| W1D5 | 3 | 54 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W1D6 | 3 | 48 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W2D1 | 3 | 61 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W2D2 | 3 | 70 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W2D3 | 3 | 64 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W2D4 | 3 | 40 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
+| W2D5 | 3 | 64 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W2D6 | 3 | 60 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W3D1 | 3 | 57 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W3D2 | 3 | 41 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
+| W3D3 | 3 | 56 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W3D4 | 3 | 64 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W3D5 | 3 | 61 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W3D6 | 3 | 62 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W4D1 | 3 | 58 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W4D2 | 3 | 52 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W4D3 | 3 | 56 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
+| W4D4 | 3 | 76 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W4D5 | 3 | 59 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W4D6 | 3 | 43 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
+| W5D1 | 3 | 58 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W5D2 | 3 | 51 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W5D3 | 3 | 68 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W5D4 | 3 | 51 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
+| W5D5 | 3 | 51 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W5D6 | 3 | 56 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W6D1 | 3 | 65 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W6D2 | 3 | 56 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
+| W6D3 | 3 | 66 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W6D4 | 3 | 74 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W6D5 | 3 | 56 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W6D6 | 3 | 62 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 
 ## The Gatherings
 Measured on the main path (Approach passed, United Effort won, the first option of each group choice). Besides the buttons counted here, the story moves passage by passage with [GO ON] (any friend taps it, or it moves on by itself); those taps are not counted.
