@@ -901,8 +901,10 @@
 
 *If the room was lost, Corin has already held the ledger out on the hillside (above), and this section opens at "It is a ledger."*
 
+*If the room was held:*
+
 > It is Corin who shows you. Still shaking, he points past the table to a niche in the wall, where a lamp still burns beside another book. It is nothing like the Order's scripture. This one is bound in plain oiled leather, the kind a merchant keeps his accounts in.
->
+
 > It is a ledger.
 >
 > Page after page of children's names. Beside each name, a place. Beside each place, a date, and the miles to the next. The newest pages are in one small, careful hand. The oldest are in other hands, faded almost to nothing. And beside many of the old names, a single word, written the same way every time: *given.*

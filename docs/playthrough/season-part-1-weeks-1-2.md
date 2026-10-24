@@ -791,7 +791,7 @@ Clue found, "The notched stick":
 
 *⚙ Garrick opens:*
 
-> Smoke over the valley, and a man who bolted the moment he saw you. Sit and catch your breath.
+> Smoke over the valley, and a man who'd sooner fight you than be seen by you. Sit and catch your breath.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -939,29 +939,29 @@ Clue found, "The notched stick":
 
 > You unfold Meira's list and hold it where he can see. He reads it slowly, his lips moving, then looks up from the names to your faces, one after another, as if to make sure you are the people written there. Something in his shoulders lets go.
 >
-> *"She was here,"* he whispers, touching the corner of the leaf with one dirty finger. *"The woman with the satchel. Two weeks back. She asked about the split stone, and she had a book of that same paper."*
+> *"She was here,"* he whispers, touching the corner of the leaf with one dirty finger. *"The woman with the satchel. Before the frosts. She asked about the split stone, and she had a book of that same paper."*
 
 *⚙ Then the card "What this changed":*
 
-> You showed him Meira's list — he recognised her paper from two weeks ago.
+> You showed him Meira's list, and he knew her paper: the woman with the satchel had passed through, before the frosts.
 
 *⚙ This road's own find, "The woman with the satchel" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> The boy at the well recognised the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark two weeks back, asking about the split stone.
+> The boy at the well recognised the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark before the frosts, asking about the split stone.
 
 *⚙ If you pick [ASK WHO WAS TAKEN]:*
 
 > You ask him straight out who they took. His chin comes up at that. For three days Fenmark has told him only to keep quiet, and nobody has asked him anything at all.
 >
-> *"Her mother's shut inside with the shutters barred,"* he says, his voice tight. *"They told her if she cried out or went to the road, they'd never bring her back."*
+> *"Her mother's shut inside and won't come to the door,"* he says, his voice tight. *"They told her if she cried out or went to the road, they'd never bring her back."*
 
 *⚙ Then the card "What this changed":*
 
-> You asked straight out who was taken — you learned how they silenced Tamsin's mother.
+> You asked who was taken, and learned how they keep her mother quiet.
 
 *⚙ This road's own find, "How they kept Fenmark quiet" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> The boy at the well says Tamsin's mother is shut behind barred shutters: the men who took Tamsin warned that if anyone cried out or went to the road, they would never bring her back.
+> The boy at the well says the taken girl's mother is shut inside and won't come to the door: the men who took the child warned that if anyone cried out or went to the road, they would never bring her back.
 
 *⚙ If you pick [SAY NOTHING. WAIT.]:*
 
@@ -979,7 +979,7 @@ Clue found, "The notched stick":
 
 *⚙ Whatever you picked, every player reads this:*
 
-> For a while he says nothing at all. He looks once down the empty lane. Then it comes out low and fast.
+> Then he stops, and for a while there is only the gate knocking on its post. He looks once down the empty lane. Then it comes out low and fast.
 >
 > *"Three nights ago. They came in the dark with no torches. They did not knock anything over. They did not say anything they did not have to. Like they'd done it before."*
 >
@@ -1616,7 +1616,7 @@ Clue found, "The worn bar":
 
 *⚙ If you pick [READ IT OUT]:*
 
-> You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark. Right at the mark, your fingertip catches on a tiny pin-hole punched clean through the old vellum — somebody once pinned this very spot to a board before the map was cut in six.
+> You smooth the map flat between the cups and read it yourself, tracing each line with a fingertip so the others can follow it, from the ford all the way to the mark. Right at the mark, your fingertip catches on a tiny hole punched clean through the old vellum, as if somebody, long ago, had pinned this one spot to a wall and looked at it for a long time.
 
 *⚙ Then the card "What this changed":*
 
@@ -1906,7 +1906,7 @@ Clue found, "A second man":
 
 > Dev comes up out of the hole all at once, and you all go down together on the stone, gasping. You go round by the wall after that, one at a time, where the stone carries the boards.
 >
-> Behind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door. Cold air breathes round its edges from a room beyond. It takes all of you, and it goes up in one heave. The room beyond has not been walked in: the dust lies as it fell.
+> Behind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door. Cold air breathes round its edges from a room beyond. It takes all of you, and it goes up in one heave. Beyond it the dust lies as it fell, everywhere but one narrow line, a footstep wide, that runs from a crack in the far wall to the wall in front of you and back again.
 
 *⚙ If the United Effort was lost:*
 
@@ -3638,8 +3638,12 @@ Clue found, "Your own print":
 
 #### The ledger
 
+*⚙ If the United Effort was won:*
+
 > It is Corin who shows you. Still shaking, he points past the table to a niche in the wall, where a lamp still burns beside another book. It is nothing like the Order's scripture. This one is bound in plain oiled leather, the kind a merchant keeps his accounts in.
->
+
+*⚙ Either way, the whole party reads this:*
+
 > It is a ledger.
 >
 > Page after page of children's names. Beside each name, a place. Beside each place, a date, and the miles to the next. The newest pages are in one small, careful hand. The oldest are in other hands, faded almost to nothing. And beside many of the old names, a single word, written the same way every time: *given.*

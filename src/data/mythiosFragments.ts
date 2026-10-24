@@ -236,9 +236,10 @@ export const SEEKER_FRAGMENTS: SeekerFragmentData[] = [
   {
     id: '5-3', week: 5, day: 3, placeLabel: 'The gate walkway',
     fullText: 'Four of us gave to the four. None of us gave to the fifth.',
-    displayTemplate: 'Four of us gave to the four. {0} of us gave to the {1}.',
+    displayTemplate: 'Four of us gave to the four. {0} of us {1} to the fifth.',
     word1: 'none', jumble1: ['E', 'O', 'N', 'N'],
-    word2: 'fifth', jumble2: ['I', 'F', 'F', 'H', 'T'],
+    // Lock words changed 24 Oct 2026 (full-game audit): FIFTH was a lock word three times (4-2, 5-3, 5-5).
+    word2: 'gave', jumble2: ['V', 'E', 'A', 'G'],
     closureInfo: 'Week 6 Finale (the fifth drank the king\'s blood, not the Seekers\')',
   },
   {
@@ -252,9 +253,10 @@ export const SEEKER_FRAGMENTS: SeekerFragmentData[] = [
   {
     id: '5-5', week: 5, day: 5, placeLabel: 'The broken fountain',
     fullText: 'We kept the fifth where we could watch it, and watch him.',
-    displayTemplate: 'We {0} the {1} where we could watch it, and watch him.',
+    displayTemplate: 'We {0} the fifth where we could {1} it, and watch him.',
     word1: 'kept', jumble1: ['E', 'P', 'T', 'K'],
-    word2: 'fifth', jumble2: ['T', 'I', 'H', 'F', 'F'],
+    // Lock words changed 24 Oct 2026 (full-game audit): FIFTH was a lock word three times (4-2, 5-3, 5-5).
+    word2: 'watch', jumble2: ['T', 'C', 'H', 'A', 'W'],
     closureInfo: 'Week 5 Gathering Match 2 (the hidden wall room)',
   },
   {

@@ -1763,7 +1763,7 @@ export const APPROVED_FAN_OUT_LEADS: Record<string, FanOutLead[]> = {
         }
       ],
       "clueTitle": "The old soot",
-      "clueText": "The back of the stone niche is blackened in one small round patch, the way a candle marks stone over years. The niche faces the inner wall, away from the slit.",
+      "clueText": "The back of the stone niche is blackened in one small round patch, the way a candle marks stone over years. The niche sits deep and low beneath the slit, where no eye on the square could see a flame.",
       "leans": "both",
       "hintFor": 2
     }

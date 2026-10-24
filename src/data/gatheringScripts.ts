@@ -227,7 +227,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "{RISK} comes up out of the hole all at once, and you all go down together on the stone, gasping. You go round by the wall after that, one at a time, where the stone carries the boards.\n\nBehind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door. Cold air breathes round its edges from a room beyond. It takes all of you, and it goes up in one heave. The room beyond has not been walked in: the dust lies as it fell.",
+        "text": "{RISK} comes up out of the hole all at once, and you all go down together on the stone, gasping. You go round by the wall after that, one at a time, where the stone carries the boards.\n\nBehind the place where they held her, the tunnel ends in a slab of fallen roof as big as a barn door. Cold air breathes round its edges from a room beyond. It takes all of you, and it goes up in one heave. Beyond it the dust lies as it fell, everywhere but one narrow line, a footstep wide, that runs from a crack in the far wall to the wall in front of you and back again.",
         "cond": {
           "on": "ue",
           "won": true
@@ -639,7 +639,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It is Corin who shows you. Still shaking, he points past the table to a niche in the wall, where a lamp still burns beside another book. It is nothing like the Order's scripture. This one is bound in plain oiled leather, the kind a merchant keeps his accounts in.\n\nIt is a ledger.\n\nPage after page of children's names. Beside each name, a place. Beside each place, a date, and the miles to the next. The newest pages are in one small, careful hand. The oldest are in other hands, faded almost to nothing. And beside many of the old names, a single word, written the same way every time: *given.*",
+        "text": "It is Corin who shows you. Still shaking, he points past the table to a niche in the wall, where a lamp still burns beside another book. It is nothing like the Order's scripture. This one is bound in plain oiled leather, the kind a merchant keeps his accounts in.",
+        "cond": {
+          "on": "ue",
+          "won": true
+        },
+        "section": "The ledger"
+      },
+      {
+        "t": "say",
+        "text": "It is a ledger.\n\nPage after page of children's names. Beside each name, a place. Beside each place, a date, and the miles to the next. The newest pages are in one small, careful hand. The oldest are in other hands, faded almost to nothing. And beside many of the old names, a single word, written the same way every time: *given.*",
         "section": "The ledger"
       },
       {
@@ -1736,6 +1745,15 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       {
         "t": "say",
         "text": "There is one more thing in the pouch, under the pages: a pen. Plain brass, the nib stained with the same brown ink as every page of Meira's notes. Scratched small into the barrel, in her neat hand, are her initials.\n\nNobody says anything for a while.\n\nHer satchel is opened, the way you would open the door of an empty room. Her hand is on every page. Every trail you have followed since the forest road, she walked first. And somewhere on a road, someone took this pen out of her hand, and she did not come back for it.\n\nThe pen goes into the satchel, with the rest of her.",
+        "section": "The pen"
+      },
+      {
+        "t": "say",
+        "text": "At the sight of the pen the man from the water stirs, and says one thing before his eyes close again. *\"On the road. The night she left.\"*",
+        "cond": {
+          "on": "ue",
+          "won": false
+        },
         "section": "The pen"
       },
       {

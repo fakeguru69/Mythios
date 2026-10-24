@@ -299,7 +299,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Nudge: `{friend:Agility}`, the dead passed us by on their way up. Called, or on guard?
 
 **6-3 · The great square, four nights left**
-- Opener: "The hall's warm from within. More faithful arriving. What's missing is a door."
+- Opener: "Warm walls, and more faithful at the gate by the hour. Eat something. It will be a long night."
 - Fork: A "There is no way in at the front." / B "There is, and it isn't ours."
 - Fan Out clue (leans both; press-on): Eleven watchmen. Six have road-dust to the knee and packs not yet unrolled. They did not send for men to hunt you; these were already coming for the night.
 - Callback: "The soldiers are three streets nearer the hall. Round the Order's fire there are twice as many as before."

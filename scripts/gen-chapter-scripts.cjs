@@ -159,17 +159,17 @@ const FORK_BRANCH_META = {
   },
   // Fork 3 · W1D4 (Opening the boy at the well)
   '1-4:SHOW HIM THE LIST': {
-    changed: "You showed him Meira's list — he recognised her paper from two weeks ago.",
+    changed: "You showed him Meira's list, and he knew her paper: the woman with the satchel had passed through, before the frosts.",
     roadFind: {
       title: 'The woman with the satchel',
-      text: "The boy at the well recognised the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark two weeks back, asking about the split stone.",
+      text: "The boy at the well recognised the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark before the frosts, asking about the split stone.",
     },
   },
   '1-4:ASK WHO WAS TAKEN': {
-    changed: "You asked straight out who was taken — you learned how they silenced Tamsin's mother.",
+    changed: "You asked who was taken, and learned how they keep her mother quiet.",
     roadFind: {
       title: 'How they kept Fenmark quiet',
-      text: "The boy at the well says Tamsin's mother is shut behind barred shutters: the men who took Tamsin warned that if anyone cried out or went to the road, they would never bring her back.",
+      text: "The boy at the well says the taken girl's mother is shut inside and won't come to the door: the men who took the child warned that if anyone cried out or went to the road, they would never bring her back.",
     },
   },
   '1-4:SAY NOTHING. WAIT.': {
@@ -416,7 +416,7 @@ const FORK_BRANCH_META = {
     changed: "You followed Wren's chips down the goat-track — you come upon the grey coat unseen, strike first, and claim an Agility Relic.",
     roadFind: {
       title: 'Five chips on the goat-track',
-      text: 'Down the steep goat-track where no horse could go, five more twists of shaved wood marked the path Wren walked on her own feet.',
+      text: 'Down the steep goat-track where no horse could go, five more chips of black glass marked the path Wren walked on her own feet.',
     },
     relic: 'Agility',
   },
