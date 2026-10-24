@@ -54,7 +54,7 @@ The last light: three leads, pick one, roll (a pass gives the first letter of a 
 | Day | Leads | Garrick's stored lines (words) | Things to tap or write at the fire |
 |---|---|---|---|
 | W1D1 | 3 | 24 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
-| W1D2 | 3 | 51 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W1D2 | 3 | 53 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W1D3 | 3 | 53 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W1D4 | 3 | 32 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
 | W1D5 | 3 | 54 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
@@ -69,7 +69,7 @@ The last light: three leads, pick one, roll (a pass gives the first letter of a 
 | W3D2 | 3 | 41 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
 | W3D3 | 3 | 56 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W3D4 | 3 | 64 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
-| W3D5 | 3 | 61 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W3D5 | 3 | 62 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W3D6 | 3 | 62 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W4D1 | 3 | 58 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W4D2 | 3 | 52 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |

@@ -305,7 +305,7 @@ Clue found, "The oilcloth":
 >
 > *"Garrick."*
 >
-> *"Nobody's asked for you,"* he says, coming round the end of the bar to look at the pages without touching them. *"Only the woman who left them."* Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.
+> *"Nobody's asked for you,"* he says, coming round the end of the bar to look at the pages without touching them. Then he goes back, reaches under the counter, and brings out a satchel, worn soft at the corners.
 >
 > *"Woman called Meira. Scholar. Sat right there most nights, two years near enough. Cheapest wine in the house, and tipped like a queen."*
 >
@@ -556,7 +556,7 @@ Clue found, "The thumbed leaf":
 
 *⚙ Garrick opens:*
 
-> Four strangers, four torn pages, and an empty chair upstairs. Pull up to the hearth.
+> Strangers with torn pages in their hands, and an empty chair upstairs. Pull up to the hearth.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -889,7 +889,7 @@ Clue found, "The notched stick":
 
 *⚙ Then the card "What this changed":*
 
-> You took the back lanes (Agility roll on the Challenge) and found grey wool on the shed nail.
+> You took the back lanes, so the Challenge asks for Agility, and you found grey wool on the shed nail.
 
 *⚙ This road's own find, "Grey wool on the nail" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -903,7 +903,7 @@ Clue found, "The notched stick":
 
 *⚙ Then the card "What this changed":*
 
-> You knocked next door (Charm roll on the Challenge) and saw the neighbour's barley pot.
+> You knocked next door, so the Challenge asks for Charm, and you saw the neighbour's barley pot.
 
 *⚙ This road's own find, "The second barley pot" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -943,11 +943,11 @@ Clue found, "The notched stick":
 
 *⚙ Then the card "What this changed":*
 
-> You showed him Meira's list — he recognized her paper from two weeks ago.
+> You showed him Meira's list — he recognised her paper from two weeks ago.
 
 *⚙ This road's own find, "The woman with the satchel" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> The boy at the well recognized the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark two weeks back, asking about the split stone.
+> The boy at the well recognised the paper of Meira's list. He says a woman with a satchel and a book of that same paper came through Fenmark two weeks back, asking about the split stone.
 
 *⚙ If you pick [ASK WHO WAS TAKEN]:*
 
@@ -1322,7 +1322,7 @@ Clue found, "Past three doors":
 
 *⚙ Then the card "What this changed":*
 
-> You knew the carved horse was hers and held it out first — she trusted you at once (+1 Might Relic).
+> You knew the carved horse was hers and held it out first — she trusted you at once, and pressed a Might Relic into your hand.
 
 *⚙ This road's own find, "The carver's charm" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2717,7 +2717,7 @@ Clue found, "The full pail":
 
 *⚙ Garrick opens:*
 
-> A stranger dead at a lock, and the lock opens for you. Stone doesn't have favorites without a reason.
+> A stranger dead at a lock, and the lock opens for you. Stone doesn't have favourites without a reason.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -2913,7 +2913,7 @@ Clue found, "The chant ran on":
 
 *⚙ When "2-4-3" is laid, Garrick adds:*
 
-> [the friend at the fire best at Intellect], the heads turned when the shout went up, yet the chant never broke. What matters more to them than four strangers at the lip?
+> [the friend at the fire best at Intellect], the heads turned when the shout went up, yet the chant never broke. What matters more to them than a few strangers at the lip?
 
 *⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
 
@@ -2931,7 +2931,7 @@ Clue found, "The chant ran on":
 
 *⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
-- A: They have too many guards down there to fear four people.
+- A: They have too many guards down there to fear a handful of strangers.
 
 - B: Whatever they are doing to the boy cannot be paused for anything.
 

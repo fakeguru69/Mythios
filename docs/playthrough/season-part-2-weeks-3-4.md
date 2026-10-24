@@ -1206,7 +1206,7 @@ Clue found, "The gap in the row":
 
 *⚙ Garrick opens:*
 
-> For the first time all season, they ran. Sit down and breathe.
+> For the first time since this began, they ran. Sit down and breathe.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 

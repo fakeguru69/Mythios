@@ -209,37 +209,37 @@ export const WEEKDAY_INVENTORY: WeekdayInventoryItem[] = [
 
   // WEEK 6
   {
-    week: 6, day: 1, place: 'The wall room (Six nights)',
+    week: 6, day: 1, place: 'The wall room, six nights left',
     challengeTitle: 'THE ROOM THEY KEPT',
     challengeAttrs: ['Intellect', 'Aim'],
     fightReward: 0,
   },
   {
-    week: 6, day: 2, place: 'The barracks under the wall (Five nights)',
+    week: 6, day: 2, place: 'The barracks under the wall, five nights left',
     challengeTitle: 'THE COLLAPSE',
     challengeAttrs: ['Might', 'Craft'],
     fightReward: 0,
   },
   {
-    week: 6, day: 3, place: 'The great square (Four nights)',
+    week: 6, day: 3, place: 'The great square, four nights left',
     challengeTitle: 'THE SQUARE',
     challengeAttrs: ['Agility', 'Charm'],
     hasPressOn: true,
     fightReward: 0,
   },
   {
-    week: 6, day: 4, place: 'The hill behind the hall (Three nights)',
+    week: 6, day: 4, place: 'The hill behind the hall, three nights left',
     hasFight: true, fightReward: GOLD_WEEKDAY_FIGHT_ONLY_WIN,
   },
   {
-    week: 6, day: 5, place: 'The moon-tower (Two nights)',
+    week: 6, day: 5, place: 'The moon-tower, two nights left',
     challengeTitle: 'THE SKY-WATCHERS\' WALL',
     challengeAttrs: ['Craft', 'Might'],
     hasPressOn: true,
     fightReward: 0,
   },
   {
-    week: 6, day: 6, place: 'The crack in the hill (One night)',
+    week: 6, day: 6, place: 'The crack in the hill, one night left',
     challengeTitle: 'THE STREET',
     challengeAttrs: ['Agility', 'Might'],
     hasFight: true, fightReward: GOLD_WEEKDAY_FIGHT_WITH_CHALLENGE_WIN,

@@ -239,7 +239,7 @@ Clue found, "Every window lit":
 
 *⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
 
-> *"He gave us the war. Then it began to take."* When did they realize the man they followed was no longer the man they knew?
+> *"He gave us the war. Then it began to take."* When did they realise the man they followed was no longer the man they knew?
 
 **Tonight's question: The Seekers scattered four Stones to the far corners of the land, yet left the fifth at Highwall. Why keep it in the dead city?**
 
@@ -1856,7 +1856,7 @@ Clue found, "The old soot":
 
 *⚙ On a failed roll, the clue still comes, with: "You go over the same ground twice before you see it."*
 
-### The Campfire: The wall room (Six nights)
+### The Campfire: The wall room, six nights left
 
 *⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
 
@@ -2049,7 +2049,7 @@ Clue found, "Bowls never filled":
 
 *⚙ On a failed roll, the clue still comes, with: "By the time you find it, the fire is the only light left."*
 
-### The Campfire: The barracks under the wall (Five nights)
+### The Campfire: The barracks under the wall, five nights left
 
 *⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
 
@@ -2280,7 +2280,7 @@ Clue found, "Warm low down":
 
 *⚙ On a failed roll, the clue still comes, with: "It takes you until full dark, but you find it."*
 
-### The Campfire: The great square (Four nights)
+### The Campfire: The great square, four nights left
 
 *⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
 
@@ -2505,7 +2505,7 @@ Clue found, "Louder here":
 
 *⚙ On a failed roll, the clue still comes, with: "You almost give up. Then, at the last of the light, there it is."*
 
-### The Campfire: The hill behind the hall (Three nights)
+### The Campfire: The hill behind the hall, three nights left
 
 *⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
 
@@ -2716,7 +2716,7 @@ Clue found, "Cut in a hurry":
 
 *⚙ On a failed roll, the clue still comes, with: "You go over the same ground twice before you see it."*
 
-### The Campfire: The moon-tower (Two nights)
+### The Campfire: The moon-tower, two nights left
 
 *⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
 
@@ -2949,7 +2949,7 @@ Clue found, "Every post empty":
 
 *⚙ On a failed roll, the clue still comes, with: "By the time you find it, the fire is the only light left."*
 
-### The Campfire: The crack in the hill (One night)
+### The Campfire: The crack in the hill, one night left
 
 *⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
 

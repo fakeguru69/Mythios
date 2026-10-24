@@ -457,7 +457,7 @@ export default function App() {
     // The whole party first sits down together at the inn, at the end of Day 2.
     if (completedDays.includes('1-2')) set.add('whole-table');
     if ((liveStats.perfectRolls || 0) >= 1) set.add('perfect');
-    if (weeks.some((w) => claimedRewards.filter((k) => k.startsWith(`${w}-`) && k.endsWith(':press')).length >= 3)) set.add('never-enough');
+    if (weeks.some((w) => claimedRewards.filter((k) => k.startsWith(`${w}-`) && k.endsWith(':press')).length >= 2)) set.add('never-enough');
     if (claimedRewards.filter((k) => k.startsWith('cleared-attr:')).length >= 4) set.add('many-hands');
     if (has('down-to-thread')) set.add('down-to-thread');
     // "Lifeline" needs a friend's roll to follow, so it waits for real multiplayer.

@@ -40,8 +40,10 @@ const CLASS_DETAILS: Record<string, { role: string; weapon: string; icon: string
   Archer: { role: 'Long-range marksman & patient tracker', weapon: 'Longbow', icon: '🏹' },
 };
 
-const SUGGESTED_BIRTHPLACES = ['Ashcombe', 'Fenmark', 'Highwall', 'The Reeds', 'Oldford'];
-const SUGGESTED_HERITAGE = ['Grandmother Meira', 'Grandfather Corin', 'A carved horse', 'An iron signet'];
+// Suggestions only (24 Oct): no place, person or object from the story, so nobody is born in the story's villages or
+// names its people as their own (docs/design/rule-breaking-words-24oct.md, rows 1 to 4).
+const SUGGESTED_BIRTHPLACES = ['Oldford', 'Thornby', 'Brackwater', 'Kettlecross'];
+const SUGGESTED_HERITAGE = ['Grandmother Wenna', 'Grandfather Aldric', 'A bone-handled knife', 'An iron signet'];
 
 export default function SessionZero({
   partyId,
@@ -150,7 +152,7 @@ export default function SessionZero({
             Or choose a hill folk name:
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {['Kael', 'Ren', 'Vael', 'Bran', 'Sira', 'Rowan'].map((suggested) => (
+            {['Ren', 'Vael', 'Bran', 'Sira', 'Edda', 'Tobin'].map((suggested) => (
               <button
                 key={suggested}
                 type="button"
@@ -344,7 +346,7 @@ export default function SessionZero({
             className={input}
             maxLength={40}
             value={grandparent}
-            placeholder="e.g. Grandmother Meira, a carved horse..."
+            placeholder="e.g. Grandmother Wenna, an iron signet…"
             onChange={(e) => setGrandparent(e.target.value)}
           />
           <div className="flex flex-wrap gap-1.5 pt-0.5">
