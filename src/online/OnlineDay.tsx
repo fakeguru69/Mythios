@@ -300,7 +300,12 @@ export default function OnlineDay({
   const steps = chapter.script.steps;
   // A Gathering's result can make a weekday's Challenge harder (Week 6 Day 1: two harder after a lost roll-call).
   const harderIf = steps.find((st): st is Extract<ScriptStep, { t: 'challenge' }> => st.t === 'challenge')?.harderIf;
-  const harder = harderIf && (today.claims ?? []).includes(harderIf.key) === harderIf.has ? harderIf.by : 0;
+  // Roads taken today count at once ("2-2:took:0:2"); the server gives earlier days' through today.claims.
+  const claims = [
+    ...(today.claims ?? []),
+    ...Object.entries(mine.picks).flatMap(([id, opts]) => (opts.length ? [`${week}-${day}:took:${id}:${opts[0]}`] : [])),
+  ];
+  const harder = harderIf && claims.includes(harderIf.key) === harderIf.has ? harderIf.by : 0;
   const dc = chapter.meta.dc + harder;
   const challenge = mine.challenge;
   const press = mine.press;
@@ -313,7 +318,7 @@ export default function OnlineDay({
     if (c.on === 'challenge') return Boolean(challenge) && challenge!.pass === c.pass;
     if (c.on === 'press') return Boolean(press && !('left' in press && press.left) && (press as Roll).pass);
     if (c.on === 'fight') return fightDone && fightWon === c.won;
-    if (c.on === 'claim') return (today.claims ?? []).includes(c.key) === c.has;
+    if (c.on === 'claim') return claims.includes(c.key) === c.has;
     return false;
   };
   const strikeFirst = (rule: StrikeFirstRule): boolean => {

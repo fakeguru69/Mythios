@@ -1597,10 +1597,12 @@ export const StoryTabView: React.FC<StoryTabViewProps> = ({
                   key={oi}
                   label={fill(labels[oi])}
                   onClick={() => {
+                    // The road taken counts for later passages and Challenges, today and on later days ("2-2:took:0:2").
+                    if (!(choicePicks[step.id] || []).length) onClaimReward(`${dayKey}:took:${step.id}:${oi}`);
                     setChoicePicks((p) => ({ ...p, [step.id]: [...(p[step.id] || []), oi] }));
                     // A look that names one of the Challenge's two ways picks that way on the card.
                     const next = steps[i + 1];
-                    if (step.mode === 'flavor' && next?.t === 'challenge' && next.options.length === labels.length) {
+                    if ((step.mode === 'flavor' || step.mode === 'pick') && next?.t === 'challenge' && next.options.length === labels.length) {
                       setSelectedAttr(next.options[oi].attr);
                     }
                   }}

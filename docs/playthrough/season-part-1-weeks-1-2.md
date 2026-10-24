@@ -2349,15 +2349,51 @@ Clue found, "Deeper coming down":
 
 > It hangs by one nail. It was broken from outside, with a single push, by somebody who did not need to try twice.
 
+*⚙ Then the card "What this changed":*
+
+> You went to the latch yourself: one nail left, and one push from outside, by somebody who did not need to try twice.
+
+*⚙ This road's own find, "The bent nail" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> The last nail holding the mill's latch is bent flat into the wood, inward: one push from outside, by somebody who did not need to try again.
+
 *⚙ If you pick [THE LANE]:*
 
 > Ruts in, and ruts out, four nights old. One cart. It did not turn round in the yard. Somebody led the horse about by its head, so as not to make a sound.
+
+*⚙ Then the card "What this changed":*
+
+> You read the lane yourself: the horse walked beside the ruts, led by its head, all the way in and all the way out.
+
+*⚙ This road's own find, "The led horse" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> In the mill lane the horse's prints walk beside the ruts, never ahead of them: somebody led it by the head, in and out, so that it would make no sound.
 
 *⚙ If you pick [THE WHEEL'S FOOTING]:*
 
 > The stone under the wheel-housing is far older than the mill built on it. Worn almost smooth into its face is a shape you know: the one on the burned rubbing. The one at the Widow's Tooth.
 
+*⚙ Then the card "What this changed":*
+
+> You knelt at the old stone under the wheel, and the miller's wife came out to find your hands on it. The Challenge was one harder.
+
+*⚙ This road's own find, "The mark under the wheel" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Worn almost smooth into the old stone under the mill wheel is the mark from the burned rubbing, the same one cut into the Widow's Tooth.
+
+*⚙ If 2-2:took:0:0:*
+
 > Mei is still crouched in the lane. Dev has the rubbing held flat against the footing, and is not moving.
+
+*⚙ If 2-2:took:0:1:*
+
+> Mei is still at the door, turning the bent nail over and over between finger and thumb. Dev has the rubbing held flat against the footing, and is not moving.
+
+*⚙ If 2-2:took:0:2:*
+
+> Mei is still crouched in the lane. Dev is standing at the door with the broken latch in one hand, looking at the house, not at the latch.
+
+*⚙ Either way, every player reads this:*
 
 > A woman is standing in the mill door. She has been watching you since you came into the yard. There is flour worked deep into the creases of her hands: old flour, from before.
 >
@@ -2384,6 +2420,8 @@ Clue found, "Deeper coming down":
 > She will not say a word until she is sure of you, and she has no reason to be.
 
 *⚙ Pick one: Charm (get the rest of it gently), or Intellect (notice what she is not saying, and ask for exactly that). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: she stops talking, and it costs you the morning, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 2-2:took:0:2, the card is 1 harder, and says: **One harder.** She came out of her door to find your hands on the old stone under her house, and she has not yet decided what that means.*
 
 > When she speaks at last, it is to the yard, not to you.
 >
@@ -2587,7 +2625,39 @@ Clue found, "The cropped grass":
 
 - **Aim:** High on the slope there is a line where the bracken lies the wrong way. *(Apprentice and up:)* A path, seen from the side.
 
+> There are two ways to find where it went. The cart's own marks run along the open bank, where anyone on the slope above could watch you read them. Or there is the thorn, slow and wet and hidden, where somebody has been cutting a way and tying it back.
+
+*⚙ A choice: [READ THE WHEEL-MARKS] or [GO THROUGH THE THORN]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [READ THE WHEEL-MARKS]:*
+
+> You work along the bank bent double, in plain sight of the hill, reading scuffs on wet stone. At the grey slab the iron tyre has bitten pale into the rock, pulling to the left, the way it pulled at the ford.
+>
 > …
+
+*⚙ Then the card "What this changed":*
+
+> You read the wheel-marks along the open bank, so the Challenge asked for Craft. Somebody on the slope watched you do it, and tomorrow the shaft is one harder.
+
+*⚙ This road's own find, "The bite on the grey slab" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> At the grey slab upriver the iron tyre of the cart has bitten pale into the rock, pulling to the left, the way it pulled at the ford.
+
+*⚙ If you pick [GO THROUGH THE THORN]:*
+
+> You go in on your knees where the thorn was cut back and tied. It is slow, and it is wet, and nobody on the slope could see you if they tried. At the height of a boy's shoulder, a few threads of undyed wool are caught on a spine.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You went through the thorn, slow and hidden, so the Challenge asked for Agility, and nobody on the slope saw you.
+
+*⚙ This road's own find, "Wool on the thorn" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> In the cut and tied thorn above the river, at the height of a boy's shoulder, a few threads of undyed wool are caught on a spine.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: WHERE THE TRACKS STOP**
 
@@ -2801,13 +2871,47 @@ Clue found, "The full pail":
 
 - **Aim:** Straight down: a lamp, a patch of floor, and the edge of something that is not floor. *(Apprentice and up:)* A foot. Small, and bare.
 
+> There are two ways down that ladder. Their voices come up in a slow, steady beat, loud enough to cover a creak if you move with them. And on a peg driven into the timbering hangs a hooded coat, left there by somebody who went down warm and will want it again on the way up.
+
+*⚙ A choice: [GO DOWN UNDER THE VOICES] or [PUT ON THE HOODED COAT]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [GO DOWN UNDER THE VOICES]:*
+
+> You lie at the top and count until you have the beat of it: the same few words, said together, over and over, like people who mean to have them by heart. You move on the words, and you stop dead on the silences.
+>
 > …
+
+*⚙ Then the card "What this changed":*
+
+> You went down on the beat of their voices, so the Challenge asked for Agility.
+
+*⚙ This road's own find, "The beat of their words" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> At the top of the shaft you moved on the beat of their voices: the same few words, said together, over and over, like people who mean to have them by heart.
+
+*⚙ If you pick [PUT ON THE HOODED COAT]:*
+
+> It is cut for a big man, and it is heavy, and damp at the shoulders, and it smells of tallow and of somebody else. The hem is caked with the pale clay of the cart-lane. You pull the hood down over your face and put your foot on the first rung as if you had done it every night of your life.
+>
+> …
+
+*⚙ Then the card "What this changed":*
+
+> You went down in their hooded coat, so the Challenge asked for Charm. Somebody below will miss it, and the night at the lip is one harder.
+
+*⚙ This road's own find, "The coat on the peg" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> A hooded coat hung on a peg at the top of the shaft: cut for a big man, damp at the shoulders, its hem caked with the pale clay of the cart-lane.
+
+*⚙ Whatever you picked, every player reads this:*
 
 **CHALLENGE: DOWN THE SHAFT**
 
 > One ladder. Whatever is down there, you will see it for as long as you are not seen.
 
 *⚙ Pick one: Agility (go down without a sound), or Charm (go down as if you belong, past the one posted at its foot). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: you are seen from the top, and you see almost nothing, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 2-3:took:0:0, the card is 1 harder, and says: **One harder.** Somebody on the slope watched you read the wheel-marks along the open bank yesterday, and the one at the foot of the ladder is not alone today.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2969,11 +3073,27 @@ Clue found, "The chant ran on":
 
 > You quarter it until your legs give out. Bracken. Scree. A sheepfold, fallen in. There is no second door.
 
+*⚙ Then the card "What this changed":*
+
+> You walked the hill, so you saw him first.
+
+*⚙ This road's own find, "No second door" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> You quartered the whole hillside after dark: bracken, scree, a sheepfold fallen in. There is no second way into the hill.
+
 *⚙ If you pick [READ MEIRA'S PAGES]:*
 
 > By the last of the light, in a margin, pressed hard into the paper:
 >
 > *"Not one of these fragments names him. Neither does anything else I can find — every record of him scraped clean. Whoever he was, someone wanted him forgotten."*
+
+*⚙ Then the card "What this changed":*
+
+> You were at the lamp with her pages, so he saw you first.
+
+*⚙ This road's own find, "Meira's margin" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Pressed hard into a margin of Meira's pages: not one fragment names him, and every record of him has been scraped clean.
 
 > Mei comes back off the hill with a shake of the head. Arjun is holding a page under the lamp with one finger on the margin.
 
@@ -3193,6 +3313,8 @@ Clue found, "Faces turned in":
 > You cannot see them. You can hear them, and you can watch their light.
 
 *⚙ Pick one: Aim (count the shapes crossing the lamp, and place them), or Might (haul yourself up to the crack above the lamp, and look down into it). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: you know only that there are many, and that they are busy, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 2-4:took:0:1, the card is 1 harder, and says: **One harder.** Somebody below came up the ladder for a coat that was not on its peg, and since then the two at the foot of the shaft have kept their lamps turned up toward the lip.*
 
 *⚙ If you passed the Challenge:*
 
