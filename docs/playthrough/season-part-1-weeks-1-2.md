@@ -169,7 +169,7 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 *⚙ The day summary card:*
 
 - **THE FOREST ROAD** · Day 1
-- You earned: [gold] · your class Attribute [growth]
+- You earned: the day's gold · your class Attribute growth
 - You learned: nothing was taken. A list of four names was left for you, and the name of an inn.
 - You hold: the list · a half-burned charcoal rubbing
 - Fragment: 1 found, locked
@@ -492,7 +492,7 @@ Clue found, "The oilcloth":
 *⚙ The day summary card:*
 
 - **THE HOLLOW WAKE INN** · Day 2
-- You earned: [gold] · Intellect or Craft [growth]
+- You earned: the day's gold · Intellect or Craft growth
 - You learned: the list is **Meira's**. She has been missing three weeks. Her last readable page is about a child held near a rock called the Widow's Tooth.
 - You hold: Meira's satchel and notebook
 - Fragment: 2 found
@@ -727,7 +727,7 @@ Clue found, "The thumbed leaf":
 *⚙ The day summary card:*
 
 - **THE WIDOW'S TOOTH** · Day 3
-- You earned: [gold]
+- You earned: the day's gold
 - You learned: nobody is here. But **Meira made her rubbing at this rock**, and a child was kept here once.
 - You hold: a small carved horse
 - Fragment: 3 found
@@ -897,6 +897,8 @@ Clue found, "The notched stick":
 
 *⚙ Pick one: Agility (follow the fresh prints round the back lanes), or Charm (coax the neighbour at her half-open door into pointing). Roll d20 + that Attribute's tier bonus against DC 6: a Novice (+0) succeeds on 7+. Pass: +500g, and the Attribute grows. Fail: you search the wrong end of the village first, in full view, and −150g. An Attribute Relic adds +4.*
 
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [LOOK FOR FOOTPRINTS] → Agility; [KNOCK NEXT DOOR] → Charm.*
+
 *⚙ If you passed the Challenge:*
 
 > The prints are small and quick, and they double back twice. You do not follow them. You walk round the grain store the other way, sit down on the step in the thin sun, and wait.
@@ -1060,7 +1062,7 @@ Clue found, "The notched stick":
 *⚙ The day summary card:*
 
 - **FENMARK** · Day 4
-- You earned: [gold] · Agility or Charm [growth]
+- You earned: the day's gold · Agility or Charm growth
 - You can now afford: [what your gold now buys]
 - You learned: her name is **Tamsin**. Nine years old. Taken three nights ago by quiet men; one carries a curved, black-handled knife.
 - Fragments: 4 found
@@ -1345,7 +1347,7 @@ Clue found, "Past three doors":
 *⚙ The day summary card:*
 
 - **THE OLD CHARCOAL CAMP** · Day 5
-- You earned: [gold]
+- You earned: the day's gold
 - You learned: **it has happened before.** The same man took a boy from this country two winters ago, at this time of year. He is the child in Meira's notes.
 - Fragment: 5 found
 - Tomorrow: **the ford, on the old charcoal road north**
@@ -1619,7 +1621,7 @@ Clue found, "The worn bar":
 *⚙ The day summary card:*
 
 - **THE FORD** · Day 6
-- You earned: [gold] · Aim or Agility [growth]
+- You earned: the day's gold · Aim or Agility growth
 - You learned: she was carried into the river and the trail ends. **The six fragments are a map**, and it ends at the mark from Meira's rubbing.
 - *On a failure:* You missed something at the ford. Someone at the fire may have seen it.
 - You hold: the map
@@ -1842,7 +1844,7 @@ Clue found, "A second man":
 
 1. **GO OUT NOW**: flat on your belly, onto the boards, before anyone has your ankles
 2. **THE NEW PROP**: wrench the new pit-prop loose and lay it across the hole
-3. **STAY WHERE YOU ARE**: 
+3. **STAY WHERE YOU ARE**
 
 *⚙ If option 1 was picked:*
 
@@ -2001,7 +2003,7 @@ Clue found, "A second man":
 *⚙ The summary card:*
 
 - **THE MINE** · Gathering 1
-- You earned: [gold] · [growth, if you rolled]
+- You earned: the day's gold · [growth, if you rolled]
 - The party: Battle won · the drop: [Dev hauled out / Dev fell]
 - You learned: **Tamsin is alive.** Something was taken from that wall before you came. Her name is scratched beneath it, with three more.
 - Tomorrow: **three names, and somebody who knows which is next**
@@ -2237,7 +2239,7 @@ Clue found, "A second man":
 *⚙ The day summary card:*
 
 - **THE MILL ROAD** · Day 1
-- You earned: [gold] · Charm or Aim [growth]
+- You earned: the day's gold · Charm or Aim growth
 - You learned: the next name is **Corin**, the miller's boy. A cart with no lamps went up to the mill three nights ago and came back before dawn. It turned upriver. The same people who took Tamsin.
 - *On a failure:* You missed something on the mill road. Someone at the fire may have seen it.
 - Fragment: 1 found, locked
@@ -2397,15 +2399,15 @@ Clue found, "Deeper coming down":
 
 > Worn almost smooth into the old stone under the mill wheel is the mark from the burned rubbing, the same one cut into the Widow's Tooth.
 
-*⚙ If 2-2:took:0:0:*
+*⚙ If you took [THE LATCH] on Week 2, Day 2:*
 
 > Mei is still crouched in the lane. Dev has the rubbing held flat against the footing, and is not moving.
 
-*⚙ If 2-2:took:0:1:*
+*⚙ If you took [THE LANE] on Week 2, Day 2:*
 
 > Mei is still at the door, turning the bent nail over and over between finger and thumb. Dev has the rubbing held flat against the footing, and is not moving.
 
-*⚙ If 2-2:took:0:2:*
+*⚙ If you took [THE WHEEL'S FOOTING] on Week 2, Day 2:*
 
 > Mei is still crouched in the lane. Dev is standing at the door with the broken latch in one hand, looking at the house, not at the latch.
 
@@ -2435,7 +2437,7 @@ Clue found, "Deeper coming down":
 
 *⚙ Pick one: Charm (get the rest of it gently), or Intellect (notice what she is not saying, and ask for exactly that). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: she stops talking, and it costs you the morning, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 2-2:took:0:2, the card is 1 harder, and says: **One harder.** She came out of her door to find your hands on the old stone under her house, and she has not yet decided what that means.*
+*⚙ If you took [THE WHEEL'S FOOTING] on Week 2, Day 2, the card is 1 harder, and says: **One harder.** She came out of her door to find your hands on the old stone under her house, and she has not yet decided what that means.*
 
 > When she speaks at last, it is to the yard, not to you.
 >
@@ -2502,7 +2504,7 @@ Clue found, "Deeper coming down":
 *⚙ The day summary card:*
 
 - **THE MILL** · Day 2
-- You earned: [gold] · Charm or Intellect [growth]
+- You earned: the day's gold · Charm or Intellect growth
 - You learned: **Corin was asked for by name, and by the night he was born.** A big, quiet man took him four nights ago and did not hide his face. The mark from the rubbing is cut into the mill's footing.
 - Fragments: 2 found
 - Tomorrow: **upriver, on the cart's tracks**
@@ -2671,6 +2673,8 @@ Clue found, "The cropped grass":
 
 *⚙ Pick one: Craft (read the cart's own marks, and find where it left the bank), or Agility (slip through the thorn, by its gaps, across what looks like an old path). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: you find the path by walking up it, in plain view and making a great deal of noise, and −150g. An Attribute Relic adds +4.*
 
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [READ THE WHEEL-MARKS] → Craft; [GO THROUGH THE THORN] → Agility.*
+
 *⚙ If you passed the Challenge:*
 
 > You find it from above. You come down onto the path through the wet bracken, quietly, with the whole length of it laid out below you.
@@ -2742,7 +2746,7 @@ Clue found, "The cropped grass":
 *⚙ The day summary card:*
 
 - **UPRIVER** · Day 3
-- You earned: [gold] · Craft or Agility [growth]
+- You earned: the day's gold · Craft or Agility growth
 - You learned: the cart went onto **a hidden path into the hillside**, kept clear and guarded. A stranger died here trying to open an old stone lock, as old as the places your fragments lay. **It opened for you.**
 - Fragments: 3 found
 - Tomorrow: **further up, to wherever the path ends**
@@ -2909,7 +2913,9 @@ Clue found, "The full pail":
 
 *⚙ Pick one: Agility (go down without a sound), or Charm (go down as if you belong, past the one posted at its foot). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: you are seen from the top, and you see almost nothing, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 2-3:took:0:0, the card is 1 harder, and says: **One harder.** Somebody on the slope watched you read the wheel-marks along the open bank yesterday, and the one at the foot of the ladder is not alone today.*
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [GO DOWN UNDER THE VOICES] → Agility; [PUT ON THE HOODED COAT] → Charm.*
+
+*⚙ If you took [READ THE WHEEL-MARKS] on Week 2, Day 3, the card is 1 harder, and says: **One harder.** Somebody on the slope watched you read the wheel-marks along the open bank yesterday, and the one at the foot of the ladder is not alone today.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2956,7 +2962,7 @@ Clue found, "The full pail":
 *⚙ The day summary card:*
 
 - **THE SHAFT** · Day 4
-- You earned: [gold] · Agility or Charm [growth]
+- You earned: the day's gold · Agility or Charm growth
 - You learned: **Corin is alive.** He is held in a chamber cut into the hill, in a ring of lamps, by hooded figures who are making something ready. They know you are outside.
 - *On a pass:* there are more of them than of you, and his hands are not yet cut. There is still time.
 - *On a failure:* You missed something at the shaft. Someone at the fire may have seen it.
@@ -3168,7 +3174,7 @@ Clue found, "The chant ran on":
 *⚙ The day summary card:*
 
 - **THE HILLSIDE** · Day 5
-- You earned: [gold]
+- You earned: the day's gold
 - You learned: they wear **a small black circle**. One of them fought you without a word, ran, and signalled the hill. Meira could not find his name anywhere: *someone wanted him forgotten.*
 - You hold: **the black circle** · the horn button, matched to his cuff
 - Fragments: 5 found
@@ -3306,7 +3312,7 @@ Clue found, "Faces turned in":
 
 *⚙ Pick one: Aim (count the shapes crossing the lamp, and place them), or Might (haul yourself up to the crack above the lamp, and look down into it). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: you know only that there are many, and that they are busy, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 2-4:took:0:1, the card is 1 harder, and says: **One harder.** Somebody below came up the ladder for a coat that was not on its peg, and since then the two at the foot of the shaft have kept their lamps turned up toward the lip.*
+*⚙ If you took [PUT ON THE HOODED COAT] on Week 2, Day 4, the card is 1 harder, and says: **One harder.** Somebody below came up the ladder for a coat that was not on its peg, and since then the two at the foot of the shaft have kept their lamps turned up toward the lip.*
 
 *⚙ If you passed the Challenge:*
 
@@ -3395,7 +3401,7 @@ Clue found, "Faces turned in":
 *⚙ The day summary card:*
 
 - **THE OTHER WAY IN** · Day 6
-- You earned: [gold] · Aim or Might [growth]
+- You earned: the day's gold · Aim or Might growth
 - You learned: **the six fragments are a map again.** It shows an older room, deeper in the same hill, with a shaft of its own. You found its mouth. Nobody is guarding it. They are digging toward that room now.
 - *On a failure:* You missed something on the hill. Someone at the fire may have seen it.
 - You hold: the map · the black circle
@@ -3638,7 +3644,7 @@ Clue found, "Your own print":
 
 1. **TAKE THE LAMP TO THE PROPS**: see which timber is holding it, before anyone else has to
 2. **DOUSE THE LAMPS**: put out every light in the room but one
-3. **STAND FAST**: 
+3. **STAND FAST**
 
 *⚙ If option 1 was picked:*
 
@@ -3874,7 +3880,7 @@ Clue found, "Your own print":
 *⚙ The summary card:*
 
 - **UNDER THE MILL HILL** · Gathering 2
-- You earned: [gold] · [growth, if you rolled] · [Match: 2 of 2]
+- You earned: the day's gold · [growth, if you rolled] · [Match: 2 of 2]
 - The party: Battle won · the room [held / lost]
 - You learned: **they are the Order of the Dark Moon, and they pray to a king the world cut out of its own story.** He saved it with his blood on the night the moon went dark. The names on the mine wall were never victims: they are offerings, written down for years, and the word beside them is *given*. Corin reached you alive, and already cut. And you are marked too.
 - Tomorrow: **a girl who was told she was going somewhere warm**

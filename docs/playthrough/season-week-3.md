@@ -1,0 +1,1825 @@
+# Tales of the Dark Moon: the season as a player plays it, Week 3 of 6
+
+Week 3, Day 1 to Day 7, in playing order. Generated from the game's own data by `scripts/gen-playthrough.ts`. **Do not publish: it holds the season's story.** The same text as the two-week files, one week at a time.
+
+**How to read it.** Quoted text (`>`) is exactly what the player reads. Lines in *⚙ italics* describe the gameplay: what the screen offers, the rule, the numbers. Where the story branches, every branch is given, each labelled. The party is a sample of four: you, Mei, Dev and Arjun (the game fills in the real friends' names and the party's size).
+
+# Week 3: The Fire Stone
+
+*⚙ This week: weekday DC 7; weekday enemy DEF 24, ATK 17; the Gathering calls on Agility. The week's question at the fire: "What do they need Wren for?"*
+
+## Week 3, Day 1
+
+### The road so far
+
+*⚙ Opens the day in your thread: yesterday's recap.*
+
+> Down the old shaft and a stair worn soft with age, you came to the oldest room under the mill hill, where robed figures chanted round a stone table with Corin on it. You fought them, and Corin is alive, but his palm was already cut and bound in white linen: whatever they needed from him, they had taken. Behind the table was another socket, cut with the same care and empty, the dust at its rim barely disturbed, and the burned rubbing fitted it. Beside the table lay their scripture, a small black book with a black circle on its first page, the same circle as the scrap from the scout's coat. It tells of a war that ate the world, and of one king on the last wall who would not kneel, and who gave his own blood on the night the moon went dark. The world he saved took back his name. His faithful remember him, and give the marked blood in his name. In a niche by a lamp lay a ledger of children's names, places and dates, and its newest page held the four names from the mine wall. The marked are those born on a night the moon went dark, as Corin was. Meira wrote your birth nights beside your names, and they are dark-moon nights too: you are marked, every one of you. Garrick read the ledger, tucked it inside his coat, and said, “This hand's been keeping books like this for years. This isn't new, and it isn't finished. Two places. Two children.” Then Corin told you about a girl held down there with him, taken away not long before you came. She said they told her she was going somewhere warm.
+
+### Your thread: the chapter, "Somewhere warm"
+
+*⚙ Played alone, in your own thread. Today's question: a girl was held here too, and moved "somewhere warm". Who is she, and where is that?*
+
+> *Somewhere warm.*
+>
+> The words are still hanging in the lamplight. Corin is watching you, to see what you will do with them. He holds his bandaged hand in his lap, palm up, the way somebody told him to keep it.
+
+*⚙ A choice: [KNEEL DOWN TO HIM] or [SIT ON THE STEP BESIDE HIM]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [KNEEL DOWN TO HIM]:*
+
+> You drop to one knee on the stone floor so your eyes are level with his bandaged hand.
+>
+> He thinks hard, the way children do when they know it matters.
+>
+> *"Wren."*
+>
+> *"She said home was always warm. The ground's warm, and the hills are all black, and everything smells like a fire that went out a long time ago. She missed it."*
+>
+> A pause.
+>
+> *"She said they told her she was going home first."*
+
+*⚙ Then the card "What this changed":*
+
+> You knelt level with Corin's bandaged hand — he remembered Wren's name and the warm black hills of home.
+
+*⚙ This road's own find, "Level with the bandage" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> When you knelt on the stone floor level with Corin's bandaged hand, he steadied himself and remembered the girl's name — Wren — and the warm black hills she missed.
+
+*⚙ If you pick [SIT ON THE STEP BESIDE HIM]:*
+
+> You sit down on the low mill-step beside him so nobody is standing over him while he speaks.
+>
+> He thinks hard, the way children do when they know it matters.
+>
+> *"Wren."*
+>
+> *"She said home was always warm. The ground's warm, and the hills are all black, and everything smells like a fire that went out a long time ago. She missed it."*
+>
+> A pause.
+>
+> *"She said they told her she was going home first."*
+
+*⚙ Then the card "What this changed":*
+
+> You sat beside Corin on the low step — with nobody standing over him, he told you about Wren and her warm hills.
+
+*⚙ This road's own find, "Beside him on the mill-step" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Sitting on the low step beside Corin so nobody stood over him, you heard how Wren talked of the warm ground and black hills of home.
+
+*⚙ Whatever you picked, every player reads this:*
+
+> The ledger is opened to its newest page, and held flat under the lamp. Four names. Beside the third, in that same small, careful hand: *Wren — Ashcombe.*
+>
+> In Meira's satchel the same name turns up in her own neat hand, on her list of children she was worried for. Beside it is a knot of her shorthand. Garrick tilts the page to the light and reads the knot off without a pause.
+>
+> *"Ashcombe's a shepherds' village on the edge of the burned country,"* he says. *"A long day west. And above it she's marked a place. The Blackglass."*
+
+*⚙ A choice: [ASK ABOUT THE FOURTH NAME] or [LOOK AT THE FOURTH ENTRY]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [ASK ABOUT THE FOURTH NAME]:*
+
+> Beside the fourth name is a place far to the north.
+>
+> You ask Garrick whether anyone should ride north to warn them now, and he lays two fingers flat on the open ledger leaf.
+>
+> *"One road at a time. The girl's is the one with tracks on it."*
+
+*⚙ Then the card "What this changed":*
+
+> You asked about warning the fourth child in the north — Garrick laid two fingers on the page to keep you on Wren's trail.
+
+*⚙ This road's own find, "Two fingers on the ledger" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> When you asked whether someone should ride north to warn the fourth name in the book, Garrick laid two fingers flat on the open page and said Wren's road was the one with tracks on it.
+
+*⚙ If you pick [LOOK AT THE FOURTH ENTRY]:*
+
+> Beside the fourth name is a place far to the north.
+>
+> Your thumb traces the ink of the fourth entry — drier than the third, written before they ever came down to the mill. Garrick watches your hand and shakes his head once.
+>
+> *"One road at a time. The girl's is the one with tracks on it."*
+
+*⚙ Then the card "What this changed":*
+
+> You traced the drier ink of the fourth entry — Garrick shook his head and pointed you to Wren's fresh tracks.
+
+*⚙ This road's own find, "The drier ink at the fourth name" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Under the lamp, the ink of the fourth entry in the ledger was drier than the third — written before they ever came down to the mill.
+
+*⚙ Whatever you picked, every player reads this:*
+
+> The night wears down. By the grey before dawn you are all out at the mouth of the old shaft, with Corin half asleep against somebody's shoulder and the hillside wet and colourless round you.
+>
+> Then something comes up out of the hill behind you.
+>
+> The dog from the path. It is off its chain now, and a length of bright new links drags from its collar through the wet grass. It does not bark. It has been taught not to.
+
+**FIGHT: THE DOG OFF ITS CHAIN**
+
+> Somebody let it loose, and sent it up after you.
+
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+
+> It comes at you twice, and the second time something goes out of it. It backs away to the length of its trailing chain and lies down in the wet grass with its sides heaving, between you and the shoulder of the hill.
+>
+> Up on the shoulder, for one breath, a man is standing against the grey: hood back, quite still, watching. Then he turns west, and is gone.
+
+*⚙ If you won the fight:*
+
+> It does not get up again until you are well past it. Its eyes follow you all the way.
+
+*⚙ If you lost the fight:*
+
+> You are left sitting in that wet grass, one sleeve torn from cuff to elbow by its teeth, waiting for the hillside to stop tilting.
+
+*⚙ Either way, every player reads this:*
+
+> Below the shaft, in the wet grass, the tracks are plain to anyone who looks.
+
+> One cart, lightly loaded, two hours old at most. Two walkers beside it. And a third set of prints, small, stepping where it is told.
+>
+> They turn west.
+
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
+
+- **Might:** The cart is riding light. *(Apprentice and up:)* They are hauling nothing but her.
+
+- **Agility:** The small prints keep exactly to the walkers' pace. *(Apprentice and up:)* She is not being dragged. She is doing as she is told.
+
+- **Intellect:** They left by the road, in the open, at a walk. *(Apprentice and up:)* People who think they are hunted do not travel like this.
+
+- **Charm:** Corin has not let go of somebody's sleeve since you came out of the hill. *(Apprentice and up:)* He is afraid you will not be there when he looks.
+
+- **Craft:** The left wheel pulls. *(Apprentice and up:)* The same cart, again.
+
+- **Aim:** West, without a turn in it as far as you can see. *(Apprentice and up:)* They know exactly where they are going.
+
+> On the walk down, riding on Dev's shoulders, Corin says your names over to himself, one by one, the way you would tie a knot to keep it.
+
+> You hear the mill before you see it: the slow knock of the wheel, still going round over nothing.
+>
+> By mid-morning you have carried him down the valley to the mill. His mother sees him from the yard before you are halfway across the field, and the sound she makes is one none of you will forget.
+>
+> She does not thank you. She cannot yet. She holds him, with the white linen on his palm pressed between them, and looks at each of you over his head, one after another, as if she is learning your faces by heart.
+>
+> Corin tells her your names. He has not forgotten one.
+
+> Where the west road leaves the valley, a wayside shrine stands older than the road: a stub of carved stone with the carving worn off. Somebody has left a sprig of heather at its foot, long since gone brown.
+
+*⚙ The fragment moment:*
+
+> Cold as a coin left out in frost.
+>
+> **A locked Seeker Fragment has been added to your Chest.**
+
+*⚙ The Pull (why tomorrow cannot wait):*
+
+> They are not hiding her. They told her she was going home.
+>
+> **Why would anyone take a stolen child back to where she was born? Ashcombe: a long day west.**
+
+*⚙ The day summary card:*
+
+- **SOMEWHERE WARM** · Day 1
+- You earned: the day's gold
+- You learned: her name is **Wren**. "Somewhere warm" is home: **Ashcombe**, on the edge of the burned country. The ledger, Meira's list and the cart tracks all say so. Corin is home.
+- Fragment: 1 found, locked
+- Tomorrow: **Ashcombe, a long day west**
+
+### The Seeker Fragment (in your Seeker Chest)
+
+*⚙ Waiting in every friend's Seeker Chest from the morning; solved whenever you like, usually after the chapter or at the fire.*
+
+*⚙ Found at: The wayside shrine. Two words to unscramble: [L G S N E E I P] and [U R S O].*
+
+> First they stopped bleeding when cut. Then they stopped _____. Then they stopped being _____.
+
+*⚙ Solved:*
+
+> First they stopped bleeding when cut. Then they stopped sleeping. Then they stopped being ours.
+
+### The last light (Fan Out)
+
+*⚙ After the chapter, before the fire: follow ONE lead, or go straight to the fire. One quick Challenge on the week's DC, no gold, no growth. The clue always comes back; a pass also gives the first letter of one of today's fragment words. Friends who pick the same lead share one board card.*
+
+**Lead: Corin, on the walk down**: Charm (walk beside him and let him talk), or Aim (look him over in the morning light)
+
+Clue found, "The grey wool":
+
+> Corin has a child's woollen mitten tucked in his belt that is not his. The wool is rough and grey, and it smells of sheep.
+
+**Lead: where the cart stood, below the shaft**: Craft (read what the cart left in the grass), or Intellect (work out what they loaded)
+
+Clue found, "The fresh turn":
+
+> Where the cart stood below the shaft, the ruts cut clean into the turf, turning west onto the old road without a moment's pause.
+
+**Lead: the shoulder of the hill where he stood**: Agility (go up the shoulder after him), or Aim (pick out where he stood, from the shaft mouth)
+
+Clue found, "Facing west":
+
+> At the top of the shoulder the ground is scuffed where he stood a while, facing west. Then his prints go on, the same way the cart went.
+
+*⚙ On a failed roll, the clue still comes, with: "It takes you until full dark, but you find it."*
+
+### The Campfire: Somewhere warm
+
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
+
+*⚙ Garrick opens:*
+
+> They told a stolen child she was going home. Eat while you work out whether that was kindness.
+
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
+
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
+
+*⚙ "The fresh turn" with "Facing west" (this one answers tonight's question):*
+
+> The cart took the west road below the shaft without a moment's check, and the man on the shoulder stood only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born.
+
+*⚙ When "3-1-1" is laid, Garrick adds:*
+
+> [the friend at the fire best at Charm], a grey woollen mitten in Corin's belt that isn't his. Why leave one mitten with a boy she barely knew?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"Then they stopped being ours."* When a weapon stops belonging to the hands that made it, who does it belong to?
+
+**Tonight's question: Corin said they promised Wren she was going home first. Why tell a stolen child that?**
+
+> Did the cart make ready for a long journey?
+
+*⚙ Garrick:*
+
+> [the friend at the fire best at Intellect], a child's mitten tucked in Corin's belt, smelling of sheep. Who gives a mitten to another child in the dark?
+
+*⚙ Then he recalls:*
+
+> Corin was held a morning's walk from his own mill. Wren was told she was going home first.
+
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
+
+- A: A lie to keep a child quiet and docile on the road.
+
+- B: The truth: her home in the burned country is where their work needed her.
+
+- Neither.
+
+*⚙ The case so far (the week's question, "What do they need Wren for?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
+
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
+
+## Week 3, Day 2
+
+### Morning, in the party chat (5:00am)
+
+*⚙ Garrick posts one line for the party:*
+
+> A long day west today, out to where the green hills give up and the burned country begins. There's honey for the oats this morning; I found a jar at the bottom of the pack. Take a second spoon. The jar's deep, and the road is long.
+
+### The road so far
+
+*⚙ Opens the day in your thread: yesterday's recap.*
+
+> Corin remembered the girl who was held with him. Her name was Wren, her home was always warm, and they told her she was going home first. The ledger and Meira's list both named her village, Ashcombe, on the edge of the burned country, a long day west. Before dawn the dog from the path came up out of the hill after you, off its chain, while a hooded man watched from the shoulder of the hill and turned west, and below the shaft a cart and a child's small prints turned west. You carried Corin home to the mill, and he told his mother every one of your names. Why would anyone take a stolen child back to where she was born?
+
+### Your thread: the chapter, "Ashcombe"
+
+*⚙ Played alone, in your own thread. Today's question: did Wren come home?*
+
+> On the second morning the west road climbs, and the grass along it grows thin and brown. Somewhere on the way the wind begins to smell of old smoke, though nothing is burning anywhere you can see.
+>
+> Ashcombe sits where the green hills give out and the black ones begin: low stone houses, roofs weighted with slabs against the wind. The ground is warm underfoot, like a hearthstone the morning after. The springs run hot, and steam lifts off the trough by the first house.
+>
+> Every door in the village shuts as you come up the street. Strangers took a child from here two weeks ago. You are strangers.
+>
+> One door is the last to shut. Behind it, nobody moves away.
+
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
+
+- **Might:** Every roof here is held down with stones a man could barely lift. *(Apprentice and up:)* These are people used to holding on to things.
+
+- **Agility:** A curtain moves in every house but one. *(Apprentice and up:)* In that one, somebody is standing right behind the door.
+
+- **Intellect:** Two weeks since a child was taken, and nobody is out searching. *(Apprentice and up:)* They were told something that made searching seem useless.
+
+- **Charm:** The last door to shut, shut slowest. *(Apprentice and up:)* She wanted a longer look at you.
+
+- **Craft:** The well-rope is new, and the bucket is old. *(Apprentice and up:)* Somebody here still mends things. This is not a village that has given up.
+
+- **Aim:** At the end of the street the green stops, as if it had been cut with a knife. *(Apprentice and up:)* After that, everything is black.
+
+> You stand in front of it, close enough to hear somebody breathing on the other side.
+
+**CHALLENGE: THE LAST DOOR**
+
+> She is on the other side of it, and she has not walked away.
+
+*⚙ Pick one: Charm (talk to her through the door until she opens it), or Intellect (know what will open it: the ledger's page, and her daughter's name in a stranger's hand). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: the door stays shut, and you lose the day's light waiting, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If the party lost Gathering 2's United Effort, the card is 2 harder, and says: **Two harder.** Since the night under the hill, somebody has been down this street ahead of you with a fresh warning, and nobody in Ashcombe is quick to open a door.*
+
+*⚙ If you passed the Challenge:*
+
+> A bolt draws back. The door opens a hand's width and stays there while she looks at you, one face at a time.
+>
+> Then it opens the rest of the way, and she stands back to let you in. The house smells of peat, and of bread that nobody has eaten.
+
+*⚙ If you failed the Challenge:*
+
+> The door stays shut. The light goes off the street, and the shutters stay closed all down it.
+>
+> But at dusk she comes out to your fire herself, with a shawl over her head, because nobody else in the world is looking for her daughter. You never see past her door.
+
+*⚙ Either way, every player reads this:*
+
+*⚙ A choice: [WHO TOOK HER?] or [WHY HER?] or [WHAT DID THEY SAY?]. One option is shown at a time (never side by side, Fake Guru 18 Oct); each opens the next until all have been seen.*
+
+*⚙ If you pick [WHO TOOK HER?]:*
+
+> *"Two of them. Grey coats, good boots. Polite. They asked for her by name, and they knew the night she was born."*
+
+*⚙ If you pick [WHY HER?]:*
+
+> She looks at the ground. *"The night the moon went out. Here, a baby born on a night like that is given a chip of black glass off the hill, to keep the dark off. The old women pressed one into her fist before she'd even cried."*
+>
+> She almost smiles. *"She never lost it. She's picked up every chip she's found since. Her pockets rattle with them."*
+>
+> The smile goes. *"It didn't keep them off."*
+>
+> You know that night. Every one of you was born on one like it.
+
+*⚙ If you pick [WHAT DID THEY SAY?]:*
+
+> *"He said they'd no wish to keep her. That they'd only need her the once."*
+>
+> She says it the way you would repeat something you cannot make sense of.
+>
+> *"He looked me in the eye when he said it. I've been lied to by better men than him. That wasn't what this was."*
+
+*⚙ If you passed the Challenge:*
+
+> On the sill by the door, chips of black glass are set out in a row, smallest to largest, the way a child sets things out.
+>
+> There is dust on the sill. There is none on the chips.
+
+*⚙ Either way, every player reads this:*
+
+> At the well, a boy is selling polished chips of black glass off a board. He has been watching you the whole time. When the grown-ups have gone in he holds one out, and does not ask for the coin.
+>
+> Then, in a whisper, with one eye on the doors, he tells you what he saw. He was up after dark last night, where he should not have been. A cart came through the village without lamps. It did not stop. At the foot of the black road it was left standing empty, and whoever was in it went on up, on horses, toward the Blackglass.
+>
+> Nobody has told her mother.
+
+> If Wren was in that cart, she passed within a mile of her own door.
+
+> Up the street her mother's door is shut again. The boy has gone back to his board, and does not look at you. What he gave you, he gave you and nobody else.
+
+*⚙ A choice: [TELL HER MOTHER] or [KEEP THE BOY'S SECRET]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [TELL HER MOTHER]:*
+
+> You go back up the street and knock, and this time the door opens at once. You tell her all of it: the cart without lamps, the empty bed of it at the foot of the black road, the horses going up.
+>
+> She does not weep. She stands very straight in her doorway, and her voice carries down the street, as she means it to.
+>
+> *"Then she's near. She'll be leaving them something. She always leaves something."*
+>
+> All along the street, shutters that were closed are open a crack.
+
+*⚙ Then the card "What this changed":*
+
+> You told Wren's mother what the boy saw. The whole street heard her, and the talk will go up the black road before you.
+
+*⚙ This road's own find, "Her mother's answer" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Told that a cart without lamps went up the black road last night, Wren's mother did not weep. "Then she's near. She'll be leaving them something. She always leaves something."
+
+*⚙ If you pick [KEEP THE BOY'S SECRET]:*
+
+> You say nothing. You walk back past her door with it, and her lamp is lit behind the shutter, and she is in there alone with a daughter she thinks is two weeks gone.
+>
+> At the well the boy lifts his eyes once from his board, and then lowers them. Nobody else in Ashcombe saw him speak to you.
+
+*⚙ Then the card "What this changed":*
+
+> You kept the boy's secret. Her mother still does not know, and nobody in Ashcombe is talking about you tonight.
+
+*⚙ This road's own find, "The cart without lamps" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> The boy at the well whispered it: a cart came through Ashcombe last night without lamps, was left empty at the foot of the black road, and whoever was in it went on up on horses.
+
+*⚙ Whatever you picked, every player reads this:*
+
+> Garrick knows the black road. *"Where it forks, the shepherds take the left,"* he says, and when he catches somebody looking at him, he nods up at the black hills. *"My family's been in these hills longer than the roads have."*
+
+> At the edge of the village the pound wall, where the shepherds pen their flocks, is built on older stones than any house in Ashcombe: huge, square-cut, set without mortar. They are as warm as bread. All but one gap.
+
+*⚙ The fragment moment:*
+
+> The only cold thing in Ashcombe. Cold enough to ache the fingers.
+>
+> **A locked Seeker Fragment has been added to your Chest.**
+
+> Above the last roof the black road goes up into the hills. As the evening comes on, the warm ground under the village ticks softly, cooling.
+
+*⚙ The Pull (why tomorrow cannot wait):*
+
+> **What does anyone need a child for, once? The Blackglass: half a day up the black road, the place Meira marked.**
+
+*⚙ The day summary card:*
+
+- **ASHCOMBE** · Day 2
+- You earned: the day's gold · Charm or Intellect growth
+- You learned: **Wren did not come home.** Two polite men in grey coats took her two weeks ago: *"they'd only need her the once."* Last night she was carried past her own village in the dark, and up the black road.
+- *On a failure:* You missed something in Ashcombe. Someone at the fire may have seen it.
+- You hold: a chip of black glass, from the boy at the well
+- Fragments: 2 found
+- Tomorrow: **the Blackglass, up the black road**
+
+### The Seeker Fragment (in your Seeker Chest)
+
+*⚙ Waiting in every friend's Seeker Chest from the morning; solved whenever you like, usually after the chapter or at the fire.*
+
+*⚙ Found at: The pound wall. Two words to unscramble: [D H L E] and [T D O O S].*
+
+> We _____ his wall for him. Remember that, when you hear where else we _____.
+
+*⚙ Solved:*
+
+> We held his wall for him. Remember that, when you hear where else we stood.
+
+### The last light (Fan Out)
+
+*⚙ After the chapter, before the fire: follow ONE lead, or go straight to the fire. One quick Challenge on the week's DC, no gold, no growth. The clue always comes back; a pass also gives the first letter of one of today's fragment words. Friends who pick the same lead share one board card.*
+
+**Lead: the well, and the board of chips**: Charm (crouch by the board and wait), or Aim (watch the well from across the street)
+
+Clue found, "The boy at the well":
+
+> At the well a boy holds his chip out low and quick, then shoves it back into his shirt before you have looked at it properly.
+
+**Lead: the empty cart at the foot of the black road**: Craft (climb up and look over the boards), or Intellect (go over the cart end to end)
+
+Clue found, "The made bed":
+
+> In the bed of the empty cart a sheepskin is spread over the boards, and a blanket is folded at one end like a pillow.
+
+**Lead: the street, where every door shut**: Aim (walk the street with your eyes on the ground), or Craft (pick out what is caught between the stones)
+
+Clue found, "Sacking on the stones":
+
+> Caught between the stones down the middle of the street are scraps of sacking. It is the kind men tie over hooves to quiet them on a night road.
+
+*⚙ On a failed roll, the clue still comes, with: "You almost give up. Then, at the last of the light, there it is."*
+
+### The Campfire: Ashcombe
+
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: quiet.*
+
+*⚙ Quiet night (silence):*
+
+> Garrick sits by the hearth with his boots off, watching the embers in silence.
+
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
+
+*⚙ When "3-2-3" is laid, Garrick adds:*
+
+> [the friend at the fire best at Craft], sacking tied over the hooves to quiet them on the stones. If they came in peace, who were they hiding the horses from?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"Remember that, when you hear where else we stood."* What else did they have to stand and watch before the end?
+
+**Tonight's question: The men in grey coats spoke politely and promised she'd only be needed once. Was that courtesy genuine?**
+
+*⚙ Garrick:*
+
+> [the friend at the fire best at Charm], chips of black glass set in a row on her windowsill, dusted around with care. Why leave them behind?
+
+*⚙ Then he recalls:*
+
+> Tamsin and Corin each came home with one cut palm, bound clean. Wren's taker said they'd only need her the once.
+
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
+
+- A: Yes: they take what the rite requires, and let the children go.
+
+- B: No: a polite kidnapper is only a kidnapper who hates a scene.
+
+- Neither.
+
+*⚙ The case so far (the week's question, "What do they need Wren for?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
+
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
+
+## Week 3, Day 3
+
+### Morning, in the party chat (5:00am)
+
+*⚙ Garrick posts one line for the party:*
+
+> The ground here keeps its warmth all night, like a hearth banked for the morning. Best bed I've had in a week, and nobody charged me for it. Fill your flasks at the hot spring before we go. The black road is a dry one, and the water here comes out ready for tea.
+
+### The road so far
+
+*⚙ Opens the day in your thread: yesterday's recap.*
+
+> In Ashcombe, Wren's mother told you that two polite men in grey coats had taken her two weeks ago. They asked for her by name, and they knew the night she was born, a night the moon went out. One of them said they would only need her the once, and he looked her in the eye when he said it. The night before you came, a cart with no lamps carried Wren past her own door and up the black road. Garrick knew that road. “My family's been in these hills longer than the roads have.” Half a day up it lies the Blackglass, the place Meira marked. What does anyone need a child for, once?
+
+### Your thread: the chapter, "The Blackglass"
+
+*⚙ Played alone, in your own thread. Today's question: why the Blackglass? What is up there?*
+
+> Half a day up the black road, where the shepherds take the left fork, the hill opens out and you see it.
+>
+> The Blackglass is a whole shoulder of hillside where the rock once ran like wax, and cooled: smooth, black, faintly rippled, as if a wave of stone had frozen halfway down the slope.
+>
+> Nothing grows on it. The wind slides off it without a sound. The shepherds do not walk their flocks across it, and do not say why.
+>
+> Meira's page points to its far edge.
+
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
+
+- **Might:** The glass is warm through the soles of your boots. *(Apprentice and up:)* The heat is coming from underneath.
+
+- **Agility:** It is rippled, like sand under shallow water. *(Apprentice and up:)* The ripples all run one way. There is a grain to it.
+
+- **Intellect:** No lichen. No moss. Not one seed. *(Apprentice and up:)* Whatever burned this did more than burn it.
+
+- **Charm:** The shepherds never told you not to cross. *(Apprentice and up:)* They only stopped talking when you asked.
+
+- **Craft:** Glass like this takes the heat of a furnace. *(Apprentice and up:)* A whole hillside of it, all at once.
+
+- **Aim:** On all that smooth black there is one mark that is not a ripple. *(Apprentice and up:)* On the far side, just above the crack.
+
+> There is no way round it. Meira's mark lies on the far side, a long walk off over black glass.
+
+**CHALLENGE: CROSS THE GLASS**
+
+> It is slick as ice, and as warm as skin.
+
+*⚙ Pick one: Agility (straight over, and fast), or Aim (pick out the safe line from the edge, and take it slowly). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: you go down hard, and slide, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If you took [TELL HER MOTHER] on Week 3, Day 2, the card is 1 harder, and says: **One harder.** Ashcombe was up half the night talking about the strangers and the cart, and somebody carried the talk up the black road before you.*
+
+*⚙ If you passed the Challenge:*
+
+> You reach the far side clean, without once putting a hand to the glass. All the way over, a dark shape walks upside down beneath your boots: your own, in the black.
+
+*⚙ If you failed the Challenge:*
+
+> You go down hard, and slide twenty feet before a ripple in the glass catches you. For a moment you lie still, with your cheek on the warm glass and your heart going. Bruised, shaken, and there all the same.
+
+*⚙ Either way, every player reads this:*
+
+> At the far edge the glass takes its toll. Where it has cracked, its edges are as sharp as knives, and you come off it with one boot split open along the sole.
+>
+> Garrick crosses last, the slow way, testing every step with the toe of his boot before he trusts it.
+>
+> *"My knees have opinions about this glass. None of them good."*
+>
+> He lowers himself onto the first rock he comes to, and rubs them.
+
+> Worn into the glass is a shape you know.
+>
+> Beside it, set into the rock as if the glass had cooled around it, is a housing of carved stone: old work, cut with the same care as the lock the dead man could not open, on the path upriver.
+
+*⚙ The fragment moment:*
+
+> It gives at the first touch. The glass round it holds the sun's warmth; the housing is a cold spot in it, and what is inside is colder still.
+>
+> **A locked Seeker Fragment has been added to your Chest.**
+
+> Three children. Three marks.
+>
+> Tamsin, at Fenmark, under the Widow's Tooth. Corin, at the mill. Wren, at Ashcombe, under the Blackglass.
+>
+> The places Meira marked and the children in the ledger are one list.
+
+> It goes into Meira's notes, under her last entry, in your own hand. Your letters look clumsy under hers.
+
+> Hoof-scratches cross the glass a few yards from the mark, and run on, deeper into the burned country.
+>
+> The riders did not even slow.
+
+**[PRESS ON]: READ THE SCRATCHES**
+
+*⚙ Offered only after a pass: follow them to the edge of the glass. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+
+*⚙ If you pressed on and passed:*
+
+> Where the horses came off the glass the scratches bunch and deepen, and you can count them.
+>
+> Six horses. One of them is carrying double, and the second rider weighs almost nothing.
+
+*⚙ Either way, every player reads this:*
+
+> You camp in the lee of the glass, where the ground is warm enough to sleep on.
+>
+> That evening, on Meira's plain page about the Blackglass, there is a line you all know, copied out in her hand: the first fragment any of you ever opened, *"Five fell…"* And squeezed into the margin beside it:
+>
+> *"Five, the fragment says. Every other record I can find says four. I cannot find a fifth anywhere, and I have looked. A poet's count, perhaps — a number that sounded better than the truth."*
+
+> In the morning your split boot is whole again: the sole stitched back on, tight and neat, with waxed thread, while you slept. Garrick is winding what is left of the thread back onto its bobbin.
+
+*⚙ A choice: [THANK HIM] or [HOLD UP THE MENDED BOOT]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [THANK HIM]:*
+
+> You thank him quietly before the others are awake. He doesn't look up from the waxed thread.
+>
+> *"Needed doing."*
+>
+> He tucks the bobbin away inside his coat, and that is the end of it.
+
+*⚙ Then the card "What this changed":*
+
+> You thanked him before the others woke — he tucked his waxed thread away without looking up.
+
+*⚙ This road's own find, "The waxed thread bobbin" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Thanked in the quiet morning for stitching your split boot sole while you slept, Garrick said only that it needed doing and tucked the waxed thread bobbin inside his coat.
+
+*⚙ If you pick [HOLD UP THE MENDED BOOT]:*
+
+> You lift the boot and turn the neat cobbler's stitch to the morning light where he can see you testing it.
+>
+> *"Needed doing."*
+>
+> He tucks the bobbin away inside his coat, and that is the end of it.
+
+*⚙ Then the card "What this changed":*
+
+> You tested the neat cobbler's stitch in the morning light — he saw it hold and tucked his bobbin away.
+
+*⚙ This road's own find, "The cobbler's stitch" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Held to the morning light beside the Blackglass, the split sole of your boot showed a tight, practiced cobbler's stitch laid in waxed thread while you slept.
+
+*⚙ Whatever you picked, every player reads this:*
+
+*⚙ The Pull (why tomorrow cannot wait):*
+
+> **They rode straight past the one thing Meira marked. So what are they riding to? On, into the black ridges.**
+
+*⚙ The day summary card:*
+
+- **THE BLACKGLASS** · Day 3
+- You earned: the day's gold · Agility or Aim growth
+- You learned: **three children, three marks.** Every child was taken from beside one of the places Meira marked. The riders passed this one without slowing.
+- Fragments: 3 found
+- Tomorrow: **the black ridges, on the riders' trail**
+
+### The Seeker Fragment (in your Seeker Chest)
+
+*⚙ Waiting in every friend's Seeker Chest from the morning; solved whenever you like, usually after the chapter or at the fire.*
+
+*⚙ Found at: The Blackglass. Two words to unscramble: [D L I E] and [E C P I R].*
+
+> He never _____ to us. He only never told us the _____.
+
+*⚙ Solved:*
+
+> He never lied to us. He only never told us the price.
+
+### The last light (Fan Out)
+
+*⚙ After the chapter, before the fire: follow ONE lead, or go straight to the fire. One quick Challenge on the week's DC, no gold, no growth. The clue always comes back; a pass also gives the first letter of one of today's fragment words. Friends who pick the same lead share one board card.*
+
+**Lead: where the shepherds' path meets the glass**: Intellect (look at where the path gives out), or Agility (walk the edge of the glass)
+
+Clue found, "The row of stones":
+
+> Where the shepherds' path meets the glass, a row of old stones lies across it, sunk deep in the turf. The path stops dead at the row.
+
+**Lead: the housing beside the mark**: Craft (run a finger round its carving), or Intellect (look it over before you step away)
+
+Clue found, "Only your hand":
+
+> The glass round the housing is dull with fine dust. The only marks in it are the ones your own hand just made.
+
+**Lead: the far edge, where the glass is cracked**: Aim (look back the way you came), or Might (climb onto the highest lip of glass)
+
+Clue found, "The view down":
+
+> From the far edge you can see all the way down the black road to Ashcombe's roofs, and the well in the middle of them.
+
+*⚙ On a failed roll, the clue still comes, with: "You go over the same ground twice before you see it."*
+
+### The Campfire: The Blackglass
+
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
+
+*⚙ Garrick opens:*
+
+> Mind your hands on that glass, all of you.
+
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
+
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
+
+*⚙ "The row of stones" with "Only your hand" (this one answers tonight's question):*
+
+> The old shepherds' path stops dead at the sunken stones, and the dust on the housing was untouched until your own fingers marked it. Nobody has laid a hand on this mark in years, and the riders went past without once looking down. Either it is not what they want, or it is not a door they can open.
+
+*⚙ When "3-3-3" is laid, Garrick adds:*
+
+> [the friend at the fire best at Aim], from the lip of the glass you can see straight down to Ashcombe's well. Who was watching whom from this ridge?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"He only never told us the price."* Did he hide the price to spare them, or because they would have refused him?
+
+**Tonight's question: Three children live beside three Seeker marks. Why did the riders carry Wren straight past the Blackglass?**
+
+> Has anyone touched this housing since the road was made?
+
+*⚙ Garrick:*
+
+> [the friend at the fire best at Intellect], Meira's note in the margin: 'Five, the fragment says. Every other record says four.' Why would a scholar write down a number she doubted?
+
+*⚙ Then he recalls:*
+
+> At the Widow's Tooth a man lay in the bracken watching the rock. Here the riders went past this one without slowing.
+
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
+
+- A: They cannot open these ancient housings; they need an older entrance.
+
+- B: The marks are not their goal; they are only the guide-stones to the place they are making for.
+
+- Neither.
+
+*⚙ The case so far (the week's question, "What do they need Wren for?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
+
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
+
+## Week 3, Day 4
+
+### Morning, in the party chat (5:00am)
+
+*⚙ Garrick posts one line for the party:*
+
+> There's ash on the air this morning, fine as flour and none of it fit for bread. It settles on your sleeves and in the creases of your hands. Tie a cloth over your mouth before we set off. It makes the walking easier, and the conversation is none the worse for it.
+
+### The road so far
+
+*⚙ Opens the day in your thread: yesterday's recap.*
+
+> You crossed the Blackglass, a hillside where the rock once ran like wax, and split a boot on its far edge. Beside a shape you knew, an old stone housing opened at your touch. Tamsin, Corin and Wren were each taken from beside a place Meira marked, and you wrote it into her notebook: three children, three marks, one list. That evening you found her note in the margin beside the first fragment's “Five fell”: “Five, the fragment says. Every other record I can find says four. I cannot find a fifth anywhere, and I have looked.” By morning Garrick had mended your boot, and the riders had passed the mark without slowing. What are they riding to, out in the black ridges?
+
+### Your thread: the chapter, "The black ridges"
+
+*⚙ Played alone, in your own thread. Today's question: is she still alive?*
+
+> The burned country is ridge after ridge of black rock, under a sky that looks paler for it. The soil between the ridges is ash-grey, and crunches like old snow. Dead trees stand bone-white, still upright after nobody knows how long.
+>
+> No bird sings out here. By noon your own footsteps are the loudest thing for miles.
+>
+> You are walking point when you stop, and crouch.
+>
+> In one of the hoof-scratches lies a chip of black glass, worn smooth by a thumb.
+
+> You turn it over in your palm. It is no bigger than a fingernail: the kind of thing a child carries for luck.
+>
+> Fifty paces on, there is another.
+>
+> She is dropping them.
+
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
+
+- **Might:** The dead trees are still standing. *(Apprentice and up:)* Nothing here has rotted. Nothing has lived here to rot them.
+
+- **Agility:** Each chip lies where a horse slowed for a rise. *(Apprentice and up:)* She picks her moments.
+
+- **Intellect:** She has a pocketful, and a long way to go. *(Apprentice and up:)* She is spacing them. She is counting.
+
+- **Charm:** The men who have her have not noticed a child's hand opening and closing. *(Apprentice and up:)* She has made herself very easy to overlook.
+
+- **Craft:** That ridge ahead has a corner on it. *(Apprentice and up:)* Rock does not weather square.
+
+- **Aim:** A hundred yards off the riders' line there is a shadow that is too straight. *(Apprentice and up:)* Nothing out here is straight unless somebody made it so.
+
+> It is a doorway, cut into the side of a ridge: squared, deliberate, half buried under a fall of rock. The riders went by a hundred yards away, and never turned their heads.
+
+*⚙ A choice: [KEEP TO THE TRAIL] or [GO TO THE DOORWAY]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [KEEP TO THE TRAIL]:*
+
+> You stay on the hoof-scratches for another mile, and find a third chip, and bring it back. Mei and Arjun are already at the fall of rock, with their sleeves rolled.
+
+*⚙ Then the card "What this changed":*
+
+> You stayed on the hoof-scratches another mile — you found the third carved chip yourself before rejoining the doorway.
+
+*⚙ This road's own find, "The third chip on the trail" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Following the hoof-scratches a mile past the buried doorway, you found a third twist of shaved wood dropped where the riders never looked back.
+
+*⚙ If you pick [GO TO THE DOORWAY]:*
+
+> You go to the fall of rock with the others and stand looking at it. Dev keeps on along the trail, and comes back within the hour with a third chip in hand.
+
+*⚙ Then the card "What this changed":*
+
+> You went straight to the buried doorway — you had the fall of rock sized up by the time Dev brought back the third chip.
+
+*⚙ This road's own find, "The squared lintel under the fall" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Standing at the ridge doorway while Dev followed the hoof-scratches ahead, you saw that the buried lintel was squared by hand long before the rockfall covered it.
+
+*⚙ Whatever you picked, every player reads this:*
+
+**CHALLENGE: THE BURIED DOORWAY**
+
+> One wrong stone, and the rest of the fall comes with it.
+
+*⚙ Pick one: Craft (work out which stones can come away), or Might (shift the biggest of them, and trust the rest to hold). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: half the fall comes down, and −150g. An Attribute Relic adds +4.*
+
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [KEEP TO THE TRAIL] → Craft; [GO TO THE DOORWAY] → Might.*
+
+*⚙ If you passed the Challenge:*
+
+> Stone by stone the fall comes away, and what is left above it holds. A thin trickle of grit runs down, and stops. The way opens cleanly.
+
+*⚙ If you failed the Challenge:*
+
+> Half the fall comes down with a roar and a choking cloud of black dust. When it clears, the doorway is open, and you are all the same colour.
+
+*⚙ Either way, every player reads this:*
+
+> Inside is a room cut from the ridge. Old soot blackens its ceiling, from fires that went out centuries ago. Cut into the walls at sleeping height, facing each other across the floor, is a row of niches, each just long enough for a person to lie in. The air in here is cool, and smells of nothing at all.
+>
+> For a moment nobody goes any further in.
+>
+> Whoever wrote your fragments slept here, walking this same country, a long time ago.
+>
+> In a crack in the nearest niche is a single die, carved from bone, its spots worn almost smooth by somebody's fingers.
+>
+> They had long nights here too.
+>
+> Between the niches, at chest height, is a housing.
+
+*⚙ The fragment moment:*
+
+> Its face slides back with a low grate of stone. The ridge has been warm under your hand all day. The cold that comes out of the housing is older than the soot on the ceiling.
+>
+> **A locked Seeker Fragment has been added to your Chest.**
+
+> Nobody has been in here for a very long time. And the riders passed a hundred yards away, and never knew.
+
+> At dusk there is smoke, from a hut in a fold of the ridges to the north-east.
+
+> That night you sleep where they slept, and build your fire in their doorway against the cold. Garrick pours out the last of the day's tea, one more cup than there are people, and sets the extra one down at the empty place.
+>
+> Your own fire, in the doorway, shows just as plainly as theirs did.
+
+*⚙ The Pull (why tomorrow cannot wait):*
+
+> **She is alive, and she is thinking. The hut, at first light.**
+
+*⚙ The day summary card:*
+
+- **THE BLACK RIDGES** · Day 4
+- You earned: the day's gold · Craft or Might growth
+- You learned: **Wren is alive.** She is dropping her glass chips for whoever comes after, and the men who have her have not noticed. And the people who wrote your fragments once slept in a room the riders rode straight past. They had long nights too.
+- You hold: three of Wren's chips
+- Fragments: 4 found
+- Tomorrow: **the shepherd's hut, at first light**
+
+### The Seeker Fragment (in your Seeker Chest)
+
+*⚙ Waiting in every friend's Seeker Chest from the morning; solved whenever you like, usually after the chapter or at the fire.*
+
+*⚙ Found at: The black-ridge niche. Two words to unscramble: [D H I] and [O C E L D K].*
+
+> What we _____, we _____ with what we are.
+
+*⚙ Solved:*
+
+> What we hid, we locked with what we are.
+
+### The last light (Fan Out)
+
+*⚙ After the chapter, before the fire: follow ONE lead, or go straight to the fire. One quick Challenge on the week's DC, no gold, no growth. The clue always comes back; a pass also gives the first letter of one of today's fragment words. Friends who pick the same lead share one board card.*
+
+**Lead: the rises along the riders' trail**: Aim (look back down the trail from the last rise), or Agility (run the trail back to the first chip)
+
+Clue found, "On the bare rock":
+
+> Each chip lay on bare rock at the top of a rise, never down in the ash where it would sink. Coming up behind, you see each one glint before you reach it.
+
+**Lead: the bone-white trees along the trail**: Intellect (set each chip beside what stood near it), or Aim (look round from where each one lay)
+
+Clue found, "A tree at each":
+
+> Each chip lay a few paces from a dead tree, the tallest one in sight. Stand at one tree, and you can see the next.
+
+**Lead: the three chips in your hand**: Craft (turn each one over in the light), or Intellect (lay them out side by side)
+
+Clue found, "Scratched on the back":
+
+> Turn the chips over. One has a single short scratch on its back, one has two, and one has three.
+
+*⚙ On a failed roll, the clue still comes, with: "By the time you find it, the fire is the only light left."*
+
+### The Campfire: The black ridges
+
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
+
+*⚙ A cup night:*
+
+> Garrick pours one extra tin cup and sets it at the empty place at the edge of the firelight without a word.
+
+*⚙ Garrick opens:*
+
+> She's leaving chips on the trail. Clever girl.
+
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
+
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
+
+*⚙ "On the bare rock" with "Scratched on the back" (this one answers tonight's question):*
+
+> Each chip was set on high bare rock where the starlight catches it, and the backs are scored one, two and three. That is not a frightened child letting things fall. She is laying a line on purpose, right under their noses, and nobody has stopped her.
+
+*⚙ When "3-4-2" is laid, Garrick adds:*
+
+> [the friend at the fire best at Aim], every chip dropped beside the tallest dead tree in sight, each visible from the last. How did a child on a horse sight a line like that?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"We locked with what we are."* What could "what we are" mean, if not stone or iron?
+
+**Tonight's question: Wren is dropping glass chips from the saddle of six horses. Have the riders truly not noticed?**
+
+> Did she drop the chips in haste or with care?
+
+*⚙ Garrick:*
+
+> [the friend at the fire best at Craft], each glass chip set on high bare rock beside the tallest dead tree, and scratched on the back in order. Why number a trail unless she expects us to read it?
+
+*⚙ Then he recalls:*
+
+> Tamsin wasn't asleep; she was counting. Wren is dropping her chips, one by one, on their trail.
+
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
+
+- A: They believe a small child is helpless and don't watch her hands.
+
+- B: They see the chips, but know the trail ends where no one can follow.
+
+- Neither.
+
+*⚙ The case so far (the week's question, "What do they need Wren for?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
+
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
+
+## Week 3, Day 5
+
+### Morning, in the party chat (5:00am)
+
+*⚙ Garrick posts one line for the party:*
+
+> Up before the light, all of you, quiet as you can. I've wrapped bread and a little cheese for the walk, so nobody has to stop to eat, and nobody can say they went hungry. Boots on, laces tight. The ridges are loose underfoot in the dark.
+
+### The road so far
+
+*⚙ Opens the day in your thread: yesterday's recap.*
+
+> In the black ridges you found a chip of black glass in a hoof-scratch, and another fifty paces on. Wren is dropping them, and the men who have her have not noticed. A hundred yards off the riders' line, a buried doorway opened on a room cut from the ridge, where whoever wrote your fragments once slept. A bone die lay in one of its niches, and a fragment waited in a housing between them. At dusk you saw smoke from a hut to the north-east, and that night your own fire in the old doorway showed just as plainly. She is alive, and she is thinking. The hut, at first light.
+
+### Your thread: the chapter, "The shepherd's hut"
+
+*⚙ Played alone, in your own thread. Today's question: is she in the hut?*
+
+> First light finds you on the last ridge above it. You can hear the spring before you see it: the first running water since Ashcombe.
+>
+> In a fold of the ridges a spring runs out of the black rock, and round it the world remembers how to be green: grass, a stand of trees, and a low stone hut with a sod roof.
+>
+> There are two ways down to it.
+
+*⚙ A choice: [THE RIDERS' LINE] or [WREN'S LINE]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [THE RIDERS' LINE]:*
+
+> The hoof-scratches go the long way, round the head of the fold. You follow them in, in the open. Dev takes the goat-track that her chips mark, and comes down it with five more in hand.
+
+*⚙ Then the card "What this changed":*
+
+> You took the riders' open line round the fold. Where their horses slowed for the rise, one of them had dropped something worth keeping: an Agility Relic. But the grey coat on the ridge saw you coming, and strikes first.
+
+*⚙ This road's own find, "Hoof-scratches round the fold" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> The riders' line went the long way round the head of the fold in plain view of the ridge where the grey coat had been left to watch.
+
+*⚙ The careful reading of this fork also gives a Agility Relic (at most one road a week does).*
+
+*⚙ If you pick [WREN'S LINE]:*
+
+> Her chips mark something shorter: a goat-track straight down through the rocks, which nobody on a horse could take. You find five more of them on the way. She walked this part.
+
+*⚙ Then the card "What this changed":*
+
+> You followed Wren's chips down the goat-track, and came upon the grey coat unseen: you strike first.
+
+*⚙ This road's own find, "Five chips on the goat-track" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Down the steep goat-track where no horse could go, five more chips of black glass marked the path Wren walked on her own feet.
+
+*⚙ Whatever you picked, every player reads this:*
+
+> On the ridge above the hut a grey coat stands up from among the rocks, where he was left behind to watch.
+>
+> He comes down to meet you, and he takes his time about it.
+
+**FIGHT: THE GREY COAT ON THE RIDGE**
+
+> Polite, and in good boots.
+
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WREN'S LINE] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+
+*⚙ If you strike first:*
+
+> You came by her track: you are on him before he has seen you.
+
+*⚙ If the enemy strikes first:*
+
+> You came by the open line: he has been watching you for some time.
+
+*⚙ Either way, every player reads this:*
+
+> He goes back up the way he came, without a word, onto the bare black rock, and the rock takes no prints. By the time you reach the top of the rise there is nothing on the ridge but the wind.
+
+*⚙ If you won the fight:*
+
+> He goes without his hat. It is a good hat. Inside the band somebody has stitched two letters, very small, the way a mother would.
+
+*⚙ If you lost the fight:*
+
+> He never once hurried, and he never once let you close. Your knuckles are skinned raw on the black rock, and he did not lose so much as his hat.
+
+*⚙ Either way, every player reads this:*
+
+> The hut is empty.
+>
+> The door stands open. A thread of smoke is still going up from the roof-hole into the morning.
+
+*⚙ A choice: [LOW ON THE DOORFRAME] or [THE BEAM OVER THE PALLET] or [THE FIRE]. One option is shown at a time (never side by side, Fake Guru 18 Oct); each opens the next until all have been seen.*
+
+*⚙ If you pick [LOW ON THE DOORFRAME]:*
+
+> Scratched fresh into the wood, at a child's height, with something small and sharp: **WREN.**
+>
+> The letters are small and pressed hard, and each one has been gone over twice. You run your thumb down them. The wood is still pale in the cuts.
+
+*⚙ If you pick [THE FIRE]:*
+
+> A pot is still on it, and catching. A tin cup lies on its side where it was dropped. There is a blanket, folded with care, and beside it a second one, thrown down.
+>
+> They were here within the hour. And they left at a run.
+
+*⚙ If you pick [THE BEAM OVER THE PALLET]:*
+
+> Cut deep and neat into the old beam over the pallet, in a grown hand, dark with years of smoke:
+>
+> *Until the throne rise whole.*
+>
+> The words that ended the Order's scripture under the mill hill. The words they chanted over Corin while the knife was out. Whoever sleeps here has said them every night for a long time.
+
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
+
+- **Might:** The door was not pulled shut behind them. It was left swinging. *(Apprentice and up:)* They did not stop to close it.
+
+- **Agility:** By the spring, the grass is still lifting where it was trodden. *(Apprentice and up:)* Not long. Not long at all.
+
+- **Intellect:** A folded blanket and a dropped cup, in the same room. *(Apprentice and up:)* Somebody careful, who stopped being careful all at once.
+
+- **Charm:** The pallet is by the fire: the warm place. *(Apprentice and up:)* They gave her the best bed in the house.
+
+- **Craft:** The sod roof has been patched in three different years. *(Apprentice and up:)* This hut is kept. Somebody comes back to it.
+
+- **Aim:** High on the black rock, a scuff of pale dust where a boot turned. *(Apprentice and up:)* Then nothing.
+
+> Until today, these people have never once hurried.
+
+> From the doorway you can see straight back across the ridges to the one you slept under last night.
+>
+> They saw your fire.
+
+> Garrick crouches by the hearth and lays his palm flat over the ashes. *"They're always a step ahead of us."*
+
+> The hut is newer than what it stands on. Under the hearthstone the footing is older, bigger stonework. Set into it:
+
+*⚙ The fragment moment:*
+
+> The fire's heat is still in the stone above. What is inside is as cold as well-water.
+>
+> **A locked Seeker Fragment has been added to your Chest.**
+
+*⚙ The Pull (why tomorrow cannot wait):*
+
+> **A step, now, and no more. If they could see you, can you see them? The cairn on the highest ridge, before the light goes.**
+
+*⚙ The day summary card:*
+
+- **THE SHEPHERD'S HUT** · Day 5
+- You earned: the day's gold
+- You learned: she was here **within the hour**, and **they left at a run**. Her name is scratched in the doorframe in her own hand. Over her bed, cut long ago: *Until the throne rise whole.*
+- You hold: eight of Wren's chips
+- Fragments: 5 found
+- Tomorrow: **the cairn, before the light goes**
+
+### The Seeker Fragment (in your Seeker Chest)
+
+*⚙ Waiting in every friend's Seeker Chest from the morning; solved whenever you like, usually after the chapter or at the fire.*
+
+*⚙ Found at: The shepherd's hearth. Two words to unscramble: [L L S I D E B O N O] and [R F A E].*
+
+> _____ outlast kingdoms. That is why kingdoms _____ them.
+
+*⚙ Solved:*
+
+> Bloodlines outlast kingdoms. That is why kingdoms fear them.
+
+### The last light (Fan Out)
+
+*⚙ After the chapter, before the fire: follow ONE lead, or go straight to the fire. One quick Challenge on the week's DC, no gold, no growth. The clue always comes back; a pass also gives the first letter of one of today's fragment words. Friends who pick the same lead share one board card.*
+
+**Lead: low on the doorframe**: Craft (run a thumbnail along the letters), or Intellect (look at how each letter was made)
+
+Clue found, "Cut twice":
+
+> Each stroke of the name has been cut twice, the second pass deeper than the first.
+
+**Lead: the spring below the hut**: Agility (get down to the water fast), or Aim (look over the ground by the spring)
+
+Clue found, "The dropped skin":
+
+> By the spring a water skin lies in the grass, half full. Its stopper is a pace away.
+
+**Lead: the wall beside the pallet**: Charm (sit on the pallet and look round), or Intellect (look at what is kept by the bed)
+
+Clue found, "The gap in the row":
+
+> Along the wall by the pallet, small things are set out in a row: a twist of grey wool, a white pebble, a hen's feather. At one end there is a gap, and the dust there is clean.
+
+*⚙ On a failed roll, the clue still comes, with: "It takes you until full dark, but you find it."*
+
+### The Campfire: The shepherd's hut
+
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
+
+*⚙ Garrick opens:*
+
+> They ran this time, and left their supper on the fire. Sit down and get your breath. They'll be needing theirs.
+
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
+
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
+
+*⚙ "The dropped skin" with "The gap in the row" (this one answers tonight's question):*
+
+> By the spring a water skin lies half full where it was dropped; inside, by the pallet, one keepsake is gone from its row, and the dust where it lay is clean. She had time to take one thing. The hurry began outside.
+
+*⚙ When "3-5-1" is laid, Garrick adds:*
+
+> [the friend at the fire best at Craft], each letter of her name cut twice into the doorframe. How long was she left alone in that room with a blade?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"That is why kingdoms fear them."* Why would a kingdom fear a quiet line of families after the war was won?
+
+**Tonight's question: They gave Wren the warm bed by the hearth, yet left at a run this morning, with the pot still on the fire. What made them run?**
+
+> How quickly did they depart?
+
+*⚙ Garrick:*
+
+> [the friend at the fire best at Might], cut deep into the beam over her bed: 'Until the throne rise whole.' Who carves a prayer over a stolen child's pillow?
+
+*⚙ Then he recalls:*
+
+> At the mine someone took the time to bind Tamsin's hand in clean linen. Here someone folded one blanket with care, and threw the other down.
+
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
+
+- A: Fear: our fire on the ridge showed them they were being hunted.
+
+- B: The hour: their waiting was over, and wherever they are taking her, it had to be now.
+
+- Neither.
+
+*⚙ The case so far (the week's question, "What do they need Wren for?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
+
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
+
+## Week 3, Day 6
+
+### Morning, in the party chat (5:00am)
+
+*⚙ Garrick posts one line for the party:*
+
+> The highest ridge is a long climb, and the cairn on top is further than it looks from here. Short steps and steady breath. Stop when you need to, and drink when you stop. I walk at the back today. Somebody has to admire the view.
+
+### The road so far
+
+*⚙ Opens the day in your thread: yesterday's recap.*
+
+> Five more of Wren's chips led you down to a shepherd's hut beside a spring. A grey coat left on watch came down at you, then fled over bare rock that takes no prints. The hut was empty. WREN was scratched fresh into the doorframe at a child's height, and cut long ago into the beam over her bed were the Order's words, *Until the throne rise whole.* They had been there within the hour and left at a run, because from that doorway they could see your fire. “They're always a step ahead of us,” Garrick said. Now it is a step and no more. The cairn on the highest ridge, before the light goes.
+
+### Your thread: the chapter, "The cairn"
+
+*⚙ Played alone, in your own thread. Today's question: where have they taken her?*
+
+> All afternoon the cairn has been in sight: a dark knuckle of piled stones far off on the skyline, that never seems to come any nearer. Every ridge you cross shows you another between you and it. The shadows are long now, and reaching.
+>
+> The cairn stands on the highest ridge in the burned country, and the light is going.
+
+*⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
+
+- **Might:** The lowest stones of that cairn are as big as sheep. *(Apprentice and up:)* Nobody carried those up there for a landmark.
+
+- **Agility:** The wind is rising as the light goes. *(Apprentice and up:)* In an hour that ridge will be no place to stand.
+
+- **Intellect:** The Blackglass, the buried room and the hut lie in a line. *(Apprentice and up:)* A line points somewhere.
+
+- **Charm:** Nobody has said her name all day. *(Apprentice and up:)* There are eight of her chips among you.
+
+- **Craft:** One hill out there is too round. *(Apprentice and up:)* The others were worn down. That one was melted.
+
+- **Aim:** Over one hill, and only one, the air is moving like the air over a forge. *(Apprentice and up:)* Something under that hill is still hot.
+
+> If you are going to reach it before dark, it has to be now.
+
+**CHALLENGE: THE CLIMB**
+
+> There is an hour of light, and more than an hour of ridge.
+
+*⚙ Pick one: Might (straight up the face), or Agility (along the knife-edge, where it is shorter and worse). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: you get there in the dark, and see nothing but what you carry, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If you passed the Challenge:*
+
+> You come up beside the cairn with the sun still on the ridges, and the whole burned country is spread out under you: the Blackglass shining dully to the west, the green fold of the hut far below.
+>
+> And one hill unlike all the others. Round, and black, with a crack across its crown, where the air above it shimmers as if the hill were breathing.
+
+*⚙ If you failed the Challenge:*
+
+> The last of the ridge you climb by feel, with the wind pulling at your coat and the rock still warm under your hands.
+>
+> It is full dark when you reach the cairn. There is nothing to see from it but black on black, and the stars.
+
+*⚙ Either way, every player reads this:*
+
+> The last fragment is at the cairn's foot: not hidden, only wedged between the lowest stones, where a careless boot would miss it.
+
+*⚙ The fragment moment:*
+
+> **A locked Seeker Fragment has been added to your Chest.**
+>
+> That is six.
+
+> They settle, as they have twice before. The wind worries at their edges, and they do not lift. A map, old and exact, with a ridgeline drawn along its top.
+
+*⚙ If you passed the Challenge:*
+
+> You turn it until the drawn ridges sit on the real ones. They fit. And the place the map ends is the round hill with the crack in its crown. You were looking at it before the map told you.
+
+*⚙ If you failed the Challenge:*
+
+> You turn it until the drawn ridges sit on the black shapes against the stars. They fit. The place the map ends is a round hill you can only just make out, with a notch in its crown.
+
+*⚙ Either way, every player reads this:*
+
+> *"The Kiln,"* Garrick says. *"That's the shepherds' name for it."*
+
+> In through the crack. Down a way cut long ago. To a room beneath the hill.
+
+> Mei came up the last of the ridge at your side. Whoever is still on the slope below is too far down to see what you hold.
+
+*⚙ A choice: [READ IT OUT] or [LET Mei READ IT]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [READ IT OUT]:*
+
+> You have to raise your voice over the wind, and you give it one turn at a time: the crack, the cut way, the room below.
+
+*⚙ Then the card "What this changed":*
+
+> You raised your voice over the ridge wind — the gale carried every turn of the way down the black slope.
+
+*⚙ This road's own find, "Words carried down the ridge" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Raising your voice over the wind at the top of the Kiln ridge, you felt the gale take every word of the crack, the cut way, and the room below straight down the dark slope.
+
+*⚙ If you pick [LET Mei READ IT]:*
+
+> Mei takes it from you, turns away from the wind to shield it, and reads it out in the steady voice of someone who has decided not to be cold.
+
+*⚙ Then the card "What this changed":*
+
+> You let Mei shield the map from the wind and read — watching the dark plain below, you saw the single lamp first.
+
+*⚙ This road's own find, "Shielded from the ridge wind" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> While Mei stood in the wind, reading the map twice for the ones on the slope below, you had your eyes on the black ground where a single lamp began to move toward the Kiln.
+
+*⚙ Whatever you picked, every player reads this:*
+
+> It is said aloud, twice, for the ones on the slope below. The wind takes every word of it down the ridge.
+
+> The cold comes up fast once the sun is gone. Garrick builds the fire up, and gives whoever is shivering hardest the warm side of it.
+
+> Not an hour after full dark, far below: a single lamp, moving across the black ground toward the Kiln.
+>
+> It reaches the foot of the hill. It climbs. And it goes out.
+>
+> Not blown out. Gone in.
+
+*⚙ The Pull (why tomorrow cannot wait):*
+
+> **Whatever happens under that hill has started. Into the Kiln, tonight.**
+
+*⚙ The day summary card:*
+
+- **THE CAIRN** · Day 6
+- You earned: the day's gold · Might or Agility growth
+- You learned: **the Kiln.** A round black hill that breathes warm air through a crack in its crown. The map goes in through that crack, to a room beneath. A lamp has just gone in ahead of you.
+- *On a failure:* You missed something at the cairn. Someone at the fire may have seen it.
+- You hold: the map · eight of Wren's chips
+- Fragments: 6 of 6 · the map is whole
+- Tomorrow: **THE GATHERING** · down through the Kiln's crown, together
+
+### The Seeker Fragment (in your Seeker Chest)
+
+*⚙ Waiting in every friend's Seeker Chest from the morning; solved whenever you like, usually after the chapter or at the fire.*
+
+*⚙ Found at: The cairn's foot. Two words to unscramble: [R E V G A] and [O L B O D].*
+
+> We never dug him a _____. When we are gone, our _____ will have to hold him.
+
+*⚙ Solved:*
+
+> We never dug him a grave. When we are gone, our blood will have to hold him.
+
+### The last light (Fan Out)
+
+*⚙ After the chapter, before the fire: follow ONE lead, or go straight to the fire. One quick Challenge on the week's DC, no gold, no growth. The clue always comes back; a pass also gives the first letter of one of today's fragment words. Friends who pick the same lead share one board card.*
+
+**Lead: the foot of the round hill**: Aim (look down at the foot of the hill), or Intellect (go over every shape below the crown)
+
+Clue found, "No horses":
+
+> Not one horse is tethered at the foot of the Kiln.
+
+**Lead: the crack across its crown**: Aim (watch the crown after the lamp goes in), or Intellect (watch the air over the crack)
+
+Clue found, "Smoke from the crack":
+
+> Soon after the lamp goes in, thin pale smoke starts to rise from the crack. By daylight there was only shimmering air.
+
+**Lead: the knife-edge below the cairn**: Agility (go a little way back along the edge), or Might (test the stones of the face)
+
+Clue found, "No way down in the dark":
+
+> Now the light has gone, the knife-edge below the cairn is a black line with nothing either side. The face beside it drops straight to loose scree.
+
+*⚙ On a failed roll, the clue still comes, with: "You almost give up. Then, at the last of the light, there it is."*
+
+### The Campfire: The cairn
+
+*⚙ The fire opens only after you finish the day's chapter. It is one chat under your finished day, in the same thread: first "The light is going" (one more look at the last light, or sit by the fire), then a line of who is here, "Around the fire tonight" (what each friend did today, good news only), tonight's question, then one stream in time order (Garrick's stored lines, the friends' messages, clues laid on the table as cards with Agree and Doubt, "changed sides", clicks, words found, the fragment card), and a text box at the foot with a "+" to lay a clue or show your fragment.*
+
+*⚙ Garrick is at the fire. Everything he says here is stored text (no AI at the fire); named in the chat, he answers from stored lines. A line he has said is never rewritten. Tone tonight: wry.*
+
+*⚙ Garrick opens:*
+
+> Fire's built up. Sit by it before you decide anything.
+
+*⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
+
+*⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
+
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
+
+*⚙ "No horses" with "Smoke from the crack" (this one answers tonight's question):*
+
+> No horses wait at the foot of the Kiln, and soon after the lamp went in, thin pale smoke began to rise from the crack. Whoever carried that lamp did not go in to raise an alarm. They went in to light something.
+
+*⚙ When "3-6-3" is laid, Garrick adds:*
+
+> [the friend at the fire best at Agility], loose scree on both sides of the knife-edge now the light has gone. How many times has that lamp climbed this ridge in the dark?
+
+*⚙ Today's fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:*
+
+> *"We never dug him a grave."* Why leave a man they loved without a grave?
+
+**Tonight's question: An hour after we read the map into the wind, a single lamp climbed the Kiln and went inside. Who carried it?**
+
+> Are the riders still inside the hill?
+
+*⚙ Garrick:*
+
+> [the friend at the fire best at Agility], one lamp went into that hill an hour after we spoke the map, and now smoke is rising from the crown. Did our voices call them in, or was the fire already laid?
+
+*⚙ Then he recalls:*
+
+> Corin said Wren's home was always warm. Tonight the map ends at a hill that breathes warm air.
+
+*⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
+
+- A: A watcher who heard our voices and went in to warn the others.
+
+- B: The last of the faithful arriving for the ritual, unaware of us.
+
+- Neither.
+
+*⚙ The case so far (the week's question, "What do they need Wren for?") lives in the Bag's casebook, one line per friend, read back at the Gathering's opening. The riddle and the message in a bottle were cut on 18 Oct.*
+
+*⚙ From 8:00pm, Garrick's goodnight (one of: "Enough for one day.", "Off to bed, the lot of you.", "Sleep. I'll mind the fire.", "Same fire tomorrow?").*
+
+## Week 3, Day 7: the Gathering
+
+### The road so far
+
+*⚙ Opens the day in your thread: yesterday's recap.*
+
+> You raced the light to the cairn on the highest ridge of the burned country, and found the sixth fragment wedged at its foot. The six made a map once more. It ended at a round black hill with a crack across its crown, which Garrick said the shepherds call the Kiln. The way was said aloud, twice, for the ones on the slope below: in through the crack, and down a way cut long ago to a room beneath the hill. Not an hour after full dark, a single lamp crossed the black ground, climbed the Kiln, and went in. Whatever happens under that hill has started. Into the Kiln, tonight.
+
+### The Gathering (live, the whole party together in the party chat)
+
+*⚙ That morning, in each friend's thread:*
+
+> Tonight: the Gathering. The map goes in through the crack in the Kiln's crown. A lamp went in before you. Tonight calls on Agility.
+
+*⚙ Lobby at the time the party picked (poll on Day 4); starts once everyone is in, or any friend may start after 10 minutes, or by itself after 30. MYTHIOS posts the story a passage at a time; [GO ON] moves it on. About 20 to 30 minutes with the table talking.*
+
+#### Arrival
+
+> The burned country, all week. Tonight the trail ends under it.
+>
+> You come to the Kiln in the dark, by the map. Close to, it is bigger than it looked from the cairn: a round black hill with nothing growing on it, warm through your boots all the way up. The lamp that went in before you is nowhere to be seen.
+>
+> At the crown the crack opens under your feet, wide enough for a man to climb down. The air coming up out of it is warm as breath, and smells of hot stone.
+>
+> Down there, a girl is crying. Quietly. The way children cry when they have learned it does not help.
+
+#### The Approach
+
+*⚙ A group vote (majority after 30 seconds; the vote shows who is best at each option): HOW DO YOU GO DOWN?*
+
+1. **THE ROPE**: one at a time. Slow, and quiet.
+2. **THE SCREE**: all together, down the slope of loose black glass beside it. Fast, and it sounds like a cart of broken crockery.
+
+> Either way somebody has to make it safe. The glassed rock offers nothing to tie to, and the scree is only waiting for a reason to move.
+
+**THE APPROACH: THE WAY DOWN**
+
+*⚙ One friend steps up (whoever has rolled fewest Approaches) and rolls for the party, in front of everyone: By the rope → Craft (rig an anchor that will hold on glass); By the scree → Might (be the anchor). DC 9; the roller adds +2 to the roll if the party solved the week's map (the map helps). Pass: +500g · **and the party strikes first**. Fail: it gives halfway, the last of the drop is a slide in a rattle of black glass, and **they strike first**. The result sets who strikes first in the Battle.*
+
+*⚙ If the Approach passed:*
+
+> It holds. Hand under hand, one after another, you go down without a sound.
+
+*⚙ If the Approach failed:*
+
+> Halfway, it gives. The last of the drop is a long slide in a rattle of black glass, loud enough to wake the hill.
+
+*⚙ Either way, the whole party reads this:*
+
+> You drop through into the warm dark. Below you a lamp swings, and for one moment you see him: a robed figure hauling himself away up a vent in the rock, the hot air streaming past him, a small box clutched to his chest.
+>
+> Then the lamp swings back, and he is gone, up into the black.
+
+#### The Battle
+
+> They are waiting for you. Four of them, robed, a blade in one hand and a torch in the other, between you and a stone table in the middle of the floor. The heat down here lies on you like a hand. Nobody speaks. They do not break when the first of them falls.
+
+**THE BATTLE: THE FAITHFUL**
+
+> **Blade and torch:** when one of them lands a hit, the burn does a little more on the round after.
+
+*⚙ Every friend fights one enemy of their own at once (The Faithful: DEF 25, ATK 18), in lockstep rounds every 10 seconds; the fight rules are the weekday ones. Condition: Blade and torch: when an enemy hits a friend, that friend loses 2 more HP at the start of the next round. A friend below 50 HP sends a help-call to the chat; a friend who has won joins another fight. The party wins when the last enemy falls: +740g each. A fallen friend is "DEFEATED." and stays for the night.*
+
+*⚙ If the party strikes first:*
+
+> You strike first.
+
+*⚙ If the enemy strikes first:*
+
+> He strikes first.
+
+> The last one standing does not run. He looks at the blood on the floor, then at you. He sets his blade down on the stone at his feet, very carefully, the way you would put down something borrowed.
+
+> He lets himself be bound. He holds his wrists out for the rope, side by side, and does not look at them while it is tied.
+
+#### The United Effort
+
+> The girl is not by the table.
+>
+> She ran when the fight began, for the only way out a child could see: the slope of loose black glass, and the crack of sky at the top of it. She is two-thirds of the way up, on her knees, with one fist shut tight on something and the other hand flat on the glass. She has stopped, because the slope has started to move.
+>
+> It is a small sound, like a great many plates being stacked very gently.
+>
+> The glass will bear one of you at a time, and perhaps not that. So the rope goes up to her a stretch at a time. One of you climbs past where the last one stopped, drives a blade into the slope, makes the rope fast to it, and comes down. Then the next.
+
+#### One breath
+
+> Mei is at the foot of the glass, nearest to her. One breath before the slope moves again.
+>
+> **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ One friend, chosen at random, picks alone*
+
+1. **GO UP FIRST**: onto the glass, with the rope's end, before anyone can stop you
+2. **CALL HER NAME**: the name on her mother's lips in Ashcombe, loud enough to carry
+3. **KEEP STILL**
+
+*⚙ If option 1 was picked:*
+
+> Mei is three steps up the glass before anyone can say a word, rope in one fist, blade in the other.
+
+*⚙ If option 2 was picked:*
+
+> *"Wren."* High on the slope the girl turns her head, and for the first time since the fight began, she stops trying to climb away from you.
+
+*⚙ If option 3 was picked:*
+
+> Mei does not move. Nobody does. The glass settles with a sound like plates being stacked, and goes quiet.
+
+#### The scree
+
+*⚙ Either way, the whole party reads this:*
+
+**THE UNITED EFFORT: THE SCREE**
+
+*⚙ Two bars at 100 (60 for a friend alone): "The Climb" (the thing in the way) and "Wren's Hold" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Agility Challenge against DC 7. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
+
+- **On a pass:**
+  - *(early)* You go up it the way you would cross a frozen pond: flat, and slowly, and thinking about something else. The blade goes in to the hilt. The rope is fast.
+  - *(early)* Past the first blade, and on. The glass under you ticks, and holds.
+  - *(middle)* You are close enough to see her shoulders shaking. You do not call to her. You make the rope fast and come down.
+  - *(middle)* She has turned her head. She is watching the rope come.
+  - *(late)* One more stretch. You could almost throw the end to her, if she had a hand free to catch it.
+  - *(late)* She has seen what the rope is for. She has not moved, and that is the right thing.
+  - *(the end)* You have her wrist. She weighs nothing at all. She comes down the rope inside your arm, and she does not open her fist.
+- **On a fail:**
+  - *(early)* A plate of glass the size of a door turns over without warning, and the slope takes you down it on your back. Above, the sheet she is on slides a yard, and stops.
+  - *(early)* The slope shrugs. It does it by itself, the way a sleeper turns over. She is nearer the edge of her sheet than she was.
+  - *(middle)* Something lets go higher up. It comes down past her like a thrown handful of knives. She flinches. There is blood on her sleeve when it has gone by.
+  - *(middle)* The glass under her tilts. She has to take her flat hand off it, and find a new place to put it.
+  - *(late)* She is on her stomach now, with nothing under her feet.
+  - *(late)* She has started, very quietly, to slide.
+  - *(the end)* The whole slope lets go, with a sound like the sea. She comes down in it.
+- **Between turns:** Below you, the bound man is watching the slope too. / The warm air coming up from below smells of struck flint. / She has not made a sound since she stopped.
+
+*⚙ If the United Effort was won:*
+
+> The girl is alive. Wren. She is nine or ten, and too frightened yet to say much. Her palm is cut and bound in the same white linen.
+>
+> Somebody took the time, again.
+
+*⚙ If the United Effort was lost:*
+
+> When the glass has stopped she is at the foot of it, sitting up, cut in a dozen places, with her fist still shut.
+>
+> The girl is alive. Wren. She is nine or ten, and too frightened yet to say much. Under the new cuts, her palm is cut and bound in the same white linen.
+
+*⚙ Either way, the whole party reads this:*
+
+> Her other fist is shut so tight the knuckles are white. For a long while she will not open it, for anyone.
+>
+> When she does, at last, there is a chip of black glass inside, polished smooth by her thumb.
+>
+> You think of her mother in Ashcombe, almost smiling: *She never lost it.*
+
+*⚙ A button any friend may tap: [GIVE HER BACK THE EIGHT]*
+
+> Arjun puts the eight from the ridges into her other hand, one by one. She looks at them, and then at Arjun, and closes her hand over them.
+
+> Garrick takes off his coat, puts it round her, and says nothing at all. It comes down past her knees.
+
+> Behind the stone table: the same hollow, cut to the same shape. Empty. Its rim has been swept clean. The rubbing, laid against it, fits.
+
+*⚙ If option 2 was picked:*
+
+> When she is down at last, she does not go to the nearest of you. She goes to the one who called her by her name.
+
+#### Notice
+
+*⚙ Either way, the whole party reads this:*
+
+*⚙ Notice: each friend gets one private line for their highest Attribute (a fallen friend gets the "from the floor" line):*
+
+- **Might:** The one who put down his blade was not beaten. He stopped.
+- **Agility:** That vent is too narrow for a man carrying anything large. Whatever is in the box is small.
+- **Intellect:** The rim of the hollow is not dusty and not disturbed. It has been swept. Somebody tidied after.
+- **Charm:** Wren has not looked at the captive once. She has looked at the vent four times.
+- **Craft:** The stone case on his belt has no hinge, no catch and no seam. It was never made to be opened with a tool.
+- **Aim:** There are four torches on the floor, and one bracket on the wall with nothing in it.
+- **From the floor:** Down here the warm air is moving, along the stone, toward the vent. Something up there is drawing it.
+
+*⚙ A button any friend may tap: [LOOK CLOSER]*
+
+*⚙ [LOOK CLOSER]: an optional roll on that Attribute (DC 9); a pass adds +75g and this line:*
+
+- **Might:** His hands are steady. He is not afraid of you.
+- **Agility:** And light. He climbed with it under one arm.
+- **Intellect:** Swept with a hand, not a broom. With care.
+- **Charm:** She saw what was in it.
+- **Craft:** It is worn smooth all over, by years of fingers that could not get in.
+- **Aim:** The soot above it is fresh. It was lit an hour ago.
+
+#### The case
+
+> On the captive's belt hangs a small sealed case of carved stone. Seeker work, by the look of it.
+
+*⚙ A button any friend may tap: [OPEN IT]*
+
+> It springs open under Mei's hand, by itself, the way every sealed thing of theirs has opened for you.
+>
+> There is nothing in it. There never was.
+>
+> The captive goes very still. He is staring at the hand that opened it.
+>
+> *"Seeker blood,"* he says, so quietly it is almost a prayer.
+
+> Inside his coat, wrapped in oilcloth and kept closer than his knife: bound pages of the Order's scripture. Unburned, this time.
+
+*⚙ A question to the table (anyone answers in the chat; MYTHIOS never grades it):*
+
+> *They carried blades tonight, every one of them, and not one was turned on you to kill. Why are you still alive?*
+
+*⚙ After sixty quiet seconds:*
+
+> *The case is still lying open on the stone, where it opened for one of your hands.*
+
+*⚙ After ninety, the answer:*
+
+> The captive has not taken his eyes off the open case. Whatever they want from you, they want you whole.
+
+#### The six, read together
+
+> Before the oilcloth comes off, the week's six are read aloud, one after another, the way they were meant to be heard together.
+>
+> *Day 1, the wayside shrine:* “First they stopped bleeding when cut. Then they stopped sleeping. Then they stopped being ours.”
+>
+> *Day 2, the pound wall:* “We held his wall for him. Remember that, when you hear where else we stood.”
+>
+> *Day 3, the Blackglass:* “He never lied to us. He only never told us the price.”
+>
+> *Day 4, the black-ridge niche:* “What we hid, we locked with what we are.”
+>
+> *Day 5, the shepherd's hearth:* “Bloodlines outlast kingdoms. That is why kingdoms fear them.”
+>
+> *Day 6, the cairn's foot:* “We never dug him a grave. When we are gone, our blood will have to hold him.”
+
+#### The Verse of the Fall
+
+> *From the First Book of the Order of the Dark Moon — The Verse of the Fall.*
+>
+> *Hear what became of the king who would not kneel.*
+>
+> *After the war, he kept his people as a shepherd keeps a flock through a hard winter. The power that had answered him on the night of the dark moon did not leave him, and he shared it. Those who stood nearest him were given the first of his gifts. They no longer felt the cold, nor the blade, nor the long fear of dying. They did not tire. They did not hunger. They stood their watches without end, and never once asked to be relieved. Where his armies camped, nothing grew — and nothing needed to. In time the gift would have reached every one of his people. In time, the whole world he had saved.*
+
+**MATCH**
+
+*⚙ WHICH OF YOUR FRAGMENTS IS THIS? The card shows this line, and the week's six fragments as rows; each friend picks privately. Each right pick +50g (100g if every friend present is right). Wrong picks are never shown.*
+
+> *"They no longer felt the cold, nor the blade, nor the long fear of dying."*
+>
+> From behind the wayside shrine
+
+*⚙ The right row: "First they stopped bleeding when cut. Then they stopped sleeping. Then they stopped being ours."*
+
+> The same thing. In their book, a gift.
+
+*⚙ A button any friend may tap: [READ ON]*
+
+> *There is a price for every gift, and he never spoke of this one. He never spoke a false word to his people — not one. He only kept silent about the price. A kept silence is not a lie. But it is a seam. And through that seam, in time, the Seekers came in.*
+
+**MATCH**
+
+*⚙ WHICH OF YOUR FRAGMENTS IS THIS? The card shows this line, and the week's six fragments as rows; each friend picks privately. Each right pick +50g (100g if every friend present is right). Wrong picks are never shown.*
+
+> *"He never spoke a false word to his people — not one. He only kept silent about the price."*
+>
+> From the Blackglass
+
+*⚙ The right row: "He never lied to us. He only never told us the price."*
+
+*⚙ A button any friend may tap: [READ ON]*
+
+> *They had held his wall. They had wept for him on the morning of the answering. They were his own, and he loved them. But they looked at his gift and called it rot, and would not be told otherwise. So they went out into the far places of the world and gathered what they needed, and they came for him in the night, when he had never once thought to be afraid. And there, where he stood to meet them, they struck him down.*
+>
+> *He did not die.*
+>
+> *Hear this, faithful, and never let it be forgotten: he did not die. He fell where he stood, and he sleeps where he fell — the long sleep, death's likeness and not death — while the world outside grows old and forgets his name.*
+
+*⚙ A button any friend may tap: [READ ON]*
+
+> *And the Seekers hid their work, and set their own blood as the lock upon every way they left behind, so that no hand but their children's could ever open it.*
+
+> *Set their own blood as the lock.*
+>
+> The stone case is still lying open on the floor, where it sprang.
+>
+> The captive is watching you.
+>
+> *"Your blood,"* he says. *"Their blood. The same."*
+
+*⚙ A button any friend may tap: [READ ON]*
+
+> *If so small a seam as a silence let them in, what would a lie do? It would throw the door wide. Therefore the faithful shall not lie. Speak true, always. Keep your counsel where you must. Hide inside the truth.*
+>
+> *So the faithful remember him, and give the marked blood in his name, and wait.*
+>
+> *Until the throne rise whole.*
+
+> *Therefore the faithful shall not lie.*
+
+> Nobody reads it a second time. Nobody needs to. One by one, every eye in the chamber goes to the man on his knees.
+>
+> It is his book. It is his rule. Everything he has said to you tonight, he has said under it.
+
+#### Ask
+
+> He has listened to all of it on his knees, with the calm of a man at a service.
+>
+> **You may ask him.** Each of you, one question.
+> The page you have just read says what he is: *the faithful shall not lie.* Ask exactly.
+
+*⚙ ASK: a board of questions; each friend taps one. Sealed questions the night needs are answered after two quiet minutes if nobody asks them.*
+
+- **IS YOUR KING DEAD?** *(sealed)* *(Tonight turns on these)*: *"He sleeps."*
+- **THE CHILDREN. WHY?** *(sealed)* *(Tonight turns on these)*: *"To wake him."*
+- **THE FOURTH CHILD. WHERE IS HE?** *(sealed)* *(Tonight turns on these)*: *"Already with us."*
+- **WHO LEADS YOU?** *(The faithful)*: *"One whose face I've never seen."*
+- **DO YOU KNOW THIS MAN?** *(The faithful)*: *"No."* *(of Garrick)*
+- **WERE YOU LYING JUST NOW?** *(The faithful)*: A look that is almost pity. *"The faithful do not lie."*
+- **THE OTHERS YOU TOOK, BEFORE** *(The children)*: *"Most went home."* When you name the charcoal woman's nephew, he is quiet for a long moment. *"Him we lost."* And then, lower: *"Not by our choosing."*
+- **WHAT SAT IN THAT HOLLOW? / WHAT WAS IN THE BOX?** *(This room)*: Silence. Not refusal: the kind that costs him. *"Until the throne rise whole,"* he says instead, softly, the way you would end a prayer.
+
+> Nobody asks it. The answer comes anyway, as if the room had asked.
+
+#### The turn
+
+> The ledger's word, beside name after name after name: *given.*
+
+> The white linen on Wren's hand. On Corin's. On Tamsin's.
+
+> The words cut into the beam over her bed, in the shepherd's hut: *Until the throne rise whole.*
+
+> *Rise.*
+
+#### The Cliffhanger
+
+*⚙ A button any friend may tap: [THEN WHY ARE WE STILL ALIVE?]*
+
+> He could keep silent. He does not. He wants you to hear it.
+>
+> *"We're not finished with you."*
+
+> Garrick steps up to your shoulder, closer than he has stood all night, and says nothing at all.
+>
+> And every lamp in the chamber goes out at once.
+>
+> Black. Wren's hand finds somebody's sleeve and holds on. Nobody moves. Nobody hears a thing.
+>
+> By the time a lamp is lit again, fumbling, the place where he knelt is empty. His ropes lie on the stone, cut clean. One set of footprints leads away through the ash, into the dark.
+
+*⚙ The summary card:*
+
+- **UNDER THE KILN** · Gathering 3
+- You earned: the day's gold · [growth, if you rolled] · [Match: 2 of 2]
+- The party: Battle won · Wren [carried down whole / cut in the slide] · [n] questions asked
+- You learned: **he is not dead. He sleeps.** The Seekers who struck him down are your blood. The Order is bleeding children to wake him, and its faithful cannot lie. Their prayer was never for the dead: *until the throne rise whole* means what it says.
+- Tomorrow: **the dark, and a set of footprints**

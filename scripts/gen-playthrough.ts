@@ -57,6 +57,17 @@ const chapterCond = (c?: ScriptCond) => {
   if (c.on === 'press') return 'If you pressed on and passed';
   if (c.on === 'fight') return c.won ? 'If you won the fight' : 'If you lost the fight';
   if (c.on === 'claim') {
+    // "W-D:took:choice:option" names the road by its button; "W-D:challenge-failed" the day whose Challenge you failed.
+    const took = /^(\d)-(\d):took:(\d+):(\d+)$/.exec(c.key);
+    if (took) {
+      const [, wk, dy, cid, opt] = took.map(Number);
+      const src = CHAPTER_SCRIPTS.find((x) => x.week === wk && x.day === dy);
+      const st = src?.steps.find((s) => s.t === 'choice' && s.id === cid) as { labels: string[] } | undefined;
+      const label = st ? `[${fill(st.labels[opt])}]` : c.key;
+      return `${c.has ? 'If' : 'If you did not take'} ${c.has ? `you took ${label}` : label} on Week ${wk}, Day ${dy}`;
+    }
+    const failed = /^(\d)-(\d):challenge-failed$/.exec(c.key);
+    if (failed) return `If you failed the Challenge on Week ${failed[1]}, Day ${failed[2]}`;
     const what = c.key.replace(/^G(\d):united-effort-lost$/, 'the party lost Gathering $1\'s United Effort');
     return c.has ? `If ${what}` : `If ${what.replace('lost', 'won')}`;
   }
@@ -80,7 +91,7 @@ function chapter(week: number, day: number) {
     if (branchOpen) w(gameplay(branchOpen));
     branchOpen = '';
   };
-  for (const st of ch.steps as ScriptStep[]) {
+  for (const [i, st] of (ch.steps as ScriptStep[]).entries()) {
     if (st.t === 'say') {
       const c = chapterCond(st.cond);
       if (c) {
@@ -129,6 +140,9 @@ function chapter(week: number, day: number) {
         `Pick one: ${st.options.map((o) => `${o.attr} (${fill(o.verb)})`).join(', or ')}. Roll d20 + that Attribute's tier bonus against DC ${dc}: ${succeedOn(dc)}. ` +
           `Pass: ${fill(st.reward)}, and the Attribute grows. Fail: ${fill(st.fail)}, and −${GOLD.GOLD_CHALLENGE_LOSS}g. An Attribute Relic adds +4.`
       ));
+      const prev = i > 0 ? (ch.steps[i - 1] as ScriptStep) : null;
+      if (prev && prev.t === 'choice' && prev.mode === 'pick' && prev.labels.length === st.options.length)
+        w(gameplay(`The road just taken sets the Attribute, and the card offers only that one: ${prev.labels.map((l, k) => `[${fill(l)}] → ${st.options[k].attr}`).join('; ')}.`));
       if (st.harderIf) w(gameplay(`${chapterCond({ on: 'claim', key: st.harderIf.key, has: st.harderIf.has })}, the card is ${st.harderIf.by} harder, and says: ${fill(st.harderIf.line)}`));
     } else if (st.t === 'press') {
       w(`**[PRESS ON]: ${fill(st.title)}**`);
@@ -270,7 +284,7 @@ function gathering(week: number) {
             ? 'Every friend picks for themselves'
             : 'One friend, chosen at random, picks alone';
       w(gameplay(`${how}${st.question ? `: ${fill(st.question)}` : ''}`));
-      st.options.forEach((o, i) => out.push(`${i + 1}. **${fill(o.label)}**: ${fill(o.desc)}`));
+      st.options.forEach((o, i) => out.push(`${i + 1}. **${fill(o.label)}**${o.desc ? `: ${fill(o.desc)}` : ''}`));
       out.push('');
     } else if (st.t === 'approach') {
       w(`**THE APPROACH: ${fill(st.title)}**`);
@@ -378,6 +392,9 @@ function playWeek(week: number) {
   }
 }
 
+// The day summary card's gold and growth are filled in by the game; here they are named, not left as slots.
+const tidy = (s: string) =>
+  s.replace(/\n{3,}/g, '\n\n').replace(/`?\[gold\]`?/g, "the day's gold").replace(/`?\[growth\]`?/g, 'growth');
 const PARTS: [number, number][] = [[1, 2], [3, 4], [5, 6]];
 fs.mkdirSync('docs/playthrough', { recursive: true });
 for (const [i, [from, to]] of PARTS.entries()) {
@@ -393,7 +410,20 @@ for (const [i, [from, to]] of PARTS.entries()) {
   out.push(...RULES);
   for (let week = from; week <= to; week++) playWeek(week);
   if (to === 6) w('# The end of the season', gameplay('Each friend gets a season summary, ending: "Your Seeker\'s story continues." Garrick\'s Recap unlocks: every line he said, and what it meant (see after-the-finale.md).'));
-  fs.writeFileSync(`docs/playthrough/season-part-${i + 1}-weeks-${from}-${to}.md`, out.join('\n').replace(/\n{3,}/g, '\n\n'));
+  fs.writeFileSync(`docs/playthrough/season-part-${i + 1}-weeks-${from}-${to}.md`, tidy(out.join('\n')));
+}
+// One file a week as well (25 Oct): an outside auditor reading through a GitHub connector got the two-week files cut short.
+for (let week = 1; week <= 6; week++) {
+  out.length = 0;
+  w(
+    `# Tales of the Dark Moon: the season as a player plays it, Week ${week} of 6`,
+    `Week ${week}, Day 1 to Day 7, in playing order. Generated from the game's own data by \`scripts/gen-playthrough.ts\`. **Do not publish: it holds the season\'s story.** The same text as the two-week files, one week at a time.`,
+    '**How to read it.** Quoted text (`>`) is exactly what the player reads. Lines in *⚙ italics* describe the gameplay: what the screen offers, the rule, the numbers. ' +
+      'Where the story branches, every branch is given, each labelled. The party is a sample of four: you, Mei, Dev and Arjun (the game fills in the real friends\' names and the party\'s size).'
+  );
+  if (week === 1) out.push(...RULES);
+  playWeek(week);
+  fs.writeFileSync(`docs/playthrough/season-week-${week}.md`, tidy(out.join('\n')));
 }
 
 // ---- After the finale: the secret and Garrick's Recap ----

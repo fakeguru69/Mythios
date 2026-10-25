@@ -4402,7 +4402,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "key": "4-4:took:0:1",
           "has": true,
           "by": 1,
-          "line": "**One harder.** Somebody on the reed island saw a lamp moving in the drowned streets last night, and has been listening for oars since first light."
+          "line": "**One harder.** You lit the lamp in the drowned streets last night, and somebody on the reed island saw it move. They have been listening for oars since first light."
         }
       },
       {
@@ -4637,7 +4637,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "key": "4-5:took:0:0",
           "has": true,
           "by": 1,
-          "line": "**One harder.** Whoever rested on their oars in the fog yesterday heard yours, and somebody on the lake is watching for a light in the tower tonight. The lamp must burn low, below the sills, where the gusts are worst."
+          "line": "**One harder.** You rowed for the tower yesterday, and somebody resting on their oars out in the fog heard every stroke. Tonight they are watching for a light in the tower, so the lamp must burn low, below the sills, where the gusts are worst."
         }
       },
       {
@@ -5677,7 +5677,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           "key": "5-5:took:0:0",
           "has": true,
           "by": 1,
-          "line": "**One harder.** Somebody at the fire found the print of an elbow in the ash by their woodpile this morning, and the watch on the wall is walking further tonight."
+          "line": "**One harder.** You crept in close to their fire yesterday, and this morning somebody found the print of your elbow in the ash by their woodpile. The watch on the wall is walking further tonight."
         }
       },
       {

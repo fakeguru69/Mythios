@@ -167,7 +167,7 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 *⚙ The day summary card:*
 
 - **THE GREY AFTERNOON** · Day 1
-- You earned: [gold] · Craft or Intellect [growth]
+- You earned: the day's gold · Craft or Intellect growth
 - You learned: the fifth is at **Highwall**, the dead capital at the end of the old kingdom's road: the way the heartbeat comes from. The story you learned about it as a child has had something cut out of it. Joss is home.
 - *On a failure:* You missed something at the waystone. Someone at the fire may have seen it.
 - Fragment: 1 found, locked
@@ -434,7 +434,7 @@ Clue found, "Every window lit":
 *⚙ The day summary card:*
 
 - **THE OLD KINGDOM'S ROAD** · Day 2
-- You earned: [gold]
+- You earned: the day's gold
 - You learned: the heartbeat is **turning the beasts**, and people are leaving the north. The road runs through hundreds of war graves, and one new one. **When the beat comes, the ground moves with it.**
 - Fragments: 2 found
 - Tomorrow: **Highwall**
@@ -607,6 +607,8 @@ Clue found, "Scattered":
 
 *⚙ Pick one: Aim (read the broken stair from its foot, and set your feet only where it will hold), or Might (force the rusted door of the gate-tower). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: it takes what is left of the afternoon, and you see the city only by dusk, and −150g. An Attribute Relic adds +4.*
 
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [TAKE THE BROKEN STAIR] → Aim; [FORCE THE TOWER DOOR] → Might.*
+
 *⚙ If you passed the Challenge:*
 
 > You are up in minutes, with the afternoon still in hand.
@@ -660,7 +662,7 @@ Clue found, "Scattered":
 *⚙ The day summary card:*
 
 - **THE HERALD'S GATE** · Day 3
-- You earned: [gold] · Aim or Might [growth]
+- You earned: the day's gold · Aim or Might growth
 - You learned: Highwall's gate is **barred from the inside**: new timber, in brackets worn bright by centuries of bars. Somebody has always kept it shut, and is keeping it shut now. One fire is burning below the hall.
 - *On a failure:* You missed something on the wall. Someone at the fire may have seen it.
 - Fragments: 3 found
@@ -804,7 +806,7 @@ Clue found, "Knocked out":
 
 *⚙ Pick one: Agility (slip through without touching one), or Intellect (work out what you are looking at, and where it is safe to tread). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: you lose your nerve, or your footing, and go the long way round, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 5-3:took:0:1, the card is 1 harder, and says: **One harder.** The scream of the gate-tower's hinges went out over the whole dead city yesterday, and whoever keeps the gate barred has been listening for you since.*
+*⚙ If you took [FORCE THE TOWER DOOR] on Week 5, Day 3, the card is 1 harder, and says: **One harder.** The scream of the gate-tower's hinges went out over the whole dead city yesterday, and whoever keeps the gate barred has been listening for you since.*
 
 *⚙ If you passed the Challenge:*
 
@@ -901,7 +903,7 @@ Clue found, "Knocked out":
 *⚙ The day summary card:*
 
 - **THE DEAD STREETS** · Day 4
-- You earned: [gold] · Agility or Intellect [growth]
+- You earned: the day's gold · Agility or Intellect growth
 - You learned: **a company of the king's soldiers is still standing** in the street where it stopped, on the night he fell. And one helm may have turned.
 - Fragments: 4 found
 - Tomorrow: **the square below the hall**
@@ -1050,6 +1052,8 @@ Clue found, "No two alike":
 
 *⚙ Pick one: Agility (get close enough to hear them), or Aim (stay where you are, and read the whole camp from here). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: you see the fire and little else, and a lantern swings your way, and −150g. An Attribute Relic adds +4.*
 
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [CREEP IN CLOSE] → Agility; [STAY IN THE RUBBLE] → Aim.*
+
 *⚙ If you passed the Challenge:*
 
 > You see everything, and they see nothing.
@@ -1113,7 +1117,7 @@ Clue found, "No two alike":
 *⚙ The day summary card:*
 
 - **BELOW THE HALL** · Day 5
-- You earned: [gold] · Agility or Aim [growth]
+- You earned: the day's gold · Agility or Aim growth
 - You learned: **the Order is here**, camped facing his sealed doors, and has been for generations. It is not trying to get in. Each dusk it crosses out one stroke. **It is counting down.** [On a pass: eight strokes are left. Their greeting is "Keep the dark" and the answer is "It keeps us".]
 - *On a failure:* You missed something in the square. Someone at the fire may have seen it.
 - Fragments: 5 found
@@ -1297,7 +1301,9 @@ Clue found, "More bedrolls":
 
 *⚙ Pick one: Agility (low and fast, when the hand drops), or Charm (upright, at a watchman's pace, like someone who belongs on a wall). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: a lantern lifts, and you finish the crossing on your belly, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 5-5:took:0:0, the card is 1 harder, and says: **One harder.** Somebody at the fire found the print of an elbow in the ash by their woodpile this morning, and the watch on the wall is walking further tonight.*
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [GO LOW] → Agility; [WALK IT LIKE A WATCHMAN] → Charm.*
+
+*⚙ If you took [CREEP IN CLOSE] on Week 5, Day 5, the card is 1 harder, and says: **One harder.** You crept in close to their fire yesterday, and this morning somebody found the print of your elbow in the ash by their woodpile. The watch on the wall is walking further tonight.*
 
 *⚙ If you passed the Challenge:*
 
@@ -1346,7 +1352,7 @@ Clue found, "More bedrolls":
 *⚙ The day summary card:*
 
 - **THE WALL AGAIN** · Day 6
-- You earned: [gold] · Agility or Charm [growth]
+- You earned: the day's gold · Agility or Charm growth
 - You learned: the fifth is **in the wall itself**: a hidden room a stone's throw from the herald's gate, with one slit window on the hall. The Seekers watched him from it all their lives. **The Order has never found it. And tonight, nobody heard you.**
 - You hold: the map
 - Fragments: 6 of 6 · the map is whole
@@ -1537,7 +1543,7 @@ Clue found, "A stride wider":
 
 1. **ANSWER THE FIRST CALL**: in his voice, before anyone else has to
 2. **HOLD HIS HAND**: so that he is not alone while you speak for his dead
-3. **KEEP SILENT**: 
+3. **KEEP SILENT**
 
 *⚙ If option 1 was picked:*
 
@@ -1796,7 +1802,7 @@ Clue found, "A stride wider":
 *⚙ The summary card:*
 
 - **THE WALL AT HIGHWALL** · Gathering 5
-- You earned: [gold] · [growth, if you rolled] · [Match]
+- You earned: the day's gold · [growth, if you rolled] · [Match]
 - The party: Battle won · the roll-call [answered / lost] · the watchman's prayer [said / read]
 - You learned: **the Seekers did not kill him. They turned his own gift on him, and he sleeps.** His soldiers still stand his watch, and tonight they walked. You hold the fifth, the first Stone you have ever held. Your blood did nothing to it. The Seekers say why: *where he fell, under the dark moon.* The Order is counting to that night. Seven.
 - You hold: **the fifth** · **the watch-page**
@@ -1945,7 +1951,7 @@ Clue found, "A stride wider":
 *⚙ The day summary card:*
 
 - **SIX NIGHTS** · Day 1
-- You earned: [gold] · Intellect or Aim [growth]
+- You earned: the day's gold · Intellect or Aim growth
 - You learned: **you are not found.** The Order searched the wall all night and walked past this room twice. It has never known the room was here. Under the window, an arrow points down into the wall.
 - You hold: the fifth · the watch-page: **six left**
 - Fragment: 1 found, locked
@@ -2115,6 +2121,8 @@ Clue found, "The old soot":
 
 *⚙ Pick one: Might (shift the beam), or Craft (find the way through that brings nothing more down). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: part of the ceiling comes down, and all of Highwall hears it, and −150g. An Attribute Relic adds +4.*
 
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [PUT YOUR BACK TO THE BEAM] → Might; [FIND THE QUIET WAY] → Craft.*
+
 *⚙ If you passed the Challenge:*
 
 > The way clears. Not quietly: stone on stone never is.
@@ -2164,7 +2172,7 @@ Clue found, "The old soot":
 *⚙ The day summary card:*
 
 - **FIVE NIGHTS** · Day 2
-- You earned: [gold] · Might or Craft [growth]
+- You earned: the day's gold · Might or Craft growth
 - You learned: **the dead move when nobody is watching, and they are not coming for you.** One stood in the doorway and did not see you. The rest are three streets nearer the hall. And you have stood in the room where the Seekers slept before the last night.
 - You hold: the fifth · the watch-page: **five left**
 - Fragments: 2 found
@@ -2334,7 +2342,7 @@ Clue found, "Bowls never filled":
 
 *⚙ Pick one: Agility (the fountain's shadow, then the open ground, fast), or Charm (keep everyone calm and still while the lantern goes by). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: the lantern swings your way, and you lose an hour flat against the stone, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 6-2:challenge-failed, the card is 1 harder, and says: **One harder.** The ceiling that came down yesterday was heard across the city, and tonight the square's watch is doubled.*
+*⚙ If you failed the Challenge on Week 6, Day 2, the card is 1 harder, and says: **One harder.** The ceiling that came down yesterday was heard across the city, and tonight the square's watch is doubled.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2389,7 +2397,7 @@ Clue found, "Bowls never filled":
 *⚙ The day summary card:*
 
 - **FOUR NIGHTS** · Day 3
-- You earned: [gold] · Agility or Charm [growth]
+- You earned: the day's gold · Agility or Charm growth
 - You learned: **the hall's wall is warm, and the heartbeat comes through it.** Something behind it has been warm for a very long time. There is no way in at the front, and twice as many watchmen as before.
 - You hold: the fifth · the watch-page: **four left**
 - Fragments: 3 found
@@ -2610,7 +2618,7 @@ Clue found, "Warm low down":
 *⚙ The day summary card:*
 
 - **THREE NIGHTS** · Day 4
-- You earned: [gold]
+- You earned: the day's gold
 - You learned: the Seekers' own way in is **a crack in the hill behind the hall**. It ends in blank rock, beside a carving of a full moon scored dark. And **there is another door** into the hall, one the Seekers never knew about. The Order has it.
 - You hold: the fifth · the watch-page: **three left**
 - Fragments: 4 found
@@ -2782,7 +2790,9 @@ Clue found, "Louder here":
 
 *⚙ Pick one: Craft (find it by the cut of the chisel), or Might (climb the watchers' ledges to the highest rows, and read them from there). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g, and the Attribute grows. Fail: hours of faded marks by lamplight, in a tower the whole city can see, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 6-3:challenge-failed, the card is 1 harder, and says: **One harder.** The two men the watchman called up have not gone back to their beds. They walk the streets below the tower now.*
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [READ THE CUTS FROM THE FLOOR] → Craft; [CLIMB THE WATCHERS' LEDGES] → Might.*
+
+*⚙ If you failed the Challenge on Week 6, Day 3, the card is 1 harder, and says: **One harder.** The two men the watchman called up have not gone back to their beds. They walk the streets below the tower now.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2845,7 +2855,7 @@ Clue found, "Louder here":
 *⚙ The day summary card:*
 
 - **TWO NIGHTS** · Day 5
-- You earned: [gold] · Craft or Might [growth]
+- You earned: the day's gold · Craft or Might growth
 - You learned: the sky-watchers' record **stops on the night he fell**: a full moon, struck dark, and then bare stone. Counted forward, **that moon comes again in two nights.** You have the hour.
 - You hold: the fifth · the watch-page: **two left**
 - Fragments: 5 found
@@ -3015,7 +3025,9 @@ Clue found, "Cut in a hurry":
 
 *⚙ Pick one: Agility (through a gap in the ranks, at their pace), or Might (go in where the ranks are thinnest, and take the knocks). Roll d20 + that Attribute's tier bonus against DC 9: a Novice (+0) succeeds on 10+. Pass: +500g · **and you strike first**, and the Attribute grows. Fail: one of them sees you, and **it strikes first**, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 6-5:challenge-failed, the card is 1 harder, and says: **One harder.** Your lamp burned half the night in the tower, and the square took note. Tonight more eyes are on the street.*
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [WALK IN STEP WITH THEM] → Agility; [SHOULDER THROUGH] → Might.*
+
+*⚙ If you failed the Challenge on Week 6, Day 5, the card is 1 harder, and says: **One harder.** Your lamp burned half the night in the tower, and the square took note. Tonight more eyes are on the street.*
 
 *⚙ If you passed the Challenge:*
 
@@ -3104,7 +3116,7 @@ Clue found, "Cut in a hurry":
 *⚙ The day summary card:*
 
 - **ONE NIGHT** · Day 6
-- You earned: [gold] · Agility or Might [growth]
+- You earned: the day's gold · Agility or Might growth
 - You learned: the blank rock is **a door**, and it opens **tomorrow night**, when the moon goes dark. The dead are walking up the hill to the hall. Everyone in this city is going to the same room.
 - You hold: the fifth · the map · the watch-page: **one left**
 - Fragments: 6 of 6 · the map is whole
@@ -3371,8 +3383,8 @@ Clue found, "Every post empty":
 
 *⚙ Every friend picks privately; the majority decides (a tie holds it back): THE FIFTH IS IN YOUR HANDS.*
 
-1. **GIVE IT TO HIM**: 
-2. **CLOSE YOUR HAND**: 
+1. **GIVE IT TO HIM**
+2. **CLOSE YOUR HAND**
 
 *⚙ If option 1 was picked:*
 
@@ -3496,7 +3508,7 @@ Clue found, "Every post empty":
 
 1. **TEAR THE PAGE**: snatch the open book from the stone and rip the untorn page out of it.
 2. **BREAK THE RING**: strike one of the four Stones out of the ring.
-3. **DO NOTHING**: 
+3. **DO NOTHING**
 
 *⚙ If option 1 was picked:*
 
@@ -3550,10 +3562,10 @@ Clue found, "Every post empty":
 
 *⚙ Every friend picks for themselves: SAY A NAME.*
 
-1. **TAMSIN**: 
-2. **CORIN**: 
-3. **WREN**: 
-4. **JOSS**: 
+1. **TAMSIN**
+2. **CORIN**
+3. **WREN**
+4. **JOSS**
 
 > **Tamsin,** humming her counting song so she wouldn't cry. *Mei.*
 
@@ -3583,7 +3595,7 @@ Clue found, "Every post empty":
 *⚙ The summary card:*
 
 - **HIS HALL** · Gathering 6
-- You earned: [gold] · [growth, if you rolled] · [Match: 2 of 2]
+- You earned: the day's gold · [growth, if you rolled] · [Match: 2 of 2]
 - The party: Battle won · the lamp [down / held] · the fifth [given / kept in your hand] · the act: [the page torn / the ring broken / nothing]
 - You learned: **moon-blood was never a word for you.** It was the king's title, and then his house's. Garrick is the last of that house, and the Order is his. He never lied to you. His people killed Meira. The fifth did not stop the waking; it finished it. The king is awake, and he is looking at you.
 - You saved every child you were sent to save.

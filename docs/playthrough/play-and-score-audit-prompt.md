@@ -99,10 +99,17 @@ Then make your party:
 - **Play at least one day in a party of two** and one Gathering in a party of six (with four pretend friends driven by SQL or scripts), to check the party-size wording.
 
 **Read mode** (if you can only read). Use the play-through files, which show the season exactly as a player meets it, in order:
-- `docs/playthrough/season-part-1-weeks-1-2.md`;
-- `docs/playthrough/season-part-2-weeks-3-4.md`;
-- `docs/playthrough/season-part-3-weeks-5-6.md`;
+- one file a week: `docs/playthrough/season-week-1.md` to `season-week-6.md` (about 100 KB each). The same text is also in three two-week files (`season-part-1-weeks-1-2.md` and on), but a GitHub connector has cut those short before;
 - the measured rhythm in `docs/playthrough/gameplay-rhythm.md`.
+
+**Read every week file to its end before you score it.** If a file comes back cut short, say so and stop: ask the designer to paste the rest. Never score a day you have not read in full. A partial report helps less than one that waits.
+
+**What the play-through files do not show,** so do not count it missing:
+- On the screen, a road taken just before a Challenge leaves the card offering only that road's Attribute. The files say so in a ⚙ line.
+- At each Gathering's opening, the party's own calls and pins from the week's fires are read back ("the case so far").
+- Garrick's lines at the fire that depend on what the friends do: a nudge once a piece is laid, a line to a quiet friend, a line on an unanswered piece, a line when the fire splits or agrees too fast.
+
+**One breath, by design.** Each Gathering has a moment where the light picks one friend at random and the screen says "Everyone else: you have thirty seconds. Tell Mei what to do." The others tell her in the party chat. She alone then chooses, with twenty seconds. That is the intended design (one friend acts, the party advises; it was modelled on the finale), not a bug. Judge whether it works. If you think the party should have more say, propose how.
 
 You cannot judge the look, the feel of the timers, or the live talk at the fire. Mark those scores **"n/a (read mode)"** and say what you would need to judge them.
 
@@ -258,7 +265,7 @@ For each piece, check:
    - Does the clue each road gives the fire make sense to a friend who was not there?
 5. **The canon.**
    - No invented lore: no new people, places, history or powers that the episode files do not hold.
-   - No word used before its first-use gate (CLAUDE.md §6: "the Order" from W3D1; "four children" from W2D1; "king" from W2D5; "fifth / five" from W3D3; "moon-blood" from W4D4; "Highwall" from W5D1; "heartbeat" from W4D6).
+   - No word used before its first-use gate (CLAUDE.md §6: "the Order" from W3D1; "four children" from W2D1; "king" from W2D5; "fifth / five" from W3D3; "moon-blood" from W4D4; "Highwall" from W5D1; "heartbeat" from W4D6). The gates bind Garrick, the fire, and the builder's own text. The episode files' story text may use a word earlier, by the designer's decision of 15 Oct: Gathering 1's "four names", Gathering 2's "Highwall" and "the Order", and fragment 1-1's "Five fell" are allowed. Report them only if you think the decision was wrong.
    - No contradiction with an earlier or later day.
 6. **Garrick.**
    - His lines must be true, warm, dry and kind.

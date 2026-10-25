@@ -213,7 +213,7 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 *⚙ The day summary card:*
 
 - **SOMEWHERE WARM** · Day 1
-- You earned: [gold]
+- You earned: the day's gold
 - You learned: her name is **Wren**. "Somewhere warm" is home: **Ashcombe**, on the edge of the burned country. The ledger, Meira's list and the cart tracks all say so. Corin is home.
 - Fragment: 1 found, locked
 - Tomorrow: **Ashcombe, a long day west**
@@ -467,7 +467,7 @@ Clue found, "Facing west":
 *⚙ The day summary card:*
 
 - **ASHCOMBE** · Day 2
-- You earned: [gold] · Charm or Intellect [growth]
+- You earned: the day's gold · Charm or Intellect growth
 - You learned: **Wren did not come home.** Two polite men in grey coats took her two weeks ago: *"they'd only need her the once."* Last night she was carried past her own village in the dark, and up the black road.
 - *On a failure:* You missed something in Ashcombe. Someone at the fire may have seen it.
 - You hold: a chip of black glass, from the boy at the well
@@ -602,7 +602,7 @@ Clue found, "Sacking on the stones":
 
 *⚙ Pick one: Agility (straight over, and fast), or Aim (pick out the safe line from the edge, and take it slowly). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: you go down hard, and slide, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 3-2:took:1:0, the card is 1 harder, and says: **One harder.** Ashcombe was up half the night talking about the strangers and the cart, and somebody carried the talk up the black road before you.*
+*⚙ If you took [TELL HER MOTHER] on Week 3, Day 2, the card is 1 harder, and says: **One harder.** Ashcombe was up half the night talking about the strangers and the cart, and somebody carried the talk up the black road before you.*
 
 *⚙ If you passed the Challenge:*
 
@@ -707,7 +707,7 @@ Clue found, "Sacking on the stones":
 *⚙ The day summary card:*
 
 - **THE BLACKGLASS** · Day 3
-- You earned: [gold] · Agility or Aim [growth]
+- You earned: the day's gold · Agility or Aim growth
 - You learned: **three children, three marks.** Every child was taken from beside one of the places Meira marked. The riders passed this one without slowing.
 - Fragments: 3 found
 - Tomorrow: **the black ridges, on the riders' trail**
@@ -882,6 +882,8 @@ Clue found, "The view down":
 
 *⚙ Pick one: Craft (work out which stones can come away), or Might (shift the biggest of them, and trust the rest to hold). Roll d20 + that Attribute's tier bonus against DC 7: a Novice (+0) succeeds on 8+. Pass: +500g, and the Attribute grows. Fail: half the fall comes down, and −150g. An Attribute Relic adds +4.*
 
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [KEEP TO THE TRAIL] → Craft; [GO TO THE DOORWAY] → Might.*
+
 *⚙ If you passed the Challenge:*
 
 > Stone by stone the fall comes away, and what is left above it holds. A thin trickle of grit runs down, and stops. The way opens cleanly.
@@ -925,7 +927,7 @@ Clue found, "The view down":
 *⚙ The day summary card:*
 
 - **THE BLACK RIDGES** · Day 4
-- You earned: [gold] · Craft or Might [growth]
+- You earned: the day's gold · Craft or Might growth
 - You learned: **Wren is alive.** She is dropping her glass chips for whoever comes after, and the men who have her have not noticed. And the people who wrote your fragments once slept in a room the riders rode straight past. They had long nights too.
 - You hold: three of Wren's chips
 - Fragments: 4 found
@@ -1172,7 +1174,7 @@ Clue found, "Scratched on the back":
 *⚙ The day summary card:*
 
 - **THE SHEPHERD'S HUT** · Day 5
-- You earned: [gold]
+- You earned: the day's gold
 - You learned: she was here **within the hour**, and **they left at a run**. Her name is scratched in the doorframe in her own hand. Over her bed, cut long ago: *Until the throne rise whole.*
 - You hold: eight of Wren's chips
 - Fragments: 5 found
@@ -1395,7 +1397,7 @@ Clue found, "The gap in the row":
 *⚙ The day summary card:*
 
 - **THE CAIRN** · Day 6
-- You earned: [gold] · Might or Agility [growth]
+- You earned: the day's gold · Might or Agility growth
 - You learned: **the Kiln.** A round black hill that breathes warm air through a crack in its crown. The map goes in through that crack, to a room beneath. A lamp has just gone in ahead of you.
 - *On a failure:* You missed something at the cairn. Someone at the fire may have seen it.
 - You hold: the map · eight of Wren's chips
@@ -1585,7 +1587,7 @@ Clue found, "No way down in the dark":
 
 1. **GO UP FIRST**: onto the glass, with the rope's end, before anyone can stop you
 2. **CALL HER NAME**: the name on her mother's lips in Ashcombe, loud enough to carry
-3. **KEEP STILL**: 
+3. **KEEP STILL**
 
 *⚙ If option 1 was picked:*
 
@@ -1843,7 +1845,7 @@ Clue found, "No way down in the dark":
 *⚙ The summary card:*
 
 - **UNDER THE KILN** · Gathering 3
-- You earned: [gold] · [growth, if you rolled] · [Match: 2 of 2]
+- You earned: the day's gold · [growth, if you rolled] · [Match: 2 of 2]
 - The party: Battle won · Wren [carried down whole / cut in the slide] · [n] questions asked
 - You learned: **he is not dead. He sleeps.** The Seekers who struck him down are your blood. The Order is bleeding children to wake him, and its faithful cannot lie. Their prayer was never for the dead: *until the throne rise whole* means what it says.
 - Tomorrow: **the dark, and a set of footprints**
@@ -1928,7 +1930,7 @@ Clue found, "No way down in the dark":
 
 *⚙ Pick one: Aim (pick his prints out from your own, by one lamp), or Intellect (work it outward from the ropes: where he knelt, where he must have turned). Roll d20 + that Attribute's tier bonus against DC 8: a Novice (+0) succeeds on 9+. Pass: +500g, and the Attribute grows. Fail: your own prints are over his, and only the direction is left, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 4-1:took:0:1, the card is 1 harder, and says: **One harder.** The lamp burned low while you were up the passage with her, and you come back to the ash by a smaller flame.*
+*⚙ If you took [TAKE WREN UP FIRST] on Week 4, Day 1, the card is 1 harder, and says: **One harder.** The lamp burned low while you were up the passage with her, and you come back to the ash by a smaller flame.*
 
 *⚙ If you passed the Challenge:*
 
@@ -1995,7 +1997,7 @@ Clue found, "No way down in the dark":
 *⚙ The day summary card:*
 
 - **NOT FINISHED** · Day 1
-- You earned: [gold] · Aim or Intellect [growth]
+- You earned: the day's gold · Aim or Intellect growth
 - You learned: nobody fought to free him. **His ropes were cut, and he walked out.** Someone stood among you in the dark with a blade and touched nobody. Wren is home.
 - *On a failure:* You missed something in the ash. Someone at the fire may have seen it.
 - You hold: a chip of black glass, from Wren
@@ -2237,7 +2239,7 @@ Clue found, "The same side":
 *⚙ The day summary card:*
 
 - **THE NORTH ROAD** · Day 2
-- You earned: [gold] · Charm or Intellect [growth]
+- You earned: the day's gold · Charm or Intellect growth
 - You learned: the riders ahead of you carry **no child. One small box**, under four swords, and at the fork they turned away from the lake.
 - You hold: a coin with the king's face scraped off one side, and polished on the other
 - Fragments: 2 found
@@ -2441,7 +2443,9 @@ Clue found, "The open road":
 
 *⚙ Pick one: Craft (patch her first, and row her dry), or Might (row her hard, and beat the leak there). Roll d20 + that Attribute's tier bonus against DC 8: a Novice (+0) succeeds on 9+. Pass: +500g, and the Attribute grows. Fail: you get there soaked, and bailing, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 4-2:took:0:0, the card is 1 harder, and says: **One harder.** The bread went to the men at the ford, and you put out across the Stillwater on an empty stomach.*
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [PATCH HER FIRST] → Craft; [ROW HARD] → Might.*
+
+*⚙ If you took [GIVE THEM YOUR BREAD] on Week 4, Day 2, the card is 1 harder, and says: **One harder.** The bread went to the men at the ford, and you put out across the Stillwater on an empty stomach.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2476,7 +2480,7 @@ Clue found, "The open road":
 *⚙ The day summary card:*
 
 - **REEDHAM** · Day 3
-- You earned: [gold] · Craft or Might [growth]
+- You earned: the day's gold · Craft or Might growth
 - You learned: Joss has been gone **eight nights**, cut one by one into his grandmother's doorpost. They held Wren two weeks for something they needed *only the once*. **They are waiting for something.**
 - You hold: her skiff
 - Fragments: 3 found
@@ -2642,7 +2646,9 @@ Clue found, "A cleared sill":
 
 *⚙ Pick one: Agility (follow them across the cobbles without going in), or Aim (pick them out by lamplight, stone by stone, and call the line). Roll d20 + that Attribute's tier bonus against DC 8: a Novice (+0) succeeds on 9+. Pass: +500g, and the Attribute grows. Fail: you go into the water, and the lamp goes with you, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 4-3:took:1:1, the card is 1 harder, and says: **One harder.** Your arms are still shaking from rowing her hard across the Stillwater yesterday, and the weed will not hold still under your boots.*
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [KEEP TO THE DARK] → Agility; [LIGHT THE LAMP] → Aim.*
+
+*⚙ If you took [ROW HARD] on Week 4, Day 3, the card is 1 harder, and says: **One harder.** Your arms are still shaking from rowing her hard across the Stillwater yesterday, and the weed will not hold still under your boots.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2697,7 +2703,7 @@ Clue found, "A cleared sill":
 *⚙ The day summary card:*
 
 - **OLD REEDHAM** · Day 4
-- You earned: [gold] · Agility or Aim [growth]
+- You earned: the day's gold · Agility or Aim growth
 - You learned: **Joss was walked through the drowned streets alive**, a few days ago, and taken on by boat. And the old songs have a word for the marked, for him and for you: **moon-blood.** Today's fragment is a warning about it.
 - Fragments: 4 found
 - Tomorrow: **the reed island**
@@ -2846,7 +2852,9 @@ Clue found, "The scratched line":
 
 *⚙ Pick one: Aim (hold your line on the tower, for as long as you can see it), or Craft (rig a trailing line off the stern, and keep her true by it). Roll d20 + that Attribute's tier bonus against DC 8: a Novice (+0) succeeds on 9+. Pass: +500g · **and you strike first**, and the Attribute grows. Fail: you row in a circle, and **he strikes first**, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 4-4:took:0:1, the card is 1 harder, and says: **One harder.** Somebody on the reed island saw a lamp moving in the drowned streets last night, and has been listening for oars since first light.*
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [ROW FOR THE TOWER] → Aim; [DRIFT WITH THE CURRENT] → Craft.*
+
+*⚙ If you took [LIGHT THE LAMP] on Week 4, Day 4, the card is 1 harder, and says: **One harder.** You lit the lamp in the drowned streets last night, and somebody on the reed island saw it move. They have been listening for oars since first light.*
 
 *⚙ If you passed the Challenge:*
 
@@ -2943,7 +2951,7 @@ Clue found, "The scratched line":
 *⚙ The day summary card:*
 
 - **THE REED ISLAND** · Day 5
-- You earned: [gold] · Aim or Craft [growth]
+- You earned: the day's gold · Aim or Craft growth
 - You learned: the Order runs **a ferry** between the island and the drowned village, by night. **Joss is alive, and still carving.** And something on this lake is watching the tower.
 - You hold: **the Order's boat**
 - Fragments: 5 found
@@ -3125,7 +3133,9 @@ Clue found, "Three shoots":
 
 *⚙ Pick one: Craft (build it a shelter from what you carry), or Aim (one spark, struck true and set where the gusts cannot reach it). Roll d20 + that Attribute's tier bonus against DC 8: a Novice (+0) succeeds on 9+. Pass: +500g, and the Attribute grows. Fail: it goes out halfway, and the way has to be called again, and −150g. An Attribute Relic adds +4.*
 
-*⚙ If 4-5:took:0:0, the card is 1 harder, and says: **One harder.** Whoever rested on their oars in the fog yesterday heard yours, and somebody on the lake is watching for a light in the tower tonight. The lamp must burn low, below the sills, where the gusts are worst.*
+*⚙ The road just taken sets the Attribute, and the card offers only that one: [SHELTER IT WITH YOUR COATS] → Craft; [STRIKE IT IN THE LEE OF THE SILL] → Aim.*
+
+*⚙ If you took [ROW FOR THE TOWER] on Week 4, Day 5, the card is 1 harder, and says: **One harder.** You rowed for the tower yesterday, and somebody resting on their oars out in the fog heard every stroke. Tonight they are watching for a light in the tower, so the lamp must burn low, below the sills, where the gusts are worst.*
 
 *⚙ If you passed the Challenge:*
 
@@ -3154,7 +3164,7 @@ Clue found, "Three shoots":
 *⚙ The day summary card:*
 
 - **THE TOWER AT NIGHT** · Day 6
-- You earned: [gold] · Craft or Aim [growth]
+- You earned: the day's gold · Craft or Aim growth
 - You learned: Joss is held in **a flooded room under Old Reedham, down the stair of the drowned church.** And for the first time you have heard them: **someone lay under the tower and listened** while the way was read out.
 - You hold: the map · the Order's boat
 - Fragments: 6 of 6 · the map is whole
@@ -3345,7 +3355,7 @@ Clue found, "The lamp on the shingle":
 
 1. **GO DOWN FOR THE PIN**: under the water, now, for as long as one breath lasts
 2. **HOLD HIS HEAD UP**: kneel in the water behind him and keep his face clear
-3. **STAY WHERE YOU ARE**: 
+3. **STAY WHERE YOU ARE**
 
 *⚙ If option 1 was picked:*
 
@@ -3636,7 +3646,7 @@ Clue found, "The lamp on the shingle":
 *⚙ The summary card:*
 
 - **THE DROWNED UNDERCROFT** · Gathering 4
-- You earned: [gold] · [growth, if you rolled] · [Match: 2 of 2]
+- You earned: the day's gold · [growth, if you rolled] · [Match: 2 of 2]
 - The party: Battle won · the water-gate: [he lived to answer, n questions asked / he did not wake]
 - You learned: **the children's blood wakes the Stones, and the Stones wake him.** Every socket held one. The Order followed you to each door, and carried each Stone home to him. Joss is alive. Meira is not: they had her pen. And there is a fifth Stone, on a page torn off at *the fifth shall end—*
 - Tomorrow: **a dawn that stopped halfway**
