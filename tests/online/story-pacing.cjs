@@ -28,10 +28,12 @@ check(
 
 // 3. Timed message-by-message reveal + tap anywhere on the story thread to read faster.
 check(
-  /window\.setTimeout\([\s\S]{0,260}650\)/.test(day) &&
+  /const nextDelay = readingDelayMs\(items\[visibleCount - 1\]\?\.chars\)/.test(day) &&
+    /window\.setTimeout\([\s\S]{0,320}\}, nextDelay\);/.test(day) &&
+    /const readingDelayMs = \(chars\?: number\) => Math\.round\(Math\.min\(12000, Math\.max\(1000,/.test(day) &&
     /data-day-thread\s+onClick=\{onTapThread\}/.test(day) &&
     /const onTapThread =[\s\S]{0,260}advanceOne\(\)/.test(day),
-  'Messages arrive on a 650ms timer and tapping [data-day-thread] immediately reveals the next message'
+  'Messages arrive at reading speed (1 to 12 s, by the last passage\'s length) and tapping [data-day-thread] immediately reveals the next message'
 );
 
 // 4. Old forced bottom scrollIntoView is removed so opening a day never cuts off text at the top.

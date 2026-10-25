@@ -1,7 +1,8 @@
-// The notebook (Campfire version 3, docs/design/campfire-v3-17oct.md §6; migration 0093): tap any line you read, in a
-// chapter, at the fire or in the party chat, and mark it, with a few words if you like. Private to you. The game never
+// The notebook (Campfire version 3, docs/design/campfire-v3-17oct.md §6; migration 0093): press and hold any line you
+// read, in a chapter, at the fire or in the party chat, and mark it, with a few words if you like (long-press since
+// Phase 5, 24 Oct, so a plain tap only reads faster; a right-click does the same on a computer). Private to you. The game never
 // says what to mark. The NotebookProvider loads your marks once for a screen; a Markable without one is just its line.
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { supabase, plainError } from './supabaseClient';
 import { input, quietButton } from './ui';
 
@@ -44,6 +45,19 @@ export function Markable({ source, text, children }: { source: string; text: str
   const [open, setOpen] = useState(false);
   const [noteText, setNoteText] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const hold = useRef<{ timer: number; x: number; y: number } | null>(null);
+  // A phone's long-press also fires contextmenu: toggle once, whichever comes first.
+  const lastToggle = useRef(0);
+  const toggle = () => {
+    if (Date.now() - lastToggle.current < 800) return;
+    lastToggle.current = Date.now();
+    setOpen((o) => !o);
+  };
+  const cancelHold = () => {
+    if (hold.current) window.clearTimeout(hold.current.timer);
+    hold.current = null;
+  };
+  useEffect(() => cancelHold, []);
   if (!nb) return <>{children}</>;
   const quote = plainQuote(text);
   const mine = nb.marks.find((m) => m.quote === quote);
@@ -54,7 +68,24 @@ export function Markable({ source, text, children }: { source: string; text: str
   };
   return (
     <div data-markable>
-      <div onClick={() => setOpen((o) => !o)} className={`cursor-pointer ${mine ? 'border-l-2 border-[#D4B876]/70 pl-1.5' : ''}`}>
+      <div
+        onPointerDown={(e) => {
+          cancelHold();
+          hold.current = { x: e.clientX, y: e.clientY, timer: window.setTimeout(toggle, 550) };
+        }}
+        onPointerMove={(e) => {
+          if (hold.current && Math.hypot(e.clientX - hold.current.x, e.clientY - hold.current.y) > 10) cancelHold();
+        }}
+        onPointerUp={cancelHold}
+        onPointerLeave={cancelHold}
+        onPointerCancel={cancelHold}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          cancelHold();
+          toggle();
+        }}
+        className={`select-none [-webkit-touch-callout:none] ${mine ? 'border-l-2 border-[#D4B876]/70 pl-1.5' : ''}`}
+      >
         {children}
       </div>
       {open && (
