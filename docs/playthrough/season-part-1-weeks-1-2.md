@@ -1831,7 +1831,35 @@ Clue found, "A second man":
 > The way on is back across the gallery. Dev is three steps ahead of you when the floor gives.
 >
 > There is no warning. A timber that has waited fifty years goes all at once. Dev drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below Dev's boots there is nothing but the sound of the river, a long way down in the dark.
+
+#### One heartbeat
+
+> Mei is nearest. One heartbeat before the boards go again.
 >
+> **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ One friend, chosen at random, picks alone*
+
+1. **GO OUT NOW**: flat on your belly, onto the boards, before anyone has your ankles
+2. **THE NEW PROP**: wrench the new pit-prop loose and lay it across the hole
+3. **STAY WHERE YOU ARE**: 
+
+*⚙ If option 1 was picked:*
+
+> Mei is out on the boards before anyone can say a word, flat, arms reaching. A board cracks under one knee, and holds. Mei's fingers close round Dev's wrist, and do not let go, and behind Mei other hands find Mei's ankles.
+
+*⚙ If option 2 was picked:*
+
+> The prop comes away from the wall with a shriek of new nails. Mei slides it out across the hole, and Dev gets one elbow over it. Above you, the roof gives a long, low groan, and a trickle of grit runs down where the prop used to be.
+
+*⚙ If option 3 was picked:*
+
+> Mei does not move. In the time it takes to breathe out, the rest of you are there too, at the stone edge, together, and nobody is out on the boards alone.
+
+#### The drop
+
+*⚙ Either way, the whole party reads this:*
+
 > Nobody can walk out there. The boards that are holding Dev will not hold a second pair of feet.
 >
 > A rope is no use. Dev's two arms are all that is holding Dev up, and neither can let go to catch one.
@@ -1907,6 +1935,12 @@ Clue found, "A second man":
 > *Day 6, the ford-stone:* “The key that locks is also the key that unlocks.”
 
 #### The discovery
+
+*⚙ If option 2 was picked:*
+
+> Behind you, grit is still falling from the place the prop came out of.
+
+*⚙ Either way, the whole party reads this:*
 
 > The room is small, square, and cut by hands a very long time ago. It is dry: the first dry air since the river. Your torches burn straight up in it. Nothing drips. The river, which has been in your ears all night, cannot be heard in here at all.
 >

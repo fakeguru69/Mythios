@@ -8,8 +8,9 @@ import { AttributeName } from './mythiosRulesData';
 export type GatheringCond =
   | { on: 'approach'; pass: boolean }
   | { on: 'ue'; won: boolean }
-  | { on: 'pick'; option: number }
+  | { on: 'pick'; option: number; together?: boolean }
   | { on: 'alone' }
+  | { on: 'together' }
   | { on: 'unasked' };
 
 export type GatheringStep = { section: string; cond?: GatheringCond } & (
@@ -205,8 +206,87 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The way on is back across the gallery. {RISK} is three steps ahead of you when the floor gives.\n\nThere is no warning. A timber that has waited fifty years goes all at once. {RISK} drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below {RISK}'s boots there is nothing but the sound of the river, a long way down in the dark.\n\nNobody can walk out there. The boards that are holding {RISK} will not hold a second pair of feet.\n\nA rope is no use. {RISK}'s two arms are all that is holding {RISK} up, and neither can let go to catch one.\n\nOne of you can go out flat, on your belly, with the rest standing on the stone at the gallery's edge and holding your ankles, and haul. An arm has one haul like that in it. Then the next of you.\n\nAnd {RISK}, jammed in the boards, can do more than hang there. Every elbow got onto sounder wood, every hand's breadth won from below, counts as much as a haul from above.\n\n**This is a United Effort. One job, and you take it in turns.**",
+        "text": "The way on is back across the gallery. {RISK} is three steps ahead of you when the floor gives.\n\nThere is no warning. A timber that has waited fifty years goes all at once. {RISK} drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below {RISK}'s boots there is nothing but the sound of the river, a long way down in the dark.",
         "section": "The United Effort"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "section",
+        "title": "One heartbeat",
+        "section": "One heartbeat"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "say",
+        "text": "{F1} is nearest. One heartbeat before the boards go again.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
+        "section": "One heartbeat"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "pick",
+        "vote": false,
+        "question": "",
+        "options": [
+          {
+            "label": "GO OUT NOW",
+            "desc": "flat on your belly, onto the boards, before anyone has your ankles"
+          },
+          {
+            "label": "THE NEW PROP",
+            "desc": "wrench the new pit-prop loose and lay it across the hole"
+          },
+          {
+            "label": "STAY WHERE YOU ARE",
+            "desc": ""
+          }
+        ],
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} is out on the boards before anyone can say a word, flat, arms reaching. A board cracks under one knee, and holds. {F1}'s fingers close round {RISK}'s wrist, and do not let go, and behind {F1} other hands find {F1}'s ankles.",
+        "cond": {
+          "on": "pick",
+          "option": 0,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "The prop comes away from the wall with a shriek of new nails. {F1} slides it out across the hole, and {RISK} gets one elbow over it. Above you, the roof gives a long, low groan, and a trickle of grit runs down where the prop used to be.",
+        "cond": {
+          "on": "pick",
+          "option": 1,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} does not move. In the time it takes to breathe out, the rest of you are there too, at the stone edge, together, and nobody is out on the boards alone.",
+        "cond": {
+          "on": "pick",
+          "option": 2,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "section",
+        "title": "The drop",
+        "section": "The drop"
+      },
+      {
+        "t": "say",
+        "text": "Nobody can walk out there. The boards that are holding {RISK} will not hold a second pair of feet.\n\nA rope is no use. {RISK}'s two arms are all that is holding {RISK} up, and neither can let go to catch one.\n\nOne of you can go out flat, on your belly, with the rest standing on the stone at the gallery's edge and holding your ankles, and haul. An arm has one haul like that in it. Then the next of you.\n\nAnd {RISK}, jammed in the boards, can do more than hang there. Every elbow got onto sounder wood, every hand's breadth won from below, counts as much as a haul from above.\n\n**This is a United Effort. One job, and you take it in turns.**",
+        "section": "The drop"
       },
       {
         "t": "say",
@@ -214,16 +294,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "cond": {
           "on": "alone"
         },
-        "section": "The United Effort"
+        "section": "The drop"
       },
       {
         "t": "ue",
-        "section": "The United Effort"
+        "section": "The drop"
       },
       {
         "t": "ueEnd",
         "won": true,
-        "section": "The United Effort"
+        "section": "The drop"
       },
       {
         "t": "say",
@@ -232,12 +312,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "ue",
           "won": true
         },
-        "section": "The United Effort"
+        "section": "The drop"
       },
       {
         "t": "ueEnd",
         "won": false,
-        "section": "The United Effort"
+        "section": "The drop"
       },
       {
         "t": "say",
@@ -246,7 +326,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "ue",
           "won": false
         },
-        "section": "The United Effort"
+        "section": "The drop"
       },
       {
         "t": "section",
@@ -261,6 +341,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       {
         "t": "section",
         "title": "The discovery",
+        "section": "The discovery"
+      },
+      {
+        "t": "say",
+        "text": "Behind you, grit is still falling from the place the prop came out of.",
+        "cond": {
+          "on": "pick",
+          "option": 1,
+          "together": true
+        },
         "section": "The discovery"
       },
       {
