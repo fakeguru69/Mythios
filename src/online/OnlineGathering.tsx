@@ -340,7 +340,23 @@ export default function OnlineGathering({
       }
       case 'act':
         if (e.tapped) nodes.push(<TapEcho key={k} label={`${e.by ?? ''} · ${e.label}`} />);
-        else if (current(e)) nodes.push(<ScriptButton key={k} label={e.label} disabled={busy} onClick={() => go('tap', { i: e.i })} />);
+        else if (current(e)) {
+          // Story buttons go in turns (Phase 4, migration 0126): the friend whose turn it is, or anyone after 15 seconds.
+          const waiting = Boolean(e.turn) && !e.turnIsMe && e.openAt && now < new Date(e.openAt).getTime();
+          if (e.turn && !e.turnIsMe)
+            nodes.push(
+              <p key={`${k}-turn`} className="text-[14px] text-[#B7A9CC]" data-act-turn>
+                {waiting ? `This one is ${e.turn}'s to take.` : `${e.turn} has not taken it. Anyone may.`}
+              </p>
+            );
+          if (e.turn && e.turnIsMe)
+            nodes.push(
+              <p key={`${k}-turn`} className="text-[14px] text-[#E5C158]" data-act-turn>
+                This one is yours to take.
+              </p>
+            );
+          nodes.push(<ScriptButton key={k} label={e.label} disabled={busy || waiting} onClick={() => go('tap', { i: e.i })} />);
+        }
         break;
       case 'notice':
         if (e.text) nodes.push(<NoticeBlock key={k} attr={(e.attr === 'floor' ? 'Might' : e.attr) as AttributeName} label={e.attr === 'floor' ? 'From the floor' : undefined} text={e.text} />);
