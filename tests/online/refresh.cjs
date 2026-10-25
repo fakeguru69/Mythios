@@ -72,7 +72,7 @@ const msToBoundary = () => {
     });
     await p.goto('http://localhost:3000/?online=1'); await p.waitForTimeout(1500);
     await p.getByRole('button', { name: 'START A PARTY', exact: true }).click(); await p.waitForTimeout(800);
-    await p.getByRole('button', { name: 'USE EMAIL AND A PASSWORD', exact: true }).click(); await p.waitForTimeout(800);
+    { const ue = p.getByRole('button', { name: 'USE EMAIL AND A PASSWORD', exact: true }); if (await ue.count()) { await ue.click(); await p.waitForTimeout(800); } }
     await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
     await p.getByPlaceholder('Email').fill('host@mythios.test'); await p.getByPlaceholder('Password').fill('x');
     await p.getByRole('button', { name: 'SIGN IN', exact: true }).click(); await p.waitForTimeout(2000);

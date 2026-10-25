@@ -272,7 +272,8 @@ function SignIn({ returning = false }: { returning?: boolean }) {
           CONTINUE WITH GOOGLE
         </button>
       )}
-      {!open ? (
+      {/* With Google not yet switched on, email is the only way in: show its form at once, not behind a button (26 Oct). */}
+      {!open && providers.google ? (
         <button className={goldButton} onClick={() => setOpen(true)}>
           USE EMAIL AND A PASSWORD
         </button>
@@ -436,6 +437,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
   const [chatOpen, setChatOpen] = useState(false);
   const [menuFor, setMenuFor] = useState<string | null>(null); // the party panel's ⋯ menu beside a friend (host only)
   const [memberStatuses, setMemberStatuses] = useState<Record<string, string>>({});
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   const load = useCallback(async () => {
     const [{ data: p }, { data: m }] = await Promise.all([
@@ -494,7 +496,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
 
   const back = (
     <button className={quietButton} onClick={onBack}>
-      ← Your stories
+      ← All your stories
     </button>
   );
   const host = hostName || 'The host';
@@ -507,8 +509,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         {back}
         <div className={card}>
           <h2 className={`${heading} text-[18px]`}>You've knocked.</h2>
-          <p className="text-[15px]">{host} will let you in. We'll tell you the moment they do.</p>
+          <p className="text-[15px]">{host} will let you in. This page moves on by itself the moment they do.</p>
         </div>
+        <Notifications compact />
       </div>
     );
   }
@@ -551,7 +554,12 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       : SZ_DOOR;
 
   if (doingSessionZero) {
+    // Making a character is a step of getting ready: its way back is to the party, never out of it (26 Oct).
     return (
+      <div className="space-y-3">
+        <button className={quietButton} onClick={() => setDoingSessionZero(false)} data-back-to-party>
+          ‹ Back to the party
+        </button>
       <SessionZero
         key={myCharacter?.class ? 'kept' : 'new'}
         partyId={party.id}
@@ -565,24 +573,9 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           await load();
         }}
       />
-    );
-  }
-
-  // Screen 5 of the friend's path: let in, before Session Zero.
-  if (!me.session_zero_done_at && !isHost) {
-    return (
-      <div className="space-y-4">
-        {back}
-        <div className={card}>
-          <h2 className={`${heading} text-[18px]`}>{host} has let you in.</h2>
-          <button className={goldButton} onClick={() => setDoingSessionZero(true)}>
-            BEGIN
-          </button>
-        </div>
       </div>
     );
   }
-
 
   const removeDialog = (
     <>
@@ -782,10 +775,10 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           <div className="flex items-center justify-between pb-1.5 border-b border-[#2C1D40]">
             <div>
               <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
-                The Fellowship
+                Your party
               </p>
               <h2 className="text-[15px] font-['Cinzel'] font-bold text-[#F4F1F8] tracking-wide">
-                {party.name.toUpperCase()}
+                {party.name}
               </h2>
             </div>
             <span className="px-2.5 py-0.5 rounded-full text-[12px] font-semibold bg-[#2A1A40] text-[#D4B876] border border-[#432A66]">
@@ -885,11 +878,8 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           <div className="flex items-center justify-between pb-1.5 border-b border-[#2C1D40]">
             <div>
               <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
-                Story & Lore
+                This week
               </p>
-              <h3 className="text-[14px] font-['Cinzel'] font-bold text-[#F4F1F8]">
-                Chronicles of the Road
-              </h3>
             </div>
           </div>
           <GatheringCard partyId={party.id} isHost={isHost} timeZone={party.time_zone} onOpen={shell.joinGathering} />
@@ -905,11 +895,8 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           <div className="flex items-center justify-between pb-1.5 border-b border-[#2C1D40]">
             <div>
               <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
-                Campfire
+                Settings
               </p>
-              <h3 className="text-[14px] font-['Cinzel'] font-bold text-[#F4F1F8]">
-                Party & Character Settings
-              </h3>
             </div>
           </div>
 
@@ -928,125 +915,84 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
 
           <ErrorLine text={error} />
 
-          <button className={`w-full ${quietButton} py-2.5 font-['Cinzel'] tracking-wide`} onClick={onBack}>
-            ← Your stories
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <button className={quietButton} onClick={onBack}>
+              All your stories
+            </button>
+            <button className={quietButton} onClick={() => supabase.auth.signOut()}>
+              Sign out
+            </button>
+          </div>
         </section>
       </div>
     );
     return <GameShell party={party} userId={userId} me={me} approved={approved} members={members} chatOpen={chatOpen} panel={panel} />;
   }
 
-  return (
-    <div className="space-y-4">
-      {back}
-
-      {removeDialog}
-      {leaveDialog}
-      {confirm?.kind === 'start' && (
-        <Confirm
-          title={started ? 'Change the day the story starts?' : `Start the story for ${readyCount} of you?`}
-          body={`Day 1 opens at 5:00am ${dateOpening(startDate || earliestStartDate(party.time_zone), party.time_zone)}.${
-            choosing.length
-              ? ` ${nameList(choosing)} ${choosing.length === 1 ? "hasn't" : "haven't"} finished choosing. They can still join until the end of Day 2.`
-              : ''
-          }`}
-          yes={started ? 'SAVE' : 'START'}
-          no="NOT YET"
-          onYes={async () => {
-            // The host picks the day (Fake Guru, 16 Oct); Day 1 opens at 5:00am that day on the party's clock.
-            const ok = await act('schedule_season', { p_party: party.id, p_start: startDate || earliestStartDate(party.time_zone) });
-            if (ok) setConfirm(null);
-          }}
-          onNo={() => setConfirm(null)}
-        >
-          <label className="block text-[14px] font-semibold">The day the story starts:</label>
-          <input
-            type="date"
-            className={input}
-            min={earliestStartDate(party.time_zone)}
-            value={startDate || earliestStartDate(party.time_zone)}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-        </Confirm>
-      )}
-
-      {/* Host call-to-action if character not created yet */}
-      {isHost && !me.session_zero_done_at && (
-        <div className={`${card} border-[#E5C158]/50 bg-gradient-to-b from-[#2B1B44] to-[#1A102A]`}>
-          <div className="flex items-center gap-2.5">
-            <span className="text-[20px]">🗡️</span>
-            <div>
-              <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">First Step</p>
-              <h3 className={`${heading} text-[15px]`}>Your character comes first</h3>
-            </div>
-          </div>
-          <p className="text-[15px]">Choose who you will be on the road, before your friends arrive.</p>
-          <button className={goldButton} onClick={() => setDoingSessionZero(true)}>
-            BEGIN
-          </button>
-        </div>
-      )}
-
-      {/* Screen 6 (a friend) or Screen 4 (the host): the waiting room / fellowship roster */}
-      <div className={card}>
-        <div className="space-y-1">
-          <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
-            The Fellowship
-          </p>
-          {isHost ? (
-            <h2 className={`${heading} text-[18px]`}>Your party</h2>
-          ) : (
-            <>
-              {!started && <h2 className={`${heading} text-[18px]`}>You're ready.</h2>}
-              <h3 className={`${heading} text-[15px]`}>The party</h3>
-            </>
+  // Before the story starts: one screen, "Getting ready" (26 Oct, Fake Guru: "make sure the sign in and invite process
+  // work simply… the hierarchy is clear"). Numbered steps in the order they happen: your character, your friends, the
+  // start. The start shows its day and says plainly why it cannot start yet. Settings fold away at the foot.
+  const friendsHere = approved.filter((r) => r.user_id !== userId);
+  const hostDone = !!me.session_zero_done_at;
+  const startDay = startDate || earliestStartDate(party.time_zone);
+  const startBlock = !hostDone
+    ? 'Make your character first.'
+    : friendsHere.length === 0
+      ? 'Invite at least one friend. The story needs two of you.'
+      : readyCount < 2
+        ? `Waiting for ${nameList(choosing.filter((n) => n !== me.character_name))} to finish making ${choosing.length > 2 ? 'their characters' : 'a character'}.`
+        : null;
+  const stillChoosing = choosing.filter((n) => n !== me.character_name);
+  const stepHead = (n: number, title: string, done: boolean) => (
+    <div className="flex items-center gap-2.5">
+      <span
+        className={`w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-[14px] font-bold ${
+          done ? 'bg-[#D4B876] text-[#130B1F]' : 'border border-[#5E4585] text-[#D4B876]'
+        }`}
+      >
+        {done ? '✓' : n}
+      </span>
+      <h3 className={`${heading} text-[16px]`}>{title}</h3>
+    </div>
+  );
+  const friendRows = (
+    <ul className="space-y-1.5">
+      {friendsHere.map((r) => (
+        <li key={r.user_id} className="flex items-center justify-between gap-2 rounded-lg border border-[#2C1D40] bg-[#140C20] px-3 py-2">
+          <span className="min-w-0">
+            <span className="block text-[15px] font-semibold truncate">
+              {r.character_name}
+              {r.user_id === party.host_id && <span className="font-normal text-[#B7A9CC]"> · host</span>}
+            </span>
+            <span className={`block text-[14px] ${r.ready ? 'text-[#D4B876]' : 'text-[#8F82A6]'}`}>
+              {r.ready ? `Ready${r.class ? `, ${r.class}` : ''}` : 'Making their character…'}
+            </span>
+          </span>
+          {isHost && (
+            <button
+              className={`${quietButton} text-[13px] py-1 px-2 text-[#F08A8A] border-[#5A2525]`}
+              onClick={() => setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name })}
+            >
+              Remove
+            </button>
           )}
-          <p className={note}>
-            {party.name} · {seriesTitle(party.series_id)} · Season {party.season_number}
-          </p>
-        </div>
-
-        {partyList}
-
-        {!isHost && (
-          <p className="text-[14px] text-[#B7A9CC] pt-1">
-            {!started ? `The road opens when ${host} says so.` : beforeDayOne ? doorLine : ''}
-          </p>
-        )}
-        {isHost && started && beforeDayOne && <p className="text-[14px] text-[#B7A9CC] pt-1">{doorLine}</p>}
-      </div>
-
-      {pendingCard}
-      {inviteCard}
-
-      {/* Notifications on this phone: the 8:00am line, the Day 4 poll, the Gathering's time and its reminder (0069). */}
-      {started && me.session_zero_done_at && <Notifications />}
-
-      {/* Garrick's Recap: shown once the party's Gathering 6 has ended (0072); the server keeps it until then. */}
-      {started && me.session_zero_done_at && (
-        <GarrickRecap
-          partyId={party.id}
-          partySize={approved.length}
-          friends={approved.filter((r) => r.user_id !== userId).map((r) => r.character_name ?? '')}
-        />
-      )}
-
-      {/* The party chat opens when the party assembles on Day 2 (Fake Guru, 16 Oct); the server enforces it. */}
-      {chatOpen && (
-        <NotebookProvider partyId={party.id}>
-          <PartyChat partyId={party.id} userId={userId} members={members} />
-        </NotebookProvider>
-      )}
-
-      {/* Expedition & Clock Settings */}
-      {isHost && (
-        <div className={card}>
+        </li>
+      ))}
+    </ul>
+  );
+  const settings = (
+    <div className={card} data-party-settings>
+      <button className="w-full flex items-center justify-between text-[15px] font-semibold" onClick={() => setSettingsOpen((o) => !o)}>
+        <span>Party settings</span>
+        <span className="text-[#B7A9CC]">{settingsOpen ? '▴' : '▾'}</span>
+      </button>
+      {settingsOpen && (
+        <div className="space-y-3 pt-2 border-t border-[#2C1D40]">
           <div className="flex items-center justify-between gap-2">
             <span className="text-[14px]">
-              <span className="font-semibold">Your party's clock:</span> {timeZoneLabel(party.time_zone)}
+              <span className="font-semibold">Party clock:</span> {timeZoneLabel(party.time_zone)}
             </span>
-            {!started && !changingClock && (
+            {isHost && !started && !changingClock && (
               <button className={quietButton} onClick={() => setChangingClock(true)}>
                 CHANGE
               </button>
@@ -1068,25 +1014,179 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
               ))}
             </select>
           )}
-          {!started && (
-            <>
-              <button className={goldButton} disabled={readyCount < 2} onClick={() => setConfirm({ kind: 'start' })}>
-                START THE STORY
-              </button>
-              <p className={`${note} italic`}>Needs two of you ready. Day 1 opens at 5:00am on the day you choose.</p>
-            </>
-          )}
-          {started && beforeDayOne && (
-            <button className={quietButton} onClick={() => setConfirm({ kind: 'start' })}>
-              CHANGE THE DAY
+          {nameCard}
+          {isHost && !full && !setOff && (
+            <button className={quietButton} onClick={() => act('new_invite_code', { p_party: party.id })}>
+              Make a new invite link (the old one stops working)
             </button>
           )}
+          <button className={quietButton} onClick={onBack}>
+            All your stories
+          </button>
+          <button className={quietButton} onClick={() => supabase.auth.signOut()}>
+            Sign out
+          </button>
         </div>
       )}
+    </div>
+  );
+
+  return (
+    <div className="space-y-4" data-getting-ready>
+      {removeDialog}
+      {leaveDialog}
+
+      <div className="space-y-1">
+        <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
+          {started ? 'Ready to set off' : 'Getting ready'}
+        </p>
+        <h2 className={`${heading} text-[20px]`}>{party.name}</h2>
+        <p className={note}>
+          {seriesTitle(party.series_id)} · Season {party.season_number}
+        </p>
+      </div>
+
+      {confirm?.kind === 'start' && (
+        <Confirm
+          title="Change the day the story starts?"
+          body={`Day 1 opens at 5:00am ${dateOpening(startDay, party.time_zone)}.`}
+          yes="SAVE"
+          no="KEEP IT"
+          onYes={async () => {
+            const ok = await act('schedule_season', { p_party: party.id, p_start: startDay });
+            if (ok) setConfirm(null);
+          }}
+          onNo={() => setConfirm(null)}
+        >
+          <label className="block text-[14px] font-semibold">The day the story starts:</label>
+          <input type="date" className={input} min={earliestStartDate(party.time_zone)} value={startDay} onChange={(e) => setStartDate(e.target.value)} />
+        </Confirm>
+      )}
+
+      {/* Step 1: your character. */}
+      <div className={`${card} ${!hostDone || (!isHost && !me.session_zero_done_at) ? 'border-[#E5C158]/60' : ''}`} data-step="character">
+        {stepHead(1, 'Your character', !!me.session_zero_done_at)}
+        {me.session_zero_done_at ? (
+          <p className="text-[15px]">
+            You play <span className="font-semibold">{me.character_name}</span>
+            {me.class ? `, ${me.class}` : ''}.
+          </p>
+        ) : (
+          <>
+            <p className="text-[15px]">{isHost ? 'Choose who you will be on the road, before your friends arrive.' : `${host} has let you in. Now choose who you will be on the road.`}</p>
+            <button className={goldButton} onClick={() => setDoingSessionZero(true)}>
+              MAKE YOUR CHARACTER
+            </button>
+          </>
+        )}
+      </div>
+
+      {/* Step 2: your friends. The host invites and lets them in here; a friend sees who is coming. */}
+      <div className={card} data-step="friends">
+        {stepHead(2, isHost ? 'Your friends' : 'The party', friendsHere.length > 0 && stillChoosing.length === 0)}
+        {isHost && pending.length > 0 && (
+          <div className="rounded-lg border border-[#E5C158] bg-[#2A1B40] p-2.5 space-y-2" data-asking>
+            <p className="text-[14px] font-semibold text-[#E5C158]">Asking to join</p>
+            {pending.map((r) => (
+              <div key={r.user_id} className="flex items-center justify-between gap-2">
+                <span className="text-[15px]">{r.character_name}</span>
+                <span className="flex gap-2">
+                  <button
+                    className="rounded-lg bg-[#D4B876] px-3 py-1.5 font-[Cinzel] font-bold text-[14px] text-[#130B1F] disabled:opacity-50"
+                    disabled={full || setOff}
+                    onClick={() => act('set_member_status', { p_party: party.id, p_user: r.user_id, p_status: 'approved' })}
+                  >
+                    LET IN
+                  </button>
+                  <button className={quietButton} onClick={() => act('set_member_status', { p_party: party.id, p_user: r.user_id, p_status: 'removed' })}>
+                    NOT THIS TIME
+                  </button>
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+        {friendsHere.length > 0 ? friendRows : <p className={note}>Nobody yet.</p>}
+        {isHost && !full && !setOff && (
+          <div className="space-y-2 pt-1">
+            <p className="text-[14px]">Send this link to your friends ({approved.length} of {MAX_PARTY_SIZE} here):</p>
+            <p className="break-all text-[14px] text-[#B7A9CC]">{inviteLink(party.invite_code)}</p>
+            <div className="flex flex-wrap gap-2">
+              {typeof navigator.share === 'function' && (
+                <button
+                  className="rounded-lg bg-[#D4B876] px-3 py-1.5 font-[Cinzel] font-bold text-[14px] text-[#130B1F]"
+                  onClick={() => navigator.share({ title: 'Tales of the Dark Moon', url: inviteLink(party.invite_code) }).catch(() => undefined)}
+                >
+                  SHARE
+                </button>
+              )}
+              <button
+                className={quietButton}
+                onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(inviteLink(party.invite_code));
+                    setCopied(true);
+                    window.setTimeout(() => setCopied(false), 1500);
+                  } catch {
+                    setCopied(false);
+                  }
+                }}
+              >
+                {copied ? 'COPIED' : 'COPY'}
+              </button>
+            </div>
+            <p className={note}>When a friend opens it, they ask to join, and you let them in here. Your phone tells you when someone asks.</p>
+          </div>
+        )}
+      </div>
+
+      {/* Step 3: the start. */}
+      <div className={card} data-step="start">
+        {stepHead(3, 'Start the story', started)}
+        {isHost && !started && (
+          <>
+            <label className="block text-[14px] font-semibold">Day 1 opens at 5:00am on:</label>
+            <input type="date" className={input} min={earliestStartDate(party.time_zone)} value={startDay} onChange={(e) => setStartDate(e.target.value)} />
+            <button
+              className={goldButton}
+              disabled={!!startBlock}
+              onClick={() => act('schedule_season', { p_party: party.id, p_start: startDay })}
+              data-start-story
+            >
+              START THE STORY
+            </button>
+            {startBlock ? (
+              <p className="text-[14px] text-[#E5C158]" data-start-why>
+                {startBlock}
+              </p>
+            ) : (
+              stillChoosing.length > 0 && (
+                <p className={note}>
+                  {nameList(stillChoosing)} {stillChoosing.length === 1 ? 'is' : 'are'} still making a character, and can finish until the end of Day 2.
+                </p>
+              )
+            )}
+          </>
+        )}
+        {!isHost && !started && <p className="text-[15px]">{host} starts the story when everyone is ready. Your phone will tell you.</p>}
+        {started && (
+          <>
+            <p className="text-[16px] font-semibold">The story starts {dayOneOpening(party.day1_opens_at!, party.time_zone)}, at 5:00am.</p>
+            <p className={note}>{doorLine}</p>
+            {isHost && beforeDayOne && (
+              <button className={quietButton} onClick={() => setConfirm({ kind: 'start' })}>
+                CHANGE THE DAY
+              </button>
+            )}
+          </>
+        )}
+      </div>
+
+      {/* Notifications: so the knock, the start and each morning reach this phone. */}
+      <Notifications compact />
 
       <ErrorLine text={error} />
-
-      {nameCard}
+      {settings}
     </div>
   );
 }
