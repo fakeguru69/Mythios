@@ -721,7 +721,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "The prints are small and quick, and they double back twice. You do not follow them. You walk round the grain store the other way, sit down on the step in the thin sun, and wait.\n\nAfter a while a boy of about fourteen edges out of the gap behind it, all elbows and held breath. He has seen you see him. He does not run.",
+        "text": "Everything you have found leads to the grain store at the end of the lane. You do not go straight at it. You walk round the grain store the other way, sit down on the step in the thin sun, and wait.\n\nAfter a while a boy of about fourteen edges out of the gap behind it, all elbows and held breath. He has seen you see him. He does not run.",
         "cond": {
           "on": "challenge",
           "pass": true

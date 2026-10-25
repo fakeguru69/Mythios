@@ -70,7 +70,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "At the inn, one of you saw a man by the chimney go still when the way was read out. Here, in the shadow of the mouth, a saddled horse stands tied, its flanks still dark with sweat.",
+        "text": "At the inn, one of you saw a man by the chimney go still when the way was read out. Here, across the water from the mine mouth, a saddled horse stands tied, its flanks still dark with sweat.",
         "cond": {
           "on": "took",
           "key": "6:1:1"
@@ -172,7 +172,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It is over.\n\nA dropped torch rolls a little way on the boards and stops. Then there is no sound in the mine but the river.\n\nShe is at the back of the gallery with her wrists tied, and she is humming. A counting song, very quietly, the way you hum to keep from crying.\n\nWhoever reaches her first kneels slowly, so as not to loom over her. The knots are small and hard. Whoever tied them has tied a great many. They take a long time, and all that time she does not look away from your hands.\n\nShe does not stop when the ropes come off. She hums it all the way out into the air.\n\nOutside, after the mine, the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.\n\nYou have been saying her name for three days. Now here she is: nine years old, and still counting under her breath.\n\nThere is a small cut across her palm. It has been bound in clean white linen. Somebody took the time.",
+        "text": "It is over.\n\nA dropped torch rolls a little way on the boards and stops. Then there is no sound in the mine but the river.\n\nShe is at the back of the gallery with her wrists tied, and she is humming. A counting song, very quietly, the way you hum to keep from crying.\n\nWhoever reaches her first kneels slowly, so as not to loom over her. The knots are small and hard. Whoever tied them has tied a great many. They take a long time, and all that time she does not look away from your hands.\n\nShe does not stop when the ropes come off. She hums it all the way back to the mine mouth, where the air comes in off the river.\n\nOut there the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.\n\nYou have been saying her name for three days. Now here she is: nine years old, and still counting under her breath.\n\nThere is a small cut across her palm. It has been bound in clean white linen. Somebody took the time.",
         "section": "The Battle"
       },
       {
@@ -276,7 +276,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The prop comes away from the wall with a shriek of new nails. {F1} slides it out across the hole, and {RISK} gets one elbow over it. Above you, the roof gives a long, low groan, and a trickle of grit runs down where the prop used to be.",
+        "text": "The prop comes away from the wall with a shriek of new nails. {F1} slides it out across the hole, and {RISK} gets one elbow over it, then the other, and the timber holds. Above you, the roof gives a long, low groan, and a trickle of grit runs down where the prop used to be.",
         "cond": {
           "on": "pick",
           "option": 1,

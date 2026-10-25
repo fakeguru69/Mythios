@@ -36,11 +36,11 @@ values (:'P', 1, now() - interval '1 hour', now() - interval '30 minutes', :ue, 
     'tapped', '{}'::jsonb, 'log', '[]'::jsonb, 'risk', :'C', 'chosen', :'B', 'approach', jsonb_build_object('roller', :'A')));
 select public.g_advance(:'P', 1);
 select 'the new prop (expect 1, risk 110, way 100)', state -> 'ue' ->> 'breath', state -> 'ue' ->> 'risk', state -> 'ue' ->> 'way' from gatherings where party_id = :'P' and week = 1;
--- GO OUT NOW: Mei goes first, and her first roll carries +2.
+-- GO OUT NOW: Mei goes first, and her first roll carries +4 (0135).
 update gatherings set wait_until = now() - interval '1 second',
   state = ((state - 'ue') - 'log') || jsonb_build_object('result', jsonb_build_object(:'pk'::text, 0), 'lastPick', 0, 'log', '[]'::jsonb)
 where party_id = :'P' and week = 1;
 select public.g_advance(:'P', 1);
 select 'go out now (expect 0, Mei first, risk 100)', state -> 'ue' ->> 'breath', public.g_name(:'P', (state -> 'ue' ->> 'next')::uuid), state -> 'ue' ->> 'risk' from gatherings where party_id = :'P' and week = 1;
-select 'her first roll (expect 2)', (public.g_ue_roll(:'P', state, public.g_script(:'P', 1)) -> 'ue' -> 'rolls' -> 0 ->> 'edge') from gatherings where party_id = :'P' and week = 1;
+select 'her first roll (expect 4)', (public.g_ue_roll(:'P', state, public.g_script(:'P', 1)) -> 'ue' -> 'rolls' -> 0 ->> 'edge') from gatherings where party_id = :'P' and week = 1;
 rollback;

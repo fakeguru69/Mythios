@@ -12,7 +12,7 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W1D1 | 717 | 7 | 1 | 0 | 325w | 3.7 min | 130w ⚔FIGHT 72w ◆CHOICE 190w 🎲CHALLENGE 325w |
 | W1D2 | 1063 | 6 | 3 | 0 | 359w | 5.0 min | 227w ◆CHOICE 236w 🎲CHALLENGE 45w ?PRESS ON 77w ◆CHOICE 119w ◆CHOICE 359w |
 | W1D3 | 740 | 5 | 1 | 0 | 383w | 3.7 min | 235w ◆CHOICE 122w ⚔FIGHT 383w |
-| W1D4 | 1040 | 5 | 3 | 0 | 375w | 4.9 min | 152w ◆CHOICE 100w 🎲CHALLENGE 78w ◆CHOICE 335w ◆CHOICE 375w |
+| W1D4 | 1046 | 5 | 3 | 0 | 375w | 4.9 min | 152w ◆CHOICE 100w 🎲CHALLENGE 84w ◆CHOICE 335w ◆CHOICE 375w |
 | W1D5 | 801 | 7 | 2 | 0 | 385w | 4.1 min | 115w ◆CHOICE 119w ⚔FIGHT 113w ◆CHOICE 69w ▸tap 385w |
 | W1D6 | 768 | 5 | 2 | 0 | 293w | 3.7 min | 144w 🎲CHALLENGE 46w ?PRESS ON 293w ◆CHOICE 64w ◆CHOICE 221w |
 | W2D1 | 864 | 5 | 3 | 0 | 373w | 4.1 min | 32w ◆CHOICE 106w ◆CHOICE 167w ◆CHOICE 186w 🎲CHALLENGE 373w |
@@ -56,9 +56,9 @@ The last light: three leads, pick one, roll (a pass gives the first letter of a 
 | W1D1 | 3 | 40 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
 | W1D2 | 3 | 53 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W1D3 | 3 | 55 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 3 clicks to find |
-| W1D4 | 3 | 32 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 2 clicks to find |
-| W1D5 | 3 | 54 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 3 clicks to find |
-| W1D6 | 3 | 48 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 2 clicks to find |
+| W1D4 | 3 | 32 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 3 clicks to find |
+| W1D5 | 3 | 51 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 4 clicks to find |
+| W1D6 | 3 | 48 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 3 clicks to find |
 | W2D1 | 3 | 61 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W2D2 | 3 | 70 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W2D3 | 3 | 64 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
@@ -95,7 +95,7 @@ Measured on the main path (Approach passed, United Effort won, the first option 
 
 | Week | Story words | Taps to move on | Group decisions | Rolls | Match | Ask questions | Table question | Read time |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 1006 | 1 | 1 | 3 (+ the Battle) | 0 | 0 | 1 | 4 min reading |
+| 1 | 1013 | 1 | 1 | 3 (+ the Battle) | 0 | 0 | 1 | 4 min reading |
 | 2 | 2303 | 7 | 1 | 3 (+ the Battle) | 2 | 4 | 1 | 10 min reading |
 | 3 | 1497 | 8 | 1 | 3 (+ the Battle) | 2 | 8 | 1 | 7 min reading |
 | 4 | 1777 | 5 | 1 | 3 (+ the Battle) | 2 | 6 | 1 | 8 min reading |
