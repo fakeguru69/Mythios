@@ -256,6 +256,7 @@ For a new session: read this, then `docs/multiplayer-plan-15oct.md` (the plan an
    - the Fan Out first-letter hint.
 
 **How the server is changed**
+- **Every change goes out in the same piece (Fake Guru, 25 Oct: "remember to update, upload and migrate as you make the changes"):** merged to `main` on GitHub (the website builds from it), loaded into Supabase, and recorded in Supabase's migration history (`supabase_migrations.schema_migrations`). Loading through the Supabase management API does not record it: add the row yourself (version, name, statements), as was done for `0122` to `0128` on 25 Oct. Then compare the live copy with the local one (md5).
 - Every change is a new file in `supabase/migrations/` (numbered), applied with the Supabase tool `apply_migration`. Never edit one that is applied.
 - Write changes that **add**: new functions and `create or replace`, column grants, restrictive policies.
   - A drop or a delete waits for a human approval that may never reach Fake Guru, and then times out.
