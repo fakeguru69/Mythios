@@ -26,8 +26,11 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   const click = async (p, name, exact = true) => { await p.getByRole('button', { name, exact }).first().click(); await p.waitForTimeout(800); };
   const waitFor = async (p, re, secs = 12) => { for (let i = 0; i < secs * 2; i++) { if (re.test(await body(p))) return true; await p.waitForTimeout(500); } return false; };
   const signIn = async (p, email) => {
-    await click(p, 'USE EMAIL AND A PASSWORD');
-    await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
+    // The cover (since 23 Oct): "Already playing? Sign in"; older screens asked for the way in first.
+    if (await p.locator('[data-button-signin]').count()) { await p.locator('[data-button-signin]').click(); await p.waitForTimeout(800); }
+    for (const name of ['USE EMAIL AND A PASSWORD', 'Have an account? Sign in']) {
+      const b = p.getByRole('button', { name, exact: true }); if (await b.count()) { await b.first().click(); await p.waitForTimeout(500); }
+    }
     await p.getByPlaceholder('Email').fill(email); await p.getByPlaceholder('Password').fill(process.env.MYTHIOS_TEST_PASSWORD);
     await click(p, 'SIGN IN'); await p.waitForTimeout(1500);
   };
@@ -51,7 +54,7 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   await host.goto(`${BASE}/?online=1`); await host.waitForTimeout(1500); await shot(host, '01-landing');
   const land = await body(host);
   check('landing: MYTHIOS header, intro, series card', /MYTHIOS/.test(land) && /Mythios is that teller\./.test(land) && /A Mythios series[\s\S]*Tales of the Dark Moon[\s\S]*Season 1/i.test(land));
-  await click(host, 'START A PARTY'); await signIn(host, 'host@mythios.test'); await shot(host, '02-home');
+  await signIn(host, 'host@mythios.test'); await shot(host, '02-home');
   check('home: your stories + shelf + character', /Your stories/.test(await body(host)) && /You play TestHost, Trickster/.test(await body(host)));
   await click(host, 'START A PARTY');
   check('start party names series', /Tales of the Dark Moon · Season 1/.test(await body(host)));

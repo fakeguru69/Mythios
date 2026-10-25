@@ -10,6 +10,7 @@ const fs = require('fs');
 const S = require('path').join(process.env.TEST_OUT || 'test-output', 'gathering-' + (process.argv[2] || 'run'));
 fs.mkdirSync(S, { recursive: true });
 const PARTY = process.argv[3] || 'Gathering Test';
+const WEEK = Number(process.env.WEEK || 2);
 const PASSWORD = process.env.MYTHIOS_TEST_PASSWORD || 'local';
 const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.join(' ') + '\n'); };
 let failed = false;
@@ -26,7 +27,7 @@ const waitUntil = async (fn, ms = 10000, step = 250) => {
   return Boolean(await fn());
 };
 
-// A party on Week 2 Day 7 in the local test database (host, then Mei), each with a little gold and one of each Relic.
+// A party on Week 2 Day 7 (or WEEK=N) in the local test database (host, then Mei), each with a little gold and one of each Relic.
 if (process.argv[2] === 'setup-local') {
   const { execFileSync } = require('child_process');
   const q = (s) => execFileSync('psql', ['-U', process.env.PGUSER || 'postgres', '-qAtX', '-v', 'ON_ERROR_STOP=1', '-c', s], { encoding: 'utf8' });
@@ -36,13 +37,13 @@ if (process.argv[2] === 'setup-local') {
      insert into public.profiles (id, display_name) values ('${H}', 'TestHost'), ('${M}', 'Mei') on conflict (id) do nothing;
      update public.profiles set display_name = case id when '${H}' then 'TestHost' else 'Mei' end, name_chosen = true where id in ('${H}', '${M}');
      insert into public.parties (id, name, host_id, time_zone, season_started_at, day1_opens_at) values ('${P}', '${PARTY}', '${H}', 'Asia/Singapore', now(),
-       (((now() at time zone 'Asia/Singapore') - interval '5 hours')::date - 13 + time '05:00') at time zone 'Asia/Singapore');
+       (((now() at time zone 'Asia/Singapore') - interval '5 hours')::date - ${7 * WEEK - 1} + time '05:00') at time zone 'Asia/Singapore');
      insert into public.party_members (party_id, user_id, character_name, class, second_attr, status, ready, session_zero_done_at) values
        ('${P}', '${H}', 'TestHost', 'Warrior', 'Agility', 'approved', true, now()), ('${P}', '${M}', 'Mei', 'Sage', 'Charm', 'approved', true, now() + interval '1 second');
      insert into public.characters (user_id, series_id, name, class, second_attr) values ('${H}', 'dark-moon', 'TestHost', 'Warrior', 'Agility'), ('${M}', 'dark-moon', 'Mei', 'Sage', 'Charm') on conflict do nothing;`);
   for (const u of [H, M]) q(`select public.ensure_progress('${P}', '${u}'); update public.member_progress set gold = 600, relics = '{"Combat": 1, "Intellect": 1, "Agility": 1, "Aim": 1}' where user_id = '${u}';`);
   // The lobby opens a minute ago, so it starts the moment both are here.
-  q(`select public.g_row('${P}', 2); update public.gatherings set opens_at = now() - interval '1 minute' where party_id = '${P}';`);
+  q(`select public.g_row('${P}', ${WEEK}); update public.gatherings set opens_at = now() - interval '1 minute' where party_id = '${P}';`);
   console.log('local party ready:', PARTY);
   process.exit(0);
 }
@@ -55,8 +56,7 @@ async function player(b, who) {
   const body = () => p.locator('body').innerText();
   const click = async (name) => { await p.getByRole('button', { name, exact: true }).first().click(); await p.waitForTimeout(800); };
   await p.goto('http://localhost:3000/?online=1'); await p.waitForTimeout(1200);
-  await click('START A PARTY'); await click('USE EMAIL AND A PASSWORD');
-  await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
+  await p.getByRole('button', { name: 'Already playing? Sign in' }).click(); await p.waitForTimeout(800);
   await p.getByPlaceholder('Email').fill(`${who}@mythios.test`); await p.getByPlaceholder('Password').fill(PASSWORD);
   await click('SIGN IN'); await p.waitForTimeout(1500);
   // Day 7: the STORY tab holds the Gathering itself (the game shell, phase A).
@@ -118,8 +118,11 @@ async function move({ p, who }) {
 }
 
 (async () => {
-  const b = await chromium.launch({ args: [`--proxy-server=${process.env.HTTPS_PROXY}`, '--proxy-bypass-list=localhost;127.0.0.1'] });
-  const players = [await player(b, 'host'), await player(b, 'mei')];
+  // Each friend in a browser of their own (25 Oct): two pages in one browser can have the one behind slowed until its
+  // two-second poll stops, and the Battle then waits for a round that never comes.
+  const launch = () => chromium.launch({ args: [`--proxy-server=${process.env.HTTPS_PROXY}`, '--proxy-bypass-list=localhost;127.0.0.1', '--disable-background-timer-throttling', '--disable-renderer-backgrounding', '--disable-backgrounding-occluded-windows'] });
+  const b = await launch(), b2 = await launch();
+  const players = [await player(b, 'host'), await player(b2, 'mei')];
   const started = Date.now();
   let ended = false;
   for (let n = 0; n < 900 && !ended; n++) {
@@ -144,6 +147,6 @@ async function move({ p, who }) {
     check(`${who}: no unfilled stand-ins`, unfilled.length === 0);
   }
   log('minutes:', ((Date.now() - started) / 60000).toFixed(1));
-  await b.close();
+  await b.close(); await b2.close();
   process.exit(failed ? 1 : 0);
 })().catch((e) => { log('FAILED', e.message.split('\n')[0]); process.exit(1); });

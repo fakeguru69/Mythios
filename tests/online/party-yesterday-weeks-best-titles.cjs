@@ -22,6 +22,7 @@ const check = (name, ok) => {
 (() => {
   const root = path.resolve(__dirname, '../..');
   const mig104 = fs.readFileSync(path.join(root, 'supabase/migrations/0104_party_yesterday_weeks_best_titles.sql'), 'utf8');
+  const mig116 = fs.readFileSync(path.join(root, 'supabase/migrations/0116_rule_breaking_words.sql'), 'utf8');
   const rulesSrc = fs.readFileSync(path.join(root, 'src/data/mythiosRulesData.ts'), 'utf8');
   const daySrc = fs.readFileSync(path.join(root, 'src/online/OnlineDay.tsx'), 'utf8');
   const gatheringSrc = fs.readFileSync(path.join(root, 'src/online/OnlineGathering.tsx'), 'utf8');
@@ -116,8 +117,9 @@ const check = (name, ok) => {
   check(
     'party_season_titles is STABLE (no temp tables) and defines all 12 canonical Season Titles',
     mig104.includes('create or replace function public.party_season_titles(p_party uuid) returns jsonb') &&
-    !mig104.includes('create temp table') &&
-    canonicalTitles.every(([key, title]) => mig104.includes(`'${key}'`) && mig104.includes(`'${title}'`))
+    !mig104.includes('create temp table') && !mig116.includes('create temp table') &&
+    // 0116 (rule-breaking words) renamed The Faithful to The Steadfast; the latest name counts.
+    canonicalTitles.every(([key, title]) => mig104.includes(`'${key}'`) && (mig104 + mig116).includes(`'${title}'`))
   );
 
   const { SEASON_TITLES_META } = require(path.join(root, 'src/data/mythiosRulesData.ts'));

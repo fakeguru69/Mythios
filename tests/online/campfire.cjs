@@ -33,8 +33,7 @@ async function asPlayer(b, who, leadIndex, act) {
   const click = async (name) => { await p.getByRole('button', { name, exact: true }).first().click(); await p.waitForTimeout(800); };
   const shot = async (n, full = true) => { fs.writeFileSync(`${S}/${who}-${n}.txt`, await body()); await p.screenshot({ path: `${S}/${who}-${n}.png`, fullPage: full }); };
   await p.goto('http://localhost:3000/?online=1'); await p.waitForTimeout(1200);
-  await click('START A PARTY'); await click('USE EMAIL AND A PASSWORD');
-  await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
+  await p.getByRole('button', { name: 'Already playing? Sign in' }).click(); await p.waitForTimeout(800);
   await p.getByPlaceholder('Email').fill(`${who}@mythios.test`); await p.getByPlaceholder('Password').fill(process.env.MYTHIOS_TEST_PASSWORD);
   await click('SIGN IN'); await p.waitForTimeout(1500);
   await enterParty(p, PARTY);

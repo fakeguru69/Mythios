@@ -31,8 +31,7 @@ const waitUntil = async (fn, ms = 8000, step = 250) => {
   p.on('pageerror', (e) => { log('PAGEERROR', e.message); failed = true; });
   const click = async (name) => { await p.getByRole('button', { name, exact: true }).first().click(); await p.waitForTimeout(800); };
   await p.goto('http://localhost:3000/'); await p.waitForTimeout(1200);
-  await click('START A PARTY'); await click('USE EMAIL AND A PASSWORD');
-  await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
+  await p.getByRole('button', { name: 'Already playing? Sign in' }).click(); await p.waitForTimeout(800);
   await p.getByPlaceholder('Email').fill('host@mythios.test'); await p.getByPlaceholder('Password').fill(process.env.MYTHIOS_TEST_PASSWORD);
   await click('SIGN IN'); await p.waitForTimeout(1500);
   log('shelf card:', await p.locator('[data-notifications]').getAttribute('data-notifications').catch(() => 'none'));

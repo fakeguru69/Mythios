@@ -63,9 +63,7 @@ const sql = (s) => execFileSync('psql', ['-U', process.env.PGUSER || 'postgres',
   check('reloading does not add rows (the record is kept once)', rows() === 2);
   const other = await (await b.newContext({ viewport: { width: 375, height: 900 } })).newPage();
   await other.goto('http://localhost:3000/?online=1'); await other.waitForTimeout(1500);
-  await other.getByRole('button', { name: 'START A PARTY', exact: true }).click(); await other.waitForTimeout(800);
-  await other.getByRole('button', { name: 'USE EMAIL AND A PASSWORD', exact: true }).click(); await other.waitForTimeout(800);
-  await other.getByRole('button', { name: 'Have an account? Sign in' }).click();
+  await other.locator('[data-button-signin]').click(); await other.waitForTimeout(800);
   await other.getByPlaceholder('Email').fill('host@mythios.test'); await other.getByPlaceholder('Password').fill('x');
   await other.getByRole('button', { name: 'SIGN IN', exact: true }).click(); await other.waitForTimeout(2000);
   await enterParty(other, PARTY); await other.waitForTimeout(4500);

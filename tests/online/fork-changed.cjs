@@ -89,8 +89,9 @@ const check = (name, ok) => {
     }
   }
   check(
-    'Piece E3: only the 5 [STRIKE THE PAGE] buttons in Week 6 remain as single-action buttons across all 36 days',
-    allActs.length === 5 && allActs.every((a) => a.endsWith(':STRIKE THE PAGE'))
+    // 25 Oct (Phase 3, the Week 1 pilot): [SIT WITH HER] on W1D5 is the one act added since, a beat in the week's longest read.
+    'Piece E3: only the 5 [STRIKE THE PAGE] buttons in Week 6 and W1D5 [SIT WITH HER] remain as single-action buttons',
+    allActs.length === 6 && allActs.filter((a) => a.endsWith(':STRIKE THE PAGE')).length === 5 && allActs.includes('1-5:SIT WITH HER')
   );
   check('Piece E3: all 36 weekday chapters still award their Seeker Fragment on narration', fragmentSayCount === 36);
 
