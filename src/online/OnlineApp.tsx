@@ -207,7 +207,16 @@ function SignIn({ returning = false }: { returning?: boolean }) {
         options: { data: { display_name: trimmed }, emailRedirectTo: window.location.href },
       });
       if (e) setError(plainError(e.message));
-      else if (!data.session) setSent(true);
+      else if (data.user && data.user.identities?.length === 0) {
+        // 26 Oct: this email already has an account. The server answers a repeat sign-up with silence and sends no
+        // email, so the screen would wait for a link that never comes. Sign in with the same password instead; if that
+        // password is not theirs, turn to the sign-in form and say why.
+        const { error: e2 } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+        if (e2) {
+          setMode('in');
+          setError('You already have an account with this email. Sign in with its password.');
+        }
+      } else if (!data.session) setSent(true);
     }
     setBusy(false);
   };
