@@ -952,7 +952,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
               <h3 className={`${heading} text-[15px]`}>Your character comes first</h3>
             </div>
           </div>
-          <p className="text-[15px]">Your own character comes first.</p>
+          <p className="text-[15px]">Choose who you will be on the road, before your friends arrive.</p>
           <button className={goldButton} onClick={() => setDoingSessionZero(true)}>
             BEGIN
           </button>

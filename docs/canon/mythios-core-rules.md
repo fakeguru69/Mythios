@@ -137,7 +137,7 @@ The Attribute's number is progress toward the next tier. Only the tier's bonus i
 - **Story Challenges fail forward.** Both branches reach the same plot. The failure branch must show a visible setback; whether the detour is pulled back is a backend matter the player never sees.
 - **A clue missed on a fail goes to the fire** *(15 Oct 2026, Fake Guru)*. Where a pass shows a detail that a fail does not, the day summary card says so on a fail ("You missed something at the ford. Someone at the fire may have seen it."), and at that evening's Campfire a friend who passed shares what they saw. Failing gives a reason to talk, not a silent loss.
 - **[NOT NOW]:** the card is set aside. It stays in the thread and can be rolled any time before the day ends, and while it is set aside the Store is open. A card still open when the day ends closes unrolled. That means the failure branch and no gold lost.
-- **A failed Challenge costs gold only.** Nothing carries into a fight.
+- **A failed Challenge costs gold only.** Nothing carries into a fight. *Since 17 and 24 Oct (approved): a failed Challenge also loses that day's road clue at the fire, and on Week 6 Days 2, 3 and 5 it makes the next card one harder; a road you choose may make a later card one harder, and the card says why ("You rowed for the tower yesterday…"). Each such card names its cause.*
 
 **Harder Challenges**
 
@@ -590,7 +590,7 @@ Every simulated number in §12 is a prediction. Log these, per player:
 - **Each Battle may carry one condition,** stated in one line on the fight card. The conditions and their numbers are in §12.
 - **Notice:** after the Battle each friend gets one private line keyed to their highest Attribute, with an optional `[LOOK CLOSER]` roll on that Attribute. A friend who fell gets a "from the floor" line (still a true detail worth telling) and no roll.
 - **The United Effort's result changes something the party can see** for the rest of the night, never what is revealed. (One exception, decided 4 Oct: in Gathering 4 a lost job means no captive and no Ask board. It rides on the whole party's rolls, not on one.)
-- **One result carries into a weekday:** a lost United Effort in Gathering 5 makes Week 6 Day 1's Challenge two harder.
+- **Results that carry into a weekday:** a lost United Effort at Gathering 1, 2, 4 or 5 makes the next week's first Challenge two harder (widened from Gathering 5 alone by Group C, 17 Oct), and the card says why; a lost one at Gathering 3 changes how Week 4 Day 1 opens.
 - **Nothing at a Gathering is a race.** Where one friend must be chosen for a big moment, MYTHIOS picks at random from those who have not rolled tonight.
 - **Garrick never volunteers.** A question to him that nobody taps goes unasked.
 - **Match:** MYTHIOS posts a MATCH card in the party chat with a line of scripture and the week's six fragments as rows (day and place found, first words; tap a row to read the whole fragment in the card) (the place labels are in `mythios-match-labels.md`), each with a private [PICK]. The player never goes to the Bag. A small line shows who has picked, never what. When every friend present has picked, or after sixty seconds (set 5 Oct; was twenty), the right row lights up with the initials of those who matched it. **A wrong pick is never shown** (no number records a miss). The result reads "Mei and Jo matched it." (or "All of you matched it.") Every right pick is paid and named together (never who was first), a wrong pick costs nothing, and a friend who has not picked is simply not counted. **Each right pick pays 50g, or 100g if every friend present is right (set 5 Oct, Audit G).** At most two a night. Gathering 1 has none.
@@ -857,7 +857,7 @@ These appear in older documents and logs. None is in force. The reasoning for ea
 - **A DC set for each player.** A DC is one number per obstacle.
 - **Optional play: the Lure, free play, Bonus Challenges, Bonus Fights, notes ("Finds") and the safety net.** Retired 5 Oct 2026; **partly reopened 8 Oct 2026, see §15** (Fan Out and riddles) (TVMen: "Let's lose the optional play. It gets complicated. End chapter with summary page"). 26 of the 36 days had a written bonus seed; all are cut from the six episode files.
 - **Flavor Rolls.** Replaced by Bonus Challenges, which were themselves retired on 5 Oct 2026.
-- **Carried costs** (a wound, "the Order strikes first"). A failed Challenge costs gold only.
+- **Carried costs** (a wound, "the Order strikes first"). A failed Challenge costs gold only. *Not retired: a card one or two harder because of an earlier road, a failed roll or a lost United Effort (17 and 24 Oct), which always says its cause on the card.*
 - **Enemies and rewards that follow a player's gear Rank,** and **"Fresh" and "Seasoned" odds.** Each episode has fixed enemies.
 - **Gear locked behind an Attribute tier,** and **"Level 1 = +6 / +6".**
 - **The 300g Relic** and **the one-round Combat Relic.**

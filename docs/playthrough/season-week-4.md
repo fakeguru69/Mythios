@@ -66,7 +66,7 @@ Week 4, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 > When you took Wren up to the cooler air first before returning to the chamber floor, Mei held the room still so every print in the ash waited untouched for your lamp.
 
-*⚙ The careful reading of this fork also gives a Aim Relic (at most one road a week does).*
+*⚙ The careful reading of this fork also gives an Aim Relic (at most one road a week does).*
 
 *⚙ If the party won Gathering 3's United Effort:*
 
@@ -106,7 +106,7 @@ Week 4, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 **[PRESS ON]: FOLLOW THEM**
 
-*⚙ Offered only after a pass: down the passage, as far as the prints go. 4 harder (DC 12). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: down the passage, as far as the prints go. 4 harder (DC 12). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -272,7 +272,7 @@ Clue found, "The same side":
 
 > Not grey coats. Not good boots. Only hungry.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
 
 > Between you, it is over quickly. These men do not vanish. They sit down in the shallows with their heads in their hands, and, being asked nothing, tell you everything.
 >
@@ -818,7 +818,7 @@ Clue found, "A cleared sill":
 
 **[PRESS ON]: THE SMALL PRINTS**
 
-*⚙ Offered only after a pass: read only his, back along the lane. 4 harder (DC 12). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: read only his, back along the lane. 4 harder (DC 12). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -1030,7 +1030,7 @@ Clue found, "The scratched line":
 
 > He was left to mind it.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -1529,7 +1529,7 @@ Clue found, "The lamp on the shingle":
 
 **THE UNITED EFFORT: THE WATER-GATE**
 
-*⚙ Two bars at 100 (60 for a friend alone): "The Pin" (the thing in the way) and "His Breath" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Craft Challenge against DC 8. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
+*⚙ Two bars at 100 (60 for a friend alone, 120 for five friends, 140 for six): "The Pin" (the thing in the way) and "His Breath" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Craft Challenge against DC 8. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
 
 - **On a pass:**
   - *(early)* Your fingers find it in the dark: a pin of iron as thick as a thumb, furred with rust. You get the knife's point under its head and lean. Something gives, a grain at a time. Then your chest is burning, and you are up.

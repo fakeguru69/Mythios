@@ -16,9 +16,9 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 - **A Challenge:** pick one of two Attributes the card offers, roll d20 + its tier bonus − the DC; 1 or more passes, a tie fails. Weekday DC by week: 6, 7, 7, 8, 9, 9. The card says "You succeed on X+". Pass: +500g and the Attribute grows. Fail: −150g, and a worse branch of the scene. Both branches reach the same plot. [PRESS ON], on some days after a pass: 4 harder, +200g and one extra detail.
 
-- **Fights:** 100 HP each side, one tap a round, damage = the hit's margin × 5. Gear on two tracks (Weapon 14–18, Armor 27–31, Levels 1–5) bought in the Store. Nobody dies: at 0 HP, "DEFEATED.", and the story goes on.
+- **Fights:** 100 HP each side, one tap a round, damage = the hit's margin × 5. Gear on two tracks (Weapon 14–18, Armour 27–31, Levels 1–5) bought in the Store. Nobody dies: at 0 HP, "DEFEATED.", and the story goes on.
 
-- **Relics** (150g): an Attribute Relic gives +4 on one roll; a Combat Relic gives +1 Weapon and +1 Armor for one fight. Relics can be given to friends; gold cannot.
+- **Relics** (150g): an Attribute Relic gives +4 on one roll; a Combat Relic gives +1 Weapon and +1 Armour for one fight. Relics can be given to friends; gold cannot.
 
 - **The Seeker Fragment:** each day a short old text with two missing words appears in every friend's Seeker Chest; each word is a jumble of letters to unscramble (+25g a word). Six fragments make the week's map, which helps at the Gathering.
 
@@ -52,7 +52,7 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 > He means it. So must you.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 22 is 1 or more; the enemy when d20 + ATK 15 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 22 is 1 or more; the enemy when d20 + ATK 15 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you won the fight:*
 
@@ -82,7 +82,7 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Then the card "What this changed":*
 
-> You looked where he stood first — the rubbing lay face down where his heel turned for the trees.
+> You looked where he stood first. The rubbing lay face down where his heel turned for the trees.
 
 *⚙ This road's own find, "Face down at his heel" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -102,7 +102,7 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Then the card "What this changed":*
 
-> You checked the cargo box first — the scratches sit low on one side where he knelt watching the road.
+> You checked the cargo box first. The scratches sit low on one side where he knelt watching the road.
 
 *⚙ This road's own find, "Scratches on the road side" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -287,7 +287,7 @@ Clue found, "The oilcloth":
 
 *⚙ Then the card "What this changed":*
 
-> You asked about the list first — he glanced at the pocket-fold in your page before bringing out the satchel.
+> You asked about the list first. He glanced at the pocket-fold in your page before bringing out the satchel.
 
 *⚙ This road's own find, "The pocket-folded page" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -309,11 +309,11 @@ Clue found, "The oilcloth":
 
 *⚙ Then the card "What this changed":*
 
-> You asked who else had come asking — he said nobody had asked for you, only the woman who left the pages.
+> You asked who else had come asking. He said nobody had asked for you, only the woman who left the pages.
 
 *⚙ This road's own find, "No other callers" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> Asked whether anyone else had come looking for the people at your table, Garrick said nobody had asked for you at the Hollow Wake — only the woman who left the pages.
+> Asked whether anyone else had come looking for the people at your table, Garrick said nobody had asked for you at the Hollow Wake. Only the woman who left the pages.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -355,7 +355,7 @@ Clue found, "The oilcloth":
 
 **[PRESS ON]: READ THE STUBS**
 
-*⚙ Offered only after a pass: what is left on the torn edges themselves. 4 harder (DC 10). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: what is left on the torn edges themselves. 4 harder (DC 10). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -387,7 +387,7 @@ Clue found, "The oilcloth":
 
 *⚙ Then the card "What this changed":*
 
-> You pointed out the cramped shorthand line — he knew which line you meant without coming closer.
+> You pointed out the cramped shorthand line. He knew which line you meant without coming closer.
 
 *⚙ This road's own find, "Known from across the bar" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -407,7 +407,7 @@ Clue found, "The oilcloth":
 
 *⚙ Then the card "What this changed":*
 
-> You sounded out her clipped letters aloud — his cloth slowed on the bar at the sound of them.
+> You sounded out her clipped letters aloud. His cloth slowed on the bar at the sound of them.
 
 *⚙ This road's own find, "The pause of the cloth" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -435,7 +435,7 @@ Clue found, "The oilcloth":
 
 *⚙ Then the card "What this changed":*
 
-> You asked him to guide you and pointed to the extra cup — he agreed to come as far as the Widow's Tooth.
+> You asked him to guide you and pointed to the extra cup. He agreed to come as far as the Widow's Tooth.
 
 *⚙ This road's own find, "The untouched cup at the end" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -457,7 +457,7 @@ Clue found, "The oilcloth":
 
 *⚙ Then the card "What this changed":*
 
-> You let the open notebook make your case — he looked at her shorthand and agreed to come as far as the Widow's Tooth.
+> You let the open notebook make your case. He looked at her shorthand and agreed to come as far as the Widow's Tooth.
 
 *⚙ This road's own find, "The open leaf between the cups" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -668,7 +668,7 @@ Clue found, "The thumbed leaf":
 
 > He comes up running, and he is not running away.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 22 is 1 or more; the enemy when d20 + ATK 15 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([FOLLOW THE CART-RUTS] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 22 is 1 or more; the enemy when d20 + ATK 15 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([FOLLOW THE CART-RUTS] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -953,11 +953,11 @@ Clue found, "The notched stick":
 
 *⚙ Then the card "What this changed":*
 
-> You waited in silence — his gaze gave away Tamsin's house and the gate they used.
+> You waited in silence. His gaze gave away Tamsin's house and the gate they used.
 
 *⚙ This road's own find, "Where the boy looked" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> Given silence at the well, the boy looked first to the third house on the left — where a child's stool sits under the open shutter — and then to the swinging gate at the fen end of the lane.
+> Given silence at the well, the boy looked first to the third house on the left, where a child's stool sits under the open shutter, and then to the swinging gate at the fen end of the lane.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -1003,11 +1003,11 @@ Clue found, "The notched stick":
 
 *⚙ Then the card "What this changed":*
 
-> You held your ground — you saw the young men came out unarmed, bluffing to turn you back.
+> You held your ground. You saw the young men came out unarmed, bluffing to turn you back.
 
 *⚙ This road's own find, "Unarmed men" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> When you stood your ground at the well, the two younger men had nothing at their belts — not even a hedging bill. Fenmark came out to bluff you away, not to fight.
+> When you stood your ground at the well, the two younger men had nothing at their belts. Not even a hedging bill. Fenmark came out to bluff you away, not to fight.
 
 *⚙ If you pick [STEP BACK, HANDS OPEN]:*
 
@@ -1015,11 +1015,11 @@ Clue found, "The notched stick":
 
 *⚙ Then the card "What this changed":*
 
-> You stepped back with open hands — you saw the three-day bruise on the young man's wrist.
+> You stepped back with open hands. You saw the three-day bruise on the young man's wrist.
 
 *⚙ This road's own find, "The bruised wrist" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> When the nearer young man lowered his guard, his cuff showed a dark bruise round his wrist, three days old — someone held him back when Tamsin was taken.
+> When the nearer young man lowered his guard, his cuff showed a dark bruise round his wrist, three days old. Someone held him back when Tamsin was taken.
 
 *⚙ If you pick [PUT YOURSELF IN FRONT OF THE BOY]:*
 
@@ -1027,7 +1027,7 @@ Clue found, "The notched stick":
 
 *⚙ Then the card "What this changed":*
 
-> You stood in front of the boy — he whispered that the men knew the steps of Fenmark in the dark.
+> You stood in front of the boy. He whispered that the men knew the steps of Fenmark in the dark.
 
 *⚙ This road's own find, "No lantern in the dark" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1232,7 +1232,7 @@ Clue found, "Past three doors":
 
 > He got here first. He is trying the shutters.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 22 is 1 or more; the enemy when d20 + ATK 15 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([LOOK AT THE PATH] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 22 is 1 or more; the enemy when d20 + ATK 15 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([LOOK AT THE PATH] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -1272,7 +1272,7 @@ Clue found, "Past three doors":
 
 *⚙ Then the card "What this changed":*
 
-> You showed empty hands — you saw the fresh blade-nick on her axe-helve from the trees.
+> You showed empty hands. You saw the fresh blade-nick on her axe-helve from the trees.
 
 *⚙ This road's own find, "The nicked axe-helve" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1284,11 +1284,11 @@ Clue found, "Past three doors":
 
 *⚙ Then the card "What this changed":*
 
-> You told her who you drove off — her glance gave away the root-cellar stone behind the woodpile.
+> You told her who you drove off. Her glance gave away the root-cellar stone behind the woodpile.
 
 *⚙ This road's own find, "The root-cellar stone" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> When told a man had been prizing at her back shutter, the woman glanced once at the flat root-cellar stone behind the woodpile — her real hiding-place is under the woodpile, not inside the shed.
+> When told a man had been prizing at her back shutter, the woman glanced once at the flat root-cellar stone behind the woodpile. Her real hiding-place is under the woodpile, not inside the shed.
 
 *⚙ If you pick [HOLD OUT THE CARVED HORSE]:*
 
@@ -1296,7 +1296,7 @@ Clue found, "Past three doors":
 
 *⚙ Then the card "What this changed":*
 
-> You knew the carved horse was hers and held it out first — she trusted you at once, and pressed a Might Relic into your hand.
+> You knew the carved horse was hers and held it out first. She trusted you at once, and pressed a Might Relic into your hand.
 
 *⚙ This road's own find, "The carver's charm" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1502,7 +1502,7 @@ Clue found, "The worn bar":
 
 **[PRESS ON]: WADE OUT**
 
-*⚙ Offered only after a pass: find where they went from the water. 4 harder (DC 10). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: find where they went from the water. 4 harder (DC 10). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -1558,7 +1558,7 @@ Clue found, "The worn bar":
 
 *⚙ Then the card "What this changed":*
 
-> You asked who the extra cup was for — he set the jug down and called it a family habit.
+> You asked who the extra cup was for. He set the jug down and called it a family habit.
 
 *⚙ This road's own find, "The tap of the jug" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1572,7 +1572,7 @@ Clue found, "The worn bar":
 
 *⚙ Then the card "What this changed":*
 
-> You looked at the extra cup poured to the same measure — he caught your eye and called it a family habit.
+> You looked at the extra cup poured to the same measure. He caught your eye and called it a family habit.
 
 *⚙ This road's own find, "Measured like the rest" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1590,7 +1590,7 @@ Clue found, "The worn bar":
 
 *⚙ Then the card "What this changed":*
 
-> You read the map out yourself — your fingertip found an old pin-hole punched through the mark.
+> You read the map out yourself. Your fingertip found an old pin-hole punched through the mark.
 
 *⚙ This road's own find, "The pin-hole at the mark" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1602,7 +1602,7 @@ Clue found, "The worn bar":
 
 *⚙ Then the card "What this changed":*
 
-> You let Dev read the map — with your eyes on the room, you caught the courier listening at the mention of the ford.
+> You let Dev read the map. With your eyes on the room, you caught the courier listening at the mention of the ford.
 
 *⚙ This road's own find, "The listening courier" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1880,7 +1880,7 @@ Clue found, "A second man":
 
 **THE UNITED EFFORT: THE DROP**
 
-*⚙ Two bars at 100 (60 for a friend alone): "The Drop" (the thing in the way) and "Dev HP" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Might Challenge against DC 6. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
+*⚙ Two bars at 100 (60 for a friend alone, 120 for five friends, 140 for six): "The Drop" (the thing in the way) and "Dev HP" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Might Challenge against DC 6. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
 
 - **On a pass:**
   - *(early)* You get a fistful of Dev's collar and pull until your shoulder cracks. Dev comes up a hand's breadth: enough to get one elbow onto sounder wood.
@@ -2040,7 +2040,7 @@ Clue found, "A second man":
 
 *⚙ Then the card "What this changed":*
 
-> You asked how much he already knew — he kept wiping the lamp glass and offered the second name's road.
+> You asked how much he already knew. He kept wiping the lamp glass and offered the second name's road.
 
 *⚙ This road's own find, "Soot on the lamp glass" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2056,7 +2056,7 @@ Clue found, "A second man":
 
 *⚙ Then the card "What this changed":*
 
-> You asked which road reached the second name first — he offered to point the way from the mine wall.
+> You asked which road reached the second name first. He offered to point the way from the mine wall.
 
 *⚙ This road's own find, "The road from the mine wall" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2076,7 +2076,7 @@ Clue found, "A second man":
 
 *⚙ Then the card "What this changed":*
 
-> You crouched level with her in the mud — she studied your face before speaking of the mill boy.
+> You crouched level with her in the mud. She studied your face before speaking of the mill boy.
 
 *⚙ This road's own find, "Mud on your knee" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2088,7 +2088,7 @@ Clue found, "A second man":
 
 *⚙ Then the card "What this changed":*
 
-> You asked what the song was — she stopped humming at once and said it was a counting song.
+> You asked what the song was. She stopped humming at once and said it was a counting song.
 
 *⚙ This road's own find, "The counting song" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2100,7 +2100,7 @@ Clue found, "A second man":
 
 *⚙ Then the card "What this changed":*
 
-> You waited without pressing her — her good hand took your sleeve on its own, and her trust left you a Charm Relic.
+> You waited without pressing her. Her good hand took your sleeve on its own, and her trust left you a Charm Relic.
 
 *⚙ This road's own find, "Her hand on your sleeve" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2134,7 +2134,7 @@ Clue found, "A second man":
 
 *⚙ Then the card "What this changed":*
 
-> You reminded him the Widow's Tooth was behind you — he called you the worst guests he'd ever had and walked ahead.
+> You reminded him the Widow's Tooth was behind you. He called you the worst guests he'd ever had and walked ahead.
 
 *⚙ This road's own find, "A day and a half past his word" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2150,7 +2150,7 @@ Clue found, "A second man":
 
 *⚙ Then the card "What this changed":*
 
-> You watched him knot his bedroll twice for a long road — he caught you looking and walked ahead.
+> You watched him knot his bedroll twice for a long road. He caught you looking and walked ahead.
 
 *⚙ This road's own find, "The double-knotted bedroll" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2475,7 +2475,7 @@ Clue found, "Deeper coming down":
 
 **[PRESS ON]: THE RUTS**
 
-*⚙ Offered only after a pass: walk the lane, and read the cart itself. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: walk the lane, and read the cart itself. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -2695,7 +2695,7 @@ Clue found, "The cropped grass":
 
 > There is no way round it.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 23 is 1 or more; the enemy when d20 + ATK 16 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 23 is 1 or more; the enemy when d20 + ATK 16 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -3125,7 +3125,7 @@ Clue found, "The chant ran on":
 
 > He has not come to talk.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 23 is 1 or more; the enemy when d20 + ATK 16 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WALK THE HILL] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 23 is 1 or more; the enemy when d20 + ATK 16 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WALK THE HILL] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -3324,7 +3324,7 @@ Clue found, "Faces turned in":
 
 **[PRESS ON]: EAR TO THE ROCK**
 
-*⚙ Offered only after a pass: listen below the room you can place. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: listen below the room you can place. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -3356,7 +3356,7 @@ Clue found, "Faces turned in":
 
 *⚙ Then the card "What this changed":*
 
-> You gave the map line by line across the dark — you heard how far even a low voice carried on the still hill.
+> You gave the map line by line across the dark. You heard how far even a low voice carried on the still hill.
 
 *⚙ This road's own find, "A voice on the still hill" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -3368,7 +3368,7 @@ Clue found, "Faces turned in":
 
 *⚙ Then the card "What this changed":*
 
-> You passed the map to Arjun — with your eyes free to watch the hill below, you caught the first stir of lamps in the dark.
+> You passed the map to Arjun. With your eyes free to watch the hill below, you caught the first stir of lamps in the dark.
 
 *⚙ This road's own find, "Starlight on the parchment" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -3664,7 +3664,7 @@ Clue found, "Your own print":
 
 **THE UNITED EFFORT: THE BREACH**
 
-*⚙ Two bars at 100 (60 for a friend alone): "The Tunnel" (the thing in the way) and "The Room" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Intellect Challenge against DC 7. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
+*⚙ Two bars at 100 (60 for a friend alone, 120 for five friends, 140 for six): "The Tunnel" (the thing in the way) and "The Room" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is an Intellect Challenge against DC 7. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
 
 - **On a pass:**
   - *(early)* You see it: not the big prop, the little wedge under it. It goes with one kick, and a cart-load of hill sits down in the tunnel's mouth.

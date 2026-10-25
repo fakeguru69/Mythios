@@ -16,9 +16,9 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 - **A Challenge:** pick one of two Attributes the card offers, roll d20 + its tier bonus − the DC; 1 or more passes, a tie fails. Weekday DC by week: 6, 7, 7, 8, 9, 9. The card says "You succeed on X+". Pass: +500g and the Attribute grows. Fail: −150g, and a worse branch of the scene. Both branches reach the same plot. [PRESS ON], on some days after a pass: 4 harder, +200g and one extra detail.
 
-- **Fights:** 100 HP each side, one tap a round, damage = the hit's margin × 5. Gear on two tracks (Weapon 14–18, Armor 27–31, Levels 1–5) bought in the Store. Nobody dies: at 0 HP, "DEFEATED.", and the story goes on.
+- **Fights:** 100 HP each side, one tap a round, damage = the hit's margin × 5. Gear on two tracks (Weapon 14–18, Armour 27–31, Levels 1–5) bought in the Store. Nobody dies: at 0 HP, "DEFEATED.", and the story goes on.
 
-- **Relics** (150g): an Attribute Relic gives +4 on one roll; a Combat Relic gives +1 Weapon and +1 Armor for one fight. Relics can be given to friends; gold cannot.
+- **Relics** (150g): an Attribute Relic gives +4 on one roll; a Combat Relic gives +1 Weapon and +1 Armour for one fight. Relics can be given to friends; gold cannot.
 
 - **The Seeker Fragment:** each day a short old text with two missing words appears in every friend's Seeker Chest; each word is a jumble of letters to unscramble (+25g a word). Six fragments make the week's map, which helps at the Gathering.
 
@@ -68,11 +68,11 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Then the card "What this changed":*
 
-> You knelt level with Corin's bandaged hand — he remembered Wren's name and the warm black hills of home.
+> You knelt level with Corin's bandaged hand. He remembered Wren's name and the warm black hills of home.
 
 *⚙ This road's own find, "Level with the bandage" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> When you knelt on the stone floor level with Corin's bandaged hand, he steadied himself and remembered the girl's name — Wren — and the warm black hills she missed.
+> When you knelt on the stone floor level with Corin's bandaged hand, he steadied himself and remembered the girl's name, Wren, and the warm black hills she missed.
 
 *⚙ If you pick [SIT ON THE STEP BESIDE HIM]:*
 
@@ -90,7 +90,7 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Then the card "What this changed":*
 
-> You sat beside Corin on the low step — with nobody standing over him, he told you about Wren and her warm hills.
+> You sat beside Corin on the low step. With nobody standing over him, he told you about Wren and her warm hills.
 
 *⚙ This road's own find, "Beside him on the mill-step" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -116,7 +116,7 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Then the card "What this changed":*
 
-> You asked about warning the fourth child in the north — Garrick laid two fingers on the page to keep you on Wren's trail.
+> You asked about warning the fourth child in the north. Garrick laid two fingers on the page to keep you on Wren's trail.
 
 *⚙ This road's own find, "Two fingers on the ledger" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -132,11 +132,11 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Then the card "What this changed":*
 
-> You traced the drier ink of the fourth entry — Garrick shook his head and pointed you to Wren's fresh tracks.
+> You traced the drier ink of the fourth entry. Garrick shook his head and pointed you to Wren's fresh tracks.
 
 *⚙ This road's own find, "The drier ink at the fourth name" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> Under the lamp, the ink of the fourth entry in the ledger was drier than the third — written before they ever came down to the mill.
+> Under the lamp, the ink of the fourth entry in the ledger was drier than the third. Written before they ever came down to the mill.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -150,7 +150,7 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 > Somebody let it loose, and sent it up after you.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 > It comes at you twice, and the second time something goes out of it. It backs away to the length of its trailing chain and lies down in the wet grass with its sides heaving, between you and the shoulder of the hill.
 >
@@ -646,7 +646,7 @@ Clue found, "Sacking on the stones":
 
 **[PRESS ON]: READ THE SCRATCHES**
 
-*⚙ Offered only after a pass: follow them to the edge of the glass. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: follow them to the edge of the glass. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -676,7 +676,7 @@ Clue found, "Sacking on the stones":
 
 *⚙ Then the card "What this changed":*
 
-> You thanked him before the others woke — he tucked his waxed thread away without looking up.
+> You thanked him before the others woke. He tucked his waxed thread away without looking up.
 
 *⚙ This road's own find, "The waxed thread bobbin" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -692,11 +692,11 @@ Clue found, "Sacking on the stones":
 
 *⚙ Then the card "What this changed":*
 
-> You tested the neat cobbler's stitch in the morning light — he saw it hold and tucked his bobbin away.
+> You tested the neat cobbler's stitch in the morning light. He saw it hold and tucked his bobbin away.
 
 *⚙ This road's own find, "The cobbler's stitch" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> Held to the morning light beside the Blackglass, the split sole of your boot showed a tight, practiced cobbler's stitch laid in waxed thread while you slept.
+> Held to the morning light beside the Blackglass, the split sole of your boot showed a tight, practised cobbler's stitch laid in waxed thread while you slept.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -856,11 +856,11 @@ Clue found, "The view down":
 
 *⚙ Then the card "What this changed":*
 
-> You stayed on the hoof-scratches another mile — you found the third carved chip yourself before rejoining the doorway.
+> You stayed on the hoof-scratches another mile. You found the third carved chip yourself before rejoining the doorway.
 
 *⚙ This road's own find, "The third chip on the trail" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> Following the hoof-scratches a mile past the buried doorway, you found a third twist of shaved wood dropped where the riders never looked back.
+> Following the hoof-scratches a mile past the buried doorway, you found a third chip of black glass dropped where the riders never looked back.
 
 *⚙ If you pick [GO TO THE DOORWAY]:*
 
@@ -868,7 +868,7 @@ Clue found, "The view down":
 
 *⚙ Then the card "What this changed":*
 
-> You went straight to the buried doorway — you had the fall of rock sized up by the time Dev brought back the third chip.
+> You went straight to the buried doorway. You had the fall of rock sized up by the time Dev brought back the third chip.
 
 *⚙ This road's own find, "The squared lintel under the fall" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1063,7 +1063,7 @@ Clue found, "Scratched on the back":
 
 > The riders' line went the long way round the head of the fold in plain view of the ridge where the grey coat had been left to watch.
 
-*⚙ The careful reading of this fork also gives a Agility Relic (at most one road a week does).*
+*⚙ The careful reading of this fork also gives an Agility Relic (at most one road a week does).*
 
 *⚙ If you pick [WREN'S LINE]:*
 
@@ -1087,7 +1087,7 @@ Clue found, "Scratched on the back":
 
 > Polite, and in good boots.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WREN'S LINE] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WREN'S LINE] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -1360,7 +1360,7 @@ Clue found, "The gap in the row":
 
 *⚙ Then the card "What this changed":*
 
-> You raised your voice over the ridge wind — the gale carried every turn of the way down the black slope.
+> You raised your voice over the ridge wind. The gale carried every turn of the way down the black slope.
 
 *⚙ This road's own find, "Words carried down the ridge" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1372,7 +1372,7 @@ Clue found, "The gap in the row":
 
 *⚙ Then the card "What this changed":*
 
-> You let Mei shield the map from the wind and read — watching the dark plain below, you saw the single lamp first.
+> You let Mei shield the map from the wind and read. Watching the dark plain below, you saw the single lamp first.
 
 *⚙ This road's own find, "Shielded from the ridge wind" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1607,7 +1607,7 @@ Clue found, "No way down in the dark":
 
 **THE UNITED EFFORT: THE SCREE**
 
-*⚙ Two bars at 100 (60 for a friend alone): "The Climb" (the thing in the way) and "Wren's Hold" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Agility Challenge against DC 7. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
+*⚙ Two bars at 100 (60 for a friend alone, 120 for five friends, 140 for six): "The Climb" (the thing in the way) and "Wren's Hold" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is an Agility Challenge against DC 7. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
 
 - **On a pass:**
   - *(early)* You go up it the way you would cross a frozen pond: flat, and slowly, and thinking about something else. The blade goes in to the hilt. The rope is fast.
@@ -1912,7 +1912,7 @@ Clue found, "No way down in the dark":
 
 > When you took Wren up to the cooler air first before returning to the chamber floor, Mei held the room still so every print in the ash waited untouched for your lamp.
 
-*⚙ The careful reading of this fork also gives a Aim Relic (at most one road a week does).*
+*⚙ The careful reading of this fork also gives an Aim Relic (at most one road a week does).*
 
 *⚙ If the party won Gathering 3's United Effort:*
 
@@ -1952,7 +1952,7 @@ Clue found, "No way down in the dark":
 
 **[PRESS ON]: FOLLOW THEM**
 
-*⚙ Offered only after a pass: down the passage, as far as the prints go. 4 harder (DC 12). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: down the passage, as far as the prints go. 4 harder (DC 12). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -2118,7 +2118,7 @@ Clue found, "The same side":
 
 > Not grey coats. Not good boots. Only hungry.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
 
 > Between you, it is over quickly. These men do not vanish. They sit down in the shallows with their heads in their hands, and, being asked nothing, tell you everything.
 >
@@ -2664,7 +2664,7 @@ Clue found, "A cleared sill":
 
 **[PRESS ON]: THE SMALL PRINTS**
 
-*⚙ Offered only after a pass: read only his, back along the lane. 4 harder (DC 12). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: read only his, back along the lane. 4 harder (DC 12). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -2876,7 +2876,7 @@ Clue found, "The scratched line":
 
 > He was left to mind it.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 24 is 1 or more; the enemy when d20 + ATK 17 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -3375,7 +3375,7 @@ Clue found, "The lamp on the shingle":
 
 **THE UNITED EFFORT: THE WATER-GATE**
 
-*⚙ Two bars at 100 (60 for a friend alone): "The Pin" (the thing in the way) and "His Breath" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Craft Challenge against DC 8. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
+*⚙ Two bars at 100 (60 for a friend alone, 120 for five friends, 140 for six): "The Pin" (the thing in the way) and "His Breath" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Craft Challenge against DC 8. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
 
 - **On a pass:**
   - *(early)* Your fingers find it in the dark: a pin of iron as thick as a thumb, furred with rust. You get the knife's point under its head and lean. Something gives, a grain at a time. Then your chest is burning, and you are up.

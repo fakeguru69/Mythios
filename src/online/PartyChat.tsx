@@ -148,12 +148,12 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
             <p
               key={m.id}
               className={`text-[14px] text-center py-1 font-sans ${
-                /rolled a natural 20|earned the .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body)
+                /rolled a natural 20|earned .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body)
                   ? 'text-[#E5C158] font-semibold'
                   : `${note} text-center`
               }`}
               data-chat-moment={
-                /rolled a natural 20|earned the .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body) ? 'true' : undefined
+                /rolled a natural 20|earned .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body) ? 'true' : undefined
               }
             >
               {m.body}

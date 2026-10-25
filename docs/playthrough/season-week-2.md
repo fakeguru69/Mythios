@@ -36,7 +36,7 @@ Week 2, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 *⚙ Then the card "What this changed":*
 
-> You asked how much he already knew — he kept wiping the lamp glass and offered the second name's road.
+> You asked how much he already knew. He kept wiping the lamp glass and offered the second name's road.
 
 *⚙ This road's own find, "Soot on the lamp glass" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -52,7 +52,7 @@ Week 2, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 *⚙ Then the card "What this changed":*
 
-> You asked which road reached the second name first — he offered to point the way from the mine wall.
+> You asked which road reached the second name first. He offered to point the way from the mine wall.
 
 *⚙ This road's own find, "The road from the mine wall" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -72,7 +72,7 @@ Week 2, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 *⚙ Then the card "What this changed":*
 
-> You crouched level with her in the mud — she studied your face before speaking of the mill boy.
+> You crouched level with her in the mud. She studied your face before speaking of the mill boy.
 
 *⚙ This road's own find, "Mud on your knee" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -84,7 +84,7 @@ Week 2, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 *⚙ Then the card "What this changed":*
 
-> You asked what the song was — she stopped humming at once and said it was a counting song.
+> You asked what the song was. She stopped humming at once and said it was a counting song.
 
 *⚙ This road's own find, "The counting song" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -96,7 +96,7 @@ Week 2, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 *⚙ Then the card "What this changed":*
 
-> You waited without pressing her — her good hand took your sleeve on its own, and her trust left you a Charm Relic.
+> You waited without pressing her. Her good hand took your sleeve on its own, and her trust left you a Charm Relic.
 
 *⚙ This road's own find, "Her hand on your sleeve" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -130,7 +130,7 @@ Week 2, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 *⚙ Then the card "What this changed":*
 
-> You reminded him the Widow's Tooth was behind you — he called you the worst guests he'd ever had and walked ahead.
+> You reminded him the Widow's Tooth was behind you. He called you the worst guests he'd ever had and walked ahead.
 
 *⚙ This road's own find, "A day and a half past his word" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -146,7 +146,7 @@ Week 2, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 *⚙ Then the card "What this changed":*
 
-> You watched him knot his bedroll twice for a long road — he caught you looking and walked ahead.
+> You watched him knot his bedroll twice for a long road. He caught you looking and walked ahead.
 
 *⚙ This road's own find, "The double-knotted bedroll" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -471,7 +471,7 @@ Clue found, "Deeper coming down":
 
 **[PRESS ON]: THE RUTS**
 
-*⚙ Offered only after a pass: walk the lane, and read the cart itself. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: walk the lane, and read the cart itself. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -691,7 +691,7 @@ Clue found, "The cropped grass":
 
 > There is no way round it.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 23 is 1 or more; the enemy when d20 + ATK 16 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 23 is 1 or more; the enemy when d20 + ATK 16 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -1121,7 +1121,7 @@ Clue found, "The chant ran on":
 
 > He has not come to talk.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 23 is 1 or more; the enemy when d20 + ATK 16 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WALK THE HILL] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 23 is 1 or more; the enemy when d20 + ATK 16 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([WALK THE HILL] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -1320,7 +1320,7 @@ Clue found, "Faces turned in":
 
 **[PRESS ON]: EAR TO THE ROCK**
 
-*⚙ Offered only after a pass: listen below the room you can place. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: listen below the room you can place. 4 harder (DC 11). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -1352,7 +1352,7 @@ Clue found, "Faces turned in":
 
 *⚙ Then the card "What this changed":*
 
-> You gave the map line by line across the dark — you heard how far even a low voice carried on the still hill.
+> You gave the map line by line across the dark. You heard how far even a low voice carried on the still hill.
 
 *⚙ This road's own find, "A voice on the still hill" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1364,7 +1364,7 @@ Clue found, "Faces turned in":
 
 *⚙ Then the card "What this changed":*
 
-> You passed the map to Arjun — with your eyes free to watch the hill below, you caught the first stir of lamps in the dark.
+> You passed the map to Arjun. With your eyes free to watch the hill below, you caught the first stir of lamps in the dark.
 
 *⚙ This road's own find, "Starlight on the parchment" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1660,7 +1660,7 @@ Clue found, "Your own print":
 
 **THE UNITED EFFORT: THE BREACH**
 
-*⚙ Two bars at 100 (60 for a friend alone): "The Tunnel" (the thing in the way) and "The Room" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Intellect Challenge against DC 7. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
+*⚙ Two bars at 100 (60 for a friend alone, 120 for five friends, 140 for six): "The Tunnel" (the thing in the way) and "The Room" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is an Intellect Challenge against DC 7. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
 
 - **On a pass:**
   - *(early)* You see it: not the big prop, the little wedge under it. It goes with one kick, and a cart-load of hill sits down in the tunnel's mouth.

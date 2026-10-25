@@ -964,22 +964,26 @@ export default function OnlineDay({
         ? fill(fragRaw.replace(/^Fragments?:\s*/i, ''))
         : '—';
 
+      // The card's lines start as sentences under their headings ("Nothing was taken.", not "nothing was taken."),
+      // whatever case canon's "You learned: …" carried after its colon.
+      const capFirst = (s: string) => s.replace(/^([^A-Za-z]*)([a-z])/, (_m, a: string, b: string) => a + b.toUpperCase());
+
       // What you learned
       const learnedRaw = rest.find((l) => /^You learned:\s*/i.test(l));
       const learnedDisplay = learnedRaw
-        ? fill(learnedRaw.replace(/^You learned:\s*/i, ''))
+        ? capFirst(fill(learnedRaw.replace(/^You learned:\s*/i, '')))
         : null;
 
       // What you carry (formerly You hold:)
       const carryRaw = rest.find((l) => /^(?:You hold|You carry):\s*/i.test(l));
       const carryDisplay = carryRaw
-        ? fill(carryRaw.replace(/^(?:You hold|You carry):\s*/i, ''))
+        ? capFirst(fill(carryRaw.replace(/^(?:You hold|You carry):\s*/i, '')))
         : null;
 
       // Tomorrow
       const tomorrowRaw = rest.find((l) => /^Tomorrow:\s*/i.test(l));
       const tomorrowDisplay = tomorrowRaw
-        ? fill(tomorrowRaw.replace(/^Tomorrow:\s*/i, ''))
+        ? capFirst(fill(tomorrowRaw.replace(/^Tomorrow:\s*/i, '')))
         : null;
 
       // Branch notes (e.g. *On a pass:*, *On a failure:*)
