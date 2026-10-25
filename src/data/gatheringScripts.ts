@@ -156,7 +156,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It is over.\n\nA dropped torch rolls a little way on the boards and stops. Then there is no sound in the mine but the river.\n\nShe is at the back of the gallery with her wrists tied, and she is humming. A counting song, very quietly, the way you hum to keep from crying.\n\nWhoever reaches her first kneels slowly, so as not to loom over her. The knots are small and hard. Whoever tied them has tied a great many. They take a long time, and all that time she does not look away from your hands.\n\nShe does not stop when the ropes come off. She hums it all the way out into the air.\n\nOutside, after the mine, the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.\n\nYou have been saying her name for three days. Now you can see her. Tamsin is about nine.\n\nThere is a small cut across her palm. It has been bound in clean white linen. Somebody took the time.",
+        "text": "It is over.\n\nA dropped torch rolls a little way on the boards and stops. Then there is no sound in the mine but the river.\n\nShe is at the back of the gallery with her wrists tied, and she is humming. A counting song, very quietly, the way you hum to keep from crying.\n\nWhoever reaches her first kneels slowly, so as not to loom over her. The knots are small and hard. Whoever tied them has tied a great many. They take a long time, and all that time she does not look away from your hands.\n\nShe does not stop when the ropes come off. She hums it all the way out into the air.\n\nOutside, after the mine, the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.\n\nYou have been saying her name for three days. Now here she is: nine years old, and still counting under her breath.\n\nThere is a small cut across her palm. It has been bound in clean white linen. Somebody took the time.",
         "section": "The Battle"
       },
       {
@@ -531,7 +531,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "It is close and ugly: lamps kicked over, shadows lurching across the ceiling. And the strangest part is the chanting. The ones still standing keep the words going as they fight, and some keep them going as they fall, as if the words matter more than their lives.\n\nWhen the last of them goes down, the room goes enormously quiet.\n\nThe boy is alive. There's a cut across his palm, clean and shallow, already bound in white linen — someone took the time to bind it. Whatever they needed from him, they'd already taken. The wound is small. The relief in the room is real. It looks, to everyone standing in it, like a win.",
+        "text": "It is close and ugly: lamps kicked over, shadows lurching across the ceiling. And the strangest part is the chanting. The ones still standing keep the words going as they fight, and some keep them going as they fall, as if the words matter more than their lives.\n\nWhen the last of them goes down, the room goes enormously quiet.\n\nThe boy is alive. There is a cut across his palm, clean and shallow, already bound in white linen. Somebody took the time. Whatever they needed from him, they had already taken. The wound is small, and the relief in the room is real. For a while, in the lamplight, it is enough.",
         "section": "The Battle"
       },
       {
@@ -747,7 +747,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "On the dark hillside, before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.\n\n{SIX:2}",
+        "text": "Before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.\n\n{SIX:2}",
         "section": "The six, read together"
       },
       {
@@ -3171,7 +3171,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Nobody breathes.\n\nAnd on the floor of his hall, where he fell, the king opens his eyes.\n\nThey pass over Garrick, kneeling at his side, as if he were not there. They move across the ring of light. And they settle on you. Whatever he is now, he knows Seeker blood when he sees it.\n\n*The power that gives is also the power that takes.*\n\nGarrick looks down at you, at all of you, kneeling in the ring of light, palms cut open again tonight, the same white linen from a week ago still knotted at every wrist. His face is courteous, and nothing more.\n\n*\"You saved every child you were sent to save,\"* he says.",
+        "text": "Nobody breathes.\n\nAnd on the floor of his hall, where he fell, the king opens his eyes.\n\nThey pass over Garrick, kneeling at his side, as if he were not there. They move across the ring of light. And they settle on you. Whatever he is now, he knows Seeker blood when he sees it.\n\n*The power that gives is also the power that takes.*\n\nGarrick looks down at you, at all of you, kneeling in the ring of light, palms cut open again tonight, the same white linen from a week ago still knotted across every palm. His face is courteous, and nothing more.\n\n*\"You saved every child you were sent to save,\"* he says.",
         "section": "The Cliffhanger"
       },
       {

@@ -97,7 +97,7 @@ export const UNITED_EFFORT_STORIES: Record<number, UnitedEffortStory> = {
       ],
       "3": [
         "The big prop, the obvious one. It was holding up your side. A slab of the old wall leans out and comes down across the floor, and one of the lamps is under it.",
-        "Wrong. The roof over the hole stays where it is. The roof over your heads lets go a barrow-load of stone."
+        "The roof over the hole stays where it is. The roof over your heads lets go a barrow-load of stone."
       ]
     },
     "between": [

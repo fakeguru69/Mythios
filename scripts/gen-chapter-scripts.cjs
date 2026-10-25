@@ -149,7 +149,7 @@ const FORK_BRANCH_META = {
     changed: 'You found fresh charcoal in the cut stone · Your back was to the bracken: he strikes first.',
     roadFind: {
       title: 'Charcoal in the cut',
-      text: "In the deepest groove of the cut stone at the Widow's Tooth, dry under the overhang, a crumb of black charcoal came away on your thumb. Somebody pressed paper to this stone not many days ago.",
+      text: "In the deepest groove of the cut stone at the Widow's Tooth, dry under the overhang, a crumb of black charcoal came away on your thumb. Somebody pressed paper to this stone, and not so very long ago.",
     },
   },
   '1-3:FOLLOW THE CART-RUTS': {

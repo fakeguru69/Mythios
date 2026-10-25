@@ -118,7 +118,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Opener: "A small black circle. Somebody wanted a thing forgotten, and somebody else wouldn't let it be."
 - Fork: A "The king was erased by his enemies." / B "The king was erased by his own people."
 - Fan Out clue (leans both; new): On the old stone where the scout stood, one face has been ground flat, long ago. The chisel scars are weathered grey. Whatever was carved there is gone.
-- Callback: "On Day 2 a horn button, on Day 3 a dead stranger. Tonight, a circle."
+- Callback: "At the mill a horn button, on the river path a dead stranger. Tonight, a circle."
 - Riddle: *What has no beginning, no middle and no end?* A: a circle. Garrick: "A small black one, this evening."
 - Nudge: `{friend:Intellect}`, who gains from a forgotten name?
 
@@ -149,7 +149,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Nudge: `{friend:Charm}`, why would men taking a child bother with good manners?
 
 **3-3 · The Blackglass**
-- Opener: "Mind your hands on that glass, all of you."
+- Opener: "Sit, before that glass has the rest of your boots, and mind your hands on it."
 - Fork: A "The children were chosen for their place." / B "The places were chosen for the children."
 - Fan Out clue (leans both; press-on): Six horses. One of them is carrying double, and the second rider weighs almost nothing.
 - Callback: "At the Widow's Tooth a man lay in the bracken watching the rock. Here the riders went past this one without slowing."
@@ -191,7 +191,7 @@ Garrick waits at the fire after each player's own Fan Out. It lets the game cont
 - Nudge: `{friend:Craft}`, the ropes were cut clean in the dark. His own hand, or another's?
 
 **4-2 · The north road**
-- Opener: "Cold road. Put your hands round that cup."
+- Opener: "Cold road. Hands round that cup first, and get the warmth back into them. The rest will keep."
 - Fork: A "The box matters more than the swords." / B "The swords are the real message."
 - Fan Out clue (leans A; new): The carter says the four never spoke to each other, and never once looked at the road or the lake. Every eye stayed on the cart.
 - Callback: "The carter's coin has the king's face scraped off. Meira wrote that every record of him had been scraped clean."

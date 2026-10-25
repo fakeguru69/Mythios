@@ -3,6 +3,7 @@
 // Run: npx tsx tests/data/check-small-party-lines.ts (after any change to the episode files).
 import { CHAPTER_SCRIPTS } from '../../src/data/chapterScripts';
 import { SMALL_PARTY_LINES } from '../../src/data/smallPartyLines';
+import { DAY_RECAPS } from '../../src/data/dayRecaps';
 
 const texts: string[] = [];
 const walk = (o: unknown) => {
@@ -10,11 +11,12 @@ const walk = (o: unknown) => {
   else if (o && typeof o === 'object') for (const v of Object.values(o)) walk(v);
 };
 walk(CHAPTER_SCRIPTS);
+walk(DAY_RECAPS); // the recaps go through the same short versions (25 Oct)
 const all = texts.join('\n');
 
 let bad = 0;
 for (const l of SMALL_PARTY_LINES)
-  if (!all.includes(l.full)) { bad++; console.log('No longer in the chapters:', l.full); }
+  if (!all.includes(l.full)) { bad++; console.log('No longer in the chapters or recaps:', l.full); }
 for (const t of texts)
   for (const p of t.split(/\n\n+/)) {
     if (new Set(p.match(/\{F[1-3]\}/g) ?? []).size < 2) continue;

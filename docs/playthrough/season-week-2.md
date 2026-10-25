@@ -1250,7 +1250,7 @@ Clue found, "Faces turned in":
 
 *⚙ Then he recalls:*
 
-> On Day 2 a horn button, on Day 3 a dead stranger. Tonight, a circle.
+> At the mill a horn button, on the river path a dead stranger. Tonight, a circle.
 
 *⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
@@ -1569,7 +1569,7 @@ Clue found, "Your own print":
 >
 > When the last of them goes down, the room goes enormously quiet.
 >
-> The boy is alive. There's a cut across his palm, clean and shallow, already bound in white linen — someone took the time to bind it. Whatever they needed from him, they'd already taken. The wound is small. The relief in the room is real. It looks, to everyone standing in it, like a win.
+> The boy is alive. There is a cut across his palm, clean and shallow, already bound in white linen. Somebody took the time. Whatever they needed from him, they had already taken. The wound is small, and the relief in the room is real. For a while, in the lamplight, it is enough.
 
 > Garrick reaches him first, kneeling, checking the bandage with careful hands, the same relief on his face as on everyone's: *"You saved that boy. Whatever else happened here, you saved him."*
 
@@ -1672,7 +1672,7 @@ Clue found, "Your own print":
   - *(the end)* The last leg goes. The hill shuts like a book. The dust takes a long time to settle, and when it has there is no hole, no light, and no sound from the other side at all.
 - **On a fail:**
   - *(early)* The big prop, the obvious one. It was holding up your side. A slab of the old wall leans out and comes down across the floor, and one of the lamps is under it.
-  - *(early)* Wrong. The roof over the hole stays where it is. The roof over your heads lets go a barrow-load of stone.
+  - *(early)* The roof over the hole stays where it is. The roof over your heads lets go a barrow-load of stone.
   - *(middle)* The fall comes your way. When the dust thins, the far end of the room is rubble, and the stone table is the edge of what is left.
   - *(middle)* A crack runs across the ceiling from the hole to the stair, as quick as a lizard.
   - *(late)* There is room to stand, and not much more. Everything you have not got in your hands is under stone.
@@ -1702,7 +1702,7 @@ Clue found, "Your own print":
 
 *⚙ Either way, the whole party reads this:*
 
-> On the dark hillside, before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.
+> Before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.
 >
 > *Day 1, the farmhouse beam:* “We held his last wall the night it was meant to fall. Not one of us expected to see morning.”
 >

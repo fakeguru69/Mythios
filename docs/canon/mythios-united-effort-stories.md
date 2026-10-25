@@ -207,7 +207,7 @@ Damage = 10 + Roll 6. His Breath 100 → 84
 | The Room | Story |
 |---|---|
 | 67 to 99 | The big prop, the obvious one. It was holding up your side. A slab of the old wall leans out and comes down across the floor, and one of the lamps is under it. |
-| | Wrong. The roof over the hole stays where it is. The roof over your heads lets go a barrow-load of stone. |
+| | The roof over the hole stays where it is. The roof over your heads lets go a barrow-load of stone. |
 | 34 to 66 | The fall comes your way. When the dust thins, the far end of the room is rubble, and the stone table is the edge of what is left. |
 | | A crack runs across the ceiling from the hole to the stair, as quick as a lizard. |
 | 1 to 33 | There is room to stand, and not much more. Everything you have not got in your hands is under stone. |

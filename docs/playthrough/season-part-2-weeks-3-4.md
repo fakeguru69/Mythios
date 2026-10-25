@@ -756,7 +756,7 @@ Clue found, "The view down":
 
 *⚙ Garrick opens:*
 
-> Mind your hands on that glass, all of you.
+> Sit, before that glass has the rest of your boots, and mind your hands on it.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
@@ -2293,7 +2293,7 @@ Clue found, "The open road":
 
 *⚙ Garrick opens:*
 
-> Cold road. Put your hands round that cup.
+> Cold road. Hands round that cup first, and get the warmth back into them. The rest will keep.
 
 *⚙ If you are the first at the fire: "You're first. Pull up a log." Friends who pinned before you are read back ("Mei thinks the list is a warning."). He may notice up to two things a friend did today ("[a friend] gave a hand today. I saw.").*
 
