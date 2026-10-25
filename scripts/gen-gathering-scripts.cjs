@@ -25,7 +25,7 @@ function tokens(s, week, section) {
     .replace(/\[N−1\]|\[N-1\]/g, '{N-1}')
     .replace(/\[N\]/g, '{N}');
   // Gathering 1: "Dev" in the drop is whichever friend fell (canon note); elsewhere Dev is {F2}.
-  if (week === 1 && /United Effort|discovery|summary/i.test(section)) t = t.replace(/\b(Dev|DEV)\b/g, '{RISK}');
+  if (week === 1 && /United Effort|One heartbeat|The drop|discovery|summary/i.test(section)) t = t.replace(/\b(Dev|DEV)\b/g, '{RISK}');
   return t
     .replace(/\b(Mei|MEI)\b/g, '{F1}')
     .replace(/\b(Dev|DEV)\b/g, '{F2}')
@@ -69,6 +69,11 @@ function labelCond(text, week) {
   // and the cliffhanger's three branch lines (the act's pick, the last one before them).
   if (/^If most held back/.test(t)) return { on: 'pick', option: 1 };
   if (/^If the page was torn/.test(t)) return { on: 'pick', option: 0 };
+  // Gathering 1's heartbeat (Phase 4, 25 Oct): the act's three answers, and the prop's line in the discovery.
+  if (/^Go out now:?$/.test(t)) return { on: 'pick', option: 0 };
+  if (/^The new prop:?$/.test(t)) return { on: 'pick', option: 1 };
+  if (/^If the new prop was taken/.test(t)) return { on: 'pick', option: 1, together: true };
+  if (/^Stay where you are:?$/.test(t)) return { on: 'pick', option: 2 };
   if (/^If a Stone was struck from the ring/.test(t)) return { on: 'pick', option: 1 };
   if (/^Do nothing:?$/.test(t) || /^If nothing was done/.test(t)) return { on: 'pick', option: 2 };
   if (/^Then, alone on the screen/.test(t)) return { alone: true };
@@ -164,7 +169,13 @@ function buildGathering(week, lines) {
   let sectionCond;
   let i = 0;
   const push = (step) =>
-    steps.push({ ...(sectionCond && !step.cond && step.t !== 'section' ? { cond: sectionCond } : {}), ...step, section });
+    steps.push({
+      ...(sectionCond && !step.cond && (step.t !== 'section' || sectionCond.on === 'together') ? { cond: sectionCond } : {}),
+      ...step,
+      // A branch inside a "not when alone" part is shown only with friends (Gathering 1's heartbeat).
+      ...(sectionCond?.on === 'together' && step.cond?.on === 'pick' ? { cond: { ...step.cond, together: true } } : {}),
+      section,
+    });
   while (i < lines.length) {
     const l = lines[i];
     if (/^\*\*Designer's notes\*\*/.test(l)) break;
@@ -172,7 +183,7 @@ function buildGathering(week, lines) {
     const h3 = l.match(/^### (.+)$/);
     if (h3) {
       // Gathering 4's Ask happens only if the pin came out (the captive lived).
-      sectionCond = /only if the pin came out/.test(h3[1]) ? { on: 'ue', won: true } : undefined;
+      sectionCond = /only if the pin came out/.test(h3[1]) ? { on: 'ue', won: true } : /not when alone/.test(h3[1]) ? { on: 'together' } : undefined;
       section = h3[1].replace(/\s*\*\(.*\)\*\s*$/, '').trim();
       push({ t: 'section', title: section });
       i++;
@@ -360,8 +371,9 @@ import { AttributeName } from './mythiosRulesData';
 export type GatheringCond =
   | { on: 'approach'; pass: boolean }
   | { on: 'ue'; won: boolean }
-  | { on: 'pick'; option: number }
+  | { on: 'pick'; option: number; together?: boolean }
   | { on: 'alone' }
+  | { on: 'together' }
   | { on: 'unasked' };
 
 export type GatheringStep = { section: string; cond?: GatheringCond } & (

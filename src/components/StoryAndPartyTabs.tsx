@@ -2441,8 +2441,9 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
     if (!c) return true;
     if (c.on === 'approach') return Boolean(approachRolled) && approachRolled!.cleared === c.pass;
     if (c.on === 'ue') return ueDone && ueCleared === c.won;
-    if (c.on === 'pick') return lastPickBefore(index) === c.option;
+    if (c.on === 'pick') return lastPickBefore(index) === c.option && (!c.together || party.length > 1);
     if (c.on === 'alone') return party.length <= 1;
+    if (c.on === 'together') return party.length > 1; // Gathering 1's heartbeat (Phase 4)
     return false;
   };
 

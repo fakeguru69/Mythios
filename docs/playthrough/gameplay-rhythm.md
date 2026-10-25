@@ -95,7 +95,7 @@ Measured on the main path (Approach passed, United Effort won, the first option 
 
 | Week | Story words | Taps to move on | Group decisions | Rolls | Match | Ask questions | Table question | Read time |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 960 | 1 | 1 | 3 (+ the Battle) | 0 | 0 | 1 | 4 min reading |
+| 1 | 1002 | 1 | 1 | 3 (+ the Battle) | 0 | 0 | 1 | 4 min reading |
 | 2 | 2289 | 7 | 1 | 3 (+ the Battle) | 2 | 4 | 1 | 10 min reading |
 | 3 | 1476 | 8 | 1 | 3 (+ the Battle) | 2 | 8 | 1 | 6 min reading |
 | 4 | 1756 | 5 | 1 | 3 (+ the Battle) | 2 | 6 | 1 | 8 min reading |
