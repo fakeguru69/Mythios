@@ -3029,6 +3029,8 @@ Clue found, "Cut in a hurry":
 >
 > One.
 
+> Nobody says aloud that you could leave it behind. The torn page in your coat says *the fifth shall end*, and stops, and an ending needs the thing that ends it. Whatever happens in that hall tomorrow, the fifth has to be in it.
+
 > Garrick pours out the last of his flask into the tin cups: one for each of you, and one more, which he sets on the sill of the slit window, where nobody is sitting.
 >
 > *"Drinks are on me,"* he says. *"Don't get used to it."*
@@ -3308,7 +3310,7 @@ Clue found, "Every post empty":
 *⚙ Every friend picks privately; the majority decides (a tie holds it back): THE FIFTH IS IN YOUR HANDS.*
 
 1. **GIVE IT TO HIM**: 
-2. **HOLD IT BACK**: 
+2. **CLOSE YOUR HAND**: 
 
 *⚙ If option 1 was picked:*
 
@@ -3318,7 +3320,7 @@ Clue found, "Every post empty":
 
 *⚙ If option 2 was picked:*
 
-> He does not argue. The fight has left his palm bleeding. He reaches out and closes his hand over the Stone where it lies in yours, and it answers him anyway. You still carried it to him, into this room.
+> You close your hand on it. He does not argue. The fight has left his palm bleeding. He reaches out and closes his hand over yours, round the Stone, and it answers him anyway, through your fingers. You still carried it to him, into this room.
 
 *⚙ Either way, the whole party reads this:*
 
@@ -3326,12 +3328,10 @@ Clue found, "Every post empty":
 >
 > *"The page said the fifth would end this,"* Garrick says. *"It never said whose blood."*
 
+> **What you carried in.**
 > The torn page: **"…drink deep whichever marked blood finds them first. The fifth heeds no element at all, but blood alone, and remembers whose."**
-
 > The Verse of the Binding: **"The fifth drinks deep of moon-blood, and of no other."**
-
 > The Seekers, on the wall above the herald's gate: **"Four of us gave to the four. None of us gave to the fifth."**
-
 > The warning Meira glossed: **"Moon-blood woke it once. Moon-blood will wake it again, if it is ever let near."**
 
 > *"You read them as one,"* Garrick says. He does not sound cruel. *"They cut his name out of everything they could reach. The word outlived him and wandered off onto any child born in the dark. Your Meira used it that way."*
@@ -3410,7 +3410,7 @@ Clue found, "Every post empty":
 
 *⚙ If option 2 was picked:*
 
-> He takes the fifth out of your hand. Pinned in the light, you cannot close your fingers on it.
+> He opens your fingers from the Stone one at a time. Pinned in the light, you cannot close them again.
 
 *⚙ Either way, the whole party reads this:*
 
@@ -3424,7 +3424,9 @@ Clue found, "Every post empty":
 
 #### The act
 
-> The light lets go of Arjun. One heartbeat. One act.
+> The light lets go of one of you. A single breath. The hall does not notice.
+>
+> It is Arjun.
 >
 > **Everyone else: you have thirty seconds. Tell Arjun what to do.**
 
@@ -3514,16 +3516,16 @@ Clue found, "Every post empty":
 
 > Tamsin's hand. Corin's. Wren's. Joss's. Yours. The same linen. The same careful knot, every time.
 >
-> **To be continued.**
+> Across the ring of light, the king's eyes have not left you.
 
 *⚙ The summary card:*
 
 - **HIS HALL** · Gathering 6
 - You earned: [gold] · [growth, if you rolled] · [Match: 2 of 2]
-- The party: Battle won · the lamp [down / held] · the fifth [given / held back] · the act: [the page torn / the ring broken / nothing]
+- The party: Battle won · the lamp [down / held] · the fifth [given / kept in your hand] · the act: [the page torn / the ring broken / nothing]
 - You learned: **moon-blood was never a word for you.** It was the king's title, and then his house's. Garrick is the last of that house, and the Order is his. He never lied to you. His people killed Meira. The fifth did not stop the waking; it finished it. The king is awake, and he is looking at you.
 - You saved every child you were sent to save.
-- What you did in that last heartbeat is remembered. Season 2 begins from it.
+- What you did in that last heartbeat is remembered.
 - **Unlocked: Garrick's Recap.** Every line he ever said to you, to read again.
 
 # The end of the season

@@ -677,6 +677,8 @@
 >
 > One.
 
+> Nobody says aloud that you could leave it behind. The torn page in your coat says *the fifth shall end*, and stops, and an ending needs the thing that ends it. Whatever happens in that hall tomorrow, the fifth has to be in it.
+
 > Garrick pours out the last of his flask into the tin cups: one for each of you, and one more, which he sets on the sill of the slit window, where nobody is sitting.
 >
 > *"Drinks are on me,"* he says. *"Don't get used to it."*
@@ -842,9 +844,9 @@
 > *"You've all tried tonight,"* he says. *"I haven't."*
 
 > **THE FIFTH IS IN YOUR HANDS.**
-> `[GIVE IT TO HIM]` `[HOLD IT BACK]`
+> `[GIVE IT TO HIM]` `[CLOSE YOUR HAND]`
 
-*Every friend picks, in private. After thirty seconds the picks are shown together. The majority decides; a tie counts as held back.*
+*Every friend picks, in private. After thirty seconds the picks are shown together. The majority decides; a tie counts as a closed hand.*
 
 *If most give:*
 > You hand him the fifth. You do it yourselves.
@@ -852,20 +854,18 @@
 > He does not hesitate. The knife is already in his hand, and the cut is quick and practised. And the Stone *answers*.
 
 *If most hold back:*
-> He does not argue. The fight has left his palm bleeding. He reaches out and closes his hand over the Stone where it lies in yours, and it answers him anyway. You still carried it to him, into this room.
+> You close your hand on it. He does not argue. The fight has left his palm bleeding. He reaches out and closes his hand over yours, round the Stone, and it answers him anyway, through your fingers. You still carried it to him, into this room.
 
 > Not a flicker. A flood: cold light pouring up out of it the instant his blood touches it, hungry, as though it has been waiting for this for centuries. Around the king, the four Stones blaze in answer, and the light breaks over the ring like a wave and pins you all where you kneel. You can breathe. You can see. You cannot rise.
 >
 > *"The page said the fifth would end this,"* Garrick says. *"It never said whose blood."*
 
-*Then four things, each as its own message, and nothing else:*
+*Then, laid out together as one card (Phase 6: four lines the party already owns, not four messages):*
 
+> **What you carried in.**
 > The torn page: **"…drink deep whichever marked blood finds them first. The fifth heeds no element at all, but blood alone, and remembers whose."**
-
 > The Verse of the Binding: **"The fifth drinks deep of moon-blood, and of no other."**
-
 > The Seekers, on the wall above the herald's gate: **"Four of us gave to the four. None of us gave to the fifth."**
-
 > The warning Meira glossed: **"Moon-blood woke it once. Moon-blood will wake it again, if it is ever let near."**
 
 *The story holds for one quiet minute, or until a friend taps `[GO ON]`.*
@@ -912,7 +912,6 @@
 > **WHICH OF YOUR FRAGMENTS IS THIS?**
 > *"They had known him all his life as one of the marked."*
 
-> All of you matched it.
 > From the barracks hearth, where the Seekers slept: *"We were marked, every one of us. That is how we found the shards."*
 
 `[READ ON]`
@@ -925,7 +924,6 @@
 > **WHICH OF YOUR FRAGMENTS IS THIS?**
 > *"We were only servants, they said."*
 
-> All of you matched it.
 > From the wall room, where they kept their watch: *"His household ran the night we came to the hall. We let them go. They were only servants."*
 
 *Then, alone on the screen, the sliver from the shepherd's hut:*
@@ -947,7 +945,7 @@
 > *"They used his own blood on the fifth while his power was pouring out of him,"* Garrick says, softly, watching the light rise. *"Tonight he sleeps. Same key. Turned the other way."*
 
 *If most held back, one line here:*
-> He takes the fifth out of your hand. Pinned in the light, you cannot close your fingers on it.
+> He opens your fingers from the Stone one at a time. Pinned in the light, you cannot close them again.
 
 > He sets the book down open on the stone. From his coat he takes a tin cup, the one that sat on the sill of the wall room last night, and sets it on the floor beside the sleeping king, with the same small care he gave every cup on the road.
 >
@@ -961,7 +959,9 @@
 
 *The light chooses. MYTHIOS picks one friend at random, leaving out the friend who rolled the Approach (in a party of two or one, from everyone). It is not a race.*
 
-> The light lets go of Jo. One heartbeat. One act.
+> The light lets go of one of you. A single breath. The hall does not notice.
+>
+> It is Jo.
 >
 > **Everyone else: you have thirty seconds. Tell Jo what to do.**
 
@@ -1047,15 +1047,15 @@
 
 > Tamsin's hand. Corin's. Wren's. Joss's. Yours. The same linen. The same careful knot, every time.
 >
-> **To be continued.**
+> Across the ring of light, the king's eyes have not left you.
 
 **Season summary card** *(each friend's own)*
 > **HIS HALL** · Gathering 6
 > You earned: `[gold]` · `[growth, if you rolled]` · `[Match: 2 of 2]`
-> The party: Battle won · the lamp `[down / held]` · the fifth `[given / held back]` · the act: `[the page torn / the ring broken / nothing]`
+> The party: Battle won · the lamp `[down / held]` · the fifth `[given / kept in your hand]` · the act: `[the page torn / the ring broken / nothing]`
 > You learned: **moon-blood was never a word for you.** It was the king's title, and then his house's. Garrick is the last of that house, and the Order is his. He never lied to you. His people killed Meira. The fifth did not stop the waking; it finished it. The king is awake, and he is looking at you.
 > You saved every child you were sent to save.
-> What you did in that last heartbeat is remembered. Season 2 begins from it.
+> What you did in that last heartbeat is remembered.
 > **Unlocked: Garrick's Recap.** Every line he ever said to you, to read again.
 
 **Designer's notes**

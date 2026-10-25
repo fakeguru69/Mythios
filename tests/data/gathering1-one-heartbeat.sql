@@ -7,7 +7,7 @@ begin;
 insert into auth.users (id) values (:'C') on conflict do nothing;
 insert into profiles (id, display_name) values (:'C', 'Dev') on conflict do nothing;
 insert into party_members (party_id, user_id, character_name, status, class, session_zero_done_at) values (:'P', :'C', 'Dev', 'approved', 'Sage', now()) on conflict do nothing;
-update parties set day1_opens_at = now() - interval '6 days 1 hour' where id = :'P';
+update parties set day1_opens_at = now() - interval '6 days' where id = :'P';
 select (x.o - 1) as hb from gathering_scripts g, jsonb_array_elements(g.data -> 'steps') with ordinality x(s, o)
  where g.week = 1 and x.s ->> 'text' like '{CHOSEN} is nearest%' \gset
 select (x.o - 1) as pk from gathering_scripts g, jsonb_array_elements(g.data -> 'steps') with ordinality x(s, o)

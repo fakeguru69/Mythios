@@ -8,7 +8,7 @@ begin;
 insert into auth.users (id) values (:'C') on conflict do nothing;
 insert into profiles (id, display_name) values (:'C', 'Dev') on conflict do nothing;
 insert into party_members (party_id, user_id, character_name, status, class, session_zero_done_at) values (:'P', :'C', 'Dev', 'approved', 'Sage', now()) on conflict do nothing;
-update parties set day1_opens_at = now() - interval '13 days 1 hour' where id = :'P';
+update parties set day1_opens_at = now() - interval '13 days' where id = :'P';
 delete from gatherings where party_id = :'P' and week = 2;
 insert into gatherings (party_id, week, opens_at, started_at, cursor, wait_until, state)
 values (:'P', 2, now() - interval '1 hour', now() - interval '30 minutes', 38, now() - interval '1 second',

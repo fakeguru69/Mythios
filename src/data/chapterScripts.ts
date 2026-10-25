@@ -6733,6 +6733,10 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
+        "text": "Nobody says aloud that you could leave it behind. The torn page in your coat says *the fifth shall end*, and stops, and an ending needs the thing that ends it. Whatever happens in that hall tomorrow, the fifth has to be in it."
+      },
+      {
+        "t": "say",
         "text": "Garrick pours out the last of his flask into the tin cups: one for each of you, and one more, which he sets on the sill of the slit window, where nobody is sitting.\n\n*\"Drinks are on me,\"* he says. *\"Don't get used to it.\"*"
       },
       {
