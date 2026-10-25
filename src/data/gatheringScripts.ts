@@ -1197,42 +1197,6 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           },
           {
             "questions": [
-              "WHERE DOES HE SLEEP?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"Where he fell.\"*",
-            "group": "The king"
-          },
-          {
-            "questions": [
-              "WILL IT WORK?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"It is written that it will.\"*",
-            "group": "The king"
-          },
-          {
-            "questions": [
-              "GENERATIONS OF CHILDREN. WHY DOES HE STILL SLEEP?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "He looks at you for a long moment, and says nothing at all.",
-            "group": "The king"
-          },
-          {
-            "questions": [
-              "WHO ARE YOU?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"The faithful.\"* And to whom: *\"To the king who did not kneel.\"*",
-            "group": "The faithful"
-          },
-          {
-            "questions": [
               "WHO LEADS YOU?"
             ],
             "sealed": false,
@@ -1260,15 +1224,6 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           },
           {
             "questions": [
-              "WILL WREN GO HOME?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"She has given. She may go.\"*",
-            "group": "The children"
-          },
-          {
-            "questions": [
               "THE OTHERS YOU TOOK, BEFORE"
             ],
             "sealed": false,
@@ -1278,39 +1233,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           },
           {
             "questions": [
-              "WHO SCRATCHED THE NAMES?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"The faithful write the names of those who will give, so that he may know them.\"*",
-            "group": "The children"
-          },
-          {
-            "questions": [
-              "WHY CARRY THAT CASE?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"So that we would know you.\"*",
-            "group": "This room"
-          },
-          {
-            "questions": [
               "WHAT SAT IN THAT HOLLOW?",
               "WHAT WAS IN THE BOX?"
             ],
             "sealed": false,
             "note": "",
             "answer": "Silence. Not refusal: the kind that costs him. *\"Until the throne rise whole,\"* he says instead, softly, the way you would end a prayer.",
-            "group": "This room"
-          },
-          {
-            "questions": [
-              "HOW DID YOU GET HERE FIRST?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "He looks past you, at the dark the way you came, and says nothing.",
             "group": "This room"
           }
         ],
@@ -1618,38 +1546,11 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           },
           {
             "questions": [
-              "WHO LEADS YOU?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"One whose face I've never seen.\"*",
-            "group": "The faithful"
-          },
-          {
-            "questions": [
               "IS HE HERE?"
             ],
             "sealed": false,
             "note": "",
             "answer": "*\"I don't know. I've never seen his face.\"*",
-            "group": "The faithful"
-          },
-          {
-            "questions": [
-              "DO YOU KNOW THIS MAN?"
-            ],
-            "sealed": false,
-            "note": "of Garrick",
-            "answer": "*\"No.\"*",
-            "group": "The faithful"
-          },
-          {
-            "questions": [
-              "THE OTHERS YOU TOOK, BEFORE"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"Most went home.\"* When you name the charcoal woman's nephew, he is quiet for a long moment. *\"Him we lost.\"* And then, lower: *\"Not by our choosing.\"*",
             "group": "The faithful"
           }
         ],
@@ -1801,15 +1702,6 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "rows": [
           {
             "questions": [
-              "WHOSE IS THIS?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"The scholar's.\"*",
-            "group": "Added when the pen is found"
-          },
-          {
-            "questions": [
               "IS SHE DEAD?"
             ],
             "sealed": false,
@@ -1824,24 +1716,6 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             "sealed": false,
             "note": "",
             "answer": "*\"Yes.\"* When you ask him why, he looks down at the water and says nothing more.",
-            "group": "Added when the pen is found"
-          },
-          {
-            "questions": [
-              "DID YOU KILL HER?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"No.\"*",
-            "group": "Added when the pen is found"
-          },
-          {
-            "questions": [
-              "WHERE DID YOU GET IT?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"With her pages.\"*",
             "group": "Added when the pen is found"
           }
         ],
@@ -1914,15 +1788,6 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             "sealed": false,
             "note": "",
             "answer": "He opens his mouth, and closes it again, and says nothing.",
-            "group": "Added when the torn page is read"
-          },
-          {
-            "questions": [
-              "WHO GAVE YOU THIS PAGE?"
-            ],
-            "sealed": false,
-            "note": "",
-            "answer": "*\"It was given me to carry.\"*",
             "group": "Added when the torn page is read"
           }
         ],
@@ -2287,6 +2152,58 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "section": "The turn",
         "nudge": "*It is in your Chest.*",
         "answer": "*\"Where he fell, under the dark moon, the five were joined.\"*\n\nNot here. Not now.\n\nGarrick is looking not at the Stone but out of the window, at the hall on the hill. *\"The old telling names a place, and a night.\"*"
+      },
+      {
+        "t": "section",
+        "title": "Ask",
+        "section": "Ask"
+      },
+      {
+        "t": "say",
+        "text": "He turns from the window and waits, the way he waits behind his bar for an order.\n\n**You may ask Garrick.** Each of you, one question.",
+        "section": "Ask"
+      },
+      {
+        "t": "ask",
+        "rows": [
+          {
+            "questions": [
+              "IS MOON-BLOOD THE SAME AS MARKED?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"Meira thought so.\"*",
+            "group": ""
+          },
+          {
+            "questions": [
+              "REMEMBERS WHOSE?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"The page says 'whose.' It doesn't say who.\"*",
+            "group": ""
+          },
+          {
+            "questions": [
+              "WILL YOU TRY IT?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"I'm not of your blood.\"*",
+            "group": ""
+          },
+          {
+            "questions": [
+              "ARE YOU ONE OF THEM?"
+            ],
+            "sealed": false,
+            "note": "",
+            "answer": "*\"Every child you were sent for is home, and I've been beside you for all of it. Judge me by that.\"*",
+            "group": ""
+          }
+        ],
+        "section": "Ask"
       },
       {
         "t": "section",

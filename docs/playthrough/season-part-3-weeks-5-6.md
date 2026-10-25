@@ -1684,6 +1684,19 @@ Clue found, "A stride wider":
 >
 > Garrick is looking not at the Stone but out of the window, at the hall on the hill. *"The old telling names a place, and a night."*
 
+#### Ask
+
+> He turns from the window and waits, the way he waits behind his bar for an order.
+>
+> **You may ask Garrick.** Each of you, one question.
+
+*⚙ ASK: a board of questions; each friend taps one. Sealed questions the night needs are answered after two quiet minutes if nobody asks them.*
+
+- **IS MOON-BLOOD THE SAME AS MARKED?**: *"Meira thought so."*
+- **REMEMBERS WHOSE?**: *"The page says 'whose.' It doesn't say who."*
+- **WILL YOU TRY IT?**: *"I'm not of your blood."*
+- **ARE YOU ONE OF THEM?**: *"Every child you were sent for is home, and I've been beside you for all of it. Judge me by that."*
+
 #### The Watch
 
 > The second page from the watchman's fist is shorter, and older, and it is the one that makes the room go cold.

@@ -846,25 +846,20 @@
 *Each time questions are added, MYTHIOS says so in one line, and shows the board again:*
 > *The board has new questions.*
 
+*Phase 4 (25 Oct; Fake Guru: "You decide and proceed"): the boards are 6 questions over the night, were 13. Cut: the three already asked at Gathering 3 ("Who leads you?", "Do you know this man?", "The others you took, before"), "Whose is this?", "Did you kill her?", "Where did you get it?", "Who gave you this page?".*
+
 | Question | His answer |
 |---|---|
 | **Tonight turns on this** | |
 | ◆ `[WHAT GOES IN THERE?]` | He doesn't answer. He flinches — the whole of him, like a struck animal — and looks anywhere but the socket. |
 | **The faithful** | |
-| `[WHO LEADS YOU?]` | *"One whose face I've never seen."* |
 | `[IS HE HERE?]` | *"I don't know. I've never seen his face."* |
-| `[DO YOU KNOW THIS MAN?]` *(of Garrick)* | *"No."* |
-| `[THE OTHERS YOU TOOK, BEFORE]` | *"Most went home."* When you name the charcoal woman's nephew, he is quiet for a long moment. *"Him we lost."* And then, lower: *"Not by our choosing."* |
 | **Added when the pen is found** | |
-| `[WHOSE IS THIS?]` | *"The scholar's."* |
 | `[IS SHE DEAD?]` | *"Yes."* |
 | `[DID YOUR PEOPLE KILL HER?]` | *"Yes."* When you ask him why, he looks down at the water and says nothing more. |
-| `[DID YOU KILL HER?]` | *"No."* |
-| `[WHERE DID YOU GET IT?]` | *"With her pages."* |
 | **Added when the torn page is read** | |
 | `[HOW DOES THE PAGE END?]` | *"I have never seen it whole."* |
 | `[WILL THE FIFTH STOP HIM?]` | He opens his mouth, and closes it again, and says nothing. |
-| `[WHO GAVE YOU THIS PAGE?]` | *"It was given me to carry."* |
 
 `[PLANT]` *(Since Gathering 3 the party knows his kind can't lie. His silence at the socket is an answer they can't read yet.)*
 

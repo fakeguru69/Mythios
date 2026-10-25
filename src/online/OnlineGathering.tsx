@@ -747,13 +747,14 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
   e: Entry; view: View; busy: boolean; go: (a: string, args?: Record<string, unknown>) => void; wait: number; held: number;
   shell: string; cardHead: (l: React.ReactNode, r?: React.ReactNode) => React.ReactNode;
 }) {
-  type Line = { attacker: string; target: string; side: string; lost?: string; roll?: number; attack?: number; defence?: number; margin?: number; hit?: boolean; damage?: number; hpBefore?: number; hpAfter?: number; note?: string };
-  const fighters = (e.fighters ?? []) as { id: string; name: string; hp: number; fallen: boolean; weapon: number; armor: number; relic: string | null; relicPending: string | null; late: boolean; foe: { name: string; hp: number; none?: boolean } }[];
+  type Line = { attacker: string; target: string; side: string; covering?: string; lost?: string; roll?: number; attack?: number; defence?: number; margin?: number; hit?: boolean; damage?: number; hpBefore?: number; hpAfter?: number; note?: string };
+  const fighters = (e.fighters ?? []) as { id: string; name: string; hp: number; fallen: boolean; weapon: number; armor: number; relic: string | null; relicPending: string | null; late: boolean; cover?: string | null; foe: { name: string; hp: number; none?: boolean } }[];
   const me = fighters.find((f) => f.id === view.me);
   const weapon = me?.weapon ?? view.progress?.weapon ?? 14;
   const armor = me?.armor ?? view.progress?.armor ?? 27;
   const ongoing = e.outcome === 'ongoing';
   const line = (l: Line, li: number) => {
+    if (l.covering) return <div key={li} className="text-[#E5C158]">{l.attacker === me?.name ? 'You give up your strike' : `${l.attacker} gives up their strike`} to cover {l.covering}.</div>;
     if (l.lost) return <div key={li}>{l.attacker}: {l.lost === 'risen' ? 'rising, loses this strike' : 'loses this strike (knee-deep)'}</div>;
     if (l.attacker === 'The burn') return <div key={li}>{l.note} {l.target} HP {l.hpBefore} → {l.hpAfter}</div>;
     const isParty = l.side === 'party';
@@ -844,6 +845,31 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
               ) : null
             )}
           </div>
+          {/* Strike or Cover (Phase 4, migration 0127): give up your strike to take the next blow meant for a friend below 40 HP. */}
+          {ongoing && me && !me.fallen && (() => {
+            const hurt = fighters.filter((f) => f.id !== view.me && !f.fallen && f.hp < 40);
+            if (!me.cover && !hurt.length) return null;
+            return (
+              <div className="rounded-lg border border-[#8A6E34] bg-[#231A12] px-3 py-2 space-y-1.5" data-cover>
+                <p className="text-[14px] text-[#F4E8C8]">
+                  {me.cover
+                    ? `Next round you cover ${me.cover}: their enemy's blow comes at you, against your Armour, and you give up your own strike.`
+                    : 'A friend is badly hurt. You can give up your strike next round to take the blow meant for them.'}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {me.cover ? (
+                    <button className={quietButton} disabled={busy} onClick={() => go('cover', { to: null })}>Strike instead</button>
+                  ) : (
+                    hurt.map((f) => (
+                      <button key={f.id} className={quietButton} disabled={busy} onClick={() => go('cover', { to: f.id })}>
+                        Cover {f.name} · {f.hp} HP
+                      </button>
+                    ))
+                  )}
+                </div>
+              </div>
+            );
+          })()}
           {ongoing && me && !me.fallen && !me.relic && !me.relicPending && held > 0 && (
             <div className="flex items-center justify-between gap-2 rounded-lg border border-[#3A2555] px-3 py-1.5">
               <span className="text-[14px] text-[#D9D1E6]">Combat Relic · you hold {held}<br /><span className="text-[#B7A9CC]">+1 Weapon and +1 Armour for the rest of this fight, from the next round</span></span>

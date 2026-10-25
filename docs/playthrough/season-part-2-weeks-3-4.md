@@ -1760,19 +1760,11 @@ Clue found, "No way down in the dark":
 - **IS YOUR KING DEAD?** *(sealed)* *(Tonight turns on these)*: *"He sleeps."*
 - **THE CHILDREN. WHY?** *(sealed)* *(Tonight turns on these)*: *"To wake him."*
 - **THE FOURTH CHILD. WHERE IS HE?** *(sealed)* *(Tonight turns on these)*: *"Already with us."*
-- **WHERE DOES HE SLEEP?** *(The king)*: *"Where he fell."*
-- **WILL IT WORK?** *(The king)*: *"It is written that it will."*
-- **GENERATIONS OF CHILDREN. WHY DOES HE STILL SLEEP?** *(The king)*: He looks at you for a long moment, and says nothing at all.
-- **WHO ARE YOU?** *(The faithful)*: *"The faithful."* And to whom: *"To the king who did not kneel."*
 - **WHO LEADS YOU?** *(The faithful)*: *"One whose face I've never seen."*
 - **DO YOU KNOW THIS MAN?** *(The faithful)*: *"No."* *(of Garrick)*
 - **WERE YOU LYING JUST NOW?** *(The faithful)*: A look that is almost pity. *"The faithful do not lie."*
-- **WILL WREN GO HOME?** *(The children)*: *"She has given. She may go."*
 - **THE OTHERS YOU TOOK, BEFORE** *(The children)*: *"Most went home."* When you name the charcoal woman's nephew, he is quiet for a long moment. *"Him we lost."* And then, lower: *"Not by our choosing."*
-- **WHO SCRATCHED THE NAMES?** *(The children)*: *"The faithful write the names of those who will give, so that he may know them."*
-- **WHY CARRY THAT CASE?** *(This room)*: *"So that we would know you."*
 - **WHAT SAT IN THAT HOLLOW? / WHAT WAS IN THE BOX?** *(This room)*: Silence. Not refusal: the kind that costs him. *"Until the throne rise whole,"* he says instead, softly, the way you would end a prayer.
-- **HOW DID YOU GET HERE FIRST?** *(This room)*: He looks past you, at the dark the way you came, and says nothing.
 
 > Nobody asks it. The answer comes anyway, as if the room had asked.
 
@@ -3351,10 +3343,7 @@ Clue found, "The lamp on the shingle":
 *⚙ ASK: a board of questions; each friend taps one. Sealed questions the night needs are answered after two quiet minutes if nobody asks them.*
 
 - **WHAT GOES IN THERE?** *(sealed)* *(Tonight turns on this)*: He doesn't answer. He flinches — the whole of him, like a struck animal — and looks anywhere but the socket.
-- **WHO LEADS YOU?** *(The faithful)*: *"One whose face I've never seen."*
 - **IS HE HERE?** *(The faithful)*: *"I don't know. I've never seen his face."*
-- **DO YOU KNOW THIS MAN?** *(The faithful)*: *"No."* *(of Garrick)*
-- **THE OTHERS YOU TOOK, BEFORE** *(The faithful)*: *"Most went home."* When you name the charcoal woman's nephew, he is quiet for a long moment. *"Him we lost."* And then, lower: *"Not by our choosing."*
 
 *⚙ If the party moves on with a sealed question unasked:*
 
@@ -3474,11 +3463,8 @@ Clue found, "The lamp on the shingle":
 
 *⚙ ASK: a board of questions; each friend taps one. Sealed questions the night needs are answered after two quiet minutes if nobody asks them.*
 
-- **WHOSE IS THIS?** *(Added when the pen is found)*: *"The scholar's."*
 - **IS SHE DEAD?** *(Added when the pen is found)*: *"Yes."*
 - **DID YOUR PEOPLE KILL HER?** *(Added when the pen is found)*: *"Yes."* When you ask him why, he looks down at the water and says nothing more.
-- **DID YOU KILL HER?** *(Added when the pen is found)*: *"No."*
-- **WHERE DID YOU GET IT?** *(Added when the pen is found)*: *"With her pages."*
 
 #### The torn page
 
@@ -3520,7 +3506,6 @@ Clue found, "The lamp on the shingle":
 
 - **HOW DOES THE PAGE END?** *(Added when the torn page is read)*: *"I have never seen it whole."*
 - **WILL THE FIFTH STOP HIM?** *(Added when the torn page is read)*: He opens his mouth, and closes it again, and says nothing.
-- **WHO GAVE YOU THIS PAGE?** *(Added when the torn page is read)*: *"It was given me to carry."*
 
 #### The Cliffhanger
 
