@@ -5679,6 +5679,10 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Nobody lights a candle that night. For hours the lanterns move along the foot of the wall and up onto the wall-walk, and you sit in the dark and listen to them come and go.\n\nTwice, boots scrape right past the room's hidden door.\n\nTwice, they walk on."
       },
       {
+        "t": "say",
+        "text": "In the grey before morning somebody eases the hidden door open a finger's width, to look along the walk.\n\nOn the stone beside it, at the height of a man's hand, there is a stroke of chalk that was not there at dusk. One short line, like the strokes on their board.\n\nNobody rubs it out. Nobody is sure whether that would be worse."
+      },
+      {
         "t": "notice",
         "lines": {
           "Might": {

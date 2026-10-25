@@ -884,6 +884,19 @@
 
 > Inside his coat, wrapped in oilcloth and kept closer than his knife: bound pages of the Order's scripture. Unburned, this time.
 
+*Phase 4 (25 Oct; Fake Guru: "You decide and proceed"): the night's question to the table, asked before the scripture so that what follows answers it. The captive's own answer stays at the end.*
+
+> **MYTHIOS asks the table:**
+> *They carried blades tonight, every one of them, and not one was turned on you to kill. Why are you still alive?*
+
+*The story holds until a friend answers in the chat. After sixty quiet seconds, one nudge:*
+
+> *The case is still lying open on the stone, where it opened for one of your hands.*
+
+*When someone has answered, or after ninety quiet seconds in all:*
+
+> The captive has not taken his eyes off the open case. Whatever they want from you, they want you whole.
+
 ### The six, read together
 
 *Phase 4 (25 Oct, Fake Guru: "Ok, go on"): the week's six fragments, read aloud before the reveal, as the party holds them. The server fills {SIX:3} with the party's own words; a word nobody found is left blank.*

@@ -3801,6 +3801,10 @@ Clue found, "Your own print":
 >
 > *"There was a girl down here with me. They took her away, not long before you came."* He swallows. *"She said they told her she was going somewhere warm."*
 
+> Nobody answers him. In the quiet, far down under your feet, something starts again: the small, patient knock of a pick on stone.
+>
+> Somebody under the hill is still digging.
+
 *⚙ The summary card:*
 
 - **UNDER THE MILL HILL** · Gathering 2

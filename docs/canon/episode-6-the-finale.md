@@ -49,6 +49,12 @@
 >
 > Twice, they walk on.
 
+> In the grey before morning somebody eases the hidden door open a finger's width, to look along the walk.
+>
+> On the stone beside it, at the height of a man's hand, there is a stroke of chalk that was not there at dusk. One short line, like the strokes on their board.
+>
+> Nobody rubs it out. Nobody is sure whether that would be worse.
+
 **What you notice**
 > **Might** · The hidden door is one slab, a hand thick, hung so that a child could swing it. *It was made to be shut in a hurry, and held.*
 > **Agility** · The boots on the walk came at the same pace both times. *They are searching by rote. They do not expect to find anything.*
