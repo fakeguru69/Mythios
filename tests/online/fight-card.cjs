@@ -38,8 +38,8 @@ check(
 
 // 3. Round lines in colour (You Roll green, Weapon gold, DEF orange, Enemy Rolls red, ATK purple, Armor blue).
 check(
-  /data-round-you[\s\S]{0,400}text-\[#E5C158\]">Weapon \{r\.playerAtk\}[\s\S]{0,200}text-\[#FB923C\]">Defence \{r\.enemyDef\}/.test(fightSlice) &&
-    /data-round-foe[\s\S]{0,400}text-\[#C084FC\]">Attack \{r\.enemyAtk\}[\s\S]{0,200}text-\[#7AA7FF\]">Armour \{r\.playerArmor\}/.test(fightSlice),
+  /data-round-you[\s\S]{0,700}text-\[#E5C158\]">Weapon \{r\.playerAtk\}[\s\S]{0,200}text-\[#FB923C\]">Defence \{r\.enemyDef\}/.test(fightSlice) &&
+    /data-round-foe[\s\S]{0,700}text-\[#C084FC\]">Attack \{r\.enemyAtk\}[\s\S]{0,200}text-\[#7AA7FF\]">Armour \{r\.playerArmor\}/.test(fightSlice),
   'OnlineDay round lines colour-code Weapon (#E5C158), DEF (#FB923C), ATK (#C084FC), and Armor (#7AA7FF)'
 );
 

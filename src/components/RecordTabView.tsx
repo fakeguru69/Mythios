@@ -319,17 +319,18 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
           {/* 2 Raised Gear Tiles with 5 Level Pips (#26) */}
           <div className="grid grid-cols-2 gap-2">
             <div className="p-3 rounded-xl bg-[#2A1B40] border border-[#3A2555] space-y-1.5" data-record-gear="weapon">
-              <div className="flex items-center justify-between">
-                <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8] truncate">
+              {/* Phase 5 (24 Oct): the gear's name in full, then one name for the stat (Weapon / Armour). */}
+              <div className="space-y-0.5">
+                <div className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8] leading-snug">
                   ⚔️ {classMeta.weapon}
-                </span>
-                <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#D4B876]">
-                  ATK {GEAR_TABLE[weaponLevel].weapon}
-                </span>
+                </div>
+                <div className="font-sans font-semibold text-[14px] text-[#D4B876]">
+                  Weapon {GEAR_TABLE[weaponLevel].weapon}
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[11.5px] font-sans text-[#B7A9CC]">
-                  Lv. {weaponLevel} of 5
+              <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+                <span className="text-[13px] font-sans text-[#B7A9CC] whitespace-nowrap">
+                  Level {weaponLevel} of 5
                 </span>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((pip) => (
@@ -345,17 +346,18 @@ export const RecordTabView: React.FC<RecordTabViewProps> = ({
             </div>
 
             <div className="p-3 rounded-xl bg-[#2A1B40] border border-[#3A2555] space-y-1.5" data-record-gear="armor">
-              <div className="flex items-center justify-between">
-                <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8] truncate">
+              {/* Phase 5 (24 Oct): the gear's name in full, then one name for the stat (Weapon / Armour). */}
+              <div className="space-y-0.5">
+                <div className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8] leading-snug">
                   🛡️ {classMeta.armor}
-                </span>
-                <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#D4B876]">
-                  ARM {GEAR_TABLE[armorLevel].armor}
-                </span>
+                </div>
+                <div className="font-sans font-semibold text-[14px] text-[#D4B876]">
+                  Armour {GEAR_TABLE[armorLevel].armor}
+                </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[11.5px] font-sans text-[#B7A9CC]">
-                  Lv. {armorLevel} of 5
+              <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+                <span className="text-[13px] font-sans text-[#B7A9CC] whitespace-nowrap">
+                  Level {armorLevel} of 5
                 </span>
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((pip) => (

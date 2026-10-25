@@ -1,6 +1,6 @@
 # Tales of the Dark Moon: the season as a player plays it, part 1 of 3 (Weeks 1 and 2)
 
-Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own data by `scripts/gen-playthrough.ts` (2026-10-24). **Do not publish: it holds the season's story.**
+Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own data by `scripts/gen-playthrough.ts` (2026-10-25). **Do not publish: it holds the season's story.**
 
 **How to read it.** Quoted text (`>`) is exactly what the player reads. Lines in *⚙ italics* describe the gameplay: what the screen offers, the rule, the numbers. Where the story branches, every branch is given, each labelled. The party is a sample of four: you, Mei, Dev and Arjun (the game fills in the real friends' names and the party's size).
 
@@ -47,8 +47,6 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 > In the quiet afterwards, something moves in the treeline.
 >
 > A man steps out onto the road with his blade already drawn. He does not ask for your purse. He does not say anything at all.
->
-> …
 
 **FIGHT: A MAN ON THE ROAD**
 
@@ -81,8 +79,6 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 > Walking back to the wagon you see the rest of it. Your cargo box, slewed half off the tilted wagon bed. The lock is jammed. The scratches round it are fresh, bright in the dull old metal. They are not yours.
 >
 > He was at this before you ever saw him.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -103,8 +99,6 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 > You look back to where he stood. Something pale lies in the leaf-mould there: a scrap of parchment, half burned. Its scorched edge flakes at your touch and still smells faintly of smoke. It is not writing and it is not a drawing. Somebody laid it over something hard and raised, and rubbed charcoal across it until the shape came through.
 >
 > You turn it to the light and back again. You do not know the shape.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -130,7 +124,7 @@ Weeks 1 and 2, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Whatever you picked, every player reads this:*
 
-> …
+> Behind you the cargo box sits jammed on the tilted wagon bed, and whatever he came for is still inside it.
 
 **CHALLENGE: OPEN THE BOX**
 
@@ -328,8 +322,6 @@ Clue found, "The oilcloth":
 > Beside yours, in the same neat hand: [the town you were born in], and a second name, [your grandparent's name].
 >
 > And near the back, where the binding shows, some pages are gone.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -345,7 +337,7 @@ Clue found, "The oilcloth":
 
 - **Aim:** There is one seat in this room that sees both doors. *(Apprentice and up:)* It is the one he says was hers.
 
-> …
+> You take out your own torn page and lay it on the table, beside the place where the others were cut away.
 
 **CHALLENGE: FIT THE PAGE**
 
@@ -356,8 +348,6 @@ Clue found, "The oilcloth":
 *⚙ If you passed the Challenge:*
 
 > You bring the candle close and try your page against the stubs, one after another. Then one of them takes it, every rag and fibre of the tear meeting its fellow. Your stub fits like a key. There are four stubs, and four of you.
->
-> …
 
 *⚙ If you failed the Challenge:*
 
@@ -635,8 +625,6 @@ Clue found, "The thumbed leaf":
 *⚙ If you pick [GO TO THE MARKING]:*
 
 > You crouch at the stone and put your fingers to the cut lines. They are cold, and gritty under your touch. In the deepest groove, kept dry by the overhang, a crumb of black charcoal comes away on your thumb. Somebody pressed paper to this stone not many days ago. That is where you are, with your back to the bracken, when the bracken moves.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -649,8 +637,6 @@ Clue found, "The thumbed leaf":
 *⚙ If you pick [FOLLOW THE CART-RUTS]:*
 
 > The ruts turn off the road toward a line of trees, and a thread of smoke beyond them. Where the left wheel sank deepest in the peat, a twist of grey reed-thatch has shaken loose from the cart-bed. You are looking that way, so you see him first: a man lying flat in the bracken, watching the rock.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -676,7 +662,7 @@ Clue found, "The thumbed leaf":
 
 *⚙ Whatever you picked, every player reads this:*
 
-> …
+> He is up out of the bracken before anyone can call a warning.
 
 **FIGHT: THE MAN IN THE BRACKEN**
 
@@ -862,8 +848,6 @@ Clue found, "The notched stick":
 > Behind the well, on an upturned bucket: a bowl of barley, half eaten, the spoon still standing in it. You hold your hand over it. It is still warm.
 >
 > Whoever was eating it left in a hurry, and not long ago.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -884,8 +868,6 @@ Clue found, "The notched stick":
 *⚙ If you pick [LOOK FOR FOOTPRINTS]:*
 
 > You crouch by the bucket. The mud there has been trodden by every boot in Fenmark, but over the top of it all runs a line of small prints, quick and light, too short in the stride for any grown man. Where they turn between the sheds, a thread of unhemmed grey wool has caught on a nail at the height of a boy's elbow. They go off between the sheds behind the lane, and there you lose them.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -898,8 +880,6 @@ Clue found, "The notched stick":
 *⚙ If you pick [KNOCK NEXT DOOR]:*
 
 > The door beside the well opens the width of a hand before your knuckles have finished on it. An eye, a grey braid, a thin hand on the latch. Behind her in the dim kitchen, a pot of the same boiled barley is still steaming on the hob — she is the one who filled the bowl by the well. She does not speak, and she does not shut it. Her gaze goes once, quickly, down the lane and back to you.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -1193,8 +1173,6 @@ Clue found, "Past three doors":
 *⚙ If you pick [LOOK AT THE STEP]:*
 
 > Swept this morning. Somebody lives here, and is proud enough to sweep. Tucked under the threshold stone is a narrow line of dry salt and grey rowan-ash — an old hill-country ward laid down by someone who expects a visitor back. You are still crouched by the door when a blade works into the shutter behind the shed.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -1207,8 +1185,6 @@ Clue found, "Past three doors":
 *⚙ If you pick [LOOK AT THE FIRE]:*
 
 > Cold on top. Warm underneath, when you push a hand into the ash. Banked, not dead. Somebody means to come back to it. Set on the flat stone beside the pit is a tin cup of herb-tea with the steam barely off it — she slipped into the trees only minutes before your boots came up the road. You are still kneeling by the ash when a blade works into the shutter behind the shed.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -1223,8 +1199,6 @@ Clue found, "Past three doors":
 > Two sets of prints on it, both fresh. A woman's, going out. And over them a man's, coming in, at a run. His stride is long and low, and the mud at the turn is still oozing water into the heel-mark.
 >
 > He is here.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -1251,8 +1225,6 @@ Clue found, "Past three doors":
 *⚙ Whatever you picked, every player reads this:*
 
 > Something moves behind the shed. You hear a blade being worked into wood, and then a breath, held too late.
->
-> …
 
 **FIGHT: THE RUNNER FROM FENMARK**
 
@@ -1491,8 +1463,6 @@ Clue found, "The worn bar":
 > One set of prints does not. Small ones. They come down to the water's edge and stop.
 >
 > The river is rising. The edge of the mud is going as you watch, crumb by crumb.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -1508,7 +1478,7 @@ Clue found, "The worn bar":
 
 - **Aim:** On the far bank, nothing small. *(Apprentice and up:)* Not one print.
 
-> …
+> Somebody has to read those prints now, before the river has them.
 
 **CHALLENGE: READ THE WATERLINE**
 
@@ -1521,8 +1491,6 @@ Clue found, "The worn bar":
 > You have them. Small prints, walking, right to the edge. Her own feet. She was not hurt, and she was not carried here.
 >
 > Then two deep prints facing her, a man's, with the heels dug in. He lifted her. And after that there is only water.
->
-> …
 
 *⚙ If you failed the Challenge:*
 
@@ -2141,8 +2109,6 @@ Clue found, "A second man":
 > Two days down the mill road, through country that gets emptier the further you go. First the farms thin out, then the fences. By the second afternoon there is only sheep-bitten grass, and a wind off the hills that never quite drops.
 >
 > At evening you come to the last farmhouse before the mill. An old man is splitting wood in the yard. He does not stop when he sees you coming. He only shifts his grip on the axe.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2158,7 +2124,7 @@ Clue found, "A second man":
 
 - **Aim:** From his chopping-block he can see a long way up the lane toward the mill. *(Apprentice and up:)* He chose where to stand.
 
-> …
+> He lets the axe-head rest on the block, and waits for you to say why you have come.
 
 **CHALLENGE: THE MAN WITH THE AXE**
 
@@ -2396,8 +2362,6 @@ Clue found, "Deeper coming down":
 *⚙ Either way, every player reads this:*
 
 > A woman is standing in the mill door. She has been watching you since you came into the yard. There is flour worked deep into the creases of her hands: old flour, from before.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2413,7 +2377,7 @@ Clue found, "Deeper coming down":
 
 - **Aim:** From that doorway you can see the whole length of the lane. *(Apprentice and up:)* She watched the cart go.
 
-> …
+> Nobody moves. Somebody has to speak first, and it will not be her.
 
 **CHALLENGE: THE MILLER'S WIFE**
 
@@ -2444,8 +2408,6 @@ Clue found, "Deeper coming down":
 > Then she opens her hand. In it is a horn button, with a twist of dark thread still through it.
 >
 > *"My boy got hold of his sleeve,"* she says. *"The man never even looked down."*
->
-> …
 
 *⚙ If you failed the Challenge:*
 
@@ -2608,8 +2570,6 @@ Clue found, "The cropped grass":
 > The tracks hold until the riverbank turns to stone. Then they stop.
 >
 > There is no ford here. There is no reason for a cart to have come this far.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2632,8 +2592,6 @@ Clue found, "The cropped grass":
 *⚙ If you pick [READ THE WHEEL-MARKS]:*
 
 > You work along the bank bent double, in plain sight of the hill, reading scuffs on wet stone. At the grey slab the iron tyre has bitten pale into the rock, pulling to the left, the way it pulled at the ford.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2646,8 +2604,6 @@ Clue found, "The cropped grass":
 *⚙ If you pick [GO THROUGH THE THORN]:*
 
 > You go in on your knees where the thorn was cut back and tied. It is slow, and it is wet, and nobody on the slope could see you if they tried. At the height of a boy's shoulder, a few threads of undyed wool are caught on a spine.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2680,8 +2636,6 @@ Clue found, "The cropped grass":
 > It is the size of a calf. Its chain is long enough to reach both walls. The staple the chain hangs from is bright new iron, as new as the ruts.
 >
 > It does not bark. It has been taught not to. It only stands up, and watches you come.
->
-> …
 
 **FIGHT: THE DOG ON THE CHAIN**
 
@@ -2854,8 +2808,6 @@ Clue found, "The full pail":
 > The path ends at a hole in the hill.
 >
 > It is a shaft, squared off with timber, with a ladder going down into lamplight. There are voices at the bottom.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2878,8 +2830,6 @@ Clue found, "The full pail":
 *⚙ If you pick [GO DOWN UNDER THE VOICES]:*
 
 > You lie at the top and count until you have the beat of it: the same few words, said together, over and over, like people who mean to have them by heart. You move on the words, and you stop dead on the silences.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2892,8 +2842,6 @@ Clue found, "The full pail":
 *⚙ If you pick [PUT ON THE HOODED COAT]:*
 
 > It is cut for a big man, and it is heavy, and damp at the shoulders, and it smells of tallow and of somebody else. The hem is caked with the pale clay of the cart-lane. You pull the hood down over your face and put your foot on the first rung as if you had done it every night of your life.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -3100,8 +3048,6 @@ Clue found, "The chant ran on":
 > No fragment has ever given him a name. Where they speak of him at all, they say only *him*.
 
 > Supper is whatever is left: hard bread, and the end of the farmer's cheese. Garrick's share ends up on somebody else's plate. He does not say where it went.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -3118,8 +3064,6 @@ Clue found, "The chant ran on":
 - **Aim:** Down at the shaft: two lamps now, where there was one. *(Apprentice and up:)* They have set a watch on you.
 
 > A hooded figure comes up over the shoulder of the hill, alone, walking the way a man walks his own yard.
->
-> …
 
 **FIGHT: THE ONE SENT UP TO LOOK**
 
@@ -3289,8 +3233,6 @@ Clue found, "Faces turned in":
 > Your second night on the hill. Two lamps burn at the foot of the shaft, and the ladder has not come back.
 >
 > It is your watch. You lie on your belly at the lip, with the cold coming up out of the ground into your elbows.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -3306,7 +3248,7 @@ Clue found, "Faces turned in":
 
 - **Aim:** The lamplight at the bottom dims and brightens. *(Apprentice and up:)* People are crossing in front of it, and all of them the same way.
 
-> …
+> Down in the dark the lamplight shivers, and the voices come round again.
 
 **CHALLENGE: READ THE HILL**
 
@@ -3319,8 +3261,6 @@ Clue found, "Faces turned in":
 *⚙ If you passed the Challenge:*
 
 > Shape by shape, you place them as they cross the light. You have them: a knot of them at the lamps, a steady file beyond, all going the same way. And one who does not move at all, and is small.
->
-> …
 
 *⚙ If you failed the Challenge:*
 

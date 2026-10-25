@@ -411,14 +411,9 @@ export default function OnlineDay({
         const b = branchFor(opt);
         if (b && !shown.has(step.branches.indexOf(b))) {
           shown.add(step.branches.indexOf(b));
-          const hasLeadIn = Boolean(b.changed) && /\n\n(?:…|\.\.\.)$/.test(b.text.trim());
-          const bodyText = hasLeadIn ? b.text.trim().replace(/\n\n(?:…|\.\.\.)$/, '') : b.text;
-          pushSay(`${key}-b${opt}`, bodyText);
+          pushSay(`${key}-b${opt}`, b.text);
           if (b.changed) {
             pushItem(`${key}-c${opt}`, <WhatThisChangedBlock key={`${key}-c${opt}`} text={fill(b.changed)} />, { instant: true, resolved: true });
-          }
-          if (hasLeadIn) {
-            pushSay(`${key}-b${opt}-leadin`, '…');
           }
         }
       });
@@ -730,9 +725,9 @@ export default function OnlineDay({
       pushItem(
         key,
         <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-fight-card>
-          <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
+          <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
             <span className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8] leading-snug min-w-0">⚔️ {fill(step.name)}</span>
-            <span className="font-['Cinzel'] font-bold text-[12px] whitespace-nowrap" data-hit-on>
+            <span className="font-sans font-semibold text-[13px] whitespace-nowrap" data-hit-on>
               <span className="text-[#E5C158]">You hit on {youHitOn}+</span>
               <span className="text-[#8B7A9E]"> / </span>
               <span className="text-[#FB923C]">Enemy hits on {foeHitsOn}+</span>
@@ -781,9 +776,18 @@ export default function OnlineDay({
                   const enemyHpAfter = r.hit ? Math.max(0, enemyHpBefore - r.margin * 5) : enemyHpBefore;
                   const playerHpAfter = r.enemyHit ? Math.max(0, playerHpBefore - r.enemyMargin * 5) : playerHpBefore;
 
+                  // Phase 5 (24 Oct): each blow is told in a line first; canon's roll line follows, smaller (§4).
+                  const pick = (lines: string[]) => lines[(r.round + (r.d20 ?? 0)) % lines.length];
+                  const youProse = r.hit
+                    ? `${pick(['Your blow lands.', 'You get one through.', 'That one tells.'])} ${r.margin * 5} damage.`
+                    : pick(['Your blow goes wide.', 'Turned aside.', 'Nothing lands.']);
+                  const foeProse = r.enemyHit
+                    ? `${pick([`${name} gets through your guard.`, `${name} lands a blow.`, `${name} catches you.`])} ${r.enemyMargin * 5} damage.`
+                    : pick([`${name} misses.`, `You turn ${name.charAt(0).toLowerCase() + name.slice(1)} aside.`, `${name} finds nothing.`]);
                   const myStrikeNode = r.playerStruck ? (
                     <div key="you" className="space-y-0.5" data-round-you>
-                      <div className="font-semibold leading-snug">
+                      <div className={`text-[16px] font-semibold ${r.hit ? 'text-[#6FD39A]' : 'text-[#D9D1E6]'}`} data-round-prose>{youProse}</div>
+                      <div className="font-semibold leading-snug text-[13px] opacity-80">
                         <span className="text-[#6FD39A] font-bold">You Roll </span>
                         <span className="text-[#F4F1F8]">🎲 {r.d20}</span>
                         <span className="text-[#8B7A9E]"> + </span>
@@ -796,7 +800,7 @@ export default function OnlineDay({
                         </span>
                       </div>
                       {r.hit && (
-                        <div className="font-bold text-[#6FD39A]">
+                        <div className="font-bold text-[#6FD39A] text-[13px] opacity-80">
                           Damage = {r.margin} × 5 = {r.margin * 5}.{' '}
                           <span className="text-[#E0645C]">
                             {name} HP {enemyHpBefore} → {enemyHpAfter}
@@ -812,7 +816,8 @@ export default function OnlineDay({
                       className={`space-y-0.5 ${r.playerStruck ? 'pt-1 border-t border-white/[0.05]' : ''}`}
                       data-round-foe
                     >
-                      <div className="font-semibold leading-snug">
+                      <div className={`text-[16px] font-semibold ${r.enemyHit ? 'text-[#E0645C]' : 'text-[#D9D1E6]'}`} data-round-prose>{foeProse}</div>
+                      <div className="font-semibold leading-snug text-[13px] opacity-80">
                         <span className="text-[#E0645C] font-bold">Enemy Rolls </span>
                         <span className="text-[#F4F1F8]">🎲 {r.enemyD20}</span>
                         <span className="text-[#8B7A9E]"> + </span>
@@ -825,7 +830,7 @@ export default function OnlineDay({
                         </span>
                       </div>
                       {r.enemyHit && (
-                        <div className="font-bold text-[#E0645C]">
+                        <div className="font-bold text-[#E0645C] text-[13px] opacity-80">
                           Damage = {r.enemyMargin} × 5 = {r.enemyMargin * 5}.{' '}
                           <span className="text-[#6FD39A]">
                             Your HP {playerHpBefore} → {playerHpAfter}
