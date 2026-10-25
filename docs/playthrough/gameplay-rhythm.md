@@ -12,9 +12,9 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W1D1 | 717 | 7 | 1 | 0 | 325w | 3.7 min | 130w ⚔FIGHT 72w ◆CHOICE 190w 🎲CHALLENGE 325w |
 | W1D2 | 1063 | 6 | 3 | 0 | 359w | 5.0 min | 227w ◆CHOICE 236w 🎲CHALLENGE 45w ?PRESS ON 77w ◆CHOICE 119w ◆CHOICE 359w |
 | W1D3 | 740 | 5 | 1 | 0 | 383w | 3.7 min | 235w ◆CHOICE 122w ⚔FIGHT 383w |
-| W1D4 | 1046 | 5 | 3 | 0 | 375w | 4.9 min | 152w ◆CHOICE 100w 🎲CHALLENGE 84w ◆CHOICE 335w ◆CHOICE 375w |
-| W1D5 | 801 | 7 | 2 | 0 | 385w | 4.1 min | 115w ◆CHOICE 119w ⚔FIGHT 113w ◆CHOICE 69w ▸tap 385w |
-| W1D6 | 768 | 5 | 2 | 0 | 293w | 3.7 min | 144w 🎲CHALLENGE 46w ?PRESS ON 293w ◆CHOICE 64w ◆CHOICE 221w |
+| W1D4 | 1042 | 5 | 3 | 0 | 375w | 4.9 min | 152w ◆CHOICE 100w 🎲CHALLENGE 84w ◆CHOICE 331w ◆CHOICE 375w |
+| W1D5 | 814 | 7 | 2 | 0 | 385w | 4.1 min | 115w ◆CHOICE 119w ⚔FIGHT 113w ◆CHOICE 82w ▸tap 385w |
+| W1D6 | 771 | 5 | 2 | 0 | 293w | 3.7 min | 144w 🎲CHALLENGE 46w ?PRESS ON 293w ◆CHOICE 64w ◆CHOICE 224w |
 | W2D1 | 864 | 5 | 3 | 0 | 373w | 4.1 min | 32w ◆CHOICE 106w ◆CHOICE 167w ◆CHOICE 186w 🎲CHALLENGE 373w |
 | W2D2 | 542 | 4 | 1 | 0 | 178w | 2.6 min | 64w ◆CHOICE 178w 🎲CHALLENGE 127w ?PRESS ON 173w |
 | W2D3 | 591 | 8 | 1 | 0 | 283w | 3.3 min | 154w ◆CHOICE 55w 🎲CHALLENGE 99w ⚔FIGHT 283w |
@@ -46,7 +46,7 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W6D5 | 497 | 5 | 1 | 0 | 185w | 2.5 min | 185w ◆CHOICE 49w 🎲CHALLENGE 41w ?PRESS ON 122w ▸tap 100w |
 | W6D6 | 672 | 10 | 1 | 0 | 261w | 3.8 min | 114w ◆CHOICE 51w 🎲CHALLENGE 45w ⚔FIGHT 261w ▸tap 201w |
 
-**Averages over the 36 chapters:** 652 words, 5.3 taps, about 3.2 minutes for the chapter alone (the last light and the Campfire come after).
+**Averages over the 36 chapters:** 653 words, 5.3 taps, about 3.2 minutes for the chapter alone (the last light and the Campfire come after).
 
 ## The evening (every weekday after the chapter)
 The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or sit by the fire. Then the fire: one chat under the finished day (18 Oct), with a text box at the foot.

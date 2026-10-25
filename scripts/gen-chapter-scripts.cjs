@@ -290,7 +290,7 @@ const FORK_BRANCH_META = {
     changed: 'You let Dev read the map. With your eyes on the room, you caught the courier listening at the mention of the ford.',
     roadFind: {
       title: 'The listening courier',
-      text: 'While your friend read the map aloud in the roadside inn, a man in a riding-cloak by the chimney held his mug still at the mention of the bend above the ford, then paid his bill without taking a bed.',
+      text: 'While your friend read the map aloud in the roadside inn, a man in a riding-cloak by the chimney held his mug still at the mention of the bend above the ford.',
     },
   },
   // Disguised Fork #5 · W2D1 (The Second Name — asking Garrick in the mine)

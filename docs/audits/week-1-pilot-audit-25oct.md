@@ -38,3 +38,21 @@ An outside AI ran `docs/playthrough/week-1-audit-prompt.md` on `season-week-1.md
 - **Day 6's ASK WHO IT IS FOR and LOOK AT THE EXTRA CUP give the same line,** for the same reason. The two finds differ.
 - **Day 1's choice shows both things in a different order.** Noted for the Week 1 play-test. It is a quiet first choice before the party exists.
 - **Day 3 has no [PRESS ON].** That is canon.
+
+## Second pass: the full report, with its twelve slips (25 Oct)
+
+Fake Guru then pasted the whole report. Slips 3, 5, 8, 11 and 12 were already fixed above. Slip 8 was fixed by making the fire not depend on the knife, which keeps the knife as a reward for winning the fight. The rest:
+
+| # | Slip | Verdict | Done |
+|---|---|---|---|
+| 1 | Day 2: two pages both "folded small" | Not a contradiction: each friend folded their own page. | Kept |
+| 2 | Days 2 and 6: Garrick pours a second extra cup at the fire, just after pouring one at the table | Real | The fire's line now looks at the cup already standing |
+| 4 | Day 4: "Then he stops" after SAY NOTHING, when the boy has not spoken | Real | "For a while there is only the gate knocking on its post." |
+| 6 | Day 5: "her eyes go past you to the carved horse at your belt", and then she takes a horse you never gave her | Real; the line was mine, from Phase 2 | "her eyes drop to the little carved horse showing at the mouth of your coat pocket, and stop. You draw it out and hold it toward her." |
+| 7 | Day 5: a failed last light ends "until full dark", on a night that is already dark | Real; the same happens on W6D3 | Days whose last light is after dark (W1D5, W2D5, W6D3) skip the two lines about the light going |
+| 9 | Day 6: the cup "he has set one every night since the Hollow Wake", but he did not | Real | "just as he set one at the Hollow Wake" |
+| 10 | Day 6: the courier pays his bill twice for one road, and is "a courier" to the other road | Real | The find stops at the mug; the shared line is "a man in a riding-cloak, who came in for a bed, settles his bill" |
+| — | Party of two: three lines name two friends | Already handled: `smallPartyLines.ts` has a short version of each, and the check passes | Kept |
+| — | One breath: make the edges visible before the choice | Agreed | Under the advice buttons: what each pick does |
+| — | One breath: THE NEW PROP to +20 | Not taken. +10 absorbs about half a failed roll; GO OUT NOW's +4 is worth about 8; STAY is about 2 a friend. They are close at four friends. | Kept at +10, for the play-test |
+| — | Day 2's three conversation choices give the same reply | Kept, as above | — |

@@ -301,7 +301,7 @@ function gathering(week: number) {
       st.options.forEach((o, i) => out.push(`${i + 1}. **${fill(o.label)}**${o.desc ? `: ${fill(o.desc)}` : ''}`));
       out.push('');
       if (week === 1 && st.section === 'One breath')
-        w(gameplay("What the pick does in the United Effort that follows (shown on its card): 1, +4 on the chosen friend's first roll; 2, the thing at risk starts 10 higher; 3, +1 on every friend's first roll."));
+        w(gameplay("What the pick does in the United Effort that follows (shown under the buttons and on the job's card): 1, +4 on the chosen friend's first roll; 2, the thing at risk starts 10 higher; 3, +1 on every friend's first roll."));
     } else if (st.t === 'approach') {
       w(`**THE APPROACH: ${fill(st.title)}**`);
       w(gameplay(

@@ -786,7 +786,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Then he stops, and for a while there is only the gate knocking on its post. He looks once down the empty lane. Then it comes out low and fast.\n\n*\"Three nights ago. They came in the dark with no torches. They did not knock anything over. They did not say anything they did not have to. Like they'd done it before.\"*\n\n*\"They took Tamsin. She's nine. She was counting when they carried her out. She counts when she's frightened.\"*\n\nHe swallows.\n\n*\"One of them had a knife I'd never seen the like of. Curved. Black handle. He saw me at the window. He did not even walk faster. He just said they'd know if I talked.\"*"
+        "text": "For a while there is only the gate knocking on its post. He looks once down the empty lane. Then it comes out low and fast.\n\n*\"Three nights ago. They came in the dark with no torches. They did not knock anything over. They did not say anything they did not have to. Like they'd done it before.\"*\n\n*\"They took Tamsin. She's nine. She was counting when they carried her out. She counts when she's frightened.\"*\n\nHe swallows.\n\n*\"One of them had a knife I'd never seen the like of. Curved. Black handle. He saw me at the window. He did not even walk faster. He just said they'd know if I talked.\"*"
       },
       {
         "t": "say",
@@ -1030,7 +1030,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve. He came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes go past you to the carved horse at your belt, and stop.",
+            "text": "The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve. He came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes drop to the little carved horse showing at the mouth of your coat pocket, and stop. You draw it out and hold it toward her.",
             "changed": "You showed empty hands. You saw the fresh blade-nick on her axe-helve from the trees.",
             "roadFind": {
               "title": "The nicked axe-helve",
@@ -1041,7 +1041,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               1
             ],
-            "text": "The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face. Whatever she keeps hidden here, it is under that stone, and not in the shed. Then her eyes go past you to the carved horse at your belt, and stop.",
+            "text": "The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face. Whatever she keeps hidden here, it is under that stone, and not in the shed. Then her eyes drop to the little carved horse showing at the mouth of your coat pocket, and stop. You draw it out and hold it toward her.",
             "changed": "You told her who you drove off. Her glance gave away the root-cellar stone behind the woodpile.",
             "roadFind": {
               "title": "The root-cellar stone",
@@ -1252,7 +1252,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               1
             ],
-            "text": "You look down at the extra cup at the corner of the table — poured to the same measure as the rest, where he has set one every night since the Hollow Wake. He catches your eye across the rim of the jug.\n\n*\"Family habit. We always pour one for whoever can't be with us.\"*",
+            "text": "You look down at the extra cup at the corner of the table — poured to the same measure as the rest, just as he set one at the Hollow Wake. He catches your eye across the rim of the jug.\n\n*\"Family habit. We always pour one for whoever can't be with us.\"*",
             "changed": "You looked at the extra cup poured to the same measure. He caught your eye and called it a family habit.",
             "roadFind": {
               "title": "Measured like the rest",
@@ -1293,14 +1293,14 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You let {F2} read the map. With your eyes on the room, you caught the courier listening at the mention of the ford.",
             "roadFind": {
               "title": "The listening courier",
-              "text": "While your friend read the map aloud in the roadside inn, a man in a riding-cloak by the chimney held his mug still at the mention of the bend above the ford, then paid his bill without taking a bed."
+              "text": "While your friend read the map aloud in the roadside inn, a man in a riding-cloak by the chimney held his mug still at the mention of the bend above the ford."
             }
           }
         ]
       },
       {
         "t": "say",
-        "text": "It is read out, twice, slowly, so that everybody has it. The room is loud enough that you all lean in close to hear.\n\nAcross the room a courier who came in for a bed settles his bill without taking one. He is gone within the hour."
+        "text": "It is read out, twice, slowly, so that everybody has it. The room is loud enough that you all lean in close to hear.\n\nAcross the room a man in a riding-cloak, who came in for a bed, settles his bill without taking one. He is gone within the hour."
       },
       {
         "t": "say",

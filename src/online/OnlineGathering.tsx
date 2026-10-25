@@ -423,6 +423,13 @@ export default function OnlineGathering({
         if (e.mode === 'chosen') {
           // Gathering 6's act: the friend the light let go of chooses, after thirty seconds for the others to talk.
           const from = secondsTo(e.chooseFrom);
+          // 25 Oct (Week 1 audit): Gathering 1's One breath says what each choice does in the United Effort that follows.
+          if (options[0]?.label === 'GO OUT NOW' && options[1]?.label === 'THE NEW PROP')
+            nodes.push(
+              <p key={`${k}-edge`} className="text-[13.5px] text-[#8B7A9E]" data-g="breath-edges">
+                In the job that follows: GO OUT NOW, +4 on {e.chosenIsMe ? 'your' : `${e.chosen}'s`} first roll · THE NEW PROP, the friend in the drop starts 10 higher · STAY WHERE YOU ARE, +1 on every friend's first roll.
+              </p>
+            );
           // 24 Oct (0115): if the chosen friend has left the night when their time runs out, any friend still here may
           // choose for them, and the first tap stands.
           // 25 Oct (0132): the others tap their advice; everyone sees it by name, and the chosen friend still chooses alone.
