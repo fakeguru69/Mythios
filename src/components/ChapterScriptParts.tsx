@@ -135,7 +135,7 @@ export const NarrationBlock: React.FC<{ text: string; pull?: boolean }> = ({ tex
 /** How-to lines (phase C1 voice key): a small gold "HOW IT WORKS" strip. */
 export const HowItWorks: React.FC<{ text: string }> = ({ text }) => (
   <div className="rounded-xl bg-[#2A2010] border border-[#D4B876]/60 px-3.5 py-2.5 space-y-1" data-how-it-works>
-    <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] uppercase text-[#E5C158]">
+    <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] uppercase text-[#E5C158]">
       HOW IT WORKS
     </div>
     <p className="font-sans text-[16px] text-[#F4E8C8] leading-[1.42]">{text}</p>
@@ -146,11 +146,29 @@ export const HowItWorks: React.FC<{ text: string }> = ({ text }) => (
 export const TapEcho: React.FC<{ label: string }> = ({ label }) => (
   <div className="flex justify-end" data-choice-echo>
     <div className="max-w-[86%] rounded-[16px_16px_4px_16px] bg-[#3A2A12] border border-[#8A6E34] px-3.5 py-2 font-sans text-[16px] leading-[1.4] text-[#F4E8C8]">
-      {label}
+      {sentenceCase(label)}
     </div>
   </div>
 );
 
+// Story buttons read in sentence case (Phase 5, 24 Oct: "sentence-case buttons"); canon writes them in capitals.
+// Names keep their capital. The accessible name stays canon's label, so screen readers and the tests read it whole.
+const PROPER_WORDS = new Set([
+  'CORIN', 'GARRICK', "GARRICK'S", 'JOSS', 'MEIRA', "MEIRA'S", 'TAMSIN', 'WREN', "WREN'S", 'ORDER', 'STONES', 'MALAKOR',
+  'MIGHT', 'CRAFT', 'INTELLECT', 'CHARM', 'AGILITY', 'AIM', 'RELIC', 'I', "I'M", "I'LL", "I'VE", "I'D",
+]);
+export function sentenceCase(label: string): string {
+  // Only words written all in capitals change; a friend's name filled in ("Mei") is left as it is.
+  const words = label.replace(/[A-Za-z][A-Za-z'’-]*/g, (w) => {
+    if (w !== w.toUpperCase()) return w;
+    if (PROPER_WORDS.has(w.replace('’', "'"))) return w.charAt(0) + w.slice(1).toLowerCase();
+    return w.toLowerCase();
+  });
+  // A capital at the start, and after a full stop, question or exclamation mark.
+  return words.replace(/(^|[.?!]\s+)([^A-Za-z]*)([a-z])/g, (_, a, b, c) => a + b + c.toUpperCase());
+}
+
+/** One primary button for the story: solid gold (Phase 5, 24 Oct; the old translucent one looked disabled). */
 export const ScriptButton: React.FC<{ label: string; onClick: () => void; disabled?: boolean }> = ({
   label,
   onClick,
@@ -161,9 +179,10 @@ export const ScriptButton: React.FC<{ label: string; onClick: () => void; disabl
     data-script-step
     disabled={disabled}
     onClick={onClick}
-    className="w-full py-2.5 px-3 rounded-xl bg-[#D4B876]/22 hover:bg-[#D4B876]/32 border border-[#D4B876] text-[#F4F1F8] font-['Cinzel'] font-bold text-[12.5px] tracking-[0.8px] uppercase transition disabled:opacity-50"
+    aria-label={label}
+    className="w-full py-3 px-3.5 rounded-xl bg-[#D4B876] hover:bg-[#E5C158] text-[#130B1F] font-sans font-semibold text-[15.5px] leading-snug text-left transition disabled:opacity-50"
   >
-    {label}
+    {sentenceCase(label)}
   </button>
 );
 
@@ -190,7 +209,7 @@ export function pickNoticeLine(
 /** The Notice (phase C1 voice key): a blue card. */
 export const NoticeBlock: React.FC<{ attr: AttributeName; text: string; label?: string }> = ({ attr, text, label }) => (
   <div className="rounded-xl bg-[#101C30] border border-[#3B669E] px-3.5 py-2.5 space-y-1" data-notice-card>
-    <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] uppercase text-[#7AA7FF]">
+    <div className="font-['Cinzel'] font-bold text-[14px] tracking-[1px] uppercase text-[#7AA7FF]">
       {label ?? `What you notice · ${attr}`}
     </div>
     <ScriptText text={text} className="font-sans text-[16px] text-[#E8F1FF] leading-[1.45]" />
@@ -200,7 +219,7 @@ export const NoticeBlock: React.FC<{ attr: AttributeName; text: string; label?: 
 /** First-time Notice explanation card (Piece C6): explains the notice mechanic once per player. */
 export const FirstTimeNoticeInfo: React.FC<{ attr: AttributeName }> = ({ attr }) => (
   <div className="rounded-xl bg-[#142036] border border-[#2E4B75] p-3 space-y-1.5" data-first-time-notice>
-    <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#8DB4F5] uppercase">
+    <div className="font-['Cinzel'] font-bold text-[14px] tracking-[1px] text-[#8DB4F5] uppercase">
       THE NOTICE · {attr.toUpperCase()}, YOUR BEST
     </div>
     <div className="font-sans text-[15px] text-[#CBE0FF] leading-[1.45]">
@@ -229,7 +248,7 @@ export const NoticeRollCard: React.FC<{
   <div className="space-y-2" data-notice-container>
     {showFirstTime && <FirstTimeNoticeInfo attr={roll.attr} />}
     <div className="rounded-xl bg-[#101C30] border border-[#3B669E] p-3.5 space-y-2 shadow-md" data-notice-card>
-      <div className="flex justify-between items-center text-[12px] font-['Cinzel'] font-bold tracking-[1px] uppercase">
+      <div className="flex justify-between items-center text-[14px] font-['Cinzel'] font-bold tracking-[1px] uppercase">
         <span className="text-[#7AA7FF]">
           NOTICE · {roll.attr}{roll.score !== undefined ? ` ${roll.score} (+${roll.bonus})` : ''}
         </span>
@@ -237,7 +256,7 @@ export const NoticeRollCard: React.FC<{
           {roll.pass ? 'NOTICED' : 'MISSED'} (DC {roll.dc})
         </span>
       </div>
-      <div className="text-[13px] font-sans text-[#82A2E6]">
+      <div className="text-[14px] font-sans text-[#82A2E6]">
         🎲 {roll.d20} + {roll.attr}{roll.score !== undefined ? ` ${roll.score}` : ''} (+{roll.bonus}) − DC {roll.dc} = {roll.total - roll.dc >= 0 ? `+${roll.total - roll.dc}` : `−${Math.abs(roll.total - roll.dc)}`}
       </div>
       {roll.pass ? (
@@ -271,7 +290,7 @@ export const NoticeRollActionCard: React.FC<{
   <div className="space-y-2" data-notice-container>
     {showFirstTime && <FirstTimeNoticeInfo attr={attr} />}
     <div className="rounded-xl bg-[#101C30] border border-[#3B669E] p-3.5 space-y-3 shadow-md" data-notice-card>
-      <div className="flex justify-between items-center text-[12px] font-['Cinzel'] font-bold tracking-[1px] uppercase">
+      <div className="flex justify-between items-center text-[14px] font-['Cinzel'] font-bold tracking-[1px] uppercase">
         <span className="text-[#7AA7FF]">
           NOTICE · {attr}{score !== undefined ? ` ${score} (+${bonus})` : ` (+${bonus})`}
         </span>
@@ -286,7 +305,7 @@ export const NoticeRollActionCard: React.FC<{
         onClick={onRoll}
         data-button-roll-notice
         data-script-step
-        className="w-full py-2.5 px-3 rounded-xl bg-[#7AA7FF]/20 hover:bg-[#7AA7FF]/30 active:bg-[#7AA7FF]/40 border border-[#7AA7FF] text-[#F4F1F8] font-['Cinzel'] font-bold text-[13px] tracking-[0.8px] uppercase transition disabled:opacity-50"
+        className="w-full py-2.5 px-3 rounded-xl bg-[#7AA7FF]/20 hover:bg-[#7AA7FF]/30 active:bg-[#7AA7FF]/40 border border-[#7AA7FF] text-[#F4F1F8] font-['Cinzel'] font-bold text-[14px] tracking-[0.8px] uppercase transition disabled:opacity-50"
       >
         {busy ? 'ROLLING…' : 'ROLL · NOTICE'}
       </button>
@@ -297,7 +316,7 @@ export const NoticeRollActionCard: React.FC<{
 /** "What this changed" slot (Piece C9): displays the short outcome/effect of a choice or fork. */
 export const WhatThisChangedBlock: React.FC<{ text: string }> = ({ text }) => (
   <div className="rounded-xl bg-[#211633] border border-[#523A73] p-3 space-y-1 shadow-sm" data-what-this-changed>
-    <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#E5C158] uppercase flex items-center gap-1.5">
+    <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158] uppercase flex items-center gap-1.5">
       <span>⚡ WHAT THIS CHANGED</span>
     </div>
     <ScriptText text={text} className="font-sans text-[14.5px] text-[#E3D9F2] leading-[1.4]" />
@@ -307,7 +326,7 @@ export const WhatThisChangedBlock: React.FC<{ text: string }> = ({ text }) => (
 /** A read-back card beside the line where the story answers a previous campfire question (Piece E1). */
 export const ReadBackBlock: React.FC<{ text: string; day?: number }> = ({ text, day }) => (
   <div className="rounded-xl bg-[#241B10] border border-[#8A5A24] px-3.5 py-2.5 space-y-1 my-2 shadow-sm" data-read-back>
-    <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#E5C158] uppercase">
+    <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158] uppercase">
       {day === 1 ? 'LAST NIGHT YOU CALLED IT' : day ? `THE FIRE'S CALL · DAY ${day}` : "THE FIRE'S CALL"}
     </div>
     <p className="font-sans italic text-[15.5px] text-[#F4E8C8] leading-[1.4]">{text}</p>

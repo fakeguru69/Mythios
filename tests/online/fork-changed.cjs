@@ -188,8 +188,8 @@ const check = (name, ok) => {
   }
 
   check(
-    'All 30 real forks (66 branches) across Weeks 1-6 have complete `changed` and `roadFind` metadata',
-    allSeasonForksCount === 30 && allSeasonBranchesCount === 66 && allSeasonMetaComplete
+    `Every real fork across Weeks 1-6 (${allSeasonForksCount} forks, ${allSeasonBranchesCount} branches; 30 and 66 before Phase 3 added more on 24 Oct) has complete \`changed\` and \`roadFind\` metadata`,
+    allSeasonForksCount >= 30 && allSeasonBranchesCount >= 66 && allSeasonMetaComplete
   );
   check(
     'Each of Weeks 1-6 awards exactly 1 discernment Relic across all 6 Attributes (Might, Charm, Agility, Aim, Intellect, Craft)',

@@ -24,9 +24,11 @@ async function open(b, startOff = 0) {
     };
   }, startOff);
   await p.goto('http://localhost:3000/?online=1'); await p.waitForTimeout(1500);
-  await p.getByRole('button', { name: 'START A PARTY', exact: true }).click(); await p.waitForTimeout(800);
-  await p.getByRole('button', { name: 'USE EMAIL AND A PASSWORD', exact: true }).click(); await p.waitForTimeout(800);
-  await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
+  // The cover (since 23 Oct): "Already playing? Sign in"; older screens asked for the way in first.
+  await p.locator('[data-button-signin]').click(); await p.waitForTimeout(800);
+  for (const name of ['USE EMAIL AND A PASSWORD', 'Have an account? Sign in']) {
+    const b = p.getByRole('button', { name, exact: true }); if (await b.count()) { await b.first().click(); await p.waitForTimeout(500); }
+  }
   await p.getByPlaceholder('Email').fill('host@mythios.test'); await p.getByPlaceholder('Password').fill('x');
   await p.getByRole('button', { name: 'SIGN IN', exact: true }).click(); await p.waitForTimeout(2000);
   await enterParty(p, PARTY); await p.waitForTimeout(2500);

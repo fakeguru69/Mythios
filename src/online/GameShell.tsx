@@ -13,7 +13,7 @@ import OnlineChest from './OnlineChest';
 import OnlineCasebook from './OnlineCasebook';
 import OnlineStore from './OnlineStore';
 import { OnlineFoundShelf, OnlineVersesShelf } from './OnlineBagShelves';
-import { EarlierFire, partyDayStart } from './FireChat';
+import { EarlierFire, GarrickMorning, partyDayStart } from './FireChat';
 import LastNight from './LastNight';
 import { NotebookProvider } from './Markable';
 import { RecordTabView } from '../components/RecordTabView';
@@ -180,7 +180,7 @@ export default function GameShell({
           <div className="min-w-0">
             <div className="font-['Cinzel'] font-bold text-[15px] tracking-[1px] text-[#D4B876]">Tales of the Dark Moon</div>
             <button
-              className="text-left text-[13px] text-[#B7A9CC] truncate max-w-full"
+              className="text-left text-[14px] text-[#B7A9CC] truncate max-w-full"
               onClick={() => setPanelOpen(true)}
               aria-haspopup="dialog"
               data-party-name
@@ -202,7 +202,7 @@ export default function GameShell({
               aria-selected={tab === t.key}
               onClick={() => show(t.key)}
               data-shell-tab={t.key}
-              className={`py-2.5 font-['Cinzel'] font-bold text-[13px] border-b-2 ${
+              className={`py-2.5 font-['Cinzel'] font-bold text-[14px] border-b-2 ${
                 tab === t.key ? 'text-[#E5C158] border-[#E5C158]' : 'text-[#8F82A6] border-transparent'
               }`}
             >
@@ -216,6 +216,7 @@ export default function GameShell({
         {/* The story stays mounted behind the other tabs, so coming back finds your place in the thread. */}
         <div className={tab === 'story' ? 'space-y-5' : 'hidden'} data-pane="story">
           <NotebookProvider partyId={party.id}>
+            {info && !info.gathering && <GarrickMorning partyId={party.id} timeZone={party.time_zone} enabled={chatOpen} />}
             {info && !info.gathering && <LastNight partyId={party.id} week={info.week} day={info.day} />}
             <OnlineDay
               partyId={party.id}
@@ -241,6 +242,7 @@ export default function GameShell({
               <GatheringCard partyId={party.id} isHost={party.host_id === userId} timeZone={party.time_zone} onOpen={joinGathering} />
             )}
             {inGathering && <OnlineGathering partyId={party.id} userId={userId} members={members} onClose={() => undefined} embedded />}
+            {info && !info.gathering && info.finished && <FirePill />}
             {info && !info.gathering && info.finished && (
               <div data-thread-fire>
                 <OnlineCampfire
@@ -271,7 +273,7 @@ export default function GameShell({
                 <div className="font-['Cinzel'] font-bold text-[14px] text-[#D4B876] tracking-[1.2px] uppercase">
                   Counting the Record…
                 </div>
-                <div className="text-[13px] font-sans text-[#B7A9CC]">
+                <div className="text-[14px] font-sans text-[#B7A9CC]">
                   Reading your company's milestones from the road.
                 </div>
               </div>
@@ -378,5 +380,34 @@ export default function GameShell({
         </div>
       )}
     </div>
+  );
+}
+
+/** "↓ The fire" (Phase 5, 24 Oct): once the day is done, a small button while tonight's fire is still below the screen. */
+function FirePill() {
+  const [below, setBelow] = useState(false);
+  useEffect(() => {
+    const check = () => {
+      const el = document.querySelector('[data-thread-fire]');
+      setBelow(Boolean(el) && el!.getBoundingClientRect().top > window.innerHeight - 40);
+    };
+    check();
+    window.addEventListener('scroll', check, { passive: true });
+    const id = window.setInterval(check, 1000);
+    return () => {
+      window.removeEventListener('scroll', check);
+      window.clearInterval(id);
+    };
+  }, []);
+  if (!below) return null;
+  return (
+    <button
+      type="button"
+      data-fire-pill
+      onClick={() => document.querySelector('[data-thread-fire]')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+      className="fixed bottom-5 left-1/2 -translate-x-1/2 z-30 rounded-full bg-[#D4B876] text-[#130B1F] font-semibold text-[15px] px-4 py-2 shadow-lg"
+    >
+      ↓ The fire
+    </button>
   );
 }

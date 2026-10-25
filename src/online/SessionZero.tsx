@@ -98,7 +98,7 @@ export default function SessionZero({
     return (
       <div className={`${card} space-y-4 border border-[#D4B876]/35 bg-gradient-to-b from-[#1C112E] to-[#0E061A] shadow-2xl`}>
         <div className="space-y-1">
-          <div className="text-[11px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
+          <div className="text-[12px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
             SESSION ZERO · CHARACTER CREATION
           </div>
           <h2 className={`${heading} text-[22px] font-['Cinzel'] text-[#FDFBFE]`}>
@@ -115,7 +115,7 @@ export default function SessionZero({
               {line}
             </p>
           ))}
-          <p className="text-[13.5px] leading-relaxed text-[#A695C2] italic">
+          <p className="text-[14px] leading-relaxed text-[#A695C2] italic">
             Before your company steps onto the road, choose who you will be. Six companions, six callings, one shared campfire.
           </p>
         </div>
@@ -132,7 +132,7 @@ export default function SessionZero({
     return (
       <div className={`${card} space-y-4 border border-[#5E4585]/60 bg-gradient-to-b from-[#1A1028] to-[#0E071A]`}>
         <div className="space-y-1">
-          <div className="text-[11px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
+          <div className="text-[12px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
             STEP 1 · THE LEDGER
           </div>
           <label className="block text-[17px] font-['Cinzel'] font-bold text-[#F4F1F8]">{SZ_NAME}</label>
@@ -148,7 +148,7 @@ export default function SessionZero({
         <p className={`${note} italic text-[#B7A9CC]`}>{SZ_NAME_NOTE}</p>
 
         <div className="pt-2">
-          <div className="text-[12px] font-['Cinzel'] font-semibold text-[#8F82A6] mb-1.5 uppercase tracking-[1px]">
+          <div className="text-[14px] font-['Cinzel'] font-semibold text-[#8F82A6] mb-1.5 uppercase tracking-[1px]">
             Or choose a hill folk name:
           </div>
           <div className="flex flex-wrap gap-1.5">
@@ -156,7 +156,7 @@ export default function SessionZero({
               <button
                 key={suggested}
                 type="button"
-                className="px-2.5 py-1 rounded-lg bg-[#241738] hover:bg-[#342250] text-[#D9D1E6] text-[13px] font-sans border border-[#432A66] transition"
+                className="px-2.5 py-1 rounded-lg bg-[#241738] hover:bg-[#342250] text-[#D9D1E6] text-[14px] font-sans border border-[#432A66] transition"
                 onClick={() => setName(suggested)}
               >
                 {suggested}
@@ -189,7 +189,7 @@ export default function SessionZero({
     return (
       <div className={`${card} space-y-4 border border-[#5E4585]/60 bg-gradient-to-b from-[#1A1028] to-[#0E071A]`}>
         <div className="space-y-1">
-          <div className="text-[11px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
+          <div className="text-[12px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
             STEP 2 · YOUR CALLING
           </div>
           <p className="text-[17px] font-['Cinzel'] font-bold text-[#FDFBFE]">{SZ_CHOOSE}</p>
@@ -218,7 +218,7 @@ export default function SessionZero({
                     <span className="font-['Cinzel'] font-bold text-[16px] text-[#FDFBFE]">{c.name}</span>
                   </div>
                   <span
-                    className="text-[12px] font-['Cinzel'] font-bold px-2 py-0.5 rounded border"
+                    className="text-[14px] font-['Cinzel'] font-bold px-2 py-0.5 rounded border"
                     style={{ color: meta?.color, borderColor: meta?.color ? `${meta.color}55` : '#5E4585', backgroundColor: meta?.bgTint || '#2B1E3D' }}
                   >
                     {c.attribute} (+20)
@@ -229,13 +229,13 @@ export default function SessionZero({
                   “{c.line}”
                 </div>
 
-                <div className="text-[12.5px] text-[#B7A9CC] flex items-center justify-between pt-0.5">
+                <div className="text-[14px] text-[#B7A9CC] flex items-center justify-between pt-0.5">
                   <span>{details?.role}</span>
                   <span className="text-[#8F82A6]">{details?.weapon}</span>
                 </div>
 
                 {friend && (
-                  <div className="text-[12px] text-[#F0A552] italic pt-1 border-t border-[#3A2555]/60">
+                  <div className="text-[14px] text-[#F0A552] italic pt-1 border-t border-[#3A2555]/60">
                     {friend} is already a {c.name}. You can be one too. The road will ask for all six.
                   </div>
                 )}
@@ -256,11 +256,11 @@ export default function SessionZero({
     return (
       <div className={`${card} space-y-4 border border-[#5E4585]/60 bg-gradient-to-b from-[#1A1028] to-[#0E071A]`}>
         <div className="space-y-1">
-          <div className="text-[11px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
+          <div className="text-[12px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
             STEP 3 · YOUR SECOND STRENGTH
           </div>
           <p className="text-[17px] font-['Cinzel'] font-bold text-[#FDFBFE]">{SZ_SECOND}</p>
-          <p className="text-[13px] text-[#B7A9CC]">
+          <p className="text-[14px] text-[#B7A9CC]">
             Your class leads with <span className="font-semibold text-[#E5C158]">{chosen.attribute}</span> (+20). Pick your second affinity (+15).
           </p>
         </div>
@@ -284,9 +284,9 @@ export default function SessionZero({
                   <div className="font-['Cinzel'] font-bold text-[15px]" style={{ color: meta?.color || '#FDFBFE' }}>
                     {a}
                   </div>
-                  <div className="text-[12.5px] text-[#B7A9CC]">{meta?.desc || 'Attribute strength'}</div>
+                  <div className="text-[14px] text-[#B7A9CC]">{meta?.desc || 'Attribute strength'}</div>
                 </div>
-                <span className="text-[13px] font-mono font-semibold text-[#E5C158] shrink-0">
+                <span className="text-[14px] font-mono font-semibold text-[#E5C158] shrink-0">
                   +15 Novice
                 </span>
               </button>
@@ -311,7 +311,7 @@ export default function SessionZero({
     return (
       <div className={`${card} space-y-4 border border-[#5E4585]/60 bg-gradient-to-b from-[#1A1028] to-[#0E071A]`}>
         <div className="space-y-1">
-          <div className="text-[11px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
+          <div className="text-[12px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
             STEP 4 · LINEAGE & MEMORY
           </div>
           <h3 className="text-[17px] font-['Cinzel'] font-bold text-[#FDFBFE]">Where your road begins.</h3>
@@ -331,7 +331,7 @@ export default function SessionZero({
               <button
                 key={place}
                 type="button"
-                className="px-2 py-0.5 rounded text-[12px] bg-[#241738] text-[#B7A9CC] hover:text-[#FDFBFE] hover:bg-[#342250] border border-[#3A2555] transition"
+                className="px-2 py-0.5 rounded text-[14px] bg-[#241738] text-[#B7A9CC] hover:text-[#FDFBFE] hover:bg-[#342250] border border-[#3A2555] transition"
                 onClick={() => setBirthplace(place)}
               >
                 {place}
@@ -354,7 +354,7 @@ export default function SessionZero({
               <button
                 key={item}
                 type="button"
-                className="px-2 py-0.5 rounded text-[12px] bg-[#241738] text-[#B7A9CC] hover:text-[#FDFBFE] hover:bg-[#342250] border border-[#3A2555] transition"
+                className="px-2 py-0.5 rounded text-[14px] bg-[#241738] text-[#B7A9CC] hover:text-[#FDFBFE] hover:bg-[#342250] border border-[#3A2555] transition"
                 onClick={() => setGrandparent(item)}
               >
                 {item}
@@ -383,7 +383,7 @@ export default function SessionZero({
     return (
       <div className={`${card} space-y-4 border border-[#D4B876]/50 bg-gradient-to-b from-[#1C122C] to-[#0D0518] shadow-2xl`}>
         <div className="space-y-1 text-center pb-1">
-          <div className="text-[11px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
+          <div className="text-[12px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
             YOUR HERO COLLECTOR CARD
           </div>
           <h3 className="font-['Cinzel'] font-bold text-[22px] tracking-[1.5px] text-[#FDFBFE] uppercase">
@@ -402,7 +402,7 @@ export default function SessionZero({
               </div>
             </div>
             <div className="text-right">
-              <span className="text-[11px] font-['Cinzel'] font-bold tracking-[1px] px-2 py-0.5 rounded bg-[#E5C158]/15 border border-[#E5C158]/40 text-[#E5C158] uppercase">
+              <span className="text-[12px] font-['Cinzel'] font-bold tracking-[1px] px-2 py-0.5 rounded bg-[#E5C158]/15 border border-[#E5C158]/40 text-[#E5C158] uppercase">
                 Ready for Day 1
               </span>
             </div>
@@ -410,10 +410,10 @@ export default function SessionZero({
 
           {/* Primary & Secondary Strength Bars */}
           <div className="space-y-2">
-            <div className="text-[11px] font-['Cinzel'] font-bold tracking-[1px] text-[#8F82A6] uppercase">
+            <div className="text-[12px] font-['Cinzel'] font-bold tracking-[1px] text-[#8F82A6] uppercase">
               Core Attributes
             </div>
-            <div className="grid grid-cols-2 gap-2 text-[13.5px]">
+            <div className="grid grid-cols-2 gap-2 text-[14px]">
               <div className="rounded-lg p-2 bg-[#211336] border border-[#5E4585]/60 flex items-center justify-between">
                 <span className="font-semibold" style={{ color: ATTRIBUTE_META[chosen.attribute]?.color }}>
                   {chosen.attribute} (Class)
@@ -428,7 +428,7 @@ export default function SessionZero({
               </div>
             </div>
 
-            <div className="text-[12px] text-[#B7A9CC] pt-1 flex flex-wrap gap-x-3 gap-y-1">
+            <div className="text-[14px] text-[#B7A9CC] pt-1 flex flex-wrap gap-x-3 gap-y-1">
               {others.map((a) => (
                 <span key={a}>
                   <span className="text-[#8F82A6]">{a}:</span> {START_OTHER_ATTR}
@@ -438,10 +438,10 @@ export default function SessionZero({
           </div>
 
           {/* Equipment & Combat Status */}
-          <div className="pt-2 border-t border-[#3A2555]/60 flex items-center justify-between text-[12.5px] text-[#B7A9CC]">
+          <div className="pt-2 border-t border-[#3A2555]/60 flex items-center justify-between text-[14px] text-[#B7A9CC]">
             <span>Weapon {START_WEAPON} (Lv. 1)</span>
             <span aria-hidden="true" className="text-[#5E4585]">·</span>
-            <span>Armor {START_ARMOR} (Lv. 1)</span>
+            <span>Armour {START_ARMOR} (Lv. 1)</span>
             <span aria-hidden="true" className="text-[#5E4585]">·</span>
             <span>100 HP</span>
             <span aria-hidden="true" className="text-[#5E4585]">·</span>
@@ -449,7 +449,7 @@ export default function SessionZero({
           </div>
 
           {(birthplace || grandparent) && (
-            <div className="pt-2 border-t border-[#3A2555]/60 text-[12.5px] font-['Cormorant_Garamond',serif] italic text-[#E0D8ED]">
+            <div className="pt-2 border-t border-[#3A2555]/60 text-[14px] font-['Cormorant_Garamond',serif] italic text-[#E0D8ED]">
               “{birthplace ? `Out of ${birthplace}` : 'Out of the hill country'}{grandparent ? `, with ${grandparent} in mind.` : '.'}”
             </div>
           )}

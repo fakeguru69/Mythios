@@ -27,7 +27,7 @@ export default function LastNight({ partyId, week, day }: { partyId: string; wee
     supabase.rpc('casebook', { p_party: partyId, p_week: prevWeek }).then(({ data }) => {
       const night = ((data as { nights?: Night[] } | null)?.nights ?? []).find((n) => n.day === prevDay);
       const c = night?.call;
-      if (night?.unsolvedClick) setUnsolvedLine(night.unsolvedClick);
+      
       if (!night || !c) return;
       const text = (r: Reading) => (r === 'A' ? night.forkA ?? '' : r === 'B' ? night.forkB ?? '' : 'Neither.');
       const by = (r: Reading) => c.backers?.[r] ?? [];
@@ -65,13 +65,9 @@ export default function LastNight({ partyId, week, day }: { partyId: string; wee
     <div className="grid transition-[grid-template-rows] duration-300 ease-out" style={{ gridTemplateRows: open ? '1fr' : '0fr' }} data-last-call-wrap>
       <div className="overflow-hidden">
         <div className="rounded-2xl bg-[#16233A] border border-[#3E5C8A] px-3 py-2.5 space-y-1.5" data-last-call>
-          <div className="font-['Cinzel'] font-bold text-[12px] text-[#9CC2F0] tracking-[1px]">LAST NIGHT</div>
+          <div className="font-['Cinzel'] font-bold text-[14px] text-[#9CC2F0] tracking-[1px]">LAST NIGHT</div>
           {line && <p className="text-[16px] text-[#F4F1F8] leading-[1.4]">{line}</p>}
-          {unsolvedLine && (
-            <div className="pt-2 border-t border-[#3E5C8A]/60 text-[14.5px] text-[#E5C158] leading-[1.4]" data-unsolved-puzzle>
-              <span className="font-semibold text-[#F4F1F8]">What the table would have shown:</span> “{unsolvedLine}”
-            </div>
-          )}
+          {/* The morning never prints an answer (Phase 5, 24 Oct): what the table would have shown stays in the casebook. */}
         </div>
       </div>
     </div>

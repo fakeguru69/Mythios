@@ -128,7 +128,7 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
         {messages.map((m) =>
           m.speaker === 'garrick' ? (
             <div key={m.id} className="max-w-[88%] space-y-1" data-garrick-line>
-              <div className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
+              <div className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
               <Markable source="Garrick, in the party chat" text={m.body}>
                 <div className="rounded-[4px_16px_16px_16px] bg-[#2B1E10] border border-[#6B5524] px-3 py-2 font-sans text-[16px] leading-[1.45] text-[#F4E8C8] whitespace-pre-wrap break-words">
                   {m.body}
@@ -137,7 +137,7 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
             </div>
           ) : m.kind === 'nudge' ? (
             <div key={m.id} className="rounded-xl bg-[#231530] border border-[#6B3BA3]/60 px-3.5 py-2.5 my-1 text-center" data-chat-nudge>
-              <div className="font-['Cinzel'] font-bold text-[11px] text-[#C084FC] tracking-[0.8px] uppercase">
+              <div className="font-['Cinzel'] font-bold text-[12px] text-[#C084FC] tracking-[0.8px] uppercase">
                 PRIVATE NUDGE
               </div>
               <p className="font-sans text-[15px] text-[#F4F1F8] italic leading-relaxed mt-0.5">
@@ -160,7 +160,7 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
             </p>
           ) : (
             <div key={m.id} className={`flex flex-col ${m.author_id === userId ? 'items-end' : 'items-start'}`} data-chat={m.author_id === userId ? 'mine' : 'friend'}>
-              {m.author_id !== userId && <div className="text-[12px] font-bold text-[#C39BF5]">{nameOf(m.author_id)}</div>}
+              {m.author_id !== userId && <div className="text-[14px] font-bold text-[#C39BF5]">{nameOf(m.author_id)}</div>}
               <div
                 className={`select-none max-w-[86%] px-3 py-2 text-[16px] leading-[1.4] whitespace-pre-wrap break-words border ${
                   m.author_id === userId

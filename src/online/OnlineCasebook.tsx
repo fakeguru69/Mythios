@@ -83,11 +83,11 @@ export default function OnlineCasebook({ partyId, onClose, embedded = false }: {
       </div>
       <div className="grid grid-cols-2 gap-1.5" role="tablist">
         <button role="tab" aria-selected={tab === 'casebook'} onClick={() => setTab('casebook')}
-          className={`rounded-lg border py-2 text-[13px] font-semibold ${tab === 'casebook' ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}>
+          className={`rounded-lg border py-2 text-[14px] font-semibold ${tab === 'casebook' ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}>
           Nights by the fire
         </button>
         <button role="tab" aria-selected={tab === 'notebook'} onClick={openNotebook}
-          className={`rounded-lg border py-2 text-[13px] font-semibold ${tab === 'notebook' ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}>
+          className={`rounded-lg border py-2 text-[14px] font-semibold ${tab === 'notebook' ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}>
           Your margin notes
         </button>
       </div>
@@ -98,8 +98,8 @@ export default function OnlineCasebook({ partyId, onClose, embedded = false }: {
           {(marks ?? []).map((m) => (
             <div key={m.id} className="rounded-xl bg-[#1A1424] border border-[#4A3A60] p-3 space-y-1.5">
               <p className="text-[14.5px] italic text-[#F4F1F8]">“{m.quote}”</p>
-              <p className="text-[12px] text-[#B7A9CC]">{m.source}</p>
-              {m.note && <p className="text-[13.5px]">Your note: {m.note}</p>}
+              <p className="text-[14px] text-[#B7A9CC]">{m.source}</p>
+              {m.note && <p className="text-[14px]">Your note: {m.note}</p>}
               <button className={quietButton} onClick={() => takeOut(m)}>
                 Take it out
               </button>
@@ -113,7 +113,7 @@ export default function OnlineCasebook({ partyId, onClose, embedded = false }: {
             <button
               key={w}
               onClick={() => load(w)}
-              className={`rounded-lg border px-3 py-1.5 text-[13px] ${w === book.week ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}
+              className={`rounded-lg border px-3 py-1.5 text-[14px] ${w === book.week ? 'border-[#D4B876] bg-[#2E1B42]' : 'border-[#3A2555]'}`}
             >
               Week {w}
             </button>
@@ -124,25 +124,25 @@ export default function OnlineCasebook({ partyId, onClose, embedded = false }: {
       {tab === 'casebook' && book && book.nights.length === 0 && <p className={note}>Nothing written here yet this week.</p>}
       {tab === 'casebook' && book?.nights.map((n) => (
         <div key={n.day} className="rounded-xl bg-[#180F29] border border-[#3A2555] p-3 space-y-2" data-night={n.day}>
-          <h3 className="font-['Cinzel'] font-bold text-[13px] text-[#E5C158]">
+          <h3 className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158]">
             Day {n.day} · {n.place}
           </h3>
-          <p className="text-[13.5px] text-[#D9D1E6]">
+          <p className="text-[14px] text-[#D9D1E6]">
             {n.forkA} <span className="text-[#8B7A9E]">or</span> {n.forkB}
           </p>
           <p className="text-[14px]" data-call>
             {callLine(n)}
           </p>
           {(n.call?.lines ?? []).map((l) => (
-            <p key={l.name} className="text-[13.5px] italic">
+            <p key={l.name} className="text-[14px] italic">
               {l.name}: “{l.line}”
             </p>
           ))}
           {n.pieces.length > 0 && (
             <div className="space-y-0.5">
-              <div className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] text-[#B7A9CC]">ON THE TABLE</div>
+              <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#B7A9CC]">ON THE TABLE</div>
               {n.pieces.map((p) => (
-                <p key={p.title} className="text-[13.5px]">
+                <p key={p.title} className="text-[14px]">
                   {p.title} · <span className="text-[#B7A9CC]">{p.names.join(', ')}</span>
                 </p>
               ))}
@@ -150,9 +150,9 @@ export default function OnlineCasebook({ partyId, onClose, embedded = false }: {
           )}
           {n.clicks.length > 0 && (
             <div className="space-y-0.5">
-              <div className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] text-[#9CC2F0]">WHAT CLICKED</div>
+              <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#9CC2F0]">WHAT CLICKED</div>
               {n.clicks.map((c) => (
-                <p key={c.text} className="text-[13.5px] italic">
+                <p key={c.text} className="text-[14px] italic">
                   {c.text}
                 </p>
               ))}

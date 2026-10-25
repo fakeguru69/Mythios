@@ -47,7 +47,7 @@ export interface BagShelvesState {
 const relicColour = (k: string) =>
   k === 'Combat' ? '#D6DCEB' : ATTRIBUTE_META[k as AttributeName]?.color ?? '#D6DCEB';
 const relicUse = (k: string) =>
-  k === 'Combat' ? '+1 Weapon and +1 Armor for one fight' : `+4 on one ${k} roll`;
+  k === 'Combat' ? '+1 Weapon and +1 Armour for one fight' : `+4 on one ${k} roll`;
 
 const clueKindLabel = (k: BagClueRow['kind']) =>
   k === 'lead' ? 'Last light' : k === 'fork' ? 'Road choice' : k === 'notice' ? 'Noticed' : 'Pressed on';
@@ -125,12 +125,12 @@ export function OnlineVersesShelf({
                 <button
                   type="button"
                   onClick={() => setOpenKeys((prev) => ({ ...prev, [key]: !prev[key] }))}
-                  className="w-full flex items-center justify-between gap-2 px-3.5 py-3 text-left font-['Cinzel'] font-bold text-[13.5px] text-[#E5C158] hover:bg-[#1E1232] transition"
+                  className="w-full flex items-center justify-between gap-2 px-3.5 py-3 text-left font-['Cinzel'] font-bold text-[14px] text-[#E5C158] hover:bg-[#1E1232] transition"
                 >
                   <span>
                     Week {v.week} · {v.title}
                   </span>
-                  <span className="text-[#B7A9CC] text-[12px]">{isOpen ? '▲' : '▼'}</span>
+                  <span className="text-[#B7A9CC] text-[14px]">{isOpen ? '▲' : '▼'}</span>
                 </button>
                 {isOpen && (
                   <div className="px-3.5 pb-3.5 pt-1 space-y-2.5 border-t border-[#2C1D40]" data-verse-body>
@@ -218,10 +218,10 @@ export function OnlineFoundShelf({
           {/* 1. Relics in the Bag */}
           <section className="space-y-2.5" data-bag-relics>
             <div className="flex items-center justify-between gap-2">
-              <h3 className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876] uppercase">
+              <h3 className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#D4B876] uppercase">
                 Relics in Your Pack
               </h3>
-              <span className="text-[12px] text-[#B7A9CC]">+4 roll / +1 fight gear</span>
+              <span className="text-[14px] text-[#B7A9CC]">+4 roll / +1 fight gear</span>
             </div>
 
             {giftSuccess && (
@@ -230,7 +230,7 @@ export function OnlineFoundShelf({
                 data-bag-gift-success
               >
                 <span>✓ {giftSuccess}</span>
-                <button type="button" className="text-[12px] ml-2" onClick={() => setGiftSuccess(null)}>
+                <button type="button" className="text-[14px] ml-2" onClick={() => setGiftSuccess(null)}>
                   ✕
                 </button>
               </div>
@@ -239,7 +239,7 @@ export function OnlineFoundShelf({
             {state.gifts.length > 0 && (
               <div className="space-y-1" data-bag-relic-gifts>
                 {state.gifts.slice(0, 3).map((g, i) => (
-                  <p key={`${g.at}-${i}`} className="text-[13.5px] text-[#D4B876]" data-bag-relic-gift>
+                  <p key={`${g.at}-${i}`} className="text-[14px] text-[#D4B876]" data-bag-relic-gift>
                     ♦ {g.from} gave you {aRelic(g.relic)}.
                   </p>
                 ))}
@@ -259,7 +259,7 @@ export function OnlineFoundShelf({
                     type="button"
                     disabled={busy}
                     onClick={confirmGive}
-                    className="flex-1 rounded-lg bg-[#D4B876] px-3 py-2 font-['Cinzel'] font-bold text-[12px] text-[#130B1F] disabled:opacity-50"
+                    className="flex-1 rounded-lg bg-[#D4B876] px-3 py-2 font-['Cinzel'] font-bold text-[14px] text-[#130B1F] disabled:opacity-50"
                   >
                     GIVE
                   </button>
@@ -296,7 +296,7 @@ export function OnlineFoundShelf({
                           ♦
                         </span>
                         <span
-                          className={`px-2 py-0.5 rounded font-['Cinzel'] font-bold text-[11.5px] border ${
+                          className={`px-2 py-0.5 rounded font-['Cinzel'] font-bold text-[12px] border ${
                             count > 0
                               ? 'bg-[#130B1F] border-[#D4B876] text-[#D4B876]'
                               : 'bg-[#130B1F] border-[#3A2555] text-[#8B7A9E]'
@@ -306,10 +306,10 @@ export function OnlineFoundShelf({
                           ×{count}
                         </span>
                       </div>
-                      <div className="font-['Cinzel'] font-bold text-[13px] mt-2" style={{ color }}>
+                      <div className="font-['Cinzel'] font-bold text-[14px] mt-2" style={{ color }}>
                         {relicName(k)}
                       </div>
-                      <div className="text-[12px] text-[#B7A9CC] leading-snug">{relicUse(k)}</div>
+                      <div className="text-[14px] text-[#B7A9CC] leading-snug">{relicUse(k)}</div>
                     </div>
 
                     <div className="mt-2 pt-2 border-t border-[#44305F]">
@@ -319,7 +319,7 @@ export function OnlineFoundShelf({
                             type="button"
                             disabled={busy}
                             onClick={() => setGiving(giving === k ? null : k)}
-                            className="w-full py-1.5 rounded-lg bg-[#D4B876]/20 border border-[#D4B876] font-['Cinzel'] font-bold text-[11px] text-[#F4F1F8]"
+                            className="w-full py-1.5 rounded-lg bg-[#D4B876]/20 border border-[#D4B876] font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8]"
                           >
                             {giving === k ? 'CANCEL' : 'GIVE'}
                           </button>
@@ -330,7 +330,7 @@ export function OnlineFoundShelf({
                                   key={f.id}
                                   type="button"
                                   onClick={() => setPendingGive({ relic: k, to: f.id, name: f.name })}
-                                  className="rounded-lg bg-[#130B1F] border border-[#D4B876]/60 px-2 py-1 text-[11.5px] text-[#F4F1F8]"
+                                  className="rounded-lg bg-[#130B1F] border border-[#D4B876]/60 px-2 py-1 text-[12px] text-[#F4F1F8]"
                                 >
                                   To {f.name}
                                 </button>
@@ -339,7 +339,7 @@ export function OnlineFoundShelf({
                           )}
                         </div>
                       ) : (
-                        <div className="text-center font-['Cinzel'] font-bold text-[11px] text-[#8B7A9E] py-1">
+                        <div className="text-center font-['Cinzel'] font-bold text-[12px] text-[#8B7A9E] py-1">
                           {count > 0 ? `In pack · ${count}` : 'None in pack'}
                         </div>
                       )}
@@ -353,10 +353,10 @@ export function OnlineFoundShelf({
           {/* 2. Carried from the road */}
           <section className="space-y-2.5 pt-2 border-t border-[#2C1D40]" data-bag-carried>
             <div className="flex items-center justify-between gap-2">
-              <h3 className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876] uppercase">
+              <h3 className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#D4B876] uppercase">
                 Carried from the Road
               </h3>
-              <span className="text-[12px] text-[#B7A9CC]">Kept in your satchel</span>
+              <span className="text-[14px] text-[#B7A9CC]">Kept in your satchel</span>
             </div>
             {state.carried.length === 0 ? (
               <p className={note} data-carried-empty>
@@ -375,7 +375,7 @@ export function OnlineFoundShelf({
                       data-carried-item={key}
                       className="rounded-xl bg-[#130B1F] border border-[#3A2555] p-3 space-y-1"
                     >
-                      <div className="flex items-center gap-2 text-[11.5px] text-[#B7A9CC]">
+                      <div className="flex items-center gap-2 text-[12px] text-[#B7A9CC]">
                         <span className="font-['Cinzel'] font-bold text-[#D4B876] tabular-nums">{tag}</span>
                         <span>·</span>
                         <span>{item.place}</span>
@@ -395,10 +395,10 @@ export function OnlineFoundShelf({
           {/* 3. Clues found along the road */}
           <section className="space-y-2.5 pt-2 border-t border-[#2C1D40]" data-bag-clues>
             <div className="flex items-center justify-between gap-2">
-              <h3 className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876] uppercase">
+              <h3 className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#D4B876] uppercase">
                 Clues Found Along the Road
               </h3>
-              <span className="text-[12px] text-[#B7A9CC]">{state.clues.length} found</span>
+              <span className="text-[14px] text-[#B7A9CC]">{state.clues.length} found</span>
             </div>
             {state.clues.length === 0 ? (
               <p className={note} data-clues-empty>
@@ -416,12 +416,12 @@ export function OnlineFoundShelf({
                       data-clue-item={cl.key}
                       className="rounded-xl bg-[#130B1F] border border-[#3A2555] p-3 space-y-1.5"
                     >
-                      <div className="flex items-center justify-between gap-2 text-[11.5px] text-[#B7A9CC]">
+                      <div className="flex items-center justify-between gap-2 text-[12px] text-[#B7A9CC]">
                         <span>
                           <span className="font-['Cinzel'] font-bold text-[#D4B876] tabular-nums">{tag}</span> ·{' '}
                           {cl.place}
                         </span>
-                        <span className="px-2 py-0.5 rounded bg-[#221636] border border-[#4A3266] text-[11px] text-[#C39BF5]">
+                        <span className="px-2 py-0.5 rounded bg-[#221636] border border-[#4A3266] text-[12px] text-[#C39BF5]">
                           {clueKindLabel(cl.kind)}
                         </span>
                       </div>
@@ -432,7 +432,7 @@ export function OnlineFoundShelf({
                         </p>
                       </Markable>
                       {cl.by.length > 0 && (
-                        <p className="text-[12px] text-[#8B7A9E]">Found by {cl.by.join(', ')}</p>
+                        <p className="text-[14px] text-[#8B7A9E]">Found by {cl.by.join(', ')}</p>
                       )}
                     </div>
                   );

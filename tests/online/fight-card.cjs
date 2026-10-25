@@ -23,32 +23,32 @@ check(
     /const youHitOn = challengeSucceedOn\(curDef, curWep\)/.test(fightSlice) &&
     /const foeHitsOn = challengeSucceedOn\(curAmr, curAtk\)/.test(fightSlice) &&
     /You hit on \{youHitOn\}\+/.test(fightSlice) &&
-    /He hits on \{foeHitsOn\}\+/.test(fightSlice),
+    /Enemy hits on \{foeHitsOn\}\+/.test(fightSlice),
   'Fight card computes You hit on N+ / He hits on M+ from separate weapon_level and armor_level tracks'
 );
 
 // 2. Both sides' stat numbers in colour: Weapon gold (#E5C158), Armour blue (#7AA7FF), Defence orange (#FB923C), Attack purple (#C084FC).
 check(
-  /text-\[#E5C158\][\s\S]{0,120}Weapon WEP/.test(fightSlice) &&
-    /text-\[#7AA7FF\][\s\S]{0,120}Armour AMR/.test(fightSlice) &&
-    /text-\[#FB923C\][\s\S]{0,120}Defence DEF/.test(fightSlice) &&
-    /text-\[#C084FC\][\s\S]{0,120}Attack ATK/.test(fightSlice),
+  /text-\[#E5C158\][\s\S]{0,120}Weapon<\/span>/.test(fightSlice) &&
+    /text-\[#7AA7FF\][\s\S]{0,120}Armour<\/span>/.test(fightSlice) &&
+    /text-\[#FB923C\][\s\S]{0,120}Defence<\/span>/.test(fightSlice) &&
+    /text-\[#C084FC\][\s\S]{0,120}Attack<\/span>/.test(fightSlice),
   'Both sides stats are colour-coded: Weapon gold (#E5C158), Armour blue (#7AA7FF), Defence orange (#FB923C), Attack purple (#C084FC)'
 );
 
 // 3. Round lines in colour (You Roll green, Weapon gold, DEF orange, Enemy Rolls red, ATK purple, Armor blue).
 check(
-  /data-round-you[\s\S]{0,400}text-\[#E5C158\]">Weapon \{r\.playerAtk\}[\s\S]{0,200}text-\[#FB923C\]">DEF \{r\.enemyDef\}/.test(fightSlice) &&
-    /data-round-foe[\s\S]{0,400}text-\[#C084FC\]">ATK \{r\.enemyAtk\}[\s\S]{0,200}text-\[#7AA7FF\]">Armor \{r\.playerArmor\}/.test(fightSlice),
+  /data-round-you[\s\S]{0,400}text-\[#E5C158\]">Weapon \{r\.playerAtk\}[\s\S]{0,200}text-\[#FB923C\]">Defence \{r\.enemyDef\}/.test(fightSlice) &&
+    /data-round-foe[\s\S]{0,400}text-\[#C084FC\]">Attack \{r\.enemyAtk\}[\s\S]{0,200}text-\[#7AA7FF\]">Armour \{r\.playerArmor\}/.test(fightSlice),
   'OnlineDay round lines colour-code Weapon (#E5C158), DEF (#FB923C), ATK (#C084FC), and Armor (#7AA7FF)'
 );
 
 // 4. Gathering BattleCard also colour-codes Weapon, DEF, ATK, and Armor in its header and round lines.
 check(
   /text-\[#E5C158\]">Weapon \{l\.attack\}/.test(gathering) &&
-    /text-\[#FB923C\]">DEF \{l\.defence\}/.test(gathering) &&
-    /text-\[#C084FC\]">ATK \{l\.attack\}/.test(gathering) &&
-    /text-\[#7AA7FF\]">Armor \{l\.defence\}/.test(gathering),
+    /text-\[#FB923C\]">Defence \{l\.defence\}/.test(gathering) &&
+    /text-\[#C084FC\]">Attack \{l\.attack\}/.test(gathering) &&
+    /text-\[#7AA7FF\]">Armour \{l\.defence\}/.test(gathering),
   'OnlineGathering BattleCard also colour-codes Weapon (#E5C158), DEF (#FB923C), ATK (#C084FC), and Armor (#7AA7FF)'
 );
 

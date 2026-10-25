@@ -13,11 +13,11 @@ export const relicName = (k: string) => `${k} Relic`;
 // "an Aim Relic", "a Charm Relic".
 export const aRelic = (k: string) => `${/^[AEIOU]/.test(k) ? 'an' : 'a'} ${relicName(k)}`;
 const relicColour = (k: string) => (k === 'Combat' ? '#D6DCEB' : ATTRIBUTE_META[k as AttributeName]?.color ?? '#D6DCEB');
-const relicUse = (k: string) => (k === 'Combat' ? '+1 Weapon and +1 Armor for one fight' : `+4 on one ${k} roll`);
+const relicUse = (k: string) => (k === 'Combat' ? '+1 Weapon and +1 Armour for one fight' : `+4 on one ${k} roll`);
 
 // Canon's first-time line, shown once, on first opening the Store (Core Rules §7).
 const FIRST_STORE_LINE =
-  'A Relic is used once. One kind adds 4 to a single roll. The other adds 1 to your Weapon and Armor for one fight. You can give them to friends, and sometimes a friend will need one.';
+  'A Relic is used once. One kind adds 4 to a single roll. The other adds 1 to your Weapon and Armour for one fight. You can give them to friends, and sometimes a friend will need one.';
 
 interface StoreState {
   gold: number;
@@ -114,7 +114,7 @@ export default function OnlineStore({
   const gearTile = (track: 'weapon' | 'armor') => {
     const level = track === 'weapon' ? state.weaponLevel : state.armorLevel;
     const name = track === 'weapon' ? gearNames.weapon : gearNames.armor;
-    const word = track === 'weapon' ? 'Weapon' : 'Armor';
+    const word = track === 'weapon' ? 'Weapon' : 'Armour';
     const value = (l: number) => (track === 'weapon' ? GEAR_TABLE[l].weapon : GEAR_TABLE[l].armor);
     const next = level < 5 ? level + 1 : null;
     return (
@@ -122,13 +122,13 @@ export default function OnlineStore({
         <div>
           <div className="flex items-center justify-between">
             <span className="text-[18px]">{track === 'weapon' ? '⚔️' : '🛡️'}</span>
-            <span className="px-2 py-0.5 rounded bg-[#130B1F] border border-[#D4B876]/50 font-['Cinzel'] font-bold text-[11px] text-[#D4B876]">
+            <span className="px-2 py-0.5 rounded bg-[#130B1F] border border-[#D4B876]/50 font-['Cinzel'] font-bold text-[12px] text-[#D4B876]">
               Lv. {level}
             </span>
           </div>
           {/* Canon: "Sword-Cane — Lv. 2 · Weapon 15" (Core Rules §4). */}
-          <div className="font-['Cinzel'] font-bold text-[13.5px] mt-2">{name}</div>
-          <div className="text-[12.5px] text-[#B7A9CC]">
+          <div className="font-['Cinzel'] font-bold text-[14px] mt-2">{name}</div>
+          <div className="text-[14px] text-[#B7A9CC]">
             {word} {value(level)}
             {next ? ` → ${value(next)}` : ''}
           </div>
@@ -138,12 +138,12 @@ export default function OnlineStore({
             <button
               disabled={closed || busy || state.gold < GEAR_TABLE[next].cost}
               onClick={() => setPending({ kind: 'gear', track, label: `${name} — Lv. ${next} · ${word} ${value(next)}`, cost: GEAR_TABLE[next].cost })}
-              className="w-full py-1.5 rounded-lg bg-[#D4B876]/20 border border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] disabled:opacity-40"
+              className="w-full py-1.5 rounded-lg bg-[#D4B876]/20 border border-[#D4B876] font-['Cinzel'] font-bold text-[12px] disabled:opacity-40"
             >
               LV. {next} · {GEAR_TABLE[next].cost.toLocaleString()}G
             </button>
           ) : (
-            <div className="text-center font-['Cinzel'] font-bold text-[11.5px] text-[#6FD39A] py-1">LEVEL 5</div>
+            <div className="text-center font-['Cinzel'] font-bold text-[12px] text-[#6FD39A] py-1">LEVEL 5</div>
           )}
         </div>
       </div>
@@ -157,7 +157,7 @@ export default function OnlineStore({
           <button className={quietButton} onClick={onClose}>
             ← Back
           </button>
-          <span className="font-['Cinzel'] font-bold text-[13px] text-[#E5C158]">◎ {state.gold.toLocaleString()}g</span>
+          <span className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158]">◎ {state.gold.toLocaleString()}g</span>
         </div>
       )}
       <h2 className={`${heading} text-[19px]`}>The Store</h2>
@@ -187,7 +187,7 @@ export default function OnlineStore({
           </p>
           <div className="flex gap-2">
             <button
-              className="flex-1 rounded-lg bg-[#D4B876] px-3 py-2 font-[Cinzel] font-bold text-[12px] text-[#130B1F] disabled:opacity-50"
+              className="flex-1 rounded-lg bg-[#D4B876] px-3 py-2 font-[Cinzel] font-bold text-[14px] text-[#130B1F] disabled:opacity-50"
               disabled={busy}
               onClick={confirm}
             >
@@ -202,7 +202,7 @@ export default function OnlineStore({
       <ErrorLine text={error} />
 
       <div className="space-y-2">
-        <h3 className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876]">WEAPON AND ARMOR</h3>
+        <h3 className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#D4B876]">WEAPON AND ARMOR</h3>
         <div className="grid grid-cols-2 gap-2.5">
           {gearTile('weapon')}
           {gearTile('armor')}
@@ -210,7 +210,7 @@ export default function OnlineStore({
       </div>
 
       <div className="space-y-2">
-        <h3 className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876]">RELICS · {GOLD_RELIC_COST}G EACH</h3>
+        <h3 className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#D4B876]">RELICS · {GOLD_RELIC_COST}G EACH</h3>
         <div className="grid grid-cols-2 gap-2.5">
           {RELIC_KINDS.map((k) => {
             const held = state.relics[k] ?? 0;
@@ -224,18 +224,18 @@ export default function OnlineStore({
                     >
                       ♦
                     </span>
-                    <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#B7A9CC]">You hold {held}</span>
+                    <span className="font-['Cinzel'] font-bold text-[12px] text-[#B7A9CC]">You hold {held}</span>
                   </div>
-                  <div className="font-['Cinzel'] font-bold text-[13px] mt-2" style={{ color: relicColour(k) }}>
+                  <div className="font-['Cinzel'] font-bold text-[14px] mt-2" style={{ color: relicColour(k) }}>
                     {relicName(k)}
                   </div>
-                  <div className="text-[12px] text-[#B7A9CC] leading-snug">{relicUse(k)}</div>
+                  <div className="text-[14px] text-[#B7A9CC] leading-snug">{relicUse(k)}</div>
                 </div>
                 <div className="mt-2 pt-2 border-t border-[#44305F] flex gap-1.5">
                   <button
                     disabled={closed || busy || state.gold < GOLD_RELIC_COST}
                     onClick={() => setPending({ kind: 'relic', relic: k, cost: GOLD_RELIC_COST })}
-                    className="flex-1 py-1.5 rounded-lg bg-[#D4B876]/20 border border-[#D4B876] font-['Cinzel'] font-bold text-[11px] disabled:opacity-40"
+                    className="flex-1 py-1.5 rounded-lg bg-[#D4B876]/20 border border-[#D4B876] font-['Cinzel'] font-bold text-[12px] disabled:opacity-40"
                   >
                     BUY
                   </button>
@@ -243,7 +243,7 @@ export default function OnlineStore({
                     <button
                       disabled={busy}
                       onClick={() => setGiving(giving === k ? null : k)}
-                      className="flex-1 py-1.5 rounded-lg border border-[#7E68B8] font-['Cinzel'] font-bold text-[11px]"
+                      className="flex-1 py-1.5 rounded-lg border border-[#7E68B8] font-['Cinzel'] font-bold text-[12px]"
                     >
                       GIVE
                     </button>
@@ -271,7 +271,7 @@ export default function OnlineStore({
 
       {state.gifts.length > 0 && (
         <div className="space-y-1">
-          <h3 className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876]">GIVEN TO YOU</h3>
+          <h3 className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#D4B876]">GIVEN TO YOU</h3>
           {state.gifts.map((g, i) => (
             <p key={i} className="text-[14px]">
               {g.from} gave you {aRelic(g.relic)}.

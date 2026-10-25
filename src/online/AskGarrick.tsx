@@ -61,13 +61,13 @@ export default function AskGarrick({ partyId, place }: { partyId: string; place:
 
   return (
     <div className="rounded-xl bg-[#180F29] border border-[#3A2555] p-3 space-y-2" data-ask-garrick={place}>
-      <h3 className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876]">{words.title}</h3>
-      <p className="text-[13px] italic text-[#B7A9CC]">{words.line}</p>
+      <h3 className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#D4B876]">{words.title}</h3>
+      <p className="text-[14px] italic text-[#B7A9CC]">{words.line}</p>
       {list.map((x, i) => (
         <div key={i} className="space-y-1">
           <p className="text-[14px] text-[#B7A9CC]">“{x.q}”</p>
           <div className="rounded-lg bg-[#241638] border border-[#5E4585] px-3 py-2">
-            <div className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
+            <div className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
             <p className="text-[14.5px] text-[#F4F1F8] leading-[1.45]">{x.a}</p>
           </div>
         </div>
@@ -84,7 +84,7 @@ export default function AskGarrick({ partyId, place }: { partyId: string; place:
           }}
         />
         <button
-          className="px-3 rounded-lg bg-[#2A1E3D] border border-[#5E4585] font-['Cinzel'] font-bold text-[12px] text-[#E5C158] disabled:opacity-50"
+          className="px-3 rounded-lg bg-[#2A1E3D] border border-[#5E4585] font-['Cinzel'] font-bold text-[14px] text-[#E5C158] disabled:opacity-50"
           disabled={busy || !text.trim()}
           onClick={ask}
         >
