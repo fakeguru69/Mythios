@@ -252,7 +252,7 @@ const gatheringCond = (c?: GatheringCond) => {
   if (c.on === 'alone') return 'If one friend plays alone';
   if (c.on === 'unasked') return 'If the sealed question went unasked';
   if (c.on === 'took') return `If any friend took the road ${c.key} that week (day:choice:option)`;
-  if (c.on === 'call') return `If the party's call at the Day ${c.day} fire was ${c.reading}`;
+  if (c.on === 'call') return c.reading === 'S' ? `If the Day ${c.day} fire was split` : `If the party's call at the Day ${c.day} fire was ${c.reading}`;
   if (c.on === 'together') return 'If more than one friend is here';
   return '';
 };

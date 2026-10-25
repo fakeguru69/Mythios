@@ -27,6 +27,15 @@ export const SMALL_PARTY_LINES: SmallPartyLine[] = [
       2: '{F1} has a torn page flat on the table under one hand. {F2} is turning one over and over.',
     },
   },
+  // W1D2, the failed Challenge (25 Oct, a two-friend audit): with one friend there are no "strangers" left at the table.
+  {
+    full: 'The strangers watch you get it wrong.',
+    byFriends: { 1: '{F1} watches you get it wrong.' },
+  },
+  {
+    full: 'with strangers watching you get it wrong',
+    byFriends: { 1: 'with {F1} watching you get it wrong' },
+  },
   // W1D2, the Agility notice (episode-1:166)
   {
     full: "{F2}'s knuckles are skinned. So are {F3}'s.",
@@ -39,8 +48,9 @@ export const SMALL_PARTY_LINES: SmallPartyLine[] = [
   },
   // W1D5 (episode-1:524)
   {
-    full: "{F1} has a hand on {F2}'s arm, to stop {F2} following into the dark.",
-    byFriends: { 1: "{F1}'s hand is on your arm, to stop you following into the dark." },
+    // Both sentences (25 Oct, a two-friend audit): with one friend, "{F2} does not shake it off" named the friend holding on.
+    full: "{F1} has a hand on {F2}'s arm, to stop {F2} following into the dark. {F2} does not shake it off.",
+    byFriends: { 1: "{F1}'s hand is on your arm, to stop you following into the dark. You do not shake it off." },
   },
   // W2D2 (episode-2:165)
   {

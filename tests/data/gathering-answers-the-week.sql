@@ -48,3 +48,12 @@ rollback;
 -- 0137: a party that made no call at Day 6's fire hears neither call line (the condition is false, never unknown).
 select 'no call made (expect f f)', public.g_cond('{"on":"call","day":6,"reading":"A"}'::jsonb, '{"week":{"took":[],"calls":{}}}'::jsonb),
   public.g_cond('{"on":"call","day":6,"reading":"B"}'::jsonb, '{}'::jsonb);
+
+-- 0138: two friends. One breath speaks to the one other friend; the water-gate needs two pairs of hands; a split fire is 'S'.
+select 'two friends (expect t t f)',
+  public.g_fill('22222222-2222-2222-2222-222222222222', '**Everyone else: you have thirty seconds. Tell Mei what to do.**', '{"n":2}'::jsonb) = '**You have thirty seconds. Tell Mei what to do.**',
+  public.g_fill('22222222-2222-2222-2222-222222222222', 'Two of you take his shoulders. Somebody finds a knife with a good point.', '{"n":2}'::jsonb) = 'One of you takes his shoulders. The other finds a knife with a good point.',
+  public.g_fill('22222222-2222-2222-2222-222222222222', '**Everyone else: you have thirty seconds.', '{"n":3}'::jsonb) = '**You have thirty seconds.';
+select 'split fire (expect t f)', public.g_cond('{"on":"call","day":6,"reading":"S"}'::jsonb, '{"week":{"calls":{"6":"S"}}}'::jsonb),
+  public.g_cond('{"on":"call","day":6,"reading":"A"}'::jsonb, '{"week":{"calls":{"6":"S"}}}'::jsonb);
+select 'g_week_facts notes a split (expect t)', pg_get_functiondef('public.g_week_facts(uuid,integer)'::regprocedure) like '%''S''%';

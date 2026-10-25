@@ -1063,6 +1063,9 @@
 *If the party called B on Day 6:*
 > Last night by the fire you said Meira chose you to help her find them. Here are the ones she was looking for.
 
+*If the fire was split on Day 6:*
+> Last night by the fire you could not agree why your names were on that list. The wall gives its own answer.
+
 *Then, alone on the screen:*
 
 > Then why were your names on that list?

@@ -10,7 +10,7 @@ export type GatheringCond =
   | { on: 'ue'; won: boolean }
   | { on: 'pick'; option: number; together?: boolean }
   | { on: 'took'; key: string }
-  | { on: 'call'; day: number; reading: 'A' | 'B' }
+  | { on: 'call'; day: number; reading: 'A' | 'B' | 'S' }
   | { on: 'alone' }
   | { on: 'together' }
   | { on: 'unasked' };
@@ -432,6 +432,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "call",
           "day": 6,
           "reading": "B"
+        },
+        "section": "The turn"
+      },
+      {
+        "t": "say",
+        "text": "Last night by the fire you could not agree why your names were on that list. The wall gives its own answer.",
+        "cond": {
+          "on": "call",
+          "day": 6,
+          "reading": "S"
         },
         "section": "The turn"
       },
@@ -3266,7 +3276,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "Agility": "The trapdoor his household ran by is still standing open, twenty paces behind the faithful. Nobody is watching it.",
           "Intellect": "He knew Seeker blood the moment he saw it. Nobody has yet told him how long he slept.",
           "Charm": "He is looking at each of you in turn, the way Corin did. As if to keep you.",
-          "Craft": "The knot at your wrist is the one at Tamsin's. You watched it tied a week ago, and thought nothing of it.",
+          "Craft": "The knot across your palm is the one at Tamsin's. You watched him tie it a week ago, and thought nothing of it.",
           "Aim": "Through the high windows there is no moon at all. Not a rim of it."
         },
         "section": "The last notice"
