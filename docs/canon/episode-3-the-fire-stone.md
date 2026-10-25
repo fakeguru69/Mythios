@@ -973,23 +973,16 @@
 | ◆ `[IS YOUR KING DEAD?]` | *"He sleeps."* |
 | ◆ `[THE CHILDREN. WHY?]` | *"To wake him."* |
 | ◆ `[THE FOURTH CHILD. WHERE IS HE?]` | *"Already with us."* |
-| **The king** | |
-| `[WHERE DOES HE SLEEP?]` | *"Where he fell."* |
-| `[WILL IT WORK?]` | *"It is written that it will."* |
-| `[GENERATIONS OF CHILDREN. WHY DOES HE STILL SLEEP?]` | He looks at you for a long moment, and says nothing at all. |
 | **The faithful** | |
-| `[WHO ARE YOU?]` | *"The faithful."* And to whom: *"To the king who did not kneel."* |
 | `[WHO LEADS YOU?]` | *"One whose face I've never seen."* |
 | `[DO YOU KNOW THIS MAN?]` *(of Garrick)* | *"No."* |
 | `[WERE YOU LYING JUST NOW?]` | A look that is almost pity. *"The faithful do not lie."* |
 | **The children** | |
-| `[WILL WREN GO HOME?]` | *"She has given. She may go."* |
 | `[THE OTHERS YOU TOOK, BEFORE]` | *"Most went home."* When you name the charcoal woman's nephew, he is quiet for a long moment. *"Him we lost."* And then, lower: *"Not by our choosing."* |
-| `[WHO SCRATCHED THE NAMES?]` | *"The faithful write the names of those who will give, so that he may know them."* |
 | **This room** | |
-| `[WHY CARRY THAT CASE?]` | *"So that we would know you."* |
 | `[WHAT SAT IN THAT HOLLOW?]` · `[WHAT WAS IN THE BOX?]` | Silence. Not refusal: the kind that costs him. *"Until the throne rise whole,"* he says instead, softly, the way you would end a prayer. |
-| `[HOW DID YOU GET HERE FIRST?]` | He looks past you, at the dark the way you came, and says nothing. |
+
+*Phase 4 (25 Oct; Fake Guru: "You decide and proceed"): the board is 8 questions, was 16. Cut: "Where does he sleep?", "Will it work?", "Generations of children…", "Who are you?", "Will Wren go home?", "Who scratched the names?", "Why carry that case?", "How did you get here first?". Kept: the three ◆, the ones that point at the Order's hidden leader and at Garrick, the charcoal woman's nephew, and the hollow (its answer carries the Day 5 read-back).*
 
 *Each question is spent when tapped, and its answer is posted for everyone. If two quiet minutes pass with a ◆ question unasked:*
 
