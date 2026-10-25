@@ -6,7 +6,7 @@
 begin;
 select set_config('request.uid', :'A', true), set_config('request.jwt.claim.sub', :'A', true) \gset
 -- the party clock on Week 4, Day 4
-update parties set day1_opens_at = now() - interval '24 days 1 hour', time_zone = 'UTC' where id = :'P';
+update parties set day1_opens_at = now() - interval '24 days', time_zone = 'UTC' where id = :'P';
 select 'today is (expect 4|4)', o_week, o_day from public.my_today_row(:'P');
 delete from member_days where party_id=:'P' and user_id=:'A' and week=4 and day=4;
 delete from fan_outs where party_id=:'P' and week=4 and day=4;

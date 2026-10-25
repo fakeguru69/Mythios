@@ -1,7 +1,6 @@
 # Phase 6: the finale, drafted for Fake Guru (25 Oct 2026)
 
-Five changes to Gathering 6 and Week 6 Day 6, each shown as it is now and as drafted. **Nothing here is in the game
-yet.** Reply with the numbers you approve ("all", or "1, 3, 5") and I will build them, load them and test them.
+Five changes to Gathering 6 and Week 6 Day 6, each shown as it is now and as drafted. **Built 25 Oct** (Fake Guru: "Proceed next"): all five are in the game and live.
 
 Garrick's lines are unchanged in every draft. No numbers change.
 

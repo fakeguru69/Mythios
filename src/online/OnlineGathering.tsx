@@ -560,7 +560,8 @@ export default function OnlineGathering({
               ) : (
                 <div className="space-y-1">
                   <p className="text-[14px] font-semibold text-[#6FD39A]">
-                    {e.all ? 'All of you matched it.' : e.right.length ? `${e.rightNames} matched it.` : ''}
+                    {/* The finale's Matches are silent (Phase 6): the right row lights, and nothing is said. */}
+                    {view.week === 6 ? '' : e.all ? 'All of you matched it.' : e.right.length ? `${e.rightNames} matched it.` : ''}
                     {e.iMatched ? ` +${e.pay}g` : ''}
                   </p>
                   <p className="text-[14px] text-[#F4F1F8]">

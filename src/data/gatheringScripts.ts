@@ -2577,7 +2577,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             "desc": ""
           },
           {
-            "label": "HOLD IT BACK",
+            "label": "CLOSE YOUR HAND",
             "desc": ""
           }
         ],
@@ -2594,7 +2594,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "He does not argue. The fight has left his palm bleeding. He reaches out and closes his hand over the Stone where it lies in yours, and it answers him anyway. You still carried it to him, into this room.",
+        "text": "You close your hand on it. He does not argue. The fight has left his palm bleeding. He reaches out and closes his hand over yours, round the Stone, and it answers him anyway, through your fingers. You still carried it to him, into this room.",
         "cond": {
           "on": "pick",
           "option": 1
@@ -2608,22 +2608,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The torn page: **\"…drink deep whichever marked blood finds them first. The fifth heeds no element at all, but blood alone, and remembers whose.\"**",
-        "section": "The first twist"
-      },
-      {
-        "t": "say",
-        "text": "The Verse of the Binding: **\"The fifth drinks deep of moon-blood, and of no other.\"**",
-        "section": "The first twist"
-      },
-      {
-        "t": "say",
-        "text": "The Seekers, on the wall above the herald's gate: **\"Four of us gave to the four. None of us gave to the fifth.\"**",
-        "section": "The first twist"
-      },
-      {
-        "t": "say",
-        "text": "The warning Meira glossed: **\"Moon-blood woke it once. Moon-blood will wake it again, if it is ever let near.\"**",
+        "text": "**What you carried in.**\nThe torn page: **\"…drink deep whichever marked blood finds them first. The fifth heeds no element at all, but blood alone, and remembers whose.\"**\nThe Verse of the Binding: **\"The fifth drinks deep of moon-blood, and of no other.\"**\nThe Seekers, on the wall above the herald's gate: **\"Four of us gave to the four. None of us gave to the fifth.\"**\nThe warning Meira glossed: **\"Moon-blood woke it once. Moon-blood will wake it again, if it is ever let near.\"**",
         "section": "The first twist"
       },
       {
@@ -2731,7 +2716,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "He takes the fifth out of your hand. Pinned in the light, you cannot close your fingers on it.",
+        "text": "He opens your fingers from the Stone one at a time. Pinned in the light, you cannot close them again.",
         "cond": {
           "on": "pick",
           "option": 1
@@ -2750,7 +2735,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "The light lets go of {F3}. One heartbeat. One act.\n\n**Everyone else: you have thirty seconds. Tell {F3} what to do.**",
+        "text": "The light lets go of one of you. A single breath. The hall does not notice.\n\nIt is {F3}.\n\n**Everyone else: you have thirty seconds. Tell {F3} what to do.**",
         "section": "The act"
       },
       {
@@ -2921,7 +2906,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Tamsin's hand. Corin's. Wren's. Joss's. Yours. The same linen. The same careful knot, every time.\n\n**To be continued.**",
+        "text": "Tamsin's hand. Corin's. Wren's. Joss's. Yours. The same linen. The same careful knot, every time.\n\nAcross the ring of light, the king's eyes have not left you.",
         "section": "The last lines"
       },
       {
@@ -2929,10 +2914,10 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "lines": [
           "**HIS HALL** · Gathering 6",
           "You earned: `[gold]` · `[growth, if you rolled]` · `[Match: 2 of 2]`",
-          "The party: Battle won · the lamp `[down / held]` · the fifth `[given / held back]` · the act: `[the page torn / the ring broken / nothing]`",
+          "The party: Battle won · the lamp `[down / held]` · the fifth `[given / kept in your hand]` · the act: `[the page torn / the ring broken / nothing]`",
           "You learned: **moon-blood was never a word for you.** It was the king's title, and then his house's. Garrick is the last of that house, and the Order is his. He never lied to you. His people killed Meira. The fifth did not stop the waking; it finished it. The king is awake, and he is looking at you.",
           "You saved every child you were sent to save.",
-          "What you did in that last heartbeat is remembered. Season 2 begins from it.",
+          "What you did in that last heartbeat is remembered.",
           "**Unlocked: Garrick's Recap.** Every line he ever said to you, to read again."
         ],
         "section": "The last lines"

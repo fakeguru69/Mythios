@@ -29,7 +29,7 @@ select 'without a cover Mei is hit (expect 0)', (:'b2'::jsonb -> 'fighters' -> 1
 \set B '00000000-0000-0000-0000-0000000000a2'
 begin;
 select set_config('request.uid', :'A', true) \gset
-update parties set day1_opens_at = now() - interval '6 days 1 hour' where id = :'P';
+update parties set day1_opens_at = now() - interval '6 days' where id = :'P';
 select (x.o - 1) as bat from gathering_scripts g, jsonb_array_elements(g.data -> 'steps') with ordinality x(s, o)
  where g.week = 1 and g.series_id = 'dark-moon' and x.s ->> 't' = 'battle' \gset
 delete from gatherings where party_id = :'P' and week = 1;

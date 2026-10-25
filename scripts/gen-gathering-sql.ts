@@ -77,7 +77,7 @@ script.steps.forEach((st: GatheringStep, i) => {
       let p = l.replace('Battle won', 'Battle {battle}');
       // {pick:N:…} reads the pick at step N (g_pick_tokens, migration 0076), wherever the generator puts it.
       const pickAt = (mode: string) => script.steps.findIndex((x, j) => x.t === 'pick' && pickMode(x, j) === mode);
-      p = p.replace('the fifth `[given / held back]`', `the fifth {pick:${pickAt('private')}:given|held back}`);
+      p = p.replace('the fifth `[given / kept in your hand]`', `the fifth {pick:${pickAt('private')}:given|kept in your hand}`);
       p = p.replace('`[the page torn / the ring broken / nothing]`', `{pick:${pickAt('chosen')}:the page torn|the ring broken|nothing}`);
       p = p.replace('`[n]` questions asked', '{asked} questions asked');
       p = p.replace('`[he lived to answer, n questions asked / he did not wake]`', '{ue:he lived to answer, {asked} questions asked|he did not wake}');
