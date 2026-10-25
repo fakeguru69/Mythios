@@ -151,7 +151,7 @@ export function ChatBubble({
     );
   }
   if (m.kind === 'notice') {
-    const isBigMoment = /rolled a natural 20|earned the .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body);
+    const isBigMoment = /rolled a natural 20|earned .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body);
     return (
       <p
         className={`text-[14px] text-center w-full ${isBigMoment ? 'text-[#E5C158] font-semibold' : 'text-[#8B7A9E]'}`}

@@ -121,7 +121,7 @@ function chapter(week: number, day: number) {
         w(quote(b.text));
         if (b.changed) w(gameplay('Then the card "What this changed":'), quote(b.changed));
         if (b.roadFind) w(gameplay(`This road's own find, "${fill(b.roadFind.title)}" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):`), quote(b.roadFind.text));
-        if (b.relic) w(gameplay(`The careful reading of this fork also gives a ${b.relic} Relic (at most one road a week does).`));
+        if (b.relic) w(gameplay(`The careful reading of this fork also gives ${/^[AEIOU]/.test(b.relic) ? 'an' : 'a'} ${b.relic} Relic (at most one road a week does).`));
       }
       if (st.mode === 'pick' && st.branches.length) branchOpen = 'Whatever you picked, every player reads this:';
     } else if (st.t === 'notice') {
@@ -146,7 +146,7 @@ function chapter(week: number, day: number) {
       if (st.harderIf) w(gameplay(`${chapterCond({ on: 'claim', key: st.harderIf.key, has: st.harderIf.has })}, the card is ${st.harderIf.by} harder, and says: ${fill(st.harderIf.line)}`));
     } else if (st.t === 'press') {
       w(`**[PRESS ON]: ${fill(st.title)}**`);
-      w(gameplay(`Offered only after a pass: ${fill(st.detail)}. ${st.harder} harder (DC ${ep.weekdayDC + st.harder}). [PRESS ON] or [LEAVE IT]. Pass: ${fill(st.reward)}; fail costs nothing.`));
+      w(gameplay(`Offered only after a pass: ${fill(st.detail)}. ${st.harder} harder (DC ${ep.weekdayDC + st.harder}). [PRESS ON] or [LEAVE IT]. Pass: ${fill(st.reward)}. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.`));
     } else if (st.t === 'fight') {
       shared();
       const pay = WEEKDAY_INVENTORY.find((d) => d.week === week && d.day === day)?.fightReward ?? 0;
@@ -160,8 +160,8 @@ function chapter(week: number, day: number) {
             ? 'Who strikes first is set by today\'s Challenge: you on a pass, the enemy on a failure.'
             : `Who strikes first is set by your choice (${sf.options.map((o) => `[${fill((choices[sf.choice] ?? lastChoice)[o] ?? String(o))}]`).join(' or ')} lets you strike first; otherwise the enemy does).`;
       w(gameplay(
-        `100 HP each. You hit when d20 + Weapon − enemy DEF ${ep.wDef} is 1 or more; the enemy when d20 + ATK ${ep.wAtk} − your Armor is 1 or more. Damage = the margin × 5. One tap a round. ${first} ` +
-          `A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: ${pay ? `+${pay}g` : 'no gold (today\'s Challenge is the paid beat)'}. At 0 HP: "DEFEATED.", and the story goes on.`
+        `100 HP each. You hit when d20 + Weapon − enemy DEF ${ep.wDef} is 1 or more; the enemy when d20 + ATK ${ep.wAtk} − your Armour is 1 or more. Damage = the margin × 5. One tap a round. ${first} ` +
+          `A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: ${pay ? `+${pay}g` : 'no gold (today\'s Challenge is the paid beat)'}. At 0 HP: "DEFEATED.", and the story goes on.`
       ));
       if (st.firstLines) {
         w(gameplay('If you strike first:'), quote(st.firstLines[0]), gameplay('If the enemy strikes first:'), quote(st.firstLines[1]));
@@ -312,8 +312,8 @@ function gathering(week: number) {
     } else if (st.t === 'ue') {
       w(`**THE UNITED EFFORT: ${gd.ueTitle}**`);
       w(gameplay(
-        `Two bars at 100 (60 for a friend alone): "${fill(gd.ueBarAName)}" (the thing in the way) and "${fill(gd.ueBarBName)}" (the thing at risk). ` +
-          `Friends take turns, nobody twice until all have gone. Each turn is a ${gd.ueAttr} Challenge against DC ${ep.ueDC}. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. ` +
+        `Two bars at 100 (60 for a friend alone, 120 for five friends, 140 for six): "${fill(gd.ueBarAName)}" (the thing in the way) and "${fill(gd.ueBarBName)}" (the thing at risk). ` +
+          `Friends take turns, nobody twice until all have gone. Each turn is ${/^[AEIOU]/.test(gd.ueAttr) ? 'an' : 'a'} ${gd.ueAttr} Challenge against DC ${ep.ueDC}. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. ` +
           `It ends when either bar hits 0. Won: +${GOLD.GOLD_UNITED_EFFORT_WIN}g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:`
       ));
       const band = { '3': 'early', '2': 'middle', '1': 'late', '0': 'the end' } as Record<string, string>;
@@ -356,8 +356,8 @@ w(
   '- **The screen:** a one-screen cover, then four tabs, STORY · RECORD · BAG · STORE, under a top bar (series, party, day, gold). STORY is one thread from morning to night: the recap, "The Party, Yesterday", Garrick\'s morning line, the chapter (arriving message by message), the end-of-day card, then the fire (the party\'s chat) once your chapter is finished. RECORD: twelve numbers that only go up, twelve badges, the next step for each. BAG: the Seeker Chest, the Dark Moon Verses, Found Along the Road, the Journal (the fire\'s nights, your margin notes), Relics. Tapping the party name opens the party panel. On Day 7 the Gathering is played in the same thread, after a tap to join.',
   `- **Attributes:** Might, Craft, Intellect, Charm, Agility, Aim, each in a tier: Novice 1–25 (+0), Apprentice 26–50 (+2), Adept 51–75 (+4), Expert 76–100 (+6), Master 101+ (+8).`,
   `- **A Challenge:** pick one of two Attributes the card offers, roll d20 + its tier bonus − the DC; 1 or more passes, a tie fails. Weekday DC by week: ${EPISODE_NUMBERS.map((e) => e.weekdayDC).join(', ')}. The card says "You succeed on X+". Pass: +${GOLD.GOLD_CHALLENGE_WIN}g and the Attribute grows. Fail: −${GOLD.GOLD_CHALLENGE_LOSS}g, and a worse branch of the scene. Both branches reach the same plot. [PRESS ON], on some days after a pass: 4 harder, +${GOLD.GOLD_PRESS_ON_WIN}g and one extra detail.`,
-  '- **Fights:** 100 HP each side, one tap a round, damage = the hit\'s margin × 5. Gear on two tracks (Weapon 14–18, Armor 27–31, Levels 1–5) bought in the Store. Nobody dies: at 0 HP, "DEFEATED.", and the story goes on.',
-  `- **Relics** (${GOLD.GOLD_RELIC_COST}g): an Attribute Relic gives +4 on one roll; a Combat Relic gives +1 Weapon and +1 Armor for one fight. Relics can be given to friends; gold cannot.`,
+  '- **Fights:** 100 HP each side, one tap a round, damage = the hit\'s margin × 5. Gear on two tracks (Weapon 14–18, Armour 27–31, Levels 1–5) bought in the Store. Nobody dies: at 0 HP, "DEFEATED.", and the story goes on.',
+  `- **Relics** (${GOLD.GOLD_RELIC_COST}g): an Attribute Relic gives +4 on one roll; a Combat Relic gives +1 Weapon and +1 Armour for one fight. Relics can be given to friends; gold cannot.`,
   `- **The Seeker Fragment:** each day a short old text with two missing words appears in every friend's Seeker Chest; each word is a jumble of letters to unscramble (+${GOLD.GOLD_FRAGMENT_WORD_SOLVED}g a word). Six fragments make the week's map, which helps at the Gathering.`,
   '- **Garrick**, the innkeeper who travels with the party, is met in Week 1 Day 2\'s chapter. From then on he answers in the party\'s chat when a message names him, from stored lines (AI small talk only about the road, food and weather, filtered, and never at the fire). He never lies, promises or predicts.',
   '- **After the chapter:** the fire: one more look at the last light (one optional lead and a clue) or sit down, then the party\'s chat around tonight\'s question, the clues laid on the table, the clicks, and the fragment.',

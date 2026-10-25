@@ -100,7 +100,7 @@ Week 6, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 *⚙ Then the card "What this changed":*
 
-> You asked where anyone could run from Highwall — Garrick looked at the hall and said, "Somewhere they'd never be found."
+> You asked where anyone could run from Highwall. Garrick looked at the hall and said, "Somewhere they'd never be found."
 
 *⚙ This road's own find, "A watcher's answer" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -114,7 +114,7 @@ Week 6, Day 1 to Day 7, in playing order. Generated from the game's own data by 
 
 *⚙ Then the card "What this changed":*
 
-> You traced the knife-cut arrow under the sill — it pointed straight down into the thickness of the rampart.
+> You traced the knife-cut arrow under the sill. It pointed straight down into the thickness of the rampart.
 
 *⚙ This road's own find, "Cut with a knife-point" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -554,7 +554,7 @@ Clue found, "Bowls never filled":
 
 **[PRESS ON]: THE FIRE**
 
-*⚙ Offered only after a pass: from here you can see their faces: count them, and look at each. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: from here you can see their faces: count them, and look at each. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -737,7 +737,7 @@ Clue found, "Warm low down":
 
 > It does not mean to let you by.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 25 is 1 or more; the enemy when d20 + ATK 18 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 25 is 1 or more; the enemy when d20 + ATK 18 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 > Between you, it is broken at last, and lies in the mouth of the crack like armour that somebody dropped.
 
@@ -777,7 +777,7 @@ Clue found, "Warm low down":
 
 *⚙ Then the card "What this changed":*
 
-> You asked how the Order carried four Stones past a Seeker seal — Garrick said the Seekers sealed the doors they knew about.
+> You asked how the Order carried four Stones past a Seeker seal. Garrick said the Seekers sealed the doors they knew about.
 
 *⚙ This road's own find, "The doors they knew about" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -791,7 +791,7 @@ Clue found, "Warm low down":
 
 *⚙ Then the card "What this changed":*
 
-> You looked from the Seeker housing to the blank rock — Garrick said the Seekers sealed only the doors they knew about.
+> You looked from the Seeker housing to the blank rock. Garrick said the Seekers sealed only the doors they knew about.
 
 *⚙ This road's own find, "The dead end in the crack" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1008,7 +1008,7 @@ Clue found, "Louder here":
 
 **[PRESS ON]: THE BLANK STONE**
 
-*⚙ Offered only after a pass: search it, from the last moon to the door. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: search it, from the last moon to the door. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -1243,7 +1243,7 @@ Clue found, "Cut in a hurry":
 
 > The rest go on up the hill without it.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 25 is 1 or more; the enemy when d20 + ATK 18 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 25 is 1 or more; the enemy when d20 + ATK 18 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -1493,7 +1493,7 @@ Clue found, "Every post empty":
 
 **THE UNITED EFFORT: THE HAWSER**
 
-*⚙ Two bars at 100 (60 for a friend alone): "The Hawser" (the thing in the way) and "Your Line" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Aim Challenge against DC 9. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
+*⚙ Two bars at 100 (60 for a friend alone, 120 for five friends, 140 for six): "The Hawser" (the thing in the way) and "Your Line" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is an Aim Challenge against DC 9. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
 
 - **On a pass:**
   - *(early)* It goes in where the rope bends over the ring. A strand springs loose and stands out from it like a hair.

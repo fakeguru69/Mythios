@@ -16,9 +16,9 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 - **A Challenge:** pick one of two Attributes the card offers, roll d20 + its tier bonus − the DC; 1 or more passes, a tie fails. Weekday DC by week: 6, 7, 7, 8, 9, 9. The card says "You succeed on X+". Pass: +500g and the Attribute grows. Fail: −150g, and a worse branch of the scene. Both branches reach the same plot. [PRESS ON], on some days after a pass: 4 harder, +200g and one extra detail.
 
-- **Fights:** 100 HP each side, one tap a round, damage = the hit's margin × 5. Gear on two tracks (Weapon 14–18, Armor 27–31, Levels 1–5) bought in the Store. Nobody dies: at 0 HP, "DEFEATED.", and the story goes on.
+- **Fights:** 100 HP each side, one tap a round, damage = the hit's margin × 5. Gear on two tracks (Weapon 14–18, Armour 27–31, Levels 1–5) bought in the Store. Nobody dies: at 0 HP, "DEFEATED.", and the story goes on.
 
-- **Relics** (150g): an Attribute Relic gives +4 on one roll; a Combat Relic gives +1 Weapon and +1 Armor for one fight. Relics can be given to friends; gold cannot.
+- **Relics** (150g): an Attribute Relic gives +4 on one roll; a Combat Relic gives +1 Weapon and +1 Armour for one fight. Relics can be given to friends; gold cannot.
 
 - **The Seeker Fragment:** each day a short old text with two missing words appears in every friend's Seeker Chest; each word is a jumble of letters to unscramble (+25g a word). Six fragments make the week's map, which helps at the Gathering.
 
@@ -118,7 +118,7 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Then the card "What this changed":*
 
-> You asked where a fifth Stone would be kept — Garrick looked north and named Highwall.
+> You asked where a fifth Stone would be kept. Garrick looked north and named Highwall.
 
 *⚙ This road's own find, "Every telling he knows" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -134,7 +134,7 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 
 *⚙ Then the card "What this changed":*
 
-> You followed the tremor north along the old road — Garrick looked the same way and named Highwall.
+> You followed the tremor north along the old road. Garrick looked the same way and named Highwall.
 
 *⚙ This road's own find, "Where the road points" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -303,11 +303,11 @@ Clue found, "Every window lit":
 
 *⚙ Then the card "What this changed":*
 
-> You stepped clear of the cart to ask what they saw — the farmer told you their own beasts turned on them.
+> You stepped clear of the cart to ask what they saw. The farmer told you their own beasts turned on them.
 
 *⚙ This road's own find, "The yard that turned" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> When you stepped aside to let the cart breathe and asked what drove the family south, the man said their own dogs and pigs would not settle since the sky turned.
+> When you stepped clear of the cart and asked what drove the family south, the man said their own dogs and pigs would not settle since the sky turned.
 
 *⚙ If you pick [LOOK AT THE BANDAGE ON HIS ARM]:*
 
@@ -321,11 +321,11 @@ Clue found, "Every window lit":
 
 *⚙ Then the card "What this changed":*
 
-> You noticed the tooth-spotted linen on his forearm — he told you his own yard turned on them.
+> You noticed the tooth-spotted linen on his forearm. He told you his own yard turned on them.
 
 *⚙ This road's own find, "Teeth through the sleeve" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> The linen wrapped tight round the farmer's forearm on the north road was spotted dark where teeth — not a blade — had caught him in his own yard.
+> The linen wrapped tight round the farmer's forearm on the north road was spotted dark where teeth, not a blade, had caught him in his own yard.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -367,7 +367,7 @@ Clue found, "Every window lit":
 
 *⚙ Then the card "What this changed":*
 
-> You camped behind the shelter of the mounds — they broke the wind, but the dogs came over them unseen and strike first.
+> You camped behind the shelter of the mounds. They broke the wind, but the dogs came over them unseen and strike first.
 
 *⚙ This road's own find, "Grass shivering on the mounds" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -379,7 +379,7 @@ Clue found, "Every window lit":
 
 *⚙ Then the card "What this changed":*
 
-> You camped on the bare road in the wind — nothing could come at you unseen, so you spot the dogs at dusk and strike first.
+> You camped on the bare road in the wind. Nothing could come at you unseen, so you spot the dogs at dusk and strike first.
 
 *⚙ This road's own find, "Collar-leather in the dusk" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -397,7 +397,7 @@ Clue found, "Every window lit":
 
 > It still has its collar on.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 25 is 1 or more; the enemy when d20 + ATK 18 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([CAMP ON THE OPEN ROAD] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 25 is 1 or more; the enemy when d20 + ATK 18 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by your choice ([CAMP ON THE OPEN ROAD] lets you strike first; otherwise the enemy does). A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -631,7 +631,7 @@ Clue found, "Scattered":
 
 **[PRESS ON]: GO DOWN TO IT**
 
-*⚙ Offered only after a pass: inside the wall, by the gatehouse stair. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: inside the wall, by the gatehouse stair. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -820,7 +820,7 @@ Clue found, "Knocked out":
 
 **[PRESS ON]: STOP BESIDE ONE**
 
-*⚙ Offered only after a pass: and look at how it stands. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: and look at how it stands. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -858,11 +858,11 @@ Clue found, "Knocked out":
 
 *⚙ Then the card "What this changed":*
 
-> You asked what the standing stones were, and Garrick put you in mind of the page under the Kiln.
+> You asked what the standing soldiers were, and Garrick put you in mind of the page under the Kiln.
 
 *⚙ This road's own find, "They stood his watch" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> When you asked on first watch what the standing stones were, Garrick reminded you of the page under the Kiln: "They stood his watch."
+> When you asked on first watch what the standing soldiers were, Garrick reminded you of the page under the Kiln: "They stood his watch."
 
 *⚙ If you pick [WHO IS THE CUP FOR?]:*
 
@@ -870,13 +870,13 @@ Clue found, "Knocked out":
 
 *⚙ Then the card "What this changed":*
 
-> You asked who the full cup by the shutter was for. He called it a family habit, and spoke of what his family had waited to see. Asking the question nobody else thought to ask earned you an Intellect Relic.
+> You asked who the full cup by the shutter was for. He called it a family habit, and spoke of what his family had waited to see. He looked at the cup a long while, and you came away with an Intellect Relic.
 
 *⚙ This road's own find, "Full by the shutter" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
 > Looking at the full cup standing by the shutter on first watch, Garrick called it a family habit for whoever could not be there and said his family had waited a long time.
 
-*⚙ The careful reading of this fork also gives a Intellect Relic (at most one road a week does).*
+*⚙ The careful reading of this fork also gives an Intellect Relic (at most one road a week does).*
 
 *⚙ If you pick [SAY NOTHING]:*
 
@@ -884,7 +884,7 @@ Clue found, "Knocked out":
 
 *⚙ Then the card "What this changed":*
 
-> You kept watch in silence beside him — looking at the full cup by the shutter, he spoke of his family’s long wait on his own.
+> You kept watch in silence beside him. Looking at the full cup by the shutter, he spoke of his family’s long wait on his own.
 
 *⚙ This road's own find, "Quiet by the shutter" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1563,7 +1563,7 @@ Clue found, "A stride wider":
 
 **THE UNITED EFFORT: THE ROLL-CALL**
 
-*⚙ Two bars at 100 (60 for a friend alone): "The Roll-Call" (the thing in the way) and "Their Trust" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Charm Challenge against DC 9. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
+*⚙ Two bars at 100 (60 for a friend alone, 120 for five friends, 140 for six): "The Roll-Call" (the thing in the way) and "Their Trust" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Charm Challenge against DC 9. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
 
 - **On a pass:**
   - *(early)* You give it the way he gave it: flat, and a little bored. Up the hill, a lantern that had lifted comes down again.
@@ -1904,7 +1904,7 @@ Clue found, "A stride wider":
 
 *⚙ Then the card "What this changed":*
 
-> You asked where anyone could run from Highwall — Garrick looked at the hall and said, "Somewhere they'd never be found."
+> You asked where anyone could run from Highwall. Garrick looked at the hall and said, "Somewhere they'd never be found."
 
 *⚙ This road's own find, "A watcher's answer" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -1918,7 +1918,7 @@ Clue found, "A stride wider":
 
 *⚙ Then the card "What this changed":*
 
-> You traced the knife-cut arrow under the sill — it pointed straight down into the thickness of the rampart.
+> You traced the knife-cut arrow under the sill. It pointed straight down into the thickness of the rampart.
 
 *⚙ This road's own find, "Cut with a knife-point" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2358,7 +2358,7 @@ Clue found, "Bowls never filled":
 
 **[PRESS ON]: THE FIRE**
 
-*⚙ Offered only after a pass: from here you can see their faces: count them, and look at each. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: from here you can see their faces: count them, and look at each. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -2541,7 +2541,7 @@ Clue found, "Warm low down":
 
 > It does not mean to let you by.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 25 is 1 or more; the enemy when d20 + ATK 18 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 25 is 1 or more; the enemy when d20 + ATK 18 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. You strike first. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: +300g. At 0 HP: "DEFEATED.", and the story goes on.*
 
 > Between you, it is broken at last, and lies in the mouth of the crack like armour that somebody dropped.
 
@@ -2581,7 +2581,7 @@ Clue found, "Warm low down":
 
 *⚙ Then the card "What this changed":*
 
-> You asked how the Order carried four Stones past a Seeker seal — Garrick said the Seekers sealed the doors they knew about.
+> You asked how the Order carried four Stones past a Seeker seal. Garrick said the Seekers sealed the doors they knew about.
 
 *⚙ This road's own find, "The doors they knew about" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2595,7 +2595,7 @@ Clue found, "Warm low down":
 
 *⚙ Then the card "What this changed":*
 
-> You looked from the Seeker housing to the blank rock — Garrick said the Seekers sealed only the doors they knew about.
+> You looked from the Seeker housing to the blank rock. Garrick said the Seekers sealed only the doors they knew about.
 
 *⚙ This road's own find, "The dead end in the crack" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
@@ -2812,7 +2812,7 @@ Clue found, "Louder here":
 
 **[PRESS ON]: THE BLANK STONE**
 
-*⚙ Offered only after a pass: search it, from the last moon to the door. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail; fail costs nothing.*
+*⚙ Offered only after a pass: search it, from the last moon to the door. 4 harder (DC 13). [PRESS ON] or [LEAVE IT]. Pass: +200g, and one more detail. A failed press costs no gold, but online it takes away that night's pass piece at the fire, and the card says so before the roll.*
 
 *⚙ If you pressed on and passed:*
 
@@ -3047,7 +3047,7 @@ Clue found, "Cut in a hurry":
 
 > The rest go on up the hill without it.
 
-*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 25 is 1 or more; the enemy when d20 + ATK 18 − your Armor is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armor for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
+*⚙ 100 HP each. You hit when d20 + Weapon − enemy DEF 25 is 1 or more; the enemy when d20 + ATK 18 − your Armour is 1 or more. Damage = the margin × 5. One tap a round. Who strikes first is set by today's Challenge: you on a pass, the enemy on a failure. A Combat Relic gives +1 Weapon and +1 Armour for the rest of the fight. Win: no gold (today's Challenge is the paid beat). At 0 HP: "DEFEATED.", and the story goes on.*
 
 *⚙ If you strike first:*
 
@@ -3297,7 +3297,7 @@ Clue found, "Every post empty":
 
 **THE UNITED EFFORT: THE HAWSER**
 
-*⚙ Two bars at 100 (60 for a friend alone): "The Hawser" (the thing in the way) and "Your Line" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Aim Challenge against DC 9. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
+*⚙ Two bars at 100 (60 for a friend alone, 120 for five friends, 140 for six): "The Hawser" (the thing in the way) and "Your Line" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is an Aim Challenge against DC 9. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
 
 - **On a pass:**
   - *(early)* It goes in where the rope bends over the ring. A strand springs loose and stands out from it like a hair.

@@ -43,7 +43,7 @@ const CLASS_DETAILS: Record<string, { role: string; weapon: string; icon: string
 // Suggestions only (24 Oct): no place, person or object from the story, so nobody is born in the story's villages or
 // names its people as their own (docs/design/rule-breaking-words-24oct.md, rows 1 to 4).
 const SUGGESTED_BIRTHPLACES = ['Oldford', 'Thornby', 'Brackwater', 'Kettlecross'];
-const SUGGESTED_HERITAGE = ['Grandmother Wenna', 'Grandfather Aldric', 'A bone-handled knife', 'An iron signet'];
+const SUGGESTED_HERITAGE = ['Grandmother Wenna', 'Grandfather Aldric', 'Grandmother Hesk', 'Grandfather Tam'];
 
 export default function SessionZero({
   partyId,
@@ -221,7 +221,7 @@ export default function SessionZero({
                     className="text-[14px] font-['Cinzel'] font-bold px-2 py-0.5 rounded border"
                     style={{ color: meta?.color, borderColor: meta?.color ? `${meta.color}55` : '#5E4585', backgroundColor: meta?.bgTint || '#2B1E3D' }}
                   >
-                    {c.attribute} (+20)
+                    {c.attribute} 14
                   </span>
                 </div>
 
@@ -261,7 +261,7 @@ export default function SessionZero({
           </div>
           <p className="text-[17px] font-['Cinzel'] font-bold text-[#FDFBFE]">{SZ_SECOND}</p>
           <p className="text-[14px] text-[#B7A9CC]">
-            Your class leads with <span className="font-semibold text-[#E5C158]">{chosen.attribute}</span> (+20). Pick your second affinity (+15).
+            Your class leads with <span className="font-semibold text-[#E5C158]">{chosen.attribute}</span>, at 14. Your second strength starts at 12.
           </p>
         </div>
 
@@ -287,7 +287,7 @@ export default function SessionZero({
                   <div className="text-[14px] text-[#B7A9CC]">{meta?.desc || 'Attribute strength'}</div>
                 </div>
                 <span className="text-[14px] font-mono font-semibold text-[#E5C158] shrink-0">
-                  +15 Novice
+                  12 · Novice
                 </span>
               </button>
             );
@@ -323,7 +323,7 @@ export default function SessionZero({
             className={input}
             maxLength={40}
             value={birthplace}
-            placeholder="e.g. Ashcombe, Fenmark..."
+            placeholder="e.g. Thornby"
             onChange={(e) => setBirthplace(e.target.value)}
           />
           <div className="flex flex-wrap gap-1.5 pt-0.5">
@@ -346,7 +346,7 @@ export default function SessionZero({
             className={input}
             maxLength={40}
             value={grandparent}
-            placeholder="e.g. Grandmother Wenna, an iron signet…"
+            placeholder="e.g. Grandmother Wenna"
             onChange={(e) => setGrandparent(e.target.value)}
           />
           <div className="flex flex-wrap gap-1.5 pt-0.5">
@@ -384,7 +384,7 @@ export default function SessionZero({
       <div className={`${card} space-y-4 border border-[#D4B876]/50 bg-gradient-to-b from-[#1C122C] to-[#0D0518] shadow-2xl`}>
         <div className="space-y-1 text-center pb-1">
           <div className="text-[12px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
-            YOUR HERO COLLECTOR CARD
+            SESSION ZERO · DONE
           </div>
           <h3 className="font-['Cinzel'] font-bold text-[22px] tracking-[1.5px] text-[#FDFBFE] uppercase">
             YOUR CHARACTER

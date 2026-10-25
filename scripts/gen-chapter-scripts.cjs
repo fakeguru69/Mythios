@@ -86,14 +86,14 @@ const LEAD_INS = {
 const FORK_BRANCH_META = {
   // Disguised Fork 0 · W1D1 (The Forest Road)
   '1-1:LOOK WHERE HE STOOD': {
-    changed: 'You looked where he stood first — the rubbing lay face down where his heel turned for the trees.',
+    changed: 'You looked where he stood first. The rubbing lay face down where his heel turned for the trees.',
     roadFind: {
       title: 'Face down at his heel',
       text: 'The half-burned rubbing lay face down in the leaf-mould right where his heel turned for the trees, as if it slipped from his coat as he broke off.',
     },
   },
   '1-1:LOOK AT WHAT HE WAS AT': {
-    changed: 'You checked the cargo box first — the scratches sit low on one side where he knelt watching the road.',
+    changed: 'You checked the cargo box first. The scratches sit low on one side where he knelt watching the road.',
     roadFind: {
       title: 'Scratches on the road side',
       text: 'The fresh scratches on your cargo-box lock are all low on the one side, where a man could kneel at the metal and still keep half an eye down the road.',
@@ -101,29 +101,29 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #1 · W1D2 (The Hollow Wake Inn — asking about the list)
   '1-2:ASK HIM ABOUT THE LIST': {
-    changed: 'You asked about the list first — he glanced at the pocket-fold in your page before bringing out the satchel.',
+    changed: 'You asked about the list first. He glanced at the pocket-fold in your page before bringing out the satchel.',
     roadFind: {
       title: 'The pocket-folded page',
       text: "When you asked Garrick about the list, his eyes went once to the tight pocket-fold in your page before he reached under the counter for Meira's satchel.",
     },
   },
   '1-2:ASK WHO ELSE HAS BEEN ASKING': {
-    changed: 'You asked who else had come asking — he said nobody had asked for you, only the woman who left the pages.',
+    changed: 'You asked who else had come asking. He said nobody had asked for you, only the woman who left the pages.',
     roadFind: {
       title: 'No other callers',
-      text: 'Asked whether anyone else had come looking for the people at your table, Garrick said nobody had asked for you at the Hollow Wake — only the woman who left the pages.',
+      text: 'Asked whether anyone else had come looking for the people at your table, Garrick said nobody had asked for you at the Hollow Wake. Only the woman who left the pages.',
     },
   },
   // Disguised Fork #2 · W1D2 (The Hollow Wake Inn — the shorthand line)
   '1-2:ASK HIM ABOUT THE LINE NOBODY CAN READ': {
-    changed: 'You pointed out the cramped shorthand line — he knew which line you meant without coming closer.',
+    changed: 'You pointed out the cramped shorthand line. He knew which line you meant without coming closer.',
     roadFind: {
       title: 'Known from across the bar',
       text: 'When you turned the open notebook toward the bar, Garrick knew which cramped line at the foot of the leaf you meant without stepping closer to look.',
     },
   },
   '1-2:READ THE LETTERS OUT TO HIM': {
-    changed: 'You sounded out her clipped letters aloud — his cloth slowed on the bar at the sound of them.',
+    changed: 'You sounded out her clipped letters aloud. His cloth slowed on the bar at the sound of them.',
     roadFind: {
       title: 'The pause of the cloth',
       text: "When you sounded out the first clipped syllables of Meira's shorthand aloud, Garrick's cloth slowed for half a beat on the bar before he named the split rock.",
@@ -131,14 +131,14 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #3 · W1D2 (The Hollow Wake Inn — asking him to come)
   '1-2:ASK HIM TO TAKE YOU THERE': {
-    changed: "You asked him to guide you and pointed to the extra cup — he agreed to come as far as the Widow's Tooth.",
+    changed: "You asked him to guide you and pointed to the extra cup. He agreed to come as far as the Widow's Tooth.",
     roadFind: {
       title: 'The untouched cup at the end',
       text: "When you asked Garrick to take you north and pointed to the untouched extra cup at the end of the table, he looked from the satchel to your faces and agreed to come as far as the Widow's Tooth.",
     },
   },
   '1-2:TELL HIM NOBODY ELSE CAN READ HER': {
-    changed: "You let the open notebook make your case — he looked at her shorthand and agreed to come as far as the Widow's Tooth.",
+    changed: "You let the open notebook make your case. He looked at her shorthand and agreed to come as far as the Widow's Tooth.",
     roadFind: {
       title: 'The open leaf between the cups',
       text: "Told that none of you could read another line of Meira's shorthand without him, Garrick looked at the open notebook between the cups and agreed to come as far as the Widow's Tooth.",
@@ -190,29 +190,29 @@ const FORK_BRANCH_META = {
     },
   },
   '1-4:SAY NOTHING. WAIT.': {
-    changed: "You waited in silence — his gaze gave away Tamsin's house and the gate they used.",
+    changed: "You waited in silence. His gaze gave away Tamsin's house and the gate they used.",
     roadFind: {
       title: 'Where the boy looked',
-      text: "Given silence at the well, the boy looked first to the third house on the left — where a child's stool sits under the open shutter — and then to the swinging gate at the fen end of the lane.",
+      text: "Given silence at the well, the boy looked first to the third house on the left, where a child's stool sits under the open shutter, and then to the swinging gate at the fen end of the lane.",
     },
   },
   // Fork 4 · W1D4 (The village standoff)
   '1-4:STAND WHERE YOU ARE': {
-    changed: 'You held your ground — you saw the young men came out unarmed, bluffing to turn you back.',
+    changed: 'You held your ground. You saw the young men came out unarmed, bluffing to turn you back.',
     roadFind: {
       title: 'Unarmed men',
-      text: 'When you stood your ground at the well, the two younger men had nothing at their belts — not even a hedging bill. Fenmark came out to bluff you away, not to fight.',
+      text: 'When you stood your ground at the well, the two younger men had nothing at their belts. Not even a hedging bill. Fenmark came out to bluff you away, not to fight.',
     },
   },
   '1-4:STEP BACK, HANDS OPEN': {
-    changed: "You stepped back with open hands — you saw the three-day bruise on the young man's wrist.",
+    changed: "You stepped back with open hands. You saw the three-day bruise on the young man's wrist.",
     roadFind: {
       title: 'The bruised wrist',
-      text: 'When the nearer young man lowered his guard, his cuff showed a dark bruise round his wrist, three days old — someone held him back when Tamsin was taken.',
+      text: 'When the nearer young man lowered his guard, his cuff showed a dark bruise round his wrist, three days old. Someone held him back when Tamsin was taken.',
     },
   },
   '1-4:PUT YOURSELF IN FRONT OF THE BOY': {
-    changed: 'You stood in front of the boy — he whispered that the men knew the steps of Fenmark in the dark.',
+    changed: 'You stood in front of the boy. He whispered that the men knew the steps of Fenmark in the dark.',
     roadFind: {
       title: 'No lantern in the dark',
       text: 'From behind your shoulder in the standoff, the boy whispered one detail more: the men who came in the dark carried no lantern, yet knew where every step in the lane was.',
@@ -242,21 +242,21 @@ const FORK_BRANCH_META = {
   },
   // Fork 6 · W1D5 (The woman with the woodcutter's axe — includes Week 1 discernment Relic)
   '1-5:SHOW HER YOUR EMPTY HANDS': {
-    changed: 'You showed empty hands — you saw the fresh blade-nick on her axe-helve from the trees.',
+    changed: 'You showed empty hands. You saw the fresh blade-nick on her axe-helve from the trees.',
     roadFind: {
       title: 'The nicked axe-helve',
       text: 'When the woman at the charcoal camp lowered her axe, the haft showed a fresh white gouge where she had turned a knife-blow in the trees before you arrived.',
     },
   },
   '1-5:TELL HER WHO YOU JUST DROVE OFF': {
-    changed: 'You told her who you drove off — her glance gave away the root-cellar stone behind the woodpile.',
+    changed: 'You told her who you drove off. Her glance gave away the root-cellar stone behind the woodpile.',
     roadFind: {
       title: 'The root-cellar stone',
-      text: 'When told a man had been prizing at her back shutter, the woman glanced once at the flat root-cellar stone behind the woodpile — her real hiding-place is under the woodpile, not inside the shed.',
+      text: 'When told a man had been prizing at her back shutter, the woman glanced once at the flat root-cellar stone behind the woodpile. Her real hiding-place is under the woodpile, not inside the shed.',
     },
   },
   '1-5:HOLD OUT THE CARVED HORSE': {
-    changed: 'You knew the carved horse was hers and held it out first — she trusted you at once, and pressed a Might Relic into your hand.',
+    changed: 'You knew the carved horse was hers and held it out first. She trusted you at once, and pressed a Might Relic into your hand.',
     relic: 'Might',
     roadFind: {
       title: "The carver's charm",
@@ -265,14 +265,14 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #4 · W1D6 (The Ford — the extra cup)
   '1-6:ASK WHO IT IS FOR': {
-    changed: 'You asked who the extra cup was for — he set the jug down and called it a family habit.',
+    changed: 'You asked who the extra cup was for. He set the jug down and called it a family habit.',
     roadFind: {
       title: 'The tap of the jug',
       text: 'Asked outright at the roadside inn who the extra cup was for, Garrick set the jug down on the scarred oak with a small tap and called it a family habit.',
     },
   },
   '1-6:LOOK AT THE EXTRA CUP': {
-    changed: 'You looked at the extra cup poured to the same measure — he caught your eye and called it a family habit.',
+    changed: 'You looked at the extra cup poured to the same measure. He caught your eye and called it a family habit.',
     roadFind: {
       title: 'Measured like the rest',
       text: 'At the roadside inn above the ford, the extra cup at the corner of the table was poured to the exact same measure as the rest before Garrick called it a family habit.',
@@ -280,14 +280,14 @@ const FORK_BRANCH_META = {
   },
   // Fork 7 · W1D6 (The roadside inn, reading the map)
   '1-6:READ IT OUT': {
-    changed: 'You read the map out yourself — your fingertip found an old pin-hole punched through the mark.',
+    changed: 'You read the map out yourself. Your fingertip found an old pin-hole punched through the mark.',
     roadFind: {
       title: 'The pin-hole at the mark',
       text: 'Tracing the assembled map by fingertip over supper, you felt a tiny pin-hole punched right through the mark beyond the ford, from before the map was ever cut in six.',
     },
   },
   '1-6:LET DEV READ IT': {
-    changed: 'You let Dev read the map — with your eyes on the room, you caught the courier listening at the mention of the ford.',
+    changed: 'You let Dev read the map. With your eyes on the room, you caught the courier listening at the mention of the ford.',
     roadFind: {
       title: 'The listening courier',
       text: 'While your friend read the map aloud in the roadside inn, a man in a riding-cloak by the chimney held his mug still at the mention of the bend above the ford, then paid his bill without taking a bed.',
@@ -295,14 +295,14 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #5 · W2D1 (The Second Name — asking Garrick in the mine)
   '2-1:ASK HIM WHAT HE KNOWS': {
-    changed: "You asked how much he already knew — he kept wiping the lamp glass and offered the second name's road.",
+    changed: "You asked how much he already knew. He kept wiping the lamp glass and offered the second name's road.",
     roadFind: {
       title: 'Soot on the lamp glass',
       text: 'Asked in the quiet mine how much of this country he already knew, Garrick kept wiping soot from a lamp glass without looking up and said he could tell you where the next name on the wall lived.',
     },
   },
   '2-1:ASK WHERE HE WOULD START': {
-    changed: 'You asked which road reached the second name first — he offered to point the way from the mine wall.',
+    changed: 'You asked which road reached the second name first. He offered to point the way from the mine wall.',
     roadFind: {
       title: 'The road from the mine wall',
       text: 'When you read the second name off the mine wall and asked which road reached it first, Garrick said without looking up from his lamp glass that he could tell you where that name lived.',
@@ -310,21 +310,21 @@ const FORK_BRANCH_META = {
   },
   // Fork · W2D1 (The Second Name — Tamsin in the road before the wagon)
   '2-1:CROUCH DOWN TO HER': {
-    changed: 'You crouched level with her in the mud — she studied your face before speaking of the mill boy.',
+    changed: 'You crouched level with her in the mud. She studied your face before speaking of the mill boy.',
     roadFind: {
       title: 'Mud on your knee',
       text: 'When you crouched down in the road until your eyes were level with hers, Tamsin studied your face before telling you she had been counting in the dark when a rider named the mill boy.',
     },
   },
   '2-1:ASK WHAT THE SONG IS': {
-    changed: 'You asked what the song was — she stopped humming at once and said it was a counting song.',
+    changed: 'You asked what the song was. She stopped humming at once and said it was a counting song.',
     roadFind: {
       title: 'The counting song',
       text: 'Asked what she was humming by the wagon, Tamsin stopped at once and said it was a counting song she had used in the mine while the riders talked about the mill boy.',
     },
   },
   '2-1:SAY NOTHING. WAIT.': {
-    changed: 'You waited without pressing her — her good hand took your sleeve on its own, and her trust left you a Charm Relic.',
+    changed: 'You waited without pressing her. Her good hand took your sleeve on its own, and her trust left you a Charm Relic.',
     roadFind: {
       title: 'Her hand on your sleeve',
       text: 'When you stood waiting in the road without asking a question, Tamsin took hold of a fold of your sleeve with her unhurt hand and told you what she heard while counting in the dark.',
@@ -333,14 +333,14 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #6 · W2D1 (The Second Name — Garrick staying past the Widow's Tooth)
   '2-1:POINT THAT OUT': {
-    changed: "You reminded him the Widow's Tooth was behind you — he called you the worst guests he'd ever had and walked ahead.",
+    changed: "You reminded him the Widow's Tooth was behind you. He called you the worst guests he'd ever had and walked ahead.",
     roadFind: {
       title: 'A day and a half past his word',
       text: "Reminded on the mill road that the Widow's Tooth was a day and a half behind you, Garrick settled his pack-strap, called you the worst guests he'd ever had, and walked on ahead.",
     },
   },
   '2-1:SAY NOTHING AND WATCH HIM PACK': {
-    changed: 'You watched him knot his bedroll twice for a long road — he caught you looking and walked ahead.',
+    changed: 'You watched him knot his bedroll twice for a long road. He caught you looking and walked ahead.',
     roadFind: {
       title: 'The double-knotted bedroll',
       text: 'Before setting off down the mill road, Garrick knotted his bedroll twice the way a man knots it with another week of road in mind.',
@@ -611,14 +611,14 @@ const FORK_BRANCH_META = {
     },
   },
   '2-6:READ IT OUT': {
-    changed: 'You gave the map line by line across the dark — you heard how far even a low voice carried on the still hill.',
+    changed: 'You gave the map line by line across the dark. You heard how far even a low voice carried on the still hill.',
     roadFind: {
       title: 'A voice on the still hill',
       text: 'Giving the map line by line across the dark from the lip of the hill, you heard how far even a low voice carried in the still night air before the hillside woke.',
     },
   },
   '2-6:LET JO READ IT': {
-    changed: 'You passed the map to Jo — with your eyes free to watch the hill below, you caught the first stir of lamps in the dark.',
+    changed: 'You passed the map to Jo. With your eyes free to watch the hill below, you caught the first stir of lamps in the dark.',
     roadFind: {
       title: 'Starlight on the parchment',
       text: 'While Jo tilted the map to the starlight and read each turn aloud for the others along the slope, you had your eyes on the dark hillside when the first lamp stirred below.',
@@ -626,14 +626,14 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #7 · W3D1 (Somewhere Warm — speaking with Corin)
   '3-1:KNEEL DOWN TO HIM': {
-    changed: "You knelt level with Corin's bandaged hand — he remembered Wren's name and the warm black hills of home.",
+    changed: "You knelt level with Corin's bandaged hand. He remembered Wren's name and the warm black hills of home.",
     roadFind: {
       title: 'Level with the bandage',
-      text: "When you knelt on the stone floor level with Corin's bandaged hand, he steadied himself and remembered the girl's name — Wren — and the warm black hills she missed.",
+      text: "When you knelt on the stone floor level with Corin's bandaged hand, he steadied himself and remembered the girl's name, Wren, and the warm black hills she missed.",
     },
   },
   '3-1:SIT ON THE STEP BESIDE HIM': {
-    changed: 'You sat beside Corin on the low step — with nobody standing over him, he told you about Wren and her warm hills.',
+    changed: 'You sat beside Corin on the low step. With nobody standing over him, he told you about Wren and her warm hills.',
     roadFind: {
       title: 'Beside him on the mill-step',
       text: 'Sitting on the low step beside Corin so nobody stood over him, you heard how Wren talked of the warm ground and black hills of home.',
@@ -641,44 +641,44 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #8 · W3D1 (Somewhere Warm — the fourth name in the ledger)
   '3-1:ASK ABOUT THE FOURTH NAME': {
-    changed: "You asked about warning the fourth child in the north — Garrick laid two fingers on the page to keep you on Wren's trail.",
+    changed: "You asked about warning the fourth child in the north. Garrick laid two fingers on the page to keep you on Wren's trail.",
     roadFind: {
       title: 'Two fingers on the ledger',
       text: "When you asked whether someone should ride north to warn the fourth name in the book, Garrick laid two fingers flat on the open page and said Wren's road was the one with tracks on it.",
     },
   },
   '3-1:LOOK AT THE FOURTH ENTRY': {
-    changed: "You traced the drier ink of the fourth entry — Garrick shook his head and pointed you to Wren's fresh tracks.",
+    changed: "You traced the drier ink of the fourth entry. Garrick shook his head and pointed you to Wren's fresh tracks.",
     roadFind: {
       title: 'The drier ink at the fourth name',
-      text: 'Under the lamp, the ink of the fourth entry in the ledger was drier than the third — written before they ever came down to the mill.',
+      text: 'Under the lamp, the ink of the fourth entry in the ledger was drier than the third. Written before they ever came down to the mill.',
     },
   },
   // Disguised Fork #9 · W3D3 (The Blackglass — the mended boot)
   '3-3:THANK HIM': {
-    changed: 'You thanked him before the others woke — he tucked his waxed thread away without looking up.',
+    changed: 'You thanked him before the others woke. He tucked his waxed thread away without looking up.',
     roadFind: {
       title: 'The waxed thread bobbin',
       text: 'Thanked in the quiet morning for stitching your split boot sole while you slept, Garrick said only that it needed doing and tucked the waxed thread bobbin inside his coat.',
     },
   },
   '3-3:HOLD UP THE MENDED BOOT': {
-    changed: "You tested the neat cobbler's stitch in the morning light — he saw it hold and tucked his bobbin away.",
+    changed: "You tested the neat cobbler's stitch in the morning light. He saw it hold and tucked his bobbin away.",
     roadFind: {
       title: "The cobbler's stitch",
-      text: "Held to the morning light beside the Blackglass, the split sole of your boot showed a tight, practiced cobbler's stitch laid in waxed thread while you slept.",
+      text: "Held to the morning light beside the Blackglass, the split sole of your boot showed a tight, practised cobbler's stitch laid in waxed thread while you slept.",
     },
   },
   // Fork · W3D4 (The Buried Doorway — keeping to the hoof-scratches vs going to the doorway)
   '3-4:KEEP TO THE TRAIL': {
-    changed: 'You stayed on the hoof-scratches another mile — you found the third carved chip yourself before rejoining the doorway.',
+    changed: 'You stayed on the hoof-scratches another mile. You found the third carved chip yourself before rejoining the doorway.',
     roadFind: {
       title: 'The third chip on the trail',
-      text: 'Following the hoof-scratches a mile past the buried doorway, you found a third twist of shaved wood dropped where the riders never looked back.',
+      text: 'Following the hoof-scratches a mile past the buried doorway, you found a third chip of black glass dropped where the riders never looked back.',
     },
   },
   '3-4:GO TO THE DOORWAY': {
-    changed: 'You went straight to the buried doorway — you had the fall of rock sized up by the time Dev brought back the third chip.',
+    changed: 'You went straight to the buried doorway. You had the fall of rock sized up by the time Dev brought back the third chip.',
     roadFind: {
       title: 'The squared lintel under the fall',
       text: 'Standing at the ridge doorway while Dev followed the hoof-scratches ahead, you saw that the buried lintel was squared by hand long before the rockfall covered it.',
@@ -702,14 +702,14 @@ const FORK_BRANCH_META = {
   },
   // Fork · W3D6 (The Kiln Ridge — reading the map over the wind)
   '3-6:READ IT OUT': {
-    changed: 'You raised your voice over the ridge wind — the gale carried every turn of the way down the black slope.',
+    changed: 'You raised your voice over the ridge wind. The gale carried every turn of the way down the black slope.',
     roadFind: {
       title: 'Words carried down the ridge',
       text: 'Raising your voice over the wind at the top of the Kiln ridge, you felt the gale take every word of the crack, the cut way, and the room below straight down the dark slope.',
     },
   },
   '3-6:LET MEI READ IT': {
-    changed: 'You let Mei shield the map from the wind and read — watching the dark plain below, you saw the single lamp first.',
+    changed: 'You let Mei shield the map from the wind and read. Watching the dark plain below, you saw the single lamp first.',
     roadFind: {
       title: 'Shielded from the ridge wind',
       text: 'While Mei stood in the wind, reading the map twice for the ones on the slope below, you had your eyes on the black ground where a single lamp began to move toward the Kiln.',
@@ -733,14 +733,14 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #10 · W5D1 (The Grey Afternoon — the fifth at the waystone)
   '5-1:ASK GARRICK WHERE A FIFTH WOULD BE': {
-    changed: 'You asked where a fifth Stone would be kept — Garrick looked north and named Highwall.',
+    changed: 'You asked where a fifth Stone would be kept. Garrick looked north and named Highwall.',
     roadFind: {
       title: 'Every telling he knows',
       text: 'Asked by the chiselled waystone where a fifth Stone would be kept, Garrick looked north along the road and said every telling he knew ended at Highwall.',
     },
   },
   '5-1:LOOK NORTH ALONG THE ROAD': {
-    changed: 'You followed the tremor north along the old road — Garrick looked the same way and named Highwall.',
+    changed: 'You followed the tremor north along the old road. Garrick looked the same way and named Highwall.',
     roadFind: {
       title: 'Where the road points',
       text: 'Standing up from the waystone to follow the low tremor north along the old road, you found Garrick already watching that horizon before he named Highwall.',
@@ -748,29 +748,29 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #11 · W5D2 (The Old Kingdom's Road — the family with the cart)
   '5-2:ASK WHAT DROVE THEM OUT': {
-    changed: 'You stepped clear of the cart to ask what they saw — the farmer told you their own beasts turned on them.',
+    changed: 'You stepped clear of the cart to ask what they saw. The farmer told you their own beasts turned on them.',
     roadFind: {
       title: 'The yard that turned',
-      text: 'When you stepped aside to let the cart breathe and asked what drove the family south, the man said their own dogs and pigs would not settle since the sky turned.',
+      text: 'When you stepped clear of the cart and asked what drove the family south, the man said their own dogs and pigs would not settle since the sky turned.',
     },
   },
   '5-2:LOOK AT THE BANDAGE ON HIS ARM': {
-    changed: 'You noticed the tooth-spotted linen on his forearm — he told you his own yard turned on them.',
+    changed: 'You noticed the tooth-spotted linen on his forearm. He told you his own yard turned on them.',
     roadFind: {
       title: 'Teeth through the sleeve',
-      text: "The linen wrapped tight round the farmer's forearm on the north road was spotted dark where teeth — not a blade — had caught him in his own yard.",
+      text: "The linen wrapped tight round the farmer's forearm on the north road was spotted dark where teeth, not a blade, had caught him in his own yard.",
     },
   },
   // Fork · W5D2 (The Old Kingdom's Road — camping at the mounds vs on the open road)
   '5-2:CAMP AT THE HEAD OF THE ROWS': {
-    changed: 'You camped behind the shelter of the mounds — they broke the wind, but the dogs came over them unseen and strike first.',
+    changed: 'You camped behind the shelter of the mounds. They broke the wind, but the dogs came over them unseen and strike first.',
     roadFind: {
       title: 'Grass shivering on the mounds',
       text: 'Camped at the head of the grass-grown rows for shelter from the wind, you saw the turf shiver with the heartbeat at dusk just before the farm dogs came over the mounds.',
     },
   },
   '5-2:CAMP ON THE OPEN ROAD': {
-    changed: 'You camped on the bare road in the wind — nothing could come at you unseen, so you spot the dogs at dusk and strike first.',
+    changed: 'You camped on the bare road in the wind. Nothing could come at you unseen, so you spot the dogs at dusk and strike first.',
     roadFind: {
       title: 'Collar-leather in the dusk',
       text: 'From the bare stones of the open road, you saw the farm dogs coming through the dusk with their collars still on before they could close the distance.',
@@ -778,14 +778,14 @@ const FORK_BRANCH_META = {
   },
   // Fork · W5D4 (First Watch — sitting up with Garrick by the shutter)
   '5-4:WHAT ARE THEY?': {
-    changed: 'You asked what the standing stones were, and Garrick put you in mind of the page under the Kiln.',
+    changed: 'You asked what the standing soldiers were, and Garrick put you in mind of the page under the Kiln.',
     roadFind: {
       title: 'They stood his watch',
-      text: 'When you asked on first watch what the standing stones were, Garrick reminded you of the page under the Kiln: "They stood his watch."',
+      text: 'When you asked on first watch what the standing soldiers were, Garrick reminded you of the page under the Kiln: "They stood his watch."',
     },
   },
   '5-4:WHO IS THE CUP FOR?': {
-    changed: 'You asked who the full cup by the shutter was for. He called it a family habit, and spoke of what his family had waited to see. Asking the question nobody else thought to ask earned you an Intellect Relic.',
+    changed: 'You asked who the full cup by the shutter was for. He called it a family habit, and spoke of what his family had waited to see. He looked at the cup a long while, and you came away with an Intellect Relic.',
     roadFind: {
       title: 'Full by the shutter',
       text: 'Looking at the full cup standing by the shutter on first watch, Garrick called it a family habit for whoever could not be there and said his family had waited a long time.',
@@ -793,7 +793,7 @@ const FORK_BRANCH_META = {
     relic: 'Intellect',
   },
   '5-4:SAY NOTHING': {
-    changed: 'You kept watch in silence beside him — looking at the full cup by the shutter, he spoke of his family’s long wait on his own.',
+    changed: 'You kept watch in silence beside him. Looking at the full cup by the shutter, he spoke of his family’s long wait on his own.',
     roadFind: {
       title: 'Quiet by the shutter',
       text: 'After a long silence beside the full cup at the shutter, Garrick looked at the tin rim and said his family had waited a long time for something he hoped to live to see.',
@@ -801,14 +801,14 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #12 · W6D1 (Six Nights — the scratched arrow under the slit window)
   '6-1:ASK WHERE ANYONE WOULD RUN TO': {
-    changed: 'You asked where anyone could run from Highwall — Garrick looked at the hall and said, "Somewhere they\'d never be found."',
+    changed: 'You asked where anyone could run from Highwall. Garrick looked at the hall and said, "Somewhere they\'d never be found."',
     roadFind: {
       title: "A watcher's answer",
       text: 'Asked where anyone could run to from a walled city at the end of the world, Garrick looked out of the slit window toward the hall and said, "Somewhere they\'d never be found."',
     },
   },
   '6-1:TRACE THE ARROW IN THE STONE': {
-    changed: 'You traced the knife-cut arrow under the sill — it pointed straight down into the thickness of the rampart.',
+    changed: 'You traced the knife-cut arrow under the sill. It pointed straight down into the thickness of the rampart.',
     roadFind: {
       title: 'Cut with a knife-point',
       text: "Under the slit window of the wall room, the small arrow pointing down toward the defenders' barracks was cut deep with a knife-point into the stone sill.",
@@ -832,14 +832,14 @@ const FORK_BRANCH_META = {
   },
   // Disguised Fork #13 · W6D4 (Three Nights — the blank rock at the end of the crack)
   '6-4:ASK HOW THE ORDER CARRIED FOUR STONES IN': {
-    changed: 'You asked how the Order carried four Stones past a Seeker seal — Garrick said the Seekers sealed the doors they knew about.',
+    changed: 'You asked how the Order carried four Stones past a Seeker seal. Garrick said the Seekers sealed the doors they knew about.',
     roadFind: {
       title: 'The doors they knew about',
       text: 'When you asked at the dead end of the crack how the Order carried four Stones inside if Seeker ways open only for their own, Garrick said, "The Seekers sealed the doors they knew about."',
     },
   },
   '6-4:LOOK AT THE BLANK ROCK': {
-    changed: 'You looked from the Seeker housing to the blank rock — Garrick said the Seekers sealed only the doors they knew about.',
+    changed: 'You looked from the Seeker housing to the blank rock. Garrick said the Seekers sealed only the doors they knew about.',
     roadFind: {
       title: 'The dead end in the crack',
       text: 'Looking from the cold Seeker housing to the blank rock and the scored moon beside it, you heard Garrick say that the Seekers sealed the doors they knew about.',

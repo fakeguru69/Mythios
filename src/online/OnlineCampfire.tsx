@@ -372,6 +372,9 @@ export default function OnlineCampfire({
     if (list[list.length - 1]?.text !== text && loc.length > list.length && loc[loc.length - 1].text === text) list = loc;
     // The same line said to a friend by name once they arrive ("Mei, the page…") is not a new line: keep the first.
     const bare = (x: string) => x.replace(/^[^,.?!]{1,30}, /, '').replace(/^./, (c) => c.toLowerCase());
+    // The server may already hold both ("He ran…", then "Ana, he ran…", sent from another phone): show the first only
+    // (play test, 25 Oct: the nudge appeared twice).
+    list = list.filter((e, i) => i === 0 || bare(e.text) !== bare(list[i - 1].text));
     if (list.length && bare(list[list.length - 1].text) === bare(text)) {
       want.current[slot] = { text: list[list.length - 1].text, at: list[list.length - 1].at };
       return list;
@@ -619,11 +622,14 @@ export default function OnlineCampfire({
   if (garrick && fire.callback) sayOnce('callback', fire.callback, later(nudgeAt, 1)).forEach((e, j) => add(e.at, `callback-${j}`, <GarrickBubble text={e.text} />));
 
   // Garrick reacts when the fire leans or splits (stored lines, v3 §7 and campfire-week1-content-18oct.md §Garrick's new lines):
+  // He speaks once the pins are down, after the last one, not at the top of the night (play test, 25 Oct).
+  const lastPinAt = (t?.thread ?? []).filter((m) => m.kind === 'pinned' || m.kind === 'changed').map((m) => m.at).sort().pop();
+  const leanAt = lastPinAt && lastPinAt > arrival ? lastPinAt : arrival;
   if (garrick && t?.leaning) {
     const leanLine = t.leaning === 'split'
       ? "Good. Argue it out. I listen better than I talk."
       : "Everyone leans the same way. What would it take to be wrong?";
-    sayOnce('leaning', leanLine, later(arrival, 15)).forEach((e, j) =>
+    sayOnce('leaning', leanLine, later(leanAt, 15)).forEach((e, j) =>
       add(e.at, `leaning-${j}`, <GarrickBubble text={e.text} />)
     );
   }
@@ -638,7 +644,7 @@ export default function OnlineCampfire({
       const a = sorted[0];
       const b = sorted.find((r) => r.reading !== a?.reading);
       if (a && b)
-        sayOnce('split-pair', `${a.name} leans one way and ${b.name} the other. ${b.name}, what would it take to bring you round?`, later(arrival, 16)).forEach(
+        sayOnce('split-pair', `${a.name} leans one way and ${b.name} the other. ${b.name}, what would it take to bring you round?`, later(leanAt, 16)).forEach(
           (e, j) => add(e.at, `split-pair-${j}`, <GarrickBubble text={e.text} />)
         );
     }
@@ -661,7 +667,7 @@ export default function OnlineCampfire({
       .filter((p) => p.at && p.by.length && !p.agree.length && !p.doubt.length && Date.now() - new Date(p.at).getTime() > 10 * 60000 && !saidAfter(p.at))
       .sort((x, y) => (x.at! < y.at! ? -1 : 1))[0];
     if (unanswered)
-      sayOnce('unanswered', `${unanswered.by[0].name}'s piece has been on the table a while: ${unanswered.title}. Nobody's picked it up yet.`, later(unanswered.at!, 10 * 60000)).forEach(
+      sayOnce('unanswered', `${unanswered.by[0].name}'s piece has been on the table a while: ${unanswered.title.replace(/^(The|A|An) /, (w) => w.toLowerCase())}. Nobody's picked it up yet.`, later(unanswered.at!, 10 * 60000)).forEach(
         (e, j) => add(e.at, `unanswered-${j}`, <GarrickBubble text={e.text} />)
       );
   }
