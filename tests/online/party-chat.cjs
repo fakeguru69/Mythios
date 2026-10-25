@@ -27,7 +27,10 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   };
   const body = (p) => p.locator('body').innerText();
   const shot = async (p, name) => { await p.screenshot({ path: `${S}/${name}.png`, fullPage: true }); fs.writeFileSync(`${S}/${name}.txt`, await body(p)); };
-  const click = async (p, name, exact = true) => { await p.getByRole('button', { name, exact }).first().click(); await p.waitForTimeout(800); };
+  const click = async (p, name, exact = true) => {
+    try { await p.getByRole('button', { name, exact }).first().click(); } catch (e) { throw new Error(`no button "${name}": ${e.message.split('\n')[0]}`); }
+    await p.waitForTimeout(800);
+  };
   const waitFor = async (p, re, secs = 12) => { for (let i = 0; i < secs * 2; i++) { if (re.test(await body(p))) return true; await p.waitForTimeout(500); } return false; };
   const signIn = async (p, email) => {
     // The cover (since 23 Oct): "Already playing? Sign in"; older screens asked for the way in first.
@@ -41,7 +44,8 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   const sessionZero = async (p, a, b) => {
     const cls = (typeof a === 'string' && /^[A-Z]/.test(a)) ? a : 'Trickster';
     const second = (typeof b === 'string' && /^[A-Z]/.test(b)) ? b : 'Aim';
-    await click(p, 'BEGIN'); await click(p, 'BEGIN');
+    // 26 Oct: Getting ready's step 1 opens Session Zero; its first card's BEGIN starts it.
+    await click(p, 'MAKE YOUR CHARACTER'); await click(p, 'BEGIN');
     if (/What is your name in this story\?/.test(await body(p))) {
       await click(p, 'GO ON');
       await p.getByRole('button', { name: new RegExp(`^${cls}`) }).click(); await click(p, 'GO ON');
@@ -56,7 +60,9 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   await signIn(host, 'host@mythios.test'); await shot(host, '02-home');
   await click(host, 'START A PARTY');
   await host.locator('input').first().fill(PARTY); await shot(host, '03-start-party');
-  check('clock shown', /Your party's clock:[\s\S]*\(GMT/.test(await body(host)));
+  await click(host, 'Party settings', false);
+  check('clock shown', /Party clock:[\s\S]*\(GMT/.test(await body(host)));
+  await click(host, 'Party settings', false);
   await click(host, 'MAKE THE INVITE');
   check('invite created', await waitFor(host, /Send this to your friends/));
   await shot(host, '04-host-party');
@@ -70,7 +76,7 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   check('invite words complete', /has invited you to join/.test(inv) && /children are going missing/.test(inv) && /Already in the party: TestHost/.test(inv) && new RegExp(`JOIN ${PARTY.toUpperCase()}`).test(inv) && /A fake guru game/.test(inv));
   await click(mei, `JOIN ${PARTY.toUpperCase()}`); await shot(mei, '07-first-so-the-story');
   await signIn(mei, 'mei@mythios.test'); await shot(mei, '08-invite-signed-in');
-  await click(mei, `JOIN ${PARTY.toUpperCase()}`);
+  { const j = mei.getByRole('button', { name: `JOIN ${PARTY.toUpperCase()}`, exact: true }); if (await j.count()) await click(mei, `JOIN ${PARTY.toUpperCase()}`); }
   check('mei knocked', await waitFor(mei, /You've knocked\.[\s\S]*TestHost will let you in/));
   await shot(mei, '09-knocked');
 
@@ -80,19 +86,20 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   await shot(mei, '10-let-in');
   await sessionZero(mei, 'Trickster', 'Aim');
   await shot(mei, '11-mei-waiting-room');
-  check('mei waiting room', /You're ready\.[\s\S]*You — ready[\s\S]*The road opens when TestHost says so/.test(await body(mei)));
+  check('mei waiting room', /You play [\s\S]*The party[\s\S]*TestHost[\s\S]*TestHost starts the story when everyone is ready/.test(await body(mei)));
 
   await dev.goto(link); await dev.waitForTimeout(1200);
   await click(dev, `JOIN ${PARTY.toUpperCase()}`); await signIn(dev, 'dev@mythios.test');
-  await click(dev, `JOIN ${PARTY.toUpperCase()}`);
+  { const j = dev.getByRole('button', { name: `JOIN ${PARTY.toUpperCase()}`, exact: true }); if (await j.count()) await click(dev, `JOIN ${PARTY.toUpperCase()}`); }
   await waitFor(host, /Asking to join[\s\S]*TestDev/); await click(host, 'NOT THIS TIME');
   check('dev turned away', await waitFor(dev, /Not this time\.[\s\S]*TestHost hasn't let you into this party/));
   await shot(dev, '12-not-this-time');
 
   await host.waitForTimeout(5500); await shot(host, '13-host-before-start');
-  await click(host, 'START THE STORY'); await shot(host, '14-start-confirm');
-  check('start confirm', /Start the story for 2 of you\?[\s\S]*Day 1 opens at 5:00am (today|tomorrow)/.test(await body(host)));
-  await click(host, 'START');
+  // 26 Oct: the day is chosen on the card itself, and START THE STORY starts it.
+  check('start card shows the day', /Day 1 opens at 5:00am on:/.test(await body(host)));
+  await click(host, 'START THE STORY'); await shot(host, '14-started');
+  check('start shown', await waitFor(host, /The story starts (today|tomorrow), at 5:00am\./));
   check('host door line', await waitFor(host, /Day 1 opens at 5:00am\. Sleep, if you can\./));
   await shot(host, '15-host-started');
   check('mei door line', await waitFor(mei, /Day 1 opens at 5:00am\. Sleep, if you can\./));

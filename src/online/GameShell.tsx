@@ -171,6 +171,8 @@ export default function GameShell({
   }, [panelOpen]);
 
   const friends = approved.filter((r) => r.user_id !== userId);
+  // A friend knocking (Days 1 and 2): the host sees a dot on the party button.
+  const asking = party.host_id === userId && members.some((r) => r.status === 'pending');
   const dayLine = info ? (info.gathering ? `Week ${info.week}, the Gathering` : `Week ${info.week}, Day ${info.day}`) : '';
 
   return (
@@ -179,14 +181,19 @@ export default function GameShell({
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <div className="font-['Cinzel'] font-bold text-[15px] tracking-[1px] text-[#D4B876]">Tales of the Dark Moon</div>
-            <button
-              className="text-left text-[14px] text-[#B7A9CC] truncate max-w-full"
-              onClick={() => setPanelOpen(true)}
-              aria-haspopup="dialog"
-              data-party-name
-            >
-              {party.name} ▾{dayLine ? ` · ${dayLine}` : ''}
-            </button>
+            {/* The way to the party sheet (friends, this week, settings): a button that looks like one (26 Oct). */}
+            <div className="flex items-center gap-2 mt-1 min-w-0">
+              <button
+                className="relative shrink-0 rounded-full border border-[#5E4585] bg-[#1F1430] px-2.5 py-0.5 text-[14px] text-[#F4F1F8] max-w-[60%] truncate"
+                onClick={() => setPanelOpen(true)}
+                aria-haspopup="dialog"
+                data-party-name
+              >
+                ☰ {party.name}
+                {asking && <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#F08A8A]" aria-label="Someone is asking to join" data-asking-dot />}
+              </button>
+              {dayLine && <span className="text-[14px] text-[#B7A9CC] truncate">{dayLine}</span>}
+            </div>
           </div>
           {gold !== null && (
             <div className="shrink-0 font-bold text-[15px] text-[#E5C158] border border-[#D4B876] rounded-full px-3 py-1" data-gold>
