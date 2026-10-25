@@ -803,6 +803,11 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "section": "The Cliffhanger"
       },
       {
+        "t": "say",
+        "text": "Nobody answers him. In the quiet, far down under your feet, something starts again: the small, patient knock of a pick on stone.\n\nSomebody under the hill is still digging.",
+        "section": "The Cliffhanger"
+      },
+      {
         "t": "summary",
         "lines": [
           "**UNDER THE MILL HILL** · Gathering 2",
@@ -1057,6 +1062,13 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "t": "say",
         "text": "Inside his coat, wrapped in oilcloth and kept closer than his knife: bound pages of the Order's scripture. Unburned, this time.",
         "section": "The case"
+      },
+      {
+        "t": "turn",
+        "question": "*They carried blades tonight, every one of them, and not one was turned on you to kill. Why are you still alive?*",
+        "section": "The case",
+        "nudge": "*The case is still lying open on the stone, where it opened for one of your hands.*",
+        "answer": "The captive has not taken his eyes off the open case. Whatever they want from you, they want you whole."
       },
       {
         "t": "section",

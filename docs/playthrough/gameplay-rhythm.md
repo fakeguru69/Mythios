@@ -39,14 +39,14 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W5D4 | 456 | 4 | 1 | 0 | 168w | 2.2 min | 152w 🎲CHALLENGE 16w ?PRESS ON 168w ◆CHOICE 120w |
 | W5D5 | 529 | 3 | 1 | 0 | 363w | 2.5 min | 114w ◆CHOICE 52w 🎲CHALLENGE 363w |
 | W5D6 | 516 | 3 | 0 | 1 | 352w | 2.4 min | 78w ◇flavour 86w 🎲CHALLENGE 352w |
-| W6D1 | 574 | 4 | 1 | 0 | 251w | 2.8 min | 251w 🎲CHALLENGE 60w ◆CHOICE 79w ▸tap 184w |
+| W6D1 | 638 | 4 | 1 | 0 | 315w | 3.0 min | 315w 🎲CHALLENGE 60w ◆CHOICE 79w ▸tap 184w |
 | W6D2 | 554 | 3 | 1 | 0 | 349w | 2.6 min | 150w ◆CHOICE 55w 🎲CHALLENGE 349w |
 | W6D3 | 469 | 5 | 1 | 0 | 273w | 2.4 min | 41w ▸tap 43w ◆CHOICE 84w 🎲CHALLENGE 28w ?PRESS ON 273w |
 | W6D4 | 470 | 8 | 1 | 0 | 156w | 2.8 min | 149w ⚔FIGHT 156w ◆CHOICE 80w ▸tap 85w |
 | W6D5 | 497 | 5 | 1 | 0 | 185w | 2.5 min | 185w ◆CHOICE 49w 🎲CHALLENGE 41w ?PRESS ON 122w ▸tap 100w |
 | W6D6 | 617 | 10 | 1 | 0 | 251w | 3.5 min | 114w ◆CHOICE 51w 🎲CHALLENGE 45w ⚔FIGHT 251w ▸tap 156w |
 
-**Averages over the 36 chapters:** 642 words, 5.2 taps, about 3.2 minutes for the chapter alone (the last light and the Campfire come after).
+**Averages over the 36 chapters:** 644 words, 5.2 taps, about 3.2 minutes for the chapter alone (the last light and the Campfire come after).
 
 ## The evening (every weekday after the chapter)
 The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or sit by the fire. Then the fire: one chat under the finished day (18 Oct), with a text box at the foot.
@@ -96,8 +96,8 @@ Measured on the main path (Approach passed, United Effort won, the first option 
 | Week | Story words | Taps to move on | Group decisions | Rolls | Match | Ask questions | Table question | Read time |
 |---|---|---|---|---|---|---|---|---|
 | 1 | 960 | 1 | 1 | 3 (+ the Battle) | 0 | 0 | 1 | 4 min reading |
-| 2 | 2259 | 7 | 1 | 3 (+ the Battle) | 2 | 4 | 1 | 10 min reading |
-| 3 | 1476 | 8 | 1 | 3 (+ the Battle) | 2 | 8 | 0 | 6 min reading |
+| 2 | 2289 | 7 | 1 | 3 (+ the Battle) | 2 | 4 | 1 | 10 min reading |
+| 3 | 1476 | 8 | 1 | 3 (+ the Battle) | 2 | 8 | 1 | 6 min reading |
 | 4 | 1756 | 5 | 1 | 3 (+ the Battle) | 2 | 6 | 1 | 8 min reading |
 | 5 | 1482 | 3 | 1 | 3 (+ the Battle) | 2 | 4 | 1 | 6 min reading |
 | 6 | 2019 | 6 | 4 | 2 (+ the Battle) | 2 | 0 | 0 | 9 min reading |

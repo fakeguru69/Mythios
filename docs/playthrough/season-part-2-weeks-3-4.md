@@ -1664,6 +1664,18 @@ Clue found, "No way down in the dark":
 
 > Inside his coat, wrapped in oilcloth and kept closer than his knife: bound pages of the Order's scripture. Unburned, this time.
 
+*⚙ A question to the table (anyone answers in the chat; MYTHIOS never grades it):*
+
+> *They carried blades tonight, every one of them, and not one was turned on you to kill. Why are you still alive?*
+
+*⚙ After sixty quiet seconds:*
+
+> *The case is still lying open on the stone, where it opened for one of your hands.*
+
+*⚙ After ninety, the answer:*
+
+> The captive has not taken his eyes off the open case. Whatever they want from you, they want you whole.
+
 #### The six, read together
 
 > Before the oilcloth comes off, the week's six are read aloud, one after another, the way they were meant to be heard together.

@@ -1770,6 +1770,12 @@ Clue found, "A stride wider":
 >
 > Twice, they walk on.
 
+> In the grey before morning somebody eases the hidden door open a finger's width, to look along the walk.
+>
+> On the stone beside it, at the height of a man's hand, there is a stroke of chalk that was not there at dusk. One short line, like the strokes on their board.
+>
+> Nobody rubs it out. Nobody is sure whether that would be worse.
+
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
 - **Might:** The hidden door is one slab, a hand thick, hung so that a child could swing it. *(Apprentice and up:)* It was made to be shut in a hurry, and held.
