@@ -1592,6 +1592,22 @@ Clue found, "A stride wider":
 - **Craft:** The buckles were fastened once and never undone.
 - **Aim:** The chalk lies ready under their board, and tonight's stroke has not been struck. The men who should have struck it came down the hill to you.
 
+#### The six, read together
+
+> Before anyone goes on, the week's six are read aloud, one after another, the way they were meant to be heard together.
+>
+> *Day 1, the waystone:* “He gave us the war. Then it began to take.”
+>
+> *Day 2, the grave block:* “We had fought beside every one of them. That is why it had to be us.”
+>
+> *Day 3, the gate walkway:* “Four of us gave to the four. None of us gave to the fifth.”
+>
+> *Day 4, the soldiers' street:* “When he fell, the soldiers who had been nearest him stopped where they were, mid-stride. We could not bring ourselves to break them. We left them standing.”
+>
+> *Day 5, the broken fountain:* “We kept the fifth where we could watch it, and watch him.”
+>
+> *Day 6, the wall crack:* “Where he fell, under the dark moon, the five were joined.”
+
 #### The hidden room
 
 > The way into the hidden room is a stone's throw away, and it is Seeker work.
@@ -3239,6 +3255,22 @@ Clue found, "Every post empty":
 > Nothing.
 >
 > Your blood runs down over the Stone and drips onto the floor of his hall, and the fifth lies in your hand as cold and dark as the night you found it.
+
+#### The six, read together
+
+> In the silence somebody says the last six aloud, low, one after another, as if saying them right might still make the Stone answer.
+>
+> *Day 1, the wall room:* “His household ran the night we came to the hall. We let them go. They were only servants.”
+>
+> *Day 2, the barracks hearth:* “We were marked, every one of us. That is how we found the shards.”
+>
+> *Day 3, the warm wall:* “We left him on the floor of his own hall, where he fell. None of us could bear to lift him. We carried the five away, one by one.”
+>
+> *Day 4, the deep crack:* “We sealed his doors with our own hands and left one way in, that only our blood will open. Forgive us for leaving it at all.”
+>
+> *Day 5, the moon ledge:* “The dark moon comes back. It always comes back. Be there when it does.”
+>
+> *Day 6, the crack's end:* “If you are reading this, you are ours — and if he ever stirs, finish what we could not.”
 
 #### The first twist
 
