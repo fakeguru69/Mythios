@@ -470,7 +470,7 @@
 > IF YOU FAIL: you search the wrong end of the village first, in full view
 
 *On a pass:*
-> The prints are small and quick, and they double back twice. You do not follow them. You walk round the grain store the other way, sit down on the step in the thin sun, and wait.
+> Everything you have found leads to the grain store at the end of the lane. You do not go straight at it. You walk round the grain store the other way, sit down on the step in the thin sun, and wait.
 >
 > After a while a boy of about fourteen edges out of the gap behind it, all elbows and held breath. He has seen you see him. He does not run.
 
@@ -853,7 +853,7 @@
 > While you watch, it moves from one side of the mouth to the other, unhurried, and stops.
 
 *If a friend saw the courier on Day 6:*
-> At the inn, one of you saw a man by the chimney go still when the way was read out. Here, in the shadow of the mouth, a saddled horse stands tied, its flanks still dark with sweat.
+> At the inn, one of you saw a man by the chimney go still when the way was read out. Here, across the water from the mine mouth, a saddled horse stands tied, its flanks still dark with sweat.
 
 > Garrick knows a way in. He has known it since he was a boy, he says.
 
@@ -902,9 +902,9 @@
 >
 > Whoever reaches her first kneels slowly, so as not to loom over her. The knots are small and hard. Whoever tied them has tied a great many. They take a long time, and all that time she does not look away from your hands.
 >
-> She does not stop when the ropes come off. She hums it all the way out into the air.
+> She does not stop when the ropes come off. She hums it all the way back to the mine mouth, where the air comes in off the river.
 >
-> Outside, after the mine, the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.
+> Out there the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.
 >
 > You have been saying her name for three days. Now here she is: nine years old, and still counting under her breath.
 >
@@ -961,7 +961,7 @@
 > Mei is out on the boards before anyone can say a word, flat, arms reaching. A board cracks under one knee, and holds. Mei's fingers close round Dev's wrist, and do not let go, and behind Mei other hands find Mei's ankles.
 
 *The new prop:*
-> The prop comes away from the wall with a shriek of new nails. Mei slides it out across the hole, and Dev gets one elbow over it. Above you, the roof gives a long, low groan, and a trickle of grit runs down where the prop used to be.
+> The prop comes away from the wall with a shriek of new nails. Mei slides it out across the hole, and Dev gets one elbow over it, then the other, and the timber holds. Above you, the roof gives a long, low groan, and a trickle of grit runs down where the prop used to be.
 
 *Stay where you are:*
 > Mei does not move. In the time it takes to breathe out, the rest of you are there too, at the stone edge, together, and nobody is out on the boards alone.

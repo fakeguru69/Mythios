@@ -905,7 +905,7 @@ Clue found, "The notched stick":
 
 *⚙ If you passed the Challenge:*
 
-> The prints are small and quick, and they double back twice. You do not follow them. You walk round the grain store the other way, sit down on the step in the thin sun, and wait.
+> Everything you have found leads to the grain store at the end of the lane. You do not go straight at it. You walk round the grain store the other way, sit down on the step in the thin sun, and wait.
 >
 > After a while a boy of about fourteen edges out of the gap behind it, all elbows and held breath. He has seen you see him. He does not run.
 
@@ -1126,11 +1126,15 @@ Clue found, "Past three doors":
 
 *⚙ "The leaned bar" with "Past three doors":*
 
-> They lifted the gate's bar and leaned it against the post, tidy as a neighbour, then walked past three doors with children behind them. Men who want the easiest child do not walk past three. What were they looking for?
+> They lifted the gate's bar and leaned it against the post, tidy as a neighbour, then walked past three doors with children behind them to reach hers. Why walk past three to take the fourth?
 
 *⚙ the road find "No lantern in the dark" (from [PUT YOURSELF IN FRONT OF THE BOY]) with "Past three doors":*
 
 > No lantern, and yet every step in the lane known in the dark. Past three doors, to the one they wanted. How does a stranger know a lane like that?
+
+*⚙ the road find "Where the boy looked" (from [SAY NOTHING. WAIT.]) with "The covered cup":*
+
+> Given silence, the boy looked first to the third house, where a child's stool sits under the open shutter. On that sill a cup of milk waits under a cloth. Of every door in the lane, why was that the one he looked to?
 
 *⚙ When "1-4-3" is laid, Garrick adds:*
 
@@ -1432,7 +1436,11 @@ Clue found, "The worn bar":
 
 *⚙ the road find "The nicked axe-helve" (from [SHOW HER YOUR EMPTY HANDS]) with "The knife, not the face":*
 
-> She turned a knife with her axe tonight, and she knows him only by a knife. Tonight's man left a plain kitchen blade in her shutter. Which knife did her axe meet?
+> She turned a knife with her axe in the trees tonight, and she knows him only by his knife. Was it the same blade both times?
+
+*⚙ the road find "The root-cellar stone" (from [TELL HER WHO YOU JUST DROVE OFF]) with "Older marks":*
+
+> When you named the man at her shutter, her eyes went straight to the root-cellar stone, and under his fresh marks are older ones, grey with weather. She knew what he was after. Has he come for it before?
 
 *⚙ When "1-5-1" is laid, Garrick adds:*
 
@@ -1446,7 +1454,7 @@ Clue found, "The worn bar":
 
 *⚙ Garrick:*
 
-> [the friend at the fire best at Intellect], she knows him by a knife, and the knife in that camp is a kitchen blade. Which do you trust?
+> [the friend at the fire best at Intellect], she knows him by his knife and nothing else. Is that enough to know a man by?
 
 *⚙ Then he recalls:*
 
@@ -1710,11 +1718,15 @@ Clue found, "A second man":
 
 *⚙ "Up at a run" with "A second man":*
 
-> One man carried her down to the water. The other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. Who were they expecting to come?
+> One man carried her down to the water. The other went back up to the cart, and the cart went up the far bank at a run, without her. Why send an empty cart up the far bank at a run?
 
 *⚙ the road find "The listening courier" (from [LET Dev READ IT]) with "Up at a run":*
 
-> A man by the chimney went still when the bend above the ford was read out, and the cart went up the far bank at a run. Somebody knows where you are going before you get there. Why would anyone need to?
+> Days ago a cart went up the far bank at a run, and the trail went with it. Tonight a man by the chimney went still at the bend above the ford, and paid without taking a bed. Is someone still minding which way you go?
+
+*⚙ the road find "The pin-hole at the mark" (from [READ IT OUT]) with "Up at a run":*
+
+> Someone punched a pin-hole through the mark beyond the ford before this map was ever cut in six, and the cart went up the far bank at a run, away from it. Who knew where she was going, and who was meant to follow the cart?
 
 *⚙ When "1-6-1" is laid, Garrick adds:*
 
@@ -1772,7 +1784,7 @@ Clue found, "A second man":
 
 *⚙ If any friend took the road 6:1:1 that week (day:choice:option):*
 
-> At the inn, one of you saw a man by the chimney go still when the way was read out. Here, in the shadow of the mouth, a saddled horse stands tied, its flanks still dark with sweat.
+> At the inn, one of you saw a man by the chimney go still when the way was read out. Here, across the water from the mine mouth, a saddled horse stands tied, its flanks still dark with sweat.
 
 *⚙ Either way, the whole party reads this:*
 
@@ -1827,9 +1839,9 @@ Clue found, "A second man":
 >
 > Whoever reaches her first kneels slowly, so as not to loom over her. The knots are small and hard. Whoever tied them has tied a great many. They take a long time, and all that time she does not look away from your hands.
 >
-> She does not stop when the ropes come off. She hums it all the way out into the air.
+> She does not stop when the ropes come off. She hums it all the way back to the mine mouth, where the air comes in off the river.
 >
-> Outside, after the mine, the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.
+> Out there the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.
 >
 > You have been saying her name for three days. Now here she is: nine years old, and still counting under her breath.
 >
@@ -1884,13 +1896,15 @@ Clue found, "A second man":
 2. **THE NEW PROP**: wrench the new pit-prop loose and lay it across the hole
 3. **STAY WHERE YOU ARE**
 
+*⚙ What the pick does in the United Effort that follows (shown on its card): 1, +4 on the chosen friend's first roll; 2, the thing at risk starts 10 higher; 3, +1 on every friend's first roll.*
+
 *⚙ If option 1 was picked:*
 
 > Mei is out on the boards before anyone can say a word, flat, arms reaching. A board cracks under one knee, and holds. Mei's fingers close round Dev's wrist, and do not let go, and behind Mei other hands find Mei's ankles.
 
 *⚙ If option 2 was picked:*
 
-> The prop comes away from the wall with a shriek of new nails. Mei slides it out across the hole, and Dev gets one elbow over it. Above you, the roof gives a long, low groan, and a trickle of grit runs down where the prop used to be.
+> The prop comes away from the wall with a shriek of new nails. Mei slides it out across the hole, and Dev gets one elbow over it, then the other, and the timber holds. Above you, the roof gives a long, low groan, and a trickle of grit runs down where the prop used to be.
 
 *⚙ If option 3 was picked:*
 

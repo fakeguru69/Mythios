@@ -965,7 +965,9 @@ function UnitedEffortCard({ e, busy, go, wait, held, shell, cardHead, rollLine }
       <div className="p-3 space-y-2.5">
         {bar(e.barWay, e.way, '#6FD39A')}
         {bar(e.barRisk, e.risk, '#F08A8A')}
+        {e.breath === 0 && <p className="text-[13.5px] text-[#B7A9CC] italic">Out on the boards first: +4 on that friend's first roll.</p>}
         {e.breath === 1 && <p className="text-[13.5px] text-[#B7A9CC] italic">The new prop holds: this bar starts 10 higher.</p>}
+        {e.breath === 2 && <p className="text-[13.5px] text-[#B7A9CC] italic">Nobody went out alone: +1 on every friend's first roll.</p>}
         <p className="text-[14px] text-[#B7A9CC]">A pass does 10 + a d20 to {e.barWay}; a fail, to {e.barRisk}. +300g to every friend if {e.barWay} reaches 0.</p>
         {rolls.map((r, ri) => (
           <div key={ri} className="space-y-1">

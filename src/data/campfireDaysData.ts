@@ -254,11 +254,12 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Why did they take Tamsin, of all the children in Fenmark?",
-      "clickText": "They lifted the gate's bar and leaned it against the post, tidy as a neighbour, then walked past three doors with children behind them. Men who want the easiest child do not walk past three. What were they looking for?"
+      "clickText": "They lifted the gate's bar and leaned it against the post, tidy as a neighbour, then walked past three doors with children behind them to reach hers. Why walk past three to take the fourth?"
     },
     "clicks": [
-      {"a": "1-4-1", "b": "1-4-3", "text": "They lifted the gate's bar and leaned it against the post, tidy as a neighbour, then walked past three doors with children behind them. Men who want the easiest child do not walk past three. What were they looking for?", "solves": false},
-      {"a": "fork:2:2", "b": "1-4-3", "text": "No lantern, and yet every step in the lane known in the dark. Past three doors, to the one they wanted. How does a stranger know a lane like that?", "solves": false}
+      {"a": "1-4-1", "b": "1-4-3", "text": "They lifted the gate's bar and leaned it against the post, tidy as a neighbour, then walked past three doors with children behind them to reach hers. Why walk past three to take the fourth?", "solves": false},
+      {"a": "fork:2:2", "b": "1-4-3", "text": "No lantern, and yet every step in the lane known in the dark. Past three doors, to the one they wanted. How does a stranger know a lane like that?", "solves": false},
+      {"a": "fork:1:2", "b": "1-4-2", "text": "Given silence, the boy looked first to the third house, where a child's stool sits under the open shutter. On that sill a cup of milk waits under a cloth. Of every door in the lane, why was that the one he looked to?", "solves": false}
     ],
     "fanOutClue": {
       "title": "The leaned bar",
@@ -282,7 +283,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "forkB": "It's a way of working, not one man.",
     "callback": "The road, the rock, and tonight her shutters. Not one of those men has said a word.",
     "riddle": null,
-    "nudge": "{friend:Intellect}, she knows him by a knife, and the knife in that camp is a kitchen blade. Which do you trust?",
+    "nudge": "{friend:Intellect}, she knows him by his knife and nothing else. Is that enough to know a man by?",
     "nudgeIfLaid": {
       "piece": "1-5-1",
       "line": "{friend:Charm}, she never saw his face, only the knife. How many men carry a blade like that?"
@@ -299,7 +300,8 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
         "solves": true
       },
       {"a": "fork:0:0", "b": "1-5-3", "text": "A ward of salt and rowan-ash under her step, and a door barred every night for years. She has been waiting a long time for someone to come back. Is tonight's man the one she was waiting for?", "solves": false},
-      {"a": "fork:1:0", "b": "1-5-1", "text": "She turned a knife with her axe tonight, and she knows him only by a knife. Tonight's man left a plain kitchen blade in her shutter. Which knife did her axe meet?", "solves": false}
+      {"a": "fork:1:0", "b": "1-5-1", "text": "She turned a knife with her axe in the trees tonight, and she knows him only by his knife. Was it the same blade both times?", "solves": false},
+      {"a": "fork:1:1", "b": "1-5-2", "text": "When you named the man at her shutter, her eyes went straight to the root-cellar stone, and under his fresh marks are older ones, grey with weather. She knew what he was after. Has he come for it before?", "solves": false}
     ],
     "fanOutClue": {
       "title": "The knife, not the face",
@@ -330,16 +332,17 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Why send the cart one way and the child another?",
-      "clickText": "One man carried her down to the water. The other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. Who were they expecting to come?"
+      "clickText": "One man carried her down to the water. The other went back up to the cart, and the cart went up the far bank at a run, without her. Why send an empty cart up the far bank at a run?"
     },
     "clicks": [
       {
         "a": "1-6-2",
         "b": "1-6-3",
-        "text": "One man carried her down to the water. The other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. Who were they expecting to come?",
+        "text": "One man carried her down to the water. The other went back up to the cart, and the cart went up the far bank at a run, without her. Why send an empty cart up the far bank at a run?",
         "solves": true
       },
-      {"a": "fork:1:1", "b": "1-6-2", "text": "A man by the chimney went still when the bend above the ford was read out, and the cart went up the far bank at a run. Somebody knows where you are going before you get there. Why would anyone need to?", "solves": false}
+      {"a": "fork:1:1", "b": "1-6-2", "text": "Days ago a cart went up the far bank at a run, and the trail went with it. Tonight a man by the chimney went still at the bend above the ford, and paid without taking a bed. Is someone still minding which way you go?", "solves": false},
+      {"a": "fork:1:0", "b": "1-6-2", "text": "Someone punched a pin-hole through the mark beyond the ford before this map was ever cut in six, and the cart went up the far bank at a run, away from it. Who knew where she was going, and who was meant to follow the cart?", "solves": false}
     ],
     "fanOutClue": {
       "title": "Wade out",
