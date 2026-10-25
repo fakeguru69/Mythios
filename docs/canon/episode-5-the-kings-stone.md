@@ -635,7 +635,7 @@
 > REWARD: +500g
 > IF YOU FAIL: a lantern lifts, and you finish the crossing on your belly
 >
-> *If you took CREEP IN CLOSE on Day 5:* **One harder.** Somebody at the fire found the print of an elbow in the ash by their woodpile this morning, and the watch on the wall is walking further tonight.
+> *If you took CREEP IN CLOSE on Day 5:* **One harder.** You crept in close to their fire yesterday, and this morning somebody found the print of your elbow in the ash by their woodpile. The watch on the wall is walking further tonight.
 
 *On a pass:*
 > The hand drops. You cross, forty paces of open stone, and nothing in the square so much as turns.

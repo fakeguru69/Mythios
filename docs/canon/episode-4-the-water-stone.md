@@ -525,7 +525,7 @@
 > REWARD: +500g · **and you strike first**
 > IF YOU FAIL: you row in a circle, and **he strikes first**
 >
-> *If you took LIGHT THE LAMP on Day 4:* **One harder.** Somebody on the reed island saw a lamp moving in the drowned streets last night, and has been listening for oars since first light.
+> *If you took LIGHT THE LAMP on Day 4:* **One harder.** You lit the lamp in the drowned streets last night, and somebody on the reed island saw it move. They have been listening for oars since first light.
 
 *On a pass:*
 > The reeds close round the bow with a dry hiss. You come in behind the island, where they are thickest, and nothing on it has heard you.
@@ -668,7 +668,7 @@
 > REWARD: +500g
 > IF YOU FAIL: it goes out halfway, and the way has to be called again
 >
-> *If you took ROW FOR THE TOWER on Day 5:* **One harder.** Whoever rested on their oars in the fog yesterday heard yours, and somebody on the lake is watching for a light in the tower tonight. The lamp must burn low, below the sills, where the gusts are worst.
+> *If you took ROW FOR THE TOWER on Day 5:* **One harder.** You rowed for the tower yesterday, and somebody resting on their oars out in the fog heard every stroke. Tonight they are watching for a light in the tower, so the lamp must burn low, below the sills, where the gusts are worst.
 
 *On a pass:*
 > The flame leans and shivers, and holds. Mei calls the way out as it comes, and then once more, slower, so that everyone has it.
