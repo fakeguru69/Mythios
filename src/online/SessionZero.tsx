@@ -116,7 +116,7 @@ export default function SessionZero({
             </p>
           ))}
           <p className="text-[14px] leading-relaxed text-[#A695C2] italic">
-            Before your company steps onto the road, choose who you will be. Six companions, six callings, one shared campfire.
+            Before your company steps onto the road, choose who you will be. Six callings, and one shared campfire.
           </p>
         </div>
 

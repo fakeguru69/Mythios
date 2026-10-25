@@ -2044,6 +2044,10 @@ Clue found, "A second man":
 
 > Last night by the fire you said Meira chose you to help her find them. Here are the ones she was looking for.
 
+*⚙ If the Day 6 fire was split:*
+
+> Last night by the fire you could not agree why your names were on that list. The wall gives its own answer.
+
 *⚙ Either way, the whole party reads this:*
 
 > Then why were your names on that list?

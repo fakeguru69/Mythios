@@ -81,6 +81,8 @@ function labelCond(text, week) {
   if (took) return { on: 'took', key: `${took[1]}:1:1` };
   const call = t.match(/^If the party called ([AB]) on Day (\d)/);
   if (call) return { on: 'call', day: Number(call[2]), reading: call[1] };
+  const split = t.match(/^If the fire was split on Day (\d)/);
+  if (split) return { on: 'call', day: Number(split[1]), reading: 'S' };
   if (/^Then, alone on the screen/.test(t)) return { alone: true };
   // Lines for when nobody taps in time: the one-phone demo always has a tap, so they are kept apart.
   if (/^If nobody taps the last question/.test(t) || /^If two quiet minutes pass/.test(t) || /^If a minute passes with either untapped/.test(t)) return { on: 'unasked' };
@@ -389,7 +391,7 @@ export type GatheringCond =
   | { on: 'ue'; won: boolean }
   | { on: 'pick'; option: number; together?: boolean }
   | { on: 'took'; key: string }
-  | { on: 'call'; day: number; reading: 'A' | 'B' }
+  | { on: 'call'; day: number; reading: 'A' | 'B' | 'S' }
   | { on: 'alone' }
   | { on: 'together' }
   | { on: 'unasked' };
