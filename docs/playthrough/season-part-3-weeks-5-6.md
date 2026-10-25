@@ -225,7 +225,7 @@ Clue found, "Every window lit":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The crisp edge" with "The rime stays" (this one answers tonight's question):*
+*⚙ "The crisp edge" with "The rime stays":*
 
 > The line under HIGHWALL was cut away as cleanly as the king's face from the coin, and in the stone's foot sits the same unnatural cold as every Seeker housing since the forest road. Someone scraped the road's word for the city, and the Seekers set their own sign beneath it, pointing in. Whatever they left in Highwall, they meant it to be found by the right hands.
 
@@ -238,8 +238,6 @@ Clue found, "Every window lit":
 > *"He gave us the war. Then it began to take."* When did they realise the man they followed was no longer the man they knew?
 
 **Tonight's question: The Seekers scattered four Stones to the far corners of the land, yet left the fifth at Highwall. Why keep it in the dead city?**
-
-> Was the waystone only a road marker, or part of the Seekers' trail?
 
 *⚙ Garrick:*
 
@@ -491,7 +489,7 @@ Clue found, "Scattered":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "Heads down" with "Scattered" (this one answers tonight's question):*
+*⚙ "Heads down" with "Scattered":*
 
 > The dogs came in a straight line from the north while the ground beat, froze mid-stride the moment it stopped, and scattered every way after. Whatever wakes in Highwall can only do it in strokes, at dusk and at dawn, and then it lets go. It is waiting for something before it can do more.
 
@@ -504,8 +502,6 @@ Clue found, "Scattered":
 > *"That is why it had to be us."* Why could only his closest five be the ones to turn the key?
 
 **Tonight's question: The heartbeat comes from Highwall for a few slow strokes at dusk and dawn, then stops. What is keeping him from waking outright?**
-
-> Were the dogs hunting for themselves?
 
 *⚙ Garrick:*
 
@@ -720,7 +716,7 @@ Clue found, "Knocked out":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "One trodden path" with "Still white" (this one answers tonight's question):*
+*⚙ "One trodden path" with "Still white":*
 
 > The timber bar was felled and squared within the last few days, and a single narrow path is trodden in the dust from the gatehouse straight up toward the smoke. Whoever tends the fire below the hall comes down to bar this gate.
 
@@ -733,8 +729,6 @@ Clue found, "Knocked out":
 > *"None of us gave to the fifth."* If none of the five gave to the fifth Stone, whose was it?
 
 **Tonight's question: Highwall's gate is barred from the inside with fresh timber in brackets worn bright by centuries of bars. Who is keeping it shut?**
-
-> Was the gate barred long ago and left, or is someone tending it now?
 
 *⚙ Garrick:*
 
@@ -1175,7 +1169,7 @@ Clue found, "More bedrolls":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "One hand" with "Every head lifts" (this one answers tonight's question):*
+*⚙ "One hand" with "Every head lifts":*
 
 > Every stroke on the board—the crossed ones and the eight still to cross—was drawn from the start in the same square hand, and at dusk every head lifts together with the beat. The count was fixed before the watch began, and the hall beneath them is keeping the same time.
 
@@ -1188,8 +1182,6 @@ Clue found, "More bedrolls":
 > *"Where we could watch it, and watch him."* Were they watching to keep him in, or waiting for the night the seal would fail?
 
 **Tonight's question: The Order has camped facing the sealed doors for generations, crossing off one stroke each dusk. What are they counting to?**
-
-> Are they keeping a blind vigil, or counting down to a known hour?
 
 *⚙ Garrick:*
 
@@ -1410,7 +1402,7 @@ Clue found, "A stride wider":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The narrow slit" with "A stride wider" (this one answers tonight's question):*
+*⚙ "The narrow slit" with "A stride wider":*
 
 > The walk here was built a full stride wider on the city side, and the slit is set so low in the face that nobody in the square could ever see it. The Seekers did not build an altar in this wall. They built a hiding place, for something meant to be kept, and carried on.
 
@@ -1423,8 +1415,6 @@ Clue found, "A stride wider":
 > *"The five were joined."* Did joining the five Stones end the war, or only pause it?
 
 **Tonight's question: The fifth Stone lies inside the wall beneath our feet, and we carry the mark in our blood. What happens when we open that room tonight?**
-
-> How did the room stay hidden from the Order for centuries?
 
 *⚙ Garrick:*
 
@@ -1533,11 +1523,17 @@ Clue found, "A stride wider":
 >
 > So you answer for them. One post, one voice. They have kept this watch together all their lives, and they know how each of them sounds. The wind is all that is on your side.
 
+*⚙ Only if more than one friend is here:*
+
 #### One breath
+
+*⚙ If more than one friend is here:*
 
 > Mei is kneeling beside the dying watchman. One breath before the voice on the hill calls the next post.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ If more than one friend is here:*
 
 *⚙ One friend, chosen at random, picks alone*
 
@@ -2009,7 +2005,7 @@ Clue found, "The old soot":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "No light inside" with "The old soot" (this one answers tonight's question):*
+*⚙ "No light inside" with "The old soot":*
 
 > Years of candle-soot blacken the back of the niche, set deep and low beneath the slit, where no lantern from the square could ever reach. For generations a light burned in this room unseen. From the board, a dark wall has always looked exactly like this one, and tonight it still does.
 
@@ -2022,8 +2018,6 @@ Clue found, "The old soot":
 > *"We let them go."* Was sparing those who still loved him mercy, or the mistake that brought us here?
 
 **Tonight's question: The searchers walked past our door twice and found nothing, yet the watchman at the board still looked down at the wall at dusk. Why?**
-
-> What was kept in the stone niche before you opened the room?
 
 *⚙ Garrick:*
 
@@ -2455,7 +2449,7 @@ Clue found, "Warm low down":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The unbroken drift" with "Warm low down" (this one answers tonight's question):*
+*⚙ "The unbroken drift" with "Warm low down":*
 
 > An unbroken bank of dust lies across the seam of the great doors, and the wall is warm only from the knee down. Nothing has gone in by the front in a very long time, yet something lies on the floor inside, giving off heat. The four are already in there, and they went in by another way.
 
@@ -2468,8 +2462,6 @@ Clue found, "Warm low down":
 > *"None of us could bear to lift him."* Even at the end, why could they not bring themselves to touch him?
 
 **Tonight's question: The hall's wall is warm from the floor up, and the faithful stack clean robes by their fire. Are the four Stones already inside, or still waiting out here for the last night?**
-
-> Where is the heat in the hall's wall coming from?
 
 *⚙ Garrick:*
 
@@ -2676,7 +2668,7 @@ Clue found, "Louder here":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The untouched grit" with "Two hollows" (this one answers tonight's question):*
+*⚙ "The untouched grit" with "Two hollows":*
 
 > The grit behind the soldier lay smooth and untouched until your boots marked it, while the rock under its iron soles is worn into two shallow hollows. Nobody has passed down this crack since the war ended, and that soldier never left its post.
 
@@ -2689,8 +2681,6 @@ Clue found, "Louder here":
 > *"Forgive us for leaving it at all."* Why leave a way back into a room they hoped would stay shut forever?
 
 **Tonight's question: Every other soldier in Highwall faces the hall. Why has this one stood in the mouth of the Seekers' crack since the war ended, facing out?**
-
-> How long had the sentinel stood in the mouth of the crack?
 
 *⚙ Garrick:*
 
@@ -2913,7 +2903,7 @@ Clue found, "Cut in a hurry":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "Sums begun again" with "Cut in a hurry" (this one answers tonight's question):*
+*⚙ "Sums begun again" with "Cut in a hurry":*
 
 > The last rows of moons were chiselled in a rough hurry without missing a single night, while the slates on the floor are thick with long sums, crossed through and begun again. They were racing to reckon one far-off night before their own last one came, for someone who would need to know it.
 
@@ -2926,8 +2916,6 @@ Clue found, "Cut in a hurry":
 > *"Be there when it does."* Did the Seekers trust their descendants to hold the lock, or to end it?
 
 **Tonight's question: The sky-watchers' wall stops on the dark moon the night he fell, with a Seeker housing set beside the last cut. Who were the sky-watchers reckoning that cycle for?**
-
-> What were the sky-watchers doing in the days before the wall went blank?
 
 *⚙ Garrick:*
 
@@ -3178,7 +3166,7 @@ Clue found, "Every post empty":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "Every helm to the hall" with "The swept fan" (this one answers tonight's question):*
+*⚙ "Every helm to the hall" with "The swept fan":*
 
 > At the foot of the blank rock the grit lies swept in a clean quarter-circle where the rock meets the ground, and outside the crack every helm on the hill is turned toward the hall's great doors. When the Seekers' door opens tomorrow night, the entire garrison will have its back to you.
 
@@ -3191,8 +3179,6 @@ Clue found, "Every post empty":
 > *"Finish what we could not."* What could five who loved him not bring themselves to do?
 
 **Tonight's question: Tomorrow night the Seekers' door opens for our blood, and we carry the fifth Stone into the hall where the four are waiting. What happens when the fifth is brought to him?**
-
-> Will the dead garrison see you when the blank rock opens?
 
 *⚙ Garrick:*
 

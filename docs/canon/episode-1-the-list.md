@@ -650,6 +650,10 @@
 > The axe comes down all at once. Before she even asks your names, her fingers go to her belt, unfasten a small river-stone charm bound in iron wire, worn smooth with keeping, and press it into your palm as she takes the little horse from you.
 
 > She takes the little horse in both hands. She has to sit.
+
+`[SIT WITH HER]`
+
+> You sit down on the far side of the fire from her, close enough to be company and not so close as to crowd her.
 >
 > Garrick builds the fire up without being asked. He coaxes the banked coals until they catch, and the clearing jumps into orange light. Then he puts a cup into her hands. She holds it as if it were the first warm thing she has touched in a month.
 >
@@ -847,7 +851,10 @@
 > There is torchlight just inside. There should not be.
 >
 > While you watch, it moves from one side of the mouth to the other, unhurried, and stops.
->
+
+*If a friend saw the courier on Day 6:*
+> At the inn, one of you saw a man by the chimney go still when the way was read out. Here, in the shadow of the mouth, a saddled horse stands tied, its flanks still dark with sweat.
+
 > Garrick knows a way in. He has known it since he was a boy, he says.
 
 ### The Approach
@@ -1050,6 +1057,12 @@
 
 > **This was never about you.**
 
+*If the party called A on Day 6:*
+> Last night by the fire you said they wanted you too. For now, the wall says otherwise.
+
+*If the party called B on Day 6:*
+> Last night by the fire you said Meira chose you to help her find them. Here are the ones she was looking for.
+
 *Then, alone on the screen:*
 
 > Then why were your names on that list?
@@ -1082,6 +1095,7 @@
 - **Cut:** the friend's speech ("The map led us straight here…"); "It fits everything you've seen. It's the only answer that makes sense"; "Someone was watching this mine. Someone is carrying word of tonight…" (the horse says it).
 - **Changed:** Tamsin is already known by name. The rubbing's fit is expected; the hole is the surprise.
 - **Kept:** "This was never about you", because Gathering 4 turns it over. It now follows the table's answer.
+- **25 Oct (the plan after the audits, Phase 3, Week 1 as the pilot; Fake Guru: "use your judgement (be critical)"):** the night answers the week. A friend who saw the courier on Day 6 (`[LET {F2} READ IT]`) finds his echo at the mine mouth; the party's call on Day 6's fire is answered after "This was never about you." (nothing is said if the fire was split or made no call). One breath gives the United Effort a small edge in this week only: GO OUT NOW +2 on that friend's first roll, THE NEW PROP the thing at risk starts 10 higher, STAY WHERE YOU ARE +1 on every friend's first roll.
 - **Garrick:** one line, existing. The "known it since he was a boy" sentence is the existing reported speech.
 - **A friend who fell** still gets a notice line: the "from the floor" one, which is true and worth telling the others. What they lose is `[LOOK CLOSER]`. That is the whole cost of losing: a different view, and one roll fewer.
 - **The wait at the table question** is ninety seconds with one nudge at sixty (it was two minutes). This is the first live night and one easy question; dead air costs more here than it buys. Boards keep two minutes.

@@ -9,6 +9,8 @@ export type GatheringCond =
   | { on: 'approach'; pass: boolean }
   | { on: 'ue'; won: boolean }
   | { on: 'pick'; option: number; together?: boolean }
+  | { on: 'took'; key: string }
+  | { on: 'call'; day: number; reading: 'A' | 'B' }
   | { on: 'alone' }
   | { on: 'together' }
   | { on: 'unasked' };
@@ -63,7 +65,21 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "say",
-        "text": "Evening finds you where the map said you would be: an old mine cut into the far riverbank, its mouth half drowned by the river.\n\nThere is torchlight just inside. There should not be.\n\nWhile you watch, it moves from one side of the mouth to the other, unhurried, and stops.\n\nGarrick knows a way in. He has known it since he was a boy, he says.",
+        "text": "Evening finds you where the map said you would be: an old mine cut into the far riverbank, its mouth half drowned by the river.\n\nThere is torchlight just inside. There should not be.\n\nWhile you watch, it moves from one side of the mouth to the other, unhurried, and stops.",
+        "section": "Arrival"
+      },
+      {
+        "t": "say",
+        "text": "At the inn, one of you saw a man by the chimney go still when the way was read out. Here, in the shadow of the mouth, a saddled horse stands tied, its flanks still dark with sweat.",
+        "cond": {
+          "on": "took",
+          "key": "6:1:1"
+        },
+        "section": "Arrival"
+      },
+      {
+        "t": "say",
+        "text": "Garrick knows a way in. He has known it since he was a boy, he says.",
         "section": "Arrival"
       },
       {
@@ -397,6 +413,26 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "t": "say",
         "text": "**This was never about you.**",
         "alone": true,
+        "section": "The turn"
+      },
+      {
+        "t": "say",
+        "text": "Last night by the fire you said they wanted you too. For now, the wall says otherwise.",
+        "cond": {
+          "on": "call",
+          "day": 6,
+          "reading": "A"
+        },
+        "section": "The turn"
+      },
+      {
+        "t": "say",
+        "text": "Last night by the fire you said Meira chose you to help her find them. Here are the ones she was looking for.",
+        "cond": {
+          "on": "call",
+          "day": 6,
+          "reading": "B"
+        },
         "section": "The turn"
       },
       {

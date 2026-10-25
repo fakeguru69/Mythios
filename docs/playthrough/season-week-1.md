@@ -219,7 +219,7 @@ Clue found, "The oilcloth":
 
 *⚙ Opening narration:*
 
-> One list, one inn's name. Nothing was taken.
+> One list, one inn's name. Nothing was taken. Somewhere tonight, whoever else is on that list is sitting by a fire of their own.
 
 *⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
@@ -554,9 +554,9 @@ Clue found, "The thumbed leaf":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "Every slip pinned" with "The thumbed leaf" (this one answers tonight's question):*
+*⚙ "Every slip pinned" with "The thumbed leaf":*
 
-> Every slip in her book is pinned where it belongs, and the leaf about the child is worn soft at the corner by a thumb that came back to it again and again. Nobody wears a page that soft in a week. She had been carrying that child for a long time.
+> Every slip in her book is pinned where it belongs, and this one leaf is worn soft at the corner by a thumb that came back to it again and again. How long does it take a page to wear like that?
 
 *⚙ When "1-2-3" is laid, Garrick adds:*
 
@@ -567,8 +567,6 @@ Clue found, "The thumbed leaf":
 > *"They wept for him before they feared him."* What turns love for a leader into dread?
 
 **Tonight's question: The child in Meira's notes: when was that child taken?**
-
-> Did Meira leave in a hurry?
 
 *⚙ Garrick:*
 
@@ -785,9 +783,17 @@ Clue found, "The notched stick":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The second ring" with "The worn path" (this one answers tonight's question):*
+*⚙ "The second ring" with "The worn path":*
 
-> He sat over this rock long enough to set his flask down twice, and walked round it often enough to wear the turf to bare earth. A man does not keep watch like that at his own back door. He was posted here, from somewhere else.
+> He set his flask down twice in the bracken, and someone has walked round this rock often enough to wear the turf to bare earth. That is a long watch. Would a man keep it this close to his own door?
+
+*⚙ the road find "Reed-thatch in the ruts" (from [FOLLOW THE CART-RUTS]) with "The notched stick":*
+
+> He ran for the gap and the smoke beyond it, and the cart that dropped its reed-thatch in the ruts went the same way. Is Fenmark where they come from, or only where they stop?
+
+*⚙ the road find "Charcoal in the cut" (from [GO TO THE MARKING]) with "The worn path":*
+
+> Meira knelt at this stone with her paper, and someone has walked round it so often the turf is bare. Was he watching the rock, or watching for whoever came to read it?
 
 *⚙ When "1-3-3" is laid, Garrick adds:*
 
@@ -798,8 +804,6 @@ Clue found, "The notched stick":
 > *"Some locks already know their key."* Why would a lock refuse every hand but one?
 
 **Tonight's question: When he ran for the smoke, was he running home?**
-
-> How long has this rock been watched?
 
 *⚙ Garrick:*
 
@@ -1118,6 +1122,16 @@ Clue found, "Past three doors":
 
 *⚙ Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder's name; friends tap Agree or Doubt.*
 
+*⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
+
+*⚙ "The leaned bar" with "Past three doors":*
+
+> They lifted the gate's bar and leaned it against the post, tidy as a neighbour, then walked past three doors with children behind them. Men who want the easiest child do not walk past three. What were they looking for?
+
+*⚙ the road find "No lantern in the dark" (from [PUT YOURSELF IN FRONT OF THE BOY]) with "Past three doors":*
+
+> No lantern, and yet every step in the lane known in the dark. Past three doors, to the one they wanted. How does a stranger know a lane like that?
+
 *⚙ When "1-4-3" is laid, Garrick adds:*
 
 > [the friend at the fire best at Charm], three doors, with children behind them. Why hers?
@@ -1307,6 +1321,10 @@ Clue found, "Past three doors":
 *⚙ Whatever you picked, every player reads this:*
 
 > She takes the little horse in both hands. She has to sit.
+
+*⚙ A button: [SIT WITH HER]*
+
+> You sit down on the far side of the fire from her, close enough to be company and not so close as to crowd her.
 >
 > Garrick builds the fire up without being asked. He coaxes the banked coals until they catch, and the clearing jumps into orange light. Then he puts a cup into her hands. She holds it as if it were the first warm thing she has touched in a month.
 >
@@ -1404,9 +1422,17 @@ Clue found, "The worn bar":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "Older marks" with "The worn bar" (this one answers tonight's question):*
+*⚙ "Older marks" with "The worn bar":*
 
-> Under his fresh marks on her shutter are older ones, worked in at the very same place, where the bar sits, and the bar has worn its cleats pale with years of nights. Someone came at this house the same way long before tonight. It is not a man's whim. It is a way of working, learned and used again.
+> Fresh marks over old ones, at the very place where the bar sits, and a bar worn pale with years of nights. Someone has come at this house before, the same way. Was it the same hand?
+
+*⚙ the road find "Salt and rowan-ash" (from [LOOK AT THE STEP]) with "The worn bar":*
+
+> A ward of salt and rowan-ash under her step, and a door barred every night for years. She has been waiting a long time for someone to come back. Is tonight's man the one she was waiting for?
+
+*⚙ the road find "The nicked axe-helve" (from [SHOW HER YOUR EMPTY HANDS]) with "The knife, not the face":*
+
+> She turned a knife with her axe tonight, and she knows him only by a knife. Tonight's man left a plain kitchen blade in her shutter. Which knife did her axe meet?
 
 *⚙ When "1-5-1" is laid, Garrick adds:*
 
@@ -1417,8 +1443,6 @@ Clue found, "The worn bar":
 > *"The power that gives is also the power that takes."* What has been given this week, and what has been taken?
 
 **Tonight's question: Is it the same man, twice, or a way of working?**
-
-> Has someone tried her house before tonight?
 
 *⚙ Garrick:*
 
@@ -1684,9 +1708,13 @@ Clue found, "A second man":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "Up at a run" with "A second man" (this one answers tonight's question):*
+*⚙ "Up at a run" with "A second man":*
 
-> One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. They were expecting to be followed, and by now you know who was on the road behind them.
+> One man carried her down to the water. The other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. Who were they expecting to come?
+
+*⚙ the road find "The listening courier" (from [LET Dev READ IT]) with "Up at a run":*
+
+> A man by the chimney went still when the bend above the ford was read out, and the cart went up the far bank at a run. Somebody knows where you are going before you get there. Why would anyone need to?
 
 *⚙ When "1-6-1" is laid, Garrick adds:*
 
@@ -1697,8 +1725,6 @@ Clue found, "A second man":
 > *"The key that locks."* If the same hand can lock or open, how do you know which you were called for?
 
 **Tonight's question: Why are our names on that list?**
-
-> Why send the cart one way and the child another?
 
 *⚙ Garrick:*
 
@@ -1743,7 +1769,13 @@ Clue found, "A second man":
 > There is torchlight just inside. There should not be.
 >
 > While you watch, it moves from one side of the mouth to the other, unhurried, and stops.
->
+
+*⚙ If any friend took the road 6:1:1 that week (day:choice:option):*
+
+> At the inn, one of you saw a man by the chimney go still when the way was read out. Here, in the shadow of the mouth, a saddled horse stands tied, its flanks still dark with sweat.
+
+*⚙ Either way, the whole party reads this:*
+
 > Garrick knows a way in. He has known it since he was a boy, he says.
 
 #### The Approach
@@ -1834,11 +1866,17 @@ Clue found, "A second man":
 >
 > There is no warning. A timber that has waited fifty years goes all at once. Dev drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below Dev's boots there is nothing but the sound of the river, a long way down in the dark.
 
+*⚙ Only if more than one friend is here:*
+
 #### One breath
+
+*⚙ If more than one friend is here:*
 
 > Mei is nearest. One breath before the boards go again.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ If more than one friend is here:*
 
 *⚙ One friend, chosen at random, picks alone*
 
@@ -1983,6 +2021,16 @@ Clue found, "A second man":
 > They are children's names.
 
 > **This was never about you.**
+
+*⚙ If the party's call at the Day 6 fire was A:*
+
+> Last night by the fire you said they wanted you too. For now, the wall says otherwise.
+
+*⚙ If the party's call at the Day 6 fire was B:*
+
+> Last night by the fire you said Meira chose you to help her find them. Here are the ones she was looking for.
+
+*⚙ Either way, the whole party reads this:*
 
 > Then why were your names on that list?
 >

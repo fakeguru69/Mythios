@@ -76,6 +76,11 @@ function labelCond(text, week) {
   if (/^Stay where you are:?$/.test(t)) return { on: 'pick', option: 2 };
   if (/^If a Stone was struck from the ring/.test(t)) return { on: 'pick', option: 1 };
   if (/^Do nothing:?$/.test(t) || /^If nothing was done/.test(t)) return { on: 'pick', option: 2 };
+  // The week answered at its Gathering (25 Oct, Phase 3): a road a friend took, or the fire's call on a night.
+  const took = t.match(/^If a friend saw the courier on Day (\d)/);
+  if (took) return { on: 'took', key: `${took[1]}:1:1` };
+  const call = t.match(/^If the party called ([AB]) on Day (\d)/);
+  if (call) return { on: 'call', day: Number(call[2]), reading: call[1] };
   if (/^Then, alone on the screen/.test(t)) return { alone: true };
   // Lines for when nobody taps in time: the one-phone demo always has a tap, so they are kept apart.
   if (/^If nobody taps the last question/.test(t) || /^If two quiet minutes pass/.test(t) || /^If a minute passes with either untapped/.test(t)) return { on: 'unasked' };
@@ -383,6 +388,8 @@ export type GatheringCond =
   | { on: 'approach'; pass: boolean }
   | { on: 'ue'; won: boolean }
   | { on: 'pick'; option: number; together?: boolean }
+  | { on: 'took'; key: string }
+  | { on: 'call'; day: number; reading: 'A' | 'B' }
   | { on: 'alone' }
   | { on: 'together' }
   | { on: 'unasked' };

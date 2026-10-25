@@ -214,15 +214,26 @@ function campfire(week: number, day: number) {
   w(gameplay('Clues on the table: each last-light find, Notice line, passed-Challenge line, [PRESS ON] find and road find a friend lays becomes a card in the chat with its finder\'s name; friends tap Agree or Doubt.'));
   if (f.clicks?.length) {
     w(gameplay('Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:'));
-    const leadName = (id: string) => { const l = (APPROVED_FAN_OUT_LEADS[`${week}-${day}`] ?? []).find((x) => x.id === id); return l ? `"${fill(l.clueTitle)}"` : id; };
-    for (const c of f.clicks) w(gameplay(`${leadName(c.a)} with ${leadName(c.b)}${c.solves ? ' (this one answers tonight\'s question)' : ''}:`), quote(fill(c.text)));
+    const leadName = (id: string) => {
+      // A road's own find ("fork:choice:branch"), named by the road that earned it (25 Oct, Phase 3).
+      const fk = /^fork:(\d+):(\d+)$/.exec(id);
+      if (fk) {
+        const ch = CHAPTER_SCRIPTS.find((x) => x.week === week && x.day === day);
+        const st = ch?.steps.find((s) => s.t === 'choice' && s.id === Number(fk[1])) as { labels: string[]; branches: { roadFind?: { title: string } }[] } | undefined;
+        const find = st?.branches?.[Number(fk[2])]?.roadFind?.title;
+        return st ? `the road find "${find ?? '?'}" (from [${fill(st.labels[Number(fk[2])])}])` : id;
+      }
+      const l = (APPROVED_FAN_OUT_LEADS[`${week}-${day}`] ?? []).find((x) => x.id === id);
+      return l ? `"${fill(l.clueTitle)}"` : id;
+    };
+    for (const c of f.clicks) w(gameplay(`${leadName(c.a)} with ${leadName(c.b)}:`), quote(fill(c.text)));
   }
   if (f.nudgeIfLaid) w(gameplay(`When "${f.nudgeIfLaid.piece}" is laid, Garrick adds:`), quote(fill(f.nudgeIfLaid.line)));
   w(gameplay('Today\'s fragment: once its two words are found (in the Seeker Chest), its card appears in the stream after the last word, with a meaning question:'));
   const mq = FRAGMENT_MEANING_QUESTIONS[`${week}-${day}`];
   if (mq) w(quote(mq));
   w(`**Tonight's question${f.questionTitle ? `: ${fill(f.questionTitle)}` : ''}**`);
-  if (f.puzzle?.q) w(quote(fill(f.puzzle.q)));
+  // The fire asks one question a night (24 Oct): the old second question (puzzle.q) is not shown in the game.
   if (f.nudge) w(f.narratedNoGarrick ? gameplay('Narration:') : gameplay('Garrick:'), quote(f.nudge));
   if (f.callback) w(gameplay('Then he recalls:'), quote(f.callback));
   w(gameplay('Each friend pins one reading (changeable until dawn), and only then sees the others\' (names shown, never a count or a winner). The party\'s call is read back the next morning as "Last night the fire called it…":'));
@@ -240,6 +251,9 @@ const gatheringCond = (c?: GatheringCond) => {
   if (c.on === 'pick') return `If option ${c.option + 1} was picked`;
   if (c.on === 'alone') return 'If one friend plays alone';
   if (c.on === 'unasked') return 'If the sealed question went unasked';
+  if (c.on === 'took') return `If any friend took the road ${c.key} that week (day:choice:option)`;
+  if (c.on === 'call') return `If the party's call at the Day ${c.day} fire was ${c.reading}`;
+  if (c.on === 'together') return 'If more than one friend is here';
   return '';
 };
 

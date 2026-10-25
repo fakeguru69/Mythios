@@ -1064,7 +1064,15 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "She takes the little horse in both hands. She has to sit.\n\nGarrick builds the fire up without being asked. He coaxes the banked coals until they catch, and the clearing jumps into orange light. Then he puts a cup into her hands. She holds it as if it were the first warm thing she has touched in a month.\n\n*\"That's my sister's boy's,\"* she says. *\"I carved it.\"*"
+        "text": "She takes the little horse in both hands. She has to sit."
+      },
+      {
+        "t": "act",
+        "label": "SIT WITH HER"
+      },
+      {
+        "t": "say",
+        "text": "You sit down on the far side of the fire from her, close enough to be company and not so close as to crowd her.\n\nGarrick builds the fire up without being asked. He coaxes the banked coals until they catch, and the clearing jumps into orange light. Then he puts a cup into her hands. She holds it as if it were the first warm thing she has touched in a month.\n\n*\"That's my sister's boy's,\"* she says. *\"I carved it.\"*"
       },
       {
         "t": "say",
