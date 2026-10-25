@@ -292,7 +292,8 @@ export default function OnlineDay({
           Week {week} · Day {day}
         </p>
         <RoadSoFar recaps={today.recaps} missed={today.missed} fill={roadFill} />
-        <DaySevenLine partyId={partyId} timeZone={timeZone} />
+        {/* In the game shell the Gathering card just below says it, with the time (play test, 25 Oct: shown twice). */}
+        {!embedded && <DaySevenLine partyId={partyId} timeZone={timeZone} />}
         {!embedded && <ScriptButton label="THE GATHERING" onClick={onOpenGathering} />}
       </div>
     );

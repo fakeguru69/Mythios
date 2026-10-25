@@ -87,6 +87,26 @@ function useInvite(code: string | null) {
 }
 
 // Screen 1: the invite (review §1), and what it says when the party can no longer be joined (§3).
+// What the player tapped before signing in ("Start a party" on the cover, JOIN on an invite), so that after signing in
+// they land where they were going instead of tapping it a second time (Phase 1, 25 Oct).
+const INTENT_KEY = 'mythios_intent';
+const setIntent = (v: 'start' | 'join') => {
+  try {
+    sessionStorage.setItem(INTENT_KEY, v);
+  } catch {
+    /* private window: they tap twice, as before */
+  }
+};
+const takeIntent = (): string | null => {
+  try {
+    const v = sessionStorage.getItem(INTENT_KEY);
+    sessionStorage.removeItem(INTENT_KEY);
+    return v;
+  } catch {
+    return null;
+  }
+};
+
 function InviteCard({ info, onJoin }: { info: InviteCardInfo | null | undefined; onJoin?: () => void }) {
   if (info === undefined) return <p className="text-center text-[#B7A9CC]">…</p>;
   if (!info) {
@@ -1108,6 +1128,13 @@ function Home({ session }: { session: Session }) {
       autoOpened.current = true;
       setOpenParty(alerted);
     }
+    if (!autoOpened.current && !startQuery.get('join')) {
+      const intent = takeIntent();
+      if (intent === 'start' && !list.some((r) => r.status === 'approved' || r.status === 'pending')) {
+        autoOpened.current = true;
+        setView('start');
+      }
+    }
     if (!autoOpened.current && !startQuery.get('join') && list.length === 1 && list[0].status === 'approved') {
       autoOpened.current = true;
       setOpenParty(list[0].party_id);
@@ -1129,6 +1156,26 @@ function Home({ session }: { session: Session }) {
       }),
     []
   );
+
+  const joinNow = async () => {
+    if (!joinCode) return;
+    setJoinError(null);
+    const { data, error } = await supabase.rpc('request_join', { p_invite_code: joinCode, p_character_name: accountName });
+    if (error) return setJoinError(plainError(error.message));
+    clearJoinFromUrl();
+    setJoinCode(null);
+    setOpenParty(data as string);
+  };
+  // A friend who tapped JOIN before signing in is asked once, not twice: the knock goes in as soon as their name is known.
+  const joinIntent = useRef<string | null | undefined>(undefined);
+  useEffect(() => {
+    if (!joinCode || !accountName || !nameChosen) return;
+    if (joinIntent.current === undefined) joinIntent.current = takeIntent();
+    if (joinIntent.current === 'join') {
+      joinIntent.current = null;
+      joinNow();
+    }
+  }, [joinCode, accountName, nameChosen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Google sign-ins are asked the name question once (review §1 Screen 3).
   if (!nameChosen) {
@@ -1168,21 +1215,7 @@ function Home({ session }: { session: Session }) {
   if (joinCode) {
     return (
       <div className="space-y-4">
-        <InviteCard
-          info={info}
-          onJoin={
-            accountName
-              ? async () => {
-                  setJoinError(null);
-                  const { data, error } = await supabase.rpc('request_join', { p_invite_code: joinCode, p_character_name: accountName });
-                  if (error) return setJoinError(plainError(error.message));
-                  clearJoinFromUrl();
-                  setJoinCode(null);
-                  setOpenParty(data as string);
-                }
-              : undefined
-          }
-        />
+        <InviteCard info={info} onJoin={accountName ? joinNow : undefined} />
         <ErrorLine text={joinError} />
         <button
           className={quietButton}
@@ -1381,11 +1414,23 @@ export default function OnlineApp() {
   if (session === undefined) body = <p className="text-center text-[#B7A9CC]">…</p>;
   else if (session && recovering) body = <NewPassword onDone={() => setRecovering(false)} />;
   else if (session) body = <Home session={session} />;
-  else if (joinCode && !wantsSignIn) body = <InviteCard info={info} onJoin={() => setWantsSignIn(true)} />;
+  else if (joinCode && !wantsSignIn)
+    body = (
+      <InviteCard
+        info={info}
+        onJoin={() => {
+          setIntent('join');
+          setWantsSignIn(true);
+        }}
+      />
+    );
   else if (!joinCode && !wantsSignIn) {
     body = (
       <CoverPage
-        onGatherFriends={() => setWantsSignIn(true)}
+        onGatherFriends={() => {
+          setIntent('start');
+          setWantsSignIn(true);
+        }}
         onSignIn={() => {
           setReturning(true);
           setWantsSignIn(true);

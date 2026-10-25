@@ -400,14 +400,20 @@ function FirePill() {
     };
   }, []);
   if (!below) return null;
+  // A slim bar on the bottom edge rather than a pill floating over the words (play test, 25 Oct: the pill covered a line
+  // of the day summary). The page scrolls behind a solid strip, the way it does behind the tab bar.
   return (
-    <button
-      type="button"
-      data-fire-pill
-      onClick={() => document.querySelector('[data-thread-fire]')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-      className="fixed bottom-5 left-1/2 -translate-x-1/2 z-30 rounded-full bg-[#D4B876] text-[#130B1F] font-semibold text-[15px] px-4 py-2 shadow-lg"
-    >
-      ↓ The fire
-    </button>
+    <>
+      <div className="fixed inset-x-0 bottom-0 z-30 bg-[#0E0818]/95 border-t border-[#2C1D40] px-4 py-2 flex justify-center">
+        <button
+          type="button"
+          data-fire-pill
+          onClick={() => document.querySelector('[data-thread-fire]')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          className="rounded-full bg-[#D4B876] text-[#130B1F] font-semibold text-[15px] px-4 py-1.5 shadow-lg"
+        >
+          ↓ The fire
+        </button>
+      </div>
+    </>
   );
 }

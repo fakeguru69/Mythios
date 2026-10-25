@@ -566,6 +566,7 @@ Every simulated number in §12 is a prediction. Log these, per player:
 
 **Day 7 before the Gathering**
 - When the day opens, each thread gets a short "Tonight" message: where the party stands, when the Gathering starts, and which Attribute tonight's United Effort will call on. For example: *"Tonight: the Gathering, 8:00pm. The map points under the hill. Tonight calls on Intellect."* MYTHIOS writes it from Day 6's Pull.
+  *A Gathering pinned before 5:00pm says "Today" instead of "Tonight", on screen and in the alert (25 Oct).*
 - There is no chapter or fragment on Day 7. Talk with Garrick is open as always.
 
 **Starting the Gathering**

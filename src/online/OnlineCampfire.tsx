@@ -20,6 +20,7 @@ import {
   ChatBubble,
   Composer,
   GarrickBubble,
+  groupBigMoments,
   NarrationMessage,
   ReportBox,
   SmallLine,
@@ -451,7 +452,7 @@ export default function OnlineCampfire({
       later(arrival, -1),
       'myfind',
       <div className="rounded-2xl border border-[#3A2555] bg-[#180F29] p-3 space-y-1.5" data-my-find>
-        <div className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8]">The last light · {myLead.place}</div>
+        <div className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8]">{/last light/i.test(myLead.place) ? myLead.place.replace(/^./, (c) => c.toUpperCase()) : `The last light · ${myLead.place}`}</div>
         {my.roll.pass ? (
           <p className="text-[15.5px] text-[#D9D1E6]">You found what you went looking for before the light went.</p>
         ) : (
@@ -581,7 +582,7 @@ export default function OnlineCampfire({
   // Daytime Garrick replies (at_fire === false) never appear at the fire (handoff ledger piece 6): stored lines only here.
   if (together) {
     const since = new Date(partyDayStart(timeZone)).getTime();
-    messages
+    groupBigMoments(messages
       .filter((m) => {
         if (new Date(m.created_at).getTime() < since) return false;
         if (m.kind === 'notice' && fireOwnNotice(m.body, fire.week, fire.day)) return false;
@@ -589,7 +590,7 @@ export default function OnlineCampfire({
         // His morning line sits at the top of the day (GameShell's GarrickMorning), not again at the fire.
         if (m.morning === true) return false;
         return true;
-      })
+      }))
       .forEach((m) => add(m.created_at, `msg-${m.id}`, <ChatBubble m={m} userId={userId} members={memberRows} onReport={setReporting} />));
   }
 
