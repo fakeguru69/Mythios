@@ -1,7 +1,6 @@
 # Gatherings 2 to 5: one heartbeat each (draft for Fake Guru, 25 Oct 2026)
 
-Phase 4, part 1, the rest. Gathering 1's moment is built; these are Gatherings 2 to 5's, for you to read before anything
-is built. Each follows Gathering 1's model exactly:
+Phase 4, part 1, the rest. Gathering 1's moment is built, and these four were built and loaded live on 25 Oct (Fake Guru: "Yes"). Each follows Gathering 1's model exactly:
 
 - It comes just before the United Effort begins, as its own short part, "One heartbeat" (not when alone).
 - One friend is picked at random (not whoever rolled the Approach). The others have thirty seconds to tell them what to

@@ -3628,6 +3628,34 @@ Clue found, "Your own print":
 >
 > Every fall changes what is holding what. So one of you looks, and calls it, and the nearest boot does the rest. Then the next of you looks again.
 
+#### One heartbeat
+
+> Mei has the black book in one hand and a lamp in the other. One heartbeat before the first of their lamps reaches the mouth of the tunnel.
+>
+> **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ One friend, chosen at random, picks alone*
+
+1. **TAKE THE LAMP TO THE PROPS**: see which timber is holding it, before anyone else has to
+2. **DOUSE THE LAMPS**: put out every light in the room but one
+3. **STAND FAST**: 
+
+*⚙ If option 1 was picked:*
+
+> Mei is at the tunnel's mouth before the rest of you have moved, lamp held high, reading the green timber.
+
+*⚙ If option 2 was picked:*
+
+> Mei pinches out the lamps one after another, until only one is left, cupped in a hand. In the tunnel the coming lights falter, as if the dark had surprised them.
+
+*⚙ If option 3 was picked:*
+
+> Mei does not move, and nor do any of you. Whatever comes out of that tunnel, it will find you together.
+
+#### The breach
+
+*⚙ Either way, the whole party reads this:*
+
 **THE UNITED EFFORT: THE BREACH**
 
 *⚙ Two bars at 100 (60 for a friend alone): "The Tunnel" (the thing in the way) and "The Room" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Intellect Challenge against DC 7. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
@@ -3663,6 +3691,10 @@ Clue found, "Your own print":
 > You are on the soft stair with the boy before you have decided to go, and what was the room is filling up behind you. The last thing you see in it is lamplight coming through the hole, and patient hands beginning to clear the stone.
 >
 > At the lip of the old shaft, in the night air, you count what you came out with. The black book is in three pieces inside somebody's coat. And Corin is holding something out to you with both hands: a book bound in plain oiled leather. He took it from the niche by the lamp as you carried him past.
+
+*⚙ If option 2 was picked:*
+
+> You read what comes next by the one lamp that is left, passed from hand to hand.
 
 #### The six, read together
 

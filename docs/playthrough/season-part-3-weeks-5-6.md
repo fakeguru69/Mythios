@@ -1497,6 +1497,34 @@ Clue found, "A stride wider":
 >
 > So you answer for them. One post, one voice. They have kept this watch together all their lives, and they know how each of them sounds. The wind is all that is on your side.
 
+#### One heartbeat
+
+> Mei is kneeling beside the dying watchman. One heartbeat before the voice on the hill calls the next post.
+>
+> **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ One friend, chosen at random, picks alone*
+
+1. **ANSWER THE FIRST CALL**: in his voice, before anyone else has to
+2. **HOLD HIS HAND**: so that he is not alone while you speak for his dead
+3. **KEEP SILENT**: 
+
+*⚙ If option 1 was picked:*
+
+> Mei draws one breath and answers up the hill, low and flat and unhurried, the way he did. The voice on the hill says nothing, and moves on.
+
+*⚙ If option 2 was picked:*
+
+> Mei takes the watchman's hand. It is cold already, and it closes, once.
+
+*⚙ If option 3 was picked:*
+
+> Mei says nothing. The voice on the hill waits, and the wind fills the gap.
+
+#### The roll-call
+
+*⚙ Either way, the whole party reads this:*
+
 **THE UNITED EFFORT: THE ROLL-CALL**
 
 *⚙ Two bars at 100 (60 for a friend alone): "The Roll-Call" (the thing in the way) and "Their Trust" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Charm Challenge against DC 9. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
@@ -1530,6 +1558,10 @@ Clue found, "A stride wider":
 *⚙ If the United Effort was lost:*
 
 > There is no time. His eyes are still on the hall, but they no longer see it. The page comes gently out of his fist, and you are inside the wall before the first lantern reaches the gate.
+
+*⚙ If option 2 was picked:*
+
+> Whatever came after, he did not let go of the hand that held his until the last post had been called.
 
 #### The Verse of the Binding
 

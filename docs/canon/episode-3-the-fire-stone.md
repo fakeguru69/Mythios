@@ -811,6 +811,31 @@
 >
 > The glass will bear one of you at a time, and perhaps not that. So the rope goes up to her a stretch at a time. One of you climbs past where the last one stopped, drives a blade into the slope, makes the rope fast to it, and comes down. Then the next.
 
+### One heartbeat *(not when alone)*
+
+*Phase 4 (25 Oct; Fake Guru: "Yes" to `docs/design/gatherings2to5-moments-draft-25oct.md`): the night's "tell them what to do" moment, on Gathering 1's model. The friend who acts is picked at random, leaving out the one who rolled the Approach (in a party of two, either). Alone, this part is skipped.*
+
+> Mei is at the foot of the glass, nearest to her. One heartbeat before the slope moves again.
+>
+> **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*After thirty seconds, in Mei's own thread, and Mei's alone to choose. Mei has twenty seconds; no tap is* keep still*:*
+
+> `[GO UP FIRST]` onto the glass, with the rope's end, before anyone can stop you
+> `[CALL HER NAME]` the name on her mother's lips in Ashcombe, loud enough to carry
+> `[KEEP STILL]`
+
+*Go up first:*
+> Mei is three steps up the glass before anyone can say a word, rope in one fist, blade in the other.
+
+*Call her name:*
+> *"Wren."* High on the slope the girl turns her head, and for the first time since the fight began, she stops trying to climb away from you.
+
+*Keep still:*
+> Mei does not move. Nobody does. The glass settles with a sound like plates being stacked, and goes quiet.
+
+### The scree
+
 **The two things:** The Climb 100 · Wren's Hold 100
 
 > **Mei. Take the rope's end. As far as you can, and no further.**
@@ -844,6 +869,10 @@
 > Behind the stone table: the same hollow, cut to the same shape. Empty. Its rim has been swept clean. The rubbing, laid against it, fits.
 
 `[PLANT]` *(the same socket, the same pattern: a repeated thing, not damage)*
+
+
+*If the heartbeat was CALL HER NAME:*
+> When she is down at last, she does not go to the nearest of you. She goes to the one who called her by her name.
 
 ### Notice
 

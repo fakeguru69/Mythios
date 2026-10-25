@@ -783,6 +783,31 @@
 >
 > There is room at it for one pair of hands, and for as long as one breath lasts.
 
+### One heartbeat *(not when alone)*
+
+*Phase 4 (25 Oct; Fake Guru: "Yes" to `docs/design/gatherings2to5-moments-draft-25oct.md`): the night's "tell them what to do" moment, on Gathering 1's model. The friend who acts is picked at random, leaving out the one who rolled the Approach (in a party of two, either). Alone, this part is skipped.*
+
+> Mei is nearest the gate. The water is at his chin. One heartbeat before he has to choose between the breath and the bars.
+>
+> **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*After thirty seconds, in Mei's own thread, and Mei's alone to choose. Mei has twenty seconds; no tap is* stay where you are*:*
+
+> `[GO DOWN FOR THE PIN]` under the water, now, for as long as one breath lasts
+> `[HOLD HIS HEAD UP]` kneel in the water behind him and keep his face clear
+> `[STAY WHERE YOU ARE]`
+
+*Go down for the pin:*
+> Mei is under before anyone can say a word. The cold closes over, and the grey water churns where Mei went.
+
+*Hold his head up:*
+> Mei kneels in the black water behind him and takes his head in both hands, and lifts. He does not thank anyone. He breathes.
+
+*Stay where you are:*
+> Mei does not move. The water laps at his chin, and goes back, and comes again.
+
+### The water-gate
+
 **The two things:** The Pin 100 · His Breath 100
 
 > Two of you take his shoulders. Somebody finds a knife with a good point.
@@ -815,6 +840,10 @@
 > Tied at his belt, sealed in a waxed pouch: pages. More of the Order's scripture, from a book you have not seen before.
 
 *There is no board tonight. The pen is still found in the pouch, and the pen says enough.*
+
+
+*If the heartbeat was HOLD HIS HEAD UP:*
+> Whatever happened at the gate, the one who held his head is still kneeling there in the black water, soaked to the shoulders.
 
 ### Notice
 

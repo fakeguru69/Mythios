@@ -1575,6 +1575,34 @@ Clue found, "No way down in the dark":
 >
 > The glass will bear one of you at a time, and perhaps not that. So the rope goes up to her a stretch at a time. One of you climbs past where the last one stopped, drives a blade into the slope, makes the rope fast to it, and comes down. Then the next.
 
+#### One heartbeat
+
+> Mei is at the foot of the glass, nearest to her. One heartbeat before the slope moves again.
+>
+> **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ One friend, chosen at random, picks alone*
+
+1. **GO UP FIRST**: onto the glass, with the rope's end, before anyone can stop you
+2. **CALL HER NAME**: the name on her mother's lips in Ashcombe, loud enough to carry
+3. **KEEP STILL**: 
+
+*⚙ If option 1 was picked:*
+
+> Mei is three steps up the glass before anyone can say a word, rope in one fist, blade in the other.
+
+*⚙ If option 2 was picked:*
+
+> *"Wren."* High on the slope the girl turns her head, and for the first time since the fight began, she stops trying to climb away from you.
+
+*⚙ If option 3 was picked:*
+
+> Mei does not move. Nobody does. The glass settles with a sound like plates being stacked, and goes quiet.
+
+#### The scree
+
+*⚙ Either way, the whole party reads this:*
+
 **THE UNITED EFFORT: THE SCREE**
 
 *⚙ Two bars at 100 (60 for a friend alone): "The Climb" (the thing in the way) and "Wren's Hold" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Agility Challenge against DC 7. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
@@ -1625,7 +1653,13 @@ Clue found, "No way down in the dark":
 
 > Behind the stone table: the same hollow, cut to the same shape. Empty. Its rim has been swept clean. The rubbing, laid against it, fits.
 
+*⚙ If option 2 was picked:*
+
+> When she is down at last, she does not go to the nearest of you. She goes to the one who called her by her name.
+
 #### Notice
+
+*⚙ Either way, the whole party reads this:*
 
 *⚙ Notice: each friend gets one private line for their highest Attribute (a fallen friend gets the "from the floor" line):*
 
@@ -3269,6 +3303,34 @@ Clue found, "The lamp on the shingle":
 >
 > There is room at it for one pair of hands, and for as long as one breath lasts.
 
+#### One heartbeat
+
+> Mei is nearest the gate. The water is at his chin. One heartbeat before he has to choose between the breath and the bars.
+>
+> **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ One friend, chosen at random, picks alone*
+
+1. **GO DOWN FOR THE PIN**: under the water, now, for as long as one breath lasts
+2. **HOLD HIS HEAD UP**: kneel in the water behind him and keep his face clear
+3. **STAY WHERE YOU ARE**: 
+
+*⚙ If option 1 was picked:*
+
+> Mei is under before anyone can say a word. The cold closes over, and the grey water churns where Mei went.
+
+*⚙ If option 2 was picked:*
+
+> Mei kneels in the black water behind him and takes his head in both hands, and lifts. He does not thank anyone. He breathes.
+
+*⚙ If option 3 was picked:*
+
+> Mei does not move. The water laps at his chin, and goes back, and comes again.
+
+#### The water-gate
+
+*⚙ Either way, the whole party reads this:*
+
 **THE UNITED EFFORT: THE WATER-GATE**
 
 *⚙ Two bars at 100 (60 for a friend alone): "The Pin" (the thing in the way) and "His Breath" (the thing at risk). Friends take turns, nobody twice until all have gone. Each turn is a Craft Challenge against DC 8. Pass: 10 + d20 off the thing in the way. Fail: 10 + d20 off the thing at risk. It ends when either bar hits 0. Won: +300g to every friend present. One Relic per roll (+4). The story lines it can say, as the bars fall:*
@@ -3316,6 +3378,10 @@ Clue found, "The lamp on the shingle":
 > He is breathing. That is all. Whatever he could have told you, he will not tell it tonight.
 >
 > Tied at his belt, sealed in a waxed pouch: pages. More of the Order's scripture, from a book you have not seen before.
+
+*⚙ If option 2 was picked:*
+
+> Whatever happened at the gate, the one who held his head is still kneeling there in the black water, soaked to the shoulders.
 
 #### Notice
 
