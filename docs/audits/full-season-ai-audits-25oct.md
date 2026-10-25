@@ -32,8 +32,12 @@ Fake Guru pasted three reports from another AI: a full-season audit, a two-playe
 | Gathering 6, Craft: "The knot at your wrist… You watched it tied a week ago" | "The knot across your palm is the one at Tamsin's. You watched him tie it a week ago…" (the palms were bound at Gathering 5, a week before) |
 | Session Zero: "Six companions, six callings" | "Six callings, and one shared campfire." |
 
+## Decided (Fake Guru: "use your judgement"; Claude decided)
+
+- **The bars for two friends stay at 100.** Every roll has the same odds at any size; only the number of turns differs, and the numbers pass found the job won about as often.
+- **One breath opens as soon as every other friend has advised** (`0139`), at any party size and for Gathering 6's act.
+- **No content note added.** The invite already shows the premise ("In the hill villages, children are going missing, and nobody is looking for them."). Saying that every child comes home would give the season away and reassure before a risk, which the house rules forbid.
+
 ## Worth considering later (for Fake Guru)
 
 - Phase 4: the pilot's asking pairs and road pairs for Weeks 2 to 6, after the Week 1 play-test.
-- A party of two: whether One breath should open as soon as the one other friend has advised, instead of waiting out the thirty seconds.
-- A content note on the invite: children are taken in this story, and every child you go after comes home.
