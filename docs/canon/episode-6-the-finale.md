@@ -813,6 +813,14 @@
 >
 > Your blood runs down over the Stone and drips onto the floor of his hall, and the fifth lies in your hand as cold and dark as the night you found it.
 
+### The six, read together
+
+*Phase 4 (25 Oct, Fake Guru: "Ok, go on"): the week's six fragments, read aloud before the reveal, as the party holds them. The server fills {SIX:6} with the party's own words; a word nobody found is left blank.*
+
+> In the silence somebody says the last six aloud, low, one after another, as if saying them right might still make the Stone answer.
+>
+> {SIX:6}
+
 ### The first twist
 
 > The silence is so complete you can hear the last of the faithful breathing in the dark behind you.

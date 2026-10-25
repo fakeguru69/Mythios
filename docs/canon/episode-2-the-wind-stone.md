@@ -859,6 +859,14 @@
 *If the room was lost, the three clumps are posted as three cards, each showing its first line. Any friend taps the one to read next. A wrong tap costs nothing:*
 > *Not that one. It begins in the middle of something.*
 
+### The six, read together
+
+*Phase 4 (25 Oct, Fake Guru: "Ok, go on"): the week's six fragments, read aloud before the reveal, as the party holds them. The server fills {SIX:2} with the party's own words; a word nobody found is left blank.*
+
+> On the dark hillside, before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.
+>
+> {SIX:2}
+
 ### The Verse of the Answering
 
 *(Each paragraph is its own message. A friend taps `[READ ON]` for the next.)*

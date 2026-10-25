@@ -833,6 +833,14 @@
 > **Craft** · The buckles were fastened once and never undone.
 > **Aim** · The chalk lies ready under their board, and tonight's stroke has not been struck. The men who should have struck it came down the hill to you.
 
+### The six, read together
+
+*Phase 4 (25 Oct, Fake Guru: "Ok, go on"): the week's six fragments, read aloud before the reveal, as the party holds them. The server fills {SIX:5} with the party's own words; a word nobody found is left blank.*
+
+> Before anyone goes on, the week's six are read aloud, one after another, the way they were meant to be heard together.
+>
+> {SIX:5}
+
 ### The hidden room
 
 > The way into the hidden room is a stone's throw away, and it is Seeker work.

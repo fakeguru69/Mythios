@@ -250,6 +250,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "section",
+        "title": "The six, read together",
+        "section": "The six, read together"
+      },
+      {
+        "t": "say",
+        "text": "In the doorway of the cut room, by torchlight, somebody reads the week's six aloud, one after another, the way they were meant to be heard together.\n\n{SIX:1}",
+        "section": "The six, read together"
+      },
+      {
+        "t": "section",
         "title": "The discovery",
         "section": "The discovery"
       },
@@ -555,6 +565,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "won": false
         },
         "section": "The United Effort"
+      },
+      {
+        "t": "section",
+        "title": "The six, read together",
+        "section": "The six, read together"
+      },
+      {
+        "t": "say",
+        "text": "On the dark hillside, before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.\n\n{SIX:2}",
+        "section": "The six, read together"
       },
       {
         "t": "section",
@@ -1037,6 +1057,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "t": "say",
         "text": "Inside his coat, wrapped in oilcloth and kept closer than his knife: bound pages of the Order's scripture. Unburned, this time.",
         "section": "The case"
+      },
+      {
+        "t": "section",
+        "title": "The six, read together",
+        "section": "The six, read together"
+      },
+      {
+        "t": "say",
+        "text": "Before the oilcloth comes off, the week's six are read aloud, one after another, the way they were meant to be heard together.\n\n{SIX:3}",
+        "section": "The six, read together"
       },
       {
         "t": "section",
@@ -1628,6 +1658,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "section",
+        "title": "The six, read together",
+        "section": "The six, read together"
+      },
+      {
+        "t": "say",
+        "text": "Before the page is read, the week's six are said aloud, quietly, one after another, the way they were meant to be heard together.\n\n{SIX:4}",
+        "section": "The six, read together"
+      },
+      {
+        "t": "section",
         "title": "The Verse of the Four",
         "section": "The Verse of the Four"
       },
@@ -2143,6 +2183,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
       },
       {
         "t": "section",
+        "title": "The six, read together",
+        "section": "The six, read together"
+      },
+      {
+        "t": "say",
+        "text": "Before anyone goes on, the week's six are read aloud, one after another, the way they were meant to be heard together.\n\n{SIX:5}",
+        "section": "The six, read together"
+      },
+      {
+        "t": "section",
         "title": "The hidden room",
         "section": "The hidden room"
       },
@@ -2467,6 +2517,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "t": "say",
         "text": "Nothing.\n\nYour blood runs down over the Stone and drips onto the floor of his hall, and the fifth lies in your hand as cold and dark as the night you found it.",
         "section": "The king"
+      },
+      {
+        "t": "section",
+        "title": "The six, read together",
+        "section": "The six, read together"
+      },
+      {
+        "t": "say",
+        "text": "In the silence somebody says the last six aloud, low, one after another, as if saying them right might still make the Stone answer.\n\n{SIX:6}",
+        "section": "The six, read together"
       },
       {
         "t": "section",

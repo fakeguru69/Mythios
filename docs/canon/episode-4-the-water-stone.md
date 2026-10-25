@@ -873,6 +873,14 @@
 
 *If his breath ran out, there is no board tonight. Nothing depends on it: the pouch, the pen and the torn page are found all the same, and the pen says enough.*
 
+### The six, read together
+
+*Phase 4 (25 Oct, Fake Guru: "Ok, go on"): the week's six fragments, read aloud before the reveal, as the party holds them. The server fills {SIX:4} with the party's own words; a word nobody found is left blank.*
+
+> Before the page is read, the week's six are said aloud, quietly, one after another, the way they were meant to be heard together.
+>
+> {SIX:4}
+
 ### The Verse of the Four
 
 *(Each paragraph is its own message. A friend taps `[READ ON]` for the next.)*

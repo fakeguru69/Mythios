@@ -32,6 +32,12 @@ const TOKENS = {
 const fill = (s: string) =>
   fillScriptTokens(s, TOKENS)
     .replace(/\{RISK\}/g, 'Dev')
+    // "The six, read together": shown here with every word found (the game leaves a blank for a word the party did not find).
+    .replace(/\{SIX:([1-6])\}/g, (_m, w: string) =>
+      SEEKER_FRAGMENTS.filter((f) => f.week === Number(w))
+        .sort((a, b) => a.day - b.day)
+        .map((f) => `*Day ${f.day}, ${f.placeLabel.charAt(0).toLowerCase()}${f.placeLabel.slice(1)}:* “${f.fullText}”`)
+        .join('\n\n'))
     .replace(/\{friend(:[A-Za-z]+)?\}/g, (_m, a?: string) => (a ? `[the friend at the fire best at ${a.slice(1)}]` : '[a friend]'));
 const quote = (s: string) =>
   !s.trim()

@@ -2404,8 +2404,19 @@ export const PartyTabView: React.FC<PartyTabViewProps> = ({
   // ---------------------------------------------------------------------------
   const gatheringScript = GATHERING_SCRIPTS.find((g) => g.week === currentWeek);
   const gatheringFriends = party.filter((f) => f.id !== 'YOU');
+  // "The six, read together" (Phase 4, 25 Oct): the week's six as the party holds them, a blank for a word not found
+  // (the online game's g_six, migration 0125).
+  const sixRead = (week: number) =>
+    SEEKER_FRAGMENTS.filter((f) => f.week === week)
+      .sort((a, b) => a.day - b.day)
+      .map((f) => {
+        const got = solvedWords[f.id] || {};
+        const text = f.displayTemplate.replace('{0}', got.w1 ? f.word1 : '____').replace('{1}', got.w2 ? f.word2 : '____');
+        return `*Day ${f.day}, ${f.placeLabel.charAt(0).toLowerCase()}${f.placeLabel.slice(1)}:* “${text}”`;
+      })
+      .join('\n\n');
   const gFill = (text: string) =>
-    fillScriptTokens(text.replace(/\{RISK\}/g, riskFriendName), {
+    fillScriptTokens(text.replace(/\{RISK\}/g, riskFriendName).replace(/\{SIX:([1-6])\}/g, (_, w: string) => sixRead(Number(w))), {
       friends: gatheringFriends.map((f) => f.name),
       partySize: party.length,
     });

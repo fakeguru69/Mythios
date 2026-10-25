@@ -973,6 +973,14 @@
 >
 > Whatever the dust in there could have told you, it will not tell you now.
 
+### The six, read together
+
+*Phase 4 (25 Oct, Fake Guru: "Ok, go on"): the week's six fragments, read aloud before the reveal, as the party holds them. The server fills {SIX:1} with the party's own words; a word nobody found is left blank.*
+
+> In the doorway of the cut room, by torchlight, somebody reads the week's six aloud, one after another, the way they were meant to be heard together.
+>
+> {SIX:1}
+
 ### The discovery
 
 > The room is small, square, and cut by hands a very long time ago. It is dry: the first dry air since the river. Your torches burn straight up in it. Nothing drips. The river, which has been in your ears all night, cannot be heard in here at all.

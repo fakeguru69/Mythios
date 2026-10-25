@@ -1888,9 +1888,25 @@ Clue found, "A second man":
 >
 > Whatever the dust in there could have told you, it will not tell you now.
 
-#### The discovery
+#### The six, read together
 
 *⚙ Either way, the whole party reads this:*
+
+> In the doorway of the cut room, by torchlight, somebody reads the week's six aloud, one after another, the way they were meant to be heard together.
+>
+> *Day 1, the boundary stone:* “Five fell. Five were turned against him. Four were scattered after. One stayed close.”
+>
+> *Day 2, the inn door-beam:* “They wept for him before they feared him.”
+>
+> *Day 3, the Widow's Tooth:* “Not every hand that tries will open it. Some locks already know their key.”
+>
+> *Day 4, the Fenmark well:* “Born when the dark has eaten the moon, marked before the first cry's through.”
+>
+> *Day 5, the hollow tree:* “The power that gives is also the power that takes.”
+>
+> *Day 6, the ford-stone:* “The key that locks is also the key that unlocks.”
+
+#### The discovery
 
 > The room is small, square, and cut by hands a very long time ago. It is dry: the first dry air since the river. Your torches burn straight up in it. Nothing drips. The river, which has been in your ears all night, cannot be heard in here at all.
 >
@@ -3614,9 +3630,25 @@ Clue found, "Your own print":
 >
 > At the lip of the old shaft, in the night air, you count what you came out with. The black book is in three pieces inside somebody's coat. And Corin is holding something out to you with both hands: a book bound in plain oiled leather. He took it from the niche by the lamp as you carried him past.
 
-#### The Verse of the Answering
+#### The six, read together
 
 *⚙ Either way, the whole party reads this:*
+
+> On the dark hillside, before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.
+>
+> *Day 1, the farmhouse beam:* “We held his last wall the night it was meant to fall. Not one of us expected to see morning.”
+>
+> *Day 2, the mill wheel:* “Their campfires filled the plain from our wall to the hills. The first night we tried to count them. By the third, we had stopped.”
+>
+> *Day 3, the hill-path housing:* “We watched the kingdoms go out like lamps — the ones that fought first, the ones that knelt after. By the end, ours was the last light burning.”
+>
+> *Day 4, the roots by the shaft:* “The moon went out, and he went down alone into the oldest rooms of the house. When he came back up, his hand was bleeding, and he told us to sleep.”
+>
+> *Day 5, the signal stone:* “That morning he came down off the wall and walked among us. There was not one of us who would not have died for him.”
+>
+> *Day 6, the lip of the shaft:* “Morning came. The enemy did not.”
+
+#### The Verse of the Answering
 
 > *From the First Book of the Order of the Dark Moon — The Verse of the Answering.*
 >

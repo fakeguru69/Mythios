@@ -1664,6 +1664,22 @@ Clue found, "No way down in the dark":
 
 > Inside his coat, wrapped in oilcloth and kept closer than his knife: bound pages of the Order's scripture. Unburned, this time.
 
+#### The six, read together
+
+> Before the oilcloth comes off, the week's six are read aloud, one after another, the way they were meant to be heard together.
+>
+> *Day 1, the wayside shrine:* “First they stopped bleeding when cut. Then they stopped sleeping. Then they stopped being ours.”
+>
+> *Day 2, the pound wall:* “We held his wall for him. Remember that, when you hear where else we stood.”
+>
+> *Day 3, the Blackglass:* “He never lied to us. He only never told us the price.”
+>
+> *Day 4, the black-ridge niche:* “What we hid, we locked with what we are.”
+>
+> *Day 5, the shepherd's hearth:* “Bloodlines outlast kingdoms. That is why kingdoms fear them.”
+>
+> *Day 6, the cairn's foot:* “We never dug him a grave. When we are gone, our blood will have to hold him.”
+
 #### The Verse of the Fall
 
 > *From the First Book of the Order of the Dark Moon — The Verse of the Fall.*
@@ -3344,9 +3360,25 @@ Clue found, "The lamp on the shingle":
 
 > Nobody asks it. Somebody only looks from him to the socket, and that is enough. He flinches — the whole of him, like a struck animal — and looks anywhere else.
 
-#### The Verse of the Four
+#### The six, read together
 
 *⚙ Either way, the whole party reads this:*
+
+> Before the page is read, the week's six are said aloud, quietly, one after another, the way they were meant to be heard together.
+>
+> *Day 1, the last black rock:* “We did not trust four locks to hold what needed five.”
+>
+> *Day 2, the old ford:* “Earth, wind, water, fire — four we could name. The fifth had no element at all, and we feared it more than the other four together.”
+>
+> *Day 3, the drowned tower:* “What fell when the moon broke still remembers the moon. So does anyone born in its dark.”
+>
+> *Day 4, the market cross:* “Moon-blood woke it once. Moon-blood will wake it again, if it is ever let near.”
+>
+> *Day 5, the willow roots:* “We have built a lock. Pray no one ever learns it is also a door.”
+>
+> *Day 6, the tower stair:* “We made our children the only key. We never asked what that would make them.”
+
+#### The Verse of the Four
 
 > *From the Second Book of the Order of the Dark Moon — The Verse of the Four.*
 >

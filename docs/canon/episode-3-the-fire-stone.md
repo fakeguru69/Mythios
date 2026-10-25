@@ -884,6 +884,14 @@
 
 > Inside his coat, wrapped in oilcloth and kept closer than his knife: bound pages of the Order's scripture. Unburned, this time.
 
+### The six, read together
+
+*Phase 4 (25 Oct, Fake Guru: "Ok, go on"): the week's six fragments, read aloud before the reveal, as the party holds them. The server fills {SIX:3} with the party's own words; a word nobody found is left blank.*
+
+> Before the oilcloth comes off, the week's six are read aloud, one after another, the way they were meant to be heard together.
+>
+> {SIX:3}
+
 ### The Verse of the Fall
 
 > *From the First Book of the Order of the Dark Moon — The Verse of the Fall.*
