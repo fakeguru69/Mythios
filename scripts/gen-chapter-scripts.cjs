@@ -529,6 +529,39 @@ const FORK_BRANCH_META = {
       lost: 'From the rubble you had the whole camp in view, until a lantern swung your way and you put your face to the stones.',
     },
   },
+  // 25 Oct (Fake Guru: "fix the four days w no real choice"): W4D5 and W5D6
+  '4-5:ROW FOR THE TOWER': {
+    changed: 'You rowed for the tower, so the Challenge asked for Aim. Your oars carried across the fog, and somebody heard them: tomorrow\'s flame is one harder.',
+    roadFind: {
+      title: 'Oars in the fog',
+      text: 'Rowing for the drowned tower through the fog on the Stillwater, you rested on your oars to listen, and somewhere out in the white, a moment after yours, another pair of oars went still.',
+      lost: 'Out in the fog you rested on your oars, and thought you heard another pair go still. Then you were rowing in a circle, and nothing out there made a sound again.',
+    },
+  },
+  '4-5:DRIFT WITH THE CURRENT': {
+    changed: 'You drifted with the current, so the Challenge asked for Craft, and the lake showed you its stakes.',
+    roadFind: {
+      title: 'Stakes in the lake',
+      text: 'Drifting through the fog on the Stillwater, the skiff bumped willow stakes driven deep into the lake bed, a boat\'s length apart, in a line as straight as a road.',
+      lost: 'Drifting in the fog, the skiff bumped a stake under the water. By the time you had the oars out again, you could not have said where.',
+    },
+  },
+  '5-6:GO LOW': {
+    changed: 'You went low along the parapet, so the Challenge asked for Agility, and the walkway sounded hollow under your knee.',
+    roadFind: {
+      title: 'A hollow in the walkway',
+      text: 'Crossing Highwall\'s wall-walk flat along the parapet, the stone under your knee gave back a hollow sound, not the dead knock of a wall a yard thick.',
+      lost: 'Somewhere on Highwall\'s wall-walk the stone sounded wrong under your knee. Then a lantern lifted in the square, and you lay flat, and lost the place.',
+    },
+  },
+  '5-6:WALK IT LIKE A WATCHMAN': {
+    changed: 'You walked it like a watchman, so the Challenge asked for Charm, and you saw which way the watch in the square faces.',
+    roadFind: {
+      title: 'The watch faces the hall',
+      text: 'From Highwall\'s wall-walk at dusk, the new watchman in the square settled at his post with his face turned up the hill to the hall, and never once looked at the wall.',
+      lost: 'The watchman in the square faced the hall, you think. Then his lantern lifted, and you finished the crossing on your belly with your eyes on the stone.',
+    },
+  },
   '6-2:PUT YOUR BACK TO THE BEAM': {
     changed: 'You put your back to the beam, so the Challenge asked for Might.',
     roadFind: {

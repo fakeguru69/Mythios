@@ -228,6 +228,48 @@ For each week, give U1 to U7 as a row of their own.
 
 **Overall** is your judgement of the day as a player, not an average. If it differs from the averages by more than 2, say why.
 
+### G. Text written by the builder since the storybook pass (check each closely as you meet it)
+
+The season's story was rewritten and approved by the designer, week by week, in the storybook voice. Since then the builder, an AI, has written new text into it, and the designer has not yet read all of it. Treat every piece below as a draft, and judge it harder than the rest:
+
+| Where | What was added | Find it in |
+|---|---|---|
+| 12 weekdays: W1D1, D2, D3, D6; W2D1, D2, D6; W3D2, D3, D6; W5D4; W6D3 | **Lead-ins**: one sentence that leads from the notice lines into the Challenge card | `LEAD_INS` in `scripts/gen-chapter-scripts.cjs` |
+| Weeks 1 to 6, most weekdays | **Roads**: a two-way choice before a Challenge, its two short passages, the "what this changed" line after it, the clue each road gives the fire (`roadFind`, and the shorter `lost` text after a failed roll), and the "**One harder.**" line on a later card that pays it off | the episode files' designer's notes marked "Phase 3" or "25 Oct", and `FORK_BRANCH_META` in `scripts/gen-chapter-scripts.cjs` |
+| W4D5, W5D6 (25 Oct) | The newest roads: row or drift in the fog; go low or walk like a watchman on the wall | `docs/canon/episode-4-the-water-stone.md`, `episode-5-the-kings-stone.md` |
+| Gatherings 1 to 6 | **"The six, read together"** before each reveal; **"One breath"**, the "tell them what to do" moment, and its later echo; **Strike or Cover** in the Battle; the shortened Ask boards; the three new endings (Gathering 2's pick, Gathering 3's question, Week 6 Day 1's chalk) | the Day 7 sections of the episode files; `docs/design/gathering1-act-draft-25oct.md`, `gatherings2to5-moments-draft-25oct.md`, `phase4-decisions-25oct.md` |
+| The finale | `[CLOSE YOUR HAND]`, the "What you carried in." card, "A single breath", the last lines | `docs/design/phase6-finale-draft-25oct.md` |
+| The fire | Garrick's three hosting lines: to a quiet friend, on an unanswered piece, and when the fire splits | `docs/design/garrick-fire-host-lines-draft-25oct.md` |
+
+For each piece, check:
+
+1. **The voice.** Does it read like the approved text around it (`docs/style/storybook-voice.md`)? Watch for:
+   - a sentence that is flatter, more modern, more explaining or more padded than its neighbours;
+   - brackets in prose; American spelling;
+   - game words inside the story ("season", "Challenge", "roll").
+2. **The seam.** Read it with the passage before and after it. Does it join without a bump in tense, place, time of day or who is present? Does it repeat something just said, or contradict it?
+3. **For a road, a real trade.**
+   - Does each option have a reason to pick it?
+   - Can the player guess what each one risks and what it might give, without being told the answer?
+   - Is either road plainly the best? If so, say which, and why.
+   - Does each road leave something of its own?
+4. **For a road, a legible payoff.**
+   - When the "**One harder.**" line or the clue comes back, does it name its cause clearly enough for an "aha, that's because I…"?
+   - Does the clue each road gives the fire make sense to a friend who was not there?
+5. **The canon.**
+   - No invented lore: no new people, places, history or powers that the episode files do not hold.
+   - No word used before its first-use gate (CLAUDE.md §6: "the Order" from W3D1; "four children" from W2D1; "king" from W2D5; "fifth / five" from W3D3; "moon-blood" from W4D4; "Highwall" from W5D1; "heartbeat" from W4D6).
+   - No contradiction with an earlier or later day.
+6. **Garrick.**
+   - His lines must be true, warm, dry and kind.
+   - He never promises, predicts, denies knowing, mocks, or doubts falsely.
+   - He uses none of the banned phrases ("maybe", "perhaps", "possibly", "I don't know", "I've never", "I've heard", "I wouldn't know", "I couldn't say").
+   - At the fire he hosts the talk and never says which theory is right.
+7. **The tone before a risk.** No line before a roll or a choice may reassure the player ("you can't lose") or give the result away.
+8. **Real friends' names.** In this game the friends' names stand for the real players, so a line must not give a named friend "he" or "she".
+
+**In the report, add a section "The builder's new text".** Give one row per piece: where it is, a score from 1 to 10, and the problem if there is one, with a better line where you can offer one. Then name the five weakest pieces.
+
 ---
 
 ## Stage 7: after the finale (stop afterwards)
@@ -264,7 +306,8 @@ Write **`docs/audits/play-and-score-<YYYY-MM-DD>.md`**, in plain words, in this 
 4. **The open-threads ledger,** closed.
 5. **"What's next" stretches:** the worst ten, ranked.
 6. **The Campfire in particular:** did it give organic play? What happens at a quiet fire? What Garrick does and does not do to start talk, and what he should do.
-7. **Bugs and slips:** each with the screen, what happened, and the screenshot name, ranked by how much a player would mind.
-8. **What you could not judge,** and why.
+7. **The builder's new text** (Part 3, G): one row per piece, with its score and any problem, then the five weakest pieces.
+8. **Bugs and slips:** each with the screen, what happened, and the screenshot name, ranked by how much a player would mind.
+9. **What you could not judge,** and why.
 
 Do not soften the scores in the report. Then tell the designer, in five plain lines, where the report is and what it says.

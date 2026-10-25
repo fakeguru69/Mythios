@@ -4344,6 +4344,45 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
         "text": "Fog comes down on the Stillwater in the morning, thick and white. You row into it in her skiff, and the shore is gone behind you in a dozen strokes. After that there is only the creak of the oars, the drip off the blades, and the grey shadow of the tower somewhere off to one side."
       },
       {
+        "t": "say",
+        "text": "Somewhere in the white is the reed island, and there are two ways to come at it. You can row for the tower's grey shadow while it lasts, long strokes and straight, and every one of them carried out across the still water. Or you can ship the oars, trail a line off the stern, and let the lake's own slow current take you, as quietly as a leaf, wherever it means to go."
+      },
+      {
+        "t": "choice",
+        "id": 0,
+        "labels": [
+          "ROW FOR THE TOWER",
+          "DRIFT WITH THE CURRENT"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You row for it, long and even, while the grey shadow stands off to one side. When you rest on the oars to listen, the fog is full of the sound you have been making. And somewhere out in the white, a moment after yours, another pair of oars goes still.",
+            "changed": "You rowed for the tower, so the Challenge asked for Aim. Your oars carried across the fog, and somebody heard them: tomorrow's flame is one harder.",
+            "roadFind": {
+              "title": "Oars in the fog",
+              "text": "Rowing for the drowned tower through the fog on the Stillwater, you rested on your oars to listen, and somewhere out in the white, a moment after yours, another pair of oars went still.",
+              "lost": "Out in the fog you rested on your oars, and thought you heard another pair go still. Then you were rowing in a circle, and nothing out there made a sound again."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You ship the oars and let the line run out behind. The lake takes you without a sound. Once the skiff bumps something under the water: a willow stake, driven deep into the lake bed. A boat's length on there is another, and then another, in a line as straight as a road.",
+            "changed": "You drifted with the current, so the Challenge asked for Craft, and the lake showed you its stakes.",
+            "roadFind": {
+              "title": "Stakes in the lake",
+              "text": "Drifting through the fog on the Stillwater, the skiff bumped willow stakes driven deep into the lake bed, a boat's length apart, in a line as straight as a road.",
+              "lost": "Drifting in the fog, the skiff bumped a stake under the water. By the time you had the oars out again, you could not have said where."
+            }
+          }
+        ]
+      },
+      {
         "t": "challenge",
         "title": "THE FOG",
         "desc": "A mile of white water, and one grey shadow in it.",
@@ -4593,7 +4632,13 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
           }
         ],
         "reward": "+500g",
-        "fail": "it goes out halfway, and the way has to be called again"
+        "fail": "it goes out halfway, and the way has to be called again",
+        "harderIf": {
+          "key": "4-5:took:0:0",
+          "has": true,
+          "by": 1,
+          "line": "**One harder.** Whoever rested on their oars in the fog yesterday heard yours, and somebody on the lake is watching for a light in the tower tonight. The lamp must burn low, below the sills, where the gusts are worst."
+        }
       },
       {
         "t": "say",
@@ -5572,6 +5617,45 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       {
         "t": "say",
         "text": "Up the hill a lantern crosses the square, and two voices carry down through the still air.\n\n*\"Keep the dark.\"*\n\n*\"It keeps us.\"*\n\nThe watch is changing. Now."
+      },
+      {
+        "t": "say",
+        "text": "Forty paces of open stone, and two ways to cross them. You can go low and fast along the foot of the parapet, the moment the hand drops. Or you can stand up and walk it at a watchman's pace, the way this wall has been walked at every dusk for longer than anyone in Highwall can remember, and trust the square to see only a shape."
+      },
+      {
+        "t": "choice",
+        "id": 1,
+        "labels": [
+          "GO LOW",
+          "WALK IT LIKE A WATCHMAN"
+        ],
+        "mode": "pick",
+        "branches": [
+          {
+            "options": [
+              0
+            ],
+            "text": "You go flat along the foot of the parapet, your cheek almost on the stone. Halfway, under your knee, the walkway gives back a sound it should not: not the dead knock of a wall a yard thick, but something lighter, and hollow.",
+            "changed": "You went low along the parapet, so the Challenge asked for Agility, and the walkway sounded hollow under your knee.",
+            "roadFind": {
+              "title": "A hollow in the walkway",
+              "text": "Crossing Highwall's wall-walk flat along the parapet, the stone under your knee gave back a hollow sound, not the dead knock of a wall a yard thick.",
+              "lost": "Somewhere on Highwall's wall-walk the stone sounded wrong under your knee. Then a lantern lifted in the square, and you lay flat, and lost the place."
+            }
+          },
+          {
+            "options": [
+              1
+            ],
+            "text": "You stand, and walk. Below in the square the new watchman settles at his post with his lantern, and his face turned up the hill to the hall. In all the time it takes you to cross, he never once looks at the wall.",
+            "changed": "You walked it like a watchman, so the Challenge asked for Charm, and you saw which way the watch in the square faces.",
+            "roadFind": {
+              "title": "The watch faces the hall",
+              "text": "From Highwall's wall-walk at dusk, the new watchman in the square settled at his post with his face turned up the hill to the hall, and never once looked at the wall.",
+              "lost": "The watchman in the square faced the hall, you think. Then his lantern lifted, and you finished the crossing on your belly with your eyes on the stone."
+            }
+          }
+        ]
       },
       {
         "t": "challenge",

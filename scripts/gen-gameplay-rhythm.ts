@@ -30,7 +30,8 @@ function chapterBeats(steps: ScriptStep[], week: number): Beat[] {
       read(words(s.text));
     } else if (s.t === 'act') out.push({ kind: 'tap', label: s.label, taps: 1 });
     else if (s.t === 'choice') {
-      const real = s.mode === 'pick' && s.branches.length > 0;
+      // 'auto' is "you look at one, friends take the rest": the player still picks, and the branches differ (W2D2, W2D5).
+      const real = (s.mode === 'pick' || s.mode === 'auto') && s.branches.length > 0;
       out.push({ kind: s.mode === 'flavor' ? 'flavor' : real ? 'choice' : 'tap', label: `${s.labels.join(' / ')} (${s.mode})`, taps: s.mode === 'each' ? s.labels.length : 1 });
       const shown = s.mode === 'pick' || s.mode === 'flavor' ? s.branches.slice(0, 1) : s.branches;
       shown.forEach((b) => read(words(b.text)));

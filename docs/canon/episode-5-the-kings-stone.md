@@ -615,6 +615,18 @@
 >
 > The watch is changing. Now.
 
+> Forty paces of open stone, and two ways to cross them. You can go low and fast along the foot of the parapet, the moment the hand drops. Or you can stand up and walk it at a watchman's pace, the way this wall has been walked at every dusk for longer than anyone in Highwall can remember, and trust the square to see only a shape.
+
+`[GO LOW]` `[WALK IT LIKE A WATCHMAN]`
+
+*The player chooses.*
+
+*Go low:*
+> You go flat along the foot of the parapet, your cheek almost on the stone. Halfway, under your knee, the walkway gives back a sound it should not: not the dead knock of a wall a yard thick, but something lighter, and hollow.
+
+*Walk it like a watchman:*
+> You stand, and walk. Below in the square the new watchman settles at his post with his lantern, and his face turned up the hill to the hall. In all the time it takes you to cross, he never once looks at the wall.
+
 **Challenge card**
 > **THE OPEN WALK**
 > Forty paces, while the watch changes above you in the square.
@@ -673,6 +685,7 @@
 **Designer's notes**
 - **Played beats:** a Choice of lookout, a notice line, the Challenge, three acts. One roll.
 - **Phase 3, 24 Oct:** one harder if you crept in close to their fire on Day 5.
+- **25 Oct (Fake Guru: "fix the four days w no real choice"):** the lookout is still a free pick (it only names who keeps watch); the real road is now how you cross. Going low sets the Challenge to Agility and the walkway sounds hollow under your knee; walking it like a watchman sets it to Charm and shows the watch in the square facing the hall, never the wall. Both pay off minutes later, when the map points into the wall the Order never found. Each road is the friend's own piece for the fire.
 - **The party:** the friend the player posts keeps the watch; the map passes through every friend's hands. Nobody speaks, and tonight that is the point.
 - **Changed from the current script:** today there is no play at all. Now the crossing is rolled, the lookout is chosen, and the map is passed in silence (approved fact 17; TV's decision of 4 Oct).
 - **The last fragment is not quoted.** Gathering 5 turns on its words, and its lock words are *fell* and *joined*.

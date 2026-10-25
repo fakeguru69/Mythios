@@ -628,6 +628,44 @@ export default function OnlineCampfire({
     );
   }
 
+  // Garrick's three hosting lines (docs/design/garrick-fire-host-lines-draft-25oct.md, approved 25 Oct): each said once a
+  // night, filled with real names, and never a word on whether a piece is right.
+  const hereNow = members.filter((m) => m.visitedAt);
+  if (garrick && together && hereNow.length >= 2) {
+    // The fire splits: two friends by name, seen only by a friend who has pinned (readings come after your own pin).
+    if (t?.leaning === 'split' && t.readings) {
+      const sorted = [...t.readings].sort((x, y) => x.name.localeCompare(y.name));
+      const a = sorted[0];
+      const b = sorted.find((r) => r.reading !== a?.reading);
+      if (a && b)
+        sayOnce('split-pair', `${a.name} leans one way and ${b.name} the other. ${b.name}, what would it take to bring you round?`, later(arrival, 16)).forEach(
+          (e, j) => add(e.at, `split-pair-${j}`, <GarrickBubble text={e.text} />)
+        );
+    }
+    // A friend at the fire has laid nothing while two or more pieces are down.
+    if (pieces.length >= 2) {
+      const quiet = [...hereNow]
+        .sort((x, y) => (x.visitedAt! < y.visitedAt! ? -1 : 1))
+        .find((m) => !pieces.some((p) => p.by.some((b) => b.id === m.id)));
+      const secondAt = pieces.map((p) => p.at).filter(Boolean).sort()[1];
+      if (quiet)
+        sayOnce('quiet-friend', `${quiet.name}, you've been quiet all night. Whatever you brought back keeps better on the table than in your coat.`, later(secondAt ?? arrival, 8)).forEach(
+          (e, j) => add(e.at, `quiet-friend-${j}`, <GarrickBubble text={e.text} />)
+        );
+    }
+    // A piece has sat on the table ten minutes with no Agree, no Doubt and nothing said after it.
+    const saidAfter = (at: string) =>
+      (t?.thread ?? []).some((m) => m.kind === 'say' && m.at > at) ||
+      messages.some((m) => m.created_at > at && m.kind !== 'notice' && m.speaker !== 'garrick');
+    const unanswered = pieces
+      .filter((p) => p.at && p.by.length && !p.agree.length && !p.doubt.length && Date.now() - new Date(p.at).getTime() > 10 * 60000 && !saidAfter(p.at))
+      .sort((x, y) => (x.at! < y.at! ? -1 : 1))[0];
+    if (unanswered)
+      sayOnce('unanswered', `${unanswered.by[0].name}'s piece has been on the table a while: ${unanswered.title}. Nobody's picked it up yet.`, later(unanswered.at!, 10 * 60000)).forEach(
+        (e, j) => add(e.at, `unanswered-${j}`, <GarrickBubble text={e.text} />)
+      );
+  }
+
   // Words found, and the whole fragment read aloud with its open question in the stream.
   if (frag) {
     const wordTimes = together
