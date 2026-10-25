@@ -1,5 +1,7 @@
 # Gatherings 2 to 5: one heartbeat each (draft for Fake Guru, 25 Oct 2026)
 
+*Renamed in the 25 Oct audit: the moment is now "One breath", and its lines say "One breath before…". "Heartbeat" may not be said before Week 4 Day 6 (CLAUDE.md §6), and Gatherings 1 to 3 come before it. The text below is the draft as approved; the episode files hold the words in play.*
+
 Phase 4, part 1, the rest. Gathering 1's moment is built, and these four were built and loaded live on 25 Oct (Fake Guru: "Yes"). Each follows Gathering 1's model exactly:
 
 - It comes just before the United Effort begins, as its own short part, "One heartbeat" (not when alone).

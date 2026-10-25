@@ -1832,9 +1832,9 @@ Clue found, "A second man":
 >
 > There is no warning. A timber that has waited fifty years goes all at once. Dev drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below Dev's boots there is nothing but the sound of the river, a long way down in the dark.
 
-#### One heartbeat
+#### One breath
 
-> Mei is nearest. One heartbeat before the boards go again.
+> Mei is nearest. One breath before the boards go again.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
 
@@ -3628,9 +3628,9 @@ Clue found, "Your own print":
 >
 > Every fall changes what is holding what. So one of you looks, and calls it, and the nearest boot does the rest. Then the next of you looks again.
 
-#### One heartbeat
+#### One breath
 
-> Mei has the black book in one hand and a lamp in the other. One heartbeat before the first of their lamps reaches the mouth of the tunnel.
+> Mei has the black book in one hand and a lamp in the other. One breath before the first of their lamps reaches the mouth of the tunnel.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
 

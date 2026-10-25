@@ -1497,9 +1497,9 @@ Clue found, "A stride wider":
 >
 > So you answer for them. One post, one voice. They have kept this watch together all their lives, and they know how each of them sounds. The wind is all that is on your side.
 
-#### One heartbeat
+#### One breath
 
-> Mei is kneeling beside the dying watchman. One heartbeat before the voice on the hill calls the next post.
+> Mei is kneeling beside the dying watchman. One breath before the voice on the hill calls the next post.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
 

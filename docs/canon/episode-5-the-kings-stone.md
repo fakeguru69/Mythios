@@ -760,11 +760,11 @@
 >
 > So you answer for them. One post, one voice. They have kept this watch together all their lives, and they know how each of them sounds. The wind is all that is on your side.
 
-### One heartbeat *(not when alone)*
+### One breath *(not when alone)*
 
-*Phase 4 (25 Oct; Fake Guru: "Yes" to `docs/design/gatherings2to5-moments-draft-25oct.md`): the night's "tell them what to do" moment, on Gathering 1's model. The friend who acts is picked at random, leaving out the one who rolled the Approach (in a party of two, either). Alone, this part is skipped.*
+*Phase 4 (25 Oct; Fake Guru: "Yes" to `docs/design/gatherings2to5-moments-draft-25oct.md`): the night's "tell them what to do" moment ("One breath": "heartbeat" is kept for the king's, from Week 4 Day 6), on Gathering 1's model. The friend who acts is picked at random, leaving out the one who rolled the Approach (in a party of two, either). Alone, this part is skipped.*
 
-> Mei is kneeling beside the dying watchman. One heartbeat before the voice on the hill calls the next post.
+> Mei is kneeling beside the dying watchman. One breath before the voice on the hill calls the next post.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
 
@@ -806,7 +806,7 @@
 *The Verse is read from the page, in the hidden room. There is no time to Look Closer. And the hill is awake a day early: **Week 6 Day 1's Challenge is two harder.***
 
 
-*If the heartbeat was HOLD HIS HAND:*
+*If the breath was HOLD HIS HAND:*
 > Whatever came after, he did not let go of the hand that held his until the last post had been called.
 
 ### The Verse of the Binding

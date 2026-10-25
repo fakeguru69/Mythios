@@ -679,7 +679,7 @@ const FORK_BRANCH_META = {
     changed: 'You let Mei shield the map from the wind and read — watching the dark plain below, you saw the single lamp first.',
     roadFind: {
       title: 'Shielded from the ridge wind',
-      text: 'While Mei turned her back to the wind to read the map twice for the ones on the slope below, you had your eyes on the black ground where a single lamp began to move toward the Kiln.',
+      text: 'While Mei stood in the wind, reading the map twice for the ones on the slope below, you had your eyes on the black ground where a single lamp began to move toward the Kiln.',
     },
   },
   // Fork · W4D1 (Not Finished — reading the ash vs taking Wren up to the air first)

@@ -1,5 +1,7 @@
 # Gathering 1: one heartbeat, one act (draft for Fake Guru, 25 Oct 2026)
 
+*Renamed in the 25 Oct audit: the moment is now "One breath", and its lines say "One breath before…". "Heartbeat" may not be said before Week 4 Day 6 (CLAUDE.md §6), and Gatherings 1 to 3 come before it. The text below is the draft as approved; the episode files hold the words in play.*
+
 Phase 4, part 1, option (a): one "tell them what to do" moment in every Gathering, on Gathering 6's model (one friend
 acts, the others have thirty seconds to say what). This is Gathering 1's, for you to read before anything is built.
 Nothing here is in the game yet.
