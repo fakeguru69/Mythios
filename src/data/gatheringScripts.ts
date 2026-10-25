@@ -625,13 +625,87 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "section": "The United Effort"
       },
       {
+        "cond": {
+          "on": "together"
+        },
+        "t": "section",
+        "title": "One heartbeat",
+        "section": "One heartbeat"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "say",
+        "text": "{F1} has the black book in one hand and a lamp in the other. One heartbeat before the first of their lamps reaches the mouth of the tunnel.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
+        "section": "One heartbeat"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "pick",
+        "vote": false,
+        "question": "",
+        "options": [
+          {
+            "label": "TAKE THE LAMP TO THE PROPS",
+            "desc": "see which timber is holding it, before anyone else has to"
+          },
+          {
+            "label": "DOUSE THE LAMPS",
+            "desc": "put out every light in the room but one"
+          },
+          {
+            "label": "STAND FAST",
+            "desc": ""
+          }
+        ],
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} is at the tunnel's mouth before the rest of you have moved, lamp held high, reading the green timber.",
+        "cond": {
+          "on": "pick",
+          "option": 0,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} pinches out the lamps one after another, until only one is left, cupped in a hand. In the tunnel the coming lights falter, as if the dark had surprised them.",
+        "cond": {
+          "on": "pick",
+          "option": 1,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} does not move, and nor do any of you. Whatever comes out of that tunnel, it will find you together.",
+        "cond": {
+          "on": "pick",
+          "option": 2,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "section",
+        "title": "The breach",
+        "section": "The breach"
+      },
+      {
         "t": "ue",
-        "section": "The United Effort"
+        "section": "The breach"
       },
       {
         "t": "ueEnd",
         "won": true,
-        "section": "The United Effort"
+        "section": "The breach"
       },
       {
         "t": "say",
@@ -640,12 +714,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "ue",
           "won": true
         },
-        "section": "The United Effort"
+        "section": "The breach"
       },
       {
         "t": "ueEnd",
         "won": false,
-        "section": "The United Effort"
+        "section": "The breach"
       },
       {
         "t": "say",
@@ -654,7 +728,17 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "ue",
           "won": false
         },
-        "section": "The United Effort"
+        "section": "The breach"
+      },
+      {
+        "t": "say",
+        "text": "You read what comes next by the one lamp that is left, passed from hand to hand.",
+        "cond": {
+          "on": "pick",
+          "option": 1,
+          "together": true
+        },
+        "section": "The breach"
       },
       {
         "t": "section",
@@ -1037,13 +1121,87 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "section": "The United Effort"
       },
       {
+        "cond": {
+          "on": "together"
+        },
+        "t": "section",
+        "title": "One heartbeat",
+        "section": "One heartbeat"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "say",
+        "text": "{F1} is at the foot of the glass, nearest to her. One heartbeat before the slope moves again.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
+        "section": "One heartbeat"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "pick",
+        "vote": false,
+        "question": "",
+        "options": [
+          {
+            "label": "GO UP FIRST",
+            "desc": "onto the glass, with the rope's end, before anyone can stop you"
+          },
+          {
+            "label": "CALL HER NAME",
+            "desc": "the name on her mother's lips in Ashcombe, loud enough to carry"
+          },
+          {
+            "label": "KEEP STILL",
+            "desc": ""
+          }
+        ],
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} is three steps up the glass before anyone can say a word, rope in one fist, blade in the other.",
+        "cond": {
+          "on": "pick",
+          "option": 0,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "*\"Wren.\"* High on the slope the girl turns her head, and for the first time since the fight began, she stops trying to climb away from you.",
+        "cond": {
+          "on": "pick",
+          "option": 1,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} does not move. Nobody does. The glass settles with a sound like plates being stacked, and goes quiet.",
+        "cond": {
+          "on": "pick",
+          "option": 2,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "section",
+        "title": "The scree",
+        "section": "The scree"
+      },
+      {
         "t": "ue",
-        "section": "The United Effort"
+        "section": "The scree"
       },
       {
         "t": "ueEnd",
         "won": true,
-        "section": "The United Effort"
+        "section": "The scree"
       },
       {
         "t": "say",
@@ -1052,12 +1210,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "ue",
           "won": true
         },
-        "section": "The United Effort"
+        "section": "The scree"
       },
       {
         "t": "ueEnd",
         "won": false,
-        "section": "The United Effort"
+        "section": "The scree"
       },
       {
         "t": "say",
@@ -1066,32 +1224,42 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "ue",
           "won": false
         },
-        "section": "The United Effort"
+        "section": "The scree"
       },
       {
         "t": "say",
         "text": "Her other fist is shut so tight the knuckles are white. For a long while she will not open it, for anyone.\n\nWhen she does, at last, there is a chip of black glass inside, polished smooth by her thumb.\n\nYou think of her mother in Ashcombe, almost smiling: *She never lost it.*",
-        "section": "The United Effort"
+        "section": "The scree"
       },
       {
         "t": "act",
         "label": "GIVE HER BACK THE EIGHT",
-        "section": "The United Effort"
+        "section": "The scree"
       },
       {
         "t": "say",
         "text": "{F3} puts the eight from the ridges into her other hand, one by one. She looks at them, and then at {F3}, and closes her hand over them.",
-        "section": "The United Effort"
+        "section": "The scree"
       },
       {
         "t": "say",
         "text": "Garrick takes off his coat, puts it round her, and says nothing at all. It comes down past her knees.",
-        "section": "The United Effort"
+        "section": "The scree"
       },
       {
         "t": "say",
         "text": "Behind the stone table: the same hollow, cut to the same shape. Empty. Its rim has been swept clean. The rubbing, laid against it, fits.",
-        "section": "The United Effort"
+        "section": "The scree"
+      },
+      {
+        "t": "say",
+        "text": "When she is down at last, she does not go to the nearest of you. She goes to the one who called her by her name.",
+        "cond": {
+          "on": "pick",
+          "option": 1,
+          "together": true
+        },
+        "section": "The scree"
       },
       {
         "t": "section",
@@ -1537,13 +1705,87 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "section": "The United Effort"
       },
       {
+        "cond": {
+          "on": "together"
+        },
+        "t": "section",
+        "title": "One heartbeat",
+        "section": "One heartbeat"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "say",
+        "text": "{F1} is nearest the gate. The water is at his chin. One heartbeat before he has to choose between the breath and the bars.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
+        "section": "One heartbeat"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "pick",
+        "vote": false,
+        "question": "",
+        "options": [
+          {
+            "label": "GO DOWN FOR THE PIN",
+            "desc": "under the water, now, for as long as one breath lasts"
+          },
+          {
+            "label": "HOLD HIS HEAD UP",
+            "desc": "kneel in the water behind him and keep his face clear"
+          },
+          {
+            "label": "STAY WHERE YOU ARE",
+            "desc": ""
+          }
+        ],
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} is under before anyone can say a word. The cold closes over, and the grey water churns where {F1} went.",
+        "cond": {
+          "on": "pick",
+          "option": 0,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} kneels in the black water behind him and takes his head in both hands, and lifts. He does not thank anyone. He breathes.",
+        "cond": {
+          "on": "pick",
+          "option": 1,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} does not move. The water laps at his chin, and goes back, and comes again.",
+        "cond": {
+          "on": "pick",
+          "option": 2,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "section",
+        "title": "The water-gate",
+        "section": "The water-gate"
+      },
+      {
         "t": "ue",
-        "section": "The United Effort"
+        "section": "The water-gate"
       },
       {
         "t": "say",
         "text": "Two of you take his shoulders. Somebody finds a knife with a good point.",
-        "section": "The United Effort"
+        "section": "The water-gate"
       },
       {
         "t": "say",
@@ -1551,12 +1793,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "cond": {
           "on": "alone"
         },
-        "section": "The United Effort"
+        "section": "The water-gate"
       },
       {
         "t": "ueEnd",
         "won": true,
-        "section": "The United Effort"
+        "section": "The water-gate"
       },
       {
         "t": "say",
@@ -1565,12 +1807,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "ue",
           "won": true
         },
-        "section": "The United Effort"
+        "section": "The water-gate"
       },
       {
         "t": "ueEnd",
         "won": false,
-        "section": "The United Effort"
+        "section": "The water-gate"
       },
       {
         "t": "say",
@@ -1579,7 +1821,17 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "ue",
           "won": false
         },
-        "section": "The United Effort"
+        "section": "The water-gate"
+      },
+      {
+        "t": "say",
+        "text": "Whatever happened at the gate, the one who held his head is still kneeling there in the black water, soaked to the shoulders.",
+        "cond": {
+          "on": "pick",
+          "option": 1,
+          "together": true
+        },
+        "section": "The water-gate"
       },
       {
         "t": "section",
@@ -2039,18 +2291,92 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
         "section": "The United Effort"
       },
       {
+        "cond": {
+          "on": "together"
+        },
+        "t": "section",
+        "title": "One heartbeat",
+        "section": "One heartbeat"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "say",
+        "text": "{F1} is kneeling beside the dying watchman. One heartbeat before the voice on the hill calls the next post.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
+        "section": "One heartbeat"
+      },
+      {
+        "cond": {
+          "on": "together"
+        },
+        "t": "pick",
+        "vote": false,
+        "question": "",
+        "options": [
+          {
+            "label": "ANSWER THE FIRST CALL",
+            "desc": "in his voice, before anyone else has to"
+          },
+          {
+            "label": "HOLD HIS HAND",
+            "desc": "so that he is not alone while you speak for his dead"
+          },
+          {
+            "label": "KEEP SILENT",
+            "desc": ""
+          }
+        ],
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} draws one breath and answers up the hill, low and flat and unhurried, the way he did. The voice on the hill says nothing, and moves on.",
+        "cond": {
+          "on": "pick",
+          "option": 0,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} takes the watchman's hand. It is cold already, and it closes, once.",
+        "cond": {
+          "on": "pick",
+          "option": 1,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "say",
+        "text": "{F1} says nothing. The voice on the hill waits, and the wind fills the gap.",
+        "cond": {
+          "on": "pick",
+          "option": 2,
+          "together": true
+        },
+        "section": "One heartbeat"
+      },
+      {
+        "t": "section",
+        "title": "The roll-call",
+        "section": "The roll-call"
+      },
+      {
         "t": "ue",
-        "section": "The United Effort"
+        "section": "The roll-call"
       },
       {
         "t": "say",
         "text": "*\"Keep the dark.\"*",
-        "section": "The United Effort"
+        "section": "The roll-call"
       },
       {
         "t": "ueEnd",
         "won": true,
-        "section": "The United Effort"
+        "section": "The roll-call"
       },
       {
         "t": "say",
@@ -2059,12 +2385,12 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "ue",
           "won": true
         },
-        "section": "The United Effort"
+        "section": "The roll-call"
       },
       {
         "t": "ueEnd",
         "won": false,
-        "section": "The United Effort"
+        "section": "The roll-call"
       },
       {
         "t": "say",
@@ -2073,7 +2399,17 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "ue",
           "won": false
         },
-        "section": "The United Effort"
+        "section": "The roll-call"
+      },
+      {
+        "t": "say",
+        "text": "Whatever came after, he did not let go of the hand that held his until the last post had been called.",
+        "cond": {
+          "on": "pick",
+          "option": 1,
+          "together": true
+        },
+        "section": "The roll-call"
       },
       {
         "t": "section",

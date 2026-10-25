@@ -285,7 +285,18 @@ function buildGathering(week, lines) {
       continue;
     }
     if (/^\*[^*]/.test(l)) {
-      const cond = labelCond(l, week);
+      // "One heartbeat" (Phase 4): a label naming one of the heartbeat's buttons is that branch; "If the heartbeat was
+      // DOUSE THE LAMPS" later in the night is the same branch's echo. Both only with friends.
+      let cond;
+      const hb = [...steps].reverse().find((x) => x.t === 'pick' && x.section === 'One heartbeat');
+      if (hb) {
+        const bare = (x) => x.toUpperCase().replace(/[^A-Z' ]/g, '').replace(/\s+/g, ' ').trim();
+        const lab = l.replace(/^\*|\*$/g, '').replace(/:\*?$/, '').replace(/:$/, '').trim();
+        const echo = lab.match(/^If the heartbeat was (.+)$/);
+        const oi = hb.options.findIndex((o) => bare(o.label) === bare(echo ? echo[1] : lab));
+        if (oi >= 0 && (echo || section === 'One heartbeat')) cond = { on: 'pick', option: oi, together: true };
+      }
+      if (!cond) cond = labelCond(l, week);
       // "Then, alone on the screen" starts a new passage: a note just before it about untapped buttons
       // ("If a minute passes with either untapped…") has no line of its own and must not swallow it.
       if (cond && cond.alone) { pendingAlone = true; pendingCond = undefined; }

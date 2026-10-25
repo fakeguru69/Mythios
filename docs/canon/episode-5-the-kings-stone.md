@@ -760,6 +760,31 @@
 >
 > So you answer for them. One post, one voice. They have kept this watch together all their lives, and they know how each of them sounds. The wind is all that is on your side.
 
+### One heartbeat *(not when alone)*
+
+*Phase 4 (25 Oct; Fake Guru: "Yes" to `docs/design/gatherings2to5-moments-draft-25oct.md`): the night's "tell them what to do" moment, on Gathering 1's model. The friend who acts is picked at random, leaving out the one who rolled the Approach (in a party of two, either). Alone, this part is skipped.*
+
+> Mei is kneeling beside the dying watchman. One heartbeat before the voice on the hill calls the next post.
+>
+> **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*After thirty seconds, in Mei's own thread, and Mei's alone to choose. Mei has twenty seconds; no tap is* keep silent*:*
+
+> `[ANSWER THE FIRST CALL]` in his voice, before anyone else has to
+> `[HOLD HIS HAND]` so that he is not alone while you speak for his dead
+> `[KEEP SILENT]`
+
+*Answer the first call:*
+> Mei draws one breath and answers up the hill, low and flat and unhurried, the way he did. The voice on the hill says nothing, and moves on.
+
+*Hold his hand:*
+> Mei takes the watchman's hand. It is cold already, and it closes, once.
+
+*Keep silent:*
+> Mei says nothing. The voice on the hill waits, and the wind fills the gap.
+
+### The roll-call
+
 **The two things:** The Roll-Call 100 · Their Trust 100
 
 > *"Keep the dark."*
@@ -779,6 +804,10 @@
 > There is no time. His eyes are still on the hall, but they no longer see it. The page comes gently out of his fist, and you are inside the wall before the first lantern reaches the gate.
 
 *The Verse is read from the page, in the hidden room. There is no time to Look Closer. And the hill is awake a day early: **Week 6 Day 1's Challenge is two harder.***
+
+
+*If the heartbeat was HOLD HIS HAND:*
+> Whatever came after, he did not let go of the hand that held his until the last post had been called.
 
 ### The Verse of the Binding
 

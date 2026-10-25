@@ -834,6 +834,31 @@
 >
 > Every fall changes what is holding what. So one of you looks, and calls it, and the nearest boot does the rest. Then the next of you looks again.
 
+### One heartbeat *(not when alone)*
+
+*Phase 4 (25 Oct; Fake Guru: "Yes" to `docs/design/gatherings2to5-moments-draft-25oct.md`): the night's "tell them what to do" moment, on Gathering 1's model. The friend who acts is picked at random, leaving out the one who rolled the Approach (in a party of two, either). Alone, this part is skipped.*
+
+> Mei has the black book in one hand and a lamp in the other. One heartbeat before the first of their lamps reaches the mouth of the tunnel.
+>
+> **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*After thirty seconds, in Mei's own thread, and Mei's alone to choose. Mei has twenty seconds; no tap is* stand fast*:*
+
+> `[TAKE THE LAMP TO THE PROPS]` see which timber is holding it, before anyone else has to
+> `[DOUSE THE LAMPS]` put out every light in the room but one
+> `[STAND FAST]`
+
+*Take the lamp to the props:*
+> Mei is at the tunnel's mouth before the rest of you have moved, lamp held high, reading the green timber.
+
+*Douse the lamps:*
+> Mei pinches out the lamps one after another, until only one is left, cupped in a hand. In the tunnel the coming lights falter, as if the dark had surprised them.
+
+*Stand fast:*
+> Mei does not move, and nor do any of you. Whatever comes out of that tunnel, it will find you together.
+
+### The breach
+
 **The two things:** The Tunnel 100 · The Room 100
 
 > **Mei. Take the lamp. Which one is holding it up?**
@@ -858,6 +883,10 @@
 
 *If the room was lost, the three clumps are posted as three cards, each showing its first line. Any friend taps the one to read next. A wrong tap costs nothing:*
 > *Not that one. It begins in the middle of something.*
+
+
+*If the heartbeat was DOUSE THE LAMPS:*
+> You read what comes next by the one lamp that is left, passed from hand to hand.
 
 ### The six, read together
 
