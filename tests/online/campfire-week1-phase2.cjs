@@ -48,7 +48,8 @@ check('W1D4 Fenmark quiet night (opener: null, narratedSilence)', mig105.include
 // 18-20: fire_table leaning >= 2, casebook unsolvedClick, LastNight [data-unsolved-puzzle]
 check('fire_table leaning requires >= 2 agreeing pins', mig105.includes('>= 2 then \'same\''));
 check('casebook includes unsolvedClick', mig105.includes("'unsolvedClick'"));
-check('LastNight.tsx renders [data-unsolved-puzzle]', lastNightSrc.includes('data-unsolved-puzzle'));
+// 24 Oct (Phase 5): the morning card no longer prints the unsolved pair's answer; it stays in the casebook.
+check('LastNight.tsx keeps the unsolved answer off the morning card', !lastNightSrc.includes('data-unsolved-puzzle') && lastNightSrc.includes('The morning never prints an answer'));
 
 // 21-26: Read-backs on D2, D4, D5, and Gathering 1 (D4, D5, D6)
 check('party_read_backs covers W1D2, W1D4, and W1D5', mig105.includes('So the list is hers.') && mig105.includes('He has half a day on you') && mig105.includes('About the last one.'));

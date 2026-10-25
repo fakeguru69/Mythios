@@ -54,5 +54,5 @@ Fake Guru then pasted the whole report. Slips 3, 5, 8, 11 and 12 were already fi
 | 10 | Day 6: the courier pays his bill twice for one road, and is "a courier" to the other road | Real | The find stops at the mug; the shared line is "a man in a riding-cloak, who came in for a bed, settles his bill" |
 | — | Party of two: three lines name two friends | Already handled: `smallPartyLines.ts` has a short version of each, and the check passes | Kept |
 | — | One breath: make the edges visible before the choice | Agreed | Under the advice buttons: what each pick does |
-| — | One breath: THE NEW PROP to +20 | Not taken. +10 absorbs about half a failed roll; GO OUT NOW's +4 is worth about 8; STAY is about 2 a friend. They are close at four friends. | Kept at +10, for the play-test |
+| — | One breath: THE NEW PROP to +20 | Not taken. +10 absorbs about half a failed roll; GO OUT NOW's +4 is worth about 8; STAY is about 2 a friend. They are close at four friends. | Kept at +10 (Fake Guru: "use your judgement"; Claude kept +4 and +10), for the play-test |
 | — | Day 2's three conversation choices give the same reply | Kept, as above | — |

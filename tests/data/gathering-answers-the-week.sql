@@ -44,3 +44,7 @@ select public.g_advance(:'P', 1);
 select 'go out now (expect 0, Mei first, risk 100)', state -> 'ue' ->> 'breath', public.g_name(:'P', (state -> 'ue' ->> 'next')::uuid), state -> 'ue' ->> 'risk' from gatherings where party_id = :'P' and week = 1;
 select 'her first roll (expect 4)', (public.g_ue_roll(:'P', state, public.g_script(:'P', 1)) -> 'ue' -> 'rolls' -> 0 ->> 'edge') from gatherings where party_id = :'P' and week = 1;
 rollback;
+
+-- 0137: a party that made no call at Day 6's fire hears neither call line (the condition is false, never unknown).
+select 'no call made (expect f f)', public.g_cond('{"on":"call","day":6,"reading":"A"}'::jsonb, '{"week":{"took":[],"calls":{}}}'::jsonb),
+  public.g_cond('{"on":"call","day":6,"reading":"B"}'::jsonb, '{}'::jsonb);

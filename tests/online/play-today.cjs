@@ -13,8 +13,7 @@ const log = (...a) => { console.log(...a); fs.appendFileSync(`${S}/log.txt`, a.j
   const body = () => p.locator('body').innerText();
   const click = async (name) => { await p.getByRole('button', { name, exact: true }).first().click(); await p.waitForTimeout(1200); };
   await p.goto('http://localhost:3000/?online=1'); await p.waitForTimeout(1500);
-  await click('START A PARTY'); await click('USE EMAIL AND A PASSWORD');
-  await p.getByRole('button', { name: 'Have an account? Sign in' }).click();
+  await p.getByRole('button', { name: 'Already playing? Sign in' }).click(); await p.waitForTimeout(800);
   await p.getByPlaceholder('Email').fill(`${WHO}@mythios.test`); await p.getByPlaceholder('Password').fill(process.env.MYTHIOS_TEST_PASSWORD);
   await click('SIGN IN'); await p.waitForTimeout(2000);
   await enterParty(p, PARTY); await p.waitForTimeout(1500); // the STORY tab opens on today's chapter
