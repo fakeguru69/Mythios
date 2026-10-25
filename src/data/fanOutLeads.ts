@@ -2058,8 +2058,13 @@ export const FAN_OUT_LATE_LINES: string[] = [
   "By the time you find it, the fire is the only light left."
 ];
 
+/** Days whose last light is already after dark (Week 1 audit, 25 Oct): they skip the two lines about the light going. */
+const NIGHT_LAST_LIGHT: readonly string[] = ['1-5', '2-5', '6-3'];
+
 export function lateLineFor(week: number, day: number): string {
-  return FAN_OUT_LATE_LINES[((week - 1) * 6 + (day - 1)) % FAN_OUT_LATE_LINES.length];
+  let i = ((week - 1) * 6 + (day - 1)) % FAN_OUT_LATE_LINES.length;
+  if (NIGHT_LAST_LIGHT.includes(`${week}-${day}`) && i < 2) i += 2;
+  return FAN_OUT_LATE_LINES[i];
 }
 
 /**

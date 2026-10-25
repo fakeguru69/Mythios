@@ -965,7 +965,7 @@ Clue found, "The notched stick":
 
 *⚙ Whatever you picked, every player reads this:*
 
-> Then he stops, and for a while there is only the gate knocking on its post. He looks once down the empty lane. Then it comes out low and fast.
+> For a while there is only the gate knocking on its post. He looks once down the empty lane. Then it comes out low and fast.
 >
 > *"Three nights ago. They came in the dark with no torches. They did not knock anything over. They did not say anything they did not have to. Like they'd done it before."*
 >
@@ -1286,7 +1286,7 @@ Clue found, "Past three doors":
 
 *⚙ If you pick [SHOW HER YOUR EMPTY HANDS]:*
 
-> The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve. He came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes go past you to the carved horse at your belt, and stop.
+> The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve. He came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes drop to the little carved horse showing at the mouth of your coat pocket, and stop. You draw it out and hold it toward her.
 
 *⚙ Then the card "What this changed":*
 
@@ -1298,7 +1298,7 @@ Clue found, "Past three doors":
 
 *⚙ If you pick [TELL HER WHO YOU JUST DROVE OFF]:*
 
-> The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face. Whatever she keeps hidden here, it is under that stone, and not in the shed. Then her eyes go past you to the carved horse at your belt, and stop.
+> The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face. Whatever she keeps hidden here, it is under that stone, and not in the shed. Then her eyes drop to the little carved horse showing at the mouth of your coat pocket, and stop. You draw it out and hold it toward her.
 
 *⚙ Then the card "What this changed":*
 
@@ -1408,7 +1408,7 @@ Clue found, "The worn bar":
 
 > The bar on her door has worn its cleats deep and pale. She has barred it every night for a long time.
 
-*⚙ On a failed roll, the clue still comes, with: "It takes you until full dark, but you find it."*
+*⚙ On a failed roll, the clue still comes, with: "You go over the same ground twice before you see it."*
 
 ### The Campfire: The old charcoal camp
 
@@ -1598,7 +1598,7 @@ Clue found, "The worn bar":
 
 *⚙ If you pick [LOOK AT THE EXTRA CUP]:*
 
-> You look down at the extra cup at the corner of the table — poured to the same measure as the rest, where he has set one every night since the Hollow Wake. He catches your eye across the rim of the jug.
+> You look down at the extra cup at the corner of the table — poured to the same measure as the rest, just as he set one at the Hollow Wake. He catches your eye across the rim of the jug.
 >
 > *"Family habit. We always pour one for whoever can't be with us."*
 
@@ -1638,13 +1638,13 @@ Clue found, "The worn bar":
 
 *⚙ This road's own find, "The listening courier" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> While your friend read the map aloud in the roadside inn, a man in a riding-cloak by the chimney held his mug still at the mention of the bend above the ford, then paid his bill without taking a bed.
+> While your friend read the map aloud in the roadside inn, a man in a riding-cloak by the chimney held his mug still at the mention of the bend above the ford.
 
 *⚙ Whatever you picked, every player reads this:*
 
 > It is read out, twice, slowly, so that everybody has it. The room is loud enough that you all lean in close to hear.
 >
-> Across the room a courier who came in for a bed settles his bill without taking one. He is gone within the hour.
+> Across the room a man in a riding-cloak, who came in for a bed, settles his bill without taking one. He is gone within the hour.
 
 *⚙ The Pull (why tomorrow cannot wait):*
 
@@ -1896,7 +1896,7 @@ Clue found, "A second man":
 2. **THE NEW PROP**: wrench the new pit-prop loose and lay it across the hole
 3. **STAY WHERE YOU ARE**
 
-*⚙ What the pick does in the United Effort that follows (shown on its card): 1, +4 on the chosen friend's first roll; 2, the thing at risk starts 10 higher; 3, +1 on every friend's first roll.*
+*⚙ What the pick does in the United Effort that follows (shown under the buttons and on the job's card): 1, +4 on the chosen friend's first roll; 2, the thing at risk starts 10 higher; 3, +1 on every friend's first roll.*
 
 *⚙ If option 1 was picked:*
 

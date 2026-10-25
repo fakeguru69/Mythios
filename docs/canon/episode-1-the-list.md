@@ -500,7 +500,7 @@
 >
 > Because you do not press him, his eyes go where his thoughts are: down the lane to the swinging gate, and then to the third house on the left, where a child's stool still sits under an open shutter.
 
-> Then he stops, and for a while there is only the gate knocking on its post. He looks once down the empty lane. Then it comes out low and fast.
+> For a while there is only the gate knocking on its post. He looks once down the empty lane. Then it comes out low and fast.
 >
 > *"Three nights ago. They came in the dark with no torches. They did not knock anything over. They did not say anything they did not have to. Like they'd done it before."*
 >
@@ -641,10 +641,10 @@
 `[SHOW HER YOUR EMPTY HANDS]` `[TELL HER WHO YOU JUST DROVE OFF]` `[HOLD OUT THE CARVED HORSE]`
 
 *Show her your empty hands:*
-> The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve. He came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes go past you to the carved horse at your belt, and stop.
+> The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve. He came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes drop to the little carved horse showing at the mouth of your coat pocket, and stop. You draw it out and hold it toward her.
 
 *Tell her who you just drove off:*
-> The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face. Whatever she keeps hidden here, it is under that stone, and not in the shed. Then her eyes go past you to the carved horse at your belt, and stop.
+> The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face. Whatever she keeps hidden here, it is under that stone, and not in the shed. Then her eyes drop to the little carved horse showing at the mouth of your coat pocket, and stop. You draw it out and hold it toward her.
 
 *The horse:*
 > The axe comes down all at once. Before she even asks your names, her fingers go to her belt, unfasten a small river-stone charm bound in iron wire, worn smooth with keeping, and press it into your palm as she takes the little horse from you.
@@ -796,7 +796,7 @@
 > *"Family habit. We always pour one for whoever can't be with us."*
 
 *Look at the extra cup:*
-> You look down at the extra cup at the corner of the table — poured to the same measure as the rest, where he has set one every night since the Hollow Wake. He catches your eye across the rim of the jug.
+> You look down at the extra cup at the corner of the table — poured to the same measure as the rest, just as he set one at the Hollow Wake. He catches your eye across the rim of the jug.
 >
 > *"Family habit. We always pour one for whoever can't be with us."*
 
@@ -812,7 +812,7 @@
 
 > It is read out, twice, slowly, so that everybody has it. The room is loud enough that you all lean in close to hear.
 >
-> Across the room a courier who came in for a bed settles his bill without taking one. He is gone within the hour.
+> Across the room a man in a riding-cloak, who came in for a bed, settles his bill without taking one. He is gone within the hour.
 
 > **Cross at first light. You will be there by nightfall. Whatever is at the place the map marks, the season for it is now.**
 

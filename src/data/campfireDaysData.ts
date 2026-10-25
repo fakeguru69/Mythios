@@ -60,9 +60,9 @@ export const CUP_NIGHT_IDS: readonly string[] = [
 
 export const CUP_NIGHT_LINES: Readonly<Record<string, string>> = {
   '1-2':
-    'Garrick pours one extra tin cup and sets it at the empty place at the edge of the firelight without a word.',
+    'The extra cup still stands at the empty end of the table, untouched, while the fire burns down.',
   '1-6':
-    'At the corner of the table, Garrick pours the extra tin cup to the exact same measure as the rest and leaves it at the empty place.',
+    'At the corner of the table the extra cup stands poured to the same measure as the rest, and nobody touches it.',
   '2-1':
     'Before he sits by the coals, Garrick sets the extra tin cup at the empty place again, just as he did at the inn.',
   '2-6':

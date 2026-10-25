@@ -631,7 +631,7 @@ Clue found, "Warm low down":
 
 > Move your palm up the wall and the stone cools. The warmth is only low down, at the height of your knee and below.
 
-*⚙ On a failed roll, the clue still comes, with: "It takes you until full dark, but you find it."*
+*⚙ On a failed roll, the clue still comes, with: "You go over the same ground twice before you see it."*
 
 ### The Campfire: The great square, four nights left
 
