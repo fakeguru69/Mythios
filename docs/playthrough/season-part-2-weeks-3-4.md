@@ -2810,6 +2810,36 @@ Clue found, "The scratched line":
 
 > Fog comes down on the Stillwater in the morning, thick and white. You row into it in her skiff, and the shore is gone behind you in a dozen strokes. After that there is only the creak of the oars, the drip off the blades, and the grey shadow of the tower somewhere off to one side.
 
+> Somewhere in the white is the reed island, and there are two ways to come at it. You can row for the tower's grey shadow while it lasts, long strokes and straight, and every one of them carried out across the still water. Or you can ship the oars, trail a line off the stern, and let the lake's own slow current take you, as quietly as a leaf, wherever it means to go.
+
+*⚙ A choice: [ROW FOR THE TOWER] or [DRIFT WITH THE CURRENT]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [ROW FOR THE TOWER]:*
+
+> You row for it, long and even, while the grey shadow stands off to one side. When you rest on the oars to listen, the fog is full of the sound you have been making. And somewhere out in the white, a moment after yours, another pair of oars goes still.
+
+*⚙ Then the card "What this changed":*
+
+> You rowed for the tower, so the Challenge asked for Aim. Your oars carried across the fog, and somebody heard them: tomorrow's flame is one harder.
+
+*⚙ This road's own find, "Oars in the fog" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Rowing for the drowned tower through the fog on the Stillwater, you rested on your oars to listen, and somewhere out in the white, a moment after yours, another pair of oars went still.
+
+*⚙ If you pick [DRIFT WITH THE CURRENT]:*
+
+> You ship the oars and let the line run out behind. The lake takes you without a sound. Once the skiff bumps something under the water: a willow stake, driven deep into the lake bed. A boat's length on there is another, and then another, in a line as straight as a road.
+
+*⚙ Then the card "What this changed":*
+
+> You drifted with the current, so the Challenge asked for Craft, and the lake showed you its stakes.
+
+*⚙ This road's own find, "Stakes in the lake" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Drifting through the fog on the Stillwater, the skiff bumped willow stakes driven deep into the lake bed, a boat's length apart, in a line as straight as a road.
+
+*⚙ Whatever you picked, every player reads this:*
+
 **CHALLENGE: THE FOG**
 
 > A mile of white water, and one grey shadow in it.
@@ -3094,6 +3124,8 @@ Clue found, "Three shoots":
 > One lamp, four empty windows, and the wind.
 
 *⚙ Pick one: Craft (build it a shelter from what you carry), or Aim (one spark, struck true and set where the gusts cannot reach it). Roll d20 + that Attribute's tier bonus against DC 8: a Novice (+0) succeeds on 9+. Pass: +500g, and the Attribute grows. Fail: it goes out halfway, and the way has to be called again, and −150g. An Attribute Relic adds +4.*
+
+*⚙ If 4-5:took:0:0, the card is 1 harder, and says: **One harder.** Whoever rested on their oars in the fog yesterday heard yours, and somebody on the lake is watching for a light in the tower tonight. The lamp must burn low, below the sills, where the gusts are worst.*
 
 *⚙ If you passed the Challenge:*
 

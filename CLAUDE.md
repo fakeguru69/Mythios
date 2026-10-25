@@ -255,6 +255,8 @@ For a new session: read this, then `docs/multiplayer-plan-15oct.md` (the plan an
    - the Record and Bag;
    - the Fan Out first-letter hint.
 
+**Decided 25 Oct (Fake Guru):** Garrick's AI small talk stays as it is (party chat only, at most 12 a day for a party); no private word with Garrick (he is reached only by naming him in the party chat); no Campfire after the Gathering (the open party chat and the summary card are the night's close, as planned). The "tell them what to do" moment is "One breath" ("heartbeat" waits for W4D6). Garrick's three missing hosting lines at the fire are drafted in `docs/design/garrick-fire-host-lines-draft-25oct.md`, waiting on his approval.
+
 **How the server is changed**
 - **Every change goes out in the same piece (Fake Guru, 25 Oct: "remember to update, upload and migrate as you make the changes"):** merged to `main` on GitHub (the website builds from it), loaded into Supabase, and recorded in Supabase's migration history (`supabase_migrations.schema_migrations`). Loading through the Supabase management API does not record it: add the row yourself (version, name, statements), as was done for `0122` to `0128` on 25 Oct. Then compare the live copy with the local one (md5).
 - Every change is a new file in `supabase/migrations/` (numbered), applied with the Supabase tool `apply_migration`. Never edit one that is applied.

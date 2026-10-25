@@ -1261,6 +1261,36 @@ Clue found, "More bedrolls":
 >
 > The watch is changing. Now.
 
+> Forty paces of open stone, and two ways to cross them. You can go low and fast along the foot of the parapet, the moment the hand drops. Or you can stand up and walk it at a watchman's pace, the way this wall has been walked at every dusk for longer than anyone in Highwall can remember, and trust the square to see only a shape.
+
+*⚙ A choice: [GO LOW] or [WALK IT LIKE A WATCHMAN]. Pick one; only the picked branch plays.*
+
+*⚙ If you pick [GO LOW]:*
+
+> You go flat along the foot of the parapet, your cheek almost on the stone. Halfway, under your knee, the walkway gives back a sound it should not: not the dead knock of a wall a yard thick, but something lighter, and hollow.
+
+*⚙ Then the card "What this changed":*
+
+> You went low along the parapet, so the Challenge asked for Agility, and the walkway sounded hollow under your knee.
+
+*⚙ This road's own find, "A hollow in the walkway" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> Crossing Highwall's wall-walk flat along the parapet, the stone under your knee gave back a hollow sound, not the dead knock of a wall a yard thick.
+
+*⚙ If you pick [WALK IT LIKE A WATCHMAN]:*
+
+> You stand, and walk. Below in the square the new watchman settles at his post with his lantern, and his face turned up the hill to the hall. In all the time it takes you to cross, he never once looks at the wall.
+
+*⚙ Then the card "What this changed":*
+
+> You walked it like a watchman, so the Challenge asked for Charm, and you saw which way the watch in the square faces.
+
+*⚙ This road's own find, "The watch faces the hall" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
+
+> From Highwall's wall-walk at dusk, the new watchman in the square settled at his post with his face turned up the hill to the hall, and never once looked at the wall.
+
+*⚙ Whatever you picked, every player reads this:*
+
 **CHALLENGE: THE OPEN WALK**
 
 > Forty paces, while the watch changes above you in the square.

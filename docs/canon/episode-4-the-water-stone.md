@@ -505,6 +505,18 @@
 
 > Fog comes down on the Stillwater in the morning, thick and white. You row into it in her skiff, and the shore is gone behind you in a dozen strokes. After that there is only the creak of the oars, the drip off the blades, and the grey shadow of the tower somewhere off to one side.
 
+> Somewhere in the white is the reed island, and there are two ways to come at it. You can row for the tower's grey shadow while it lasts, long strokes and straight, and every one of them carried out across the still water. Or you can ship the oars, trail a line off the stern, and let the lake's own slow current take you, as quietly as a leaf, wherever it means to go.
+
+`[ROW FOR THE TOWER]` `[DRIFT WITH THE CURRENT]`
+
+*The player chooses.*
+
+*Row for the tower:*
+> You row for it, long and even, while the grey shadow stands off to one side. When you rest on the oars to listen, the fog is full of the sound you have been making. And somewhere out in the white, a moment after yours, another pair of oars goes still.
+
+*Drift with the current:*
+> You ship the oars and let the line run out behind. The lake takes you without a sound. Once the skiff bumps something under the water: a willow stake, driven deep into the lake bed. A boat's length on there is another, and then another, in a line as straight as a road.
+
 **Challenge card**
 > **THE FOG**
 > A mile of white water, and one grey shadow in it.
@@ -593,6 +605,7 @@
 
 **Designer's notes**
 - **Played beats:** the Challenge, which decides how the fight opens; the fight; an act; a notice line; an act. One roll.
+- **25 Oct (Fake Guru: "fix the four days w no real choice"):** a real road before the Challenge. Rowing for the tower sets it to Aim; the oars carry, another pair goes still out in the fog (the listener of Day 6), and tomorrow's flame is one harder. Drifting with the current sets it to Craft and finds the stakes of the Order's ferry line, which the island then explains. Each road is the friend's own piece for the fire.
 - **Phase 3, 24 Oct:** one harder if the lamp was lit in the lowest lane on Day 4. The man with the boat is no longer silent (Fake Guru: "a"): he says the Order's watchword, "Keep the dark.", into the fog. The watchmen trade it in Week 5, and the faithful say it to Garrick at the finale.
 - **The party:** the friends are at the oars; nobody is named today.
 - **Changed from the current script:** the boat was empty and the day repeated Day 4. Now a man minds it, the party takes it, and what is in it is the answer. The cold ashes are gone.
@@ -654,6 +667,8 @@
 > **Aim** · one spark, struck true and set where the gusts cannot reach it · `[ROLL]`
 > REWARD: +500g
 > IF YOU FAIL: it goes out halfway, and the way has to be called again
+>
+> *If you took ROW FOR THE TOWER on Day 5:* **One harder.** Whoever rested on their oars in the fog yesterday heard yours, and somebody on the lake is watching for a light in the tower tonight. The lamp must burn low, below the sills, where the gusts are worst.
 
 *On a pass:*
 > The flame leans and shivers, and holds. Mei calls the way out as it comes, and then once more, slower, so that everyone has it.
@@ -686,7 +701,7 @@
 
 **Designer's notes**
 - **Played beats:** an act, a notice line, an act, a choice, the Challenge. One roll.
-- **Phase 3, 24 Oct (to be read by Fake Guru):** a real choice before the Challenge: shelter the lamp with your coats (Craft; the windows stay dark from the shore) or strike it in the lee of the sill (Aim; the ring on the water below, the listener's first sign). The Gathering needs the listener either way, so neither road changes tomorrow.
+- **Phase 3, 24 Oct (to be read by Fake Guru):** a real choice before the Challenge: shelter the lamp with your coats (Craft; the windows stay dark from the shore) or strike it in the lee of the sill (Aim; the ring on the water below, the listener's first sign). The Gathering needs the listener either way, so neither road changes tomorrow. One harder if you rowed for the tower on Day 5 (added 25 Oct).
 - **The party:** Mei reads the map out while the player keeps the flame. She is named for an act; the words of the map are the narrator's.
 - **Changed from the current script:** today there is no play at all. Now the flame is rolled. The day follows straight on from the lamp seen last evening, so "the last fragment takes all day to find" is cut.
 - **Why reading aloud is the danger this week:** a failure makes the party say it twice, louder. Either way it is heard.
