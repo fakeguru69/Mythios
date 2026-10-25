@@ -21,6 +21,48 @@ export interface ChatMessage {
   morning?: boolean;
 }
 
+const NUMBER_WORDS = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+const andList = (xs: string[]) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
+/** A friend's crowns and badges that land together become one line (Phase 1, 25 Oct): in a small party every first is a
+ *  crown, and the first shared fire was nine notices long. Within half an hour of each other, one friend's crowns and
+ *  badges are told once; the Record still lists every one. */
+export function groupBigMoments(msgs: ChatMessage[]): ChatMessage[] {
+  const CROWN = /^(.+) took the crown for (.+)\.$/;
+  const BADGE = /^(?!The party )(.+) earned (?:the )?(.+) badge\.$/;
+  const out: ChatMessage[] = [];
+  const open = new Map<string, { at: number; idx: number; crowns: string[]; badges: string[] }>();
+  for (const m of msgs) {
+    const c = m.kind === 'notice' ? CROWN.exec(m.body) : null;
+    const b = !c && m.kind === 'notice' ? BADGE.exec(m.body) : null;
+    if (!c && !b) {
+      out.push(m);
+      continue;
+    }
+    const name = (c ?? b)![1];
+    const at = new Date(m.created_at).getTime();
+    const g = open.get(name);
+    if (g && at - g.at < 30 * 60000) {
+      (c ? g.crowns : g.badges).push((c ?? b)![2]);
+      continue;
+    }
+    open.set(name, { at, idx: out.length, crowns: c ? [c[2]] : [], badges: b ? [b[2]] : [] });
+    out.push(m);
+  }
+  for (const [name, g] of open) {
+    const n = g.crowns.length + g.badges.length;
+    if (n < 2) continue;
+    const word = (k: number) => NUMBER_WORDS[k] ?? String(k);
+    const body =
+      g.crowns.length && g.badges.length
+        ? `${name} took ${word(g.crowns.length)} ${g.crowns.length === 1 ? 'crown' : 'crowns'} and earned ${word(g.badges.length)} ${g.badges.length === 1 ? 'badge' : 'badges'}.`
+        : g.crowns.length
+          ? `${name} took ${word(g.crowns.length)} crowns: ${andList(g.crowns)}.`
+          : `${name} earned ${word(g.badges.length)} badges: ${andList(g.badges)}.`;
+    out[g.idx] = { ...out[g.idx], body };
+  }
+  return out;
+}
+
 /** Keep new lines in view (handoff ledger piece 3): when the stream grows and the friend is at the foot of the page, the
  *  page follows; if they have scrolled up to read, it never jumps. `follow()` says "show me the end" (after sending). */
 export function useKeepNewInView(count: number): () => void {
@@ -151,7 +193,7 @@ export function ChatBubble({
     );
   }
   if (m.kind === 'notice') {
-    const isBigMoment = /rolled a natural 20|earned .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body);
+    const isBigMoment = /rolled a natural 20|earned .* badges?[.:]|took the crown for|took \w+ crowns?|reached (Apprentice|Adept|Master)/.test(m.body);
     return (
       <p
         className={`text-[14px] text-center w-full ${isBigMoment ? 'text-[#E5C158] font-semibold' : 'text-[#8B7A9E]'}`}
@@ -384,7 +426,7 @@ export function EarlierFire({
         <div className="flex-1 h-px bg-[#2C1D40]" />
       </div>
       {lastNight.length === 0 && <SmallLine>Nothing was said at the fire last night.</SmallLine>}
-      {shown.map((m) => (
+      {groupBigMoments(shown).map((m) => (
         <ChatBubble key={m.id} m={m} userId={userId} members={members} onReport={setReporting} />
       ))}
       {reporting && <ReportBox m={reporting} onDone={() => setReporting(null)} />}

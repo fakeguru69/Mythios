@@ -62,8 +62,18 @@ export const clockTime = (iso: string, tz: string) => {
   }
 };
 // "Tonight: the Gathering, 8:00pm. …" (Core Rules §11: the time goes into the Tonight line).
+// A Gathering pinned before 5:00pm is "Today", not "Tonight" (play test, 25 Oct: "Tonight: the Gathering, 9:38am").
+const partyHour = (iso: string, tz: string) => {
+  try {
+    return Number(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hourCycle: 'h23', timeZone: tz }).format(new Date(iso)));
+  } catch {
+    return 20;
+  }
+};
 export const tonightLine = (tonight: string | null, opensAt: string, tz: string) =>
-  tonight ? tonight.replace(/^Tonight: the Gathering\./, `Tonight: the Gathering, ${clockTime(opensAt, tz)}.`) : null;
+  tonight
+    ? tonight.replace(/^Tonight: the Gathering\./, `${partyHour(opensAt, tz) < 17 ? 'Today' : 'Tonight'}: the Gathering, ${clockTime(opensAt, tz)}.`)
+    : null;
 
 export default function OnlineGathering({
   partyId,
@@ -415,13 +425,49 @@ export default function OnlineGathering({
           const from = secondsTo(e.chooseFrom);
           // 24 Oct (0115): if the chosen friend has left the night when their time runs out, any friend still here may
           // choose for them, and the first tap stands.
+          // 25 Oct (0132): the others tap their advice; everyone sees it by name, and the chosen friend still chooses alone.
+          const advice = (e.advice ?? []) as { name: string; o: number; me: boolean }[];
+          const myAdvice = advice.find((a) => a.me)?.o;
+          const adviceLine = options
+            .map((o, oi) => {
+              const who = advice.filter((a) => a.o === oi).map((a) => (a.me ? 'You' : a.name));
+              if (!who.length) return null;
+              const names = who.length < 2 ? who[0] : `${who.slice(0, -1).join(', ')} and ${who[who.length - 1]}`;
+              return `${names} ${who.length === 1 && who[0] !== 'You' ? 'says' : 'say'}: ${o.label}`;
+            })
+            .filter(Boolean)
+            .join(' · ');
+          const adviceNode = adviceLine ? (
+            <p key={`${k}-adv`} className="text-[14.5px] text-[#E5C158]" data-g="advice">
+              {adviceLine}
+            </p>
+          ) : null;
           if (!e.chosenIsMe && !e.openToAll) {
-            nodes.push(<p key={k} className="text-[14px] text-[#B7A9CC] italic">It is {e.chosen}'s to choose.</p>);
+            nodes.push(
+              <div key={k} className="space-y-1.5" data-g="advise">
+                <p className="text-[14px] text-[#B7A9CC] italic">It is {e.chosen}'s to choose. Tell them, in the chat, or tap what you would do:</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {options.map((o, oi) => (
+                    <button key={oi} type="button" disabled={busy} onClick={() => go('advise', { i: e.i, o: oi })}
+                      className={`px-3 py-1.5 rounded-full border text-[13.5px] font-semibold ${myAdvice === oi ? 'border-[#E5C158] text-[#E5C158] bg-[#2A1B40]' : 'border-[#5E4585] text-[#D9D1E6]'}`}>
+                      {o.label}
+                    </button>
+                  ))}
+                </div>
+                {adviceNode}
+              </div>
+            );
           } else if (e.chosenIsMe && from > 0) {
-            nodes.push(<p key={k} className="text-[14px] text-[#B7A9CC] italic">Listen to them. In {from}s it is yours to choose.</p>);
+            nodes.push(
+              <div key={k} className="space-y-1">
+                <p className="text-[14px] text-[#B7A9CC] italic">Listen to them. In {from}s it is yours to choose.</p>
+                {adviceNode}
+              </div>
+            );
           } else {
             nodes.push(
               <div key={k} className="space-y-1.5">
+                {adviceNode}
                 {!e.chosenIsMe && (
                   <p className="text-[14px] text-[#B7A9CC] italic" data-g="act-open">
                     {e.chosen} has gone quiet. Any of you may choose for them now, and the first choice stands.

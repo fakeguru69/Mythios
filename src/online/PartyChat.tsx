@@ -4,6 +4,7 @@
 // Garrick replies when spoken to: a message that names him goes through the server function "garrick", which posts it
 // and his answer (stored lines first; the AI only for small talk). His lines carry speaker 'garrick' and no author.
 import { Markable } from './Markable';
+import { groupBigMoments } from './FireChat';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { supabase, plainError, type MemberRow } from './supabaseClient';
 import { card, ErrorLine, heading, input, note, quietButton } from './ui';
@@ -125,7 +126,7 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
       <h3 className={`${heading} text-[16px]`}>Party chat</h3>
       <div className="max-h-[360px] overflow-y-auto space-y-2 pr-1">
         {hello && <p className={`${note} text-center`}>Everyone is here now, and so is Garrick. Ask him anything.</p>}
-        {messages.map((m) =>
+        {groupBigMoments(messages).map((m) =>
           m.speaker === 'garrick' ? (
             <div key={m.id} className="max-w-[88%] space-y-1" data-garrick-line>
               <div className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
@@ -148,12 +149,12 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
             <p
               key={m.id}
               className={`text-[14px] text-center py-1 font-sans ${
-                /rolled a natural 20|earned .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body)
+                /rolled a natural 20|earned .* badges?[.:]|took the crown for|took \w+ crowns?|reached (Apprentice|Adept|Master)/.test(m.body)
                   ? 'text-[#E5C158] font-semibold'
                   : `${note} text-center`
               }`}
               data-chat-moment={
-                /rolled a natural 20|earned .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body) ? 'true' : undefined
+                /rolled a natural 20|earned .* badges?[.:]|took the crown for|took \w+ crowns?|reached (Apprentice|Adept|Master)/.test(m.body) ? 'true' : undefined
               }
             >
               {m.body}
