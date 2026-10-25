@@ -1,5 +1,19 @@
 # Phase 3: Week 1 as the pilot, drafted for Fake Guru (25 Oct 2026)
 
+**Decided and built, 25 Oct.** Fake Guru: "Use you judgement (be critical)". Claude's calls:
+
+- **Section 2, the silent map, was dropped.** Canon's own logistics say the Order learns each place only by overhearing the party read its map aloud ("The place travels by ear", `garrick-deception-table.md`), and that is how every rescue helps the ritual. A silent road in Week 1 would teach players to stay silent every week and break the season's premise. Its Gathering line would also suggest that Garrick told someone, which canon says he never does. The map choice stays as it is.
+- **In its place, Gathering 1 echoes the courier, legibly.** If any friend saw him (the `[LET {F2} READ IT]` road), the mine mouth shows "a saddled horse… its flanks still dark with sweat", next to the memory of the man by the chimney. It sets the two side by side and asserts nothing.
+- **Section 3's Day 6 call lines were rewritten.** They now come straight after "This was never about you.":
+  - A: "Last night by the fire you said they wanted you too. For now, the wall says otherwise."
+  - B: "Last night by the fire you said Meira chose you to help her find them. Here are the ones she was looking for."
+
+  The draft's "The wall seems to agree" was cut, because the next line says "The wall does not say".
+- **Section 4's act is built,** shortened to one sentence ("You sit down on the far side of the fire from her, close enough to be company and not so close as to crowd her."). "For a while there is only the fire" was already in the text that follows.
+- **Sections 1 and 5 are built as drafted.**
+
+The build: Campfire data for Week 1, Episode 1, migration `0134`, and `tests/data/gathering-answers-the-week.sql`.
+
 This is the plan after the audits (`docs/design/plan-after-blind-audit-25oct.md`), Phase 3. Every design fix the reviewers agree on is done here for Week 1 only. Week 1 is then played by real friends before any other week changes.
 
 Nothing here is in the game yet. New story text is in quotes; "now" shows what it replaces.

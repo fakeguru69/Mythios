@@ -135,7 +135,7 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     "narratedNoGarrick": true,
     "tone": "wry",
     "cupNight": false,
-    "opener": "One list, one inn's name. Nothing was taken.",
+    "opener": "One list, one inn's name. Nothing was taken. Somewhere tonight, whoever else is on that list is sitting by a fire of their own.",
     "questionTitle": "Were you meant to have the list?",
     "forkA": "He was sent to put it in your hands.",
     "forkB": "You took it off a man carrying it somewhere else.",
@@ -173,13 +173,13 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Did Meira leave in a hurry?",
-      "clickText": "Every slip in her book is pinned where it belongs, and the leaf about the child is worn soft at the corner by a thumb that came back to it again and again. Nobody wears a page that soft in a week. She had been carrying that child for a long time."
+      "clickText": "Every slip in her book is pinned where it belongs, and this one leaf is worn soft at the corner by a thumb that came back to it again and again. How long does it take a page to wear like that?"
     },
     "clicks": [
       {
         "a": "1-2-2",
         "b": "1-2-3",
-        "text": "Every slip in her book is pinned where it belongs, and the leaf about the child is worn soft at the corner by a thumb that came back to it again and again. Nobody wears a page that soft in a week. She had been carrying that child for a long time.",
+        "text": "Every slip in her book is pinned where it belongs, and this one leaf is worn soft at the corner by a thumb that came back to it again and again. How long does it take a page to wear like that?",
         "solves": true
       }
     ],
@@ -212,15 +212,17 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "How long has this rock been watched?",
-      "clickText": "He sat over this rock long enough to set his flask down twice, and walked round it often enough to wear the turf to bare earth. A man does not keep watch like that at his own back door. He was posted here, from somewhere else."
+      "clickText": "He set his flask down twice in the bracken, and someone has walked round this rock often enough to wear the turf to bare earth. That is a long watch. Would a man keep it this close to his own door?"
     },
     "clicks": [
       {
         "a": "1-3-1",
         "b": "1-3-2",
-        "text": "He sat over this rock long enough to set his flask down twice, and walked round it often enough to wear the turf to bare earth. A man does not keep watch like that at his own back door. He was posted here, from somewhere else.",
+        "text": "He set his flask down twice in the bracken, and someone has walked round this rock often enough to wear the turf to bare earth. That is a long watch. Would a man keep it this close to his own door?",
         "solves": true
-      }
+      },
+      {"a": "fork:0:1", "b": "1-3-3", "text": "He ran for the gap and the smoke beyond it, and the cart that dropped its reed-thatch in the ruts went the same way. Is Fenmark where they come from, or only where they stop?", "solves": false},
+      {"a": "fork:0:0", "b": "1-3-2", "text": "Meira knelt at this stone with her paper, and someone has walked round it so often the turf is bare. Was he watching the rock, or watching for whoever came to read it?", "solves": false}
     ],
     "fanOutClue": {
       "title": "The second ring",
@@ -250,8 +252,14 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
       "piece": "1-4-3",
       "line": "{friend:Charm}, three doors, with children behind them. Why hers?"
     },
-    "puzzle": null,
-    "clicks": [],
+    "puzzle": {
+      "q": "Why did they take Tamsin, of all the children in Fenmark?",
+      "clickText": "They lifted the gate's bar and leaned it against the post, tidy as a neighbour, then walked past three doors with children behind them. Men who want the easiest child do not walk past three. What were they looking for?"
+    },
+    "clicks": [
+      {"a": "1-4-1", "b": "1-4-3", "text": "They lifted the gate's bar and leaned it against the post, tidy as a neighbour, then walked past three doors with children behind them. Men who want the easiest child do not walk past three. What were they looking for?", "solves": false},
+      {"a": "fork:2:2", "b": "1-4-3", "text": "No lantern, and yet every step in the lane known in the dark. Past three doors, to the one they wanted. How does a stranger know a lane like that?", "solves": false}
+    ],
     "fanOutClue": {
       "title": "The leaned bar",
       "text": "The gate at the end of the lane is swinging, but its bar has been lifted and leaned neatly against the post, not thrown down.",
@@ -281,15 +289,17 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Has someone tried her house before tonight?",
-      "clickText": "Under his fresh marks on her shutter are older ones, worked in at the very same place, where the bar sits, and the bar has worn its cleats pale with years of nights. Someone came at this house the same way long before tonight. It is not a man's whim. It is a way of working, learned and used again."
+      "clickText": "Fresh marks over old ones, at the very place where the bar sits, and a bar worn pale with years of nights. Someone has come at this house before, the same way. Was it the same hand?"
     },
     "clicks": [
       {
         "a": "1-5-2",
         "b": "1-5-3",
-        "text": "Under his fresh marks on her shutter are older ones, worked in at the very same place, where the bar sits, and the bar has worn its cleats pale with years of nights. Someone came at this house the same way long before tonight. It is not a man's whim. It is a way of working, learned and used again.",
+        "text": "Fresh marks over old ones, at the very place where the bar sits, and a bar worn pale with years of nights. Someone has come at this house before, the same way. Was it the same hand?",
         "solves": true
-      }
+      },
+      {"a": "fork:0:0", "b": "1-5-3", "text": "A ward of salt and rowan-ash under her step, and a door barred every night for years. She has been waiting a long time for someone to come back. Is tonight's man the one she was waiting for?", "solves": false},
+      {"a": "fork:1:0", "b": "1-5-1", "text": "She turned a knife with her axe tonight, and she knows him only by a knife. Tonight's man left a plain kitchen blade in her shutter. Which knife did her axe meet?", "solves": false}
     ],
     "fanOutClue": {
       "title": "The knife, not the face",
@@ -320,15 +330,16 @@ export const CAMPFIRE_DAYS_DATA: CampfireDayEntry[] = [
     },
     "puzzle": {
       "q": "Why send the cart one way and the child another?",
-      "clickText": "One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. They were expecting to be followed, and by now you know who was on the road behind them."
+      "clickText": "One man carried her down to the water. The other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. Who were they expecting to come?"
     },
     "clicks": [
       {
         "a": "1-6-2",
         "b": "1-6-3",
-        "text": "One man carried her down to the water, the other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. They were expecting to be followed, and by now you know who was on the road behind them.",
+        "text": "One man carried her down to the water. The other went back up to the cart, and the cart went up the far bank at a run, without her. They laid that trail for whoever came after. Who were they expecting to come?",
         "solves": true
-      }
+      },
+      {"a": "fork:1:1", "b": "1-6-2", "text": "A man by the chimney went still when the bend above the ford was read out, and the cart went up the far bank at a run. Somebody knows where you are going before you get there. Why would anyone need to?", "solves": false}
     ],
     "fanOutClue": {
       "title": "Wade out",

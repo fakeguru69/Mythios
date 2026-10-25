@@ -310,6 +310,7 @@ Inside a Gathering Battle a loss reads `DEFEATED. You are down for this Battle. 
 - **It ends when either thing reaches 0.** If the thing in the way reaches 0, the job is done. Both endings lead to the same next scene.
 - **Who goes next is the party's choice.** MYTHIOS names the first friend. After that the friend who has just rolled hands it on with a button for each friend who has not yet gone. Nobody goes twice until everyone has gone once. If no choice is made in ten seconds, MYTHIOS names the next.
 - **Relics:** the roller may use their own matching Attribute Relic, or any one friend may give the roller any Attribute Relic. One Relic to a roll, for +4.
+- **Week 1 pilot (25 Oct):** the party's "One breath" pick at Gathering 1 gives its United Effort a small edge. `[GO OUT NOW]`: +2 on the chosen friend's first roll. `[THE NEW PROP]`: the thing at risk starts 10 higher. `[STAY WHERE YOU ARE]`: +1 on every friend's first roll. The roll line shows it. Other Gatherings wait on the Week 1 play-test.
 - **A friend who fell in the Battle still takes their turn.**
 - **A friend alone** takes every turn, and both things start at 60.
 - **Reward:** 300g to every friend present if the job is done. Nothing if it is lost. A failed roll costs no gold. Relics used are spent either way. No Attribute grows from these rolls.

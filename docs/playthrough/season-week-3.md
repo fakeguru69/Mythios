@@ -244,7 +244,7 @@ Clue found, "Facing west":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The fresh turn" with "Facing west" (this one answers tonight's question):*
+*⚙ "The fresh turn" with "Facing west":*
 
 > The cart took the west road below the shaft without a moment's check, and the man on the shoulder stood only to watch that same line. Nobody was searching for a way. They knew where they were going before they set out: west, into the burned hills, which is where she was born.
 
@@ -257,8 +257,6 @@ Clue found, "Facing west":
 > *"Then they stopped being ours."* When a weapon stops belonging to the hands that made it, who does it belong to?
 
 **Tonight's question: Corin said they promised Wren she was going home first. Why tell a stolen child that?**
-
-> Did the cart make ready for a long journey?
 
 *⚙ Garrick:*
 
@@ -738,7 +736,7 @@ Clue found, "The view down":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The row of stones" with "Only your hand" (this one answers tonight's question):*
+*⚙ "The row of stones" with "Only your hand":*
 
 > The old shepherds' path stops dead at the sunken stones, and the dust on the housing was untouched until your own fingers marked it. Nobody has laid a hand on this mark in years, and the riders went past without once looking down. Either it is not what they want, or it is not a door they can open.
 
@@ -751,8 +749,6 @@ Clue found, "The view down":
 > *"He only never told us the price."* Did he hide the price to spare them, or because they would have refused him?
 
 **Tonight's question: Three children live beside three Seeker marks. Why did the riders carry Wren straight past the Blackglass?**
-
-> Has anyone touched this housing since the road was made?
 
 *⚙ Garrick:*
 
@@ -963,7 +959,7 @@ Clue found, "Scratched on the back":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "On the bare rock" with "Scratched on the back" (this one answers tonight's question):*
+*⚙ "On the bare rock" with "Scratched on the back":*
 
 > Each chip was set on high bare rock where the starlight catches it, and the backs are scored one, two and three. That is not a frightened child letting things fall. She is laying a line on purpose, right under their noses, and nobody has stopped her.
 
@@ -976,8 +972,6 @@ Clue found, "Scratched on the back":
 > *"We locked with what we are."* What could "what we are" mean, if not stone or iron?
 
 **Tonight's question: Wren is dropping glass chips from the saddle of six horses. Have the riders truly not noticed?**
-
-> Did she drop the chips in haste or with care?
 
 *⚙ Garrick:*
 
@@ -1206,7 +1200,7 @@ Clue found, "The gap in the row":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The dropped skin" with "The gap in the row" (this one answers tonight's question):*
+*⚙ "The dropped skin" with "The gap in the row":*
 
 > By the spring a water skin lies half full where it was dropped; inside, by the pallet, one keepsake is gone from its row, and the dust where it lay is clean. She had time to take one thing. The hurry began outside.
 
@@ -1219,8 +1213,6 @@ Clue found, "The gap in the row":
 > *"That is why kingdoms fear them."* Why would a kingdom fear a quiet line of families after the war was won?
 
 **Tonight's question: They gave Wren the warm bed by the hearth, yet left at a run this morning, with the pot still on the fire. What made them run?**
-
-> How quickly did they depart?
 
 *⚙ Garrick:*
 
@@ -1430,7 +1422,7 @@ Clue found, "No way down in the dark":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "No horses" with "Smoke from the crack" (this one answers tonight's question):*
+*⚙ "No horses" with "Smoke from the crack":*
 
 > No horses wait at the foot of the Kiln, and soon after the lamp went in, thin pale smoke began to rise from the crack. Whoever carried that lamp did not go in to raise an alarm. They went in to light something.
 
@@ -1443,8 +1435,6 @@ Clue found, "No way down in the dark":
 > *"We never dug him a grave."* Why leave a man they loved without a grave?
 
 **Tonight's question: An hour after we read the map into the wind, a single lamp climbed the Kiln and went inside. Who carried it?**
-
-> Are the riders still inside the hill?
 
 *⚙ Garrick:*
 
@@ -1551,11 +1541,17 @@ Clue found, "No way down in the dark":
 >
 > The glass will bear one of you at a time, and perhaps not that. So the rope goes up to her a stretch at a time. One of you climbs past where the last one stopped, drives a blade into the slope, makes the rope fast to it, and comes down. Then the next.
 
+*⚙ Only if more than one friend is here:*
+
 #### One breath
+
+*⚙ If more than one friend is here:*
 
 > Mei is at the foot of the glass, nearest to her. One breath before the slope moves again.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ If more than one friend is here:*
 
 *⚙ One friend, chosen at random, picks alone*
 

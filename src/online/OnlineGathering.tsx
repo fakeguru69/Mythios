@@ -276,8 +276,8 @@ export default function OnlineGathering({
   const nodes: React.ReactNode[] = [];
   const current = (e: Entry) => e.i === view.cursor && !view.endedAt;
   const countdown = (s: number, what: string) => (s > 0 ? <p className="text-[14px] text-[#8B7A9E]">{what} {s}s</p> : null);
-  const rollLine = (r: { d20: number; attr: string; score: number; bonus: number; relic?: number; map?: number; dc: number; net?: number; margin?: number }) =>
-    `🎲 ${r.d20} + ${r.attr} ${r.score} (+${r.bonus})${r.map ? ' + Map 2' : ''}${r.relic ? ` + Relic (+${r.relic})` : ''} − DC ${r.dc} = ${signed(
+  const rollLine = (r: { d20: number; attr: string; score: number; bonus: number; relic?: number; map?: number; edge?: number; dc: number; net?: number; margin?: number }) =>
+    `🎲 ${r.d20} + ${r.attr} ${r.score} (+${r.bonus})${r.map ? ' + Map 2' : ''}${r.relic ? ` + Relic (+${r.relic})` : ''}${r.edge ? ` + One breath (+${r.edge})` : ''} − DC ${r.dc} = ${signed(
       r.net ?? r.margin ?? 0
     )}`;
   const shell = 'w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg';
@@ -953,7 +953,7 @@ function UnitedEffortCard({ e, busy, go, wait, held, shell, cardHead, rollLine }
   const bar = (label: string, v: number, colour: string) => (
     <div className="space-y-0.5">
       <div className="flex justify-between text-[14px]"><span className="font-semibold">{label}</span><span>{v}</span></div>
-      <div className="h-2 rounded bg-[#130B1F] overflow-hidden"><div className="h-full" style={{ width: `${(v / (e.start || 100)) * 100}%`, background: colour }} /></div>
+      <div className="h-2 rounded bg-[#130B1F] overflow-hidden"><div className="h-full" style={{ width: `${Math.min(100, (v / (e.start || 100)) * 100)}%`, background: colour }} /></div>
     </div>
   );
   const ongoing = e.outcome === 'ongoing';
@@ -965,6 +965,7 @@ function UnitedEffortCard({ e, busy, go, wait, held, shell, cardHead, rollLine }
       <div className="p-3 space-y-2.5">
         {bar(e.barWay, e.way, '#6FD39A')}
         {bar(e.barRisk, e.risk, '#F08A8A')}
+        {e.breath === 1 && <p className="text-[13.5px] text-[#B7A9CC] italic">The new prop holds: this bar starts 10 higher.</p>}
         <p className="text-[14px] text-[#B7A9CC]">A pass does 10 + a d20 to {e.barWay}; a fail, to {e.barRisk}. +300g to every friend if {e.barWay} reaches 0.</p>
         {rolls.map((r, ri) => (
           <div key={ri} className="space-y-1">

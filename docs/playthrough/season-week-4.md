@@ -210,7 +210,7 @@ Clue found, "The same side":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The snuffed wick" with "The same side" (this one answers tonight's question):*
+*⚙ "The snuffed wick" with "The same side":*
 
 > A lamp was snuffed inside the side passage moments before, and every rope was cut on the same side, a finger's width from the knot. Someone waited there in the dark with a blade ready, and took the time to cut only rope. That is not a frightened rescuer. That is somebody who had been told what not to touch.
 
@@ -223,8 +223,6 @@ Clue found, "The same side":
 > *"We did not trust four locks to hold what needed five."* Why scatter four locks across the land and hide the fifth alone?
 
 **Tonight's question: Someone stood among us in the dark with a bare blade, yet cut only rope. Why spare us?**
-
-> How did the prisoner get free in the dark?
 
 *⚙ Garrick:*
 
@@ -455,7 +453,7 @@ Clue found, "The open road":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "Blades bare" with "The open road" (this one answers tonight's question):*
+*⚙ "Blades bare" with "The open road":*
 
 > They rode the ford in broad daylight with their blades bare across their saddles, and kept to the open road past every hut when the ridge path would have hidden them. Four armed men do not show themselves like that over something cheap. Whatever is in that box, they would rather be seen than lose it.
 
@@ -468,8 +466,6 @@ Clue found, "The open road":
 > *"We feared it more than the other four together."* Why would the Seekers fear one of their own creations above the rest?
 
 **Tonight's question: Four armed riders guarded one small box from the Kiln, riding away from the lake. Why guard that box harder than the boy?**
-
-> Were the four riders trying to hide their journey north?
 
 *⚙ Garrick:*
 
@@ -914,7 +910,7 @@ Clue found, "The scratched line":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "Two records" with "The scratched line" (this one answers tonight's question):*
+*⚙ "Two records" with "The scratched line":*
 
 > Meira copied 'the marked' and 'moon-blood' from two different records, and the two words never sit in the same line. Under her note she began a second thought, then scratched it out until the nib tore the page. She was no longer sure they meant the same blood.
 
@@ -927,8 +923,6 @@ Clue found, "The scratched line":
 > *"If it is ever let near."* The line says do not let it near. Near to what, and who is it warning?
 
 **Tonight's question: Meira's note says 'moon-blood' is the old word for the marked, and the fragment warns against letting it near. What is the fragment warning against?**
-
-> Was Meira sure of her own note on 'moon-blood'?
 
 *⚙ Garrick:*
 
@@ -1163,7 +1157,7 @@ Clue found, "Three shoots":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "Long curls" with "Three shoots" (this one answers tonight's question):*
+*⚙ "Long curls" with "Three shoots":*
 
 > Three willow shoots cut three days running, one still white, and long shavings in the boat curled without haste. Somebody has sat out on that island day after day with the boy kept close and dry. They are not hiding him from the shore. They are waiting, and they are in no hurry at all.
 
@@ -1176,8 +1170,6 @@ Clue found, "Three shoots":
 > *"Pray no one ever learns it is also a door."* Why build a lock that can still be opened like a door?
 
 **Tonight's question: They ferry Joss between the island and the drowned streets by night, yet tonight a lamp is crossing to the empty tower. Why the tower tonight?**
-
-> How has Joss been kept on the reed island?
 
 *⚙ Garrick:*
 
@@ -1499,11 +1491,17 @@ Clue found, "The lamp on the shingle":
 >
 > There is room at it for one pair of hands, and for as long as one breath lasts.
 
+*⚙ Only if more than one friend is here:*
+
 #### One breath
+
+*⚙ If more than one friend is here:*
 
 > Mei is nearest the gate. The water is at his chin. One breath before he has to choose between the breath and the bars.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ If more than one friend is here:*
 
 *⚙ One friend, chosen at random, picks alone*
 

@@ -13,7 +13,7 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W1D2 | 1063 | 6 | 3 | 0 | 359w | 5.0 min | 227w ◆CHOICE 236w 🎲CHALLENGE 45w ?PRESS ON 77w ◆CHOICE 119w ◆CHOICE 359w |
 | W1D3 | 740 | 5 | 1 | 0 | 383w | 3.7 min | 235w ◆CHOICE 122w ⚔FIGHT 383w |
 | W1D4 | 1040 | 5 | 3 | 0 | 375w | 4.9 min | 152w ◆CHOICE 100w 🎲CHALLENGE 78w ◆CHOICE 335w ◆CHOICE 375w |
-| W1D5 | 776 | 6 | 2 | 0 | 429w | 3.9 min | 115w ◆CHOICE 119w ⚔FIGHT 113w ◆CHOICE 429w |
+| W1D5 | 801 | 7 | 2 | 0 | 385w | 4.1 min | 115w ◆CHOICE 119w ⚔FIGHT 113w ◆CHOICE 69w ▸tap 385w |
 | W1D6 | 768 | 5 | 2 | 0 | 293w | 3.7 min | 144w 🎲CHALLENGE 46w ?PRESS ON 293w ◆CHOICE 64w ◆CHOICE 221w |
 | W2D1 | 864 | 5 | 3 | 0 | 373w | 4.1 min | 32w ◆CHOICE 106w ◆CHOICE 167w ◆CHOICE 186w 🎲CHALLENGE 373w |
 | W2D2 | 542 | 4 | 1 | 0 | 178w | 2.6 min | 64w ◆CHOICE 178w 🎲CHALLENGE 127w ?PRESS ON 173w |
@@ -53,12 +53,12 @@ The last light: three leads, pick one, roll (a pass gives the first letter of a 
 
 | Day | Leads | Garrick's stored lines (words) | Things to tap or write at the fire |
 |---|---|---|---|
-| W1D1 | 3 | 24 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
+| W1D1 | 3 | 40 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
 | W1D2 | 3 | 53 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
-| W1D3 | 3 | 55 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
-| W1D4 | 3 | 32 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
-| W1D5 | 3 | 54 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
-| W1D6 | 3 | 48 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W1D3 | 3 | 55 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 3 clicks to find |
+| W1D4 | 3 | 32 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 2 clicks to find |
+| W1D5 | 3 | 54 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 3 clicks to find |
+| W1D6 | 3 | 48 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 2 clicks to find |
 | W2D1 | 3 | 61 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W2D2 | 3 | 70 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W2D3 | 3 | 64 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |

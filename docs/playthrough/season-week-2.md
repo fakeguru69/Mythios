@@ -297,7 +297,7 @@ Clue found, "Deeper coming down":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The steady horse" with "Past the gate" (this one answers tonight's question):*
+*⚙ "The steady horse" with "Past the gate":*
 
 > In full dark and with no lamp, the horse took the mill lane at a steady walk, and the wheels never checked at any other gate. Nobody was choosing among houses that night. The mill was chosen before the cart ever came over the hill.
 
@@ -310,8 +310,6 @@ Clue found, "Deeper coming down":
 > *"We held his last wall."* If it was meant to fall, why stand on it?
 
 **Tonight's question: The cart passed three sleeping farms in the dark and stopped only at the mill. Why?**
-
-> Did anyone have to lead that horse, or did it already know the door?
 
 *⚙ Garrick:*
 
@@ -557,7 +555,7 @@ Clue found, "The cropped grass":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The paper in his fist" with "Straight to the bed" (this one answers tonight's question):*
+*⚙ "The paper in his fist" with "Straight to the bed":*
 
 > He had the boy's name on a folded paper before he crossed the threshold, and his mud runs from the door to the bed and back without a single turn. He asked nobody in this house anything. It was written down for him somewhere else, and long before.
 
@@ -570,8 +568,6 @@ Clue found, "The cropped grass":
 > *"By the third, we had stopped."* Did they stop counting because they lost hope, or because the numbers stopped mattering?
 
 **Tonight's question: How did a stranger know the night the boy was born?**
-
-> Did he hesitate once he reached the house?
 
 *⚙ Garrick:*
 
@@ -799,7 +795,7 @@ Clue found, "The full pail":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "The scratches" with "Silver in his purse" (this one answers tonight's question):*
+*⚙ "The scratches" with "Silver in his purse":*
 
 > He worked that stone with steel for days, and it never gave; your bare hand opened it at the first touch. Whatever it answers to, it was never iron, and never coin: nobody even troubled to take his purse.
 
@@ -812,8 +808,6 @@ Clue found, "The full pail":
 > *"Ours was the last light burning."* When every other light has gone out, why keep yours lit?
 
 **Tonight's question: The dead man picked at the housing for days. Why did it give under your bare hand?**
-
-> Why didn't anyone rob him?
 
 *⚙ Garrick:*
 
@@ -1228,7 +1222,7 @@ Clue found, "Faces turned in":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "Burned chips" with "Faces turned in" (this one answers tonight's question):*
+*⚙ "Burned chips" with "Faces turned in":*
 
 > Up on the ridge the carved stones were broken with fire and mallet, while down in the sheepfold others were laid face to face, where nobody would ever read them. One hand tore his name down in anger. Another hid it with care.
 
@@ -1241,8 +1235,6 @@ Clue found, "Faces turned in":
 > *"Not one of us who would not have died for him."* He walked among them the morning after, and not one of them says what he looked like. What are they leaving out?
 
 **Tonight's question: Meira found every record of him scraped clean. Who erased his name from the world?**
-
-> Were the stones broken or hidden?
 
 *⚙ Garrick:*
 
@@ -1460,7 +1452,7 @@ Clue found, "Your own print":
 
 *⚙ Clicks: when two particular pieces are both on the table, the table "clicks" and this line appears for everyone at the fire:*
 
-*⚙ "One line" with "Sifted by hand" (this one answers tonight's question):*
+*⚙ "One line" with "Sifted by hand":*
 
 > Every pick-stroke lands a little nearer the deep stone, and every basket of earth is sifted through bare fingers before it is thrown aside. Nobody digs like that to reach a boy. They are looking for something small, and they know roughly where it lies.
 
@@ -1473,8 +1465,6 @@ Clue found, "Your own print":
 > *"Morning came. The enemy did not."* What kind of victory leaves the victors afraid of the morning?
 
 **Tonight's question: The fragments drew a map to an older room. Why are they digging toward that same room tonight?**
-
-> What are the picks searching for?
 
 *⚙ Garrick:*
 
@@ -1630,11 +1620,17 @@ Clue found, "Your own print":
 >
 > Every fall changes what is holding what. So one of you looks, and calls it, and the nearest boot does the rest. Then the next of you looks again.
 
+*⚙ Only if more than one friend is here:*
+
 #### One breath
+
+*⚙ If more than one friend is here:*
 
 > Mei has the black book in one hand and a lamp in the other. One breath before the first of their lamps reaches the mouth of the tunnel.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
+
+*⚙ If more than one friend is here:*
 
 *⚙ One friend, chosen at random, picks alone*
 
