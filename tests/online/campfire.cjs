@@ -155,8 +155,8 @@ async function asPlayer(b, who, leadIndex, act) {
     if (await clickCard.count()) { await clickCard.scrollIntoViewIfNeeded(); await shot('3-click', false); }
     const frag = p.locator('[data-fragment-card]');
     if (await frag.count()) { await frag.scrollIntoViewIfNeeded(); await shot('4-fragment', false); }
-    // Margin notes: tap a Garrick line, mark it.
-    await p.locator('[data-stream] [data-garrick-line] [data-markable]').first().click();
+    // Margin notes: press and hold a Garrick line (a right-click does the same), mark it.
+    await p.locator('[data-stream] [data-garrick-line] [data-markable] > div').first().click({ button: 'right' });
     await waitUntil(async () => (await p.locator('[data-mark-bar]').count()) > 0, 5000);
     await p.locator('[data-mark-bar]').getByPlaceholder('A few words, if you like').fill('Why ask for the birth night?');
     await p.locator('[data-mark-bar]').getByRole('button', { name: 'MARK', exact: true }).click();

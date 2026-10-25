@@ -93,7 +93,7 @@ export default function OnlineCasebook({ partyId, onClose, embedded = false }: {
       </div>
       {tab === 'notebook' && (
         <div className="space-y-2.5" data-notebook>
-          <p className={note}>Only you see this. Tap any line in a chapter, at the fire or in the chat to mark it.</p>
+          <p className={note}>Only you see this. Press and hold any line in a chapter, at the fire or in the chat to mark it.</p>
           {marks && marks.length === 0 && <p className={note}>Nothing marked yet.</p>}
           {(marks ?? []).map((m) => (
             <div key={m.id} className="rounded-xl bg-[#1A1424] border border-[#4A3A60] p-3 space-y-1.5">

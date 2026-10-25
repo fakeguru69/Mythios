@@ -346,8 +346,8 @@ export default function OnlineDay({
   );
 
   const items: StoryItem[] = [];
-  const pushItem = (key: string, node: React.ReactNode, opts?: { instant?: boolean; resolved?: boolean }) => {
-    items.push({ key, node, instant: opts?.instant, resolved: opts?.resolved });
+  const pushItem = (key: string, node: React.ReactNode, opts?: { instant?: boolean; resolved?: boolean; chars?: number }) => {
+    items.push({ key, node, instant: opts?.instant, resolved: opts?.resolved, chars: opts?.chars });
   };
   const readBacks: Array<{ anchor: string; day?: number; text: string }> = (today as any)?.readBacks ?? [];
   const pushSay = (keyBase: string, rawText: string, pull?: boolean) => {
@@ -359,7 +359,8 @@ export default function OnlineDay({
         k,
         <Markable key={k} source={`Week ${week}, Day ${day}`} text={para}>
           <NarrationBlock text={para} pull={pull && pi === paras.length - 1} />
-        </Markable>
+        </Markable>,
+        { chars: para.length }
       );
       const matchedRbs = readBacks.filter((rb) => para.includes(rb.anchor));
       matchedRbs.forEach((matchedRb, rbi) => {
@@ -1181,7 +1182,14 @@ interface StoryItem {
   node: React.ReactNode;
   instant?: boolean;
   resolved?: boolean;
+  /** Length of a passage, so the next one waits about as long as it takes to read this one. */
+  chars?: number;
 }
+
+// Reading speed (Phase 5, 24 Oct): the next passage waits as long as it takes to read the last one, at about
+// 22 characters a second (the Gathering's g_pace reads at 18, aloud to a table), between 1 and 12 seconds.
+// A tap on the thread always shows the next one at once.
+const readingDelayMs = (chars?: number) => Math.round(Math.min(12000, Math.max(1000, ((chars ?? 0) / 22) * 1000)));
 
 const includeTrailingInstants = (items: StoryItem[], count: number) => {
   let c = Math.max(0, Math.min(items.length, count));
@@ -1305,17 +1313,23 @@ function DayBody({
     });
   }, [floorShown, items]);
 
+  // The thread is rebuilt on every render (the day reloads every few seconds), so the timer reads it through a ref
+  // and restarts only when a new passage shows: a long passage's wait is never cut short or started again.
+  const itemsRef = useRef(items);
+  itemsRef.current = items;
+  const nextDelay = readingDelayMs(items[visibleCount - 1]?.chars);
   useEffect(() => {
     if (!typing) return;
     const id = window.setTimeout(() => {
       setShown((prev) => {
+        const all = itemsRef.current;
         const base = Math.max(prev, floorShown);
-        if (base >= items.length) return items.length;
-        return includeTrailingInstants(items, base + 1);
+        if (base >= all.length) return all.length;
+        return includeTrailingInstants(all, base + 1);
       });
-    }, 650);
+    }, nextDelay);
     return () => window.clearTimeout(id);
-  }, [typing, visibleCount, floorShown, items]);
+  }, [typing, visibleCount, floorShown, nextDelay]);
 
   // Scroll only far enough to show the top of the new message, and never scroll past text the friend has not read.
   useEffect(() => {
