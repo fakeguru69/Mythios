@@ -65,6 +65,23 @@ const BRANCH_ALIAS = {
   'The path': ['LOOK AT THE PATH'],
 };
 
+// The line that leads from the notice lines into a card, where nothing else does (Phase 5, 24 Oct; drafted by Claude
+// for Fake Guru to read). Each one sets the scene's task in the storybook voice and does not repeat the card's own words.
+const LEAD_INS = {
+  '1-1': 'Behind you the cargo box sits jammed on the tilted wagon bed, and whatever he came for is still inside it.',
+  '1-2': 'You take out your own torn page and lay it on the table, beside the place where the others were cut away.',
+  '1-3': 'He is up out of the bracken before anyone can call a warning.',
+  '1-6': 'Somebody has to read those prints now, before the river has them.',
+  '2-1': 'He lets the axe-head rest on the block, and waits for you to say why you have come.',
+  '2-2': 'Nobody moves. Somebody has to speak first, and it will not be her.',
+  '2-6': 'Down in the dark the lamplight shivers, and the voices come round again.',
+  '3-2': 'You stand in front of it, close enough to hear somebody breathing on the other side.',
+  '3-3': 'There is no way round it. Meira\'s mark lies on the far side, a long walk off over black glass.',
+  '3-6': 'If you are going to reach it before dark, it has to be now.',
+  '5-4': 'Nobody wants to be the first to walk between them. Somebody has to be.',
+  '6-3': 'Across the square the watch fire burns low, and the hall\'s wall stands dark beyond it.',
+};
+
 // Fork outcome lines ("What this changed"), road finds carried to the fire, and discernment Relics (Pieces E2 & E3).
 const FORK_BRANCH_META = {
   // Disguised Fork 0 · W1D1 (The Forest Road)
@@ -981,39 +998,21 @@ function buildDay(d) {
       const name = blk.text;
       const next = b[i + 1];
 
+      // Phase 5 (24 Oct): no bare "…" before a card. A passage that already leads into the card is left as it is (the
+      // story's reading-speed pace gives the pause); where a card would follow the notice lines straight away, one real
+      // sentence leads in (LEAD_INS). A card with neither gets a warning.
       function ensureLeadInBeforeCard() {
         if (steps.length === 0) return;
         const last = steps[steps.length - 1];
-        if (last.t === 'say') {
-          if (!last.text.trim().endsWith('…') && !last.text.trim().endsWith('...')) {
-            last.text = last.text.trim() + '\n\n…';
-          }
-        } else if (last.t === 'choice') {
-          if (last.branches && last.branches.length > 0) {
-            last.branches.forEach((br) => {
-              if (!br.text.trim().endsWith('…') && !br.text.trim().endsWith('...')) {
-                br.text = br.text.trim() + '\n\n…';
-              }
-            });
-          } else {
-            steps.push({ t: 'say', text: '…' });
-          }
-        } else if (last.t === 'notice') {
-          steps.push({ t: 'say', text: '…' });
-        } else {
-          steps.push({ t: 'say', text: '…' });
-        }
+        if (last.t === 'say' || (last.t === 'choice' && last.branches && last.branches.length > 0)) return;
+        const line = LEAD_INS[key];
+        if (line) steps.push({ t: 'say', text: tokens(line), leadIn: true });
+        else warnings.push(`W${d.week}D${d.day} a card follows a ${last.t} with no lead-in line (LEAD_INS)`);
       }
 
       function ensureLeadInForPress() {
         const passStep = [...steps].reverse().find((s) => s.t === 'say' && s.cond?.on === 'challenge' && s.cond?.pass === true);
-        if (passStep) {
-          if (!passStep.text.trim().endsWith('…') && !passStep.text.trim().endsWith('...')) {
-            passStep.text = passStep.text.trim() + '\n\n…';
-          }
-        } else {
-          ensureLeadInBeforeCard();
-        }
+        if (!passStep) ensureLeadInBeforeCard();
       }
 
       if (name === 'What you notice' && next?.t === 'quote') {
@@ -1155,7 +1154,7 @@ export type StrikeFirstRule =
   | { on: 'choice'; choice: number; options: number[] };
 
 export type ScriptStep =
-  | { t: 'say'; text: string; cond?: ScriptCond; fragment?: boolean; pull?: boolean }
+  | { t: 'say'; text: string; cond?: ScriptCond; fragment?: boolean; pull?: boolean; /** The line leading into a card (Phase 5). */ leadIn?: boolean }
   | { t: 'act'; label: string }
   | {
       t: 'choice';

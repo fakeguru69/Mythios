@@ -1,6 +1,6 @@
 # Tales of the Dark Moon: the season as a player plays it, part 3 of 3 (Weeks 5 and 6)
 
-Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own data by `scripts/gen-playthrough.ts` (2026-10-24). **Do not publish: it holds the season's story.**
+Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own data by `scripts/gen-playthrough.ts` (2026-10-25). **Do not publish: it holds the season's story.**
 
 **How to read it.** Quoted text (`>`) is exactly what the player reads. Lines in *⚙ italics* describe the gameplay: what the screen offers, the rule, the numbers. Where the story branches, every branch is given, each labelled. The party is a sample of four: you, Mei, Dev and Arjun (the game fills in the real friends' names and the party's size).
 
@@ -57,8 +57,6 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 > She does not put him down. She carries him up the shingle the way she must have carried him when he was two, with his feet knocking against her knees, and he lets her.
 >
 > At the top of the lane he twists round in her arms and holds the little boat up over her shoulder, high, so that all of you can see he still has it.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -83,8 +81,6 @@ Weeks 5 and 6, Day 1 to Day 7, in playing order. Generated from the game's own d
 > Meira never found a fifth place. Every record she had said four.
 
 > In the afternoon you walk up through the village to where the north road leaves it. At its head stands a waystone older than Reedham, grey with lichen, its carving worn to nothing.
->
-> …
 
 **CHALLENGE: THE WAYSTONE**
 
@@ -338,8 +334,6 @@ Clue found, "Every window lit":
 > They are graves. Hundreds, dug in straight rows, the way soldiers bury soldiers: the ones who fell in the war, before the last night on the wall.
 >
 > Among them, one is new. The turf was cut this week and laid back badly, by people with no time to do better.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -398,8 +392,6 @@ Clue found, "Every window lit":
 > The grass on the graves shivers with it, row after row, like the hide of a horse. The cow screams and throws herself against her rope.
 >
 > And out of the dusk come the dogs.
->
-> …
 
 **FIGHT: WHAT WAS A FARM DOG**
 
@@ -564,8 +556,6 @@ Clue found, "Scattered":
 > This is the wall the Seekers held that night.
 >
 > The gate is shut.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -588,8 +578,6 @@ Clue found, "Scattered":
 *⚙ If you pick [TAKE THE BROKEN STAIR]:*
 
 > You go up it from the foot, reading every step before you trust it. The stone is the same pale stone as the city, and not one step of it has a mark of weather on it: no lichen, no moss, not a stain. Nothing has ever grown here, not even on a stair.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -602,8 +590,6 @@ Clue found, "Scattered":
 *⚙ If you pick [FORCE THE TOWER DOOR]:*
 
 > You set your shoulders to the iron and heave, and the rust lets go all at once with a scream of hinges that goes out over the dead city and does not come back. Inside is a guard-room: a table, two stools, and dust lying thick and even on both.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -626,8 +612,6 @@ Clue found, "Scattered":
 > You are up in minutes, with the afternoon still in hand.
 >
 > There is light enough to follow one street all the way up to the hall. Something is standing in it: a dozen dark shapes, spaced out down the middle of the road like posts.
->
-> …
 
 *⚙ If you failed the Challenge:*
 
@@ -797,8 +781,6 @@ Clue found, "Knocked out":
 > They stand where they are, mid-stride, in armour so old that it has gone green and black. A dozen of them, strung out up the street, as if a company had been marching to his hall on the night he fell, and simply stopped.
 >
 > Their faces are hidden behind their helms. None of them moves.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -814,7 +796,7 @@ Clue found, "Knocked out":
 
 - **Aim:** Every one of them is looking the same way. *(Apprentice and up:)* Up the hill, at the hall.
 
-> …
+> Nobody wants to be the first to walk between them. Somebody has to be.
 
 **CHALLENGE: THE STREET OF SOLDIERS**
 
@@ -827,8 +809,6 @@ Clue found, "Knocked out":
 *⚙ If you passed the Challenge:*
 
 > You walk the whole street between them, close enough to smell the old iron. Nothing happens.
->
-> …
 
 *⚙ If you failed the Challenge:*
 
@@ -1041,8 +1021,6 @@ Clue found, "No two alike":
 *⚙ If you pick [CREEP IN CLOSE]:*
 
 > You go in on your elbows, a rubble-heap at a time, until the warmth of their fire is on your face. Somebody at it is humming under their breath, a few bars of something slow. A hand is laid on the hummer's arm, and the humming stops.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -1055,8 +1033,6 @@ Clue found, "No two alike":
 *⚙ If you pick [STAY IN THE RUBBLE]:*
 
 > You stay where you are, flat in the cold ruin at the square's edge, and take the whole camp in at once: the house with its roof gone, the woodpile stacked to the eaves against it, the shapes round the fire, and the one standing at the wall, alone, facing the hall.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -1097,8 +1073,6 @@ Clue found, "No two alike":
 > Hooded figures: four, five, more. The Order. They have made their camp facing the doors, as if they had been here all their lives.
 >
 > Some of them have.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -1264,8 +1238,6 @@ Clue found, "More bedrolls":
 *⚙ One button per friend in the party; the lines after it name the friend you picked.*
 
 > Mei crouches at the corner of the gate-tower, with the whole square in view, and one hand raised where you can see it.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -1288,8 +1260,6 @@ Clue found, "More bedrolls":
 > *"It keeps us."*
 >
 > The watch is changing. Now.
->
-> …
 
 **CHALLENGE: THE OPEN WALK**
 
@@ -1770,8 +1740,6 @@ Clue found, "A stride wider":
 > Twice, boots scrape right past the room's hidden door.
 >
 > Twice, they walk on.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -1798,8 +1766,6 @@ Clue found, "A stride wider":
 > **A locked Seeker Fragment has been added to your Chest.**
 
 > They lived in this room. If the Seekers left a way into his hall, the first step of it would be here.
->
-> …
 
 **CHALLENGE: THE ROOM THEY KEPT**
 
@@ -1997,8 +1963,6 @@ Clue found, "The old soot":
 > You go out by the gate-tower in the grey morning, and down to the crossroads where the rest of the soldiers stood, mid-stride, for longer than anyone has been alive.
 >
 > The street is empty.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2025,8 +1989,6 @@ Clue found, "The old soot":
 *⚙ If you pick [PUT YOUR BACK TO THE BEAM]:*
 
 > You get your shoulders under it. Before it moves you see its underside, an arm's length from your face: it is cut all over with names, rows of them, in many hands, scratched in with knife-points by people lying on their backs in the bunks below. Then you lift.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2039,8 +2001,6 @@ Clue found, "The old soot":
 *⚙ If you pick [FIND THE QUIET WAY]:*
 
 > You go into the gap on your knees, feeling for each stone before you trust it. Halfway through, pressed flat under the fallen ceiling, there is an iron cup with a ring of old wine dried black inside it, where somebody set it down on the last night and never came back for it.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2228,8 +2188,6 @@ Clue found, "Bowls never filled":
 *⚙ If you pick [THE WATCH]:*
 
 > You time it. The man coming on says, *"Keep the dark,"* and the man going off answers, *"It keeps us,"* and for as long as that takes, neither of them is looking at the square.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2244,8 +2202,6 @@ Clue found, "Bowls never filled":
 > You read it by their firelight. Four strokes left uncrossed. The same as the page in your coat.
 >
 > They struck theirs at dusk. So did you.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2273,7 +2229,7 @@ Clue found, "Bowls never filled":
 
 *⚙ Whatever you picked, every player reads this:*
 
-> …
+> Across the square the watch fire burns low, and the hall's wall stands dark beyond it.
 
 **CHALLENGE: THE SQUARE**
 
@@ -2286,8 +2242,6 @@ Clue found, "Bowls never filled":
 *⚙ If you passed the Challenge:*
 
 > You are across, and in the lee of the hall's great wall, unseen.
->
-> …
 
 *⚙ If you failed the Challenge:*
 
@@ -2457,8 +2411,6 @@ Clue found, "Warm low down":
 > A hundred cracks, all of them crooked.
 >
 > And one that runs straight up and down, as if it had been ruled.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2479,8 +2431,6 @@ Clue found, "Warm low down":
 > Every one of them in this city faces the hall. This one has its back to it.
 >
 > It is facing you.
->
-> …
 
 **FIGHT: THE ONE IN THE CRACK**
 
@@ -2684,8 +2634,6 @@ Clue found, "Louder here":
 > Garrick reaches the top a long minute after everyone else, and sits down on the top step with his back to the wall. *"Give me a minute."*
 >
 > He waves you on into the room with the back of his hand.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2708,8 +2656,6 @@ Clue found, "Louder here":
 *⚙ If you pick [READ THE CUTS FROM THE FLOOR]:*
 
 > You go along the wall with your fingertips, row by row. Every moon is cut to the same depth by the same kind of tool, year on year, and in all those years not one night is missing.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2722,8 +2668,6 @@ Clue found, "Louder here":
 *⚙ If you pick [CLIMB THE WATCHERS' LEDGES]:*
 
 > You climb the watchers' own footholds to the top rows. From up there, through the open roof, you can see straight down into the great square, and the Order's fire burning red in the shell of its house.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2746,8 +2690,6 @@ Clue found, "Louder here":
 *⚙ If you passed the Challenge:*
 
 > You find it at once, by daylight, with no lamp lit.
->
-> …
 
 *⚙ If you failed the Challenge:*
 
@@ -2925,8 +2867,6 @@ Clue found, "Cut in a hurry":
 > They are not standing.
 >
 > They are walking: slowly, stiffly, all the same way. Up the hill, to the hall.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2949,8 +2889,6 @@ Clue found, "Cut in a hurry":
 *⚙ If you pick [WALK IN STEP WITH THEM]:*
 
 > You step into a gap and walk with them, matching their tread, the cold coming off the iron on both sides of you. Under the tramp of their feet there is no other sound at all. Not one of them is breathing.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2963,8 +2901,6 @@ Clue found, "Cut in a hurry":
 *⚙ If you pick [SHOULDER THROUGH]:*
 
 > You put your head down and go in where the ranks are thinnest. Iron knocks you left and right. You come out the other side with green rust smeared down your coat, and a bruise coming up on your arm in the shape of a hand.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2997,8 +2933,6 @@ Clue found, "Cut in a hurry":
 *⚙ Either way, every player reads this:*
 
 > At the mouth of the crack, one soldier has stopped walking, and turned round.
->
-> …
 
 **FIGHT: THE ONE THAT TURNED**
 

@@ -1,6 +1,6 @@
 # Tales of the Dark Moon: the season as a player plays it, part 2 of 3 (Weeks 3 and 4)
 
-Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own data by `scripts/gen-playthrough.ts` (2026-10-24). **Do not publish: it holds the season's story.**
+Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own data by `scripts/gen-playthrough.ts` (2026-10-25). **Do not publish: it holds the season's story.**
 
 **How to read it.** Quoted text (`>`) is exactly what the player reads. Lines in *⚙ italics* describe the gameplay: what the screen offers, the rule, the numbers. Where the story branches, every branch is given, each labelled. The party is a sample of four: you, Mei, Dev and Arjun (the game fills in the real friends' names and the party's size).
 
@@ -145,8 +145,6 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 > Then something comes up out of the hill behind you.
 >
 > The dog from the path. It is off its chain now, and a length of bright new links drags from its collar through the wet grass. It does not bark. It has been taught not to.
->
-> …
 
 **FIGHT: THE DOG OFF ITS CHAIN**
 
@@ -173,8 +171,6 @@ Weeks 3 and 4, Day 1 to Day 7, in playing order. Generated from the game's own d
 > One cart, lightly loaded, two hours old at most. Two walkers beside it. And a third set of prints, small, stepping where it is told.
 >
 > They turn west.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -335,8 +331,6 @@ Clue found, "Facing west":
 > Every door in the village shuts as you come up the street. Strangers took a child from here two weeks ago. You are strangers.
 >
 > One door is the last to shut. Behind it, nobody moves away.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -352,7 +346,7 @@ Clue found, "Facing west":
 
 - **Aim:** At the end of the street the green stops, as if it had been cut with a knife. *(Apprentice and up:)* After that, everything is black.
 
-> …
+> You stand in front of it, close enough to hear somebody breathing on the other side.
 
 **CHALLENGE: THE LAST DOOR**
 
@@ -585,8 +579,6 @@ Clue found, "Sacking on the stones":
 > Nothing grows on it. The wind slides off it without a sound. The shepherds do not walk their flocks across it, and do not say why.
 >
 > Meira's page points to its far edge.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -602,7 +594,7 @@ Clue found, "Sacking on the stones":
 
 - **Aim:** On all that smooth black there is one mark that is not a ripple. *(Apprentice and up:)* On the far side, just above the crack.
 
-> …
+> There is no way round it. Meira's mark lies on the far side, a long walk off over black glass.
 
 **CHALLENGE: CROSS THE GLASS**
 
@@ -615,8 +607,6 @@ Clue found, "Sacking on the stones":
 *⚙ If you passed the Challenge:*
 
 > You reach the far side clean, without once putting a hand to the glass. All the way over, a dark shape walks upside down beneath your boots: your own, in the black.
->
-> …
 
 *⚙ If you failed the Challenge:*
 
@@ -841,8 +831,6 @@ Clue found, "The view down":
 > Fifty paces on, there is another.
 >
 > She is dropping them.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -865,8 +853,6 @@ Clue found, "The view down":
 *⚙ If you pick [KEEP TO THE TRAIL]:*
 
 > You stay on the hoof-scratches for another mile, and find a third chip, and bring it back. Mei and Arjun are already at the fall of rock, with their sleeves rolled.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -879,8 +865,6 @@ Clue found, "The view down":
 *⚙ If you pick [GO TO THE DOORWAY]:*
 
 > You go to the fall of rock with the others and stand looking at it. Dev keeps on along the trail, and comes back within the hour with a third chip in hand.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -1096,8 +1080,6 @@ Clue found, "Scratched on the back":
 > On the ridge above the hut a grey coat stands up from among the rocks, where he was left behind to watch.
 >
 > He comes down to meet you, and he takes his time about it.
->
-> …
 
 **FIGHT: THE GREY COAT ON THE RIDGE**
 
@@ -1138,16 +1120,12 @@ Clue found, "Scratched on the back":
 > Scratched fresh into the wood, at a child's height, with something small and sharp: **WREN.**
 >
 > The letters are small and pressed hard, and each one has been gone over twice. You run your thumb down them. The wood is still pale in the cuts.
->
-> …
 
 *⚙ If you pick [THE FIRE]:*
 
 > A pot is still on it, and catching. A tin cup lies on its side where it was dropped. There is a blanket, folded with care, and beside it a second one, thrown down.
 >
 > They were here within the hour. And they left at a run.
->
-> …
 
 *⚙ If you pick [THE BEAM OVER THE PALLET]:*
 
@@ -1156,8 +1134,6 @@ Clue found, "Scratched on the back":
 > *Until the throne rise whole.*
 >
 > The words that ended the Order's scripture under the mill hill. The words they chanted over Corin while the knife was out. Whoever sleeps here has said them every night for a long time.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -1311,8 +1287,6 @@ Clue found, "The gap in the row":
 > All afternoon the cairn has been in sight: a dark knuckle of piled stones far off on the skyline, that never seems to come any nearer. Every ridge you cross shows you another between you and it. The shadows are long now, and reaching.
 >
 > The cairn stands on the highest ridge in the burned country, and the light is going.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -1328,7 +1302,7 @@ Clue found, "The gap in the row":
 
 - **Aim:** Over one hill, and only one, the air is moving like the air over a forge. *(Apprentice and up:)* Something under that hill is still hot.
 
-> …
+> If you are going to reach it before dark, it has to be now.
 
 **CHALLENGE: THE CLIMB**
 
@@ -1841,8 +1815,6 @@ Clue found, "No way down in the dark":
 > Then the dark. Now one lamp is lit again, in a shaking hand, and the place where he knelt is empty. The wick smokes. The air still smells of hot stone, and of every lamp in the chamber dying at once.
 >
 > His ropes lie on the stone. One set of footprints leads away through the ash. Nobody saw a thing. Nobody heard a blade.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -1893,8 +1865,6 @@ Clue found, "No way down in the dark":
 *⚙ If the party lost Gathering 3's United Effort:*
 
 > She is carried, with her cuts bound in strips of somebody's shirt.
->
-> …
 
 *⚙ Either way, every player reads this:*
 
@@ -1911,8 +1881,6 @@ Clue found, "No way down in the dark":
 > Heel, then toe. Evenly spaced. He did not run.
 >
 > He walked out of this room, at the pace of a man leaving a church, through a passage none of you had noticed.
->
-> …
 
 *⚙ If you failed the Challenge:*
 
@@ -2089,8 +2057,6 @@ Clue found, "The same side":
 > The north road runs long and empty through cold, open country: heather, wind, and now and then a shepherd's hut with its smoke going sideways. By midday the warm ground of the burned country is a day behind you, and the wind has an edge to it.
 >
 > At a ford, three men step out of the alders. They have counted your packs, and they have counted you wrong.
->
-> …
 
 **FIGHT: THE MEN AT THE FORD**
 
@@ -2157,8 +2123,6 @@ Clue found, "The same side":
 > Mei and Arjun come back to the fork with nothing to tell but sheep.
 >
 > Your road has four horses and two thin wheels, a day old, going fast.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2175,8 +2139,6 @@ Clue found, "The same side":
 - **Aim:** Two rode before the cart and two behind, all the way. *(Apprentice and up:)* Nobody rides like that around nothing.
 
 > At the fork a carter is watering his horses, and he is glad of anyone to talk to.
->
-> …
 
 **CHALLENGE: THE CARTER**
 
@@ -2364,16 +2326,12 @@ Clue found, "The open road":
 *⚙ If you pick [THE SHELF]:*
 
 > A row of little boats, each no longer than a finger, each better than the one before. The newest has its hull and no mast. The knife is lying beside it, where he put it down.
->
-> …
 
 *⚙ If you pick [THE WINDOW]:*
 
 > A lamp is burning in it, at noon.
 >
 > On the shingle, later, the fisherman tells you why. In Reedham a lamp is lit in every window on a dark-moon night; it always has been. Joss came into the world with the whole village lit up round him. She has not let that one go out since he went.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2400,8 +2358,6 @@ Clue found, "The open road":
 > You turn her over on the shingle and pull the old rag out of the plank to stuff it again. It comes out in one piece, and it is not a rag. It is a boy's shirt, washed thin, too small now for anybody in that house.
 >
 > You put it back as carefully as you can, and pack it tighter.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2414,8 +2370,6 @@ Clue found, "The open road":
 *⚙ If you pick [ROW HARD]:*
 
 > You put out at once, and lean on the oars until your back burns. You come in under the tower early, while the light is still flat on the water, and see what a slower boat would have missed: on its lowest step the weed is scraped away in one place, where a rope has been tied, and tied often.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2577,8 +2531,6 @@ Clue found, "A cleared sill":
 > The Stillwater has drawn back far enough to leave Old Reedham's upper streets standing in the open: cobbles slick with weed, doorways full of silt, walls water-marked green to the height of your chest. Everything smells of mud and old rope. A gull stands on a chimney that has no house under it.
 >
 > Further out, the same streets slope down, and simply go on under the water.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -2607,8 +2559,6 @@ Clue found, "A cleared sill":
 *⚙ If you pick [KEEP TO THE DARK]:*
 
 > You leave the lamp shuttered and go by feel and by the last grey of the sky. Out past the last roofs, on the low black line of the reed island, a light shows once, and goes out, as if somebody had opened a door and thought better of it.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2621,8 +2571,6 @@ Clue found, "A cleared sill":
 *⚙ If you pick [LIGHT THE LAMP]:*
 
 > The flame comes up yellow and close, and the lane jumps out of the dark around you. In its light the small prints are plain: the round of a heel, the marks of five toes. He was walked through here barefoot.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -2645,8 +2593,6 @@ Clue found, "A cleared sill":
 *⚙ If you passed the Challenge:*
 
 > Stone by stone, with the weed sliding under your boots, you follow them down the lane to the edge of the deep water, where they stop.
->
-> …
 
 *⚙ If you failed the Challenge:*
 
@@ -2809,8 +2755,6 @@ Clue found, "The scratched line":
 *⚙ Played alone, in your own thread. Today's question: where did the boat take him, and what has it been doing since?*
 
 > Fog comes down on the Stillwater in the morning, thick and white. You row into it in her skiff, and the shore is gone behind you in a dozen strokes. After that there is only the creak of the oars, the drip off the blades, and the grey shadow of the tower somewhere off to one side.
->
-> …
 
 **CHALLENGE: THE FOG**
 
@@ -2835,8 +2779,6 @@ Clue found, "The scratched line":
 > Painted on its prow, small and neat, is a black circle.
 >
 > And there is a man sitting on its gunwale.
->
-> …
 
 **FIGHT: THE MAN WITH THE BOAT**
 
@@ -2879,8 +2821,6 @@ Clue found, "The scratched line":
 > In the bottom, among the rope, lie pale curls of whittled wood, still fresh. And a tiny hull, half shaped, split down the middle, and thrown away.
 >
 > Somebody small has been sitting here, carving.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -3042,8 +2982,6 @@ Clue found, "Three shoots":
 > **A locked Seeker Fragment has been added to your Chest.**
 >
 > That is six.
->
-> …
 
 *⚙ Notice: an easy roll the server makes (DC 3; a Novice succeeds on 4+) on your highest Attribute. A pass shows your build's line (from Apprentice on, with its second sentence; a Novice is told "A more practised eye would see more here."). The line can be laid on the table at the fire.*
 
@@ -3074,8 +3012,6 @@ Clue found, "Three shoots":
 *⚙ If you pick [SHELTER IT WITH YOUR COATS]:*
 
 > You make a wall of coats and packs and shoulders round the lamp, so close that the flame lights only the six pieces and the hands holding them. From the shore, the tower's windows stay dark.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
@@ -3088,8 +3024,6 @@ Clue found, "Three shoots":
 *⚙ If you pick [STRIKE IT IN THE LEE OF THE SILL]:*
 
 > You get down under the sill, out of the wind, and strike. In the first white flash of the spark, through the window above you, you see the black water at the tower's foot ripple once, in a ring, with no wind on it.
->
-> …
 
 *⚙ Then the card "What this changed":*
 
