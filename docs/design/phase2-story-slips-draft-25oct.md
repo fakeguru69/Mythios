@@ -1,5 +1,14 @@
 # Phase 2: the story slips, drafted for Fake Guru (25 Oct 2026)
 
+**Decided and built, 25 Oct.** Fake Guru: "Use your best judgement (critically) and decide". Claude's calls:
+- Items 1 to 5, 7 to 10, 12 and 13: built as drafted.
+- Item 6: built without "small for it", which would have been a new fact about Tamsin. It reads "nine years old, and still counting under her breath".
+- Item 11: built as drafted. The sky-watchers are already in Week 6 Day 5.
+- Item 14: rewritten again so that Garrick claims nothing new about himself and predicts nothing. The W3D3 opener became "Sit, before that glass has the rest of your boots, and mind your hands on it." The W4D2 opener became "Cold road. Hands round that cup first, and get the warmth back into them. The rest will keep."
+- Item 15: kept. Canon repeats "This was never about you." on purpose, and Gathering 4 turns it over.
+
+All of it is live (migration `0133` and the regenerated weeks), and the short-party check now covers the recaps.
+
 This is from the plan after the audits (`docs/design/plan-after-blind-audit-25oct.md`), Phase 2. Each item shows the text as it is now and my proposed version. Nothing here is in the game yet. Read it once and answer "yes", or name the numbers you want changed or left.
 
 The reviewers raised more than this. I checked each one against canon, and dropped these because canon already handles them:

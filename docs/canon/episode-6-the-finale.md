@@ -665,7 +665,7 @@
 
 > You come out of the crack into the evening. The moon is rising over the dead city, round and full and very bright.
 >
-> Tomorrow night it goes dark.
+> Tomorrow night it goes dark: a full moon, eaten, the way the sky-watchers wrote it.
 >
 > Below you the soldiers are still climbing. They do not look at you. They are going where you are going.
 
@@ -1013,7 +1013,7 @@
 >
 > *The power that gives is also the power that takes.*
 >
-> Garrick looks down at you, at all of you, kneeling in the ring of light, palms cut open again tonight, the same white linen from a week ago still knotted at every wrist. His face is courteous, and nothing more.
+> Garrick looks down at you, at all of you, kneeling in the ring of light, palms cut open again tonight, the same white linen from a week ago still knotted across every palm. His face is courteous, and nothing more.
 >
 > *"You saved every child you were sent to save,"* he says.
 

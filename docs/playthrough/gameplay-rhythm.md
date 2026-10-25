@@ -11,10 +11,10 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 |---|---|---|---|---|---|---|---|
 | W1D1 | 717 | 7 | 1 | 0 | 325w | 3.7 min | 130w ⚔FIGHT 72w ◆CHOICE 190w 🎲CHALLENGE 325w |
 | W1D2 | 1063 | 6 | 3 | 0 | 359w | 5.0 min | 227w ◆CHOICE 236w 🎲CHALLENGE 45w ?PRESS ON 77w ◆CHOICE 119w ◆CHOICE 359w |
-| W1D3 | 738 | 5 | 1 | 0 | 383w | 3.7 min | 235w ◆CHOICE 120w ⚔FIGHT 383w |
+| W1D3 | 740 | 5 | 1 | 0 | 383w | 3.7 min | 235w ◆CHOICE 122w ⚔FIGHT 383w |
 | W1D4 | 1040 | 5 | 3 | 0 | 375w | 4.9 min | 152w ◆CHOICE 100w 🎲CHALLENGE 78w ◆CHOICE 335w ◆CHOICE 375w |
 | W1D5 | 776 | 6 | 2 | 0 | 429w | 3.9 min | 115w ◆CHOICE 119w ⚔FIGHT 113w ◆CHOICE 429w |
-| W1D6 | 770 | 5 | 2 | 0 | 295w | 3.7 min | 144w 🎲CHALLENGE 46w ?PRESS ON 295w ◆CHOICE 64w ◆CHOICE 221w |
+| W1D6 | 768 | 5 | 2 | 0 | 293w | 3.7 min | 144w 🎲CHALLENGE 46w ?PRESS ON 293w ◆CHOICE 64w ◆CHOICE 221w |
 | W2D1 | 864 | 5 | 3 | 0 | 373w | 4.1 min | 32w ◆CHOICE 106w ◆CHOICE 167w ◆CHOICE 186w 🎲CHALLENGE 373w |
 | W2D2 | 542 | 4 | 1 | 0 | 178w | 2.6 min | 64w ◆CHOICE 178w 🎲CHALLENGE 127w ?PRESS ON 173w |
 | W2D3 | 591 | 8 | 1 | 0 | 283w | 3.3 min | 154w ◆CHOICE 55w 🎲CHALLENGE 99w ⚔FIGHT 283w |
@@ -44,9 +44,9 @@ Measured on the main path: Challenge passed, fight won, [PRESS ON] left, the fir
 | W6D3 | 469 | 5 | 1 | 0 | 273w | 2.4 min | 41w ▸tap 43w ◆CHOICE 84w 🎲CHALLENGE 28w ?PRESS ON 273w |
 | W6D4 | 470 | 8 | 1 | 0 | 156w | 2.8 min | 149w ⚔FIGHT 156w ◆CHOICE 80w ▸tap 85w |
 | W6D5 | 497 | 5 | 1 | 0 | 185w | 2.5 min | 185w ◆CHOICE 49w 🎲CHALLENGE 41w ?PRESS ON 122w ▸tap 100w |
-| W6D6 | 662 | 10 | 1 | 0 | 251w | 3.7 min | 114w ◆CHOICE 51w 🎲CHALLENGE 45w ⚔FIGHT 251w ▸tap 201w |
+| W6D6 | 672 | 10 | 1 | 0 | 261w | 3.8 min | 114w ◆CHOICE 51w 🎲CHALLENGE 45w ⚔FIGHT 261w ▸tap 201w |
 
-**Averages over the 36 chapters:** 651 words, 5.3 taps, about 3.2 minutes for the chapter alone (the last light and the Campfire come after).
+**Averages over the 36 chapters:** 652 words, 5.3 taps, about 3.2 minutes for the chapter alone (the last light and the Campfire come after).
 
 ## The evening (every weekday after the chapter)
 The last light: three leads, pick one, roll (a pass gives the first letter of a fragment word; the clue comes back either way), or sit by the fire. Then the fire: one chat under the finished day (18 Oct), with a text box at the foot.
@@ -63,16 +63,16 @@ The last light: three leads, pick one, roll (a pass gives the first letter of a 
 | W2D2 | 3 | 70 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W2D3 | 3 | 64 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W2D4 | 3 | 40 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
-| W2D5 | 3 | 64 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W2D5 | 3 | 65 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W2D6 | 3 | 57 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W3D1 | 3 | 57 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W3D2 | 3 | 41 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
-| W3D3 | 3 | 56 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W3D3 | 3 | 63 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W3D4 | 3 | 57 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W3D5 | 3 | 70 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W3D6 | 3 | 62 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W4D1 | 3 | 58 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
-| W4D2 | 3 | 52 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
+| W4D2 | 3 | 62 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W4D3 | 3 | 56 | 5: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat |
 | W4D4 | 3 | 73 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
 | W4D5 | 3 | 59 | 6: tonight's question (pin A / B / neither; changeable until dawn); the fragment's meaning question; lay a clue on the table (+); Agree / Doubt on a friend's clue; talk in the chat; 1 click to find |
@@ -95,8 +95,8 @@ Measured on the main path (Approach passed, United Effort won, the first option 
 
 | Week | Story words | Taps to move on | Group decisions | Rolls | Match | Ask questions | Table question | Read time |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 1002 | 1 | 1 | 3 (+ the Battle) | 0 | 0 | 1 | 4 min reading |
-| 2 | 2309 | 7 | 1 | 3 (+ the Battle) | 2 | 4 | 1 | 10 min reading |
+| 1 | 1006 | 1 | 1 | 3 (+ the Battle) | 0 | 0 | 1 | 4 min reading |
+| 2 | 2303 | 7 | 1 | 3 (+ the Battle) | 2 | 4 | 1 | 10 min reading |
 | 3 | 1497 | 8 | 1 | 3 (+ the Battle) | 2 | 8 | 1 | 7 min reading |
 | 4 | 1777 | 5 | 1 | 3 (+ the Battle) | 2 | 6 | 1 | 8 min reading |
 | 5 | 1510 | 3 | 1 | 3 (+ the Battle) | 2 | 4 | 1 | 7 min reading |

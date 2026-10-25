@@ -624,7 +624,7 @@ Clue found, "The thumbed leaf":
 
 *⚙ If you pick [GO TO THE MARKING]:*
 
-> You crouch at the stone and put your fingers to the cut lines. They are cold, and gritty under your touch. In the deepest groove, kept dry by the overhang, a crumb of black charcoal comes away on your thumb. Somebody pressed paper to this stone not many days ago. That is where you are, with your back to the bracken, when the bracken moves.
+> You crouch at the stone and put your fingers to the cut lines. They are cold, and gritty under your touch. In the deepest groove, kept dry by the overhang, a crumb of black charcoal comes away on your thumb. Somebody pressed paper to this stone, and not so very long ago. That is where you are, with your back to the bracken, when the bracken moves.
 
 *⚙ Then the card "What this changed":*
 
@@ -632,7 +632,7 @@ Clue found, "The thumbed leaf":
 
 *⚙ This road's own find, "Charcoal in the cut" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> In the deepest groove of the cut stone at the Widow's Tooth, dry under the overhang, a crumb of black charcoal came away on your thumb. Somebody pressed paper to this stone not many days ago.
+> In the deepest groove of the cut stone at the Widow's Tooth, dry under the overhang, a crumb of black charcoal came away on your thumb. Somebody pressed paper to this stone, and not so very long ago.
 
 *⚙ If you pick [FOLLOW THE CART-RUTS]:*
 
@@ -1268,7 +1268,7 @@ Clue found, "Past three doors":
 
 *⚙ If you pick [SHOW HER YOUR EMPTY HANDS]:*
 
-> The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve — he came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes go to the carved horse in your other hand, and stop.
+> The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve. He came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes go past you to the carved horse at your belt, and stop.
 
 *⚙ Then the card "What this changed":*
 
@@ -1280,7 +1280,7 @@ Clue found, "Past three doors":
 
 *⚙ If you pick [TELL HER WHO YOU JUST DROVE OFF]:*
 
-> The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face — whatever she keeps hidden here, it is under that stone and not in the shed. Then her eyes go to the carved horse in your other hand, and stop.
+> The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face. Whatever she keeps hidden here, it is under that stone, and not in the shed. Then her eyes go past you to the carved horse at your belt, and stop.
 
 *⚙ Then the card "What this changed":*
 
@@ -1292,7 +1292,7 @@ Clue found, "Past three doors":
 
 *⚙ If you pick [HOLD OUT THE CARVED HORSE]:*
 
-> The axe comes down all at once. Before she even asks your names, her fingers go to her belt, unfasten a small river-stone charm bound in iron wire — kept since the winter the boy was taken — and press it into your palm as she takes the little horse from you.
+> The axe comes down all at once. Before she even asks your names, her fingers go to her belt, unfasten a small river-stone charm bound in iron wire, worn smooth with keeping, and press it into your palm as she takes the little horse from you.
 
 *⚙ Then the card "What this changed":*
 
@@ -1516,7 +1516,7 @@ Clue found, "The worn bar":
 
 > She was carried into the river. The cart went on without her. No tracker alive can follow from here.
 
-> Under the waterline, at the foot of the ford-stone, where you would only see it in a low year:
+> Under the waterline, at the foot of the ford-stone, where the current has scoured the rock bare:
 
 *⚙ The fragment moment:*
 
@@ -1799,7 +1799,7 @@ Clue found, "A second man":
 >
 > Outside, after the mine, the evening is cold and very wide. She stands in it with her face turned up to the sky, breathing, still humming.
 >
-> You have been saying her name for three days. Now you can see her. Tamsin is about nine.
+> You have been saying her name for three days. Now here she is: nine years old, and still counting under her breath.
 >
 > There is a small cut across her palm. It has been bound in clean white linen. Somebody took the time.
 
@@ -3254,7 +3254,7 @@ Clue found, "Faces turned in":
 
 *⚙ Then he recalls:*
 
-> On Day 2 a horn button, on Day 3 a dead stranger. Tonight, a circle.
+> At the mill a horn button, on the river path a dead stranger. Tonight, a circle.
 
 *⚙ Each friend pins one reading (changeable until dawn), and only then sees the others' (names shown, never a count or a winner). The party's call is read back the next morning as "Last night the fire called it…":*
 
@@ -3573,7 +3573,7 @@ Clue found, "Your own print":
 >
 > When the last of them goes down, the room goes enormously quiet.
 >
-> The boy is alive. There's a cut across his palm, clean and shallow, already bound in white linen — someone took the time to bind it. Whatever they needed from him, they'd already taken. The wound is small. The relief in the room is real. It looks, to everyone standing in it, like a win.
+> The boy is alive. There is a cut across his palm, clean and shallow, already bound in white linen. Somebody took the time. Whatever they needed from him, they had already taken. The wound is small, and the relief in the room is real. For a while, in the lamplight, it is enough.
 
 > Garrick reaches him first, kneeling, checking the bandage with careful hands, the same relief on his face as on everyone's: *"You saved that boy. Whatever else happened here, you saved him."*
 
@@ -3676,7 +3676,7 @@ Clue found, "Your own print":
   - *(the end)* The last leg goes. The hill shuts like a book. The dust takes a long time to settle, and when it has there is no hole, no light, and no sound from the other side at all.
 - **On a fail:**
   - *(early)* The big prop, the obvious one. It was holding up your side. A slab of the old wall leans out and comes down across the floor, and one of the lamps is under it.
-  - *(early)* Wrong. The roof over the hole stays where it is. The roof over your heads lets go a barrow-load of stone.
+  - *(early)* The roof over the hole stays where it is. The roof over your heads lets go a barrow-load of stone.
   - *(middle)* The fall comes your way. When the dust thins, the far end of the room is rubble, and the stone table is the edge of what is left.
   - *(middle)* A crack runs across the ceiling from the hole to the stair, as quick as a lizard.
   - *(late)* There is room to stand, and not much more. Everything you have not got in your hands is under stone.
@@ -3706,7 +3706,7 @@ Clue found, "Your own print":
 
 *⚙ Either way, the whole party reads this:*
 
-> On the dark hillside, before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.
+> Before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.
 >
 > *Day 1, the farmhouse beam:* “We held his last wall the night it was meant to fall. Not one of us expected to see morning.”
 >

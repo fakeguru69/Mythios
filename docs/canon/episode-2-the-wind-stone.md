@@ -769,7 +769,7 @@
 >
 > When the last of them goes down, the room goes enormously quiet.
 >
-> The boy is alive. There's a cut across his palm, clean and shallow, already bound in white linen — someone took the time to bind it. Whatever they needed from him, they'd already taken. The wound is small. The relief in the room is real. It looks, to everyone standing in it, like a win.
+> The boy is alive. There is a cut across his palm, clean and shallow, already bound in white linen. Somebody took the time. Whatever they needed from him, they had already taken. The wound is small, and the relief in the room is real. For a while, in the lamplight, it is enough.
 
 `[PLANT]` *(the gap between "arrived" and "arrived in time" must survive any summary of this Gathering)*
 
@@ -892,7 +892,7 @@
 
 *Phase 4 (25 Oct, Fake Guru: "Ok, go on"): the week's six fragments, read aloud before the reveal, as the party holds them. The server fills {SIX:2} with the party's own words; a word nobody found is left blank.*
 
-> On the dark hillside, before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.
+> Before anything else is opened, the week's six are read aloud, one after another, the way they were meant to be heard together.
 >
 > {SIX:2}
 

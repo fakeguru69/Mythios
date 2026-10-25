@@ -10,6 +10,11 @@ export interface SmallPartyLine {
 }
 
 export const SMALL_PARTY_LINES: SmallPartyLine[] = [
+  // W1D2's recap (dayRecaps.ts; 25 Oct, the plan after the audits, Phase 2): with one friend, nobody else is "the rest".
+  {
+    full: 'At the Hollow Wake Inn the rest of the list was waiting, each of them holding a torn page in the same neat hand.',
+    byFriends: { 1: 'At the Hollow Wake Inn the other name on the list was waiting, holding a torn page in the same neat hand.' },
+  },
   // W1D2, the taproom (episode-1:140-142)
   {
     full: 'There are {N-1} strangers in it who are not drinking.',

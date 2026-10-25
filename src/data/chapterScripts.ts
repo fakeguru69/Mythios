@@ -497,11 +497,11 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "You crouch at the stone and put your fingers to the cut lines. They are cold, and gritty under your touch. In the deepest groove, kept dry by the overhang, a crumb of black charcoal comes away on your thumb. Somebody pressed paper to this stone not many days ago. That is where you are, with your back to the bracken, when the bracken moves.",
+            "text": "You crouch at the stone and put your fingers to the cut lines. They are cold, and gritty under your touch. In the deepest groove, kept dry by the overhang, a crumb of black charcoal comes away on your thumb. Somebody pressed paper to this stone, and not so very long ago. That is where you are, with your back to the bracken, when the bracken moves.",
             "changed": "You found fresh charcoal in the cut stone · Your back was to the bracken: he strikes first.",
             "roadFind": {
               "title": "Charcoal in the cut",
-              "text": "In the deepest groove of the cut stone at the Widow's Tooth, dry under the overhang, a crumb of black charcoal came away on your thumb. Somebody pressed paper to this stone not many days ago."
+              "text": "In the deepest groove of the cut stone at the Widow's Tooth, dry under the overhang, a crumb of black charcoal came away on your thumb. Somebody pressed paper to this stone, and not so very long ago."
             }
           },
           {
@@ -1030,7 +1030,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               0
             ],
-            "text": "The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve — he came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes go to the carved horse in your other hand, and stop.",
+            "text": "The axe comes down by inches. As she lowers it, the starlight catches a fresh white gouge in the ash-wood helve. He came at her among the trees before he ever tried her shutter, and she turned his blade with the haft. Then her eyes go past you to the carved horse at your belt, and stop.",
             "changed": "You showed empty hands. You saw the fresh blade-nick on her axe-helve from the trees.",
             "roadFind": {
               "title": "The nicked axe-helve",
@@ -1041,7 +1041,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               1
             ],
-            "text": "The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face — whatever she keeps hidden here, it is under that stone and not in the shed. Then her eyes go to the carved horse in your other hand, and stop.",
+            "text": "The axe comes down by inches. At the word of the man at her shutter, her eyes flick once, sharply, to the flat root-cellar stone behind the woodpile before coming back to your face. Whatever she keeps hidden here, it is under that stone, and not in the shed. Then her eyes go past you to the carved horse at your belt, and stop.",
             "changed": "You told her who you drove off. Her glance gave away the root-cellar stone behind the woodpile.",
             "roadFind": {
               "title": "The root-cellar stone",
@@ -1052,7 +1052,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "options": [
               2
             ],
-            "text": "The axe comes down all at once. Before she even asks your names, her fingers go to her belt, unfasten a small river-stone charm bound in iron wire — kept since the winter the boy was taken — and press it into your palm as she takes the little horse from you.",
+            "text": "The axe comes down all at once. Before she even asks your names, her fingers go to her belt, unfasten a small river-stone charm bound in iron wire, worn smooth with keeping, and press it into your palm as she takes the little horse from you.",
             "changed": "You knew the carved horse was hers and held it out first. She trusted you at once, and pressed a Might Relic into your hand.",
             "roadFind": {
               "title": "The carver's charm",
@@ -1197,7 +1197,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "Under the waterline, at the foot of the ford-stone, where you would only see it in a low year:"
+        "text": "Under the waterline, at the foot of the ford-stone, where the current has scoured the rock bare:"
       },
       {
         "t": "say",
@@ -6801,7 +6801,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
       },
       {
         "t": "say",
-        "text": "You come out of the crack into the evening. The moon is rising over the dead city, round and full and very bright.\n\nTomorrow night it goes dark.\n\nBelow you the soldiers are still climbing. They do not look at you. They are going where you are going."
+        "text": "You come out of the crack into the evening. The moon is rising over the dead city, round and full and very bright.\n\nTomorrow night it goes dark: a full moon, eaten, the way the sky-watchers wrote it.\n\nBelow you the soldiers are still climbing. They do not look at you. They are going where you are going."
       },
       {
         "t": "say",
