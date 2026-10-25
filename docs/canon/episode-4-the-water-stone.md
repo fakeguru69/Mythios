@@ -783,11 +783,11 @@
 >
 > There is room at it for one pair of hands, and for as long as one breath lasts.
 
-### One heartbeat *(not when alone)*
+### One breath *(not when alone)*
 
-*Phase 4 (25 Oct; Fake Guru: "Yes" to `docs/design/gatherings2to5-moments-draft-25oct.md`): the night's "tell them what to do" moment, on Gathering 1's model. The friend who acts is picked at random, leaving out the one who rolled the Approach (in a party of two, either). Alone, this part is skipped.*
+*Phase 4 (25 Oct; Fake Guru: "Yes" to `docs/design/gatherings2to5-moments-draft-25oct.md`): the night's "tell them what to do" moment ("One breath": "heartbeat" is kept for the king's, from Week 4 Day 6), on Gathering 1's model. The friend who acts is picked at random, leaving out the one who rolled the Approach (in a party of two, either). Alone, this part is skipped.*
 
-> Mei is nearest the gate. The water is at his chin. One heartbeat before he has to choose between the breath and the bars.
+> Mei is nearest the gate. The water is at his chin. One breath before he has to choose between the breath and the bars.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
 
@@ -842,7 +842,7 @@
 *There is no board tonight. The pen is still found in the pouch, and the pen says enough.*
 
 
-*If the heartbeat was HOLD HIS HEAD UP:*
+*If the breath was HOLD HIS HEAD UP:*
 > Whatever happened at the gate, the one who held his head is still kneeling there in the black water, soaked to the shoulders.
 
 ### Notice

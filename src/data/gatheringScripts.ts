@@ -214,16 +214,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "together"
         },
         "t": "section",
-        "title": "One heartbeat",
-        "section": "One heartbeat"
+        "title": "One breath",
+        "section": "One breath"
       },
       {
         "cond": {
           "on": "together"
         },
         "t": "say",
-        "text": "{F1} is nearest. One heartbeat before the boards go again.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
-        "section": "One heartbeat"
+        "text": "{F1} is nearest. One breath before the boards go again.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
+        "section": "One breath"
       },
       {
         "cond": {
@@ -246,7 +246,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             "desc": ""
           }
         ],
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -256,7 +256,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 0,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -266,7 +266,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 1,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -276,7 +276,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 2,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "section",
@@ -629,16 +629,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "together"
         },
         "t": "section",
-        "title": "One heartbeat",
-        "section": "One heartbeat"
+        "title": "One breath",
+        "section": "One breath"
       },
       {
         "cond": {
           "on": "together"
         },
         "t": "say",
-        "text": "{F1} has the black book in one hand and a lamp in the other. One heartbeat before the first of their lamps reaches the mouth of the tunnel.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
-        "section": "One heartbeat"
+        "text": "{F1} has the black book in one hand and a lamp in the other. One breath before the first of their lamps reaches the mouth of the tunnel.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
+        "section": "One breath"
       },
       {
         "cond": {
@@ -661,7 +661,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             "desc": ""
           }
         ],
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -671,7 +671,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 0,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -681,7 +681,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 1,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -691,7 +691,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 2,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "section",
@@ -1125,16 +1125,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "together"
         },
         "t": "section",
-        "title": "One heartbeat",
-        "section": "One heartbeat"
+        "title": "One breath",
+        "section": "One breath"
       },
       {
         "cond": {
           "on": "together"
         },
         "t": "say",
-        "text": "{F1} is at the foot of the glass, nearest to her. One heartbeat before the slope moves again.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
-        "section": "One heartbeat"
+        "text": "{F1} is at the foot of the glass, nearest to her. One breath before the slope moves again.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
+        "section": "One breath"
       },
       {
         "cond": {
@@ -1157,7 +1157,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             "desc": ""
           }
         ],
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -1167,7 +1167,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 0,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -1177,7 +1177,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 1,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -1187,7 +1187,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 2,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "section",
@@ -1709,16 +1709,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "together"
         },
         "t": "section",
-        "title": "One heartbeat",
-        "section": "One heartbeat"
+        "title": "One breath",
+        "section": "One breath"
       },
       {
         "cond": {
           "on": "together"
         },
         "t": "say",
-        "text": "{F1} is nearest the gate. The water is at his chin. One heartbeat before he has to choose between the breath and the bars.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
-        "section": "One heartbeat"
+        "text": "{F1} is nearest the gate. The water is at his chin. One breath before he has to choose between the breath and the bars.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
+        "section": "One breath"
       },
       {
         "cond": {
@@ -1741,7 +1741,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             "desc": ""
           }
         ],
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -1751,7 +1751,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 0,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -1761,7 +1761,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 1,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -1771,7 +1771,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 2,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "section",
@@ -2295,16 +2295,16 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "on": "together"
         },
         "t": "section",
-        "title": "One heartbeat",
-        "section": "One heartbeat"
+        "title": "One breath",
+        "section": "One breath"
       },
       {
         "cond": {
           "on": "together"
         },
         "t": "say",
-        "text": "{F1} is kneeling beside the dying watchman. One heartbeat before the voice on the hill calls the next post.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
-        "section": "One heartbeat"
+        "text": "{F1} is kneeling beside the dying watchman. One breath before the voice on the hill calls the next post.\n\n**Everyone else: you have thirty seconds. Tell {F1} what to do.**",
+        "section": "One breath"
       },
       {
         "cond": {
@@ -2327,7 +2327,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
             "desc": ""
           }
         ],
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -2337,7 +2337,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 0,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -2347,7 +2347,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 1,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "say",
@@ -2357,7 +2357,7 @@ export const GATHERING_SCRIPTS: GatheringScript[] = [
           "option": 2,
           "together": true
         },
-        "section": "One heartbeat"
+        "section": "One breath"
       },
       {
         "t": "section",

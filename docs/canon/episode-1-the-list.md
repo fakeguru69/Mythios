@@ -936,11 +936,11 @@
 >
 > There is no warning. A timber that has waited fifty years goes all at once. Dev drops through it to the chest and stops there, jammed, arms flung wide over boards that are already splitting. Below Dev's boots there is nothing but the sound of the river, a long way down in the dark.
 
-### One heartbeat *(not when alone)*
+### One breath *(not when alone)*
 
-*Phase 4 (25 Oct; Fake Guru: "Proceed"): the night's "tell them what to do" moment, on Gathering 6's model. The friend who acts is picked at random from the friends here, leaving out the friend in the drop and the one who rolled the Approach (in a party of two, the other friend). Alone, this part is skipped.*
+*Phase 4 (25 Oct; Fake Guru: "Proceed"): the night's "tell them what to do" moment ("One breath": "heartbeat" is kept for the king's, from Week 4 Day 6), on Gathering 6's model. The friend who acts is picked at random from the friends here, leaving out the friend in the drop and the one who rolled the Approach (in a party of two, the other friend). Alone, this part is skipped.*
 
-> Mei is nearest. One heartbeat before the boards go again.
+> Mei is nearest. One breath before the boards go again.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
 

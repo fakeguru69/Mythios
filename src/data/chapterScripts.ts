@@ -3551,7 +3551,7 @@ export const CHAPTER_SCRIPTS: ChapterScript[] = [
             "changed": "You let {F1} shield the map from the wind and read — watching the dark plain below, you saw the single lamp first.",
             "roadFind": {
               "title": "Shielded from the ridge wind",
-              "text": "While {F1} turned her back to the wind to read the map twice for the ones on the slope below, you had your eyes on the black ground where a single lamp began to move toward the Kiln."
+              "text": "While {F1} stood in the wind, reading the map twice for the ones on the slope below, you had your eyes on the black ground where a single lamp began to move toward the Kiln."
             }
           }
         ]

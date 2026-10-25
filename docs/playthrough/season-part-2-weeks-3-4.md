@@ -1374,7 +1374,7 @@ Clue found, "The gap in the row":
 
 *⚙ This road's own find, "Shielded from the ridge wind" (it goes to the Bag's Found Along the Road shelf, and can be laid at the fire):*
 
-> While Mei turned her back to the wind to read the map twice for the ones on the slope below, you had your eyes on the black ground where a single lamp began to move toward the Kiln.
+> While Mei stood in the wind, reading the map twice for the ones on the slope below, you had your eyes on the black ground where a single lamp began to move toward the Kiln.
 
 *⚙ Whatever you picked, every player reads this:*
 
@@ -1575,9 +1575,9 @@ Clue found, "No way down in the dark":
 >
 > The glass will bear one of you at a time, and perhaps not that. So the rope goes up to her a stretch at a time. One of you climbs past where the last one stopped, drives a blade into the slope, makes the rope fast to it, and comes down. Then the next.
 
-#### One heartbeat
+#### One breath
 
-> Mei is at the foot of the glass, nearest to her. One heartbeat before the slope moves again.
+> Mei is at the foot of the glass, nearest to her. One breath before the slope moves again.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
 
@@ -3303,9 +3303,9 @@ Clue found, "The lamp on the shingle":
 >
 > There is room at it for one pair of hands, and for as long as one breath lasts.
 
-#### One heartbeat
+#### One breath
 
-> Mei is nearest the gate. The water is at his chin. One heartbeat before he has to choose between the breath and the bars.
+> Mei is nearest the gate. The water is at his chin. One breath before he has to choose between the breath and the bars.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
 

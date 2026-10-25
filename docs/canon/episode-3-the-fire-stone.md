@@ -811,11 +811,11 @@
 >
 > The glass will bear one of you at a time, and perhaps not that. So the rope goes up to her a stretch at a time. One of you climbs past where the last one stopped, drives a blade into the slope, makes the rope fast to it, and comes down. Then the next.
 
-### One heartbeat *(not when alone)*
+### One breath *(not when alone)*
 
-*Phase 4 (25 Oct; Fake Guru: "Yes" to `docs/design/gatherings2to5-moments-draft-25oct.md`): the night's "tell them what to do" moment, on Gathering 1's model. The friend who acts is picked at random, leaving out the one who rolled the Approach (in a party of two, either). Alone, this part is skipped.*
+*Phase 4 (25 Oct; Fake Guru: "Yes" to `docs/design/gatherings2to5-moments-draft-25oct.md`): the night's "tell them what to do" moment ("One breath": "heartbeat" is kept for the king's, from Week 4 Day 6), on Gathering 1's model. The friend who acts is picked at random, leaving out the one who rolled the Approach (in a party of two, either). Alone, this part is skipped.*
 
-> Mei is at the foot of the glass, nearest to her. One heartbeat before the slope moves again.
+> Mei is at the foot of the glass, nearest to her. One breath before the slope moves again.
 >
 > **Everyone else: you have thirty seconds. Tell Mei what to do.**
 
@@ -871,7 +871,7 @@
 `[PLANT]` *(the same socket, the same pattern: a repeated thing, not damage)*
 
 
-*If the heartbeat was CALL HER NAME:*
+*If the breath was CALL HER NAME:*
 > When she is down at last, she does not go to the nearest of you. She goes to the one who called her by her name.
 
 ### Notice

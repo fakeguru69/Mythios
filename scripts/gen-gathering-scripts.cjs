@@ -25,7 +25,7 @@ function tokens(s, week, section) {
     .replace(/\[N−1\]|\[N-1\]/g, '{N-1}')
     .replace(/\[N\]/g, '{N}');
   // Gathering 1: "Dev" in the drop is whichever friend fell (canon note); elsewhere Dev is {F2}.
-  if (week === 1 && /United Effort|One heartbeat|The drop|discovery|summary/i.test(section)) t = t.replace(/\b(Dev|DEV)\b/g, '{RISK}');
+  if (week === 1 && /United Effort|One breath|The drop|discovery|summary/i.test(section)) t = t.replace(/\b(Dev|DEV)\b/g, '{RISK}');
   return t
     .replace(/\b(Mei|MEI)\b/g, '{F1}')
     .replace(/\b(Dev|DEV)\b/g, '{F2}')
@@ -285,16 +285,16 @@ function buildGathering(week, lines) {
       continue;
     }
     if (/^\*[^*]/.test(l)) {
-      // "One heartbeat" (Phase 4): a label naming one of the heartbeat's buttons is that branch; "If the heartbeat was
+      // "One breath" (Phase 4): a label naming one of the heartbeat's buttons is that branch; "If the heartbeat was
       // DOUSE THE LAMPS" later in the night is the same branch's echo. Both only with friends.
       let cond;
-      const hb = [...steps].reverse().find((x) => x.t === 'pick' && x.section === 'One heartbeat');
+      const hb = [...steps].reverse().find((x) => x.t === 'pick' && x.section === 'One breath');
       if (hb) {
         const bare = (x) => x.toUpperCase().replace(/[^A-Z' ]/g, '').replace(/\s+/g, ' ').trim();
         const lab = l.replace(/^\*|\*$/g, '').replace(/:\*?$/, '').replace(/:$/, '').trim();
-        const echo = lab.match(/^If the heartbeat was (.+)$/);
+        const echo = lab.match(/^If the breath was (.+)$/);
         const oi = hb.options.findIndex((o) => bare(o.label) === bare(echo ? echo[1] : lab));
-        if (oi >= 0 && (echo || section === 'One heartbeat')) cond = { on: 'pick', option: oi, together: true };
+        if (oi >= 0 && (echo || section === 'One breath')) cond = { on: 'pick', option: oi, together: true };
       }
       if (!cond) cond = labelCond(l, week);
       // "Then, alone on the screen" starts a new passage: a note just before it about untapped buttons
