@@ -22,8 +22,8 @@ const check = (name, ok) => {
 
   check('CoverPage.tsx renders MYTHIOS header', coverSrc.includes('MYTHIOS'));
   check(
-    'CoverPage.tsx renders one-line tagline',
-    coverSrc.includes('A story told a little each day to you and your friends.')
+    'CoverPage.tsx: the premise is the only sentence (Phase 5, 24 Oct): no tagline, no "ritual"',
+    !coverSrc.includes('A story told a little each day') && !/ritual/i.test(coverSrc) && !coverSrc.includes('10 minutes a day')
   );
   check(
     'CoverPage.tsx uses canon series premise',
@@ -41,8 +41,8 @@ const check = (name, ok) => {
     coverSrc.includes('2 to 6 friends')
   );
   check(
-    'CoverPage.tsx renders data-button-gather button ("Gather your friends")',
-    coverSrc.includes('data-button-gather') && coverSrc.includes('Gather your friends')
+    'CoverPage.tsx renders data-button-gather button ("Start a party", the name the next screen uses)',
+    coverSrc.includes('data-button-gather') && coverSrc.includes('Start a party') && appSrc.includes('START A PARTY')
   );
   check(
     'CoverPage.tsx renders data-button-signin button ("Already playing? Sign in")',

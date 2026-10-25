@@ -28,6 +28,7 @@ import { CLASSES } from './onlineText';
 import { tonightLine } from './OnlineGathering';
 import { ErrorLine, goldButton, heading, note, quietButton } from './ui';
 import { Markable } from './Markable';
+import OnlineChest from './OnlineChest';
 
 interface Roll {
   attr: AttributeName;
@@ -278,7 +279,7 @@ export default function OnlineDay({
       <button className={quietButton} onClick={onClose}>
         ← The party
       </button>
-      <span className="font-['Cinzel'] font-bold text-[13px] text-[#E5C158]">◎ {progress.gold.toLocaleString()}g</span>
+      <span className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158]">◎ {progress.gold.toLocaleString()}g</span>
     </div>
   );
 
@@ -380,17 +381,12 @@ export default function OnlineDay({
     const key = `s${i}`;
     if (step.t === 'say') {
       if (!condMet(step.cond)) continue;
-      pushSay(key, step.text, step.pull);
-      // The day's fragment is in the Chest from the day's opening (Core Rules §6).
-      if (step.fragment) {
-        pushItem(
-          `${key}-chest`,
-          <button key={`${key}-chest`} className={`w-full ${quietButton} py-2 font-[Cinzel] font-bold`} onClick={onOpenChest}>
-            🕯️ OPEN THE SEEKER CHEST
-          </button>,
-          { instant: true }
-        );
-      }
+      // The fragment's notice no longer interrupts the scene (Phase 5, 24 Oct): the day's fragment is solved from the
+      // end-of-day card instead. The passage keeps everything else ("That is six.").
+      const text = step.fragment
+        ? step.text.replace(/\n?\**A locked Seeker Fragment has been added to your Chest\.\**/, '').replace(/^\s*>?\s*$/gm, '').trim()
+        : step.text;
+      if (text) pushSay(key, text, step.pull);
       continue;
     }
     if (step.t === 'act') {
@@ -528,9 +524,9 @@ export default function OnlineDay({
         key,
         <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-challenge-card>
           <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-            <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">🎯 {fill(step.title)}</span>
+            <span className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8] leading-snug min-w-0">🎯 {fill(step.title)}</span>
             {!challenge && (
-              <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] whitespace-nowrap">
+              <span className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158] whitespace-nowrap">
                 You succeed on {challengeSucceedOn(dc, bonus + (armed === attr ? 4 : 0))}+
               </span>
             )}
@@ -564,7 +560,7 @@ export default function OnlineDay({
                         {/* The Relic choice shows only when the player holds a matching Relic (Core Rules §3). */}
                         {held(o.attr) > 0 && (
                           <div className="flex items-center justify-between gap-2 rounded-lg border border-[#3A2555] px-3 py-1.5">
-                            <span className="text-[13px] text-[#D9D1E6]">
+                            <span className="text-[14px] text-[#D9D1E6]">
                               {o.attr} Relic · you hold {held(o.attr)}
                               <br />
                               <span className="text-[#B7A9CC]">
@@ -601,8 +597,8 @@ export default function OnlineDay({
               </>
             ) : (
               <div className="space-y-1">
-                <p className="font-mono text-[13.5px] text-[#F4F1F8]">{rollLine(challenge)}</p>
-                <p className={`font-['Cinzel'] font-bold text-[13px] ${challenge.pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
+                <p className="font-mono text-[14px] text-[#F4F1F8]">{rollLine(challenge)}</p>
+                <p className={`font-['Cinzel'] font-bold text-[14px] ${challenge.pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
                   {challenge.pass
                     ? `PASSED · +500g${challenge.growth ? ` · ${challenge.attr} ${challenge.score} → ${challenge.score + challenge.growth}` : ''}`
                     : `FAILED · −150g · ${fill(step.fail)}`}
@@ -634,9 +630,9 @@ export default function OnlineDay({
         key,
         <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-press-card>
           <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-            <span className="font-['Cinzel'] font-bold text-[12px] text-[#F4F1F8] truncate">PRESS ON · {fill(step.title)}</span>
+            <span className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8] leading-snug min-w-0">PRESS ON · {fill(step.title)}</span>
             {!press && (
-              <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] whitespace-nowrap">
+              <span className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158] whitespace-nowrap">
                 You succeed on {challengeSucceedOn(pressDc, bonus + (pressArmed ? 4 : 0))}+
               </span>
             )}
@@ -651,7 +647,7 @@ export default function OnlineDay({
               <>
                 {held(challenge.attr) > 0 && (
                   <div className="flex items-center justify-between gap-2 rounded-lg border border-[#3A2555] px-3 py-1.5">
-                    <span className="text-[13px] text-[#D9D1E6]">
+                    <span className="text-[14px] text-[#D9D1E6]">
                       {challenge.attr} Relic · you hold {held(challenge.attr)}
                       <br />
                       <span className="text-[#B7A9CC]">With +4, you succeed on {challengeSucceedOn(pressDc, bonus + 4)}+ (used once)</span>
@@ -679,8 +675,8 @@ export default function OnlineDay({
               <TapEcho label="LEAVE IT" />
             ) : (
               <div className="space-y-1">
-                <p className="font-mono text-[13.5px]">{rollLine(press as Roll)}</p>
-                <p className={`font-['Cinzel'] font-bold text-[13px] ${(press as Roll).pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
+                <p className="font-mono text-[14px]">{rollLine(press as Roll)}</p>
+                <p className={`font-['Cinzel'] font-bold text-[14px] ${(press as Roll).pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
                   {(press as Roll).pass ? 'PASSED · +200g' : 'FAILED'}
                 </p>
                 {!(press as Roll).pass && passPiece && (
@@ -711,7 +707,7 @@ export default function OnlineDay({
       }
       const bar = (label: string, hp: number, colour: string, labelColour: string) => (
         <div className="space-y-1">
-          <div className="flex items-center justify-between gap-1 text-[11.5px] font-['Cinzel'] font-bold">
+          <div className="flex items-center justify-between gap-1 text-[12px] font-['Cinzel'] font-bold">
             <span style={{ color: labelColour }} className="truncate">{label}</span>
             <span style={{ color: labelColour }} className="whitespace-nowrap shrink-0">{hp} HP</span>
           </div>
@@ -735,11 +731,11 @@ export default function OnlineDay({
         key,
         <div key={key} className="w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg" data-fight-card>
           <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-            <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8] truncate">⚔️ {fill(step.name)}</span>
-            <span className="font-['Cinzel'] font-bold text-[11.5px] whitespace-nowrap" data-hit-on>
+            <span className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8] leading-snug min-w-0">⚔️ {fill(step.name)}</span>
+            <span className="font-['Cinzel'] font-bold text-[12px] whitespace-nowrap" data-hit-on>
               <span className="text-[#E5C158]">You hit on {youHitOn}+</span>
               <span className="text-[#8B7A9E]"> / </span>
-              <span className="text-[#FB923C]">He hits on {foeHitsOn}+</span>
+              <span className="text-[#FB923C]">Enemy hits on {foeHitsOn}+</span>
             </span>
           </div>
 
@@ -747,13 +743,13 @@ export default function OnlineDay({
             <div className="grid grid-cols-2 gap-2">
               <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]" data-fight-you>
                 {bar('YOU', php, '#6FD39A', '#6FD39A')}
-                <div className="mt-1.5 space-y-0.5 text-[12px] font-sans">
+                <div className="mt-1.5 space-y-0.5 text-[14px] font-sans">
                   <div className="flex items-center justify-between font-semibold text-[#E5C158]" data-stat-weapon>
-                    <span>Weapon WEP</span>
+                    <span>Weapon</span>
                     <span className="font-bold">{curWep}</span>
                   </div>
                   <div className="flex items-center justify-between font-semibold text-[#7AA7FF]" data-stat-armour>
-                    <span>Armour AMR</span>
+                    <span>Armour</span>
                     <span className="font-bold">{curAmr}</span>
                   </div>
                 </div>
@@ -761,13 +757,13 @@ export default function OnlineDay({
 
               <div className="p-2.5 rounded-xl bg-[#130B1F] border border-[#3A2555]" data-fight-foe>
                 {bar('FOE', ehp, '#E0645C', '#E0645C')}
-                <div className="mt-1.5 space-y-0.5 text-[12px] font-sans">
+                <div className="mt-1.5 space-y-0.5 text-[14px] font-sans">
                   <div className="flex items-center justify-between font-semibold text-[#FB923C]" data-stat-defence>
-                    <span>Defence DEF</span>
+                    <span>Defence</span>
                     <span className="font-bold">{curDef}</span>
                   </div>
                   <div className="flex items-center justify-between font-semibold text-[#C084FC]" data-stat-attack>
-                    <span>Attack ATK</span>
+                    <span>Attack</span>
                     <span className="font-bold">{curAtk}</span>
                   </div>
                 </div>
@@ -793,7 +789,7 @@ export default function OnlineDay({
                         <span className="text-[#8B7A9E]"> + </span>
                         <span className="text-[#E5C158]">Weapon {r.playerAtk}</span>
                         <span className="text-[#8B7A9E]"> − </span>
-                        <span className="text-[#FB923C]">DEF {r.enemyDef}</span>
+                        <span className="text-[#FB923C]">Defence {r.enemyDef}</span>
                         <span className="text-[#8B7A9E]"> = </span>
                         <span className={`font-bold ${r.hit ? 'text-[#6FD39A]' : 'text-[#9A90B8]'}`}>
                           {n(r.margin)}. {r.hit ? 'HIT' : 'MISS'}
@@ -820,9 +816,9 @@ export default function OnlineDay({
                         <span className="text-[#E0645C] font-bold">Enemy Rolls </span>
                         <span className="text-[#F4F1F8]">🎲 {r.enemyD20}</span>
                         <span className="text-[#8B7A9E]"> + </span>
-                        <span className="text-[#C084FC]">ATK {r.enemyAtk}</span>
+                        <span className="text-[#C084FC]">Attack {r.enemyAtk}</span>
                         <span className="text-[#8B7A9E]"> − </span>
-                        <span className="text-[#7AA7FF]">Armor {r.playerArmor}</span>
+                        <span className="text-[#7AA7FF]">Armour {r.playerArmor}</span>
                         <span className="text-[#8B7A9E]"> = </span>
                         <span className={`font-bold ${r.enemyHit ? 'text-[#E0645C]' : 'text-[#9A90B8]'}`}>
                           {n(r.enemyMargin)}. {r.enemyHit ? 'HIT' : 'MISS'}
@@ -843,15 +839,15 @@ export default function OnlineDay({
                   return (
                     <div
                       key={r.round}
-                      className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 flex flex-col gap-1 text-[13px] font-sans"
+                      className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 flex flex-col gap-1 text-[14px] font-sans"
                       data-fight-round={r.round}
                     >
                       <div className="flex items-center justify-between border-b border-white/[0.06] pb-1">
-                        <span className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158]">
+                        <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158]">
                           ROUND {r.round}
-                          {r.relic ? ' · Combat Relic: +1 Weapon, +1 Armor' : ''}
+                          {r.relic ? ' · Combat Relic: +1 Weapon, +1 Armour' : ''}
                         </span>
-                        <span className="text-[11px] font-semibold text-[#B7A9CC]">Damage = Margin × 5</span>
+                        <span className="text-[12px] font-semibold text-[#B7A9CC]">Damage = Margin × 5</span>
                       </div>
                       {ordered}
                     </div>
@@ -861,13 +857,13 @@ export default function OnlineDay({
             )}
           {!fightDone ? (
             <>
-              {/* A Combat Relic: +1 Weapon and +1 Armor for the rest of the fight, from the next round; once per fight (§5, §12a). */}
+              {/* A Combat Relic: +1 Weapon and +1 Armour for the rest of the fight, from the next round; once per fight (§5, §12a). */}
               {fight?.relicFrom === undefined && held('Combat') > 0 && (
                 <div className="flex items-center justify-between gap-2 rounded-lg border border-[#3A2555] px-3 py-1.5">
-                  <span className="text-[13px] text-[#D9D1E6]">
+                  <span className="text-[14px] text-[#D9D1E6]">
                     Combat Relic · you hold {held('Combat')}
                     <br />
-                    <span className="text-[#B7A9CC]">+1 Weapon and +1 Armor for the rest of this fight, from the next round</span>
+                    <span className="text-[#B7A9CC]">+1 Weapon and +1 Armour for the rest of this fight, from the next round</span>
                   </span>
                   <button className={quietButton} disabled={busy} onClick={() => call('use_combat_relic', {})}>
                     USE
@@ -875,7 +871,7 @@ export default function OnlineDay({
                 </div>
               )}
               {fight?.relicFrom !== undefined && rounds.length < fight.relicFrom && (
-                <p className="text-[13px] text-[#B7A9CC]">Combat Relic used: +1 Weapon and +1 Armor from Round {fight.relicFrom}.</p>
+                <p className="text-[14px] text-[#B7A9CC]">Combat Relic used: +1 Weapon and +1 Armour from Round {fight.relicFrom}.</p>
               )}
               <ScriptButton label={`🎲 ROUND ${rounds.length + 1}`} disabled={busy} onClick={() => call('fight_round', {})} />
               {/* [NOT NOW] before the first round, except the first fight (Core Rules §12a). */}
@@ -891,14 +887,14 @@ export default function OnlineDay({
             </>
           ) : (
             <div className="space-y-1">
-              <p className={`font-['Cinzel'] font-bold text-[13px] ${fightWon ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
+              <p className={`font-['Cinzel'] font-bold text-[14px] ${fightWon ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
                 {fightWon ? `VICTORY. ${sentenceCase(fill(step.name))} defeated in ${rounds.length} round${rounds.length === 1 ? '' : 's'}.` : 'DEFEATED.'}
                 <br />
-                {`REWARD: ${fightWon && fight?.gold ? `+${fight.gold}g` : 'none'}`}
+                <span className="font-sans font-semibold">{`Reward: ${fightWon && fight?.gold ? `+${fight.gold}g` : 'none'}`}</span>
               </p>
               {/* After the first fight (Core Rules §7 first-time lines): everyone's first fight is Week 1 Day 1's. */}
               {week === 1 && day === 1 && (
-                <HowItWorks text="Gold buys better weapons and armor in the Store. Every fight starts fresh: your wounds never follow you." />
+                <HowItWorks text="Gold buys a better Weapon and Armour in the Store. Every fight starts fresh: your wounds never follow you." />
               )}
             </div>
           )}
@@ -1005,8 +1001,8 @@ export default function OnlineDay({
         >
           {/* Header */}
           <div className="px-4 py-2.5 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-            <ScriptText text={fill(titleLine)} className="font-['Cinzel'] font-bold text-[13px] tracking-[0.8px] text-[#E5C158] uppercase truncate" />
-            <span className="shrink-0 font-['Cinzel'] text-[10.5px] tracking-[1px] text-[#D4B876]/80 uppercase px-2 py-0.5 rounded border border-[#D4B876]/30 bg-[#1A0F2E]">
+            <ScriptText text={fill(titleLine)} className="font-['Cinzel'] font-bold text-[14px] tracking-[0.8px] text-[#E5C158] uppercase leading-snug min-w-0" />
+            <span className="shrink-0 font-['Cinzel'] text-[12px] tracking-[1px] text-[#D4B876]/80 uppercase px-2 py-0.5 rounded border border-[#D4B876]/30 bg-[#1A0F2E]">
               DAY SUMMARY
             </span>
           </div>
@@ -1024,10 +1020,10 @@ export default function OnlineDay({
                 className="rounded-xl bg-[#231A12] border border-[#8A6E34]/70 p-2 text-center flex flex-col justify-between items-center min-h-[60px]"
                 data-result-gold
               >
-                <span className="font-['Cinzel'] font-bold text-[10px] tracking-[0.8px] text-[#D4B876] uppercase">
+                <span className="font-['Cinzel'] font-bold text-[12px] tracking-[0.8px] text-[#D4B876] uppercase">
                   GOLD
                 </span>
-                <span className="font-['Cinzel'] font-bold text-[16px] text-[#E5C158] leading-tight">
+                <span className="font-sans font-semibold text-[16px] text-[#E5C158] leading-tight">
                   {goldDisplay}
                 </span>
               </div>
@@ -1037,10 +1033,10 @@ export default function OnlineDay({
                 className="rounded-xl bg-[#1D142E] border border-[#5E4585]/70 p-2 text-center flex flex-col justify-between items-center min-h-[60px]"
                 data-result-growth
               >
-                <span className="font-['Cinzel'] font-bold text-[10px] tracking-[0.8px] text-[#C39BF5] uppercase">
+                <span className="font-['Cinzel'] font-bold text-[12px] tracking-[0.8px] text-[#C39BF5] uppercase">
                   GROWTH
                 </span>
-                <span className="font-sans font-semibold text-[13px] text-[#C084FC] truncate max-w-full leading-tight">
+                <span className="font-sans font-semibold text-[14px] text-[#C084FC] max-w-full break-words leading-tight">
                   {growthDisplay}
                 </span>
               </div>
@@ -1050,19 +1046,32 @@ export default function OnlineDay({
                 className="rounded-xl bg-[#141B2E] border border-[#3A4B75]/70 p-2 text-center flex flex-col justify-between items-center min-h-[60px]"
                 data-result-fragment
               >
-                <span className="font-['Cinzel'] font-bold text-[10px] tracking-[0.8px] text-[#7AA7FF] uppercase">
+                <span className="font-['Cinzel'] font-bold text-[12px] tracking-[0.8px] text-[#7AA7FF] uppercase">
                   FRAGMENT
                 </span>
-                <span className="font-sans font-semibold text-[13px] text-[#7AA7FF] truncate max-w-full leading-tight">
+                <span className="font-sans font-semibold text-[14px] text-[#7AA7FF] max-w-full break-words leading-tight">
                   {fragDisplay}
                 </span>
               </div>
             </div>
 
+            {/* Today's fragment, solved here without leaving the story (Phase 5, 24 Oct). */}
+            {steps.some((st) => st.t === 'say' && st.fragment) && (
+              <div className="space-y-1.5" data-summary-fragment>
+                <div className="font-['Cinzel'] font-bold text-[12px] tracking-[0.8px] text-[#7AA7FF] uppercase">
+                  TODAY'S FRAGMENT
+                </div>
+                <OnlineChest partyId={partyId} onClose={() => undefined} embedded only={{ week, day }} onChanged={load} />
+                <button className={`${quietButton} w-full`} onClick={onOpenChest}>
+                  The whole Seeker Chest
+                </button>
+              </div>
+            )}
+
             {/* What you learned */}
             {learnedDisplay && (
               <div className="space-y-1" data-summary-learned>
-                <div className="font-['Cinzel'] font-bold text-[11px] tracking-[0.8px] text-[#D4B876] uppercase">
+                <div className="font-['Cinzel'] font-bold text-[12px] tracking-[0.8px] text-[#D4B876] uppercase">
                   WHAT YOU LEARNED
                 </div>
                 <p className="font-sans text-[16px] text-[#F4F1F8] leading-[1.45]">
@@ -1074,7 +1083,7 @@ export default function OnlineDay({
             {/* What you carry */}
             {carryDisplay && (
               <div className="space-y-1" data-summary-carry>
-                <div className="font-['Cinzel'] font-bold text-[11px] tracking-[0.8px] text-[#D4B876] uppercase">
+                <div className="font-['Cinzel'] font-bold text-[12px] tracking-[0.8px] text-[#D4B876] uppercase">
                   WHAT YOU CARRY
                 </div>
                 <p className="font-sans text-[16px] text-[#E6E0F0] leading-[1.45]">
@@ -1443,11 +1452,11 @@ function RoadSoFar({
   const several = recaps.length > 1;
   return (
     <div className="rounded-xl border border-[#3A2555] bg-[#130B1F] px-3.5 py-3 space-y-2.5">
-      <p className="font-['Cinzel'] font-bold text-[12px] tracking-wide text-[#D4B876]">THE ROAD SO FAR</p>
+      <p className="font-['Cinzel'] font-bold text-[14px] tracking-wide text-[#D4B876]">THE ROAD SO FAR</p>
       {recaps.map((r) => (
         <div key={`${r.week}-${r.day}`} className="space-y-1">
           {several && (
-            <p className="font-sans text-[12px] text-[#8B7A9E]">
+            <p className="font-sans text-[14px] text-[#8B7A9E]">
               {r.day === 7 ? `Week ${r.week} · The Gathering` : `Week ${r.week} · Day ${r.day}`}
             </p>
           )}
@@ -1468,7 +1477,7 @@ function PartyYesterday({ lines }: { lines?: string[] }) {
   if (!lines || lines.length === 0) return null;
   return (
     <div className="rounded-xl border border-[#D4B876]/40 bg-[#180F29] px-3.5 py-3 space-y-2" data-party-yesterday>
-      <p className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] uppercase text-[#E5C158]">
+      <p className="font-['Cinzel'] font-bold text-[14px] tracking-[1px] uppercase text-[#E5C158]">
         THE PARTY, YESTERDAY
       </p>
       <ul className="space-y-1">

@@ -25,12 +25,12 @@ export default function GarrickRecap({ partyId, friends, partySize }: { partyId:
         <div className="border-t border-[#3A2555] pt-3 space-y-4">
           {recap.map((w) => (
             <div key={w.week} className="space-y-2.5">
-              <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] uppercase text-[#D4B876]">Week {w.week}</div>
+              <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] uppercase text-[#D4B876]">Week {w.week}</div>
               {w.entries.map((e, ei) => (
                 <div key={ei} className="pl-3 border-l-2 border-[#D4B876]/45 space-y-1">
-                  {e.when && <div className="font-sans text-[11.5px] text-[#B7A9CC]">{fill(e.when)}</div>}
+                  {e.when && <div className="font-sans text-[12px] text-[#B7A9CC]">{fill(e.when)}</div>}
                   <ScriptText text={fill(e.line)} className="font-['Cormorant_Garamond',serif] text-[16px] text-[#F4E8C1] leading-[1.4]" />
-                  <ScriptText text={fill(e.meaning)} className="font-sans text-[13.5px] text-[#E6E0F0] leading-[1.42]" />
+                  <ScriptText text={fill(e.meaning)} className="font-sans text-[14px] text-[#E6E0F0] leading-[1.42]" />
                 </div>
               ))}
             </div>

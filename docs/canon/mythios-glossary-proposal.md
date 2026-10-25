@@ -39,7 +39,7 @@ That is the real problem, and it is bigger than one word. The rules, the scripts
 | A fragment's missing word | **word**; you **solve** it ("Fragments Solved") | lock, unjumble | TV: "Locks Opened" sounds like lock-picking. |
 | The week's map | **map** | | |
 | Your documents | **Scroll Box** | | |
-| Gold, gear | **gold, Weapon, Armor, Level** | | |
+| Gold, gear | **gold, Weapon, Armour, Level** (British "Armour" since 24 Oct, Phase 5: one name per stat on screen, Weapon, Armour, Defence, Attack) | | |
 | Relics | **Relic** (give, not lend) | | |
 | Your tab names | **Record, Bag, Store** | Card, Stats, Seeker (as a tab) | TV chose Record. "Card" then only means a Challenge card or a summary card. |
 | Chat tabs | **MINE, PARTY** | thread | |

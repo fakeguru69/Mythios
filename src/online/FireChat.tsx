@@ -101,7 +101,7 @@ const nameOf = (members: MemberRow[], id: string | null) => members.find((m) => 
 export function GarrickBubble({ text, source = 'Garrick, at the fire' }: { text: string; source?: string }) {
   return (
     <div className="max-w-[88%] space-y-1" data-garrick-line>
-      <div className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
+      <div className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158] tracking-[0.6px]">GARRICK</div>
       <Markable source={source} text={text}>
         <div className="rounded-[4px_16px_16px_16px] bg-[#2B1E10] border border-[#6B5524] px-3 py-2">
           <ScriptText text={text} className="font-sans text-[16px] leading-[1.45] text-[#F4E8C8]" />
@@ -114,14 +114,14 @@ export function GarrickBubble({ text, source = 'Garrick, at the fire' }: { text:
 export function NarrationMessage({ text }: { text: string }) {
   return (
     <div className="space-y-1" data-narration>
-      <div className="font-['Cinzel'] font-bold text-[11px] text-[#B7A9CC] tracking-[1.2px]">MYTHIOS</div>
+      <div className="font-['Cinzel'] font-bold text-[12px] text-[#B7A9CC] tracking-[1.2px]">MYTHIOS</div>
       <ScriptText text={text} className="font-sans text-[18px] leading-[1.5] text-[#F4F1F8]" />
     </div>
   );
 }
 
 export function SmallLine({ children }: { children: React.ReactNode }) {
-  return <p className="text-[13px] text-[#8B7A9E] text-center">{children}</p>;
+  return <p className="text-[14px] text-[#8B7A9E] text-center">{children}</p>;
 }
 
 /** One message from party_messages. */
@@ -141,7 +141,7 @@ export function ChatBubble({
   if (m.kind === 'nudge') {
     return (
       <div className="rounded-xl bg-[#231530] border border-[#6B3BA3]/60 px-3.5 py-2.5 my-1 text-center w-full" data-fire-nudge>
-        <div className="font-['Cinzel'] font-bold text-[11px] text-[#C084FC] tracking-[0.8px] uppercase">
+        <div className="font-['Cinzel'] font-bold text-[12px] text-[#C084FC] tracking-[0.8px] uppercase">
           PRIVATE NUDGE
         </div>
         <p className="font-sans text-[15px] text-[#F4F1F8] italic leading-relaxed mt-0.5">
@@ -154,7 +154,7 @@ export function ChatBubble({
     const isBigMoment = /rolled a natural 20|earned the .* badge|took the crown for|reached (Apprentice|Adept|Master)/.test(m.body);
     return (
       <p
-        className={`text-[13px] text-center w-full ${isBigMoment ? 'text-[#E5C158] font-semibold' : 'text-[#8B7A9E]'}`}
+        className={`text-[14px] text-center w-full ${isBigMoment ? 'text-[#E5C158] font-semibold' : 'text-[#8B7A9E]'}`}
         data-chat-moment={isBigMoment ? 'true' : undefined}
       >
         {m.body}
@@ -172,7 +172,7 @@ export function ChatBubble({
   };
   return (
     <div className={`flex flex-col ${mine ? 'items-end' : 'items-start'}`} data-chat={mine ? 'mine' : 'friend'}>
-      {!mine && <div className="text-[12px] font-bold text-[#C39BF5]">{nameOf(members, m.author_id)}</div>}
+      {!mine && <div className="text-[14px] font-bold text-[#C39BF5]">{nameOf(members, m.author_id)}</div>}
       <div
         className={`select-none max-w-[86%] px-3 py-2 text-[16px] leading-[1.4] whitespace-pre-wrap break-words border ${
           mine
@@ -239,7 +239,7 @@ export function ReportBox({ m, onDone }: { m: ChatMessage; onDone: () => void })
           Back
         </button>
       )}
-      {error && <p className="text-[13px] text-[#F08A8A]">{error}</p>}
+      {error && <p className="text-[14px] text-[#F08A8A]">{error}</p>}
     </div>
   );
 }
@@ -327,7 +327,22 @@ export function Composer({
           →
         </button>
       </div>
-      {error && <p className="text-[13px] text-[#F08A8A]">{error}</p>}
+      {error && <p className="text-[14px] text-[#F08A8A]">{error}</p>}
+    </div>
+  );
+}
+
+/** Garrick's morning line at the top of the day (Phase 5, 24 Oct: the morning reads in order: his line, last night,
+ *  the road so far, the chapter). */
+export function GarrickMorning({ partyId, timeZone, enabled }: { partyId: string; timeZone: string; enabled: boolean }) {
+  const { messages } = useChatMessages(partyId, enabled);
+  const cutoff = new Date(partyDayStart(timeZone)).getTime();
+  const line = messages.find((m) => m.morning === true && new Date(m.created_at).getTime() >= cutoff);
+  if (!line) return null;
+  return (
+    <div className="space-y-1" data-garrick-morning>
+      <div className="font-['Cinzel'] font-bold text-[14px] tracking-[1px] text-[#D4B876]">THIS MORNING</div>
+      <GarrickBubble text={line.body} source="Garrick, this morning" />
     </div>
   );
 }
@@ -357,12 +372,13 @@ export function EarlierFire({
   // This morning: Garrick's morning line, and anything you have said since (with his answers to you).
   const shown = messages.filter((m) => {
     const t = new Date(m.created_at).getTime();
-    return lastNight.includes(m) || (t >= cutoff && (m.morning === true || m.author_id === userId || m.reply_to_user === userId));
+    // His morning line is shown at the top of the day (GarrickMorning), not again here.
+    return lastNight.includes(m) || (t >= cutoff && m.morning !== true && (m.author_id === userId || m.reply_to_user === userId));
   });
   const follow = useKeepNewInView(shown.length);
   return (
     <div className="space-y-3" data-earlier-fire>
-      <div className="flex items-center gap-2 text-[12px] font-bold tracking-[1px] text-[#8F82A6]">
+      <div className="flex items-center gap-2 text-[14px] font-bold tracking-[1px] text-[#8F82A6]">
         <div className="flex-1 h-px bg-[#2C1D40]" />
         <span>LAST NIGHT AT THE FIRE</span>
         <div className="flex-1 h-px bg-[#2C1D40]" />

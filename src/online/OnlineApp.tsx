@@ -140,7 +140,7 @@ function InviteCard({ info, onJoin }: { info: InviteCardInfo | null | undefined;
         </button>
       )}
       {info.members && <p className={`${note} italic`}>Already in the party: {info.members}.</p>}
-      <p className="text-[12px] text-[#8B7A9E]">{CREDIT_LINE}</p>
+      <p className="text-[14px] text-[#8B7A9E]">{CREDIT_LINE}</p>
     </div>
   );
 }
@@ -271,7 +271,7 @@ function SignIn({ returning = false }: { returning?: boolean }) {
             {mode === 'in' ? 'SIGN IN' : 'GO ON'}
           </button>
           <button
-            className="w-full text-[13px] text-[#B7A9CC] underline"
+            className="w-full text-[14px] text-[#B7A9CC] underline"
             onClick={() => {
               setMode(mode === 'in' ? 'up' : 'in');
               setError(null);
@@ -280,7 +280,7 @@ function SignIn({ returning = false }: { returning?: boolean }) {
             {mode === 'in' ? 'New here? Make an account' : 'Have an account? Sign in'}
           </button>
           {mode === 'in' && (
-            <button className="w-full text-[13px] text-[#B7A9CC] underline" onClick={() => setForgot('asking')}>
+            <button className="w-full text-[14px] text-[#B7A9CC] underline" onClick={() => setForgot('asking')}>
               Forgot your password?
             </button>
           )}
@@ -380,7 +380,7 @@ function Confirm({
       {children}
       <p className="text-[15px]">{body}</p>
       <div className="flex gap-2">
-        <button className="flex-1 rounded-lg bg-[#D4B876] px-3 py-2 font-[Cinzel] font-bold text-[12px] text-[#130B1F]" onClick={onYes}>
+        <button className="flex-1 rounded-lg bg-[#D4B876] px-3 py-2 font-[Cinzel] font-bold text-[14px] text-[#130B1F]" onClick={onYes}>
           {yes}
         </button>
         <button className={`flex-1 ${quietButton}`} onClick={onNo}>
@@ -599,7 +599,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
               <span className="text-[15px]">{r.character_name}</span>
               <span className="flex gap-2">
                 <button
-                  className="rounded-lg bg-[#D4B876] px-3 py-1.5 font-[Cinzel] font-bold text-[12px] text-[#130B1F] disabled:opacity-50"
+                  className="rounded-lg bg-[#D4B876] px-3 py-1.5 font-[Cinzel] font-bold text-[14px] text-[#130B1F] disabled:opacity-50"
                   disabled={full || setOff}
                   onClick={() => act('set_member_status', { p_party: party.id, p_user: r.user_id, p_status: 'approved' })}
                 >
@@ -621,7 +621,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       {isHost && !full && !setOff && (
         <div className={card}>
           <h3 className={`${heading} text-[15px]`}>Send this to your friends.</h3>
-          <p className="break-all text-[13px] text-[#B7A9CC]">{inviteLink(party.invite_code)}</p>
+          <p className="break-all text-[14px] text-[#B7A9CC]">{inviteLink(party.invite_code)}</p>
           <div className="flex flex-wrap gap-2">
             <button
               className={quietButton}
@@ -708,7 +708,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
               <div className="min-w-0">
                 <div className="text-[15px] truncate">
                   <span className="font-semibold text-[#F4F1F8]">{isYou ? 'You' : r.character_name}</span>
-                  {isPartyHost && <span className="text-[#D4B876] text-[12px] font-normal"> (host)</span>}
+                  {isPartyHost && <span className="text-[#D4B876] text-[14px] font-normal"> (host)</span>}
                   <span className={r.ready ? 'text-[#D4B876] font-medium' : 'text-[#8F82A6]'}>
                     {' '}— {r.ready ? 'ready' : 'choosing'}
                   </span>
@@ -717,7 +717,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
             </div>
             {isHost && r.user_id !== userId && (
               <button
-                className={`${quietButton} text-[12px] py-1 px-2.5 text-[#F08A8A] border-[#5A2525] hover:border-[#F08A8A]`}
+                className={`${quietButton} text-[14px] py-1 px-2.5 text-[#F08A8A] border-[#5A2525] hover:border-[#F08A8A]`}
                 onClick={() => setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name })}
               >
                 Remove
@@ -752,14 +752,14 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         <section className="space-y-3">
           <div className="flex items-center justify-between pb-1.5 border-b border-[#2C1D40]">
             <div>
-              <p className="text-[10px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
+              <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
                 The Fellowship
               </p>
               <h2 className="text-[15px] font-['Cinzel'] font-bold text-[#F4F1F8] tracking-wide">
                 {party.name.toUpperCase()}
               </h2>
             </div>
-            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#2A1A40] text-[#D4B876] border border-[#432A66]">
+            <span className="px-2.5 py-0.5 rounded-full text-[12px] font-semibold bg-[#2A1A40] text-[#D4B876] border border-[#432A66]">
               {approved.length} OF {MAX_PARTY_SIZE}
             </span>
           </div>
@@ -790,17 +790,17 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
                       <div className="text-[15px] font-semibold truncate flex items-center gap-1.5">
                         <span className="truncate text-[#F4F1F8]">{r.character_name}</span>
                         {isYou && (
-                          <span className="font-medium text-[11px] px-1.5 py-0.2 rounded bg-[#3A2555] text-[#D4B876] shrink-0">
+                          <span className="font-medium text-[12px] px-1.5 py-0.2 rounded bg-[#3A2555] text-[#D4B876] shrink-0">
                             you
                           </span>
                         )}
                         {isMemberHost && (
-                          <span className="font-normal text-[11px] text-[#B7A9CC] shrink-0">
+                          <span className="font-normal text-[12px] text-[#B7A9CC] shrink-0">
                             · host
                           </span>
                         )}
                       </div>
-                      <div className="text-[12px] text-[#B7A9CC] flex items-center gap-1.5 truncate">
+                      <div className="text-[14px] text-[#B7A9CC] flex items-center gap-1.5 truncate">
                         {r.class && (
                           <span data-friend-class className="font-medium text-[#D4B876]">
                             {r.class}
@@ -831,7 +831,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
                   {menuFor === r.user_id && (
                     <div className="pt-2 border-t border-[#2C1D40] flex justify-end" data-friend-menu>
                       <button
-                        className={`${quietButton} text-[#F08A8A] border-[#682323] hover:border-[#F08A8A] text-[13px]`}
+                        className={`${quietButton} text-[#F08A8A] border-[#682323] hover:border-[#F08A8A] text-[14px]`}
                         data-remove-button
                         onClick={() => {
                           setMenuFor(null);
@@ -855,7 +855,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         <section className="space-y-3">
           <div className="flex items-center justify-between pb-1.5 border-b border-[#2C1D40]">
             <div>
-              <p className="text-[10px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
+              <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
                 Story & Lore
               </p>
               <h3 className="text-[14px] font-['Cinzel'] font-bold text-[#F4F1F8]">
@@ -875,7 +875,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
         <section className="space-y-3">
           <div className="flex items-center justify-between pb-1.5 border-b border-[#2C1D40]">
             <div>
-              <p className="text-[10px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
+              <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
                 Campfire
               </p>
               <h3 className="text-[14px] font-['Cinzel'] font-bold text-[#F4F1F8]">
@@ -948,7 +948,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           <div className="flex items-center gap-2.5">
             <span className="text-[20px]">🗡️</span>
             <div>
-              <p className="text-[10px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">First Step</p>
+              <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">First Step</p>
               <h3 className={`${heading} text-[15px]`}>Your character comes first</h3>
             </div>
           </div>
@@ -962,7 +962,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
       {/* Screen 6 (a friend) or Screen 4 (the host): the waiting room / fellowship roster */}
       <div className={card}>
         <div className="space-y-1">
-          <p className="text-[10px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
+          <p className="text-[12px] uppercase font-['Cinzel'] tracking-[2px] text-[#D4B876] font-bold">
             The Fellowship
           </p>
           {isHost ? (
@@ -1320,7 +1320,7 @@ function Home({ session }: { session: Session }) {
           Sign out
         </button>
       </div>
-      <p className="text-center text-[12px] text-[#8B7A9E]">{CREDIT_LINE}</p>
+      <p className="text-center text-[14px] text-[#8B7A9E]">{CREDIT_LINE}</p>
     </div>
   );
 }

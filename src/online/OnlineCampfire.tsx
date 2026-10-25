@@ -261,7 +261,7 @@ export default function OnlineCampfire({
     const dc = fire.dc ?? 6;
     return (
       <div className="space-y-3" data-light-going>
-        <div className="text-[13px] font-bold tracking-[1px] text-[#8F82A6]">THE LIGHT IS GOING</div>
+        <div className="text-[14px] font-bold tracking-[1px] text-[#8F82A6]">THE LIGHT IS GOING</div>
         {!looking ? (
           <div className="grid grid-cols-2 gap-2">
             <button
@@ -300,7 +300,7 @@ export default function OnlineCampfire({
                         onClick={() => call('fan_out_roll', { p_lead: lead.id, p_attr: a.attr })}
                         className="py-2 px-2.5 rounded-xl bg-[#D4B876]/12 border border-[#D4B876]/70 text-left disabled:opacity-50"
                       >
-                        <div className="font-['Cinzel'] font-bold text-[13px] uppercase" style={{ color: ATTRIBUTE_META[a.attr]?.color }}>
+                        <div className="font-['Cinzel'] font-bold text-[14px] uppercase" style={{ color: ATTRIBUTE_META[a.attr]?.color }}>
                           {a.attr} {score}
                         </div>
                         <div className="text-[15px] text-[#E6E0F0] leading-snug">
@@ -370,6 +370,12 @@ export default function OnlineCampfire({
     let list = srv.length ? srv : loc;
     // This session may already have added the new line below the server's (the server has not answered yet).
     if (list[list.length - 1]?.text !== text && loc.length > list.length && loc[loc.length - 1].text === text) list = loc;
+    // The same line said to a friend by name once they arrive ("Mei, the page…") is not a new line: keep the first.
+    const bare = (x: string) => x.replace(/^[^,.?!]{1,30}, /, '').replace(/^./, (c) => c.toLowerCase());
+    if (list.length && bare(list[list.length - 1].text) === bare(text)) {
+      want.current[slot] = { text: list[list.length - 1].text, at: list[list.length - 1].at };
+      return list;
+    }
     if (!list.length || list[list.length - 1].text !== text) {
       list = [...list, { text, at: list.length ? new Date().toISOString() : at }];
       said.current.slots[slot] = list;
@@ -410,10 +416,10 @@ export default function OnlineCampfire({
       'puzzle',
       <div className="rounded-2xl border border-[#5C3A1C] bg-[#1F140C] p-3 space-y-1.5" data-puzzle>
         <div className="flex items-center justify-between gap-2">
-          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#F0A552] uppercase">
+          <div className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#F0A552] uppercase">
             {garrick ? 'GARRICK · ON THE TABLE' : 'ON THE TABLE'}
           </div>
-          {hasClicked && <span className="text-[12px] font-semibold text-[#6FD39A]">Pieced together</span>}
+          {hasClicked && <span className="text-[14px] font-semibold text-[#6FD39A]">Pieced together</span>}
         </div>
         {/* One question a night (Phase 2, 24 Oct): this card no longer asks a second question of its own; it points the
             pieces at tonight's question. */}
@@ -421,12 +427,12 @@ export default function OnlineCampfire({
           Two of tonight&apos;s finds belong together. Laid side by side, they bear on tonight&apos;s question.
         </p>
         {halfLaid && (
-          <p className="text-[13.5px] text-[#CDB594] italic">
+          <p className="text-[14px] text-[#CDB594] italic">
             One half of this is on the table. The other is still in someone&apos;s hands, or out in the dark.
           </p>
         )}
         {bothLaidByOne && (
-          <p className="text-[13.5px] text-[#CDB594] italic">
+          <p className="text-[14px] text-[#CDB594] italic">
             You are holding both halves on the table, and this table needs another pair of eyes.
           </p>
         )}
@@ -442,7 +448,7 @@ export default function OnlineCampfire({
       later(arrival, -1),
       'myfind',
       <div className="rounded-2xl border border-[#3A2555] bg-[#180F29] p-3 space-y-1.5" data-my-find>
-        <div className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8]">The last light · {myLead.place}</div>
+        <div className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8]">The last light · {myLead.place}</div>
         {my.roll.pass ? (
           <p className="text-[15.5px] text-[#D9D1E6]">You found what you went looking for before the light went.</p>
         ) : (
@@ -469,10 +475,10 @@ export default function OnlineCampfire({
       `piece-${p.key}`,
       <div className="rounded-2xl border border-[#3F5E86] bg-[#111A28] p-3 space-y-2" data-piece={p.key}>
         <div className="flex justify-between gap-2 items-baseline">
-          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#8DB4F5] uppercase">
+          <div className="font-['Cinzel'] font-bold text-[14px] tracking-[1px] text-[#8DB4F5] uppercase">
             On the table · {p.kind === 'notice' && p.attr ? `${p.title} · ${p.attr}` : p.title}
           </div>
-          <div className="text-[13px] text-[#A9B9D3] whitespace-nowrap">{p.by.map((b) => (b.id === userId ? 'You' : b.name)).join(', ')}</div>
+          <div className="text-[14px] text-[#A9B9D3] whitespace-nowrap">{p.by.map((b) => (b.id === userId ? 'You' : b.name)).join(', ')}</div>
         </div>
         <Markable source={`${p.title}, at the fire`} text={fillShared(p.text ?? '')}>
           <ScriptText text={fillShared(p.text ?? '')} className="font-sans text-[16px] leading-[1.45] text-[#F4F1F8]" />
@@ -520,10 +526,10 @@ export default function OnlineCampfire({
         `click-${i}`,
         <div className="rounded-2xl border border-[#8A6E34] bg-[#2A2010] p-3 space-y-1.5" data-click>
           <div className="flex justify-between items-baseline gap-2">
-            <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#E5C158]">
+            <div className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#E5C158]">
               {broughtByGarrick ? 'GARRICK · THE PIECE NOBODY BROUGHT' : garrick ? 'GARRICK · SETTING THE TWO TOGETHER' : 'SOMETHING CLICKS'}
             </div>
-            {clickNames && <div className="text-[12.5px] text-[#CDB594]">{clickNames}</div>}
+            {clickNames && <div className="text-[14px] text-[#CDB594]">{clickNames}</div>}
           </div>
           {broughtByGarrick && (
             <p className="text-[14.5px] text-[#CDB594] italic" data-click-garrick>
@@ -559,7 +565,7 @@ export default function OnlineCampfire({
         m.at,
         `say-${i}`,
         <div className={`flex flex-col ${m.mine ? 'items-end' : 'items-start'}`}>
-          {!m.mine && <div className="text-[12px] font-bold text-[#C39BF5]">{m.name}</div>}
+          {!m.mine && <div className="text-[14px] font-bold text-[#C39BF5]">{m.name}</div>}
           <div className={`max-w-[86%] px-3 py-2 text-[16px] border ${m.mine ? 'rounded-[16px_16px_4px_16px] bg-[#3A2A12] border-[#8A6E34]' : 'rounded-[4px_16px_16px_16px] bg-[#221636] border-[#3A2555]'}`}>
             {m.body}
           </div>
@@ -577,6 +583,8 @@ export default function OnlineCampfire({
         if (new Date(m.created_at).getTime() < since) return false;
         if (m.kind === 'notice' && fireOwnNotice(m.body, fire.week, fire.day)) return false;
         if (m.speaker === 'garrick' && m.at_fire === false) return false;
+        // His morning line sits at the top of the day (GameShell's GarrickMorning), not again at the fire.
+        if (m.morning === true) return false;
         return true;
       })
       .forEach((m) => add(m.created_at, `msg-${m.id}`, <ChatBubble m={m} userId={userId} members={memberRows} onReport={setReporting} />));
@@ -631,13 +639,19 @@ export default function OnlineCampfire({
         fragAt,
         'fragment',
         <div className="rounded-2xl border border-[#5E4585] bg-[#1A1226] p-3 space-y-2" data-fragment-card>
-          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#C39BF5]">
+          <div className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#C39BF5]">
             {garrick ? 'GARRICK READS THE FRAGMENT' : 'TODAY’S FRAGMENT IS WHOLE'}
           </div>
           <p className="font-['Cormorant_Garamond',serif] font-semibold italic text-[19px] leading-[1.45] text-[#F4F1F8]">“{frag.text}”</p>
           {fire.meaningQuestion && (
             <>
-              <ScriptText text={fire.meaningQuestion} className="text-[16px] text-[#E6E0F0]" />
+              {/* The question often opens by quoting the fragment shown just above: then it starts at the question. */}
+              <ScriptText
+                text={fire.meaningQuestion.replace(/^\*?["“]([^"”]+)["”]\*?\s*/, (q, inner: string) =>
+                  (frag.text ?? "").replace(/\s+/g, ' ').includes(inner.replace(/\s+/g, ' ').trim()) && inner.trim().length >= (frag.text ?? "").trim().length * 0.8 ? '' : q
+                )}
+                className="text-[16px] text-[#E6E0F0]"
+              />
               {notes
                 .filter((n) => n.kind === 'meaning' && !fire.narrated)
                 .map((n) => (
@@ -672,15 +686,15 @@ export default function OnlineCampfire({
     >
       {folded ? (
         <button className="w-full text-left flex items-center gap-2" onClick={() => setQuestionOpen(true)} aria-expanded={false} data-question-folded>
-          <span className="font-['Cinzel'] font-bold text-[11px] tracking-[1.2px] text-[#F0A552] shrink-0">YOUR CALL</span>
+          <span className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#F0A552] shrink-0">YOUR CALL</span>
           <span className="flex-1 min-w-0 truncate text-[15px] text-[#F4E8C8]">{readingText(myPick!)}</span>
-          <span className="shrink-0 text-[13px] text-[#CDB594]">change ▾</span>
+          <span className="shrink-0 text-[14px] text-[#CDB594]">change ▾</span>
         </button>
       ) : (
         <>
           <div className="flex justify-between items-start gap-2">
             <div className="space-y-0.5">
-              <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1.5px] text-[#F0A552] uppercase">
+              <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] text-[#F0A552] uppercase">
                 {garrick ? 'GARRICK ASKS THE TABLE' : 'TONIGHT’S QUESTION'}
               </div>
               {fire.questionTitle && (
@@ -690,11 +704,11 @@ export default function OnlineCampfire({
               )}
             </div>
             {myPick ? (
-              <button className="shrink-0 text-[13px] text-[#CDB594]" onClick={() => setQuestionOpen(false)}>
+              <button className="shrink-0 text-[14px] text-[#CDB594]" onClick={() => setQuestionOpen(false)}>
                 fold ▴
               </button>
             ) : (
-              <div className="shrink-0 text-[12px] text-[#CDB594]">{together ? "pick to see the others'" : 'choose one'}</div>
+              <div className="shrink-0 text-[14px] text-[#CDB594]">{together ? "pick to see the others'" : 'choose one'}</div>
             )}
           </div>
           <div className="space-y-1.5">
@@ -719,14 +733,14 @@ export default function OnlineCampfire({
                   data-reading-option={r}
                 >
                   {readingText(r)}
-                  {names.length > 0 && <span className="block text-[13px] text-[#CDB594]">{nameList(names)}</span>}
+                  {names.length > 0 && <span className="block text-[14px] text-[#CDB594]">{nameList(names)}</span>}
                 </button>
               );
             })}
           </div>
-          {myPick && <p className="text-[13px] text-[#CDB594]">{together ? "You can change it until dawn. The fire's call is made then." : 'You can change it until dawn.'}</p>}
+          {myPick && <p className="text-[14px] text-[#CDB594]">{together ? "You can change it until dawn. The fire's call is made then." : 'You can change it until dawn.'}</p>}
           {!myPick && together && (t?.pinned ?? []).length > 0 && (
-            <p className="text-[13px] text-[#CDB594]">
+            <p className="text-[14px] text-[#CDB594]">
               {nameList(t!.pinned)} {t!.pinned.length === 1 ? 'has' : 'have'} made a call.
             </p>
           )}
@@ -737,7 +751,7 @@ export default function OnlineCampfire({
 
   return (
     <div className="space-y-4" data-fire>
-      <div className="flex items-center gap-2 text-[12px] font-bold tracking-[1px] text-[#F0A552]" data-fire-divider>
+      <div className="flex items-center gap-2 text-[14px] font-bold tracking-[1px] text-[#F0A552]" data-fire-divider>
         <div className="flex-1 h-px bg-[#5C3A1C]" />
         <span className="text-center">
           EVENING · THE FIRE
@@ -750,7 +764,7 @@ export default function OnlineCampfire({
 
       {together && aroundLines.length > 0 && (
         <div className="rounded-2xl border border-[#3A2555] bg-[#180F29] p-3 space-y-1" data-around>
-          <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876]">AROUND THE FIRE TONIGHT</div>
+          <div className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#D4B876]">AROUND THE FIRE TONIGHT</div>
           {aroundLines.map((l) => (
             <p key={l} className="text-[16px] leading-[1.4]">
               {l}
@@ -777,7 +791,7 @@ export default function OnlineCampfire({
               data-hand-bar
             >
               <div className="min-w-0 flex-1">
-                <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#E5C158] uppercase">
+                <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#E5C158] uppercase">
                   In your hands{hands.length > 1 ? ` (${hands.length})` : ''}
                 </div>
                 <div className="truncate text-[14.5px] text-[#F4E8C8]">{hands[0].title}</div>
@@ -802,7 +816,7 @@ export default function OnlineCampfire({
           }}
           tray={(close) => (
             <>
-              <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#B7A9CC]">LAY A CLUE</div>
+              <div className="font-['Cinzel'] font-bold text-[14px] tracking-[1px] text-[#B7A9CC]">LAY A CLUE</div>
               {hands.length === 0 && <p className="text-[14px] text-[#8B7A9E]">Nothing in your hands tonight that is not already on the table.</p>}
               {hands.map((h) => (
                 <div key={h.kind} className="rounded-xl border border-dashed border-[#6B5A85] p-2.5 space-y-2" data-hand={h.kind}>
@@ -810,7 +824,7 @@ export default function OnlineCampfire({
                     <NoticeBlock attr={h.attr} text={fillShared(h.text)} label="What you noticed" />
                   ) : (
                     <>
-                      <div className="font-['Cinzel'] font-bold text-[13px] text-[#F4F1F8] uppercase">{h.title}</div>
+                      <div className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8] uppercase">{h.title}</div>
                       <ScriptText text={fillShared(h.text)} className="text-[15px] text-[#D9D1E6] leading-[1.45]" />
                     </>
                   )}

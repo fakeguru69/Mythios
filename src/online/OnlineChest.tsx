@@ -30,7 +30,20 @@ interface Chest {
   mySolved: number;
 }
 
-export default function OnlineChest({ partyId, onClose, embedded = false, onChanged }: { partyId: string; onClose: () => void; embedded?: boolean; onChanged?: () => void }) {
+// `only`: one day's fragment, opened, with nothing round it (the end-of-day card, Phase 5, 24 Oct).
+export default function OnlineChest({
+  partyId,
+  onClose,
+  embedded = false,
+  onChanged,
+  only,
+}: {
+  partyId: string;
+  onClose: () => void;
+  embedded?: boolean;
+  onChanged?: () => void;
+  only?: { week: number; day: number };
+}) {
   const [chest, setChest] = useState<Chest | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [week, setWeek] = useState<number | null>(null);
@@ -47,7 +60,7 @@ export default function OnlineChest({ partyId, onClose, embedded = false, onChan
     setChest(c);
     setWeek((w) => w ?? c.week);
     // Today's fragment starts open.
-    setOpen((o) => (Object.keys(o).length ? o : { [`${c.week}-${c.day}`]: true }));
+    setOpen((o) => (Object.keys(o).length ? o : { [only ? `${only.week}-${only.day}` : `${c.week}-${c.day}`]: true }));
   }, [partyId]);
   useEffect(() => {
     load();
@@ -55,7 +68,9 @@ export default function OnlineChest({ partyId, onClose, embedded = false, onChan
 
   if (!chest) return error ? <ErrorLine text={error} /> : <p className="text-center text-[#B7A9CC]">…</p>;
   const shownWeek = week ?? chest.week;
-  const fragments = chest.fragments.filter((f) => f.week === shownWeek).sort((a, b) => b.day - a.day);
+  const fragments = only
+    ? chest.fragments.filter((f) => f.week === only.week && f.day === only.day)
+    : chest.fragments.filter((f) => f.week === shownWeek).sort((a, b) => b.day - a.day);
 
   const tryWord = async (frag: Fragment, slot: Slot, guess: string) => {
     setBusy(true);
@@ -136,7 +151,7 @@ export default function OnlineChest({ partyId, onClose, embedded = false, onChan
                 setTyped([]);
                 setNotice(null);
               }}
-              className={`mx-1 px-2.5 py-0.5 rounded-md font-['Cinzel'] font-bold text-[12.5px] tracking-[1.5px] inline-block ${
+              className={`mx-1 px-2.5 py-0.5 rounded-md font-['Cinzel'] font-bold text-[14px] tracking-[1.5px] inline-block ${
                 selected
                   ? 'bg-[#D4B876]/30 border-2 border-[#D4B876] text-[#F4F1F8]'
                   : 'bg-[#2A1B40] border border-[#D4B876]/75 text-[#D4B876] hover:bg-[#382653]'
@@ -158,6 +173,8 @@ export default function OnlineChest({ partyId, onClose, embedded = false, onChan
           ← Back
         </button>
       )}
+      {!only && (
+        <>
       <h2 className="font-['Cinzel'] font-bold text-[16px] text-[#E5C158]">🕯️ THE SEEKER CHEST</h2>
       {/* Core Rules §7's first-fragment line, until the player has filled a word of their own. */}
       {chest.mySolved === 0 && (
@@ -168,7 +185,7 @@ export default function OnlineChest({ partyId, onClose, embedded = false, onChan
         </div>
       )}
       <div className="flex items-center justify-between bg-[#150D22] px-3 py-2 rounded-xl border border-[#3A2555]">
-        <span className="font-['Cinzel'] font-bold text-[11.5px] tracking-[1px] text-[#B7A9CC] uppercase">WEEK</span>
+        <span className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#B7A9CC] uppercase">WEEK</span>
         <div className="flex items-center gap-1">
           {[1, 2, 3, 4, 5, 6].map((w) => {
             const locked = w > chest.week;
@@ -181,7 +198,7 @@ export default function OnlineChest({ partyId, onClose, embedded = false, onChan
                   setActive(null);
                   setTyped([]);
                 }}
-                className={`px-2.5 py-1 rounded-lg font-['Cinzel'] font-bold text-[12px] ${
+                className={`px-2.5 py-1 rounded-lg font-['Cinzel'] font-bold text-[14px] ${
                   shownWeek === w
                     ? 'bg-[#2E1B42] border border-[#D4B876] text-[#D4B876]'
                     : locked
@@ -195,9 +212,11 @@ export default function OnlineChest({ partyId, onClose, embedded = false, onChan
           })}
         </div>
       </div>
-      <span className="block font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#D4B876] uppercase">
+      <span className="block font-['Cinzel'] font-bold text-[14px] tracking-[1px] text-[#D4B876] uppercase">
         WEEK {shownWeek} FRAGMENTS · NEWEST FIRST
       </span>
+        </>
+      )}
 
       <div className="space-y-2.5">
         {fragments.map((frag) => {
@@ -214,15 +233,15 @@ export default function OnlineChest({ partyId, onClose, embedded = false, onChan
               >
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span
-                    className={`px-2 py-0.5 rounded-md font-['Cinzel'] font-bold text-[11px] shrink-0 border ${
+                    className={`px-2 py-0.5 rounded-md font-['Cinzel'] font-bold text-[12px] shrink-0 border ${
                       done ? 'bg-[#6FD39A]/20 text-[#6FD39A] border-[#6FD39A]/50' : 'bg-[#130B1F] text-[#D4B876] border-[#D4B876]/50'
                     }`}
                   >
                     W{frag.week}·D{frag.day}
                   </span>
-                  <span className="font-['Cinzel'] font-bold text-[13.5px] text-[#F4F1F8] truncate">{frag.place}</span>
+                  <span className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8] leading-snug">{frag.place}</span>
                 </div>
-                <span className={`font-['Cinzel'] font-bold text-[11px] ${done ? 'text-[#6FD39A]' : 'text-[#D4B876]'}`}>
+                <span className={`font-['Cinzel'] font-bold text-[12px] ${done ? 'text-[#6FD39A]' : 'text-[#D4B876]'}`}>
                   {done ? '✓ SOLVED' : `${solved}/2`} {isOpen ? '▴' : '▾'}
                 </span>
               </button>
@@ -232,7 +251,7 @@ export default function OnlineChest({ partyId, onClose, embedded = false, onChan
                   {/* Each filled word shows its solver's name (Core Rules §6). */}
                   {/* A word that completed itself at the end of Day 6 carries no name. */}
                   {frag.slots.some((s) => s.word && !s.auto) && (
-                    <p className="text-[12.5px] text-[#B7A9CC]">
+                    <p className="text-[14px] text-[#B7A9CC]">
                       {frag.slots
                         .filter((s) => s.word && !s.auto)
                         .map((s) => `“${s.word}”: ${s.mine ? 'found by you' : `found by ${s.solver}`}`)
@@ -242,16 +261,16 @@ export default function OnlineChest({ partyId, onClose, embedded = false, onChan
                   {activeSlot && !activeSlot.word && (
                     <div className="p-3 rounded-xl bg-[#130B1F] border border-[#D4B876]/60 space-y-2.5">
                       <div className="flex items-center justify-between">
-                        <span className="font-['Cinzel'] font-bold text-[11.5px] text-[#D4B876] uppercase">
+                        <span className="font-['Cinzel'] font-bold text-[12px] text-[#D4B876] uppercase">
                           UNJUMBLE WORD {activeSlot.slot} (+25G)
                         </span>
                         {typed.length > 0 && (
-                          <button onClick={() => setTyped([])} className="text-[12px] text-[#B7A9CC] hover:text-[#F4F1F8]">
+                          <button onClick={() => setTyped([])} className="text-[14px] text-[#B7A9CC] hover:text-[#F4F1F8]">
                             Clear ✕
                           </button>
                         )}
                       </div>
-                      {notice && <p className="text-[12.5px] text-[#E0645C]">{notice}</p>}
+                      {notice && <p className="text-[14px] text-[#E0645C]">{notice}</p>}
                       <div className="flex flex-wrap items-center gap-1.5 py-1">
                         {activeSlot.jumble.map((_, pos) => {
                           const idx = typed[pos];

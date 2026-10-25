@@ -175,7 +175,7 @@ export default function OnlineGathering({
       <button className={quietButton} onClick={onClose}>
         ← The party
       </button>
-      {view?.progress && <span className="font-['Cinzel'] font-bold text-[13px] text-[#E5C158]">◎ {view.progress.gold.toLocaleString()}g</span>}
+      {view?.progress && <span className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158]">◎ {view.progress.gold.toLocaleString()}g</span>}
     </div>
   );
 
@@ -265,7 +265,7 @@ export default function OnlineGathering({
   // ---------------------------------------------------------------------------------------------------------------
   const nodes: React.ReactNode[] = [];
   const current = (e: Entry) => e.i === view.cursor && !view.endedAt;
-  const countdown = (s: number, what: string) => (s > 0 ? <p className="text-[12.5px] text-[#8B7A9E]">{what} {s}s</p> : null);
+  const countdown = (s: number, what: string) => (s > 0 ? <p className="text-[14px] text-[#8B7A9E]">{what} {s}s</p> : null);
   const rollLine = (r: { d20: number; attr: string; score: number; bonus: number; relic?: number; map?: number; dc: number; net?: number; margin?: number }) =>
     `🎲 ${r.d20} + ${r.attr} ${r.score} (+${r.bonus})${r.map ? ' + Map 2' : ''}${r.relic ? ` + Relic (+${r.relic})` : ''} − DC ${r.dc} = ${signed(
       r.net ?? r.margin ?? 0
@@ -273,14 +273,14 @@ export default function OnlineGathering({
   const shell = 'w-full rounded-xl bg-[#180F29] border border-[#5E4585] overflow-hidden shadow-lg';
   const cardHead = (left: React.ReactNode, right?: React.ReactNode) => (
     <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-      <span className="font-['Cinzel'] font-bold text-[12.5px] text-[#F4F1F8] truncate">{left}</span>
-      {right && <span className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158] whitespace-nowrap shrink-0">{right}</span>}
+      <span className="font-['Cinzel'] font-bold text-[14px] text-[#F4F1F8] truncate">{left}</span>
+      {right && <span className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158] whitespace-nowrap shrink-0">{right}</span>}
     </div>
   );
 
   if (view.tonight) {
     nodes.push(
-      <div key="tonight" className="rounded-xl bg-[#130B1F] border border-[#3A2555] px-3 py-2 text-[13.5px] text-[#B7A9CC] italic">
+      <div key="tonight" className="rounded-xl bg-[#130B1F] border border-[#3A2555] px-3 py-2 text-[14px] text-[#B7A9CC] italic">
         {tonightLine(view.tonight, view.opensAt, view.timeZone)}
       </div>
     );
@@ -296,7 +296,7 @@ export default function OnlineGathering({
     );
     nodes.push(
       <div key="g-case" className="space-y-1.5" data-week-readback>
-        <div className="font-['Cinzel'] font-bold text-[10.5px] tracking-[1px] uppercase text-[#B7A9CC]">The case so far</div>
+        <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] uppercase text-[#B7A9CC]">The case so far</div>
         <NarrationBlock text={[`*${caseSoFar.question}*`, ...said, ...(caseSoFar.more ? ['The rest are on the board.'] : [])].join('\n\n')} />
       </div>
     );
@@ -304,7 +304,7 @@ export default function OnlineGathering({
   // "What you missed" (Core Rules §11): one line for a friend who came in after the start.
   if (view.lateLine) {
     nodes.push(
-      <p key="late" className="font-sans italic text-[13.5px] text-[#B7A9CC] px-1" data-late-line>
+      <p key="late" className="font-sans italic text-[14px] text-[#B7A9CC] px-1" data-late-line>
         {view.lateLine}
       </p>
     );
@@ -315,7 +315,7 @@ export default function OnlineGathering({
     switch (e.t) {
       case 'section':
         nodes.push(
-          <div key={k} className="pt-2 font-['Cinzel'] font-bold text-[11px] tracking-[1.5px] uppercase text-[#8B7A9E]">
+          <div key={k} className="pt-2 font-['Cinzel'] font-bold text-[12px] tracking-[1.5px] uppercase text-[#8B7A9E]">
             {e.title}
           </div>
         );
@@ -352,7 +352,7 @@ export default function OnlineGathering({
           const bonus = getTierInfo(e.score).bonus;
           nodes.push(
             <div key={k} className="space-y-1">
-              <p className="text-[12.5px] text-[#B7A9CC]">
+              <p className="text-[14px] text-[#B7A9CC]">
                 {e.attr} {e.score} (+{bonus}) · You succeed on {challengeSucceedOn(e.dc, bonus)}+ · +75g on a pass
               </p>
               <div className="flex gap-1.5">
@@ -365,7 +365,7 @@ export default function OnlineGathering({
           );
         } else if (!mine.left) {
           nodes.push(
-            <p key={k} className="font-mono text-[13px]">
+            <p key={k} className="font-mono text-[14px]">
               {rollLine(mine)}{' '}
               <span className={mine.pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}>{mine.pass ? 'PASSED · +75g' : 'FAILED'}</span>
             </p>
@@ -378,12 +378,12 @@ export default function OnlineGathering({
         const options = e.options as { label: string; desc: string }[];
         const votes = (e.votes ?? []) as { name: string; o: number }[];
         const resolved = e.result !== null && e.result !== undefined;
-        if (e.question) nodes.push(<div key={`${k}-q`} className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.8px] text-[#E5C158]">{e.question}</div>);
+        if (e.question) nodes.push(<div key={`${k}-q`} className="font-['Cinzel'] font-bold text-[14px] tracking-[0.8px] text-[#E5C158]">{e.question}</div>);
         if (resolved && e.result >= 0) {
           nodes.push(<TapEcho key={k} label={options[e.result].label} />);
           if (e.mode !== 'chosen' && votes.length) {
             nodes.push(
-              <p key={`${k}-v`} className="text-[12.5px] text-[#8B7A9E]">
+              <p key={`${k}-v`} className="text-[14px] text-[#8B7A9E]">
                 {options.map((o, oi) => {
                   const who = votes.filter((v) => v.o === oi).map((v) => v.name);
                   return who.length ? `${o.label}: ${who.join(', ')}` : null;
@@ -414,8 +414,8 @@ export default function OnlineGathering({
                 {options.map((o, oi) => (
                   <button key={oi} type="button" data-g="choice" disabled={busy} onClick={() => go('pick', { i: e.i, o: oi })}
                     className="w-full text-left p-2.5 rounded-xl bg-[#2A1B40] hover:bg-[#3A2555] border border-[#D4B876] text-[#F4F1F8]">
-                    <span className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] uppercase">{o.label}</span>
-                    {o.desc && <span className="block text-[13.5px] mt-0.5">{o.desc}</span>}
+                    <span className="font-['Cinzel'] font-bold text-[14px] tracking-[0.6px] uppercase">{o.label}</span>
+                    {o.desc && <span className="block text-[14px] mt-0.5">{o.desc}</span>}
                   </button>
                 ))}
                 {countdown(wait, 'Time left:')}
@@ -433,19 +433,19 @@ export default function OnlineGathering({
                 <button key={oi} type="button" data-g="choice" disabled={busy || myPick !== null}
                   onClick={() => go(e.mode === 'vote' ? 'vote' : 'pick', { i: e.i, o: oi })}
                   className={`w-full text-left p-2.5 rounded-xl border text-[#F4F1F8] ${myPick === oi ? 'bg-[#3A2555] border-[#E5C158]' : 'bg-[#2A1B40] border-[#D4B876]'} disabled:cursor-default`}>
-                  <span className="font-['Cinzel'] font-bold text-[12.5px] tracking-[0.6px] uppercase">{o.label}</span>
-                  {o.desc && <span className="block text-[13.5px] mt-0.5">{o.desc}</span>}
+                  <span className="font-['Cinzel'] font-bold text-[14px] tracking-[0.6px] uppercase">{o.label}</span>
+                  {o.desc && <span className="block text-[14px] mt-0.5">{o.desc}</span>}
                   {e.mode === 'vote' && voteHelp?.[oi] && (
-                    <span className="block text-[12px] text-[#B7A9CC] mt-0.5">
+                    <span className="block text-[14px] text-[#B7A9CC] mt-0.5">
                       Rolls {voteHelp[oi].attr}
                       {voteHelp[oi].best ? ` · best here: ${voteHelp[oi].best!.name} (${voteHelp[oi].attr} ${voteHelp[oi].best!.score}, +${voteHelp[oi].best!.bonus})` : ''}
                     </span>
                   )}
-                  {who.length > 0 && <span className="block text-[12px] text-[#E5C158] mt-0.5">{who.join(', ')}</span>}
+                  {who.length > 0 && <span className="block text-[14px] text-[#E5C158] mt-0.5">{who.join(', ')}</span>}
                 </button>
               );
             })}
-            <p className="text-[12.5px] text-[#8B7A9E]">
+            <p className="text-[14px] text-[#8B7A9E]">
               {e.mode === 'vote' ? 'The most taps wins.' : 'Your pick is private until they are shown together.'} {e.count} of {view.party.filter((p) => p.here).length} have chosen.
               {wait > 0 ? ` ${wait}s` : ''}
             </p>
@@ -461,30 +461,30 @@ export default function OnlineGathering({
           <div key={k} className={shell}>
             {cardHead(`🎯 ${e.title}`, `${way.attr} · DC ${e.dc}`)}
             <div className="p-2.5 space-y-2">
-              <div className="text-[13.5px] text-[#E6E0F0]">
+              <div className="text-[14px] text-[#E6E0F0]">
                 <span className="font-semibold">{way.by} · {way.attr}</span> · <ScriptInline text={way.verb} />
                 {e.map && <span className="text-[#D4B876]"> · the map +2</span>}
               </div>
-              <div className="text-[12.5px] leading-snug space-y-0.5">
+              <div className="text-[14px] leading-snug space-y-0.5">
                 <div className="text-[#E5C158] font-semibold">REWARD: +500g {extra && <ScriptInline text={extra} />}</div>
                 <div className="text-[#E0645C] font-semibold">IF YOU FAIL: −150g · <ScriptInline text={e.fail} /></div>
               </div>
               {e.phase === 'volunteer' && (
                 <>
-                  <p className="text-[13px] text-[#B7A9CC]">
+                  <p className="text-[14px] text-[#B7A9CC]">
                     One of you rolls it, in front of everyone. You: {way.attr} {score(way.attr)}, you succeed on {challengeSucceedOn(e.dc, myBonus)}+.
                   </p>
                   {!e.iStepped && <ScriptButton label="🎲 STEP UP" disabled={busy} onClick={() => go('step_up', { i: e.i })} />}
-                  {e.stepped.length > 0 && <p className="text-[12.5px] text-[#E5C158]">Stepped up: {e.stepped.join(', ')}</p>}
+                  {e.stepped.length > 0 && <p className="text-[14px] text-[#E5C158]">Stepped up: {e.stepped.join(', ')}</p>}
                   {countdown(wait, 'Choosing in')}
                 </>
               )}
               {e.phase === 'roll' && (e.rollerIsMe ? (
                 <>
-                  <p className="text-[13px] text-[#E6E0F0]">It is yours to roll. You succeed on {challengeSucceedOn(e.dc, myBonus + (open[`r${e.i}`] ? 4 : 0))}+.</p>
+                  <p className="text-[14px] text-[#E6E0F0]">It is yours to roll. You succeed on {challengeSucceedOn(e.dc, myBonus + (open[`r${e.i}`] ? 4 : 0))}+.</p>
                   {held(way.attr) > 0 && (
                     <div className="flex items-center justify-between gap-2 rounded-lg border border-[#3A2555] px-3 py-1.5">
-                      <span className="text-[13px] text-[#D9D1E6]">{way.attr} Relic · you hold {held(way.attr)} · +4</span>
+                      <span className="text-[14px] text-[#D9D1E6]">{way.attr} Relic · you hold {held(way.attr)} · +4</span>
                       <button className={quietButton} onClick={() => setOpen((p) => ({ ...p, [`r${e.i}`]: !p[`r${e.i}`] }))}>
                         {open[`r${e.i}`] ? 'TAKE BACK' : 'USE'}
                       </button>
@@ -494,12 +494,12 @@ export default function OnlineGathering({
                   {countdown(wait, 'It rolls by itself in')}
                 </>
               ) : (
-                <p className="text-[13px] text-[#B7A9CC]">{e.roller} rolls.</p>
+                <p className="text-[14px] text-[#B7A9CC]">{e.roller} rolls.</p>
               ))}
               {e.roll && (
                 <div className="space-y-0.5">
-                  <p className="font-mono text-[13px]">{e.roll.name}: {rollLine(e.roll)}</p>
-                  <p className={`font-['Cinzel'] font-bold text-[13px] ${e.roll.pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
+                  <p className="font-mono text-[14px]">{e.roll.name}: {rollLine(e.roll)}</p>
+                  <p className={`font-['Cinzel'] font-bold text-[14px] ${e.roll.pass ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}`}>
                     {e.roll.pass ? `PASSED · +500g${e.roll.growth ? ` · ${e.roll.attr} +${e.roll.growth}` : ''}` : 'FAILED · −150g'}
                   </p>
                 </div>
@@ -519,15 +519,15 @@ export default function OnlineGathering({
         const rows = e.rows as { id: string; day: number; place: string; text: string }[];
         nodes.push(
           <div key={k} className="w-full rounded-xl bg-[#180F29] border border-[#D4B876]/60 overflow-hidden shadow-lg">
-            <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] font-['Cinzel'] font-bold text-[12px] text-[#E5C158]">MATCH · {e.question}</div>
+            <div className="px-3 py-2 bg-[#241638] border-b border-[#3A2555] font-['Cinzel'] font-bold text-[14px] text-[#E5C158]">MATCH · {e.question}</div>
             <div className="p-2.5 space-y-2">
               <ScriptText text={e.quote} className="font-['Cormorant_Garamond',serif] italic text-[17px] text-[#F4F1F8]" />
               {!e.done ? (
                 <>
                   {rows.map((r) => (
                     <div key={r.id} className={`rounded-lg border ${e.mine === r.id ? 'border-[#E5C158] bg-[#2A1B40]' : 'border-[#3A2555] bg-[#130B1F]'} p-2`}>
-                      <button type="button" className="w-full text-left text-[13.5px] text-[#E6E0F0]" onClick={() => setOpen((p) => ({ ...p, [`${k}-${r.id}`]: !p[`${k}-${r.id}`] }))}>
-                        <span className="font-['Cinzel'] font-bold text-[11px] text-[#D4B876] mr-1.5">DAY {r.day} · {r.place}</span>
+                      <button type="button" className="w-full text-left text-[14px] text-[#E6E0F0]" onClick={() => setOpen((p) => ({ ...p, [`${k}-${r.id}`]: !p[`${k}-${r.id}`] }))}>
+                        <span className="font-['Cinzel'] font-bold text-[12px] text-[#D4B876] mr-1.5">DAY {r.day} · {r.place}</span>
                         {open[`${k}-${r.id}`] ? r.text : `${r.text.split(' ').slice(0, 6).join(' ')}…`}
                       </button>
                       {!e.mine && (
@@ -537,13 +537,13 @@ export default function OnlineGathering({
                       )}
                     </div>
                   ))}
-                  <p className="text-[12.5px] text-[#8B7A9E]">
+                  <p className="text-[14px] text-[#8B7A9E]">
                     {e.picked.length ? `Picked: ${e.picked.join(', ')}.` : 'Nobody has picked yet.'} {wait > 0 ? `${wait}s` : ''}
                   </p>
                 </>
               ) : (
                 <div className="space-y-1">
-                  <p className="text-[13.5px] font-semibold text-[#6FD39A]">
+                  <p className="text-[14px] font-semibold text-[#6FD39A]">
                     {e.all ? 'All of you matched it.' : e.right.length ? `${e.rightNames} matched it.` : ''}
                     {e.iMatched ? ` +${e.pay}g` : ''}
                   </p>
@@ -560,7 +560,7 @@ export default function OnlineGathering({
       case 'turn':
         nodes.push(
           <div key={k} className="rounded-xl bg-[#180F29] border border-[#C4A1FF]/70 px-3 py-2.5 space-y-2">
-            <div className="font-['Cinzel'] font-bold text-[11px] tracking-[1px] text-[#C4A1FF] uppercase">MYTHIOS asks the table</div>
+            <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] text-[#C4A1FF] uppercase">MYTHIOS asks the table</div>
             <ScriptText text={e.question} className="font-sans text-[15px] text-[#F4F1F8] leading-[1.42]" />
             {e.nudge && <ScriptText text={e.nudge} className="font-sans text-[14px] text-[#B7A9CC] leading-[1.42]" />}
             {(answers[e.i]?.answers ?? []).map((a) => (
@@ -619,11 +619,11 @@ export default function OnlineGathering({
             )}
             {!e.done && current(e) && (
               <>
-                <p className="text-[12.5px] text-[#B7A9CC]">{e.left > 0 ? `You can ask ${e.left === 1 ? 'one question' : `${e.left} questions`}.` : 'You have asked yours.'}</p>
+                <p className="text-[14px] text-[#B7A9CC]">{e.left > 0 ? `You can ask ${e.left === 1 ? 'one question' : `${e.left} questions`}.` : 'You have asked yours.'}</p>
                 {rows.map((r, ri) =>
                   r.by ? null : (
                     <button key={ri} type="button" data-g="choice" disabled={busy || e.left <= 0} onClick={() => go('ask', { i: e.i, r: ri })}
-                      className="w-full text-left p-2 rounded-lg bg-[#130B1F] border border-[#3A2555] hover:border-[#D4B876] font-['Cinzel'] font-bold text-[11.5px] tracking-[0.5px] text-[#E6E0F0] uppercase disabled:opacity-60">
+                      className="w-full text-left p-2 rounded-lg bg-[#130B1F] border border-[#3A2555] hover:border-[#D4B876] font-['Cinzel'] font-bold text-[12px] tracking-[0.5px] text-[#E6E0F0] uppercase disabled:opacity-60">
                       {r.sealed ? '◆ ' : ''}{r.q}
                       {r.note && <span className="normal-case font-sans font-normal text-[#8B7A9E]"> {r.note}</span>}
                     </button>
@@ -654,8 +654,8 @@ export default function OnlineGathering({
         nodes.push(
           <div key={k} className="w-full rounded-2xl bg-[#160E24] border border-[#D4B876]/80 overflow-hidden shadow-2xl" data-gathering-summary>
             <div className="px-4 py-2.5 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-              <ScriptText text={title} className="font-['Cinzel'] font-bold text-[13px] tracking-[0.8px] text-[#E5C158] uppercase truncate" />
-              <span className="shrink-0 font-['Cinzel'] text-[10.5px] tracking-[1px] text-[#D4B876]/80 uppercase px-2 py-0.5 rounded border border-[#D4B876]/30 bg-[#1A0F2E]">
+              <ScriptText text={title} className="font-['Cinzel'] font-bold text-[14px] tracking-[0.8px] text-[#E5C158] uppercase truncate" />
+              <span className="shrink-0 font-['Cinzel'] text-[12px] tracking-[1px] text-[#D4B876]/80 uppercase px-2 py-0.5 rounded border border-[#D4B876]/30 bg-[#1A0F2E]">
                 GATHERING SUMMARY
               </span>
             </div>
@@ -749,13 +749,13 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
             <>
               <span className="text-[#6FD39A] font-bold">{l.attacker === me?.name ? 'You Roll' : `${l.attacker} Rolls`}</span>{' '}
               <span className="text-[#F4F1F8]">🎲 {l.roll}</span> + <span className="text-[#E5C158]">Weapon {l.attack}</span> −{' '}
-              <span className="text-[#FB923C]">DEF {l.defence}</span>
+              <span className="text-[#FB923C]">Defence {l.defence}</span>
             </>
           ) : (
             <>
               <span className="text-[#E0645C] font-bold">Enemy Rolls</span>{' '}
-              <span className="text-[#F4F1F8]">🎲 {l.roll}</span> + <span className="text-[#C084FC]">ATK {l.attack}</span> −{' '}
-              <span className="text-[#7AA7FF]">Armor {l.defence}</span>
+              <span className="text-[#F4F1F8]">🎲 {l.roll}</span> + <span className="text-[#C084FC]">Attack {l.attack}</span> −{' '}
+              <span className="text-[#7AA7FF]">Armour {l.defence}</span>
             </>
           )}{' '}
           = <span className={`font-bold ${l.hit ? (isParty ? 'text-[#6FD39A]' : 'text-[#E0645C]') : 'text-[#9A90B8]'}`}>{signed(l.margin ?? 0)}. {l.hit ? 'HIT' : 'MISS'}</span>
@@ -779,27 +779,27 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
         {cardHead(
           `⚔️ ${String(e.name).toUpperCase()}`,
           <span>
-            <span className="text-[#FB923C]">DEF {e.def}</span> · <span className="text-[#C084FC]">ATK {e.atk}</span>
+            <span className="text-[#FB923C]">Defence {e.def}</span> · <span className="text-[#C084FC]">Attack {e.atk}</span>
           </span>
         )}
         <div className="p-3 space-y-2.5">
-          <div className="text-[13.5px] text-[#E6E0F0] space-y-0.5">
+          <div className="text-[14px] text-[#E6E0F0] space-y-0.5">
             <div>
               You hit on <b className="text-[#E5C158]">{Math.min(20, Math.max(2, e.def + 1 - weapon))}+</b> (Roll +{' '}
-              <span className="text-[#E5C158] font-semibold">Weapon {weapon}</span> − <span className="text-[#FB923C] font-semibold">DEF {e.def}</span>)
+              <span className="text-[#E5C158] font-semibold">Weapon {weapon}</span> − <span className="text-[#FB923C] font-semibold">Defence {e.def}</span>)
             </div>
             <div>
-              He hits on <b className="text-[#FB923C]">{Math.min(20, Math.max(2, armor + 1 - e.atk))}+</b> (Roll +{' '}
-              <span className="text-[#C084FC] font-semibold">ATK {e.atk}</span> − <span className="text-[#7AA7FF] font-semibold">Armor {armor}</span>)
+              Enemy hits on <b className="text-[#FB923C]">{Math.min(20, Math.max(2, armor + 1 - e.atk))}+</b> (Roll +{' '}
+              <span className="text-[#C084FC] font-semibold">Attack {e.atk}</span> − <span className="text-[#7AA7FF] font-semibold">Armour {armor}</span>)
             </div>
             <div>Damage = Margin × 5 · REWARD: <b className="text-[#E5C158]">{e.reward}g</b> to every friend if the party wins</div>
             {e.condition && <div className="text-[#B7A9CC]">{e.condition}</div>}
           </div>
-          {ongoing && e.round === 0 && <p className="text-[13px] text-[#E5C158]">The fight begins in {wait}s</p>}
-          {ongoing && e.round > 0 && wait > 0 && <p className="text-[12.5px] text-[#8B7A9E]">Round {e.round + 1} in {wait}s</p>}
+          {ongoing && e.round === 0 && <p className="text-[14px] text-[#E5C158]">The fight begins in {wait}s</p>}
+          {ongoing && e.round > 0 && wait > 0 && <p className="text-[14px] text-[#8B7A9E]">Round {e.round + 1} in {wait}s</p>}
           <div className="space-y-1.5">
             {fighters.map((f) => (
-              <div key={f.id} className="p-2 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[12.5px]">
+              <div key={f.id} className="p-2 rounded-lg bg-[#130B1F] border border-[#3A2555] text-[14px]">
                 <div className="flex items-center justify-between gap-2 font-bold">
                   <span className="text-[#6FD39A]">
                     {f.id === view.me ? 'YOU' : f.name.toUpperCase()}
@@ -818,11 +818,11 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
               </div>
             ))}
           </div>
-          <div className="space-y-1.5 font-sans text-[13px] text-[#D9D1E6]">
+          <div className="space-y-1.5 font-sans text-[14px] text-[#D9D1E6]">
             {(e.myRounds as { round: number; lines: Line[] }[]).map((r) =>
               r.lines.length ? (
                 <div key={r.round} className="p-2 rounded-lg bg-[#1A102A] border border-[#3A2555]/80 space-y-1">
-                  <div className="font-['Cinzel'] font-bold text-[11px] text-[#E5C158]">ROUND {r.round}</div>
+                  <div className="font-['Cinzel'] font-bold text-[12px] text-[#E5C158]">ROUND {r.round}</div>
                   {r.lines.map(line)}
                 </div>
               ) : null
@@ -830,24 +830,24 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
           </div>
           {ongoing && me && !me.fallen && !me.relic && !me.relicPending && held > 0 && (
             <div className="flex items-center justify-between gap-2 rounded-lg border border-[#3A2555] px-3 py-1.5">
-              <span className="text-[13px] text-[#D9D1E6]">Combat Relic · you hold {held}<br /><span className="text-[#B7A9CC]">+1 Weapon and +1 Armor for the rest of this fight, from the next round</span></span>
+              <span className="text-[14px] text-[#D9D1E6]">Combat Relic · you hold {held}<br /><span className="text-[#B7A9CC]">+1 Weapon and +1 Armour for the rest of this fight, from the next round</span></span>
               <button className={quietButton} disabled={busy} onClick={() => go('use_combat_relic')}>USE</button>
             </div>
           )}
-          {me?.relicPending && <p className="text-[13px] text-[#B7A9CC]">Combat Relic from {me.relicPending}: +1 Weapon and +1 Armor from the next round.</p>}
+          {me?.relicPending && <p className="text-[14px] text-[#B7A9CC]">Combat Relic from {me.relicPending}: +1 Weapon and +1 Armour from the next round.</p>}
           {ongoing && (e.help as { id: string; name: string; hp: number; canTake: boolean }[]).filter((h) => h.id !== view.me).map((h) => (
             <div key={h.id} className="rounded-lg border border-[#E0645C]/70 bg-[#2A1420] px-3 py-1.5 flex items-center justify-between gap-2">
-              <span className="font-['Cinzel'] font-bold text-[12px] text-[#E0645C]">{h.name.toUpperCase()} IS IN TROUBLE · HP {h.hp}</span>
+              <span className="font-['Cinzel'] font-bold text-[14px] text-[#E0645C]">{h.name.toUpperCase()} IS IN TROUBLE · HP {h.hp}</span>
               {h.canTake && held > 0 && (
                 <button className={quietButton} disabled={busy} onClick={() => go('give_combat_relic', { to: h.id })}>GIVE A COMBAT RELIC</button>
               )}
             </div>
           ))}
-          {me?.fallen && ongoing && <p className="font-['Cinzel'] font-bold text-[12px] text-[#E0645C]">DEFEATED. You are down for this Battle. Your friends fight on.</p>}
+          {me?.fallen && ongoing && <p className="font-['Cinzel'] font-bold text-[14px] text-[#E0645C]">DEFEATED. You are down for this Battle. Your friends fight on.</p>}
           {e.outcome === 'won' && (
-            <p className="font-['Cinzel'] font-bold text-[13px] text-[#6FD39A]">VICTORY. {e.name} defeated in {e.round} rounds.<br />REWARD: +{e.reward}g</p>
+            <p className="font-['Cinzel'] font-bold text-[14px] text-[#6FD39A]">VICTORY. {e.name} defeated in {e.round} rounds.<br />REWARD: +{e.reward}g</p>
           )}
-          {e.outcome === 'lost' && <p className="font-['Cinzel'] font-bold text-[13px] text-[#E0645C]">DEFEATED.<br />REWARD: none</p>}
+          {e.outcome === 'lost' && <p className="font-['Cinzel'] font-bold text-[14px] text-[#E0645C]">DEFEATED.<br />REWARD: none</p>}
         </div>
       </div>
     </>
@@ -863,7 +863,7 @@ function UnitedEffortCard({ e, busy, go, wait, held, shell, cardHead, rollLine }
   const rolls = (e.rolls ?? []) as { name: string; d20: number; attr: string; score: number; bonus: number; relic: number; dc: number; margin: number; success: boolean; damageRoll: number; damage: number; bar: 'way' | 'risk'; before: number; after: number; line: string | null; between: string | null }[];
   const bar = (label: string, v: number, colour: string) => (
     <div className="space-y-0.5">
-      <div className="flex justify-between text-[12px]"><span className="font-semibold">{label}</span><span>{v}</span></div>
+      <div className="flex justify-between text-[14px]"><span className="font-semibold">{label}</span><span>{v}</span></div>
       <div className="h-2 rounded bg-[#130B1F] overflow-hidden"><div className="h-full" style={{ width: `${(v / (e.start || 100)) * 100}%`, background: colour }} /></div>
     </div>
   );
@@ -876,10 +876,10 @@ function UnitedEffortCard({ e, busy, go, wait, held, shell, cardHead, rollLine }
       <div className="p-3 space-y-2.5">
         {bar(e.barWay, e.way, '#6FD39A')}
         {bar(e.barRisk, e.risk, '#F08A8A')}
-        <p className="text-[12.5px] text-[#B7A9CC]">A pass does 10 + a d20 to {e.barWay}; a fail, to {e.barRisk}. +300g to every friend if {e.barWay} reaches 0.</p>
+        <p className="text-[14px] text-[#B7A9CC]">A pass does 10 + a d20 to {e.barWay}; a fail, to {e.barRisk}. +300g to every friend if {e.barWay} reaches 0.</p>
         {rolls.map((r, ri) => (
           <div key={ri} className="space-y-1">
-            <p className="font-mono text-[12.5px]">
+            <p className="font-mono text-[14px]">
               {r.name}: {rollLine(r)}{' '}
               <span className={r.success ? 'text-[#6FD39A]' : 'text-[#F08A8A]'}>{r.success ? 'SUCCESS' : 'FAIL'}</span> · 10 + {r.damageRoll} = {r.damage} to{' '}
               {r.bar === 'way' ? e.barWay : e.barRisk} ({r.before} → {r.after})
@@ -892,24 +892,24 @@ function UnitedEffortCard({ e, busy, go, wait, held, shell, cardHead, rollLine }
           <>
             {e.nextIsMe ? (
               <>
-                <p className="text-[13.5px] text-[#E6E0F0]">
+                <p className="text-[14px] text-[#E6E0F0]">
                   {e.named ? 'MYTHIOS names you. ' : ''}Your turn: {e.attr} {e.myScore} (+{myBonus}), you succeed on {challengeSucceedOn(e.dc, myBonus + (e.relic ? 4 : 0))}+.
                 </p>
                 {!e.relic && held(e.attr) > 0 && (
                   <button className={quietButton} disabled={busy} onClick={() => go('ue_relic', { kind: e.attr })}>USE YOUR {String(e.attr).toUpperCase()} RELIC (+4)</button>
                 )}
-                {e.relic && <p className="text-[13px] text-[#E5C158]">{e.relic.mine ? 'Your' : `${e.relic.from}'s`} {e.relic.kind} Relic: +4 on this roll{e.relic.mine ? ' (tap again to take it back)' : ''}.</p>}
+                {e.relic && <p className="text-[14px] text-[#E5C158]">{e.relic.mine ? 'Your' : `${e.relic.from}'s`} {e.relic.kind} Relic: +4 on this roll{e.relic.mine ? ' (tap again to take it back)' : ''}.</p>}
                 {e.relic?.mine && <button className={quietButton} disabled={busy} onClick={() => go('ue_relic', { kind: e.attr })}>TAKE BACK</button>}
                 <ScriptButton label={`🎲 ROLL ${String(e.attr).toUpperCase()}`} disabled={busy} onClick={() => go('ue_roll', { i: e.i })} />
-                {wait > 0 && <p className="text-[12.5px] text-[#8B7A9E]">It rolls by itself in {wait}s</p>}
+                {wait > 0 && <p className="text-[14px] text-[#8B7A9E]">It rolls by itself in {wait}s</p>}
               </>
             ) : (
               <>
-                <p className="text-[13.5px] text-[#B7A9CC]">{e.named ? 'MYTHIOS names ' : ''}{e.next}{e.named ? '.' : "'s turn."} {e.next} succeeds on {challengeSucceedOn(e.dc, getTierInfo(e.nextScore).bonus + (e.relic ? 4 : 0))}+.</p>
-                {e.relic && <p className="text-[13px] text-[#E5C158]">{e.relic.from} gives a {e.relic.kind} Relic: +4 on this roll.</p>}
+                <p className="text-[14px] text-[#B7A9CC]">{e.named ? 'MYTHIOS names ' : ''}{e.next}{e.named ? '.' : "'s turn."} {e.next} succeeds on {challengeSucceedOn(e.dc, getTierInfo(e.nextScore).bonus + (e.relic ? 4 : 0))}+.</p>
+                {e.relic && <p className="text-[14px] text-[#E5C158]">{e.relic.from} gives a {e.relic.kind} Relic: +4 on this roll.</p>}
                 {!e.relic && attrRelicsIHold.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 items-center">
-                    <span className="text-[12.5px] text-[#B7A9CC]">Give {e.next} a Relic (+4):</span>
+                    <span className="text-[14px] text-[#B7A9CC]">Give {e.next} a Relic (+4):</span>
                     {attrRelicsIHold.map((a) => (
                       <button key={a} className={quietButton} disabled={busy} onClick={() => go('ue_relic', { kind: a })}>{a}</button>
                     ))}
@@ -923,20 +923,20 @@ function UnitedEffortCard({ e, busy, go, wait, held, shell, cardHead, rollLine }
         {ongoing && e.phase === 'handon' && (
           e.handerIsMe ? (
             <div className="space-y-1.5">
-              <p className="text-[13px] text-[#E6E0F0]">Hand it on:</p>
+              <p className="text-[14px] text-[#E6E0F0]">Hand it on:</p>
               <div className="flex flex-wrap gap-1.5">
                 {(e.eligible as { id: string; name: string }[]).map((p) => (
                   <button key={p.id} data-g="handon" className={quietButton} disabled={busy} onClick={() => go('hand_on', { i: e.i, to: p.id })}>{p.name}</button>
                 ))}
               </div>
-              {wait > 0 && <p className="text-[12.5px] text-[#8B7A9E]">Or MYTHIOS names the next in {wait}s</p>}
+              {wait > 0 && <p className="text-[14px] text-[#8B7A9E]">Or MYTHIOS names the next in {wait}s</p>}
             </div>
           ) : (
-            <p className="text-[13px] text-[#B7A9CC]">{rolls[rolls.length - 1]?.name} hands it on.</p>
+            <p className="text-[14px] text-[#B7A9CC]">{rolls[rolls.length - 1]?.name} hands it on.</p>
           )
         )}
-        {e.outcome === 'won' && <p className="font-['Cinzel'] font-bold text-[13px] text-[#6FD39A]">DONE · +300g to every friend</p>}
-        {e.outcome === 'lost' && <p className="font-['Cinzel'] font-bold text-[13px] text-[#E0645C]">LOST</p>}
+        {e.outcome === 'won' && <p className="font-['Cinzel'] font-bold text-[14px] text-[#6FD39A]">DONE · +300g to every friend</p>}
+        {e.outcome === 'lost' && <p className="font-['Cinzel'] font-bold text-[14px] text-[#E0645C]">LOST</p>}
       </div>
     </div>
   );
@@ -1017,7 +1017,7 @@ function GatheringPoll({ partyId, isHost }: { partyId: string; isHost: boolean }
   if (!poll) return null;
   return (
     <div className="space-y-2 pt-1" data-gathering-poll>
-      <p className="font-['Cinzel'] font-bold text-[12px] tracking-[1.2px] text-[#D4B876]">WHEN CAN YOU ALL MEET ON DAY 7?</p>
+      <p className="font-['Cinzel'] font-bold text-[14px] tracking-[1.2px] text-[#D4B876]">WHEN CAN YOU ALL MEET ON DAY 7?</p>
       <p className={note}>
         Tap every time you can make. {isHost ? 'You pick the time' : 'The host picks the time'}; if nobody has by the end of Day 5, it goes to the time most of you can make.
       </p>
@@ -1037,7 +1037,7 @@ function GatheringPoll({ partyId, isHost }: { partyId: string; isHost: boolean }
             }}
           >
             <span className="font-semibold text-[14px]">{s.mine ? '✓ ' : ''}{slotWord(s.time)}</span>
-            {s.names.length > 0 && <span className="text-[13px] text-[#B7A9CC]"> · {s.names.join(', ')}</span>}
+            {s.names.length > 0 && <span className="text-[14px] text-[#B7A9CC]"> · {s.names.join(', ')}</span>}
           </button>
         ))}
       </div>
@@ -1051,7 +1051,7 @@ function WeeksBestCard({ weeksBest }: { weeksBest?: WeeksBestData | null }) {
   if (!weeksBest || !weeksBest.lines || weeksBest.lines.length === 0) return null;
   return (
     <div className="rounded-2xl bg-[#180F29] border border-[#D4B876]/50 px-3.5 py-3 space-y-2 shadow-lg" data-weeks-best>
-      <div className="font-['Cinzel'] font-bold text-[12px] tracking-[1px] uppercase text-[#E5C158]">
+      <div className="font-['Cinzel'] font-bold text-[14px] tracking-[1px] uppercase text-[#E5C158]">
         THE WEEK’S BEST
       </div>
       {weeksBest.summary && (
@@ -1076,10 +1076,10 @@ export function SeasonTitlesCard({ titles, myId }: { titles?: SeasonTitleEntry[]
   return (
     <div className="w-full rounded-2xl bg-[#160E24] border border-[#D4B876]/80 overflow-hidden shadow-2xl" data-season-titles>
       <div className="px-4 py-2.5 bg-[#241638] border-b border-[#3A2555] flex items-center justify-between gap-2">
-        <span className="font-['Cinzel'] font-bold text-[13px] tracking-[0.8px] text-[#E5C158] uppercase">
+        <span className="font-['Cinzel'] font-bold text-[14px] tracking-[0.8px] text-[#E5C158] uppercase">
           👑 SEASON TITLES
         </span>
-        <span className="font-['Cinzel'] text-[10.5px] tracking-[1px] text-[#D4B876]/80 uppercase px-2 py-0.5 rounded border border-[#D4B876]/30 bg-[#1A0F2E]">
+        <span className="font-['Cinzel'] text-[12px] tracking-[1px] text-[#D4B876]/80 uppercase px-2 py-0.5 rounded border border-[#D4B876]/30 bg-[#1A0F2E]">
           SEASON 1 HONOURS
         </span>
       </div>
@@ -1102,7 +1102,7 @@ export function SeasonTitlesCard({ titles, myId }: { titles?: SeasonTitleEntry[]
                   <div className="font-['Cinzel'] font-bold text-[15px] text-[#F4F1F8] truncate">
                     {t.name}{isMe ? ' · you' : ''}
                   </div>
-                  <div className="font-sans text-[13px] text-[#B7A9CC]">
+                  <div className="font-sans text-[14px] text-[#B7A9CC]">
                     {t.statLabel}: {t.val}
                   </div>
                 </div>
