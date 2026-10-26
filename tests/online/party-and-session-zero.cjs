@@ -58,11 +58,11 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   await host.goto(`${BASE}/?online=1`); await host.waitForTimeout(1500); await shot(host, '01-landing');
   const land = await body(host);
   // The cover (since 23 Oct).
-  check('landing: the cover', /MYTHIOS/.test(land) && /Tales of the Dark Moon/i.test(land) && /Start a party/.test(land));
+  check('landing: the cover', /MYTHIOS/.test(land) && /Tales of the Dark Moon/i.test(land) && /GATHER YOUR FRIENDS/.test(land));
   await signIn(host, 'host@mythios.test');
   // With one party, signing in opens it; another party starts from the party sheet's "All your stories" (26 Oct).
-  if (await host.locator('[data-game-shell]').count()) { await host.locator('[data-party-name]').click(); await host.waitForTimeout(600); await click(host, 'All your stories'); }
-  if (await host.locator('[data-getting-ready]').count()) { await click(host, 'Party settings', false); await click(host, 'All your stories'); }
+  if (await host.locator('[data-game-shell]').count()) { await host.locator('[data-party-name]').click(); await host.waitForTimeout(600); await click(host, '‹ All your stories'); }
+  if (await host.locator('[data-getting-ready]').count()) { await click(host, 'Party settings', false); await click(host, '‹ All your stories'); }
   await shot(host, '02-home');
   check('home: your stories + shelf + character', /Your stories/.test(await body(host)) && /You play TestHost/.test(await body(host)));
   await click(host, 'START A PARTY');
@@ -84,7 +84,7 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   await sessionZero(dev, 'dev', 'Devan', 'Archer', 'Agility');
   check('dev party list shows Devan', await waitFor(host, /Devan\s*Ready, Archer/));
   // "All your stories" now sits in Party settings (26 Oct).
-  await click(dev, 'Party settings', false); await click(dev, 'All your stories'); await dev.waitForTimeout(1500); await shot(dev, '05-dev-home');
+  await click(dev, 'Party settings', false); await click(dev, '‹ All your stories'); await dev.waitForTimeout(1500); await shot(dev, '05-dev-home');
   check('dev home: You play Devan, Archer', /You play Devan, Archer/.test(await body(dev)));
   await b.close();
   process.exit(failed ? 1 : 0);

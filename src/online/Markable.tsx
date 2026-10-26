@@ -100,7 +100,7 @@ export function Markable({ source, text, children }: { source: string; text: str
                 </button>
               </div>
               <button className={quietButton} onClick={() => run(true)}>
-                Take it out of your margin notes
+                TAKE IT OUT OF YOUR NOTES
               </button>
             </>
           ) : (

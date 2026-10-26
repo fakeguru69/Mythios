@@ -259,7 +259,7 @@ function SignIn({ returning = false }: { returning?: boolean }) {
           </>
         )}
         <button className={quietButton} onClick={() => setForgot('no')}>
-          Back
+          ‹ Back
         </button>
       </div>
     );
@@ -365,7 +365,7 @@ function StartParty({ seriesId, onMade, onBack }: { seriesId: string; onMade: (i
         MAKE THE INVITE
       </button>
       <button className={quietButton} onClick={onBack}>
-        Back
+        ‹ Back
       </button>
     </div>
   );
@@ -381,7 +381,7 @@ function HaveInvite({ onCode, onBack }: { onCode: (code: string) => void; onBack
         GO ON
       </button>
       <button className={quietButton} onClick={onBack}>
-        Back
+        ‹ Back
       </button>
     </div>
   );
@@ -496,7 +496,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
 
   const back = (
     <button className={quietButton} onClick={onBack}>
-      ← All your stories
+      ‹ All your stories
     </button>
   );
   const host = hostName || 'The host';
@@ -706,7 +706,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           </div>
         )}
         <button className={quietButton} onClick={() => setConfirm({ kind: 'leave' })}>
-          Leave the party
+          LEAVE THE PARTY
         </button>
       </div>
   );
@@ -742,7 +742,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
                 className={`${quietButton} text-[14px] py-1 px-2.5 text-[#F08A8A] border-[#5A2525] hover:border-[#F08A8A]`}
                 onClick={() => setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name })}
               >
-                Remove
+                REMOVE
               </button>
             )}
           </li>
@@ -860,7 +860,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
                           setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name });
                         }}
                       >
-                        Remove from the party
+                        REMOVE FROM THE PARTY
                       </button>
                     </div>
                   )}
@@ -917,10 +917,10 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
 
           <div className="flex flex-wrap gap-2">
             <button className={quietButton} onClick={onBack}>
-              All your stories
+              ‹ All your stories
             </button>
             <button className={quietButton} onClick={() => supabase.auth.signOut()}>
-              Sign out
+              SIGN OUT
             </button>
           </div>
         </section>
@@ -973,7 +973,7 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
               className={`${quietButton} text-[13px] py-1 px-2 text-[#F08A8A] border-[#5A2525]`}
               onClick={() => setConfirm({ kind: 'remove', user: r.user_id, name: r.character_name })}
             >
-              Remove
+              REMOVE
             </button>
           )}
         </li>
@@ -1017,14 +1017,17 @@ function PartyPage({ partyId, userId, onBack }: { partyId: string; userId: strin
           {nameCard}
           {isHost && !full && !setOff && (
             <button className={quietButton} onClick={() => act('new_invite_code', { p_party: party.id })}>
-              Make a new invite link (the old one stops working)
+              NEW INVITE LINK
             </button>
           )}
+          {isHost && !full && !setOff && (
+            <p className={note}>A new link stops the old one working.</p>
+          )}
           <button className={quietButton} onClick={onBack}>
-            All your stories
+            ‹ All your stories
           </button>
           <button className={quietButton} onClick={() => supabase.auth.signOut()}>
-            Sign out
+            SIGN OUT
           </button>
         </div>
       )}
@@ -1333,7 +1336,7 @@ function Home({ session }: { session: Session }) {
             setJoinCode(null);
           }}
         >
-          Back
+          ‹ Back
         </button>
       </div>
     );
@@ -1459,7 +1462,7 @@ function Home({ session }: { session: Session }) {
           </div>
         )}
         <button className={quietButton} onClick={() => supabase.auth.signOut()}>
-          Sign out
+          SIGN OUT
         </button>
       </div>
       <p className="text-center text-[14px] text-[#8B7A9E]">{CREDIT_LINE}</p>

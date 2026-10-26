@@ -46,7 +46,7 @@ check(
     panelSlice.includes('⋯') &&
     panelSlice.includes('data-friend-menu') &&
     panelSlice.includes('data-remove-button') &&
-    panelSlice.includes('Remove from the party') &&
+    panelSlice.includes('REMOVE FROM THE PARTY') &&
     /isHost && r\.user_id !== userId/.test(panelSlice) &&
     /menuFor === r\.user_id/.test(panelSlice),
   'Remove button sits behind the row ⋯ menu and is only visible to host for other members when opened'

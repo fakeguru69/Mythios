@@ -296,7 +296,7 @@ export default function SessionZero({
 
         <div className="flex gap-2 pt-1">
           <button className={quietButton} onClick={() => setStep(2)}>
-            Back
+            ‹ Back
           </button>
           <button className={goldButton} disabled={!second} onClick={() => setStep(4)}>
             GO ON
@@ -367,7 +367,7 @@ export default function SessionZero({
 
         <div className="flex gap-2 pt-1">
           <button className={quietButton} onClick={() => setStep(3)}>
-            Back
+            ‹ Back
           </button>
           <button className={goldButton} onClick={() => setStep(5)}>
             GO ON
@@ -458,7 +458,7 @@ export default function SessionZero({
         <ErrorLine text={error} />
         <div className="flex gap-2 pt-1">
           <button className={quietButton} onClick={() => setStep(kept ? 1 : 4)}>
-            Back
+            ‹ Back
           </button>
           <button className={goldButton} disabled={busy} onClick={ready}>
             READY

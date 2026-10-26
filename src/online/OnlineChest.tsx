@@ -170,7 +170,7 @@ export default function OnlineChest({
     <div className="space-y-3.5">
       {!embedded && (
         <button className={quietButton} onClick={onClose}>
-          ← Back
+          ‹ Back
         </button>
       )}
       {!only && (

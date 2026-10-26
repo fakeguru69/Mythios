@@ -79,7 +79,7 @@ export default function OnlineStore({
       <div className="space-y-3">
         {!embedded && (
           <button className={quietButton} onClick={onClose}>
-            ← Back
+            ‹ Back
           </button>
         )}
         {error ? <ErrorLine text={error} /> : <p className="text-center text-[#B7A9CC]">…</p>}
@@ -155,7 +155,7 @@ export default function OnlineStore({
       {!embedded && (
         <div className="flex items-center justify-between gap-2">
           <button className={quietButton} onClick={onClose}>
-            ← Back
+            ‹ Back
           </button>
           <span className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158]">◎ {state.gold.toLocaleString()}g</span>
         </div>
@@ -257,7 +257,7 @@ export default function OnlineStore({
                         className={`w-full ${quietButton} text-left`}
                         onClick={() => setPending({ kind: 'give', relic: k, to: f.id, name: f.name })}
                       >
-                        To {f.name}
+                        TO {f.name.toUpperCase()}
                       </button>
                     ))}
                   </div>

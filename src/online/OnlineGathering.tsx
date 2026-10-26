@@ -183,7 +183,7 @@ export default function OnlineGathering({
   const header = embedded ? null : (
     <div className="flex items-center justify-between gap-2">
       <button className={quietButton} onClick={onClose}>
-        ← The party
+        ‹ Back to the party
       </button>
       {view?.progress && <span className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158]">◎ {view.progress.gold.toLocaleString()}g</span>}
     </div>
@@ -781,7 +781,7 @@ export default function OnlineGathering({
       {view.endedAt && embedded && <div data-gathering-ended />}
       {view.endedAt && !embedded && (
         <button className={goldButton} onClick={onClose}>
-          BACK TO THE PARTY
+          ‹ Back to the party
         </button>
       )}
       <ErrorLine text={error} />
@@ -912,11 +912,11 @@ function BattleCard({ e, view, busy, go, wait, held, shell, cardHead }: {
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {me.cover ? (
-                    <button className={quietButton} disabled={busy} onClick={() => go('cover', { to: null })}>Strike instead</button>
+                    <button className={quietButton} disabled={busy} onClick={() => go('cover', { to: null })}>STRIKE INSTEAD</button>
                   ) : (
                     hurt.map((f) => (
                       <button key={f.id} className={quietButton} disabled={busy} onClick={() => go('cover', { to: f.id })}>
-                        Cover {f.name} · {f.hp} HP
+                        COVER {f.name.toUpperCase()} · {f.hp} HP
                       </button>
                     ))
                   )}

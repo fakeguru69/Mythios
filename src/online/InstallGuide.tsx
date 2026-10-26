@@ -100,7 +100,7 @@ export default function InstallGuide({ always = false }: { always?: boolean }) {
             setHidden(true);
           }}
         >
-          Not now
+          NOT NOW
         </button>
       )}
     </div>
