@@ -66,3 +66,10 @@ Fake Guru: "didn't we have a nicer cover page… it's our first impression". The
 - GATHER YOUR FRIENDS.
 
 It still fits one screen on the smallest iPhone.
+
+### Cover tweak (26 Oct, later)
+
+Fake Guru changed the top of the cover:
+- the Mythios tagline is now "The adventure is in the story.";
+- one line of welcome follows: "Embark on a mysterious journey with your fellow adventurers, one chapter at a time.";
+- the "Embark on an adventure" label and the "One party. Ten minutes a day…" line are gone.

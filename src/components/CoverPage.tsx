@@ -29,22 +29,17 @@ export const CoverPage: React.FC<CoverPageProps> = ({ onGatherFriends, onSignIn 
       />
 
       {/* Top Header & Trailer-Like Teaser */}
-      {/* 26 Oct (Fake Guru: "didn't we have a nicer cover page… it's our first impression"): the welcome is back. Only the
-          line that hinted at the twist stays out: it gave away more than the story does on its first day. */}
+      {/* 26 Oct (Fake Guru): the Mythios tagline, "The adventure is in the story.", and one line of welcome. The line that
+          hinted at the twist stays out: it gave away more than the story does on its first day. */}
       <header className="space-y-1.5 text-center pt-1.5 relative z-10">
-        <div className="flex items-center justify-center gap-2 text-[12px] font-['Cinzel'] font-bold tracking-[2.5px] text-[#D4B876]/85 uppercase">
-          <span className="w-5 h-[1px] bg-[#D4B876]/40" />
-          <span>Embark on an adventure</span>
-          <span className="w-5 h-[1px] bg-[#D4B876]/40" />
-        </div>
         <h1 className="font-['Cinzel'] font-black text-[36px] tracking-[4px] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF2B8] via-[#E5C158] to-[#B38C26] uppercase drop-shadow-[0_2px_12px_rgba(229,193,88,0.35)] leading-none py-1">
           MYTHIOS
         </h1>
-        <p className="font-['Cormorant_Garamond',serif] italic text-[18px] leading-[1.3] text-[#E0D8ED] max-w-[320px] mx-auto">
-          A story told a little each day, to you and your friends.
+        <p className="font-['Cormorant_Garamond',serif] italic text-[20px] leading-[1.3] text-[#F0E8C8] max-w-[320px] mx-auto">
+          The adventure is in the story.
         </p>
-        <p className="font-sans text-[14px] text-[#A695C2] max-w-[300px] mx-auto leading-snug">
-          One party. Ten minutes a day. A dark fantasy told only to your group.
+        <p className="font-sans text-[15px] text-[#C4B7D9] max-w-[310px] mx-auto leading-snug">
+          Embark on a mysterious journey with your fellow adventurers, one chapter at a time.
         </p>
       </header>
 
