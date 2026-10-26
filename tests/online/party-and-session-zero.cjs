@@ -41,11 +41,14 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   const sessionZero = async (p, tag, newName, cls, second) => {
     // 26 Oct: Getting ready's step 1 opens Session Zero; its first card's BEGIN starts it.
     await click(p, 'MAKE YOUR CHARACTER'); await click(p, 'BEGIN');
+    while (await p.locator('[data-prologue]').count()) await click(p, 'GO ON');
     if (/What is your name in this story\?/.test(await body(p))) {
       await shot(p, `${tag}-sz-name`);
       await p.locator('input').first().fill(newName); await click(p, 'GO ON');
-      await p.getByRole('button', { name: new RegExp(`^${cls}`) }).click(); await click(p, 'GO ON');
-      await p.getByRole('button', { name: new RegExp(`^${second}`) }).first().click(); await click(p, 'GO ON');
+      await p.getByRole('button', { name: new RegExp(`^${cls}`) }).click();
+      // 26 Oct: the second strength comes with the class (Archer: Intellect), shown on its card.
+      check(`${tag}: second strength comes with the class`, new RegExp(`${cls}[\\s\\S]*?also good at ${second}`).test(await body(p)));
+      await click(p, 'GO ON');
       await click(p, 'GO ON');
       log(`${tag}: new character path`);
     } else {
@@ -81,7 +84,7 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   { const j = dev.getByRole('button', { name: `JOIN ${PARTY.toUpperCase()}`, exact: true }); if (await j.count()) await click(dev, `JOIN ${PARTY.toUpperCase()}`); }
   await waitFor(host, /Asking to join/); await click(host, 'LET IN');
   await waitFor(dev, /has let you in\. Now choose/);
-  await sessionZero(dev, 'dev', 'Devan', 'Archer', 'Agility');
+  await sessionZero(dev, 'dev', 'Devan', 'Archer', 'Intellect');
   check('dev party list shows Devan', await waitFor(host, /Devan\s*Ready, Archer/));
   // "All your stories" now sits in Party settings (26 Oct).
   await click(dev, 'Party settings', false); await click(dev, '‹ All your stories'); await dev.waitForTimeout(1500); await shot(dev, '05-dev-home');

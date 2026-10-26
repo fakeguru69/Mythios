@@ -11,7 +11,8 @@ import {
   SZ_PREMISE,
   SZ_QUESTIONS,
   SZ_QUESTIONS_NOTE,
-  SZ_SECOND,
+  SZ_PROLOGUE,
+  CLASS_SECOND,
   START_ARMOR,
   START_CLASS_ATTR,
   START_OTHER_ATTR,
@@ -20,7 +21,7 @@ import {
   type AttributeName,
   seriesTitle,
 } from './onlineText';
-import { ATTRIBUTE_META } from '../data/mythiosRulesData';
+import { ATTRIBUTE_META, CLASS_META } from '../data/mythiosRulesData';
 import { card, ErrorLine, goldButton, heading, input, note, quietButton } from './ui';
 
 export interface SeriesCharacter {
@@ -31,13 +32,15 @@ export interface SeriesCharacter {
   grandparent_name: string | null;
 }
 
+// 26 Oct: each class's weapon is the one the game gives it (Core Rules §4, CLASS_META), not a name of its own; and the
+// Sage is no longer a "Seeker" scholar, a word the story keeps for later.
 const CLASS_DETAILS: Record<string, { role: string; weapon: string; icon: string }> = {
-  Warrior: { role: 'Frontline vanguard & stalwart defender', weapon: 'Greatsword', icon: '⚔️' },
-  Artificer: { role: 'Machinist, lockbreaker & relic scholar', weapon: 'Heavy Maul', icon: '⚒️' },
-  Sage: { role: 'Seeker scholar & decipherer of ancient lore', weapon: 'Runed Staff', icon: '📜' },
-  Trickster: { role: 'Silver tongue, negotiator & scout', weapon: 'Stiletto', icon: '🎭' },
-  Assassin: { role: 'Shadow walker & lethal ambush striker', weapon: 'Dual Daggers', icon: '🗡️' },
-  Archer: { role: 'Long-range marksman & patient tracker', weapon: 'Longbow', icon: '🏹' },
+  Warrior: { role: 'Frontline vanguard & stalwart defender', weapon: CLASS_META.Warrior.weapon, icon: '⚔️' },
+  Artificer: { role: 'Machinist, lockbreaker & tinkerer', weapon: CLASS_META.Artificer.weapon, icon: '⚒️' },
+  Sage: { role: 'Scholar & reader of old writing', weapon: CLASS_META.Sage.weapon, icon: '📜' },
+  Trickster: { role: 'Silver tongue, negotiator & scout', weapon: CLASS_META.Trickster.weapon, icon: '🎭' },
+  Assassin: { role: 'Shadow walker & ambush striker', weapon: CLASS_META.Assassin.weapon, icon: '🗡️' },
+  Archer: { role: 'Long-range marksman & patient tracker', weapon: CLASS_META.Archer.weapon, icon: '🏹' },
 };
 
 // Suggestions only (24 Oct): no place, person or object from the story, so nobody is born in the story's villages or
@@ -120,9 +123,33 @@ export default function SessionZero({
           </p>
         </div>
 
-        <button className={goldButton} onClick={() => setStep(kept ? 5 : 15)}>
+        <button className={goldButton} onClick={() => setStep(kept ? 5 : 10)}>
           BEGIN
         </button>
+      </div>
+    );
+  }
+
+  // Steps 10 to 13: the prologue, one card at a time (26 Oct).
+  if (step >= 10 && step <= 13) {
+    const i = step - 10;
+    return (
+      <div className={`${card} space-y-5 border border-[#5E4585]/60 bg-gradient-to-b from-[#1A1028] to-[#0E071A]`} data-prologue={i + 1}>
+        <div className="text-[12px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">The hill country</div>
+        <p className="font-['Cormorant_Garamond',serif] text-[20px] leading-[1.45] text-[#F0E8C8] min-h-[180px]">{SZ_PROLOGUE[i]}</p>
+        <div className="flex justify-center gap-1.5" aria-hidden="true">
+          {SZ_PROLOGUE.map((_, k) => (
+            <span key={k} className={`h-1.5 rounded-full ${k === i ? 'w-5 bg-[#E5C158]' : 'w-1.5 bg-[#4A3266]'}`} />
+          ))}
+        </div>
+        <div className="flex gap-2">
+          <button className={quietButton} onClick={() => setStep(i === 0 ? 1 : step - 1)}>
+            ‹ Back
+          </button>
+          <button className={goldButton} onClick={() => setStep(i === SZ_PROLOGUE.length - 1 ? 15 : step + 1)}>
+            GO ON
+          </button>
+        </div>
       </div>
     );
   }
@@ -230,7 +257,9 @@ export default function SessionZero({
                 </div>
 
                 <div className="text-[14px] text-[#B7A9CC] flex items-center justify-between pt-0.5">
-                  <span>{details?.role}</span>
+                  <span>
+                    {details?.role} · also good at {CLASS_SECOND[c.name]}
+                  </span>
                   <span className="text-[#8F82A6]">{details?.weapon}</span>
                 </div>
 
@@ -244,64 +273,16 @@ export default function SessionZero({
           })}
         </div>
 
-        <button className={goldButton} disabled={!chosen} onClick={() => setStep(3)}>
+        <button
+          className={goldButton}
+          disabled={!chosen}
+          onClick={() => {
+            if (chosen) setSecond(CLASS_SECOND[chosen.name] ?? null);
+            setStep(4);
+          }}
+        >
           GO ON
         </button>
-      </div>
-    );
-  }
-
-  // Step 3: Second Strength (Affinity)
-  if (step === 3 && chosen) {
-    return (
-      <div className={`${card} space-y-4 border border-[#5E4585]/60 bg-gradient-to-b from-[#1A1028] to-[#0E071A]`}>
-        <div className="space-y-1">
-          <div className="text-[12px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
-            STEP 3 · YOUR SECOND STRENGTH
-          </div>
-          <p className="text-[17px] font-['Cinzel'] font-bold text-[#FDFBFE]">{SZ_SECOND}</p>
-          <p className="text-[14px] text-[#B7A9CC]">
-            Your class leads with <span className="font-semibold text-[#E5C158]">{chosen.attribute}</span>, at 14. Your second strength starts at 12.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 gap-2">
-          {ATTRIBUTES.filter((a) => a !== chosen.attribute).map((a) => {
-            const isSelected = second === a;
-            const meta = ATTRIBUTE_META[a];
-            return (
-              <button
-                key={a}
-                type="button"
-                className={`w-full text-left rounded-xl border p-3 transition flex items-center justify-between gap-3 ${
-                  isSelected
-                    ? 'border-[#E5C158] bg-[#2E1B46] shadow-[0_0_12px_rgba(229,193,88,0.2)]'
-                    : 'border-[#3A2555] bg-[#140B22] hover:border-[#6B4E99]'
-                }`}
-                onClick={() => setSecond(a)}
-              >
-                <div>
-                  <div className="font-['Cinzel'] font-bold text-[15px]" style={{ color: meta?.color || '#FDFBFE' }}>
-                    {a}
-                  </div>
-                  <div className="text-[14px] text-[#B7A9CC]">{meta?.desc || 'Attribute strength'}</div>
-                </div>
-                <span className="text-[14px] font-mono font-semibold text-[#E5C158] shrink-0">
-                  12 · Novice
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="flex gap-2 pt-1">
-          <button className={quietButton} onClick={() => setStep(2)}>
-            ‹ Back
-          </button>
-          <button className={goldButton} disabled={!second} onClick={() => setStep(4)}>
-            GO ON
-          </button>
-        </div>
       </div>
     );
   }
@@ -312,7 +293,7 @@ export default function SessionZero({
       <div className={`${card} space-y-4 border border-[#5E4585]/60 bg-gradient-to-b from-[#1A1028] to-[#0E071A]`}>
         <div className="space-y-1">
           <div className="text-[12px] font-['Cinzel'] font-bold tracking-[2px] text-[#E5C158] uppercase">
-            STEP 4 · LINEAGE & MEMORY
+            STEP 3 · WHERE YOU COME FROM
           </div>
           <h3 className="text-[17px] font-['Cinzel'] font-bold text-[#FDFBFE]">Where your road begins.</h3>
         </div>
@@ -366,7 +347,7 @@ export default function SessionZero({
         <p className={`${note} italic text-[#A695C2]`}>{SZ_QUESTIONS_NOTE}</p>
 
         <div className="flex gap-2 pt-1">
-          <button className={quietButton} onClick={() => setStep(3)}>
+          <button className={quietButton} onClick={() => setStep(2)}>
             ‹ Back
           </button>
           <button className={goldButton} onClick={() => setStep(5)}>

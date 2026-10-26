@@ -7,7 +7,7 @@ export const input =
 export const goldButton =
   'w-full rounded-lg bg-[#D4B876] hover:bg-[#E5C158] disabled:opacity-50 px-3 py-2.5 font-sans font-semibold text-[15px] text-[#130B1F] transition';
 export const quietButton =
-  'rounded-lg border border-[#3A2555] hover:border-[#D4B876] px-3 py-1.5 text-[14px] text-[#B7A9CC] transition';
+  'shrink-0 whitespace-nowrap rounded-lg border border-[#3A2555] hover:border-[#D4B876] px-3 py-1.5 text-[14px] text-[#B7A9CC] transition';
 export const heading = "font-['Cinzel'] font-bold text-[#E5C158]";
 export const note = 'text-[14px] text-[#9A8AAE]';
 

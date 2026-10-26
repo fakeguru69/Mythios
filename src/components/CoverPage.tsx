@@ -15,7 +15,7 @@ export const CoverPage: React.FC<CoverPageProps> = ({ onGatherFriends, onSignIn 
 
   return (
     <div
-      className="w-full max-w-[420px] mx-auto h-[100dvh] max-h-[100dvh] flex flex-col justify-between p-4.5 bg-gradient-to-b from-[#140A24] via-[#0D0618] to-[#07020E] text-[#F4F1F8] select-none box-border relative overflow-hidden"
+      className="w-full max-w-[420px] mx-auto h-[100dvh] max-h-[100dvh] flex flex-col justify-between gap-3 p-4.5 bg-gradient-to-b from-[#140A24] via-[#0D0618] to-[#07020E] text-[#F4F1F8] select-none box-border relative overflow-hidden"
       data-cover-page
     >
       {/* Ambient background atmosphere glow */}
@@ -29,23 +29,50 @@ export const CoverPage: React.FC<CoverPageProps> = ({ onGatherFriends, onSignIn 
       />
 
       {/* Top Header & Trailer-Like Teaser */}
-      {/* 26 Oct (Fake Guru): the Mythios tagline, "The adventure is in the story.", and one line of welcome. The line that
-          hinted at the twist stays out: it gave away more than the story does on its first day. */}
-      <header className="space-y-1.5 text-center pt-1.5 relative z-10">
-        <h1 className="font-['Cinzel'] font-black text-[36px] tracking-[4px] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF2B8] via-[#E5C158] to-[#B38C26] uppercase drop-shadow-[0_2px_12px_rgba(229,193,88,0.35)] leading-none py-1">
-          MYTHIOS
+      {/* The brand lockup (26 Oct, Fake Guru: "the top part is quite ugly"): the crescent from the app icon, the wordmark,
+          and the tagline set small between two rules, the way a title page sets it. */}
+      <header className="text-center pt-5 [@media(max-height:700px)]:pt-1 relative z-10" data-cover-brand>
+        <svg viewBox="0 0 64 64" className="w-12 h-12 [@media(max-height:700px)]:w-9 [@media(max-height:700px)]:h-9 mx-auto drop-shadow-[0_0_14px_rgba(229,193,88,0.45)]" aria-hidden="true">
+          <defs>
+            <linearGradient id="cover-moon" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="#FFF2B8" />
+              <stop offset="55%" stopColor="#E5C158" />
+              <stop offset="100%" stopColor="#B38C26" />
+            </linearGradient>
+          </defs>
+          <path d="M40 6a26 26 0 1 0 18 44A22 22 0 0 1 40 6z" fill="url(#cover-moon)" />
+        </svg>
+        <h1 className="mt-2 font-['Cinzel'] font-black text-[38px] [@media(max-height:700px)]:text-[32px] tracking-[6px] pl-[6px] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF2B8] via-[#E5C158] to-[#B38C26] uppercase leading-none">
+          Mythios
         </h1>
-        <p className="font-['Cormorant_Garamond',serif] italic text-[20px] leading-[1.3] text-[#F0E8C8] max-w-[320px] mx-auto">
-          The adventure is in the story.
-        </p>
-        <p className="font-sans text-[15px] text-[#C4B7D9] max-w-[310px] mx-auto leading-snug">
+        <div className="mt-3 flex items-center justify-center gap-2.5">
+          <span className="h-px w-6 shrink-0 bg-gradient-to-r from-transparent to-[#D4B876]/60" />
+          <span className="whitespace-nowrap font-['Cinzel'] font-bold text-[11.5px] tracking-[1.6px] uppercase text-[#D4B876]">The adventure is in the story</span>
+          <span className="h-px w-6 shrink-0 bg-gradient-to-l from-transparent to-[#D4B876]/60" />
+        </div>
+      </header>
+
+      {/* The night sky the story begins under: a few faint stars, and the welcome in the storybook serif. */}
+      <div className="relative z-10 flex-1 flex items-center justify-center px-2" data-cover-welcome>
+        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+          {[
+            [12, 18, 2], [26, 62, 1.5], [44, 12, 1.5], [70, 30, 2], [86, 58, 1.5], [58, 78, 1], [18, 84, 1], [92, 14, 1],
+          ].map(([x, y, s], i) => (
+            <span
+              key={i}
+              className="absolute rounded-full bg-[#F4ECD0]"
+              style={{ left: `${x}%`, top: `${y}%`, width: s, height: s, opacity: 0.35 + (i % 3) * 0.15 }}
+            />
+          ))}
+        </div>
+        <p className="font-['Cormorant_Garamond',serif] italic text-[21px] [@media(max-height:700px)]:text-[18px] leading-[1.35] text-[#ECE4F6] text-center text-balance max-w-[310px]">
           Embark on a mysterious journey with your fellow adventurers, one chapter at a time.
         </p>
-      </header>
+      </div>
 
       {/* Featured Series Hero Stone Card */}
       <section
-        className="rounded-2xl bg-gradient-to-b from-[#1C112E]/95 via-[#160D25]/95 to-[#10071C]/98 border border-[#D4B876]/35 p-4 space-y-2.5 shadow-[0_12px_36px_rgba(0,0,0,0.65)] relative z-10 my-auto"
+        className="rounded-2xl bg-gradient-to-b from-[#1C112E]/95 via-[#160D25]/95 to-[#10071C]/98 border border-[#D4B876]/35 p-4 space-y-2.5 shadow-[0_12px_36px_rgba(0,0,0,0.65)] relative z-10"
         data-featured-series
       >
         <div className="flex items-center justify-between">
@@ -65,7 +92,7 @@ export const CoverPage: React.FC<CoverPageProps> = ({ onGatherFriends, onSignIn 
           </p>
         </div>
 
-        <p className="font-sans text-[14px] leading-[1.45] text-[#C4B7D9]">
+        <p className="font-sans text-[14px] leading-[1.45] text-[#C4B7D9] [@media(max-height:700px)]:hidden">
           Follow the trail across six weeks of daily chapters, dice and nights around the fire, and meet your friends once a week to see it through together.
         </p>
 

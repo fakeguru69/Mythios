@@ -73,3 +73,35 @@ Fake Guru changed the top of the cover:
 - the Mythios tagline is now "The adventure is in the story.";
 - one line of welcome follows: "Embark on a mysterious journey with your fellow adventurers, one chapter at a time.";
 - the "Embark on an adventure" label and the "One party. Ten minutes a day…" line are gone.
+
+### The cover's top, redesigned (26 Oct, Fake Guru: "quite ugly. Put on an experienced UX designer hat")
+
+The top is now a brand lockup, set the way a title page is:
+- the crescent from the app icon;
+- the MYTHIOS wordmark;
+- the tagline in small capitals between two fine rules, on one line.
+
+The empty middle became a night sky with a few faint stars. The welcome line sits there in the storybook serif, balanced over three lines. On short phones the brand shrinks and the card's description is left out, so nothing crowds.
+
+## Character creation (26 Oct, Fake Guru: "1 & 2 okay")
+
+- **The prologue:** four cards, one at a time, after BEGIN and before the name. It covers the hill country, the marks on the standing stones, the missing children, and "someone has already written your name down". The text is in Core Rules §7.
+- **No second-strength step.** Each class brings its own, shown on its card as "also good at …":
+  - Warrior Craft;
+  - Artificer Might;
+  - Sage Charm;
+  - Trickster Agility;
+  - Assassin Aim;
+  - Archer Intellect.
+
+  Characters made before keep theirs.
+- **The class cards show the game's own weapons:**
+  - Longsword;
+  - Spring-Hammer;
+  - Ash Staff;
+  - Sword-Cane;
+  - Paired Knives;
+  - Yew Bow.
+
+  Before this they had names of their own (Greatsword, Heavy Maul…) that the Record and Store never used. The Sage is no longer a "Seeker" scholar, a word the story keeps for later.
+- **A quiet button never breaks onto two lines** ("‹ Back" beside GO ON).

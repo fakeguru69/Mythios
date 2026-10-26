@@ -43,6 +43,23 @@ export const SZ_PREMISE = [
 ];
 export const SZ_CHOOSE = 'Choose the one who will walk this road.';
 export const SZ_SECOND = 'Nobody is only one thing. What else are you good at?';
+// 26 Oct (Fake Guru: "1 & 2 okay"): the second strength is no longer chosen; each class brings its own, one Attribute
+// each, round the six (Core Rules §7). The choice changed no roll at the start (10, 12 and 14 are all Novice, +0).
+export const CLASS_SECOND: Record<string, AttributeName> = {
+  Warrior: 'Craft',
+  Artificer: 'Might',
+  Sage: 'Charm',
+  Trickster: 'Agility',
+  Assassin: 'Aim',
+  Archer: 'Intellect',
+};
+// The prologue (26 Oct, approved by Fake Guru): four cards after BEGIN, before the name. The world, and nothing of the secret.
+export const SZ_PROLOGUE = [
+  'The hill country is old, and it remembers more than it says. Drove roads cross it from fair to fair, and the villages along them keep their doors on the latch and their stories to themselves.',
+  'Long ago, people say, travellers came this way who left marks on the standing stones. Nobody can tell you now what the marks mean. The stones are still there.',
+  'This autumn, children have begun to go missing from the hill villages. Not many, and never two at once. Each time, the village shuts its door and says nothing, and the road goes on as before.',
+  'You are a traveller on the drove road, with a cart, a little money and a long way still to go. You do not know it yet, but someone has already written your name down.',
+];
 export const SZ_QUESTIONS = ['Where were you born?', "What was a grandparent's name?"];
 export const SZ_QUESTIONS_NOTE = 'You can skip these. They only make the story a little more yours.';
 // The character's name in this series (Fake Guru, 16 Oct; wording approved 16 Oct).
