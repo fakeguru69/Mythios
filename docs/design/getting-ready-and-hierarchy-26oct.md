@@ -44,3 +44,25 @@ Fake Guru tried the sign-in and invite with two phones and asked for both to be 
 ## Files
 
 `src/online/OnlineApp.tsx` (Getting ready, the sign-in form, the party sheet's sections), `src/online/GameShell.tsx` (the ☰ button and its dot), `supabase/migrations/0140_alerts_for_getting_ready.sql`, `tests/data/getting-ready-alerts.sql`, and the browser tests (`party-and-session-zero.cjs` passes on the local copy; `party-chat.cjs` and `refresh.cjs` were brought up to date).
+
+## Capital letters: one rule (26 Oct, Fake Guru: "check all capitalization consistent")
+
+- **A button that does something** is short and in capitals: START A PARTY, MAKE THE INVITE, LET IN, NOT THIS TIME, SHARE, COPY, REMOVE, LEAVE THE PARTY, SIGN OUT, NEW INVITE LINK, NOT NOW, STRIKE INSTEAD, TAKE IT OUT.
+- **A link that takes you somewhere** is in sentence case and starts with ‹: ‹ Back to the party, ‹ All your stories, ‹ Back. A question-style link is the same: "Already playing? Sign in", "Have an account? Sign in", "Forgot your password?".
+
+  Before this, five styles were in use: ← The party, ← Back, BACK TO THE PARTY, Back, ‹ Back to the party.
+- **Story choices stay in sentence case** (25 Oct). They are whole sentences, and capitals make them hard to read.
+- **Headings** are in the gold Cinzel title style. Small labels above them (Getting ready, Your party, This week, Settings, Embark on an adventure, Featured series) are in small capitals.
+
+## The cover (26 Oct)
+
+Fake Guru: "didn't we have a nicer cover page… it's our first impression". The 24 Oct trim had taken out more than the spoiler, so the welcome is back:
+- "Embark on an adventure";
+- "A story told a little each day, to you and your friends.";
+- "One party. Ten minutes a day. A dark fantasy told only to your group.";
+- Featured series;
+- one line on how it plays, without the "ritual" spoiler;
+- "6 weeks · 2–6 players · Daily chapters";
+- GATHER YOUR FRIENDS.
+
+It still fits one screen on the smallest iPhone.

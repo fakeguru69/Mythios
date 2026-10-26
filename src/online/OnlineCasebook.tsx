@@ -74,7 +74,7 @@ export default function OnlineCasebook({ partyId, onClose, embedded = false }: {
     <div className="space-y-4">
       {!embedded && (
         <button className={quietButton} onClick={onClose}>
-          ← The party
+          ‹ Back to the party
         </button>
       )}
       <div>
@@ -101,7 +101,7 @@ export default function OnlineCasebook({ partyId, onClose, embedded = false }: {
               <p className="text-[14px] text-[#B7A9CC]">{m.source}</p>
               {m.note && <p className="text-[14px]">Your note: {m.note}</p>}
               <button className={quietButton} onClick={() => takeOut(m)}>
-                Take it out
+                TAKE IT OUT
               </button>
             </div>
           ))}

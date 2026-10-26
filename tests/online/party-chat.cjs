@@ -135,7 +135,7 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
   check('mei renamed to Meiko in panel', await waitFor(mei, /Meiko/));
 
   await openPanel(host);
-  await click(host, 'Leave the party');
+  await click(host, 'LEAVE THE PARTY');
   await click(host, 'LEAVE');
   check('host left the party', await waitFor(host, /START A PARTY|Your parties/));
   await shot(mei, '20-notices');

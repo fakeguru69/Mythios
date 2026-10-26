@@ -1,6 +1,6 @@
 // Piece C7 test (docs/design/handoff-ledger.md):
 //  1. CoverPage.tsx exists and renders MYTHIOS title and canon tagline.
-//  2. Featured series "Tales of the Dark Moon", "Season 1", "6 weeks", "2 to 6 friends".
+//  2. Featured series "Tales of the Dark Moon", "Season 1", "6 weeks", "2–6 players".
 //  3. Uses approved canon premise ("In the hill villages, children are going missing...").
 //  4. Buttons: [data-button-gather] ("Gather your friends") and [data-button-signin] ("Already playing? Sign in").
 //  5. OnlineApp.tsx imports and mounts CoverPage for unauthenticated landing visitors.
@@ -22,8 +22,9 @@ const check = (name, ok) => {
 
   check('CoverPage.tsx renders MYTHIOS header', coverSrc.includes('MYTHIOS'));
   check(
-    'CoverPage.tsx: the premise is the only sentence (Phase 5, 24 Oct): no tagline, no "ritual"',
-    !coverSrc.includes('A story told a little each day') && !/ritual/i.test(coverSrc) && !coverSrc.includes('10 minutes a day')
+    // 26 Oct: the welcome lines are back (Fake Guru); only the "ritual" line stays out, as it gives the story away.
+    'CoverPage.tsx: the welcome is there, and no "ritual"',
+    coverSrc.includes('Embark on an adventure') && coverSrc.includes('A story told a little each day') && !/ritual/i.test(coverSrc)
   );
   check(
     'CoverPage.tsx uses canon series premise',
@@ -38,11 +39,11 @@ const check = (name, ok) => {
     coverSrc.includes('TALES OF THE DARK MOON') &&
     coverSrc.includes('Season 1') &&
     coverSrc.includes('6 weeks') &&
-    coverSrc.includes('2 to 6 friends')
+    coverSrc.includes('2–6 players')
   );
   check(
-    'CoverPage.tsx renders data-button-gather button ("Start a party", the name the next screen uses)',
-    coverSrc.includes('data-button-gather') && coverSrc.includes('Start a party') && appSrc.includes('START A PARTY')
+    'CoverPage.tsx renders data-button-gather button ("GATHER YOUR FRIENDS", restored 26 Oct)',
+    coverSrc.includes('data-button-gather') && coverSrc.includes('GATHER YOUR FRIENDS')
   );
   check(
     'CoverPage.tsx renders data-button-signin button ("Already playing? Sign in")',

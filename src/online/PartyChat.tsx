@@ -197,7 +197,7 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
                 REPORT
               </button>
               <button className={quietButton} onClick={() => setReporting(null)}>
-                Back
+                ‹ Back
               </button>
             </div>
           ) : reported ? (
@@ -218,14 +218,14 @@ export default function PartyChat({ partyId, userId, members }: { partyId: strin
                   SEND
                 </button>
                 <button className={quietButton} onClick={() => setReporting(null)}>
-                  Back
+                  ‹ Back
                 </button>
               </div>
             </>
           )}
           {reported && (
             <button className={quietButton} onClick={() => setReporting(null)}>
-              Back
+              ‹ Back
             </button>
           )}
         </div>

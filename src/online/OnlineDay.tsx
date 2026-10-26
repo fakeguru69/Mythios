@@ -277,7 +277,7 @@ export default function OnlineDay({
   const header = embedded ? null : (
     <div className="flex items-center justify-between gap-2">
       <button className={quietButton} onClick={onClose}>
-        ← The party
+        ‹ Back to the party
       </button>
       <span className="font-['Cinzel'] font-bold text-[14px] text-[#E5C158]">◎ {progress.gold.toLocaleString()}g</span>
     </div>
@@ -1073,7 +1073,7 @@ export default function OnlineDay({
                 </div>
                 <OnlineChest partyId={partyId} onClose={() => undefined} embedded only={{ week, day }} onChanged={load} />
                 <button className={`${quietButton} w-full`} onClick={onOpenChest}>
-                  The whole Seeker Chest
+                  THE WHOLE SEEKER CHEST
                 </button>
               </div>
             )}

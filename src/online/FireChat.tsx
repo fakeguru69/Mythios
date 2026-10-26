@@ -252,7 +252,7 @@ export function ReportBox({ m, onDone }: { m: ChatMessage; onDone: () => void })
             REPORT
           </button>
           <button className={quietButton} onClick={onDone}>
-            Back
+            ‹ Back
           </button>
         </div>
       ) : (
@@ -271,14 +271,14 @@ export function ReportBox({ m, onDone }: { m: ChatMessage; onDone: () => void })
               SEND
             </button>
             <button className={quietButton} onClick={onDone}>
-              Back
+              ‹ Back
             </button>
           </div>
         </>
       )}
       {sent && (
         <button className={quietButton} onClick={onDone}>
-          Back
+          ‹ Back
         </button>
       )}
       {error && <p className="text-[14px] text-[#F08A8A]">{error}</p>}
