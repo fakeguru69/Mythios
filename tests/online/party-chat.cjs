@@ -46,12 +46,14 @@ const PARTY = 'Lantern ' + Date.now().toString().slice(-5);
     const second = (typeof b === 'string' && /^[A-Z]/.test(b)) ? b : 'Aim';
     // 26 Oct: Getting ready's step 1 opens Session Zero; its first card's BEGIN starts it.
     await click(p, 'MAKE YOUR CHARACTER'); await click(p, 'BEGIN');
+    // 26 Oct: a new character first reads the four prologue cards; the second strength comes with the class.
+    while (await p.locator('[data-prologue]').count()) await click(p, 'GO ON');
     if (/What is your name in this story\?/.test(await body(p))) {
       await click(p, 'GO ON');
       await p.getByRole('button', { name: new RegExp(`^${cls}`) }).click(); await click(p, 'GO ON');
-      await p.getByRole('button', { name: second, exact: true }).click(); await click(p, 'GO ON');
       await click(p, 'GO ON');
     }
+    void second;
     await click(p, 'READY'); await p.waitForTimeout(1500);
   };
 

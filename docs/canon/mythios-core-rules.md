@@ -91,7 +91,7 @@ Episode 6 keeps its own order of reveals. How a Gathering is scheduled, started 
 | Agility | Assassin | Speed, stealth |
 | Aim | Archer | Precision |
 
-**Starting values:** every Attribute is 10, except the class Attribute (14) and one chosen second Attribute (12).
+**Starting values:** every Attribute is 10, except the class Attribute (14) and the class's second Attribute (12): Warrior Craft, Artificer Might, Sage Charm, Trickster Agility, Assassin Aim, Archer Intellect. *(26 Oct, Fake Guru: the second is no longer chosen. It changed no roll at the start, since 10, 12 and 14 are all Novice, +0, and the screen did not say so. A character made before keeps its own.)*
 
 **Five tiers, 25 points each**
 
@@ -385,11 +385,17 @@ Told by MYTHIOS in the player's own thread before Day 1 opens. About three minut
 - Each card says plainly, with its own Attribute: *"Your best Attribute is Might. The road will ask for all six."*
 - If a friend has already taken a class: *"Mei is already a Sage. You can be one too. The road will ask for all six."*
 
-**Step 3 — A second strength**
+**Step 3 — A second strength** *(retired 26 Oct, Fake Guru: each class brings its own, shown on its card as "also good at Craft"; see Starting values)*
 
-> Nobody is only one thing. What else are you good at?
+**Before the name: the prologue** *(26 Oct, approved by Fake Guru)*. Four cards, one at a time, after [BEGIN] and before the name, for a new character only:
 
-The player picks one of the other five Attributes.
+> The hill country is old, and it remembers more than it says. Drove roads cross it from fair to fair, and the villages along them keep their doors on the latch and their stories to themselves.
+>
+> Long ago, people say, travellers came this way who left marks on the standing stones. Nobody can tell you now what the marks mean. The stones are still there.
+>
+> This autumn, children have begun to go missing from the hill villages. Not many, and never two at once. Each time, the village shuts its door and says nothing, and the road goes on as before.
+>
+> You are a traveller on the drove road, with a cart, a little money and a long way still to go. You do not know it yet, but someone has already written your name down.
 
 **Step 4 — Two questions, both optional**
 

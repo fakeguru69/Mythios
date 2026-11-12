@@ -24,7 +24,7 @@ const check = (name, ok) => {
   check(
     // 26 Oct: the welcome lines are back (Fake Guru); only the "ritual" line stays out, as it gives the story away.
     'CoverPage.tsx: the welcome is there, and no "ritual"',
-    coverSrc.includes('The adventure is in the story.') && coverSrc.includes('Embark on a mysterious journey') && !coverSrc.includes('Ten minutes a day') && !/ritual/i.test(coverSrc)
+    coverSrc.includes('The adventure is in the story') && coverSrc.includes('Embark on a mysterious journey') && !coverSrc.includes('Ten minutes a day') && !/ritual/i.test(coverSrc)
   );
   check(
     'CoverPage.tsx uses canon series premise',
